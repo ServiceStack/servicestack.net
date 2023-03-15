@@ -31,7 +31,8 @@ public class ConfigureSsg : IHostingStartup
                 AppTasks.Register("prerender", args =>
                 {
                     var distDir = appHost.ContentRootDirectory.RealPath.CombineWith("dist");
-                    FileSystemVirtualFiles.DeleteDirectory(distDir);
+                    if (Directory.Exists(distDir))
+                        FileSystemVirtualFiles.DeleteDirectory(distDir);
                     FileSystemVirtualFiles.CopyAll(
                         new DirectoryInfo(appHost.ContentRootDirectory.RealPath.CombineWith("wwwroot")),
                         new DirectoryInfo(distDir));
