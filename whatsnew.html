@@ -1,0 +1,1565 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="/img/logo.svg">
+    <title>What&#x27;s New - My App</title>
+    <script>
+    let colorScheme = localStorage.getItem('color-scheme')
+    setColorScheme()
+    function setColorScheme() {
+        if (colorScheme === 'dark')
+            document.querySelector('html').classList.add('dark')
+        else
+            document.querySelector('html').classList.remove('dark')
+    }
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script src="/js/lib.bundle.js"></script>
+
+    <script type="importmap">
+{
+    "imports": {
+        "vue": "/lib/mjs/vue.mjs",
+        "@servicestack/client": "/lib/mjs/servicestack-client.mjs",
+        "@servicestack/vue": "/lib/mjs/servicestack-vue.mjs"
+    }
+}
+</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="border-b border-gray-200 dark:border-gray-600 pr-3">
+    <div class="flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a hx-boost="true" class="navbar-brand flex items-center" href="/">
+                    <img class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12" src="/img/logo.svg" alt="MyApp logo">
+                    <span class="hidden sm:block text-2xl font-semibold">MyApp</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav hx-boost="true" class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-blue-700 dark:text-blue-300">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/posts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/about" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    About
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "/mjs/app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pb-3" hx-ext="class-tools">
+        <link rel="stylesheet" href="/css/typography.css">
+<style>
+.prose a {
+    --tw-text-opacity: 1;color: rgba(59, 130, 246, var(--tw-text-opacity)); /*text-blue-500*/
+    -webkit-transition: all ease 0.25s;
+            transition: all ease 0.25s;
+    text-decoration: none;
+}
+.prose a:hover {
+    --tw-text-opacity: 1;color: rgba(37, 99, 235, var(--tw-text-opacity)); /*text-blue-600*/
+    text-decoration: none;
+}
+.prose p {
+    color: rgb(55 65 81); /*text-gray-700*/
+}
+.dark .prose p {
+    color: rgb(229 231 235); /*text-gray-200*/
+}
+</style>
+
+<div class="container mx-auto px-5">
+    <section class="flex-col md:flex-row flex justify-center mt-16 mb-16 md:mb-12">
+        <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+            Latest features & highlights
+        </h1>
+    </section>
+</div>
+
+<div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
+
+    <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.7</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">March 14, 2023</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_7"><img src="/img/whatsnew/v6.7/autohtml-preview.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_7">New Auto API HTML Page for all APIs!</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new Auto HTML Page is the best way to visualize, inspect and integrate with your APIs which provides instant utility for API consumers in consuming your APIs with a built-in API Response Visualizer, JSON syntax highlighting, integrated Postman-like UI and API SDK integration all-in-one.</p>
+<p>A nice benefit of ServiceStack's API Design is that consuming APIs are fundamentally all done the same way in all languages, which just requires adding a dependency containing a generic ServiceClient which can be used to call any ServiceStack API using the typed DTOs copied directly from the API docs page to enable an end-to-end typed API without any external tooling or build steps.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_7" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_7#autoquerygrid"><img src="/img/whatsnew/v6.7/gallery-contacts.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_7#autoquerygrid">Vue AutoQueryGrid Component for Auto CRUD UIs</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new AutoQueryGrid component is the last high-productivity component missing from the Vue Tailwind Component Library to reach feature parity with Blazor Tailwind Component Library.</p>
+<p>It enables an Effortless CRUD UI without any external dependencies, tooling or build steps, generating a capability-based UI for the currently authenticated user, enabling full CRUD functionality through the App's auth-protected AutoQuery APIs, validated by the APIs Declarative Validation Rules utilizing optimal Form Inputs for each C# property type with contextual validation binding, that displays its results in a rich formatted data grid customized with APIs Declarative UI Attributes.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_7#autoquerygrid" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_7#new-locode-api-explorer-admin-uis-now-in-vue-3"><img src="/img/whatsnew/v6.7/new-vue3-uis.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_7#new-locode-api-explorer-admin-uis-now-in-vue-3">New Vue 3 Locode, API Explorer &amp; Admin UIs</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>With access to all components needed, we've taken this opportunity to modernize all of ServiceStack's built-in UI's that were previously written with petite-vue and have rewritten them with Vue 3 and the Vue Components Library, which has become our preferred UI technology stack for all of ServiceStack's built-in UIs.</p>
+<p>Ultimately the new Vue 3 UIs should appeal to a lot more use-cases with better reuse and customizability using the full Vue 3 framework and 3rd Party ecosystem for creating more compelling and interactive UIs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_7#new-locode-api-explorer-admin-uis-now-in-vue-3" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_7#api-index"><img src="/img/whatsnew/v6.7/api-gallery.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_7#api-index">New API Index Page</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The <code>/api</code> route is now being used as an opportunity to improve API Discovery by returning an App's public APIs grouped by user-defined tags with direct links to the API endpoint, viewing it in API Explorer and in Locode for AutoQuery APIs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_7#api-index" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.6</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">February 8, 2023</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_6"><img src="/img/whatsnew/v6.6/vue-mjs.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_6">New Tailwind Razor Pages &amp; MVC Templates</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new Tailwind Razor Pages &amp; MVC Templates enable rapid development of Modern Tailwind Apps without the pitfalls plaguing SPA development:</p>
+<ul>
+<li><strong><a href="https://vue-mjs.web-templates.io">vue-mjs</a></strong> - Flagship Vue.mjs template with OrmLite, AutoQuery, boosted htmx links &amp; static pre-rendered blogs</li>
+<li><strong><a href="https://razor-tailwind.web-templates.io">razor-tailwind</a></strong> - Simple Razor Pages Template without DB or pre-rendering</li>
+<li><strong><a href="https://mvc-tailwind.web-templates.io">mvc-tailwind</a></strong> - Want to use MVC Identity Auth and Entity Framework</li>
+<li><strong><a href="https://web-tailwind.web-templates.io">web-tailwind</a></strong> - Empty tailwind template with no web framework configured</li>
+<li><strong><a href="https://vue-vite.jamstacks.net">vue-vite</a></strong> - Vite + TypeScript in a simpler JAMStack Vite SPA App</li>
+<li><strong><a href="https://vue-ssg.jamstacks.net">vue-ssg</a></strong> - Vite + TypeScript in an advanced JAMStack Vite SSG App</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_6" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/vue/"><img src="/img/whatsnew/v6.6/vue-components.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/vue/">Vue 3 Tailwind Components</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>To maximize productivity, all new Vue Tailwind templates are pre-configured to use the feature-rich <a href="https://docs.servicestack.net/vue/">Vue 3 Taiwlind Library</a>.</p>
+<p><strong>@servicestack/vue</strong> is our growing Vue 3 Tailwind component library with a number of rich Tailwind components useful in .NET Web Apps, including DataGrids, Auto Forms, Modals, Slide Overs, Navigational Components, Formatters, standard HTML Form Input controls inc. FileInput, Autocomplete, TagInput - all with integrated contextual validation binding.</p>
+<p>It's our cornerstone library for enabling a highly productive dev model across our Vue.js Tailwind Project templates that we'll be continuing to invest in to unlock even greater productivity - watch this space!</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/vue/" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_6#js-module-es6-class-dtos"><img src="/img/whatsnew/v6.6/mjs-update-reference-rider.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_6#js-module-es6-class-dtos">ES6 JS Module Add ServiceStack Reference</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new ES6 classes provide a productive type-safe development model during development but can also be referenced as-is in JS Module scripts and run natively in browsers to enable instant typed API integrations without any build tools!</p>
+<p>To achieve this the ES6 classes are annotated with JSDoc type hints in comments which enjoys broad support in IDEs and tools like TypeScript where it can be used to provide type information in JavaScript files.</p>
+<p>They're now a first-class Add ServiceStack Reference language supported language complete with IDE integration in the latest ServiceStack Plugins for VS .NET and JetBrains IDEs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_6#js-module-es6-class-dtos" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://vue-mjs.web-templates.io/posts/prerendering"><img src="/img/whatsnew/v6.6/razor-pages-prerendering.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://vue-mjs.web-templates.io/posts/prerendering">Static prerendered Markdown Razor Pages</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Prerendering static content is a popular technique used by JAMStack Apps to improve the performance, reliability and scalability of Web Apps that's able to save unnecessary computation at runtime by generating static content at deployment which can be optionally hosted from a CDN for even greater performance.</p>
+<p>As it's a valuable performance optimizing technique it's included in the <a href="https://vue-mjs.web-templates.io">vue-mjs</a> template to show how it can be easily achieved within a Razor Pages App. Since prerendered content is only updated at deployment, it's primarily only useful for static content like markdown powered blogs.</p>
+<p>For those interested in utilizing this optimization we've published details on how this works in the
+<strong><a href="https://vue-mjs.web-templates.io/blog/prerendering">Prerendering Razor Pages</a></strong> blog post.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://vue-mjs.web-templates.io/posts/prerendering" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.5</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">December 10, 2022</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_5"><img src="/img/whatsnew/v6.5/dark-and-light-mode.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_5">Blazor Dark Mode Everywhere</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Tailwind has revolutionized how we style our Web Apps with its mobile first design system that's dramatically simplified creating maintainable responsive Web Apps. It also excels at adding support for Dark Mode with its first-class dark: modifier allowing the use of standard tailwind classes to specify what elements should look like when viewed in Dark Mode.</p>
+<p>We're happy to announce that Dark Mode support has been added to <strong>all ServiceStack.Blazor Tailwind components</strong> and all Blazor Tailwind project templates where you'll be able to toggle on/off Dark Mode with the new <strong>DarkModeToggle</strong> component.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_5" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_5#blazor-components"><img src="/img/whatsnew/v6.5/blazordiffusion-Autocomplete.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_5#blazor-components">New Blazor Components</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The ServiceStack.Blazor component library continues to expand with exciting new Components and improvements, including:</p>
+<ul>
+<li><strong>Autocomplete</strong> - Rich content Input to quickly search &amp; select items</li>
+<li><strong>TagInput</strong> - UX friendly input for managing a list of strings like words or tags</li>
+<li><strong>FormStyle.Card</strong> - Render Auto Forms from POCO classes in a Card Layout</li>
+<li><strong>NavList</strong> - Beautiful Nav Links list component with Icons + Descriptions</li>
+<li><strong>Colored Buttons</strong> - Render buttons in different primary Tailwind colors</li>
+<li><strong>SelectInput Expressions</strong> - Declaratively define Select Input Options</li>
+<li><strong>Custom Edit &amp; Create Forms</strong> - Use forms in custom AutoQueryGrids</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_5#blazor-components" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_5#blazor-diffusion"><img src="/img/whatsnew/v6.5/blazordiffusion.com_splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_5#blazor-diffusion">Blazor Diffusion</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The goal of our increasing Blazor investments is to enable a highly productive and capable platform for rapidly developing a majority of internal Apps CRUD functionality as well as enabling a hybrid development model where the management of Back office supporting tables can be quickly implemented using custom AutoQueryGrid components freeing up developers to be able to focus a majority of their efforts where they add the most value - in the bespoke Blazor UI's optimized customer-facing UX.</p>
+<p>To best demonstrate its potential we've created <a href="https://blazordiffusion.com">blazordiffusion.com</a> - a new ServiceStack.Blazor App front-end for Stable Diffusion - a deep learning text-to-image model that can generate quality images from a text prompt. It's a great example of Hybrid Development in action where the entire user-facing UI is a bespoke Blazor App that's optimized for creating, searching, cataloging and discovering Stable Diffusion generated images, whilst all its supporting admin tasks to manage the back office tables that power the UI were effortlessly implemented with custom AutoQueryGrid components.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_5#blazor-diffusion" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://youtu.be/66DgLHExC9E"><img src="/img/whatsnew/v6.5/blazor-universal-components.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://youtu.be/66DgLHExC9E">Universal Blazor API Components</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The recommendation to access DB's directly in Blazor Server components encourages a more tightly-coupled and less reusable &amp; testable architecture than the traditional well-defined API dev model used in client/server Mobile &amp; Desktop Apps or Web SPA Apps like Blazor WASM.</p>
+<p>To achieve the best of both worlds, we've enabled support for utilizing the In Process Service Gateway in Blazor Server Apps which lets you retain the traditional client/server dev model for invoking your Server APIs In Process - avoiding any serialization, HTTP networking or even Kestrel middleware overhead to invoke your APIs directly!</p>
+<p>This enables using the exact same source code to call APIs in Blazor Server and WASM which allows us to develop reusable Blazor Components to invoke the same Server APIs that serve Web, Mobile and Desktop Apps in Blazor Server Apps.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://youtu.be/66DgLHExC9E" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.4</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">October 11, 2022</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_4"><img src="/img/whatsnew/v6.4/blazor-components-youtube.jpg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_4">RAD Blazor</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're excited to announce exciting new Blazor Components enabling a compelling a Rapid Application Development platform for Blazor Apps delivering many of the productivity benefits previously limited to <a href="https://www.locode.dev">locode.dev</a>.</p>
+<p>Our new native Blazor Components allows for a beautiful progression story where you can start with a <a href="/locode/database-first">Database-First Locode</a> solution to instantly <a href="/locode/database-first#exporting-to-code-first-types">generate Data Models and CRUD APIs</a> around your existing databases that thanks to the new <code>AutoQueryGrid</code> Blazor component will be able to trivially implement both CRUD UI's and optimized Blazor UIs in the same Blazor App.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_4" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_4#blazor-server"><img src="/img/whatsnew/v6.4/blazor-server.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_4#blazor-server">Blazor Server Template</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're happy to announce our new Blazor Server App template offering a number compelling advantages over Blazor WASM, including:</p>
+<ul>
+<li>A superior dev model and debugging experience</li>
+<li>Improved live-reload and faster iterative dev cycles</li>
+<li>Full access to .NET Server functionality</li>
+<li>Better start times &amp; UI responsiveness</li>
+<li>Less complexity from unnecessary client project or pre-rendering solutions</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_4#blazor-server" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_4#blazor-gallery"><img src="/img/whatsnew/v6.4/gallery-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_4#blazor-gallery">Blazor Component Gallery</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack.Blazor Components gives you the ideal development workflow without compromise. Effortless, highly productive, API integrated Rich Blazor UI Components with 100% Server model reuse and integrated contextual validation.</p>
+<p>To better showcase our growing Blazor functionality we've created new Blazor Gallery websites showcasing usage of available rich Blazor Components for rapidly develop beautiful Tailwind Web Apps available in both <a href="https://blazor-gallery.servicestack.net">Blazor Server</a> and <a href="https://blazor-gallery.jamstacks.net">Blazor WASM</a> Web Apps.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_4#blazor-gallery" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_4#db-migrations"><img src="/img/whatsnew/v6.4/database-migrations-youtube.jpg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_4#db-migrations">Debug DB Migrations from IDE</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We've continued improving our story around <a href="/ormlite/db-migrations">Code-First DB Migrations</a> and have created a <a href="https://www.youtube.com/embed/NIVFqute7JQ">new video</a> demonstrating how it can be used to maintain DB Schema migrations under a typical development workflow.</p>
+<p>As they encourage a structured workflow for incremental development of new App features we've upgraded all modern <a href="https://jamstacks.net">jamstacks.net</a>
+templates to adopt DB Migrations for creating and populating their App DB.</p>
+<p>A benefit of DB Migrations being implemented in a library instead of wrapped up behind an external tool, is that it's better integrated and more versatile in supporting more executable options like being able to run from code, a feature the new <code>MigrationTasks</code> Explicit TestFixture benefits from enabling DB Migrations to be run or debugged directly from within your IDE.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_4#db-migrations" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.3</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">August 30, 2022</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_3#code-first-db-migrations"><img src="/img/whatsnew/v6.3/db-migrations.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_3#code-first-db-migrations">Simple Code-First DB Migrations</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're excited to share the next release of ServiceStack which sees the introduction of our simple Database Migration solution with Code-First DB Migrations which advances OrmLite's light-weight code-first development approach with a simple change based migration solution that facilitates the code-first development workflow of OrmLite.</p>
+<p>Starting from a seamless quick install and supporting multiple running options from command-line tooling, IDE run npm scripts, run, debug &amp; verify from unit tests and integrated with our GitHub Action deployments where only successful migrations are deployed.</p>
+<p>Instead of relying on generation by an opaque tool, this code-first approach treats DB Migrations like any other maintainable &amp; logically structured code written by developers where it maintains a connected audit history in source control together with the feature that needs the schema changes.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_3#code-first-db-migrations" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_3#redis-admin-ui"><img src="/img/whatsnew/v6.3/admin-ui-redis.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_3#redis-admin-ui">Manage App Redis Servers with Redis Admin</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The Redis Admin UI lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, simple search functionality to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands that's easily editable &amp; rerun.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_3#redis-admin-ui" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_3#database-admin-ui"><img src="/img/whatsnew/v6.3/admin-ui-database.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_3#database-admin-ui">Browse App RDBMS Tables with Database Admin</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new built-in Database Admin UI lets you quickly browse your App's configured RDBMS schemas and tables, which without any additional configuration your App's configured databases, their schemas, tables and any registered <a href="https://docs.servicestack.net/ormlite/getting-started#multiple-database-connections">named connections</a> will be navigable from the home page where they'll be browsable with a familiar tabular search results grid, similar in appearance and functionality to <a href="https://locode.dev">Locode's Auto UI</a> where their resultsets can each be personalized with flexible query preferences and filtering options that's persisted across browser restarts.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_3#database-admin-ui" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.2</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">July 25, 2022</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_2"><img src="/img/whatsnew/v6.2/blazor-tailwind.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_2">Beautiful Blazor Tailwind Template</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The feature-rich <a href="https://docs.servicestack.net/templates-blazor-tailwind">Blazor WASM Tailwind</a> template us ideal for teams with strong C# skills building Line Of Business (LOB) applications who prefer utilizing Tailwind's modern utility-first CSS design system to create beautiful, instant-loading Blazor WASM Apps.</p>
+<p>All Blazor WASM templates <a href="https://blazor-tailwind.jamstacks.net/docs/prerender">incorporate prerendering</a> to achieve their <a href="https://blazor-tailwind.jamstacks.net">instant load times</a> that greatly benefits the built-in markdown pages with great SEO</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_2" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_2.html#litestream"><img src="/img/whatsnew/v6.2/litestream-costs.svg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_2.html#litestream">Create Litestream Apps and Save 10x on Hosting</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Having achieved the best architecture for delivering <a href="https://jamstacks.net/posts/hosting">max value</a> and performance with our <a href="https://jamstacks.net">jamstacks.net</a> templates, the last expensive vital component used in most Web Apps is hosting of their expensive managed databases. Despite most RDBMS's being OSS and free of licensing costs, major cloud companies continue to charge artificially high hosting costs to provide redundant hosting of App data.</p>
+<p><a href="https://litestream.io">Litestream</a> lets us avoid these expensive hosting costs by providing transparent per-second replica backups to inexpensive managed storage, enabling latency-free queries, simplified hosting architectures at vastly reduced hosting costs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_2.html#litestream" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_2.html#request-logging-profiling"><img src="/img/whatsnew/v6.2/profiling.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_2.html#request-logging-profiling">Gain real-time insights with built-in Profiling</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new Request Logging &amp; Profiling UIs bring an invaluable new level of observability into your App, from being able to quickly inspect and browse incoming requests, to tracing their behavior from their generated events in the new <a href="https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.diagnosticsource?view=net-6.0">Diagnostic Source</a> capabilities added all throughout ServiceStack, which both power the new UIs and enables new introspectability from code where you can now to tap in to inspect &amp; debug when each diagnostic event occurs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_2.html#request-logging-profiling" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_2.html#db-validation"><img src="/img/whatsnew/v6.2/validation-video.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_2.html#db-validation">Manage DB Validation Rules with Validation UI</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The DB Validation feature leverages the existing <a href="https://docs.servicestack.net/declarative-validation">Declarative Validation</a> infrastructure where it enables dynamically managing Request DTO Type and Property Validators from a RDBMS data source which immediately takes effect at runtime that carries the same performance profile at runtime as they can be optionally cached where they'll only need to be re-hydrated from the database after modification.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_2.html#db-validation" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.1</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">May 16, 2022</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_1"><img src="/img/whatsnew/v6.1/locode-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_1">Rapid Application Development with Locode</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're excited to announce <a href="https://locode.dev">locode.dev</a>, our <strong>Rapid Application Development</strong> solution to quickly develop
+beautiful Full Stack CRUD Apps around <strong>AutoQuery APIs</strong>, suitable for a wide number of use-cases including:</p>
+<ul>
+<li>Rapid prototyping by creating an instant UI around existing <strong>Database-First</strong> RDBMS tables</li>
+<li>Declarative <strong>Code-First</strong> development model with unprecedented customizability (exportable from Database-First)</li>
+<li><strong>Hybrid Apps</strong> with a custom UI to optimize common workflows whilst using Locode's Auto UI to manage Back office tables</li>
+</ul>
+<p>As Locode's UI is built on top of ServiceStack's industrial strength AutoQuery APIs, Hybrid Apps can benefit from its superior end-to-end typed development model for creating Web, Mobile &amp; Desktop Apps.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_1" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_1#database-first"><img src="/img/whatsnew/v6.1/youtube-locode-intro.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_1#database-first">Database-First Development Model</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Using <a href="https://docs.servicestack.net/autoquery-autogen">AutoQuery's AutoGen</a> enables the quickest way to modernize an existing database by dynamically creating Data Models &amp; AutoQuery CRUD APIs from RDBMS table schemas at runtime.</p>
+<p>Locode provides a highly functional UI out-of-the-box that doesn't rely on code-gen that allows you to only override the Custom UI or Custom API implementation when needed resulting in a significantly smaller code-base to maintain as reflected in the comparitive code-bases of a customized
+Northwind Locode App vs the Northwind code-base of a popular RAD code-gen tool for .NET</p>
+<table>
+  <thead>
+    <tr>
+      <th>Locode Northwind</th>
+      <th>Radzen Northwind</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>~120 lines</strong> of C#</td>
+      <td><strong>~4500 lines</strong> of C# (generated)</td>
+    </tr>
+    <tr>
+      <td class="pr-2"><strong>29 lines</strong> custom Home Page</td>
+      <td><strong>10k+ lines</strong> of Angular HTML/TS (generated)</td>
+    </tr>
+  </tbody>
+</table>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_1#database-first" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_1#code-first"><img src="/img/whatsnew/v6.1/chinook-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_1#code-first">Code-First Development Model</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p><a href="https://docs.servicestack.net/locode/code-first">Code-First</a> is the natural development model of <a href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery Services</a> which facilitates the majority of a
+System and its UI can be developed from simple, declarative C# POCOs to define the underlying RDBMS Schema Data Models and the precise typed
+API DTO Contracts of their surrounding AutoQuery &amp; CRUD APIs. The Data and Service models can be further enhanced by ServiceStack's vast
+<a href="https://docs.servicestack.net/locode/declarative">declarative attributes</a> where a significant amount of behavior, functionality and customization can be defined, ranging from:</p>
+<ul>
+<li>Customize how <a href="https://docs.servicestack.net/locode/declarative.html#table-data-model-attributes">Data Models map to DB Tables</a> &amp; enlist RDBMS features</li>
+<li><a href="https://docs.servicestack.net/locode/declarative.html#custom-serialization">Customize Serialization &amp; API behavior</a></li>
+<li><a href="https://docs.servicestack.net/locode/declarative.html#autoquery-attributes">Define AutoQuery &amp; CRUD API behavior</a></li>
+<li>Define <a href="https://docs.servicestack.net/locode/declarative.html#type-validation-attributes">Validation Rules</a> and <a href="https://docs.servicestack.net/locode/declarative.html#authentication-restrictions">Authorization restrictions</a></li>
+<li><a href="https://docs.servicestack.net/locode/declarative.html#annotate-apis">Annotate &amp; Document APIs</a></li>
+<li><a href="https://docs.servicestack.net/locode/declarative.html#result-formatters">Customize UI Behavior &amp; Appearance</a></li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_1#code-first" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6_1#hybrid-locode-apps"><img src="/img/whatsnew/v6.1/talent-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_1#hybrid-locode-apps">Hybrid Locode Apps with Blazor WASM</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Locode's declarative dev model lets you focus on your new App's business requirements where its data model, API capabilities, input validation &amp; multi-user Auth restrictions can be defined simply using annotated C# POCOs.
+This provides immense value at the start of the development cycle where functional prototypes can be quickly iterated to gather business requirements</p>
+<p>Once requirements have solidified, its typed AutoQuery APIs can easily be reused to develop custom UIs to optimize important workflows.</p>
+<p><a href="https://github.com/NetCoreApps/TalentBlazor">Talent Blazor</a> is a new App showcasing an example of this where its entire back-office functionality can be managed through Locode whilst an optimized <strong>Blazor WASM App</strong> is created to optimize its unique workflow requirements which also benefits from the superior productive dev model of its Typed APIs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_1#hybrid-locode-apps" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.0</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">January 21, 2022</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6"><img src="/img/whatsnew/v6/servicestack-100m-976w.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6">FREE Individual &amp; OSS Licenses</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're starting off 2022 eclipsing an impressive milestone having crossed
+<a href="https://www.nuget.org/profiles/servicestack">100M+ NuGet downloads</a> which we're celebrating by making ServiceStack FREE for Individuals &amp; collaborative OSS Projects.</p>
+<p>We've also created 2 new community spaces for ServiceStack developers to engage with each other:</p>
+<ul>
+<li><a href="https://github.com/ServiceStack/Discuss/discussions/">ServiceStack/Discuss</a></li>
+<li><a href="https://discord.gg/w4ayGbuYpA">#ServiceStack channel on Discord</a></li>
+</ul>
+<p>These new spaces are welcome to all users of the framework that we hope together with the new free licenses will encourage developers build and share their amazing creations with each other! 🎉</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6#api-explorer"><img src="/img/whatsnew/v6/api-details-CreateBooking.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6#api-explorer">API Explorer</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Now built into every ServiceStack v6 App is API Explorer - an instant integrated Postman and Swagger UI alternative to quickly Call and Explore your APIs.</p>
+<p>The entire API Explorer UI is driven by the rich metadata around your APIs and AppHost's registered plugins capturing greater knowledge about your APIs and is able to provide a smarter, richer and more optimized UX than what would be possible going through lowest common denominator specs like Open API.</p>
+<p>With envious performance and unmatched customizability, API Explorer lets you easily incorporate gorgeous, rich, interactive API Documentation API Consumers will love who'll be able to read its source code in their preferred programming language and easily call from their existing Client Apps.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6#api-explorer" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/templates-blazor"><img src="/img/whatsnew/v6/blazor-wasm.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/templates-blazor">Blazor WebAssembly Jamstack Template</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Our new Blazor WebAssembly (WASM) template is ideal for teams with strong C# skills building Line Of Business (LOB) applications. Utilizing an API First development model, the C# Blazor front-end is able to take advantage of the clean separation of ServiceStack APIs to enjoy instant frictionless 100% reuse of API Types as-is, without any reliance on any tooling or unproductive out-of-sync code-gen build steps interrupting developers workflow.</p>
+<p>Together with new .NET Service Clients Apis it results in the ideal productive dev model to bind Blazor UIs to ServiceStack APIs.</p>
+<p>Templates make use of <strong>ServiceStack.Blazor</strong> a new package of integrated functionality with ServiceStack, inc. JSON API HttpClient Factory, API-enabled base components &amp; themable Bootstrap + Tailwind UI controls.</p>
+<p>In addition to TODO MVC and CRUD UI examples demonstrating its productive dev model, it also includes pre-rendering solutions for instant load times &amp; GitHub Actions for effortless optimal Jamstack CDN deployments.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/templates-blazor" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v6#jamstack"><img src="/img/whatsnew/v6/jamstacks-net.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6#jamstack">C# Jamstack Templates</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack's new <a href="https://jamstacks.net">jamstacks.net</a> templates encapsulates the latest technologies at the forefront of modern web development to deliver both a great developer experience and performant end-user UX.</p>
+<p>Jamstack (JavaScript, APIs, and Markup) is a modern architecture pattern to build fast, secure and easy to scale web applications where pre-rendering content, enhancing with JavaScript and leveraging CDN static hosting results in a highly productive, flexible and performant system that takes advantage of CDN edge caches to deliver greater performance &amp; efficiency at lower cost.</p>
+<p>It's quickly becoming the preferred architecture for modern web apps with benefits extending beyond performance to improved Security, Scale, Maintainability, Portability, Developer Experience &amp; lower costs with your App's pre-rendered static UI assets on Content Delivery Network (CDN) edge caches close to users locations.</p>
+<p>These new templates represent the best-in class experiences for their respective React, Vue &amp; Blazor WASM ecosystems each, packed with features &amp; examples common in many websites including Integrated Auth, rich Markdown content as well as TODOs MVC and CRUD examples with built-in contextual validation binding. As such they're now recommended over our existing SPA and C# MVC Templates.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6#jamstack" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.13</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">November 20, 2021</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5_13"><img src="/img/whatsnew/net6-released.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5_13">.NET 6 is here!</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We've cut this release cadence short to focus on putting out a quality release to take advantage of the newest and best .NET runtime yet!</p>
+<p>In a lot of ways .NET 6 marks the start of a new era for .NET with the first LTS release after the end of the
+.NET Framework and .NET Standard with only 1 actively developed runtime going forward.</p>
+<p>We're moving full-steam ahead and have standardized our new features onto .NET 6 with:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/releases/v5_13#all-project-templates-upgraded-to-net-6">All project templates upgraded to .NET 6</a></li>
+<li><a href="https://docs.servicestack.net/releases/v5_13#net6-0-tfm-builds-added-to-all-packages">net6.0 TFM builds added to all packages</a></li>
+<li><a href="https://docs.servicestack.net/releases/v5_13#net-6-new-hosting-model">Embracing .NET 6 new Hosting Model for mix</a></li>
+<li><a href="https://docs.servicestack.net/releases/v5_13#v4-5-net-framework-deprecation-notice">v4.5 .NET Framework Deprecation Notice</a></li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5_13" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5_13#servicestackvs-now-supports-visual-studio-2022"><img src="/img/whatsnew/vs2022-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5_13#servicestackvs-now-supports-visual-studio-2022">ServiceStackVS 2022 support</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Visual Studio 2022 now has support for Add ServiceStack reference for C#/F#/VBNET/TypeScript!</p>
+<p>ServiceStackVS can be found in the Extension Marketplace, and is installable straight from Visual Studio 2022.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5_13#servicestackvs-now-supports-visual-studio-2022" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://youtu.be/WgsFl0AFUdo"><img src="https://i.ytimg.com/vi/WgsFl0AFUdo/maxresdefault.jpg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://youtu.be/WgsFl0AFUdo">.NET 6 Hosting Model migration guide</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're now embracing .NET 6's idiom and have rewritten all our mix gist config files to adopt its HostingStartup which is better able to load modular Startup configuration without assembly scanning.</p>
+<p>This video guide shows how you can migrate your existing startup modules to use .NET 6 Hosting Model.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://youtu.be/WgsFl0AFUdo" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.12</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">August 17, 2021</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.12#python-servicestack-reference"><img src="/img/whatsnew/v5.12/python-reference.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.12#python-servicestack-reference">Python ServiceStack Reference</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p><a href="https://python.org">Python</a> is one of the worlds most popular programming languages which
+excels in a number of industries thanks to its ease of use and comprehensive libraries.</p>
+<p>To maximize the experience for calling ServiceStack APIs within these environments
+ServiceStack now supports Python as a 1st class Add ServiceStack Reference supported language
+which gives Python developers an end-to-end typed API for consuming ServiceStack APIs,
+complete with IDE integration in <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> as well as
+<a href="https://docs.servicestack.net//dotnet-tool#addupdate-servicestack-references">built-in support in x dotnet tool</a>
+to generate Python DTOs for a remote ServiceStack instance from a single command.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.12#python-servicestack-reference" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.12#interactive-jupyter-notebooks"><img src="/img/whatsnew/v5.12/jupyter-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.12#interactive-jupyter-notebooks">Jupyter Notebooks</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Python has solidified itself as a powerhouse in Data Science and Machine Learning thanks to its
+best-in-class libraries as well as being at the forefront of Interactive Computing with its native
+support in <a href="https://jupyter.org/">Jupyter Notebooks</a> - a popular realization of Donald Knuth’s
+<a href="https://en.wikipedia.org/wiki/Literate_programming">Literate Programming</a>
+paradigm where executable code is interlaced in a live document with natural language
+documentation, rich markup and embedded media. It’s become an invaluable medium for data
+science, scientists and researchers where it’s often used as an advanced REPL environment
+for data and computation exploration whose resulting knowledge and insights are easily
+captured and shared.</p>
+<p>We’re excited to be able to join the beautiful interactive world of Jupyter Notebooks with
+both Simple UI and command-line tools for effortlessly generating customized Notebooks around
+typed ServiceStack APIs for Jupyter’s premier support for <strong>Python</strong>.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.12#interactive-jupyter-notebooks" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.12#generate-c-jupyter-notebooks"><img src="/img/whatsnew/v5.12/jupyter-lab-visual-example.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.12#generate-c-jupyter-notebooks">C# and F# Jupyter Notebooks</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>In addition to Python we've also extended support for generating customized pre-populated
+<strong>C#</strong> and <strong>F#</strong> Jupyter Notebooks by leveraging dotnet/interactive Jupyter kernel’s which
+allows C# and F# .NET Developers to join Jupyter's interactive live programming paradigm
+which they can either choose to run locally in the next gen JupyterLab UI or directly within
+VS Code using .NET Interactive's VS Code extension.</p>
+<p>Notebooks have also become a popular medium for sharing institutional data and computational
+knowledge thanks to being able to capture and embed execution output and support for exporting
+in multiple popular document formats as used by GitHub with their Auto Preview support for
+Notebooks. We also simplify configuring a Notebook GitHub repo to support executing C# and
+F# Notebooks in <a href="https://mybinder.org">mybinder.org</a> FREE cloud hosting services with our
+<code>docker-jupyter</code> mix template.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.12#generate-c-jupyter-notebooks" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.11</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">April 21, 2021</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.11#instant-client-apps"><img src="/img/whatsnew/v5.11/client-apps.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.11#instant-client-apps">Instant Client Apps</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Building upon our native end-to-end typed solutions, we're excited to announce <strong>Instant Client Apps</strong> to
+provide instant utility and value around your ServiceStack Services where your API consumers can use the
+Auto generated UI to craft API Requests in their preferred programming language:</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.11#instant-client-apps" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.11#githubaction-templates"><img src="/img/whatsnew/v5.11/github-actions-header.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.11#githubaction-templates">GitHub Actions Templates</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We've begun to fully embrace GitHub Actions from this release to help quickly setting up CI environments for
+new and existing ServiceStack project templates by automating them into building and running tests on each <strong>commit</strong>
+before publishing, dockerizing &amp; deploying them on each <strong>GitHub Release</strong>.
+The templates leverage <a href="https://docs.servicestack.net/mix-tool">mix</a> to work like lego pieces where they can be combined to achieve your
+preferred automation workflow.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.11#githubaction-templates" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.11#all-service-client-libraries-upgraded"><img src="/img/whatsnew/v5.11/service-clients.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.11#all-service-client-libraries-upgraded">All Service Client Libraries Upgraded</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>In addition to the Refresh Token support &amp; built-in Inspect utils all ServiceStack’s generic Service Client libraries in all languages have received a number of updates to improve their consistency and overall development UX.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.11#all-service-client-libraries-upgraded" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.10</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">November 11, 2020</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.10#creating-a-multi-user-net-core-booking-system-in-minutes"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/studio/bookings-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.10#creating-a-multi-user-net-core-booking-system-in-minutes">Booking System in minutes</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>To see the rapid development of AutoQuery in action we've created a quick demo showing how to create a simple multi-user Booking System from an empty <a href="https://github.com/NetCoreTemplates/web">web</a> project, <a href="https://docs.servicestack.net/mix-tool">mixed in</a> with the preferred RDBMS &amp; Auth layered functionality, before enabling <a href="https://docs.servicestack.net/validation">Validation</a>, <a href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery</a>, Admin Users &amp; <a href="https://docs.servicestack.net/autoquery-audit-log">CRUD Event Log</a> plugins - to lay the foundational features before building our App by first defining its <code>Booking</code> data model &amp; its surrounding <strong>Query</strong>, <strong>Create</strong>, <strong>Update</strong> and <strong>Soft Delete</strong> Typed CRUD APIs with rich validation enforced by declarative Validation attributes and multi-layer authorization rules &amp; access permissions protected using Authorization attributes.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.10#creating-a-multi-user-net-core-booking-system-in-minutes" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.10#studio-user-management-ui"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/studio/studio-home.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.10#studio-user-management-ui">Studio User Admin</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We've caught a glimpse of the new User Admin Feature in the <a href="https://youtu.be/XpHAaCTV7jE">Bookings CRUD demo</a> who utilizes it to create <strong>Employee</strong> and <strong>Manager</strong> users. The <code>AdminUsersFeature</code> provides Admin User Management APIs enabling remote programmatic access to your registered <a href="https://docs.servicestack.net/authentication-and-authorization#user-auth-repository">User Auth Repository</a>, featuring:</p>
+<ul>
+<li>Works with existing <code>IUserAuthRepository</code> sync or async providers</li>
+<li>Utilizes Progressive enhancement, e.g. search functionality utilizes <code>IQueryUserAuth</code> (if exists) performing a wildcard search over multiple fields, otherwise falls back to exact match on <code>UserName</code> or <code>Email</code></li>
+<li>Supports managing Auth Repositories utilizing custom <code>UserAuth</code> data models</li>
+<li>Flexible UI options for customizing which fields to include in Search Results and Create/Edit UIs</li>
+<li>Rich Metadata aggregating only App-specific Roles &amp; Permissions defined in your App</li>
+<li>User Events allow you to execute custom logic before &amp; after each Created/Updated/Deleted User</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.10#studio-user-management-ui" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.10#sign-in-with-apple"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dev/web-signin-with-apple-login.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.10#sign-in-with-apple">Sign In with Apple</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>As mobile Apps is a target use-case for ServiceStack, this release also includes 1st class integration with <strong>Sign In with Apple</strong> OAuth provider. To assist with adoption we've also developed Sign In with Apple Integration Examples for iOS, Android &amp; Web with working implementations for Flutter iOS/Android &amp; SwiftUI Apps.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.10#sign-in-with-apple" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.9</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">July 9, 2020</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.9#introducing-servicestack-studio"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/studio-home.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.9#introducing-servicestack-studio">Introducing ServiceStack Studio</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Another exciting development in this release is the successor to <a href="https://github.com/ServiceStack/Admin">Admin UI</a>:
+<strong>ServiceStack Studio!</strong> - a capability-based UI to manage multiple remote ServiceStack instances from either a Chromium Desktop App
+or cross-platform .NET Core Web App.</p>
+<p>The richer metadata in ServiceStack Services allows Studio to logically group Services around Data Models, enabling its high-level
+semantic features like its native data-grid like UX over all AutoQuery Services to quickly discover, search, create, update and
+delete entities based on the available AutoQuery APIs and whether Authenticated Users have access to them.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.9#introducing-servicestack-studio" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.9#instantly-servicify-existing-systems"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.9#instantly-servicify-existing-systems">Instantly Servicify existing Systems!</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack also reached maximum autonomy for a Services framework where in addition to <strong>AutoQuery</strong> automatically providing your Services implementations,
+<strong>Studio</strong> providing its instant UI, ServiceStack also gained the capability to <strong>generate your entire API!</strong> Including Typed API contracts,
+data models, implementations &amp; human-friendly pluralized HTTP API routes over an existing System RDBMS's tables!</p>
+<p>ServiceStack's <strong>AutoGen</strong> enables a number of exciting possibilities, predominantly it's the fastest way to ServiceStack-ify an
+existing systems RDBMS where it will serve as an invaluable tool for anyone wanting to quickly migrate to ServiceStack and access its
+functionality ecosystem around ServiceStack Services:</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.9#instantly-servicify-existing-systems" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.9#autodtogenerate-types-for-rdbms-tables"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autodto-youtube.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.9#autodtogenerate-types-for-rdbms-tables">Generate Types for RDBMS Tables</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>An unintended consequence of <strong>AutoGen</strong> that's potentially universally appealing to even non .NET developers is that it's also a way to instantly
+generate Types for all RDBMS tables in all of ServiceStack <a href="https://docs.servicestack.net/add-servicestack-reference">supported client languages</a>,
+which thanks to being configurable in a <a href="https://sharpscript.net/docs/sharp-apps">Sharp App</a> can be executed from the command-line using
+the <a href="https://docs.servicestack.net/dotnet-tool">dotnet tools</a></p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.9#autodtogenerate-types-for-rdbms-tables" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.8</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">January 14, 2020</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/grpc"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/grpc-horizontal-color.svg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/grpc">Simple Code-First DB MigrationsServiceStack gRPC support</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're super excited to open the year with the premier feature in this release <strong>ServiceStack gRPC</strong>, our highly-productive entry into the
+<a href="https://grpc.io">gRPC</a> universe with a number of value-added additions that makes developing and consuming gRPC Services a joy with USPs
+that leverages and preserves your existing knowledge and investments and maximizes the utility of your Services offering unprecedented value
+for your development efforts.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/grpc" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.8#net-core-31-lts-project-templates"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-nuxt.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.8#net-core-31-lts-project-templates">Updated Templates .NET Core 3.1</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>With the release of <a href="https://devblogs.microsoft.com/dotnet/announcing-net-core-3-1/">.NET Core 3.1 LTS</a> we've standardized our Project Templates
+and tools to <strong>.NET Core 3.1 LTS</strong> whilst continuing to support existing <strong>.NET Core 2.1+</strong> and <strong>.NET Framework</strong> projects including
+<a href="https://docs.servicestack.net/templates-corefx">ASP.NET Core Apps on the .NET Framework</a>.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.8#net-core-31-lts-project-templates" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.7</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">October 1, 2019</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.7#net-core-3"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/netcore-banner.png?t" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.7#net-core-3">.NET Core 3 Updates</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Ordinarily we'd have a longer release cadence in between releases with more features, but with the recent release of .NET Core 3
+we've cut this release cycle short so we can release a version of ServiceStack compatible with .NET Core 3+. Other than that the major focus
+on this release was <code>#Script</code> with <a href="https://docs.servicestack.net/releases/v5.7#script">many new features</a> we're excited to share after covering the ServiceStack changes.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.7#net-core-3" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.7#1st-class-script-code-and-lisp-language-support"><img src="https://sharpscript.net/assets/img/sandbox.svg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.7#1st-class-script-code-and-lisp-language-support">New #Script Updates</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We've seen great reception of <a href="https://docs.servicestack.net/releases/v5.6#gist-desktop-apps">Gist Desktop Apps</a> from the last v5.6 release with a
+nice shoutout from <a href="https://twitter.com/jongalloway">Jon Galloway</a> in the
+<a href="https://www.youtube.com/watch?v=a2lq4yEfJpk&amp;feature=youtu.be&amp;t=1529">ASP.NET Community August Stand up</a>,
+a featured <a href="https://www.hanselman.com/blog/SharpScriptFromServiceStackLetsYouRunNETAppsDirectlyFromAGitHubGist.aspx">blog post</a>
+from <a href="https://twitter.com/shanselman">Scott Hanselman</a> as well features in Hacker News and Reddit.</p>
+<p>We've since further enhanced <code>#Script</code> capabilities in this release making it more functional then ever, broadening its appeal
+in its growing list of use-cases.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.7#1st-class-script-code-and-lisp-language-support" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.6</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">August 12, 2019</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.6#modular-startup"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/feature-authrepo.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.6#modular-startup">Modular Startup</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We want to dramatically simplify and improve the experience for configuring ASP.NET Core Apps and make them truly composable,
+where we can drop-in files that auto configures itself with both ASP.NET Core and ServiceStack's AppHost so they can
+encapsulate an entire feature and provide instant utility without needing to wade through different steps of how they
+should be manually configured at different places in your Startup configuration class.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.6#modular-startup" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.6#mix-n-match-net-core-apps"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/example-validation-900.gif" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.6#mix-n-match-net-core-apps">Mix&#x27;n&#x27;Match .NET Core Apps</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>To complete the picture of making it easy as possible to compose ASP.NET Core Apps we've created the <code>mix</code> dotnet tool to easily
+install features which can be installed with:</p>
+<pre><code class="language-bash">$ dotnet tool install --global mix
+</code></pre>
+<p>The <code>mix</code> tool is designed around applying ASP.NET Core features captured in GitHub gists to your local .NET Core projects.</p>
+<p>Then choosing which features you want to add to your project with <code>mix &lt;name&gt;</code>, e.g:</p>
+<pre><code class="language-bash">$ mix redis
+</code></pre>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.6#mix-n-match-net-core-apps" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.6#spa-component-libraries"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssvs/spa-templates-overview.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.6#spa-component-libraries">Single Page App Component Libraries</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>To lay the foundation for richer and more tightly integrated UI controls, we've created UI and common component libraries for the
+3 most popular JS frameworks:</p>
+<ul>
+<li><a href="https://github.com/ServiceStack/servicestack-vue">@servicestack/vue</a></li>
+<li><a href="https://github.com/ServiceStack/servicestack-react">@servicestack/react</a></li>
+<li><a href="https://github.com/ServiceStack/servicestack-angular">@servicestack/angular</a></li>
+</ul>
+<p>All new <a href="https://docs.servicestack.net/templates-single-page-apps">Single Page App Project Templates</a> have been pre-configured to use these libraries which will make it
+a lot easier to deliver new UI components and updates to existing SPA Apps with just an npm upgrade.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.6#spa-component-libraries" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.5</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">March 31, 2019</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.5#servicestack-turns-10"><img src="/img/whatsnew/v5.5/anniversary-10.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.5#servicestack-turns-10">ServiceStack turns 10 &#x1F973;</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Before we get into unpacking this release we're happy to announce that we've now eclipsed <strong>10 years</strong> since our
+<a href="https://github.com/ServiceStack/ServiceStack/commit/2a9cd0d10247ae1a679ac011d7bdef593937dba4">first commit</a>!</p>
+<p>I'd like to take this milestone to thank our thousands of Customers we've had the pleasure to serve and see our Software used which has amassed
+more than <strong>27,000,000+ total downloads</strong> on NuGet and to see the uptick in adoption of some of our unique features like
+<a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a> which has been used more than <strong>88,000 times</strong>
+to generate native Typed DTOs amongst its <a href="https://docs.servicestack.net/add-servicestack-reference#supported-languages">8 supported languages</a>.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.5#servicestack-turns-10" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.5#script-fka-servicestack-templates"><img src="/img/whatsnew/v5.5/sharpscript.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.5#script-fka-servicestack-templates">Templates upgrades to #Script</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>As we continue enhancing ServiceStack's scripting support with exciting new features, it no longer made sense to call our dynamic scripting language
+&quot;Templates&quot; which is just one of the many use-cases <code>#Script</code> enables.</p>
+<p><a href="https://sharpscript.net">#Script</a> is typical of a popular dynamic template language you'd find in other platforms, using the ubiquitously familiar mix of
+<a href="https://sharpscript.net/docs/expression-viewer">JavaScript Expressions</a> which for increased wrist-friendly readability can be easily composed
+together using the Unix <code>|</code> operator as embraced by <a href="https://vuejs.org/v2/guide/syntax.html#header">Vue.js filters</a> and
+<a href="https://angular.io/guide/template-syntax#template-expression-operators">Angular's Template Expressions</a>
+whist the <a href="https://sharpscript.net/docs/blocks">Script Statement Blocks</a> adopt the universally adopted Handlebars-like syntax that's ideal for
+rendering dynamic pages.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.5#script-fka-servicestack-templates" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.4</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">September 19, 2018</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.4#net-core-windows-desktop-apps"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/netcore-chromium-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.4#net-core-windows-desktop-apps">.NET Core Windows Desktop Apps!</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Our new <a href="https://www.nuget.org/packages/app">app</a> build tool is packed with features for &quot;Chromitizing&quot; any
+.NET Core Web App into a <strong>.NET Core Windows Desktop App</strong> that's as easy as installing the <code>app</code> tool:</p>
+<pre><code class="language-bash">$ dotnet tool install -g app
+</code></pre>
+<p>and using it to run your .NET Core Web App's <code>.dll</code>, e.g:</p>
+<pre><code class="language-bash">$ app MyApp.dll
+</code></pre>
+<p>Where it will run your .NET Core App and host it inside an Chromium Embedded Framework (CEF) browser.</p>
+<p>This provides instant utility for being able to deploy .NET Core Apps end users can run locally using Chrome's leading and consistent rendering engine
+within a Windows Desktop Application.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.4#net-core-windows-desktop-apps" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.2</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">August 28, 2018</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.2#spanified-servicestack"><img src="/img/logo-text.svg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.2#spanified-servicestack">Spanified ServiceStack</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Major rework was performed across the ServiceStack.Text and ServiceStack.Common foundational libraries to replace its internal usage of <code>StringSegment</code>
+with .NET's new high-performance
+<a href="https://www.codemag.com/article/1807051/Introducing-.NET-Core-2.1-Flagship-Types-Span-T-and-Memory-T">Span and Memory Types</a> primitives
+which are now used for all JSON/JSV deserialization and many other String utilities.</p>
+<p>The new <code>Span&lt;T&gt;</code> and <code>ReadOnlyMemory&lt;char&gt;</code> Types is the successor to <code>StringSegment</code> which are both allocation-free, but Span also enjoys additional runtime support as a JIT intrinsic for improved performance.</p>
+<p>This change was primarily an internal refactor so there shouldn't be any user visible differences except for the addition of the
+<a href="https://www.nuget.org/packages/System.Memory">System.Memory</a> dependency which contains the new Memory types. As a general rule we're averse to adopting
+new dependencies but the added performance of these new primitives makes it a required dependency for maintaining high-performance libraries.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.2#spanified-servicestack" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.1</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">April 24, 2018</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.1.0#dart-and-flutter"><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/dart/dart.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.1.0#dart-and-flutter">Dart and Flutter!</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're super excited to announce first-class support for <a href="https://www.dartlang.org">Dart</a> and <a href="https://flutter.io">Flutter</a>! - Google’s premier new mobile UI framework for crafting high-quality native interfaces for iOS and Android from a single code-base in record time with a Reactive development model simplifying the effort for building Complex UIs in similar vein to development models pioneered in popular JavaScript frameworks like React, React Native, Vue and Angular. It's offers a beautiful blend of rapid development cycles with its built-in Hot Reloading giving you instant iterative feedback of changes to your Mobile App in milliseconds, whilst still offering high-performance native experiences at runtime where Dart code is AOT compiled into native ARM in iOS and Android.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.1.0#dart-and-flutter" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v5.0</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">January 3, 2018</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.0.0#future-versioning-scheme"><img src="/img/logo-text.svg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.0.0#future-versioning-scheme">Future Versioning Scheme</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Historically ServiceStack releases are focused around &quot;Major release schedules&quot; published along with detailed Release Notes describing new features and changes added in each release. All packages are published together in &quot;lockstep&quot; with the same version number so the effort to upgrade ServiceStack projects can be done all at same time, with low frequency.</p>
+<p>Whilst we want to minimize the effort for Customers to upgrade we also want to make any fixes or enhancements to the previous release available sooner as there are often fixes reported and resolved immediately after each release and made available in our <a href="https://docs.servicestack.net/myget">pre-release packages on MyGet</a> that most Customers wont get until the next major Release on NuGet.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.0.0#future-versioning-scheme" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 wow fadeInRight animated px-4 whatsnew-container-item-img" data-wow-offset="10" data-wow-duration="1.5s">
+                    <a href="https://docs.servicestack.net/releases/v5.0.0#servicestack-mobile-and-desktop-apps"><img src="https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots/splash-900.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4" data-wow-offset="10" data-wow-duration="1.5s">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v5.0.0#servicestack-mobile-and-desktop-apps">ServiceStack Mobile and Desktop Apps</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The <a href="https://github.com/ServiceStackApps/HelloMobile">HelloMobile</a> project has been rewritten to use the latest v5 .NET Standard 2.0 and .NET Framework clients and contains multiple versions of the same App demonstrating a number of different calling conventions, service integrations and reuse possibilities for each of the following platforms:</p>
+<ul>
+<li>WPF</li>
+<li>UWP</li>
+<li>Xamarin.Android</li>
+<li>Xamarin.iOS</li>
+<li>Xamarin.OSX</li>
+<li>Xamarin.Forms
+<ul>
+<li>iOS</li>
+<li>Android</li>
+<li>UWP</li>
+</ul>
+</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v5.0.0#servicestack-mobile-and-desktop-apps" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+    </div>
+</div>
+
+    </main>
+</div>
+
+<footer class="bg-accent-1 dark:bg-black border-t border-accent-2 dark:border-gray-600">
+    <div class="container mx-auto px-5">
+        <div class="py-28 flex flex-col lg:flex-row items-center">
+            <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">A ServiceStack Project</h3>
+            <div class="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
+                <a href="https://docs.servicestack.net" class="mx-3 bg-black dark:bg-gray-700 hover:bg-white dark:hover:bg-gray-200 hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0">Read Documentation</a>
+                <a href="https://github.com/NetCoreTemplates/razor-ssg" class="mx-3 font-bold hover:underline">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="module">
+import { init } from "/mjs/app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
