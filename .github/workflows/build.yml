@@ -24,7 +24,7 @@ jobs:
 
       - name: prerender
         working-directory: ./MyApp
-        run: dotnet run --AppTasks=prerender
+        run: dotnet run --AppTasks=prerender --environment Production
 
       # Deploy UI to GitHub Pages
       - name: Deploy to GitHub Pages
