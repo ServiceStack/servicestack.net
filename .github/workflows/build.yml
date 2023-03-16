@@ -19,10 +19,11 @@ jobs:
           dotnet-version: 6.0.100
 
       - name: build
-        run: dotnet build
-        working-directory: .
+        working-directory: ./MyApp
+        run: dotnet build .
 
       - name: prerender
+        working-directory: ./MyApp
         run: dotnet run --AppTasks=prerender
 
       # Deploy UI to GitHub Pages
