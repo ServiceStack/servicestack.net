@@ -12,6 +12,7 @@ public class ConfigureSsg : IHostingStartup
             services.AddSingleton<RazorPagesEngine>();
             services.AddSingleton<MarkdownPages>();
             services.AddSingleton<WhatsNew>();
+            services.AddSingleton<Videos>();
             services.AddSingleton<Blog>();
         })
         .ConfigureAppHost(
@@ -20,12 +21,14 @@ public class ConfigureSsg : IHostingStartup
             {
                 var markdownPages = appHost.Resolve<MarkdownPages>();
                 var whatsNew = appHost.Resolve<WhatsNew>();
+                var videos = appHost.Resolve<Videos>();
                 var blogPosts = appHost.Resolve<Blog>();
-                new MarkdownPagesBase[] { markdownPages, whatsNew, blogPosts }
+                new MarkdownPagesBase[] { markdownPages, whatsNew, videos, blogPosts }
                     .Each(x => x.VirtualFiles = appHost.VirtualFiles);
 
                 markdownPages.LoadFrom("_pages");
                 whatsNew.LoadFrom("_whatsnew");
+                videos.LoadFrom("_videos");
                 blogPosts.LoadFrom("_posts");
             },
             afterAppHostInit: appHost =>

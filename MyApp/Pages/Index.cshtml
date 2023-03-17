@@ -5,7 +5,7 @@
     ViewData["Title"] = "ServiceStack";
 }
 
-<div class="relative isolate overflow-hidden bg-gray-900">
+<section class="relative isolate overflow-hidden bg-gray-900">
   <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
     <defs>
       <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
@@ -47,7 +47,7 @@
       </p>
       <div class="mt-10 flex items-center gap-x-6">
         <a href="/start" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get ServiceStack</a>
-        <a href="https://docs.servicestack.net" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
+        <a href="https://docs.servicestack.net/why-servicestack" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
       </div>
     </div>
     <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
@@ -61,13 +61,10 @@
       <a href="/start-netfx" class="mr-2 rounded bg-white/10 py-1 px-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20">.NET Framework</a>
       <a href="/start-corefx" class="mr-2 rounded bg-white/10 py-1 px-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20">ASP.NET Core FX</a>
   </div>
-</div>
+</section>
 
-
-<div>
-
+<section>
   <div class="sticky top-0 z-50">
-    
     <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 sm:bg-white/95 sm:[@@supports(backdrop - filter:blur(0))]:bg-white/80 sm:[@@supports(backdrop - filter:blur(0))]:backdrop-blur">
       <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 [counter-reset:section]">
         <li class="flex [counter-increment:section]">
@@ -76,22 +73,29 @@
           </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#screencasts">AutoQuery</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#uis">
+            UIs
+          </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#resources">Blazor</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#screencasts">
+            AutoQuery
+          </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#pricing">Flutter</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#resources">
+            Blazor
+          </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#author">Vue</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#pricing">
+            Flutter
+          </a>
         </li>
       </ol>
     </div>
   </div>
-  
-</div>
+</section>
 
 <section>
   <div id="key-features" class="bg-white py-24 sm:py-32">
@@ -132,9 +136,9 @@
       <div>
         <dt class="font-semibold text-gray-900">Remote Services Best Practices</dt>
         <dd class="mt-1 text-gray-600">
-          ServiceStack adopts a message-based design that embraces the SOA Integration Patterns Remote Facade, DTO and 
-          Service Gateway patterns whose benefits positions ServiceStack in a rarefied breed of frameworks to enable optimal 
-          end-to-end typed API integrations without code-gen in .NET Apps.
+          ServiceStack adopts a message-based design that embraces the SOA Integration Remote Facade, DTO and 
+          Service Gateway patterns whose uniquely benefits ServiceStack as the only Services framework
+          to reuse API contracts enabling optimal end-to-end typed API integrations in .NET Apps without code-gen.
         </dd>
       </div>
 
@@ -163,7 +167,71 @@
 </div>
 </section>
 
-@await Html.PartialAsync("Testimonials")
+@await Html.PartialAsync("HomeTestimonials")
+
+<link rel="stylesheet" href="/css/typography.css">
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "ServiceStack APIs",
+  Summary = "Effortlessly create feature-rich APIs and Web Apps with ServiceStack",
+  Group = "apis"
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Project Templates",
+  Summary = "Get Started quickly with your preferred frameworks with our growing project templates",
+  Group = "projects",
+  LearnMore = "https://docs.servicestack.net/templates-overview",
+  Background = "bg-slate-100 dark:bg-slate-800",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Add ServiceStack Reference",
+  Summary = "High performance end-to-end typed APIs that integrate with any platform",
+  LearnMore = "https://docs.servicestack.net/add-servicestack-reference", 
+  Group = "ss-ref",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Mobile Apps",
+  Summary = "Maximize utility of your APIs with native integrations to all popular languages used in Mobile Apps",
+  Group = "mobile",
+  LearnMore = "https://docs.servicestack.net/clients-overview", 
+  Background = "bg-slate-100 dark:bg-slate-800",
+})
+
+@await Html.PartialAsync("HomeLanguages")
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "gRPC",
+  Summary = "ServiceStack’s gRPC support enables a highly productive development environment for developing high-performance gRPC HTTP/2 Services by making ServiceStack’s existing typed Services available from ASP.NET’s gRPC endpoints",
+  Group = "grpc",
+  LearnMore = "https://docs.servicestack.net/grpc",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Jupyter",
+  Summary = "Jupyter is an exciting initiative to support an open standards, interactive computing platform where it provides the ideal integrated exploratory programming environment for data science and scientific computing.",
+  Group = "jupyter",
+  LearnMore = "https://docs.servicestack.net/jupyter-notebooks",
+  Background = "bg-slate-100 dark:bg-slate-800",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "GitHub Actions & Deployments",
+  Summary = "Setup your GitHub Actions for your ServiceStack project in minutes with our GitHub Action mix templates to suit a variety of situations.",
+  Group = "actions",
+  LearnMore = "https://docs.servicestack.net/github-action-templates",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Features",
+  Summary = "Learn about other exciting features in the ServiceStack",
+  Group = "features",
+  Background = "bg-slate-100 dark:bg-slate-800",
+})
+
+@await Html.PartialAsync("HomeFeatures")
 
 
 <script type="module">
