@@ -33,7 +33,7 @@
                                     <time datetime="2020-03-16" class="text-gray-500">@($"{video.Date.Value:MMMM d, yyyy}")</time>
                                     @foreach (var tag in video.Tags.Safe())
                                     {
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">@tag</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">@tag</span>
                                     }
                                 </div>
                                 <div class="group relative max-w-xl">

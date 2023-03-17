@@ -31,7 +31,7 @@
       <svg class="h-16 w-16 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
       <div class="mt-24 sm:mt-32 lg:mt-16">
         <a href="/whatsnew" class="inline-flex space-x-6">
-          <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">What's new</span>
+          <span class="rounded-full bg-indigo-500/10 dark:bg-indigo-400/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">What's new</span>
           <span class="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
             <span>Just shipped v6.7</span>
             <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -65,10 +65,10 @@
 
 <section>
   <div class="sticky top-0 z-50">
-    <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 sm:bg-white/95 sm:[@@supports(backdrop - filter:blur(0))]:bg-white/80 sm:[@@supports(backdrop - filter:blur(0))]:backdrop-blur">
-      <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 [counter-reset:section]">
+    <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 dark:sm:border-slate-700 sm:bg-white/95 dark:bg-black/95 sm:[@@supports(backdrop - filter:blur(0))]:bg-white/80 dark:sm:[@@supports(backdrop - filter:blur(0))]:bg-black/80 sm:[@@supports(backdrop - filter:blur(0))]:backdrop-blur">
+      <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 dark:text-slate-50 [counter-reset:section]">
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-blue-600 bg-blue-50 text-blue-600 before:text-blue-600" href="/#table-of-contents">
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-blue-600 dark:border-blue-300 bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-300 before:text-blue-600" href="/#table-of-contents">
             <span class="hidden lg:inline">ServiceStack APIs</span><span class="lg:hidden">APIs</span>
           </a>
         </li>
@@ -98,10 +98,10 @@
 </section>
 
 <section>
-  <div id="key-features" class="bg-white py-24 sm:py-32">
+  <div id="key-features" class="bg-white dark:bg-black py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Why ServiceStack?</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Why ServiceStack?</h2>
       <p class="mt-6 text-lg leading-8 text-gray-600">Simple, versatile, evolvable, resilient high-performance message-based APIs</p>
     </div>
   <div class="relative overflow-hidden pt-16">
@@ -109,7 +109,7 @@
       <a href="https://youtu.be/Vae0ALalIP0">
         <img src="https://img.youtube.com/vi/Vae0ALalIP0/maxresdefault.jpg" alt="App screenshot" class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10" width="2432" height="1442">
       </a>
-      <div class="relative" aria-hidden="true">
+      <div class="relative dark:hidden" aria-hidden="true">
         <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
       </div>
     </div>
