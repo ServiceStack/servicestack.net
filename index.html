@@ -103,7 +103,7 @@ mountAll()
       <svg class="h-16 w-16 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
       <div class="mt-24 sm:mt-32 lg:mt-16">
         <a href="/whatsnew" class="inline-flex space-x-6">
-          <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">What's new</span>
+          <span class="rounded-full bg-indigo-500/10 dark:bg-indigo-400/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">What's new</span>
           <span class="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
             <span>Just shipped v6.7</span>
             <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -137,10 +137,10 @@ mountAll()
 
 <section>
   <div class="sticky top-0 z-50">
-    <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 sm:bg-white/95 sm:[@supports(backdrop - filter:blur(0))]:bg-white/80 sm:[@supports(backdrop - filter:blur(0))]:backdrop-blur">
-      <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 [counter-reset:section]">
+    <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 dark:sm:border-slate-700 sm:bg-white/95 dark:bg-black/95 sm:[@supports(backdrop - filter:blur(0))]:bg-white/80 dark:sm:[@supports(backdrop - filter:blur(0))]:bg-black/80 sm:[@supports(backdrop - filter:blur(0))]:backdrop-blur">
+      <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 dark:text-slate-50 [counter-reset:section]">
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-blue-600 bg-blue-50 text-blue-600 before:text-blue-600" href="/#table-of-contents">
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-blue-600 dark:border-blue-300 bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-300 before:text-blue-600" href="/#table-of-contents">
             <span class="hidden lg:inline">ServiceStack APIs</span><span class="lg:hidden">APIs</span>
           </a>
         </li>
@@ -170,10 +170,10 @@ mountAll()
 </section>
 
 <section>
-  <div id="key-features" class="bg-white py-24 sm:py-32">
+  <div id="key-features" class="bg-white dark:bg-black py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Why ServiceStack?</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Why ServiceStack?</h2>
       <p class="mt-6 text-lg leading-8 text-gray-600">Simple, versatile, evolvable, resilient high-performance message-based APIs</p>
     </div>
   <div class="relative overflow-hidden pt-16">
@@ -181,7 +181,7 @@ mountAll()
       <a href="https://youtu.be/Vae0ALalIP0">
         <img src="https://img.youtube.com/vi/Vae0ALalIP0/maxresdefault.jpg" alt="App screenshot" class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10" width="2432" height="1442">
       </a>
-      <div class="relative" aria-hidden="true">
+      <div class="relative dark:hidden" aria-hidden="true">
         <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
       </div>
     </div>
@@ -447,7 +447,7 @@ $(document).ready(function () {
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">July 6, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">apis</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">apis</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -475,10 +475,10 @@ and enables maximum reuse to help developers become more productive in developin
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 16, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">razor-pages</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">mvc</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">tailwind</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">razor-pages</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">mvc</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">tailwind</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vue</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -508,9 +508,9 @@ them while still getting the best developer experience when integrating with ext
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 16, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">autoquery</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">files</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">locode</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">autoquery</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">files</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">locode</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -539,8 +539,8 @@ The <code>FileUploadFeature</code> plugin is also compatible with AWS S3, Azure 
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">June 7, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">files</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">blazor</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">files</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">blazor</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -569,8 +569,8 @@ on Request DTOs to upload files to AWS S3, Azure Blob storage or internal File S
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 23, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">inspect</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">tool</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">inspect</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">tool</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -619,10 +619,10 @@ as well as its public APIs, their routes and Response Types.</p>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">July 6, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">razor-pages</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">mvc</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">tailwind</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">razor-pages</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">mvc</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">tailwind</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vue</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -659,9 +659,9 @@ with both Server Side Rendering (SSR) and static resources.</p>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">February 1, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vite</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jamstack</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vite</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">jamstack</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -689,9 +689,9 @@ If you're a Microsoft .NET developer looking for a great VueJS setup using the J
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">February 8, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">nextjs</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">react</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jamstack</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">nextjs</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">react</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">jamstack</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -719,7 +719,7 @@ If you're a Microsoft .NET developer looking for a great Next.js setup using the
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">May 21, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vue</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -766,9 +766,9 @@ that is optimized for rapid development cycles.</p>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">python</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vscode</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">python</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vscode</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">jupyter</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -796,10 +796,10 @@ to call .NET end-to-end typed APIs from Python in PyCharm, VSCode and Jupyter No
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 26, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">rider</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">f#</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vb</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">rider</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">c#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">f#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vb</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -826,10 +826,10 @@ to call .NET end-to-end typed APIs from Python in PyCharm, VSCode and Jupyter No
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">April 21, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">f#</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">node.js</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">c#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">f#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">node.js</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">dart</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -875,9 +875,9 @@ to call .NET end-to-end typed APIs from Python in PyCharm, VSCode and Jupyter No
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">April 29, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">flutter</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">android</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">flutter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">dart</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">android</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -905,9 +905,9 @@ and running with Add ServiceStack Reference to call C# .NET APIs from a Flutter 
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">April 21, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">xamarin</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">android</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">xamarin</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">android</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">c#</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1031,9 +1031,9 @@ and running with Add ServiceStack Reference to call C# .NET APIs from a Flutter 
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">April 1, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">flutter</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">grpc</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">flutter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">dart</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">grpc</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1062,8 +1062,8 @@ that has been configured to support gRPC services.</p>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">May 13, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">grpc</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">dart</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">grpc</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1109,8 +1109,8 @@ to simplify client integrations in a simple and consistent way across all gRPC l
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">python</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">jupyter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">python</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1138,8 +1138,8 @@ to simplify client integrations in a simple and consistent way across all gRPC l
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">jupyter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">c#</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1167,8 +1167,8 @@ generate working C# notebooks for any ServiceStack service and execute them for 
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">jupyter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">c#</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1214,10 +1214,10 @@ generate working F# notebooks for any ServiceStack service and execute them for 
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">July 22, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">ormlite</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">db</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">litestream</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">hosting</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">ormlite</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">db</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">litestream</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">hosting</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1245,8 +1245,8 @@ to quickly setup SQLite backup and restores when deploying via SSH and docker-co
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">April 22, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">github-actions</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">deployment</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">github-actions</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">deployment</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1274,10 +1274,10 @@ to an existing ServiceStack Project with the new mix support for GitHub Actions.
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">April 21, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">github-actions</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">deployment</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">aws</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">ecs</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">github-actions</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">deployment</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">aws</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">ecs</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1306,10 +1306,10 @@ configured behind an nginx proxy with auto LetsEncrypt SSL support.</p>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">February 2, 2021</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">github-actions</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">deployment</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">aws</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">lambda</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">github-actions</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">deployment</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">aws</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">lambda</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1356,8 +1356,8 @@ configured behind an nginx proxy with auto LetsEncrypt SSL support.</p>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">March 16, 2023</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">autoquery</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">autoquery</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1385,8 +1385,8 @@ This component makes it easy to integrate your AutoQuery services with a fully g
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">February 14, 2023</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">autoquery</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">autoquery</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1415,9 +1415,9 @@ JavaScript Modules, Tailwind, Vue.js, Razor Pages and ServiceStack.</p>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
                                     <time datetime="2020-03-16" class="text-gray-500">October 13, 2022</time>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">ormlite</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">db</span>
-                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">migrations</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">ormlite</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">db</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-900 py-1.5 px-3 font-medium text-gray-600 dark:text-gray-300">migrations</span>
                                 </div>
                                 <div class="group relative max-w-xl">
                                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -1454,10 +1454,10 @@ approach with a simple change based migration solution that facilitates the code
         
         <div class="mb-12">
             <a href="https://docs.servicestack.net">
-                <div class="service-icon text-center">
-                    <svg class="w-32 h-32 inline-block" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                <div class="text-center">
+                    <svg class="w-32 h-32 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
                         <path fill="none" d="M0 0h24v24H0V0z"/>
-                        <path fill="#4F46E5" d="M18.6 6.62c-1.44 0-2.8.56-3.77 1.53L7.8 14.39c-.64.64-1.49.99-2.4.99-1.87 0-3.39-1.51-3.39-3.38S3.53 8.62 5.4 8.62c.91 0 1.76.35 2.44 1.03l1.13 1 1.51-1.34L9.22 8.2C8.2 7.18 6.84 6.62 5.4 6.62 2.42 6.62 0 9.04 0 12s2.42 5.38 5.4 5.38c1.44 0 2.8-.56 3.77-1.53l7.03-6.24c.64-.64 1.49-.99 2.4-.99 1.87 0 3.39 1.51 3.39 3.38s-1.52 3.38-3.39 3.38c-.9 0-1.76-.35-2.44-1.03l-1.14-1.01-1.51 1.34 1.27 1.12c1.02 1.01 2.37 1.57 3.82 1.57 2.98 0 5.4-2.41 5.4-5.38s-2.42-5.37-5.4-5.37z"/>
+                        <path fill="currentColor" d="M18.6 6.62c-1.44 0-2.8.56-3.77 1.53L7.8 14.39c-.64.64-1.49.99-2.4.99-1.87 0-3.39-1.51-3.39-3.38S3.53 8.62 5.4 8.62c.91 0 1.76.35 2.44 1.03l1.13 1 1.51-1.34L9.22 8.2C8.2 7.18 6.84 6.62 5.4 6.62 2.42 6.62 0 9.04 0 12s2.42 5.38 5.4 5.38c1.44 0 2.8-.56 3.77-1.53l7.03-6.24c.64-.64 1.49-.99 2.4-.99 1.87 0 3.39 1.51 3.39 3.38s-1.52 3.38-3.39 3.38c-.9 0-1.76-.35-2.44-1.03l-1.14-1.01-1.51 1.34 1.27 1.12c1.02 1.01 2.37 1.57 3.82 1.57 2.98 0 5.4-2.41 5.4-5.38s-2.42-5.37-5.4-5.37z"/>
                     </svg>
                 </div>
                 <h3 class="text-base font-semibold uppercase tracking-wider text-indigo-600">ServiceStack Framework</h3>
@@ -1613,7 +1613,7 @@ approach with a simple change based migration solution that facilitates the code
         <div class="sm:col-span-6 lg:col-span-4">
             <a href="https://docs.servicestack.net/encrypted-messaging">
                 <div class="service-icon">
-                    <svg class="w-20 h-20 inline-block text-indigo-600 p-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"/></svg>
+                    <svg class="w-20 h-20 inline-block text-indigo-600 p-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 8V7a6 6 0 1 1 12 0v1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2zm13 2H5v10h14V10zm-8 5.732a2 2 0 1 1 2 0V18h-2v-2.268zM8 8h8V7a4 4 0 1 0-8 0v1z"/></svg>
                 </div>
                 <h3 class="text-lg font-semibold leading-7 text-gray-900">Encrypted Messaging</h3>
             </a>
@@ -1820,15 +1820,94 @@ import { mount } from "/mjs/app.mjs"
     </main>
 </div>
 
-<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600">
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
     <div class="container mx-auto px-5">
-        <div class="py-28 flex flex-col lg:flex-row items-center">
-            <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">A ServiceStack Project</h3>
-            <div class="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-                <a href="https://docs.servicestack.net" class="mx-3 bg-black dark:bg-gray-700 hover:bg-white dark:hover:bg-gray-200 hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0">Read Documentation</a>
-                <a href="https://github.com/NetCoreTemplates/razor-ssg" class="mx-3 font-bold hover:underline">View on GitHub</a>
+        
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="/blazor" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blazor WASM</a>
+                    <a href="/autoquery" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">AutoQuery</a>
+                    <a href="/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="/blog" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 sm:w-1/3 xl:w-1/6 sm:mx-auto xl:mt-0 xl:ml-auto">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+                
+                <div class="mt-6 lg:mb-0 mb-6">
+                    <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                    </a>
+                    <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                    </a>
+                </div>                
             </div>
         </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="/start"
+                    class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+                
+            </div>
+        </div>        
+        
     </div>
 </footer>
 
