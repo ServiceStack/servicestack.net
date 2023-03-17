@@ -32,7 +32,7 @@
             <div class="cursor-pointer">
                 <a class="navbar-brand flex items-center" href="/">
                     <img class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12" src="/img/logo.svg" alt="MyApp logo">
-                    <span class="hidden sm:block text-2xl font-semibold">MyApp</span>
+                    <span class="hidden sm:block text-2xl font-bold">ServiceStack</span>
                 </a>
             </div>
         </div>
@@ -77,7 +77,7 @@ mountAll()
 <div class="min-h-screen">
     <main role="main" class="pt-14 pb-3">
         
-<div class="relative isolate overflow-hidden bg-gray-900">
+<section class="relative isolate overflow-hidden bg-gray-900">
   <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
     <defs>
       <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
@@ -119,7 +119,7 @@ mountAll()
       </p>
       <div class="mt-10 flex items-center gap-x-6">
         <a href="/start" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get ServiceStack</a>
-        <a href="https://docs.servicestack.net" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
+        <a href="https://docs.servicestack.net/why-servicestack" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
       </div>
     </div>
     <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
@@ -133,13 +133,10 @@ mountAll()
       <a href="/start-netfx" class="mr-2 rounded bg-white/10 py-1 px-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20">.NET Framework</a>
       <a href="/start-corefx" class="mr-2 rounded bg-white/10 py-1 px-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20">ASP.NET Core FX</a>
   </div>
-</div>
+</section>
 
-
-<div>
-
+<section>
   <div class="sticky top-0 z-50">
-    
     <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 sm:bg-white/95 sm:[@supports(backdrop - filter:blur(0))]:bg-white/80 sm:[@supports(backdrop - filter:blur(0))]:backdrop-blur">
       <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 [counter-reset:section]">
         <li class="flex [counter-increment:section]">
@@ -148,22 +145,29 @@ mountAll()
           </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#screencasts">AutoQuery</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#uis">
+            UIs
+          </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#resources">Blazor</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#screencasts">
+            AutoQuery
+          </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#pricing">Flutter</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#resources">
+            Blazor
+          </a>
         </li>
         <li class="flex [counter-increment:section]">
-          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#author">Vue</a>
+          <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/#pricing">
+            Flutter
+          </a>
         </li>
       </ol>
     </div>
   </div>
-  
-</div>
+</section>
 
 <section>
   <div id="key-features" class="bg-white py-24 sm:py-32">
@@ -204,9 +208,9 @@ mountAll()
       <div>
         <dt class="font-semibold text-gray-900">Remote Services Best Practices</dt>
         <dd class="mt-1 text-gray-600">
-          ServiceStack adopts a message-based design that embraces the SOA Integration Patterns Remote Facade, DTO and 
-          Service Gateway patterns whose benefits positions ServiceStack in a rarefied breed of frameworks to enable optimal 
-          end-to-end typed API integrations without code-gen in .NET Apps.
+          ServiceStack adopts a message-based design that embraces the SOA Integration Remote Facade, DTO and 
+          Service Gateway patterns whose uniquely benefits ServiceStack as the only Services framework
+          to reuse API contracts enabling optimal end-to-end typed API integrations in .NET Apps without code-gen.
         </dd>
       </div>
 
@@ -421,6 +425,1319 @@ $(document).ready(function () {
 });
 </script>
 
+<link rel="stylesheet" href="/css/typography.css">
+
+
+
+<section>
+    <div class="bg-white dark:bg-black py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">ServiceStack APIs</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Effortlessly create feature-rich APIs and Web Apps with ServiceStack
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="Vae0ALalIP0" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/Vae0ALalIP0/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">July 6, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">apis</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/Vae0ALalIP0">
+                                            <span class="absolute inset-0"></span>
+                                            Intro to ServiceStack
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this introduction to ServiceStack we walk through how ServiceStack's message based design promotes simplicity
+and enables maximum reuse to help developers become more productive in developing Web Service APIs, Web, Mobile and Desktop Apps.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="rSFiikDjGos" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/rSFiikDjGos/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 16, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">razor-pages</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">mvc</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">tailwind</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/rSFiikDjGos">
+                                            <span class="absolute inset-0"></span>
+                                            Build a Bookings API with Auto Admin UI in minutes
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we walk through the steps to create a bookings API that is easy to use for non-developers by using ServiceStack Locode and the Admin UI.
+This enables user management, data editing, and dynamic validation so developers can focus on implementing core business functionality.</p>
+<p>REST APIs with Create, Read, Update &amp; Delete (CRUD) functionality are expected, and the ServiceStack framework provides the easiest way to built
+them while still getting the best developer experience when integrating with external systems or customers.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="xSUqAB0HQB4" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/xSUqAB0HQB4/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 16, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">autoquery</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">files</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">locode</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/xSUqAB0HQB4">
+                                            <span class="absolute inset-0"></span>
+                                            File Upload services the Easy way
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>A walk through of using the FileUploadFeature plugin to create a service and form to submit resumes.
+For the UI we use Tailwind and custom Vue 3 component using modular JavaScript.
+The <code>FileUploadFeature</code> plugin is also compatible with AWS S3, Azure Blob Storage and Cloudflare R2.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="5sd00MzHpaU" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/5sd00MzHpaU/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">June 7, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">files</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">blazor</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/5sd00MzHpaU">
+                                            <span class="absolute inset-0"></span>
+                                            Managed File Uploads
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p><a href="https://docs.servicestack.net/locode/files">Managed Files Uploads</a> is a high-level ServiceStack feature that allows you to
+configure multiple managed file upload locations within the same App that any ServiceStack HTTP API can declaratively annotate
+on Request DTOs to upload files to AWS S3, Azure Blob storage or internal File Systems.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="FcXG4RnlVQk" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/FcXG4RnlVQk/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 23, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">inspect</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">tool</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/FcXG4RnlVQk">
+                                            <span class="absolute inset-0"></span>
+                                            Post Command line HTTP API tools
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p><a href="https://docs.servicestack.net/post-command">Post Command</a> is a collection of command line utils that lets you easily discover,
+inspect and invoke ServiceStack endpoints from a single command.</p>
+<p>Use <a href="https://docs.servicestack.net/post-command#inspect-command">inspect</a> to discover features and APIs available on a remote
+ServiceStack endpoint including the version of ServiceStack running, the App’s registered Content Types, Plugins and Auth Providers
+as well as its public APIs, their routes and Response Types.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="bg-slate-100 dark:bg-slate-800 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Project Templates</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Get Started quickly with your preferred frameworks with our growing project templates
+                        <a href="https://docs.servicestack.net/templates-overview" class="ml-2 text-sm font-semibold leading-6">Learn more <span aria-hidden="true">→</span></a>                
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="SyppvQB7IPs" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/SyppvQB7IPs/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">July 6, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">razor-pages</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">mvc</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">tailwind</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/SyppvQB7IPs">
+                                            <span class="absolute inset-0"></span>
+                                            Modern Razor Pages &amp; MVC .NET Tailwind templates
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>This video shows how ServiceStack templates offer a wide range of options when it comes to using Razor Pages in your .NET application.
+These templates also come with Tailwind, JavaScript Modules/ES Modules, and Vue components all ready to use in a hybrid apps
+with both Server Side Rendering (SSR) and static resources.</p>
+<h3 id="demos">Demos</h3>
+<ul>
+<li><a href="https://razor-tailwind.web-templates.io">https://razor-tailwind.web-templates.io</a></li>
+<li><a href="https://web-tailwind.web-templates.io">https://web-tailwind.web-templates.io</a></li>
+<li><a href="https://mvc-tailwind.web-templates.io">https://mvc-tailwind.web-templates.io</a></li>
+<li><a href="https://vue-mjs.web-templates.io">https://vue-mjs.web-templates.io</a></li>
+<li><a href="https://razor-pages.web-templates.io">https://razor-pages.web-templates.io</a></li>
+</ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="D-rU0lU_B4I" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/D-rU0lU_B4I/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">February 1, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vite</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jamstack</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/D-rU0lU_B4I">
+                                            <span class="absolute inset-0"></span>
+                                            Ultimate Vue SPA &amp; SSG Jamstack templates for .NET
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we introduce the <code>vue-ssg</code> template which combines Vite, Vue3 and ServiceStack to create the best developer experience we have seen!
+If you're a Microsoft .NET developer looking for a great VueJS setup using the Jamstack architecture, give this a try!</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="3pPLRyPsO5A" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/3pPLRyPsO5A/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">February 8, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">nextjs</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">react</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jamstack</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/3pPLRyPsO5A">
+                                            <span class="absolute inset-0"></span>
+                                            Rapidly develop C# .NET Next.js JamStack Apps with Rider
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>Walk through of the ServiceStack NextJS template using Rider for a rapid development cycle.
+If you're a Microsoft .NET developer looking for a great Next.js setup using the Jamstack architecture, give this a try!</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="4HphWPrKwb0" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/4HphWPrKwb0/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">May 21, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/4HphWPrKwb0">
+                                            <span class="absolute inset-0"></span>
+                                            Rapidly develop .NET Vue.js SPA Apps
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we walk through the use of the <code>vue-spa</code> template that combined ServiceStack and Vue.js into one project template
+that is optimized for rapid development cycles.</p>
+<p>We have a look at the template features and how to make frontend and backend changes quickly and easily making for a great developer experience.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="bg-white dark:bg-black py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Add ServiceStack Reference</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    High performance end-to-end typed APIs that integrate with any platform
+                        <a href="https://docs.servicestack.net/add-servicestack-reference" class="ml-2 text-sm font-semibold leading-6">Learn more <span aria-hidden="true">→</span></a>                
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="WjbhfH45i5k" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/WjbhfH45i5k/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">python</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vscode</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/WjbhfH45i5k">
+                                            <span class="absolute inset-0"></span>
+                                            Call typed .NET APIs from Python
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video tutorial we have a look at how we can leverage Add ServiceStack Reference
+to call .NET end-to-end typed APIs from Python in PyCharm, VSCode and Jupyter Notebooks.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="JKsgrstNnYY" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/JKsgrstNnYY/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 26, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">rider</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">f#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vb</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/JKsgrstNnYY">
+                                            <span class="absolute inset-0"></span>
+                                            Add Typed C#, TypeScript, F# and VB.NET ServiceStack References from JetBrains Rider
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we show how you can install and use the new Jetbrains Rider plugin to manage your C# client integrations for your ServiceStack .NET clients.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="GTnuMhvUayg" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/GTnuMhvUayg/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">April 21, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">f#</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">node.js</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/GTnuMhvUayg">
+                                            <span class="absolute inset-0"></span>
+                                            Create Instant Client Apps from C# .NET Web APIs
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>Generate working native client apps for your live ServiceStack services, in a variety of languages, instantly with our free managed service.</p>
+<p>This tool enables your developers, and even your customers, to open a working example native application straight from the web to their favorite IDE.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="bg-slate-100 dark:bg-slate-800 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Mobile Apps</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Maximize utility of your APIs with native integrations to all popular languages used in Mobile Apps
+                        <a href="https://docs.servicestack.net/clients-overview" class="ml-2 text-sm font-semibold leading-6">Learn more <span aria-hidden="true">→</span></a>                
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="ocH5L-CikQ0" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/ocH5L-CikQ0/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">April 29, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">flutter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">android</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/ocH5L-CikQ0">
+                                            <span class="absolute inset-0"></span>
+                                            Call typed .NET APIs from Flutter Android Apps using Dart
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we should how you can use ServiceStack's Dart client library with your Flutter Android application to quickly get up
+and running with Add ServiceStack Reference to call C# .NET APIs from a Flutter Android App with native Dart client and DTOs.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="cbYuem1b2tg" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/cbYuem1b2tg/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">April 21, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">xamarin</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">android</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/cbYuem1b2tg">
+                                            <span class="absolute inset-0"></span>
+                                            Call typed .NET APIs from Xamarin.Android in C#
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>Call typed .NET ServiceStack Services using a smart, generic Service Client with Add ServiceStack Reference from Visual Studio.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-600 w-full overflow-hidden" id="service-clients">
+    <div class="w-full">
+        <div>
+            <h2 class="text-center text-white text-3xl font-semibold leading-normal text-white">Smart Typed Clients</h2>
+            <p class="text-center text-2xl font-light leading-relaxed my-4 text-slate-400">
+                Ultimate simple typed client integrations utilizing resilient message-based APIs and Rich POCO DTOs
+            </p>
+            <div class="flex flex-wrap justify-center gap-x-2">
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/csharp-add-servicestack-reference">
+                    <img src="/img/svgs/csharp.svg" style="transform:scale(.95)" alt="C#">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/typescript-add-servicestack-reference">
+                    <img class="" src="/img/svgs/node.svg" style="transform:scale(.9)" alt="Node.js">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/python-add-servicestack-reference">
+                    <img src="/img/svgs/python.svg" style="transform:scale(.90)" alt="Python">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/dart-add-servicestack-reference">
+                    <img src="/img/svgs/dart.svg" alt="Dart">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/java-add-servicestack-reference">
+                    <img class="" src="/img/svgs/java.svg" style="transform:scale(.9)" alt="Java">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/kotlin-add-servicestack-reference">
+                    <img class="" src="/img/svgs/kotlin.svg" style="transform:scale(.9)" alt="Kotlin">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/swift-add-servicestack-reference">
+                    <img class="" src="/img/svgs/swift.svg" style="transform:scale(.9)" alt="Swift">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/vbnet-add-servicestack-reference">
+                    <img src="/img/svgs/vb.svg" style="transform:scale(.95)" alt="VB">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/fsharp-add-servicestack-reference">
+                    <img src="/img/svgs/fsharp.svg" style="transform:scale(.95)" alt="F#">
+                </a>
+            </div>
+        </div>
+        <div class="mt-12">
+            <h2 class="text-center text-white text-3xl font-semibold leading-normal text-white">gRPC</h2>
+            <p class="text-center text-2xl font-light leading-relaxed my-4 text-slate-400">
+                Reuse your future-proofed ServiceStack APIs to reach gRPC's efficient typed universe
+            </p>
+            <div class="flex flex-wrap justify-center gap-x-2">
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-flutter">
+                    <img class="" src="/img/svgs/flutter.svg" style="transform:scale(.60) translateX(-15%)" alt="Flutter">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-android">
+                    <img class="" src="/img/svgs/androidstudio.svg" style="transform:scale(.65)" alt="Android">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-python">
+                    <img class="" src="/img/svgs/python.svg" style="transform:scale(.9)" alt="Python">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-go">
+                    <img class="" src="/img/svgs/go.svg" style="transform:scale(.9)" alt="Go">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-ruby">
+                    <img class="" src="/img/svgs/ruby.svg" style="transform:scale(.6)" alt="Ruby">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-php">
+                    <img class="" src="/img/svgs/php.svg" style="transform:scale(.9)" alt="PHP">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-csharp">
+                    <img src="/img/svgs/csharp.svg" style="transform:scale(.95)" alt="C#">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-dart">
+                    <img src="/img/svgs/dart.svg" alt="Dart">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-java">
+                    <img class="" src="/img/svgs/java.svg" style="transform:scale(.9)" alt="Java">
+                </a>
+                <a class="text-slate-500 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white hover:opacity-80" href="https://docs.servicestack.net/grpc-swift">
+                    <img class="" src="/img/svgs/swift.svg" style="transform:scale(.9)" alt="Swift">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class="bg-white dark:bg-black py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">gRPC</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    ServiceStack&#x2019;s gRPC support enables a highly productive development environment for developing high-performance gRPC HTTP/2 Services by making ServiceStack&#x2019;s existing typed Services available from ASP.NET&#x2019;s gRPC endpoints
+                        <a href="https://docs.servicestack.net/grpc" class="ml-2 text-sm font-semibold leading-6">Learn more <span aria-hidden="true">→</span></a>                
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="fgts6sQ2Ags" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/fgts6sQ2Ags/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">April 1, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">flutter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">grpc</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/fgts6sQ2Ags">
+                                            <span class="absolute inset-0"></span>
+                                            Fastest way to a working gRPC Server and Flutter solution
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we'll walk through configuring Flutter and gRPC .NET Services with the <code>flutter-grpc</code> mix template
+to add a new Flutter application using your locally installed <strong>Flutter SDK</strong> to an existing ServiceStack <code>grpc</code> project
+that has been configured to support gRPC services.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="UQlYodNS1xc" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/UQlYodNS1xc/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">May 13, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">dart</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">grpc</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/UQlYodNS1xc">
+                                            <span class="absolute inset-0"></span>
+                                            Enabling Dart gRPC support to ServiceStack .NET Apps
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we walk through how to make your ServiceStack services into gRPC services and how to use the ServiceStack <code>x</code> tool
+to simplify client integrations in a simple and consistent way across all gRPC languages.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="bg-slate-100 dark:bg-slate-800 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Jupyter</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Jupyter is an exciting initiative to support an open standards, interactive computing platform where it provides the ideal integrated exploratory programming environment for data science and scientific computing.
+                        <a href="https://docs.servicestack.net/jupyter-notebooks" class="ml-2 text-sm font-semibold leading-6">Learn more <span aria-hidden="true">→</span></a>                
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="h6UwDuXt8MA" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/h6UwDuXt8MA/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">python</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/h6UwDuXt8MA">
+                                            <span class="absolute inset-0"></span>
+                                            Create Python Jupyter Notebooks with Simple UI and dotnet tools
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we walk through how to generate working Jupyter Notebooks using the ServiceStack <strong>x</strong> tool and
+<a href="https://apps.servicestack.net">Instant Client Apps</a>, and running them in various environments to show how portable they can be!</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="vt92pbet5bY" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/vt92pbet5bY/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/vt92pbet5bY">
+                                            <span class="absolute inset-0"></span>
+                                            Create C# Jupyter Notebooks to inspect .NET APIs and chart results
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we walk through the steps to get .NET Interactive and JupyterLab working together and show how you can
+generate working C# notebooks for any ServiceStack service and execute them for FREE on <a href="https://mybinder.org">mybinder.org</a>.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="PxH3K5WIDx8" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/PxH3K5WIDx8/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">August 17, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">jupyter</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">c#</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/PxH3K5WIDx8">
+                                            <span class="absolute inset-0"></span>
+                                            Create F# Jupyter Notebooks to inspect .NET APIs &amp; run FREE on Binder
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we walk through the steps to get .NET Interactive and JupyterLab working together and show how you can
+generate working F# notebooks for any ServiceStack service and execute them for FREE on <a href="https://mybinder.org">mybinder.org</a>.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="bg-white dark:bg-black py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">GitHub Actions &amp; Deployments</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Setup your GitHub Actions for your ServiceStack project in minutes with our GitHub Action mix templates to suit a variety of situations.
+                        <a href="https://docs.servicestack.net/github-action-templates" class="ml-2 text-sm font-semibold leading-6">Learn more <span aria-hidden="true">→</span></a>                
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="WXRwT7ayc1Y" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/WXRwT7ayc1Y/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">July 22, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">ormlite</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">db</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">litestream</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">hosting</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/WXRwT7ayc1Y">
+                                            <span class="absolute inset-0"></span>
+                                            Create Simple, Fast, Reliable Apps with Litestream
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>Introduction of <a href="https://litestream.io">Litestream</a> for SQLite and how to use the ServiceStack Litestream mix templates
+to quickly setup SQLite backup and restores when deploying via SSH and docker-compose using GitHub Actions.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="0PvzcnxlBvc" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/0PvzcnxlBvc/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">April 22, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">github-actions</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">deployment</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/0PvzcnxlBvc">
+                                            <span class="absolute inset-0"></span>
+                                            Using GitHub Actions for CI &amp; .NET App Deployments
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this tutorial we're going to enable continuous integration, deployment, hosting and Lets Encrypt HTTPS configuration
+to an existing ServiceStack Project with the new mix support for GitHub Actions.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="Eh4tvLN8i8g" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/Eh4tvLN8i8g/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">April 21, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">github-actions</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">deployment</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">aws</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">ecs</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/Eh4tvLN8i8g">
+                                            <span class="absolute inset-0"></span>
+                                            Using GitHub Actions to deploy .NET Apps to Docker &amp; AWS ECS
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>This tutorial shows how you can easily mix GitHub Action scripts into ServiceStack projects to configure them to build,
+test &amp; deploy them to a cost efficient AWS ECS setup where Docker Apps can be deployed into a single instance auto
+configured behind an nginx proxy with auto LetsEncrypt SSL support.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="8mpGNTsSlvE" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/8mpGNTsSlvE/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">February 2, 2021</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">github-actions</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">deployment</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">aws</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">lambda</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/8mpGNTsSlvE">
+                                            <span class="absolute inset-0"></span>
+                                            Run ServiceStack .NET Apps in AWS Lambda Containers
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>Walkthrough showing how to deploy a ServiceStack application to AWS Lambda using docker containers via GitHub Actions.</p>
+<ul>
+<li><a href="https://docs.servicestack.net/templates-aws">Learn More</a></li>
+</ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="bg-slate-100 dark:bg-slate-800 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Features</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Learn about other exciting features in the ServiceStack
+                </p>
+                <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="znCoC-Ct0Ps" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/znCoC-Ct0Ps/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">March 16, 2023</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">autoquery</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/znCoC-Ct0Ps">
+                                            <span class="absolute inset-0"></span>
+                                            Instantly Manage your data using AutoQueryGrid Vue
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>Walkthrough of how to use the ServiceStack Vue 3 library and the functionality of the AutoQueryGrid component.
+This component makes it easy to integrate your AutoQuery services with a fully generated UI that can be customized.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="YIa0w6whe2U" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/YIa0w6whe2U/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">February 14, 2023</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">vue</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">autoquery</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/YIa0w6whe2U">
+                                            <span class="absolute inset-0"></span>
+                                            Vue 3 Tailwind Components Library
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we walk through using the @servicestack/vue components library for Vue.js 3 Multipage Apps (MPAs), and the <code>vue-mjs</code> template.
+This template shows how you can build content heavy or complex sites and avoid the complexities of Single Page Apps (SPAs) by using
+JavaScript Modules, Tailwind, Vue.js, Razor Pages and ServiceStack.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+                            <div class="relative lg:w-1/2 lg:shrink-0">
+                                <lite-youtube width="560" height="315" videoid="NIVFqute7JQ" class="border border-slate-300 dark:border-slate-600"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/NIVFqute7JQ/maxresdefault.jpg')">
+                                </lite-youtube>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-x-4 text-xs">
+                                    <time datetime="2020-03-16" class="text-gray-500">October 13, 2022</time>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">ormlite</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">db</span>
+                                        <span class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">migrations</span>
+                                </div>
+                                <div class="group relative max-w-xl">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="https://youtu.be/NIVFqute7JQ">
+                                            <span class="absolute inset-0"></span>
+                                            Create testable code-first RDBMS migrations in C#
+                                        </a>
+                                    </h3>
+                                    <div class="mt-5 text-sm leading-6 text-gray-600">
+                                        <div class="prose">
+                                            <p>In this video we'll walk through creating OrmLite DB Migrations which advances OrmLite's light-weight code-first development
+approach with a simple change based migration solution that facilitates the code-first development workflow of OrmLite.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="text-center w-full py-24 sm:py-32" id="learn">
+    <div class="mx-auto max-w-7xl">
+
+        <div class="mb-8">
+            <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">Feature Rich Ecosystem</h2>
+            <div class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Batteries included libraries with consistent focus of simple &amp; elegant design.
+            </div>
+        </div>
+        
+        <div class="mb-12">
+            <a href="https://docs.servicestack.net">
+                <div class="service-icon text-center">
+                    <svg class="w-32 h-32 inline-block" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <path fill="none" d="M0 0h24v24H0V0z"/>
+                        <path fill="#4F46E5" d="M18.6 6.62c-1.44 0-2.8.56-3.77 1.53L7.8 14.39c-.64.64-1.49.99-2.4.99-1.87 0-3.39-1.51-3.39-3.38S3.53 8.62 5.4 8.62c.91 0 1.76.35 2.44 1.03l1.13 1 1.51-1.34L9.22 8.2C8.2 7.18 6.84 6.62 5.4 6.62 2.42 6.62 0 9.04 0 12s2.42 5.38 5.4 5.38c1.44 0 2.8-.56 3.77-1.53l7.03-6.24c.64-.64 1.49-.99 2.4-.99 1.87 0 3.39 1.51 3.39 3.38s-1.52 3.38-3.39 3.38c-.9 0-1.76-.35-2.44-1.03l-1.14-1.01-1.51 1.34 1.27 1.12c1.02 1.01 2.37 1.57 3.82 1.57 2.98 0 5.4-2.41 5.4-5.38s-2.42-5.37-5.4-5.37z"/>
+                    </svg>
+                </div>
+                <h3 class="text-base font-semibold uppercase tracking-wider text-indigo-600">ServiceStack Framework</h3>
+            </a>
+            <p class="mx-auto mt-5 text-xl text-gray-500">
+                Thoughtfully architected, obscenely fast, thoroughly enjoyable web services for all
+            </p>
+        </div>
+        
+        <div class="sm:grid sm:grid-cols-12 sm:gap-12">
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/redis/">
+                <div class="service-icon text-center">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M31.99 19.12c-.01.307-.417.646-1.245 1.078c-1.708.891-10.552 4.531-12.438 5.51c-1.885.984-2.927.974-4.417.26c-1.49-.708-10.901-4.516-12.599-5.323c-.844-.406-1.276-.745-1.292-1.068v3.234c0 .323.448.661 1.292 1.068c1.698.813 11.115 4.615 12.599 5.323c1.49.714 2.531.724 4.417-.26c1.885-.979 10.729-4.62 12.438-5.51c.87-.448 1.255-.802 1.255-1.12v-3.188c0-.005-.005-.005-.01-.005zm0-5.271c-.016.302-.417.641-1.245 1.078c-1.708.885-10.552 4.526-12.438 5.505c-1.885.984-2.927.974-4.417.266c-1.49-.714-10.901-4.516-12.599-5.328c-.844-.401-1.276-.745-1.292-1.068v3.234c0 .323.448.667 1.292 1.068c1.698.813 11.109 4.615 12.599 5.328c1.49.708 2.531.719 4.417-.26c1.885-.984 10.729-4.62 12.438-5.51c.87-.453 1.255-.807 1.255-1.125v-3.188h-.01zm0-5.474c.016-.323-.406-.609-1.266-.922c-1.661-.609-10.458-4.109-12.141-4.729c-1.682-.615-2.37-.589-4.349.12c-1.979.714-11.339 4.385-13.005 5.036c-.833.328-1.24.63-1.224.953v3.234c0 .323.443.661 1.292 1.068c1.693.813 11.109 4.615 12.599 5.328c1.484.708 2.531.719 4.417-.266c1.88-.979 10.729-4.62 12.438-5.505c.865-.453 1.25-.807 1.25-1.125V8.374zm-20.532 3.063l7.417-1.135l-2.24 3.281zm16.401-2.959L23 10.401l-4.385-1.734l4.854-1.917zM14.984 5.302l-.719-1.323l2.24.875l2.109-.688l-.573 1.365l2.151.807l-2.771.286l-.625 1.495l-1-1.667l-3.203-.286zm-5.526 1.87c2.193 0 3.964.688 3.964 1.531c0 .849-1.776 1.536-3.964 1.536s-3.964-.688-3.964-1.536c0-.844 1.776-1.531 3.964-1.531z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">ServiceStack.Redis</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                .NET's leading C# Client
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/ormlite/">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600 p-2" xmlns="http://www.w3.org/2000/svg" width="448" height="512" viewBox="0 0 448 512"><path fill="currentColor" d="M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">ServiceStack.OrmLite</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Code-first, fast, lightweight ORM
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://sharpscript.net">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600 p-1" xmlns="http://www.w3.org/2000/svg" width="576" height="512" viewBox="0 0 576 512"><path fill="currentColor" d="M0 80v48c0 17.7 14.3 32 32 32h64V80c0-26.5-21.5-48-48-48S0 53.5 0 80zm112-48c10 13.4 16 30 16 48v304c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zm352 448c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7v5.3c0 53-43 96-96 96h272z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">#Script</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Simple, Fun, Live Scripting of .NET
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/aws">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.75 11.35a4.32 4.32 0 0 1-.79-.08a3.9 3.9 0 0 1-.73-.23l-.17-.04h-.12q-.15 0-.15.21v.33a.43.43 0 0 0 0 .19a.5.5 0 0 0 .21.19a3 3 0 0 0 .76.26a4.38 4.38 0 0 0 1 .12a3 3 0 0 0 1-.14a1.94 1.94 0 0 0 .73-.37a1.81 1.81 0 0 0 .49-.58a1.79 1.79 0 0 0 .17-.78a1.54 1.54 0 0 0-.3-.93a2.15 2.15 0 0 0-1-.64l-.95-.3a2 2 0 0 1-.73-.36a.65.65 0 0 1-.2-.47a.66.66 0 0 1 .31-.6a1.82 1.82 0 0 1 .89-.18a2.89 2.89 0 0 1 1.27.26a.79.79 0 0 0 .26.08c.1 0 .15-.08.15-.22v-.36a.38.38 0 0 0-.06-.22a.56.56 0 0 0-.2-.16a1.55 1.55 0 0 0-.28-.12a3.44 3.44 0 0 0-.38-.11l-.44-.1A3.4 3.4 0 0 0 19 6a2.82 2.82 0 0 0-.83.11a2.19 2.19 0 0 0-.7.35A1.61 1.61 0 0 0 17 7a1.5 1.5 0 0 0-.18.74a1.6 1.6 0 0 0 .33 1a2.08 2.08 0 0 0 1.06.68l1 .3a1.58 1.58 0 0 1 .67.34a.66.66 0 0 1 .18.47a.72.72 0 0 1-.35.63a1.83 1.83 0 0 1-.96.19zM12.94 6.5a.48.48 0 0 0-.13-.26a.37.37 0 0 0-.26-.07H12a.43.43 0 0 0-.26.07a.42.42 0 0 0-.13.26l-1 4.4l-1.14-4.4a.48.48 0 0 0-.14-.26s-.13-.07-.26-.07h-.65c-.11 0-.16.06-.16.17a1.22 1.22 0 0 0 .06.27l1.56 5.14A.61.61 0 0 0 10 12a.45.45 0 0 0 .26.06h.57a.49.49 0 0 0 .27-.06a.57.57 0 0 0 .12-.27l1-4.28l1 4.29a.42.42 0 0 0 .12.26a.4.4 0 0 0 .27.07h.57a.41.41 0 0 0 .25-.07a.44.44 0 0 0 .14-.26l1.61-5.14a.73.73 0 0 0 0-.16a.52.52 0 0 0 0-.11a.15.15 0 0 0-.17-.17h-.62a.45.45 0 0 0-.26.07a.68.68 0 0 0-.13.26L14 11zM5.77 8.63a5.92 5.92 0 0 0-.71-.05a2.42 2.42 0 0 0-1.63.52a1.72 1.72 0 0 0-.6 1.37a1.7 1.7 0 0 0 .49 1.28a1.82 1.82 0 0 0 1.33.48a2.48 2.48 0 0 0 2-.92a3.5 3.5 0 0 0 .2.39a2.34 2.34 0 0 0 .24.31a.26.26 0 0 0 .37 0l.42-.28a.28.28 0 0 0 .13-.2a.27.27 0 0 0 0-.16a3.63 3.63 0 0 1-.21-.47a2 2 0 0 1-.07-.6V8.19a2.2 2.2 0 0 0-.55-1.64A2.42 2.42 0 0 0 5.33 6a3.9 3.9 0 0 0-1 .13a3.9 3.9 0 0 0-.84.3a.47.47 0 0 0-.18.14a.37.37 0 0 0 0 .23v.33c0 .14 0 .2.14.2a.26.26 0 0 0 .11 0l.23-.08A4.32 4.32 0 0 1 4.42 7a3 3 0 0 1 .72-.09a1.5 1.5 0 0 1 1.08.31a1.46 1.46 0 0 1 .31 1.06v.49zm.78.9v.27a2.36 2.36 0 0 1-.07.58a1.06 1.06 0 0 1-.23.43a1.38 1.38 0 0 1-.63.42a2.12 2.12 0 0 1-.68.12a.94.94 0 0 1-.7-.24a.92.92 0 0 1-.24-.71a.92.92 0 0 1 .33-.76a1.52 1.52 0 0 1 1-.27h.62a5.67 5.67 0 0 1 .6.16zM19.76 15a19.68 19.68 0 0 1-7.55 1.54a20 20 0 0 1-9.9-2.62c-.24-.15-.43.1-.22.29A14.68 14.68 0 0 0 12 18a14.4 14.4 0 0 0 8.1-2.47c.34-.31.03-.72-.34-.53z"/><path fill="currentColor" d="M18.38 14.06c-.19.14-.16.33.05.3c.71-.09 2.28-.27 2.56.09s-.31 1.83-.58 2.49c-.08.2.1.28.28.13a3.9 3.9 0 0 0 1.23-3.34a3.94 3.94 0 0 0-3.54.33z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">ServiceStack.Aws</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Full featured support for AWS managed services.
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="/service-reference">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M27 19c-.3 0-.7.1-1 .2L20.4 12c1-1.1 1.6-2.5 1.6-4c0-3.3-2.7-6-6-6s-6 2.7-6 6c0 1.6.6 3 1.6 4L6 19.2c-.3-.1-.7-.2-1-.2c-1.7 0-3 1.3-3 3s1.3 3 3 3s3-1.3 3-3c0-.6-.2-1.1-.5-1.6l5.6-7.1c.6.3 1.2.5 1.9.6v10.3c-1.2.4-2 1.5-2 2.8c0 1.7 1.3 3 3 3s3-1.3 3-3c0-1.3-.8-2.4-2-2.8V13.9c.7-.1 1.3-.3 1.9-.6l5.6 7.1c-.3.5-.5 1-.5 1.6c0 1.7 1.3 3 3 3s3-1.3 3-3s-1.3-3-3-3zM16 4c2.2 0 4 1.8 4 4s-1.8 4-4 4s-4-1.8-4-4s1.8-4 4-4zM5 23c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1zm11 5c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1zm11-5c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Add ServiceStack Reference</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Web, Mobile &amp; Desktop Typed Clients
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/azure">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13.05 4.24L6.56 18.05L2 18l5.09-8.76l5.96-5m.7 1.09L22 19.76H6.74l9.3-1.66l-4.87-5.79l2.58-6.98Z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">ServiceStack.Azure</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Full featured support for Azure managed services
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/text/">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="currentColor"><path fill-rule="evenodd" d="M14.5 10a4.5 4.5 0 0 0 4.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 0 1-.493.11a3.01 3.01 0 0 1-1.618-1.616a.455.455 0 0 1 .11-.494l2.694-2.692c.24-.241.174-.647-.15-.752a4.5 4.5 0 0 0-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.23 6.024a2.724 2.724 0 1 0 3.837 3.837l6.024-7.23c.56-.672 1.495-.855 2.368-.8c.096.007.193.01.291.01ZM5 16a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z" clip-rule="evenodd"/><path d="M14.5 11.5c.173 0 .345-.007.514-.022l3.754 3.754a2.5 2.5 0 0 1-3.536 3.536l-4.41-4.41l2.172-2.607c.052-.063.147-.138.342-.196a2.28 2.28 0 0 1 .777-.067c.128.008.257.012.387.012ZM6 4.586l2.33 2.33a.452.452 0 0 1-.08.09L6.8 8.214L4.586 6H3.309a.5.5 0 0 1-.447-.276l-1.7-3.402a.5.5 0 0 1 .093-.577l.49-.49a.5.5 0 0 1 .577-.094l3.402 1.7A.5.5 0 0 1 6 3.31v1.277Z"/></g></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">ServiceStack.Text</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                .NET's missing high-performance utility belt
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="/autoquery">
+                <div class="service-icon text-center">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">AutoQuery</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Declarative, no code, fast Query &amp; CRUD APIs
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/aws-pocodynamo">
+                <div class="service-icon text-center">
+                    <svg class="w-20 h-20 inline-block text-indigo-600 p-2" viewBox="0 0 256 289"
+                         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                        <path d="M165.258 288.501h3.508l57.261-28.634.953-1.347V29.964l-.953-1.354L168.766 0h-3.551l.043 288.501" fill="#0099e6"/>
+                        <path d="M90.741 288.501h-3.557l-57.212-28.634-1.161-1.997-.589-226.742 1.75-2.518L87.184 0h3.601l-.044 288.501" fill="#0077b3"/>
+                        <path d="M87.285 0h81.426v288.501H87.285V0z" fill="#008ed6"/>
+                        <path d="M256 137.769l-1.935-.429-27.628-2.576-.41.204-57.312-2.292h-81.43l-57.313 2.292V91.264l-.06.032.06-.128 57.313-13.28h81.43l57.312 13.28 21.069 11.199v-7.2l8.904-.974-.922-1.798-28.192-20.159-.859.279-57.312-17.759h-81.43L29.972 72.515V28.61L0 63.723v30.666l.232-.168 8.672.946v7.348L0 107.28v30.513l.232-.024 8.672.128v12.807l-7.482.112L0 150.68v30.525l8.904 4.788v7.433l-8.531.942-.373-.28v30.661l29.972 35.118v-43.901l57.313 17.759h81.43l57.481-17.811.764.335 27.821-19.862 1.219-1.979-8.904-.982v-7.284l-1.167-.466-19.043 10.265-.69 1.44-57.481 13.203v.016h-81.43v-.016l-57.313-13.259v-43.864l57.313 2.284v.056h81.43l57.312-2.34 1.305.6 26.779-2.306 1.889-.923-8.904-.128v-12.807l8.904-.128" fill="#1A476F"/>
+                        <path d="M226.027 215.966v43.901L256 224.749v-30.461l-29.8 21.626-.173.052M226.027 197.421l.173-.04 29.8-16.028v-30.649l-29.973 2.757v43.96M226.2 91.208l-.173-.04v43.8L256 137.769v-30.634l-29.8-15.927M226.2 72.687L256 94.193V63.731L226.027 28.61v43.905l.173.06v.112" fill="#008ed6"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">PocoDynamo</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Code-first DynamoDB LINQ Client
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/messaging">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6.912 3a3 3 0 0 0-2.868 2.118l-2.411 7.838a3 3 0 0 0-.133.882V18a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-4.162c0-.299-.045-.596-.133-.882l-2.412-7.838A3 3 0 0 0 17.088 3H6.912Zm13.823 9.75l-2.213-7.191A1.5 1.5 0 0 0 17.088 4.5H6.912a1.5 1.5 0 0 0-1.434 1.059L3.265 12.75H6.11a3 3 0 0 1 2.684 1.658l.256.513a1.5 1.5 0 0 0 1.342.829h3.218a1.5 1.5 0 0 0 1.342-.83l.256-.512a3 3 0 0 1 2.684-1.658h2.844Z" clip-rule="evenodd"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">ServiceStack MQ</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Invoke APIs over reliable MQ brokers
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/grpc">
+                <div class="service-icon text-center">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m7 17l-5-5l5-5l1.4 1.425L5.825 11H18.15l-2.575-2.575L17 7l5 5l-5 5l-1.425-1.4L18.15 13H5.825L8.4 15.6Z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">gRPC</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Invoke APIs via gRPC's vast typed ecosystem
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/encrypted-messaging">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600 p-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Encrypted Messaging</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Invoke APIs with message-based encryption
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/server-events">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 21h4c0 1.1-.9 2-2 2s-2-.9-2-2m11-2v1H3v-1l2-2v-6c0-3.1 2-5.8 5-6.7V4c0-1.1.9-2 2-2s2 .9 2 2v.3c3 .9 5 3.6 5 6.7v6l2 2m-4-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v7h10v-7Z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Server Events</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Simple, real-time SSE notifications
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/authentication-and-authorization">
+                <div class="service-icon text-center">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">ServiceStack Auth</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Simple, Integrated Auth with multiple backends
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/declarative-validation">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5h14m-9 12l-4-4l1.41-1.42L10 14.17l6.59-6.59L18 9"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Declarative Validation</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Built-in Fluent &amp; Declarative Validation
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/caching">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h14l2.707 2.707a1 1 0 0 1 .293.707V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm3 1v5h9V4H7zm-1 8v7h12v-7H6zm7-7h2v3h-2V5z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Caching</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Strong Caching Story with multiple providers
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/service-gateway">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 2c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h1v2H2v2h4v2H5c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h4c1.11 0 2-.89 2-2v-3c0-1.11-.89-2-2-2H8v-2h8v2h-1c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h4c1.11 0 2-.89 2-2v-3c0-1.11-.89-2-2-2h-1v-2h4v-2h-9V9h1c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2h-4m0 2h4v3h-4V4M5 17h4v3H5v-3m10 0h4v3h-4v-3Z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Service Gateway</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Loosely-coupled, Microservices-ready design
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://www.vuedesktop.com">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M24.9 3.9L16 19.4L7.1 3.9H2l14 24.3L30 3.9h-5.1z"/><path fill="currentColor" d="m16 9.5l-3.2-5.6H8.1L16 17.5l7.9-13.6h-4.6L16 9.5z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Vue Desktop Apps</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Lite, auto updating, Windows Desktop Apps
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/modular-startup">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path fill="currentColor" d="M488.6 250.2L392 214V105.5c0-15-9.3-28.4-23.4-33.7l-100-37.5c-8.1-3.1-17.1-3.1-25.3 0l-100 37.5c-14.1 5.3-23.4 18.7-23.4 33.7V214l-96.6 36.2C9.3 255.5 0 268.9 0 283.9V394c0 13.6 7.7 26.1 19.9 32.2l100 50c10.1 5.1 22.1 5.1 32.2 0l103.9-52l103.9 52c10.1 5.1 22.1 5.1 32.2 0l100-50c12.2-6.1 19.9-18.6 19.9-32.2V283.9c0-15-9.3-28.4-23.4-33.7zM358 214.8l-85 31.9v-68.2l85-37v73.3zM154 104.1l102-38.2l102 38.2v.6l-102 41.4l-102-41.4v-.6zm84 291.1l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4l-102-41.4v-.6l102-38.2l102 38.2v.6zm240 112l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4l-102-41.4v-.6l102-38.2l102 38.2v.6z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Modular Startup</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Encapsulated, Composable Building Blocks
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/plugins">
+                <div class="service-icon text-center">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Plugins</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                Modular Design with rich set of Plugins
+            </p>
+        </div>
+        
+        <div class="sm:col-span-6 lg:col-span-4">
+            <a href="https://docs.servicestack.net/templates-overview">
+                <div class="service-icon">
+                    <svg class="w-20 h-20 inline-block text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M26 6v4H6V6h20m0-2H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM10 16v10H6V16h4m0-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V16a2 2 0 0 0-2-2zm16 2v10H16V16h10m0-2H16a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V16a2 2 0 0 0-2-2z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold leading-7 text-gray-900">Project Templates</h3>
+            </a>
+            <p class="text-base leading-7 text-gray-600">
+                50+ Modern Starting Project Templates
+            </p>
+        </div>
+        
+        </div>
+    </div>
+</section>
+
 
 <script type="module">
 import { mount } from "/mjs/app.mjs"
@@ -428,7 +1745,7 @@ import { mount } from "/mjs/app.mjs"
     </main>
 </div>
 
-<footer class="bg-stone-50 dark:bg-black border-t border-stone-200 dark:border-gray-600">
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600">
     <div class="container mx-auto px-5">
         <div class="py-28 flex flex-col lg:flex-row items-center">
             <h3 class="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">A ServiceStack Project</h3>
