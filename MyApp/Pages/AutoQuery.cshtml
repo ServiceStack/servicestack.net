@@ -1,0 +1,144 @@
+﻿@page "/autoquery"
+@attribute [RenderStatic]
+
+@{
+    ViewData["Brand"] = "ServiceStack AutoQuery";
+}
+
+<div class="bg-white">
+  
+
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+      <svg class="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678">
+        <path fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
+        <defs>
+          <linearGradient id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#9089FC" />
+            <stop offset="1" stop-color="#FF80B5" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 sm:py-48 text-center">
+
+        <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 dark:text-slate-50 sm:text-6xl">
+            <div class="pb-4">
+                AutoQuery
+                <span class="relative whitespace-nowrap text-blue-600">
+                    <svg aria-hidden="true" viewBox="0 0 418 42" class="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70" preserveAspectRatio="none"
+                    ><path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path></svg>
+                    <span class="relative">made simple</span>
+                </span>
+            </div>
+            <div>Instant Query & CRUD APIs</div>
+        </h1>
+        <p class="mx-auto mt-6 max-w-4xl text-xl tracking-tight text-slate-700 dark:text-slate-200">
+            High performance, Industrial strength, effortless, code-first APIs
+        </p>
+        <div class="mt-36 lg:mt-24">
+            <p class="font-display text-base text-slate-900 dark:text-slate-50">
+                Rapidly develop high-performance Queryable &amp; CRUD APIs for
+            </p>
+            <ul class="mt-8 flex items-center gap-x-12 gap-y-0 justify-center">
+                <li title="PostgreSQL">
+                    <img src="/img/svgs/postgresql-notext.svg" class="h-16">
+                </li>
+                <li title="Microsoft SQL Server">
+                    <img src="/img/svgs/sqlserver.svg" class="h-16">
+                </li>
+                <li title="SQLite">
+                    <img src="/img/svgs/sqlite.svg" class="h-16">
+                </li>
+                <li title="MySQL">
+                    <img src="/img/svgs/mysql.svg" class="h-16">
+                </li>
+                <li title="MariaDB">
+                    <img src="/img/svgs/mariadb.svg" class="h-16">
+                </li>
+            </ul>
+        </div>        
+        
+    </div>
+    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+      <svg class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678">
+        <path fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
+        <defs>
+          <linearGradient id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#9089FC" />
+            <stop offset="1" stop-color="#FF80B5" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</div>
+
+
+<section>
+    <div class="pt-8 mt-8 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-20">
+
+    </div>
+</section>
+
+@await Html.PartialAsync("PrimaryNav", "/autoquery")
+
+<section>
+    <div class="mx-auto max-w-5xl py-24 sm:py-32">
+
+        <h3 class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Fast, typed, code-first Queryable APIs</h3>
+
+        <div class="w-full px-4">
+            <p class="mx-auto mt-5 text-xl text-gray-500">
+                ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api,
+                but without its <a href="https://docs.servicestack.net/why-not-odata">webservice anti-patterns</a>
+                where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API simple flat structure by instead
+                enhancing the ideal API the developer would naturally write and completes their implementation for them!
+            </p>
+
+            <p class="mx-auto mt-5 text-xl text-gray-500">
+                This is the design philosophy behind AutoQuery which utilizes conventions to automate creation of intent-based self-descriptive APIs
+                that are able to specify configurable conventions and leverage extensibility options to maximize the utility of AutoQuery services.
+            </p>
+
+        </div>
+
+        <h3 class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 dark:text-gray-50 sm:text-4xl">Great alternative to OData, GraphQL or JSON:API</h3>
+
+        <div class="flex flex-wrap">
+            <div class="w-full sm:w-1/2 px-4">
+                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Connect to anything with data</h3>
+                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    Expose data from various data sources including RDBMS, In memory, DynamoDb or even other services through consistent flexible APIs where clients can control the query details.
+                </p>
+                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Works with your favorite databases</h3>
+                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery RDBMS</a>
+                    works with anything OrmLite can connect to, including:
+                </p>
+                <ul class="ul-circle mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    <li class="mt-2">PostgreSQL</li>
+                    <li class="mt-2">SQL Server</li>
+                    <li class="mt-2">SQLite</li>
+                    <li class="mt-2">MySQL</li>
+                    <li class="mt-2">MariaDB</li>
+                    <li class="mt-2">AWS Aurora</li>
+                </ul>
+            </div>
+            <div class="w-full sm:w-1/2 px-4">
+                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Clean REST routes, accessible from everywhere</h3>
+                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    Unlike OData and GraphQL, AutoQuery provides clean REST services making them easy to use from standard browsers, avoiding the requirement for complex clients.
+                </p>
+                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Unmatched client integration experience</h3>
+                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    Add ServiceStack Reference provides best in class client generation in a multitude of languages straight from the server you're integrating with.
+                </p>
+                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    Instant Client Apps can generate working native client solutions through an easy to use free web tool, only needing a base URL of a ServiceStack service.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>

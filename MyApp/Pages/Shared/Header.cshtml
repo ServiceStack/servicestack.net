@@ -1,10 +1,11 @@
+@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>
 <header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
     <div class="w-full flex flex-wrap items-center">
         <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
             <div class="cursor-pointer">
                 <a class="navbar-brand flex items-center" href="/">
                     <img class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12" src="/img/logo.svg" alt="MyApp logo">
-                    <span class="hidden sm:block text-2xl font-bold">ServiceStack</span>
+                    <span class="hidden sm:block text-2xl font-bold">@(ViewData["Brand"] ?? "ServiceStack")</span>
                 </a>
             </div>
         </div>
@@ -24,7 +25,6 @@
                         RenderNavLink("/whatsnew", "What's New");
                         RenderNavLink("/blog", "Blog");
                         RenderNavLink("/posts", "Archive");
-                        RenderNavLink("/about", "About");
                     }
                     <li class="relative flex flex-wrap just-fu-start m-0">
                         <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
