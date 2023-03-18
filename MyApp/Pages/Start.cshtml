@@ -24,7 +24,6 @@
     </div>
 </section>
 
-
 <script type="module">
 import { ref, computed, watch, onMounted } from "vue"
 import { queryString, setQueryString } from "@@servicestack/client"
@@ -514,7 +513,7 @@ const App = {
 
     </section>`,
     setup(props) {
-        const name = ref('MyApp')
+        const name = ref('')
         const mixModel = ref({})
 
         const isAlphaNumeric = (e) => {
@@ -542,7 +541,8 @@ const App = {
             name.value = ''
         }
         
-        const mixTool = computed(() => `x new web ${name.value} && cd ${name.value}${mixTags.value.length > 0 ? ' && x mix -f ' + mixTags.value.join(' ') : ''}`)
+        const mixTool = computed(() => 
+            `x new web ${name.value||'MyApp'} && cd ${name.value||'MyApp'}${mixTags.value.length > 0 ? ' && x mix -f ' + mixTags.value.join(' ') : ''}`)
         
         watch([name, mixModel], () => {
             const args = { Name: name.value || undefined, Mix: mixTags.value.length ? mixTags.value.join(',') : undefined }
@@ -553,7 +553,7 @@ const App = {
         onMounted(() => {
             const qs = queryString(location.search)
             const boolProps = Array.from(document.querySelectorAll('[type=radio]')).map(x => [x.name,x.value])
-            const mix = (qs.mix || qs.Mix || '').split(',')
+            const mix = (qs.mix || qs.Mix || '').split(',').filter(x => !!x)
             mix.forEach(tag => {
                 const boolProp = boolProps.find(x => x[1] === tag)
                 if (boolProp) {

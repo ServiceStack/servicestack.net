@@ -38,17 +38,34 @@
             <div class="container my-10">
 
                 <div class="px-4 py-2 flex justify-center">
-                    <div class="max-w-screen-md text-center">
-                        <h2 class="text-2xl text-slate-50">Get the .NET SDK</h2>
-                        <div>
-                            <p class="my-4 text-gray-400">
-                                If you haven't already got the .NET SDK installed, we recommended starting with the latest .NET SDK.
-                            </p>
-                            <div class="pt-4">
-                                <a href="https://dotnet.microsoft.com/download" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Download .NET</a>
+                    @if (base.HttpRequest.PathInfo is "/start-netfx" or "/start-corefx")
+                    {
+                        <div class="max-w-screen-md text-center">
+                            <h2 class="text-2xl text-slate-50">Get the .NET SDK</h2>
+                            <div>
+                                <p class="my-4 text-gray-400">
+                                    If you haven't already got the .NET Framework SDK installed, we recommended starting with the latest.
+                                </p>
+                                <div class="pt-4">
+                                    <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Download .NET Framework</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="max-w-screen-md text-center">
+                            <h2 class="text-2xl text-slate-50">Get the .NET SDK</h2>
+                            <div>
+                                <p class="my-4 text-gray-400">
+                                    If you haven't already got the .NET SDK installed, we recommended starting with the latest .NET SDK.
+                                </p>
+                                <div class="pt-4">
+                                    <a href="https://dotnet.microsoft.com/download" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Download .NET</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
 
