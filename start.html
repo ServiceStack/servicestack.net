@@ -113,17 +113,17 @@ mountAll()
             <div class="container my-10">
 
                 <div class="px-4 py-2 flex justify-center">
-                    <div class="max-w-screen-md text-center">
-                        <h2 class="text-2xl text-slate-50">Get the .NET SDK</h2>
-                        <div>
-                            <p class="my-4 text-gray-400">
-                                If you haven't already got the .NET SDK installed, we recommended starting with the latest .NET SDK.
-                            </p>
-                            <div class="pt-4">
-                                <a href="https://dotnet.microsoft.com/download" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Download .NET</a>
+                        <div class="max-w-screen-md text-center">
+                            <h2 class="text-2xl text-slate-50">Get the .NET SDK</h2>
+                            <div>
+                                <p class="my-4 text-gray-400">
+                                    If you haven't already got the .NET SDK installed, we recommended starting with the latest .NET SDK.
+                                </p>
+                                <div class="pt-4">
+                                    <a href="https://dotnet.microsoft.com/download" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Download .NET</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
 
@@ -190,7 +190,6 @@ mountAll()
         
     </div>
 </section>
-
 
 <script type="module">
 import { ref, computed, watch, onMounted } from "vue"
@@ -681,7 +680,7 @@ const App = {
 
     </section>`,
     setup(props) {
-        const name = ref('MyApp')
+        const name = ref('')
         const mixModel = ref({})
 
         const isAlphaNumeric = (e) => {
@@ -709,7 +708,8 @@ const App = {
             name.value = ''
         }
         
-        const mixTool = computed(() => `x new web ${name.value} && cd ${name.value}${mixTags.value.length > 0 ? ' && x mix -f ' + mixTags.value.join(' ') : ''}`)
+        const mixTool = computed(() => 
+            `x new web ${name.value||'MyApp'} && cd ${name.value||'MyApp'}${mixTags.value.length > 0 ? ' && x mix -f ' + mixTags.value.join(' ') : ''}`)
         
         watch([name, mixModel], () => {
             const args = { Name: name.value || undefined, Mix: mixTags.value.length ? mixTags.value.join(',') : undefined }
@@ -720,7 +720,7 @@ const App = {
         onMounted(() => {
             const qs = queryString(location.search)
             const boolProps = Array.from(document.querySelectorAll('[type=radio]')).map(x => [x.name,x.value])
-            const mix = (qs.mix || qs.Mix || '').split(',')
+            const mix = (qs.mix || qs.Mix || '').split(',').filter(x => !!x)
             mix.forEach(tag => {
                 const boolProp = boolProps.find(x => x[1] === tag)
                 if (boolProp) {
