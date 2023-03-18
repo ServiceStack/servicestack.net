@@ -1,4 +1,11 @@
 @page "/flutter"
 @attribute [RenderStatic]
 
+@{
+    ViewData["Title"] = "Flutter";
+    ViewData["Brand"] = "ServiceStack Flutter";
+}
+
+@await Html.PartialAsync("PrimaryNav", "/flutter")
+
 Flutter

@@ -1,0 +1,539 @@
+﻿@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>
+
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "Creating Beautiful <span class='text-purple-600'>Blazor Apps</span>",
+   TitleBottom = "<span style='color:#44A8B3'>with Tailwind</span>",
+   Subtitle = "Preview the highly productive development model of the new Blazor Tailwind template showing how easy it is to utilize beautifully designed components",
+   YoutubeId = "3gD_MMcYI-4",
+})
+
+<div class="bg-white dark:bg-black pb-8 pb-12">
+    <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
+        <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
+            <div>
+                <div>
+                    <img class="h-16 w-auto" src="/img/pages/blazor/logo.svg" alt="Northwind Logo">
+                </div>
+                <div class="mt-20">
+                    <div>
+                        <a href="https://blazor-tailwind.jamstacks.net" class="inline-flex space-x-4">
+                            <span
+                                class="rounded bg-purple-50 dark:bg-purple-900 px-2.5 py-1 text-xs font-semibold text-purple-600 dark:text-purple-300 tracking-wide uppercase">
+                                What's new </span>
+                            <span class="inline-flex items-center text-sm font-medium text-purple-600 dark:text-purple-300 space-x-1">
+                                <span>Live Demo</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="mt-6 sm:max-w-xl">
+                        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-5xl">
+                            Blazor WASM Tailwind Template
+                        </h1>
+                        <p class="mt-6 text-xl text-gray-500">
+                            The feature-rich Blazor WASM Tailwind template us ideal for teams with strong C# skills
+                            building Line Of Business (LOB) applications
+                            who prefer utilizing Tailwind's modern utility-first CSS design system to create beautiful,
+                            instant-loading Blazor WASM Apps.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 flex">
+                        <div class="rounded-md shadow">
+                            <a href="https://docs.servicestack.net/templates-blazor-tailwind" target="_blank"
+                                class="flex hover:no-underline px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 dark:text-gray-50 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+            <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                <div class="hidden sm:block">
+                    <div
+                        class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 dark:bg-gray-900 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full">
+                    </div>
+                    <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392" fill="none"
+                        viewBox="0 0 404 392">
+                        <defs>
+                            <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20"
+                                patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)" />
+                    </svg>
+                </div>
+                <div class="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+                    <a href="https://blazor-tailwind.jamstacks.net">
+                        <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
+                            src="/img/pages/blazor/blazor-wasm-tailwind-template.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative bg-white dark:bg-black py-8 sm:py-12 lg:py-16">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <div id="blazor-component-gallery" class="mt-16 relative bg-white dark:bg-black py-4">
+            <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+                <p class="mt-2 text-4xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-5xl">Blazor Gallery</p>
+                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    Discover ServiceStack.Blazor Rich UI Components and Integrated Features
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-32 sm:pt-32 lg:pt-24 lg:pb-14 lg:overflow-hidden bg-violet-900"
+        style="background-image:url(/images/bg-header7.jpg);background-size:cover;">
+        <div class="mx-auto max-w-7xl lg:px-4">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+                <div
+                    class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
+                    <div class="lg:py-24">
+                        <h1
+                            class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                            <span class="block">ServiceStack.Blazor</span>
+                            <span class="block text-indigo-400">Components Gallery</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                            ServiceStack.Blazor Components gives you the ideal development workflow without compromise.
+                            Effortless, highly productive, API integrated Rich Blazor UI Components with 100% Server
+                            model reuse
+                            and integrated contextual validation
+                        </p>
+                        <div class="mt-10 flex"><a href="https://blazor-gallery.jamstacks.net/gallery"
+                                class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:text-white hover:bg-opacity-70 sm:px-8">
+                                Explore Components
+                            </a></div>
+                    </div>
+                </div>
+                <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+                    <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0"><a
+                            href="https://blazor-gallery.jamstacks.net//gallery">
+                            <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                                src="/img/pages/blazor/gallery-splash.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <p class="pt-8 text-xl text-gray-800 dark:text-gray-100">
+            ServiceStack.Blazor Components support both hosting models which sees Blazor Gallery running on both
+            <b>Blazor Server</b> and <b>WASM</b>:
+        </p>
+
+        <div class="mb-16 mx-auto mt-5 max-w-md sm:flex sm:justify-center md:mt-8">
+            <div class="rounded-md shadow">
+                <a href="https://blazor-gallery.servicestack.net"
+                    class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg hover:no-underline">
+                    Blazor Server
+                </a>
+            </div>
+            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                <a href="https://blazor-gallery.jamstacks.net"
+                    class="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-indigo-600 hover:bg-gray-50 md:py-4 md:px-10 md:text-lg hover:no-underline">
+                    Blazor WASM
+                </a>
+            </div>
+        </div>
+
+        <p class="text-xl text-gray-800 dark:text-gray-100">
+            For a closer look at ServiceStack.Blazor Components in action, download & run them to see how good they'll
+            run in your Environment:
+        </p>
+
+        <div class="mt-4 flex justify-center">
+            <div>
+                <a href="https://github.com/NetCoreApps/BlazorGallery" class="flex text-xl text-gray-800 dark:text-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" class="w-6 h-6 mr-2 align-text-bottom" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
+                        </path>
+                    </svg>
+                    <span>NetCoreApps/BlazorGallery</span>
+                </a>
+                <a href="https://github.com/NetCoreApps/BlazorGalleryWasm" class="flex mt-2 text-xl text-gray-800 dark:text-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" class="w-6 h-6 mr-2 align-text-bottom" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
+                        </path>
+                    </svg>
+                    <span>NetCoreApps/BlazorGalleryWasm</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative bg-white dark:bg-black py-8 sm:py-12 lg:py-16">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+
+        <h3 id="tailwind-components" tabindex="-1"
+            class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
+            Tailwind Components
+        </h3>
+
+        <p class="mb-8 mx-auto mt-5 text-xl text-gray-500">
+            <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind</a>
+            has quickly become the best modern CSS framework for creating scalable,
+            <a href="https://tailwindcss.com/#mobile-first" target="_blank" rel="noopener noreferrer">mobile-first
+                responsive</a>
+            websites built upon a beautiful expert-crafted constraint-based
+            <a href="https://tailwindcss.com/#constraint-based" target="_blank" rel="noopener noreferrer">Design
+                System</a>
+            that enables effortless reuse of a growing suite of
+            <a href="https://tailwindcomponents.com" target="_blank" rel="noopener noreferrer">Free Community</a>
+            and professionally-designed
+            <a href="https://tailwindui.com" target="_blank" rel="noopener noreferrer">Tailwind UI Component
+                Libraries</a>,
+            invaluable for quickly creating beautiful websites.
+        </p>
+
+        <p>
+            <a href="https://tailwindui.com" target="_blank" rel="noopener noreferrer"><img
+                    src="/img/pages/blazor/tailwindui.png" alt=""></a>
+        </p>
+    </div>
+</div>
+
+<div>
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-y-0 h-full w-full -z-20" aria-hidden="true">
+            <div class="relative h-full">
+                <svg class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full"
+                    width="404" height="784" fill="none" viewBox="0 0 404 784">
+                    <defs>
+                        <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20"
+                            patternUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor" />
+                        </pattern>
+                    </defs>
+                    <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)" />
+                </svg>
+                <svg class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4"
+                    width="404" height="784" fill="none" viewBox="0 0 404 784">
+                    <defs>
+                        <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20"
+                            patternUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor" />
+                        </pattern>
+                    </defs>
+                    <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="mt-16 relative">
+            <div class="absolute inset-0 flex flex-col" aria-hidden="true">
+                <div class="flex-1"></div>
+                <div class="flex-1 w-full bg-gray-900"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
+                <div class="aspect-w-16 aspect-h-9">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/iKpQI2233nY"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="darkmode" class="relative bg-white dark:bg-black py-8 sm:py-12 lg:py-16">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+
+        <div class="pt-8 my-8 ml-20 flex flex-col items-center">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                    class="w-40 h-40 text-gray-800 mr-8" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M9.37 5.51A7.35 7.35 0 0 0 9.1 7.5c0 4.08 3.32 7.4 7.4 7.4c.68 0 1.35-.09 1.99-.27A7.014 7.014 0 0 1 12 19c-3.86 0-7-3.14-7-7c0-2.93 1.81-5.45 4.37-6.49zM12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26a5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z">
+                    </path>
+                </svg>
+            </div>
+            <h2 id="darkmode" class="border-none text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold">
+                <span class="text-gray-800 dark:text-gray-100 mr-6">Dark Mode</span>
+            </h2>
+        </div>
+
+        <p class="my-8 mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl">
+            In addition to revolutionizing how we style mobile-first responsive Apps, Tailwind's 
+            <a href="https://tailwindcss.com/#dark-mode">Dark Mode</a> does the same for enabling Dark Mode <br>
+            a feature added throughout all ServiceStack's Tailwind Blazor Components and Project templates.
+        </p>
+
+        <img src="/img/whatsnew/v6.5/dark-and-light-mode.png">
+
+    </div>
+</div>
+
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "<span style='color:#44A8B3'>Beautiful Tailwind</span> <span class='text-purple-600'>Blazor Components</span>",
+   TitleBottom = "with Darkmode",
+   Subtitle = "Preview the beautiful Dark Mode support available in ServiceStack.Blazor Components and see how to easily enable support for it in your Apps",
+   YoutubeId = "8nwpC_B4AC4",
+})
+
+<div class="pt-16 mt-16 flex flex-col items-center">
+    <div>
+        <svg class="w-40 h-40 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path fill="currentColor" d="M18 12h-2.18c-.17.7-.44 1.35-.81 1.93l1.54 1.54l-2.1 2.1l-1.54-1.54c-.58.36-1.23.63-1.91.79V19H8v-2.18c-.68-.16-1.33-.43-1.91-.79l-1.54 1.54l-2.12-2.12l1.54-1.54c-.36-.58-.63-1.23-.79-1.91H1V9.03h2.17c.16-.7.44-1.35.8-1.94L2.43 5.55l2.1-2.1l1.54 1.54c.58-.37 1.24-.64 1.93-.81V2h3v2.18c.68.16 1.33.43 1.91.79l1.54-1.54l2.12 2.12l-1.54 1.54c.36.59.64 1.24.8 1.94H18V12zm-8.5 1.5c1.66 0 3-1.34 3-3s-1.34-3-3-3s-3 1.34-3 3s1.34 3 3 3z"/>
+        </svg>
+    </div>
+</div>
+
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "Auto Admin",
+   TitleBottom = "",
+   Subtitle = "Accelerate development of beautiful UX optimized Blazor Apps with Auto Admin pages",
+   YoutubeId = "tt0ytzVVjEY",
+})
+
+<section id="auto-forms" class="mt-16 pt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight dark:text-slate-50 ">Delcarative, Code-First Admin Forms.</p>
+        <p class="mt-4 text-lg max-w-3xl space-y-6">
+            Blitz through creating Admin pages with 
+            <a href="https://blazor-gallery.servicestack.net/gallery/autoform">Auto Forms</a> 
+            components for creating instant working validation-bound API-enabled forms
+            from just POCO class defintions.
+        </p>
+    </div>
+    <div class="pt-8 sm:flex">
+        <div class="sm:flex-1 sm:pl-4 sm:pr-2">
+            <div class="shadow sm:overflow-hidden sm:rounded-md">
+                <a href="https://blazor-gallery.jamstacks.net/grid/contacts-meta">
+                    <img src="/img/pages/blazor/contacts-meta.png">
+                </a>
+            </div>
+        </div>
+        <div class="sm:flex-1 sm:pl-2 sm:pr-4">
+            <div class="p-4 shadow sm:overflow-hidden sm:rounded-md" style="background:#1E1E1E">
+                <a href="https://blazor-gallery.jamstacks.net/grid/contacts-meta">
+                    <img src="/img/pages/blazor/contacts-meta-src.png">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="autoquery" class="mt-16 pt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight dark:text-slate-50 ">Instant CRUD UIs &amp; APIs with AutoQuery.</p>
+        <p class="mt-4 text-lg max-w-3xl space-y-6">
+            For maximum productivity, use POCOs to define the rest of your
+            <a href="https://docs.servicestack.net/autoquery">AutoQuery CRUD APIs</a>
+            and unlock the productive power of AutoQueryGrid's instant UI over AutoQuery's fast APIs.
+        </p>
+        <div class="mt-8 p-2 shadow sm:overflow-hidden sm:rounded-md" style="background:#1E1E1E">
+            <a href="https://blazor-gallery.jamstacks.net/grid/contacts-meta">
+                <img src="/img/pages/blazor/contacts-meta-AutoQueryGrid.png">
+            </a>
+        </div>
+    </div>
+    <div class="mt-8">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="shadow">
+                <a href="https://blazor-gallery.jamstacks.net/grid/contacts-meta">
+                    <img src="/img/pages/blazor/contacts-meta-grid.png">
+                </a>
+            </div>
+        </div>
+        <div class="pt-8">
+            <p class="mb-8 mx-auto text-lg max-w-4xl space-y-6">
+                Using POCOs to define the contracts for the CRUD APIs and Contact Data Model
+                is all that's required to create full-featured ServiceStack APIs capable of 
+                end-to-end typed API integrations to the
+                <a href="/service-reference">9 most popular languages</a> for creating Web, Mobile and Desktop Apps.
+                <br><br>
+                AutoQueryGrid is then able to reuse the rich metadata from the typed API contracts to create a 
+                complete management UI to manage the Contact's RDBMS table - enabling an effortless Auto Admin UI.
+            </p>
+            <div class="max-w-4xl mx-auto p-4 shadow sm:overflow-hidden sm:rounded-md" style="background:#1E1E1E">
+                <a href="https://blazor-gallery.jamstacks.net/grid/contacts-meta">
+                    <img src="/img/pages/blazor/contacts-meta-grid-src.png">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "Universal Blazor API Components",
+   TitleBottom = "",
+   Subtitle = "Create reusable, maximally performant universal Blazor API Components",
+   YoutubeId = "66DgLHExC9E",
+})
+
+<div class="bg-white dark:bg-black pb-8 pb-12">
+    <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
+        <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
+            <div>
+                <div>
+                    <svg class="w-20 h-20 text-purple-600 mr-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1zM8.895 11.628a2.188 2.188 0 1 0 2.188 2.188v-2.042a.158.158 0 0 0-.15-.15z" fill="currentColor"/></svg>
+                </div>
+                <div class="mt-20">
+                    <div class="mt-6 sm:max-w-xl">
+                        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-5xl">
+                            Blazor Diffusion
+                        </h1>
+                        <p class="mt-6 text-xl text-gray-500">
+                            ServiceStack.Blazor Components enable a highly productive and capable platform for rapidly developing a majority of 
+                            internal Apps CRUD functionality or to enable a hybrid development model where the management of Back office supporting tables 
+                            can be quickly implemented using custom AutoQueryGrid components, freeing up developers to focus a majority of their efforts 
+                            where they add the most value - in the optimized customer-facing UI.
+                            <br><br>
+                            We’ve created 
+                            <a class="text-purple-600" href="https://blazordiffusion.com">blazordiffusion.com</a>
+                            to best illustrate this potential
+                             - a new ServiceStack.Blazor App front-end for 
+                            <a class="text-purple-600" href="https://stability.ai/blog/stable-diffusion-public-release">Stable Diffusion</a> - a deep learning text-to-image model 
+                            that can generate quality images from a text prompt. It’s a great example of Hybrid Development where its entire user-facing UI 
+                            is a bespoke Blazor App optimized for creating and discovering Stable Diffusion generated images, whilst all its 
+                            <a class="text-purple-600" href="https://github.com/NetCoreApps/BlazorDiffusion/tree/main/BlazorDiffusion/Pages/admin">supporting admin tasks</a>
+                            to manage the back office tables that power the UI were effortlessly implemented  with custom AutoQueryGrid components.
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-2xl font-medium text-gray-900 mb-3">
+                            Explore Features
+                        </p>
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 32"><g fill="currentColor"><path d="M27.464 2.314a.501.501 0 0 0-.698-.257L14.86 8.339a.499.499 0 0 0-.233.621l.245.641l-6.873 3.769a.5.5 0 0 0-.222.63l.228.549l-7.299 3.488a.5.5 0 0 0-.246.643l1.498 3.61a.5.5 0 0 0 .629.28l7.625-2.701l.228.549a.5.5 0 0 0 .601.289l7.276-2.097l.218.569a.497.497 0 0 0 .612.299l13-4a.498.498 0 0 0 .317-.663l-5-12.501zM2.7 21.469l-1.134-2.734l6.823-3.261l1.439 3.47L2.7 21.469zm8.491-1.846l-.238-.574l-1.843-4.445l-.238-.573l6.336-3.475l2.374 6.134l.375.981l-6.766 1.952zm8.109-1.238l-.203-.531c-.003-.011-.001-.024-.006-.035l-.618-1.597l-2.754-7.206l11.023-5.815l4.592 11.48L19.3 18.385z"></path><path d="M28.964.314a.5.5 0 0 0-.929.371l6 15a.502.502 0 0 0 .651.279a.501.501 0 0 0 .279-.65l-6.001-15z"></path><path d="M18 21h-3c-1.14 0-2 .86-2 2v1.315l-5.879 6.859a.5.5 0 1 0 .758.651L13.73 25H16v6.5a.5.5 0 0 0 1 0V25h2.27l5.85 6.825a.497.497 0 0 0 .705.054a.5.5 0 0 0 .054-.705L20 24.315v-1.24C20 21.912 19.122 21 18 21zm1 3h-5v-1c0-.589.411-1 1-1h3c.57 0 1 .462 1 1.075V24z"></path></g></svg>
+                            <a class="text-xl text-indigo-600" href="https://api.blazordiffusion.com/ui">Explore APIs in API Explorer</a>
+                        </div>
+                        <div class="flex items-center text-xl mb-2">
+                            <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                   stroke-linejoin="round" stroke-width="1.5">
+                                    <path
+                                        d="M16 22.027v-2.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.75a5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.91 1.48a13.38 13.38 0 0 0-7 0c-2.73-1.83-3.91-1.48-3.91-1.48A5.07 5.07 0 0 0 5 5.797a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.58v2.87" />
+                                    <path d="M9 20.027c-3 .973-5.5 0-7-3" />
+                                </g>
+                            </svg>
+                            Browse
+                            <a class="px-1 text-purple-600"
+                               href="https://github.com/NetCoreApps/BlazorDiffusion">Blazor Server</a>
+                            source code
+                        </div>
+                        <div class="flex items-center text-xl mb-2">
+                            <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                   stroke-linejoin="round" stroke-width="1.5">
+                                    <path
+                                        d="M16 22.027v-2.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.75a5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.91 1.48a13.38 13.38 0 0 0-7 0c-2.73-1.83-3.91-1.48-3.91-1.48A5.07 5.07 0 0 0 5 5.797a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.58v2.87" />
+                                    <path d="M9 20.027c-3 .973-5.5 0-7-3" />
+                                </g>
+                            </svg>
+                            Browse
+                            <a class="px-1 text-purple-600"
+                               href="https://github.com/NetCoreApps/BlazorDiffusionWasm">Blazor WASM</a>
+                            source code
+                        </div>
+
+                        <div class="mt-6 flex">
+                            <div class="rounded-md shadow">
+                                <a href="https://github.com/NetCoreApps/BlazorDiffusion/archive/refs/heads/main.zip"
+                                   target="_blank"
+                                   class="flex hover:no-underline px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 dark:text-gray-50 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900">
+                                    Download BlazorDiffusion.zip
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+            <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                <div class="hidden sm:block">
+                    <div
+                        class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 dark:bg-gray-900 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full">
+                    </div>
+                    <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392"
+                         fill="none" viewBox="0 0 404 392">
+                        <defs>
+                            <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20"
+                                     height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200"
+                                      fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)" />
+                    </svg>
+                </div>
+                <div
+                    class="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+                    <a href="https://blazordiffusion.com">
+                        <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
+                             src="/img/pages/locode/blazordiffusion/screenshot.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "Blazor with Litestream",
+   TitleBottom = "",
+   Subtitle = "Blazor Diffusion adopts the new approach to building <a href='https://docs.servicestack.net/ormlite/litestream'>simple &amp; performant RDBMS Apps</a> with <a href='https://litestream.io'>Litestream</a> - the ultimate performance & value combo",
+   YoutubeId = "fY50dWszpw4",
+})
+
+<div id="prerendering" class="relative bg-white dark:bg-black py-8 sm:py-12 lg:py-16">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+
+        <div class="relative bg-white dark:bg-black py-4">
+            <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+                <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Loads instantly with
+                    great SEO</p>
+                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                    All Blazor WASM templates
+                    <a href="https://blazor-tailwind.jamstacks.net/docs/prerender">incorporate prerendering</a>
+                    to achieve their
+                    <a href="https://blazor-tailwind.jamstacks.net">instant load times</a>
+                    that greatly benefits the built-in markdown pages with great SEO
+                </p>
+            </div>
+        </div>
+
+        <a href="https://blazor-tailwind.jamstacks.net/docs/prerender">
+            <div class="block flex justify-center shadow hover:shadow-lg rounded py-1">
+                <img class="" src="/img/pages/blazor/blazor-prerendering.png">
+            </div>
+        </a>
+
+        <p class="mb-8 mx-auto mt-5 text-xl text-gray-500">
+            Pre-rendering works by replacing the
+            <a href="https://blazor-tailwind.jamstacks.net/docs/prerender#increasing-perceived-performance"
+                target="_blank" rel="noopener noreferrer">Blazor WASM loading page</a>
+            with an equivalent looking HTML page dynamically generated in JavaScript which renders the same Blazor
+            App's Chrome using the shared navigation defined in JavaScript to render the App's Top &amp; Sidebar
+            navigation.
+        </p>
+
+    </div>
+
+</div>

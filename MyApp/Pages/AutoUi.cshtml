@@ -1,0 +1,11 @@
+@page "/auto-ui"
+@attribute [RenderStatic]
+
+@{
+    ViewData["Title"] = "Built In UIs";
+    ViewData["Brand"] = "ServiceStack UIs";
+}
+
+@await Html.PartialAsync("PrimaryNav", "/auto-ui")
+
+Auto UIs

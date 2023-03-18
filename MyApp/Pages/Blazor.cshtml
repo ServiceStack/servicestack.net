@@ -1,4 +1,218 @@
 @page "/blazor"
 @attribute [RenderStatic]
 
-Blazor
+@{
+    ViewData["Title"] = "Blazor";
+    ViewData["Brand"] = "ServiceStack.Blazor";
+}
+
+<div class="bg-violet-900"
+    style="background-image:url(/img/backgrounds/bg-header7.jpg);background-size:cover;">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-32 text-center">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+            <div
+                class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
+                <div class="lg:py-24">
+                    <h1
+                        class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                        <span class="block">Rapidly develop</span>
+                        <span class="block text-indigo-400">Blazor Apps</span>
+                    </h1>
+                    <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                        Blazor with ServiceStack gives you the ideal development workflow without compromise.
+                        Effortless end-to-end typed APIs without code-gen, 100% Server model reuse, Rich UI
+                        Controls with integrated contextual validation,
+                        integrated pre-rendering for instant load times.
+                    </p>
+                    <div class="mt-10 flex">
+                        <a href="#create"
+                            class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:text-white hover:bg-opacity-70 sm:px-8">
+                            Get started
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+                <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                    <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                        src="/img/pages/blazor/blazor-tailwind-splash.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("PrimaryNav", "/blazor")
+
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "Optimal Developer Workflow",
+   TitleBottom = "for Blazor WASM Apps",
+   Subtitle = "Learn how to easily create feature-rich Blazor WASM Web Apps with ServiceStack",
+   YoutubeId = "BcQqCzm4tK0",
+})
+
+<a name="create"></a>
+<div class="relative py-8 overflow-hidden sm:py-12 lg:py-16">
+    <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+        <div class="mt-8">
+            <h3 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                Create a new Blazor App
+            </h3>
+            <div
+                class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Customize and Download a new Blazor project with your preferred name:
+            </div>
+        </div>
+
+        <div id="projects"></div>
+    </div>
+</div>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "/mjs/app.mjs"
+
+const App = {
+    template:`
+    <section class="w-full flex flex-col justify-center text-center">
+        <div id="empty" class="mt-4 mb-2">
+            <div class="flex justify-center mb-8 pb-8">
+                <div class="w-70">
+                    <input v-model="name" type="text" placeholder="Project Name" autocorrect="off" spellcheck="false" v-on:keypress="isAlphaNumeric"
+                           class="mt-1 text-lg block w-full px-3 py-2 bg-white dark:bg-black border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-2">
+            <div class="flex flex-wrap justify-center gap-x-4">
+                <div>
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-server" :tags="['tailwind']">
+                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Server</div>
+                        <template #icon>
+                            <img class='w-12 h-12' src="/img/svgs/tailwind.svg">
+                        <template>
+                    </ProjectTemplate>
+                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-server.jamstacks.net">blazor-server.jamstacks.net</a>
+                </div>
+                <div>
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-tailwind" :tags="['tailwind']">
+                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor WASM</div>
+                        <template #icon>
+                            <img class='w-12 h-12' src="/img/svgs/tailwind.svg">
+                        <template>
+                    </ProjectTemplate>
+                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-tailwind.jamstacks.net">blazor-tailwind.jamstacks.net</a>
+                </div>
+                <div>
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-wasm" :tags="['bootstrap']">
+                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor WASM</div>
+                        <template #icon>
+                            <img class='w-12 h-12' src="/img/svgs/bootstrap.svg">
+                        <template>
+                    </ProjectTemplate>
+                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-server.jamstacks.net">blazor-server.jamstacks.net</a>
+                </div>
+            </div>
+        </div>
+    </section>`,
+    setup(props) {
+        const name = ref('MyApp')
+
+        const isAlphaNumeric = (e) => {
+            const c = e.charCode;
+            if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 48 && c <= 57 || c === 95) //A-Za-z0-9_
+            return;
+            e.preventDefault()
+        }
+        return { name, isAlphaNumeric }
+    }
+}
+mount('#projects', App)
+</script>
+
+<a id="features"></a>
+@await Html.PartialAsync("Blazor/Features")
+
+<a id="tailwind"></a>
+@await Html.PartialAsync("Blazor/Tailwind")
+
+<a id="bootstrap"></a>
+@await Html.PartialAsync("Blazor/Bootstrap")
+
+
+<a name="locode"></a>
+<div class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
+    <div class="mx-auto max-w-7xl lg:px-8">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+            <div
+                class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
+                <div class="lg:py-24">
+                    <h1
+                        class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                        <span class="block">Rapidly develop</span><span class="block text-indigo-400">rich web
+                            apps</span></h1>
+                    <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                        Locode lets you rapidly develop beautiful database-powered Web Apps, from an
+                        Instant UI around existing database-first RDBMS tables for rapid prototyping, export
+                        into declarative code-first development model with unprecedented customizability, on top
+                        of industrial strength APIs offering a superior end-to-end typed development model for
+                        Web, Mobile &amp; Desktop Apps. </p>
+                </div>
+            </div>
+            <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+                <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0"><img
+                        class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                        src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg"
+                        alt=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "<span class='text-purple-600'>Blazor</span> in the front,",
+   TitleBottom = "<a href='https://docs.servicestack.net/locode/' target='_blank'>Locode</a> at back",
+   Subtitle = "Shorten time to ship by using Blazor WASM to create great looking custom UIs and Locode's Instant UI for managing back office RDBMS tables",
+   YoutubeId = "hkuO_DMFXmc",
+})
+
+<div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl py-16 sm:py-32 ">
+    <div>
+        <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
+            Reuse typed APIs in Optimized UIs
+        </p>
+        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500"> 
+            AutoQuery's declarative dev model lets you focus on your new App's business requirements where its data model, 
+            API capabilities, input validation &amp; multi-user Auth restrictions can be defined simply using annotated C# POCOs.<br> 
+            This provides immense value at the start of the development cycle where functional prototypes can be quickly iterated to 
+            gather business requirements <br><br> 
+            Once requirements have been solidified, the typed AutoQuery APIs can easily be reused to develop custom UIs to optimize 
+            important workflows. <br><br>
+            <a class="text-indigo-600" href="https://github.com/NetCoreApps/TalentBlazor">Talent Blazor</a> is a new App showcasing 
+            an example of this where its entire back-office functionality can be managed through Locode whilst an optimized <b>Blazor WASM</b> 
+            App is created to optimize its unique workflow requirements which also benefits from the superior productive dev model 
+            of its Typed APIs 
+        </p>
+    </div>
+</div>
+        
+@await Html.PartialAsync("Demo/TalentBlazor")
+
+<div class="buttons my-8 flex text-center justify-center">
+    <a href="@Html.ContentUrl("/free")" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
+      Free for Individuals & OSS
+    </a>
+    <span class="mx-1"></span>
+    <a href="@Html.ContentUrl("/trial")" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
+       30 Day Free Trial
+     </a>
+</div>
+
+<div class="text-center mb-8 pb-8 text-2xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-100">
+    <a href="@Html.ContentUrl("/pricing")">See Pricing</a>
+</div>
+
+@await Html.PartialAsync("Testimonials")
+
+@await Html.PartialAsync("BrandCustomers")
