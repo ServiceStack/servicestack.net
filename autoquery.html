@@ -112,7 +112,7 @@ mountAll()
                     <img src="/img/svgs/postgresql-notext.svg" class="h-16">
                 </li>
                 <li title="Microsoft SQL Server">
-                    <img src="/img/svgs/sqlserver.svg" class="h-16">
+                    <img src="/img/svgs/sqlserver.svg" class="h-16 bg-white px-2">
                 </li>
                 <li title="SQLite">
                     <img src="/img/svgs/sqlite.svg" class="h-16">
@@ -333,7 +333,7 @@ App, and finally reusing all your services in a custom Blazor WASM App</p>
 </section>
 
 <section>
-    <div class="bg-white py-32 px-6 lg:px-8">
+    <div class="bg-white dark:bg-black py-32 px-6 lg:px-8">
       <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
             <p class="text-base font-semibold leading-7 text-indigo-600">Getting Started</p>
             <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Create APIs with minimal code-first DTOs</h1>
@@ -341,7 +341,7 @@ App, and finally reusing all your services in a custom Blazor WASM App</p>
               AutoQuery can be enabled in any ServiceStack project with a few easy steps: 
           </p>
           <div class="mt-10 max-w-2xl">
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900">1. Configure your preferred database</h2>
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">1. Configure your preferred database</h2>
               <p class="my-4">
                   Configure your .NET App with the 
                   <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ormlite/installation">OrmLite NuGet package</a> 
@@ -396,7 +396,7 @@ public class ConfigureDb : IHostingStartup
 }
 </code></pre>
 
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900">2. Configure AutoQuery</h2>
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">2. Configure AutoQuery</h2>
               <p class="my-4">
                   AutoQuery can then be enabled by registering the <b>AutoQueryFeature</b> plugin:
               </p>
@@ -420,7 +420,7 @@ public class ConfigureAutoQuery : IHostingStartup
 }              
 </code></pre>
               
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900">3. Create AutoQuery APIs</h2>
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Create AutoQuery APIs</h2>
               <p class="my-4">
                   With AutoQuery configured, we can now start creating AutoQuery APIs, a minimal working example
                   is an empty Request DTO which we'll make available via the <b>/todos</b> route:
@@ -435,7 +435,7 @@ namespace MyApp.ServiceModel;
 public class QueryTodos : QueryDb&lt;Todo&gt; {}              
 </code></pre>
               
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900">4. Query your API</h2>
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">4. Query your API</h2>
               <p class="my-4">
                   That's all that's needed! From your contract-first API blueprint ServiceStack implements a fully queryable, 
                   type safe API for the <b>Todo</b> table that you can immediately viewing the API from the <b>/todos</b>
@@ -493,15 +493,15 @@ public class QueryTodos : QueryDb&lt;Todo&gt; {}
               
               <div class="flex">
                   <a class="archive-url" href="https://account.servicestack.net/archive/NetCoreTemplates/vue-mjs">
-                      <div class="bg-white px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
-                          <div class="text-center font-extrabold flex items-center justify-center bg-white mb-2">
+                      <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
+                          <div class="text-center font-extrabold flex items-center justify-center mb-2">
                               <div class="text-4xl text-blue-400 my-3">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="#60a5fa" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
                               </div>
                           </div>
                           <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">vue-mjs</div>
                           <div class="flex justify-center h-8">
-                              <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 text-blue-500 text-sm">autoquery</span></div>
+                              <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span></div>
                           </div>
                           <span class="archive-name px-4 pb-2 text-blue-600">MyApp.zip</span>
                       </div>
@@ -593,7 +593,7 @@ ecosystem around ServiceStack Services</p>
 </section>
 
 <section>
-<div class="bg-white py-32 px-6 lg:px-8">
+<div class="bg-white dark:bg-black py-32 px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
         <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Highly versatile ServiceStack APIs</h1>
         <p class="mt-6 text-xl leading-8">
@@ -616,7 +616,7 @@ ecosystem around ServiceStack Services</p>
         </div>
 
         <div class="mt-10 max-w-2xl">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
                 Multiple, clean data formats allows for flexible integrations
             </h2>
             <p class="my-4">
@@ -677,29 +677,29 @@ ecosystem around ServiceStack Services</p>
                     <h3 class="my-8 text-2xl font-bold tracking-tight text-gray-900">New App with AutoQuery or AutoGen</h3>
                     <div class="flex justify-center">
                       <a class="archive-url" href="https://account.servicestack.net/archive/NetCoreTemplates/vue-mjs">
-                          <div class="bg-white px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
-                              <div class="text-center font-extrabold flex items-center justify-center bg-white mb-2">
+                          <div class="bg-white dark:bg-black px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
+                              <div class="text-center font-extrabold flex items-center justify-center mb-2">
                                   <div class="text-blue-400 my-2">
                                       <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="#60a5fa" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
                                   </div>
                               </div>
                               <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor pages</div>
                               <div class="flex justify-center h-8">
-                                  <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 text-blue-500 text-sm">autoquery</span></div>
+                                  <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span></div>
                               </div>
                               <span class="archive-name text-lg px-4 pb-2 text-blue-600">MyApp.zip</span>
                           </div>
                       </a>
                       <a class="archive-url" href="https://account.servicestack.net/archive/NetCoreTemplates/web">
-                          <div class="bg-white px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
-                              <div class="text-center font-extrabold flex items-center justify-center bg-white mb-2">
+                          <div class="bg-white dark:bg-black px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
+                              <div class="text-center font-extrabold flex items-center justify-center mb-2">
                                   <div class="text-4xl text-blue-400 my-2">
                                       <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
                                   </div>
                               </div>
                               <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">web</div>
                               <div class="flex justify-center h-8">
-                                  <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 text-blue-500 text-sm">autogen</span></div>
+                                  <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autogen</span></div>
                               </div>
                               <span class="archive-name text-lg px-4 pb-2 text-blue-600">MyApp.zip</span>
                           </div>
@@ -754,7 +754,7 @@ ecosystem around ServiceStack Services</p>
         <div class="mt-20">
           <div>
             <a href="https://northwind.locode.dev/locode" class="inline-flex space-x-4">
-              <span class="rounded bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-600 tracking-wide uppercase"> What's new </span>
+              <span class="rounded bg-indigo-50 dark:bg-indigo-900 px-2.5 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-300 tracking-wide uppercase"> What's new </span>
               <span class="inline-flex items-center text-sm font-medium text-indigo-600 space-x-1">
               <span>Open Northwind in Locode</span>
                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
@@ -788,7 +788,7 @@ ecosystem around ServiceStack Services</p>
             </div>
             <div class="mt-6 flex">
               <div class="rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
-                <a href="https://github.com/NetCoreApps/NorthwindAuto/archive/refs/heads/master.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                <a href="https://github.com/NetCoreApps/NorthwindAuto/archive/refs/heads/master.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 dark:text-gray-50 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900">
                   Download Northwind.zip
                 </a>
               </div>
@@ -826,7 +826,7 @@ ecosystem around ServiceStack Services</p>
     </div>
 </div>
 
-<div class="bg-white pb-4">
+<div class="bg-white dark:bg-black pb-4">
   <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
     <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
       <div>
@@ -836,7 +836,7 @@ ecosystem around ServiceStack Services</p>
         <div class="mt-20">
           <div>
             <a href="https://chinook.locode.dev/locode" class="inline-flex space-x-4">
-              <span class="rounded bg-rose-50 px-2.5 py-1 text-xs font-semibold text-rose-500 tracking-wide uppercase"> What's new </span>
+              <span class="rounded bg-rose-50 dark:bg-rose-900 px-2.5 py-1 text-xs font-semibold text-rose-500 tracking-wide uppercase"> What's new </span>
               <span class="inline-flex items-center text-sm font-medium text-rose-500 space-x-1">
               <span>Open Chinook in Locode</span>
                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
@@ -872,7 +872,7 @@ ecosystem around ServiceStack Services</p>
             </div>
             <div class="mt-6 flex">
               <div class="rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
-                <a href="https://github.com/NetCoreApps/Chinook/archive/refs/heads/main.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                <a href="https://github.com/NetCoreApps/Chinook/archive/refs/heads/main.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 dark:text-gray-50 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900">
                   Download Chinook.zip
                 </a>
               </div>
@@ -971,7 +971,7 @@ ecosystem around ServiceStack Services</p>
             </div>
             <div class="mt-6 flex">
               <div class="rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
-                <a href="https://github.com/NetCoreApps/TalentBlazor/archive/refs/heads/main.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                <a href="https://github.com/NetCoreApps/TalentBlazor/archive/refs/heads/main.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 dark:text-gray-50 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900">
                   Download TalentBlazor.zip
                 </a>
               </div>
