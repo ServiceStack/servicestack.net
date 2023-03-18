@@ -2,6 +2,7 @@
 @attribute [RenderStatic]
 
 @{
+    ViewData["Title"] = "AutoQuery";
     ViewData["Brand"] = "ServiceStack AutoQuery";
 }
 
@@ -91,8 +92,8 @@
         <div class="w-full px-4">
             <p class="mx-auto mt-5 text-xl text-gray-500">
                 ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api,
-                but without its <a href="https://docs.servicestack.net/why-not-odata">webservice anti-patterns</a>
-                where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API simple flat structure by instead
+                but without its <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/why-not-odata">webservice anti-patterns</a>
+                where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API's simple flat structure by instead
                 enhancing the ideal API the developer would naturally write and completes their implementation for them!
             </p>
 
@@ -109,7 +110,13 @@
             <div class="w-full sm:w-1/2 px-4">
                 <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Connect to anything with data</h3>
                 <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-                    Expose data from various data sources including RDBMS, In memory, DynamoDb or even other services through consistent flexible APIs where clients can control the query details.
+                    Expose data from various data sources including 
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-rdbms">RDBMS</a>, 
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-memory">In Memory</a>, 
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-dynamodb">DynamoDb</a>
+                    or even 
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-service">other services </a>
+                    through consistent flexible APIs where clients can control the query details.
                 </p>
                 <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Works with your favorite databases</h3>
                 <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
@@ -142,3 +149,196 @@
 
     </div>
 </section>
+
+@await Html.PartialAsync("VideoIncludes")
+@await Html.PartialAsync("HighlightIncludes")
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "AutoQuery",
+  Summary = "AutoQuery utilizes conventions to automate the creation of highly productive, intent-based self-descriptive APIs",
+  Group = "autoquery",
+  Background = "bg-slate-100 dark:bg-slate-800",
+})
+
+<section>
+    <div class="bg-white py-32 px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
+            <p class="text-base font-semibold leading-7 text-indigo-600">Getting Started</p>
+            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Create APIs with minimal code-first DTOs</h1>
+          <p class="mt-6 text-xl leading-8">
+              AutoQuery can be enabled in any ServiceStack project with a few easy steps: 
+          </p>
+          <div class="mt-10 max-w-2xl">
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900">1. Configure your preferred database</h2>
+              <p class="my-4">
+                  Configure your .NET App with the 
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ormlite/installation">OrmLite NuGet package</a> 
+                  of the RDBMS you want to use. SQLite is a great option to evaluate AutoQuery without any external dependencies:
+              </p>
+              
+              <div data-component="CopyLine" data-props="{ text:'<PackageReference Include=&quot;ServiceStack.OrmLite.Sqlite.Data&quot; Version=&quot;6.*&quot; />' }"></div>
+
+              <p class="my-4">
+                  Configure your App to use your database. We recommend using a
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/modular-startup">Modular Startup</a>
+                  configuration for the greater encapsulation and flexibility.
+              </p>
+              <p class="my-4">
+                  In this example we'll create a simple <b>Todo</b> table:
+              </p>
+              
+              
+              <pre><code class="language-csharp">// Configure.Db.cs
+using ServiceStack.Data;
+using ServiceStack.OrmLite;
+using ServiceStack.DataAnnotations;
+
+[assembly: HostingStartup(typeof(MyApp.ConfigureDb))]
+
+namespace MyApp;
+
+public class Todo
+{
+    [AutoIncrement]
+    public long Id { get; set; }
+    public string Text { get; set; }
+    public bool IsFinished { get; set; }
+}
+
+public class ConfigureDb : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+      .ConfigureServices(services => 
+          services.AddSingleton&lt;IDbConnectionFactory&gt;(
+            new OrmLiteConnectionFactory("db.sqlite", SqliteDialect.Provider)));
+
+        .ConfigureAppHost(appHost => {
+            // Create and populate Todo Table if it doesn't exist:
+            using var db = appHost.Resolve&lt;IDbConnectionFactory&gt;().Open();
+            if (db.CreateTableIfNotExists&lt;Todo&gt;()) 
+            {
+                db.Insert(new Todo { Text = "Learn" });
+                db.Insert(new Todo { Text = "AutoQuery" });
+            }
+        });
+}
+</code></pre>
+
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900">2. Configure AutoQuery</h2>
+              <p class="my-4">
+                  AutoQuery can then be enabled by registering the <b>AutoQueryFeature</b> plugin:
+              </p>
+              
+              <pre><code class="language-csharp">// Configure.AutoQuery.cs              
+using ServiceStack;
+
+[assembly: HostingStartup(typeof(MyApp.ConfigureAutoQuery))]
+
+namespace MyApp;
+
+public class ConfigureAutoQuery : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureAppHost(appHost => {
+            appHost.Plugins.Add(new AutoQueryFeature {
+                MaxLimit = 1000,
+                //IncludeTotal = true,
+            });
+        });
+}              
+</code></pre>
+              
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900">3. Create AutoQuery APIs</h2>
+              <p class="my-4">
+                  With AutoQuery configured, we can now start creating AutoQuery APIs, a minimal working example
+                  is an empty Request DTO which we'll make available via the <b>/todos</b> route:
+              </p>
+
+              <pre><code class="language-csharp">// ServiceModel/Todos.cs
+using ServiceStack;
+
+namespace MyApp.ServiceModel;
+
+[Route("/todos")]
+public class QueryTodos : QueryDb&lt;Todo&gt; {}              
+</code></pre>
+              
+              <h2 class="text-2xl font-bold tracking-tight text-gray-900">4. Query your API</h2>
+              <p class="my-4">
+                  That's all that's needed! From your contract-first API blueprint ServiceStack implements a fully queryable, 
+                  type safe API for the <b>Todo</b> table that you can immediately viewing the API from the <b>/todos</b>
+                  route in a browser where you can immediately benefit from the 
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/auto-html-api">Auto HTML API</a> page:
+              </p>
+              
+          </div>
+          
+          <figure class="mt-4">
+              <a href="https://docs.servicestack.net/auto-html-api"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/autoquery/todos-autohtml-preview.png" alt=""></a>
+          </figure>
+
+          <div class="max-w-2xl">
+              <p class="my-4">
+                  With links to view the API response in available formats and the API details 
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/api-explorer">API Explorer</a>:
+              </p>
+          </div>
+          
+          <figure class="mt-4">
+              <a href="https://docs.servicestack.net/api-explorer"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/autoquery/todos-ui-details.png" alt=""></a>
+          </figure>
+
+          <div class="max-w-2xl">
+              <p class="my-4">
+                  Or immediately query the API in a readonly 
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/vue/gallery/autoquerygrid">AutoQueryGrid</a>
+                  in 
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/locode/">Locode</a>:
+              </p>
+          </div>
+          
+          <figure class="mt-4">
+              <a href="https://docs.servicestack.net/locode/"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/autoquery/todos-locode.png" alt=""></a>
+          </figure>
+
+          <div class="mt-12 max-w-2xl">
+              <h2 class="my-4 text-2xl font-bold tracking-tight text-gray-900">Next Steps</h2>
+              <p class="my-4">
+                  Hopefully this simple example shows how easy it is to get up &amp; running and become
+                  immediately productive with AutoQuery. For larger projects we recommend adopting the
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/create-your-first-webservice#step-4-exploring-the-servicestack-solution">physical project structure</a>
+                  and creating RDBMS tables with OrmLite's
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ormlite/db-migrations">Code-First DB Migrations</a>.
+              </p>
+              
+              <p class="my-4">
+                  The easiest way of which is to start from a 
+                  <a class="text-indigo-600 hover:text-indigo-800" href="/start">new project template</a>
+                  with all this configured, like the  
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://vue-mjs.web-templates.io">vue-mjs.web-templates.io</a>
+                  Razor Pages template:
+              </p>
+              
+              <div class="flex">
+                  <a class="archive-url" href="@Html.ApiUrl("/archive/NetCoreTemplates/vue-mjs")">
+                      <div class="bg-white px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
+                          <div class="text-center font-extrabold flex items-center justify-center bg-white mb-2">
+                              <div class="text-4xl text-blue-400 my-3">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="#60a5fa" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
+                              </div>
+                          </div>
+                          <div class="mb-3 text-xl font-medium text-gray-700">vue-mjs</div>
+                          <div class="flex justify-center h-8">
+                              <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 text-blue-500 text-sm">autoquery</span></div>
+                          </div>
+                          <span class="archive-name px-4 pb-2 text-blue-600">MyApp.zip</span>
+                      </div>
+                  </a>
+              </div>
+          </div>
+
+      </div>
+    </div>    
+</section>
+
+<script>hljs.highlightAll();</script>
