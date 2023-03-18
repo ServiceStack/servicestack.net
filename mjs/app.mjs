@@ -1,7 +1,8 @@
 import { createApp, reactive, ref, computed } from "vue"
-import { JsonApiClient, $1, $$ } from "@servicestack/client"
+import { JsonApiClient, $1, $$, enc } from "@servicestack/client"
 import ServiceStackVue from "@servicestack/vue"
 import HelloApi from "./components/HelloApi.mjs"
+import CopyLine from "./components/CopyLine.mjs"
 import VueComponentGallery from "./components/VueComponentGallery.mjs"
 import VueComponentLibrary from "./components/VueComponentLibrary.mjs"
 
@@ -39,6 +40,7 @@ const Plugin = {
 /** Shared Components */
 const Components = {
     HelloApi,
+    CopyLine,
     Hello,
     Counter,
     Plugin,
@@ -65,6 +67,12 @@ export function mount(sel, component, props) {
     })
     app.use(ServiceStackVue)
     app.component('RouterLink', ServiceStackVue.component('RouterLink'))
+    app.directive('highlightjs', (el, binding) => {
+        if (binding.value) {
+            el.innerHTML = enc(binding.value)
+            globalThis.hljs.highlightElement(el)
+        }
+    })
     app.mount(el)
     Apps.push(app)
     return app
