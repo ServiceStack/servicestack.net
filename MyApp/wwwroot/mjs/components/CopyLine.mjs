@@ -4,7 +4,7 @@ import { useUtils } from "@servicestack/vue"
 const CopyLine = {
     template:`<div class="flex cursor-pointer" @click="copy(text)">
         <div class="flex-grow bg-gray-700">
-          <div class="pl-4 py-1 align-top text-white select-none">{{prefix||''}}{{text}}</div>
+          <div class="px-4 py-1 align-top text-white select-none">{{prefix||''}}{{text}}</div>
         </div>
         <div class="flex">
           <div class="bg-sky-500 text-white p-1 py-1.5">

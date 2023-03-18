@@ -91,7 +91,7 @@ const App = {
                         <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Server</div>
                         <template #icon>
                             <img class='w-12 h-12' src="/img/svgs/tailwind.svg">
-                        <template>
+                        </template>
                     </ProjectTemplate>
                     <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-server.jamstacks.net">blazor-server.jamstacks.net</a>
                 </div>
@@ -100,7 +100,7 @@ const App = {
                         <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor WASM</div>
                         <template #icon>
                             <img class='w-12 h-12' src="/img/svgs/tailwind.svg">
-                        <template>
+                        </template>
                     </ProjectTemplate>
                     <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-tailwind.jamstacks.net">blazor-tailwind.jamstacks.net</a>
                 </div>
@@ -109,7 +109,7 @@ const App = {
                         <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor WASM</div>
                         <template #icon>
                             <img class='w-12 h-12' src="/img/svgs/bootstrap.svg">
-                        <template>
+                        </template>
                     </ProjectTemplate>
                     <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-server.jamstacks.net">blazor-server.jamstacks.net</a>
                 </div>
@@ -199,19 +199,7 @@ mount('#projects', App)
         
 @await Html.PartialAsync("Demo/TalentBlazor")
 
-<div class="buttons my-8 flex text-center justify-center">
-    <a href="@Html.ContentUrl("/free")" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
-      Free for Individuals & OSS
-    </a>
-    <span class="mx-1"></span>
-    <a href="@Html.ContentUrl("/trial")" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
-       30 Day Free Trial
-     </a>
-</div>
-
-<div class="text-center mb-8 pb-8 text-2xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-100">
-    <a href="@Html.ContentUrl("/pricing")">See Pricing</a>
-</div>
+@await Html.PartialAsync("PricingLinks")
 
 @await Html.PartialAsync("Testimonials")
 

@@ -53,7 +53,7 @@ public static class HtmlHelpers
 {
     public static string ContentUrl(this IHtmlHelper html, string? relativePath) => 
         html.IsDebug()
-            ? "https://localhost:5001"
+            ? "https://localhost:5001".CombineWith(relativePath)
             : "https://servicestack.net".CombineWith(relativePath);
     public static string ApiUrl(this IHtmlHelper html, string? relativePath) => 
         "https://account.servicestack.net".CombineWith(relativePath);

@@ -18,11 +18,21 @@ const ProjectTemplate = {
         </div>
      </a>
     `,
-    props: { repo:String, name:String, tags:[String] },
+    props: { 
+        repo:String, 
+        name:String,
+        mix:{ type:Object, default(rowProps) { return [] } },
+        tags:{ type:Object, default(rowProps) { return [] } },
+    },
     setup(props) {
         const projectZip = computed(() => (props.name || 'MyApp') + '.zip')
-        const zipUrl = computed(() =>
-            `https://account.servicestack.net/archive/${props.repo}?Name=${props.name || 'MyApp'}`)
+        const zipUrl = computed(() => {
+            let ret = `https://account.servicestack.net/archive/${props.repo}?Name=${props.name || 'MyApp'}`
+            if (props.mix?.length > 0) {
+                ret += '&Mix=' + props.mix.join(',')
+            }
+            return ret
+        })
         
         return { projectZip, zipUrl }
     }
