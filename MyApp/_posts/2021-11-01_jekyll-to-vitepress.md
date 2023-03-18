@@ -2,7 +2,7 @@
 title: Migrating from Jekyll to VitePress
 tags: docs,markdown
 summary: Since Jekyll support has been officially sunset, we decided to migrate our docs site to VitePress
-author: Lucy Bates
+author: Darren Reid
 image: https://images.unsplash.com/photo-1524668951403-d44b28200ce0?crop=entropy&fit=crop&h=1000&w=2000
 ---
 

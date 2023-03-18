@@ -2,7 +2,7 @@
 title: Real-time search with Typesense
 tags: dev,docs
 summary: As part of migrating docs to VitePress we've added UX improvements like instant search powered by Typesense!
-author: Lucy Bates
+author: Darren Reid
 image: https://images.unsplash.com/photo-1473163928189-364b2c4e1135?crop=entropy&fit=crop&h=1000&w=2000
 ---
 
