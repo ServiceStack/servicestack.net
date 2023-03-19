@@ -1,0 +1,78 @@
+﻿@page "/training"
+@attribute [RenderStatic]
+
+@{
+    ViewData["Title"] = "Training Services";
+    ViewData["Brand"] = "ServiceStack Training";
+}
+
+<div class="bg-white dark:bg-black">
+    <!-- Header -->
+    <div class="relative pb-32 bg-gray-800">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="/img/backgrounds/bg-header8.jfif" alt="">
+            <div class="absolute inset-0 bg-gray-800 mix-blend-multiply" aria-hidden="true"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold tracking-tight text-white md:text-5xl md:tracking-tight lg:text-6xl lg:tracking-tight">Training Services</h1>
+            <p class="mt-6 max-w-3xl text-xl text-gray-300">Level up your team to get the most out of the ServiceStack framework. Customized teaching for any skill levels.</p>
+        </div>
+    </div>
+
+    <!-- Overlapping cards -->
+    <section class="-mt-32 max-w-7xl mx-auto relative z-10 pb-32 px-4 sm:px-6 lg:px-8" aria-labelledby="contact-heading">
+        <h2 class="sr-only" id="contact-heading">Contact us</h2>
+        <div class="grid grid-cols-1 gap-y-20 lg:grid-cols-3 lg:gap-y-0 lg:gap-x-8">
+            <div class="flex flex-col bg-white rounded-2xl shadow-xl">
+                <div class="flex-1 relative pt-16 px-6 pb-8 md:px-8">
+                    <div class="absolute top-0 p-5 inline-block bg-indigo-600 rounded-xl shadow-lg transform -translate-y-1/2 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 15 15"><path fill="currentColor" d="M11 4H4a1 1 0 0 1-1-1V.5a.5.5 0 0 1 1 0V2h1V1a1 1 0 1 1 2 0v1h1V1a1 1 0 1 1 2 0v1h1V.5a.5.5 0 0 1 1 0V3a1 1 0 0 1-1 1zm3 10.5a.5.5 0 0 1-.5.5h-12a.5.5 0 0 1 0-1H2a1 1 0 0 0 1-1s1-6 1-7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1c0 1 1 7 1 7a1 1 0 0 0 1 1h.5a.5.5 0 0 1 .5.49v.01zm-5-4a1.5 1.5 0 0 0-3 0V14h3v-3.5z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900">Fundamentals</h3>
+                    <p class="mt-4 text-base text-gray-500">Just got started with ServiceStack? Our online training can help get your team up to speed on how to get the most out of your use of the ServiceStack framework, and support developers at any skill level.</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
+                    <a href="mailto:training@servicestack.com" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></a>
+                </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-2xl shadow-xl">
+                <div class="flex-1 relative pt-16 px-6 pb-8 md:px-8">
+                    <div class="absolute top-0 p-5 inline-block bg-indigo-600 rounded-xl shadow-lg transform -translate-y-1/2 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M4 11q-.425 0-.712-.288Q3 10.425 3 10V4q0-.425.288-.713Q3.575 3 4 3h6q.425 0 .713.287Q11 3.575 11 4v6q0 .425-.287.712Q10.425 11 10 11Zm10 0q-.425 0-.712-.288Q13 10.425 13 10V4q0-.425.288-.713Q13.575 3 14 3h6q.425 0 .712.287Q21 3.575 21 4v6q0 .425-.288.712Q20.425 11 20 11ZM4 21q-.425 0-.712-.288Q3 20.425 3 20v-6q0-.425.288-.713Q3.575 13 4 13h6q.425 0 .713.287q.287.288.287.713v6q0 .425-.287.712Q10.425 21 10 21Zm13 0q-.425 0-.712-.288Q16 20.425 16 20v-2h-2.025q-.425 0-.7-.288Q13 17.425 13 17t.288-.712Q13.575 16 14 16h2v-2.025q0-.425.288-.7Q16.575 13 17 13t.712.287Q18 13.575 18 14v2h2.025q.425 0 .7.288q.275.287.275.712t-.288.712Q20.425 18 20 18h-2v2.025q0 .425-.288.7Q17.425 21 17 21Z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900">Customized Training</h3>
+                    <p class="mt-4 text-base text-gray-500">Training can be catered to your individual business. This can include project, architecture and code reviews for your ServiceStack application and guidance on how to use ServiceStack in the most effective manner.</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
+                    <a href="mailto:training@servicestack.com" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></a>
+                </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-2xl shadow-xl">
+                <div class="flex-1 relative pt-16 px-6 pb-8 md:px-8">
+                    <div class="absolute top-0 p-5 inline-block bg-indigo-600 rounded-xl shadow-lg transform -translate-y-1/2 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2a2 2 0 1 0 0 4c1.11 0 2-.89 2-2a2 2 0 0 0-2-2M4 7v2h6v6l-5.07 5.07l1.41 1.43l6.72-6.73L17 17.13V21h2v-4.43c0-.36-.18-.68-.5-.86L15 13.6V9h6V7H4Z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900">Flexible</h3>
+                    <p class="mt-4 text-base text-gray-500">Have different training needs? Send us an email at <a href="mailto:training@servicestack.com">training@servicestack.com</a> to discuss how our training services might be able to help.</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
+                    <a href="mailto:training@servicestack.com" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="bg-white dark:bg-black">
+    <div class="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:tracking-tight">
+            <span class="block">Ready to dive in?</span>
+            <span class="block">Let us know your training goals.</span>
+        </h2>
+        <a href="mailto:training@servicestack.com?subject=Training Services" class="block text-indigo-600 hover:text-indigo-800 text-3xl my-8">training@servicestack.com</a>
+    </div>
+</div>

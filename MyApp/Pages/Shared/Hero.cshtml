@@ -1,6 +1,5 @@
 ﻿@page
-@model MyApp.Pages.Shared.VideoHero
-
+@model MyApp.Pages.Shared.Hero
 
 <div class="bg-white dark:bg-black">
     <div class="relative pb-32 bg-gray-800">
@@ -9,7 +8,7 @@
             <div class="absolute inset-0 bg-gray-800 mix-blend-multiply @Model.BackgroundClass" aria-hidden="true"></div>
         </div>
         
-        <div class="relative mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 flex flex-wrap justify-center gap-x-8" style="min-height:713px">
+        <div class="relative mx-auto max-w-4xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8" style="@Model.ContentStyle">
             <div class="max-w-2xl">
                 <h1 class="font-bold tracking-tight text-white text-4xl lg:text-6xl">@Model.Heading</h1>
                 <p class="mt-6 text-lg leading-8 text-gray-300">@Model.SubHeading</p>
@@ -23,12 +22,9 @@
                     </div>
                 }
             </div>
-            @if (Model.YoutubeId != null)
+            @if (Model.Content != null)
             {
-                <div class="align-top" style="width:560px;height:315px">
-                    <lite-youtube width="560" height="315" videoid="@Model.YoutubeId"
-                                  style="background-image: url('https://img.youtube.com/vi/@Model.YoutubeId/maxresdefault.jpg')"></lite-youtube>
-                </div>
+                @Html.Raw(Model.Content)
             }
         </div>
     </div>
