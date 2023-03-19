@@ -1,0 +1,358 @@
+@page "/service-reference"
+@attribute [RenderStatic]
+
+@{
+    ViewData["Title"] = "Add ServiceStack Reference";
+    ViewData["Brand"] = "ServiceStack Reference";
+}
+@await Html.PartialAsync("VideoHero", new Shared.VideoHero {
+    BackgroundUrl = "/img/backgrounds/bg-header4.jpg",
+    Heading = "High performance APIs that integrate with any platform",
+    SubHeading = "Maximize the utility of your System APIs with end-to-end typed integrations to all popular languages for Web, Mobile & Desktop",
+    ActionUrl = "/start",
+    ActionText = "Get Started",
+    YoutubeId = "JKsgrstNnYY",
+})
+
+<style>
+#langIcons {
+    justify-content: space-between;
+}
+#langIcons a {}
+#langIcons img {
+    max-height: 80px;
+    min-width: 80px;
+    filter: grayscale(100%) invert(1);
+    opacity: .5;
+    box-shadow: none;
+    padding: 2px;
+}
+#langIcons img:hover {
+    filter: none;
+    opacity: 1;
+    background: rgba(255,255,255,.8);
+    border-radius: 50%;
+    transition: background 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+</style>
+
+<div class="hidden md:block absolute w-full top-[48em]">
+    <div id="langIcons" class="mx-auto max-w-7xl flex justify-center items-center">
+        <a class="cursor-pointer" href="https://docs.servicestack.net/csharp-add-servicestack-reference">
+            <img src="/img/svgs/csharp.svg" style="transform:scale(.95)" alt="C#">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/typescript-add-servicestack-reference">
+            <img class="" src="/img/svgs/node.svg" style="transform:scale(.9)" alt="Node.js">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/python-add-servicestack-reference">
+            <img src="/img/svgs/python.svg" style="transform:scale(.90)" alt="Python">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/dart-add-servicestack-reference">
+            <img src="/img/svgs/dart.svg" alt="Dart">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/java-add-servicestack-reference">
+            <img class="" src="/img/svgs/java.svg" alt="Java">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/kotlin-add-servicestack-reference">
+            <img class="" src="/img/svgs/kotlin.svg" style="transform:scale(.9)" alt="Kotlin">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/swift-add-servicestack-reference">
+            <img class="" src="/img/svgs/swift.svg" style="transform:scale(.9)" alt="Swift">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/vbnet-add-servicestack-reference">
+            <img src="/img/svgs/vb.svg" style="transform:scale(.95)" alt="VB">
+        </a>
+        <a class="cursor-pointer" href="https://docs.servicestack.net/fsharp-add-servicestack-reference">
+            <img src="/img/svgs/fsharp.svg" style="transform:scale(.95)" alt="F#">
+        </a>
+    </div>
+</div>
+
+@await Html.PartialAsync("PrimaryNav", "")
+
+<section class="text-center w-full py-12 sm:py-24">
+    <div class="mx-auto max-w-7xl">
+        
+        <div class="mb-16">
+            <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">Right Click, Integrate</h2>
+            <div class="my-3 max-w-lg mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-4xl">
+                Generate working client code for selected APIs in all popular languages from your favorite IDE
+            </div>
+        </div>
+
+        <div class="flex flex-wrap">
+            @{
+                void IdePlugin(string pluginUrl, string svg, string name, string style, string supportedLanguages)
+                {
+                    <div class="w-full lg:w-1/4 mt-4">
+                        <a href="@pluginUrl">
+                            <div class="inline-flex justify-center">
+                                <img src="@svg" height="4em" alt="" style="@style">
+                            </div>
+                            <h3>@name</h3>
+                        </a>
+                        <h4>Languages Supported</h4>
+                        <p class="italic">
+                            @supportedLanguages
+                        </p>
+                    </div>
+                }
+
+                IdePlugin("https://marketplace.visualstudio.com/items?itemName=Mythz.ServiceStackVS",
+                    "/img/svgs/vs-2019.svg",
+                    "Visual Studio",
+                    "width:70px;height:70px;",
+                    "C#, F#, TypeScript, VB.NET");
+
+                IdePlugin("https://plugins.jetbrains.com/plugin/17295-servicestack",
+                    "/img/svgs/ides/icon-rider.svg",
+                    "Rider",
+                    "",
+                    "C#, F#, TypeScript, VB.NET");
+
+                IdePlugin("https://plugins.jetbrains.com/plugin/17295-servicestack",
+                    "/img/svgs/ides/icon-intellij-idea.svg",
+                    "IntelliJ",
+                    "",
+                    "Java, Kotlin, TypeScript");
+
+                IdePlugin("https://plugins.jetbrains.com/plugin/17295-servicestack",
+                    "/img/svgs/ides/icon-webstorm.svg",
+                    "WebStorm",
+                    "",
+                    "TypeScript");
+
+                IdePlugin("https://plugins.jetbrains.com/plugin/17295-servicestack",
+                    "/img/svgs/ides/icon-pycharm.svg",
+                    "PyCharm",
+                    "",
+                    "Python, TypeScript");
+
+                IdePlugin("https://plugins.jetbrains.com/plugin/17295-servicestack",
+                    "/img/svgs/ides/icon-rubymine.svg",
+                    "RubyMine",
+                    "",
+                    "TypeScript");
+
+                IdePlugin("https://plugins.jetbrains.com/plugin/17295-servicestack",
+                    "/img/svgs/androidstudio.svg",
+                    "Android Studio",
+                    "width:70px;height:70px;",
+                    "Java, Kotlin, TypeScript");
+
+                IdePlugin("https://marketplace.eclipse.org/content/servicestackeclipse",
+                    "/img/svgs/ides/eclipse-11.svg",
+                    "Eclipse",
+                    "width:70px;height:70px;",
+                    "Java");
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+[data-lang]:hover {
+    box-shadow: 1px 1px 7px 7px rgba(0, 0, 0, .1);
+    transition: box-shadow 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+.lang:active, .lang.active {
+    background-color: #fff;
+    --tw-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.16);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+}
+</style>
+
+<section class="text-center mt-24">
+    <div class="mx-auto max-w-7xl">
+        <div class="mb-16">
+            <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">Key Features</h2>
+            <div class="my-3 max-w-lg mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-4xl">
+                Effortlessly create and update end-to-end typed integrations with your APIs in all popular languages from your favorite IDE.
+            </div>
+        </div>
+        
+<div class="flex flex-wrap text-left">
+    <div class="w-full lg:w-1/2 p-4">
+      <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50"><i class="fa fa-check"></i> Maximize Value and Reach of System APIs</h3>
+      <p class="my-4">
+        ServiceStack's primary goal is to enhance the value of System APIs which serve as the blueprint that
+        most features centered around. By using simple &amp; pure dependency-free DTO models decoupled from any
+        implementation we're free to continue layering on features which now sees ServiceStack APIs as the most versatile in the world.
+      </p>
+      <p class="my-4">
+        The same high-performance APIs can be consumed from HTTP in
+        <a href="https://docs.servicestack.net/architecture-overview">any combination</a> of
+        Route, QueryString, FormData or a myriad of
+        <a href="https://docs.servicestack.net/why-servicestack#multiple-pluggable-formats">data formats</a>,
+        via popular resilient
+        <a href="https://docs.servicestack.net/messaging">MQ Servers</a>
+        whilst simultaneously supporting legacy integrations like
+        <a href="https://docs.servicestack.net/soap-support">SOAP</a>
+        or adopting new technologies like
+        <a href="https://docs.servicestack.net/grpc">gRPC</a> without sacrificing any native HTTP integrations.
+      </p>
+    </div>
+
+    <div class="w-full lg:w-1/2 p-4">
+      <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50"><i class="fa fa-check"></i> Ultimate Developer Productivity</h3>
+      <p class="my-4">
+        To maximize the value of APIs we're focused beyond the API boundary by making it as simple as possible for
+        API Consumers to call your APIs, thereby making them more appealing and creating multiplicative value
+        with the time &amp; effort saved by each API consumer.
+      </p>
+      <p class="my-4">
+        In addition to providing native end-to-end typed integrations to 9 of the most popular languages used in
+        creating Web, Mobile &amp; Desktop Apps, we also maintain IDE plugins for most major IDEs enabling
+        your API Consumers to easily add/update typed API Service References from within
+        Rider, VS.NET, Android Studio, PyCharm, IntelliJ IDEA, RubyMine, Php/WebStorm &amp; Eclipse.
+      </p>
+    </div>
+
+    <div class="w-full lg:w-1/2 p-4">
+      <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50"><i class="fa fa-check"></i> Remote Services Best Practices</h3>
+      <p class="my-4">
+        The best approach for achieving its goals of capturing a systems functionality in a typed Service
+        contract that yields the most reusable &amp; evolvable API design was to adopt a
+        <a href="https://docs.servicestack.net/what-is-a-message-based-web-service">message-based design</a>
+        that embraces the revered
+        <a href="https://www.enterpriseintegrationpatterns.com">SOA Integration Patterns</a> best-practices
+        by realizing its
+        <a href="https://martinfowler.com/eaaCatalog/remoteFacade.html">Remote Facade</a>,
+        <a href="https://martinfowler.com/eaaCatalog/dataTransferObject.html">Data Transfer Object</a>
+        and
+        <a href="https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff650101(v=pandp.10)?redirectedfrom=MSDN">Service Gateway</a>
+        patterns whose benefits positions ServiceStack in a rarefied breed of frameworks to enable optimal
+        end-to-end typed API integrations without code-gen as the same dep-free Service Models used to define
+        its APIs can be used as-is in .NET Apps.
+      </p>
+    </div>
+
+    <div class="w-full lg:w-1/2 p-4">
+      <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50"><i class="fa fa-check"></i> Benefits of message-based design</h3>
+      <p class="my-4">
+        Unlike RPC, messages can be evolved, intercepted, routed, decorated &amp;
+        serialized with natural decoupling of an APIs coarse-grained DTO contracts
+        from its implementation allowing front &amp; back-end developers to collaborate
+        on an agreed high-level API design free of detail concerns, before using the
+        contract-first DTOs to independently implement any required functionality.
+      </p>
+      <p class="my-4">
+        It allows client logic to bind to impl-free service client interfaces that can be easily substituted
+        from a test client returning mock data to utilizing any of the many available
+        <a href="https://docs.servicestack.net/csharp-client#httpwebrequest-service-clients">.NET generic Service Client</a>
+        implementations
+        <a href="https://docs.servicestack.net/grpc#smart-substitutable-generic-grpcserviceclient">including gRPC</a>.
+      </p>
+    </div>
+
+    <div class="w-full lg:w-1/2 p-4">
+      <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50"><i class="fa fa-check"></i> Consistent &amp; Simplified Development Model</h3>
+      <p class="my-4">
+        The benefit afforded by capturing an entire API boundary into impl-free Service Contracts extends
+        to all natively supported languages who only need be concerned with generating declarative DTOs
+        resulting in types encapsulating richer metadata beyond what's possible with restrictive
+        primitive types found in other code-gen solutions like Open API.
+      </p>
+      <p class="my-4">
+        It enables teams across disciplines and languages to work the same way when integrating internal or external
+        applications or tools. This reduces software maintenance efforts and enables developers to focus on the
+        important part of their code rather than the plumbing between client &amp; server.
+      </p>
+    </div>
+
+    <div class="w-full lg:w-1/2 p-4">
+      <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50"><i class="fa fa-check"></i> Preserve Investments</h3>
+      <p class="my-4">
+        From its outset ServiceStack has been consistently promoting the same
+        <a href="https://docs.servicestack.net/advantages-of-message-based-web-services">remote service best-practices</a>
+        for over a decade, whose adoption of its time-tested patterns has survived beyond
+        several abandoned .NET Web Service frameworks, iterations &amp; programming models during its lifetime with any
+        investments in them having failed along with them.
+      </p>
+      <p class="my-4">
+        Instead of enduring wasted investments through constant rewrites, ServiceStack APIs
+        have in contrast remained constant whilst gaining value over time, continuing to add support for more
+        languages,
+        <a href="https://docs.servicestack.net/why-servicestack#multiple-clients">typed clients</a>,
+        IDE integrations,
+        <a href="https://docs.servicestack.net/why-servicestack#multiple-endpoints">endpoints</a>,
+        <a href="https://docs.servicestack.net/why-servicestack#multiple-pluggable-formats">data formats</a> &amp;
+        <a href="https://docs.servicestack.net/why-servicestack#multiple-hosting-options">.NET Hosts</a>.
+      </p>
+    </div>
+</div>
+
+    </div>
+</section>
+
+<section class="text-center mt-24">
+    <div class="mx-auto max-w-7xl">
+        <div class="mb-8">
+            <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">Learning &amp; Support</h2>
+            <div class="my-3 max-w-lg mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-4xl">
+                Extensive documentation, step by step tutorials, full source code examples, demos and video guides
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap text-left">
+            <div class="w-full lg:w-3/4 p-4">
+                <div class="flex flex-col items-center">
+                    @{
+                        var videos = new[] { "ocH5L-CikQ0", "cbYuem1b2tg", "WjbhfH45i5k", "JKsgrstNnYY", "GTnuMhvUayg" };
+                        foreach (var youtubeId in videos)
+                        {
+                            <div class="mb-8 video shadow" style="width:560px;height:315px">
+                                <lite-youtube width="560" height="315" videoid="@youtubeId"
+                                              style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/@youtubeId/maxresdefault.jpg')"></lite-youtube>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4">
+                <div class="flex flex-wrap text-left">
+                    <div class='w-full'>
+                        <h3 class="block uppercase text-slate-500 font-semibold mb-4">Language Docs</h3>
+                        <ul class='list-none'>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/add-servicestack-reference'>Overview</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/csharp-add-servicestack-reference'>C#</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/typescript-add-servicestack-reference'>TypeScript</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/python-add-servicestack-reference'>Python</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/swift-add-servicestack-reference'>Swift</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/java-add-servicestack-reference'>Java</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/kotlin-add-servicestack-reference'>Kotlin</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/dart-add-servicestack-reference'>Dart</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/fsharp-add-servicestack-reference'>F#</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://docs.servicestack.net/vbnet-add-servicestack-reference'>VB.NET</a></li>
+                        </ul>
+                    </div>
+                    <div class='w-full'>
+                        <h3 class="block uppercase text-slate-500 font-semibold my-4">Example Demos</h3>
+                        <ul class='list-none'>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://github.com/NetCoreApps/TechStacks'>TechStacks</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://github.com/NetCoreApps/BookingsCrud'>Bookings CRUD</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://github.com/NetCoreApps/Chinook'>Chinook AutoQuery</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://github.com/NetCoreApps/Northwind'>Northwind AutoQuery</a></li>
+                        </ul>
+                    </div>
+                    <div class='w-full'>
+                        <h3 class="block uppercase text-slate-500 font-semibold my-4">Support</h3>
+                        <ul class='list-none'>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://forums.servicestack.net'>Customer Forums</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://account.servicestack.net/account/support'>Premium Support</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://github.com/ServiceStack/Issues'>Bug Reports</a></li>
+                            <li><a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block" href='https://servicestack.net/ideas'>Feature Requests</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@await Html.PartialAsync("PricingLinks")
+
+@await Html.PartialAsync("Testimonials")
+
+@await Html.PartialAsync("BrandCustomers")

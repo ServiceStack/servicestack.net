@@ -242,37 +242,65 @@
         </dl>
       </div>
     </div>
-    <form action="#" method="POST" class="px-6 pb-24 pt-20 sm:pb-32 lg:py-48 lg:px-8">
-      <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-        <div class="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
-          <div>
-            <label for="name" class="block text-sm font-semibold leading-6 text-white">Name</label>
-            <div class="mt-2.5">
-              <input type="text" name="name" id="name" autocomplete="given-name" class="block w-full rounded-md border-0 bg-white/5 py-2 px-3.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6">
-            </div>
-          </div>
-          <div>
-            <label for="email" class="block text-sm font-semibold leading-6 text-white">Email</label>
-            <div class="mt-2.5">
-              <input type="text" name="email" id="email" autocomplete="family-name" class="block w-full rounded-md border-0 bg-white/5 py-2 px-3.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6">
-            </div>
-          </div>
-          <div class="sm:col-span-2">
-            <label for="message" class="block text-sm font-semibold leading-6 text-white">Message</label>
-            <div class="mt-2.5">
-              <textarea name="message" id="message" rows="4" class="block w-full rounded-md border-0 bg-white/5 py-2 px-3.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="mt-8 flex justify-end">
-          <button type="submit" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Send message</button>
-        </div>
-      </div>
-    </form>
+    <div id="contact-us"></div>
   </div>
 </div>
 
 
 <script type="module">
+import { ref } from "vue"
+import { ApiResult } from "@@servicestack/client"
+import { useClient } from "@@servicestack/vue"
+import { SendMessage } from "/mjs/dtos.mjs"
 import { mount } from "/mjs/app.mjs"
+
+const ContactUs = {
+  template:`<form v-if="!api.succeeded" v-on:submit.prevent="submit" method="POST" class="dark px-6 pb-24 pt-20 sm:pb-32 lg:py-48 lg:px-8">
+    <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
+      <div class="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
+        <TextInput v-model="request.displayName" id="displayName" label="Name" placeholder="" autocomplete="name" />
+        <TextInput v-model="request.email" id="email" placeholder="" autocomplete="email" />
+        <TextareaInput v-model="request.body" id="body" label="Message" placeholder="" class="col-span-2" rows="4" />
+        <div class="col-span-2 flex justify-end">
+            <div class="flex items-center">
+                <svg v-if="api.loading" class="w-6 h-6 mr-4 align-middle" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+                    <g fill="none" fill-rule="evenodd">
+                        <g transform="translate(1 1)" stroke-width="2">
+                            <circle stroke-opacity=".5" cx="18" cy="18" r="18"/>
+                            <path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"/></path>
+                        </g>
+                    </g>
+                </svg>
+                <PrimaryButton :disabled="api.loading">Send Message</PrimaryButton>            
+            </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div v-else class="flex">
+    <div class="mx-auto grid grid-cols-1">
+        <div class="px-6 pt-24 pb-20 sm:pt-32 lg:py-48 lg:px-8">
+            <div class="max-w-lg">
+                <h2 class="text-3xl font-bold tracking-tight text-white">Thank you for getting in touch!</h2>
+                <p class="mt-6 text-lg leading-8 text-gray-300">
+                    We appreciate you contacting ServiceStack. <br> 
+                    We will get back in touch with you soon!
+                </p>
+            </div>
+        </div>
+    </div>
+  </div>`,
+  setup() {
+    const request = ref(new SendMessage())
+    const api = ref(new ApiResult())
+    const client = useClient()
+    async function submit(e) {
+      api.value.loading = true
+      api.value = await client.apiForm(new SendMessage(), new FormData(e.target))
+    }
+    return { request, api, submit }
+  }
+}
+
+mount('#contact-us', ContactUs)
 </script>

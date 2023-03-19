@@ -100,7 +100,10 @@ export function mountAll() {
 /** @param {any} [exports] */
 export function init(exports) {
     if (AppData.init) return
-    client = JsonApiClient.create()
+    const BaseUrl = location.origin === 'http://localhost:5000'
+        ? 'https://localhost:5001'
+        : 'https://account.servicestack.net'
+    client = JsonApiClient.create(BaseUrl)
     AppData = reactive(AppData)
     AppData.init = true
     mountAll()

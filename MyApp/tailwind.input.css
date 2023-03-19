@@ -49,6 +49,17 @@ select{
 [type='file']:focus{outline:1px auto -webkit-focus-ring-color;}
 
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #ffffff;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
+
 /* @tailwindcss/aspect css */
 .aspect-h-9 {
     --tw-aspect-h: 9;

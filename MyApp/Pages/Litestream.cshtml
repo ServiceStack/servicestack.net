@@ -1,0 +1,9 @@
+@page "/litestream"
+@attribute [RenderStatic]
+
+@{
+    ViewData["Title"] = "Litestream Apps";
+    ViewData["Brand"] = "Litestream Apps";
+}
+
+@await Html.PartialAsync("Home/Features")
