@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="/img/logo.svg">
+    <title>Download - ServiceStack</title>
+    <script>
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "vue": "/lib/mjs/vue.min.mjs",
+        "@servicestack/client": "/lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "/lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="/">
+                    <img class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12" src="/img/logo.svg" alt="MyApp logo">
+                    <span class="hidden sm:block text-2xl font-bold">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/posts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "/mjs/app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+<link rel="stylesheet" href="/css/typography.css">
+
+<section class="text-center w-full py-12 sm:py-24">
+    <div class="mx-auto max-w-7xl">
+        <div>
+            <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">Add ServiceStack to your project</h2>
+            <div class="my-3 max-w-lg mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-4xl">
+                <p class="my-4">
+                    ServiceStack is an easy drop-in that simplifies creating Web Services in any ASP.NET Web App,
+                    but also in Self Hosting
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/self-hosting">Console Apps</a>,
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/templates-windows-service">Windows Services</a> and even
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStackApps/ReactDesktopApps">Windows and OSX Desktop Apps</a> -
+                    supporting both
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos">.NET Framework</a> and
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/netcore">.NET Core</a>. The
+                    <a class="text-indigo-600 hover:text-indigo-800" href="/start">easiest way to get started</a> is
+                    to create a new project from a
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/templates-overview">ServiceStack VS.NET Template</a>.
+                </p>
+                <p class="my-4">
+                    These packages include the <a href="#free-quotas">Free Usage Quotas</a> listed below.
+                    The list of supported packages are also listed on
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://www.nuget.org/profiles/ServiceStack">nuget.org/profiles/ServiceStack</a>.
+                    Dedicated support for these packages is available for Windows, Linux and OSX on .NET Core or Windows
+                    only for .NET Framework.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="download container mx-auto prose max-w-none" style="max-width: 75em;">
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3>Just ServiceStack</h3>
+            <p>Minimal install of ServiceStack, create an empty ASP.NET project and: </p>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack' }"></div>
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack.Common</li>
+                <li>ServiceStack.Client</li>
+            </ul>
+            <p>
+                The docs on
+                <a href="https://docs.servicestack.net/create-your-first-webservice">
+                    Creating your first web service
+                </a>
+                using
+                <a href="https://visualstudiogallery.msdn.microsoft.com/5bd40817-0986-444d-a77d-482e43a48da7">ServiceStack's
+                    VS.NET Templates</a>
+                are an easy way to Get Started with ServiceStack.
+            </p>
+            <p>
+                Once comfortable with creating a ServiceStack web service, we also recommend
+                exploring ServiceStack by walking through the
+                <a href="https://github.com/ServiceStackApps/EmailContacts">EmailContacts solution</a>
+                for a guidance on the recommended layout and configuration of a typical
+                medium-sized ServiceStack project.
+            </p>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <h3>ServiceStack with OrmLite, Redis and adapters</h3>
+            <p>Using Redis or OrmLite, create an empty ASP.NET project and: </p>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Server' }"></div>
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack</li>
+                <li>ServiceStack.Redis</li>
+                <li>ServiceStack.OrmLite</li>
+            </ul>
+            <p>
+                Server project includes
+                <a href="https://docs.servicestack.net/autoquery">Auto Query</a>,
+                <a href="https://docs.servicestack.net/autoquery-autogen">Autogen</a>,
+                <a href="https://docs.servicestack.net/redis-mq">Redis MQ</a>,
+                <a href="https://docs.servicestack.net/redis-server-events">Redis Server Events</a>,
+                <a href="https://docs.servicestack.net/request-logger">Redis Request Logger</a>
+                <a href="https://docs.servicestack.net/caching">OrmLite Cache Provider</a>
+                and
+                <a href="https://docs.servicestack.net/authentication-and-authorization#userauth-persistence---the-iuserauthrepository">
+                    OrmLite Auth Repository
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Add ServiceStack with advanced HTML Support</h2>
+        <p class="text-lg text-gray-500">
+            If you plan on using ServiceStack to also create HTML websites then start with one of these 2 packages instead:
+        </p>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/mvc-integration">ServiceStack with .NET 5 or ASP.NET MVC</a></h3>
+            <p>
+                You want to use ServiceStack together with an ASP.NET Core or ASP.NET MVC Website,
+                Create an Empty Project and:
+            </p>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Mvc' }"></div>
+
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack</li>
+            </ul>
+
+            <p>
+                After it's added to your MVC Project you'll need to follow the guidelines in
+                <a href="https://docs.servicestack.net/mvc-integration">MVC Integration</a>
+                and ensure ServiceStack is properly integrated.
+            </p>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://razor.netcore.io">ServiceStack with Razor Support</a></h3>
+            <p>
+                You want to use ServiceStack's built-in support for Razor, Create an Empty ASP.NET
+                Project and:
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Razor' }"></div>
+
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack</li>
+            </ul>
+
+            <p>
+                We recommend reading the <a href="https://razor.netcore.io">Razor Rockstars</a>
+                website to explore ServiceStack's Razor features.
+            </p>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Using Redis or OrmLite?</h2>
+        <p class="text-lg text-gray-500">
+            If you've started with <b>ServiceStack.Server</b> you already have OrmLite and Redis, if not you can add them individually:
+        </p>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/redis/">Redis Client</a></h3>
+            <p>
+                <a href="https://redis.io">Redis</a>
+                is a popular and indispensable tool in creating high-performance
+                systems. It's often used as a cache, but as it supports comp-sci collections,
+                Pub/Sub, Transactions and server-side LUA scripting, it's finding more use-cases every day.
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Redis' }"></div>
+
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack.Common</li>
+            </ul>
+
+            <h3>Running Redis on Windows</h3>
+            <p>
+                See the <a href="https://github.com/mythz/redis-windows">Download and installation instructions</a>
+                for the 2 most popular ways of running redis on windows.
+            </p>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/ormlite/">OrmLite</a></h3>
+            <p>
+                <a href="https://docs.servicestack.net/ormlite/">OrmLite</a>
+                is a fast, simple, convention-based, config-free lightweight ORM that uses code-first
+                POCO classes and Annotation attributes to infer and generate RDBMS table schemas. It's simply
+                provides extension methods over ADO.NET's IDbConnection so is highly-flexible and can even be
+                easily used seamlessly with other Micro ORM's like that uses extension methods like
+                <a href="https://github.com/DapperLib/Dapper">Dapper</a>.
+            </p>
+
+            <p>
+                OrmLite has packages for all major RDBMS's, and you just need to install the
+                package for the one you're using, which typically for .NET will be SQL Server:
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.OrmLite.Sqlite' }"></div>
+
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack.Common</li>
+            </ul>
+
+            <p>
+                Otherwise if using an alternative database, install the one you need:
+            </p>
+            <ul class="ul-circle">
+                <li><a href="https://www.nuget.org/packages/ServiceStack.OrmLite.SqlServer">ServiceStack.OrmLite.SqlServer</a></li>
+                <li><a href="https://www.nuget.org/packages/ServiceStack.OrmLite.PostgreSQL">ServiceStack.OrmLite.PostgreSQL</a></li>
+                <li><a href="https://www.nuget.org/packages/ServiceStack.OrmLite.MySql">ServiceStack.OrmLite.MySql</a></li>
+                <li><a href="https://www.nuget.org/packages/ServiceStack.OrmLite.MySqlConnector">ServiceStack.OrmLite.MySqlConnector</a></li>
+                <li><a href="https://docs.servicestack.net/ormlite/sql-server-features">ServiceStack.OrmLite.SqlServer.Converters</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Just ServiceStack.Text?</h2>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/text/">JSON, JSV, CSV Serializers</a></h3>
+            <p>
+                ServiceStack.Text is a high-performance dependency-free library that contains all of ServiceStack's text
+                processing, automapping utilities. <br>
+                It includes 100's of enhancements to .NET's built-in String, Stream, Bytes, List, Dictionary,
+                Reflection, Task and WebRequest types.
+            </p>
+            <p>
+                You will only need to install this when using on its own as ServiceStack.Text is already a dependency on
+                all other ServiceStack NuGet packages.
+            </p>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Text' }"></div>
+            
+            <p>
+                Android, iOS, Windows Store, WPF and Silverlight clients should install the ServiceStack.Client package:
+            </p>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Client' }"></div>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Message Queue Servers</h2>
+        <p class="text-lg text-gray-500">
+            ServiceStack's message-based design enables it to host Services on a variety of different
+            transports including a number of different MQ Servers via the
+            <a href="https://docs.servicestack.net/messaging">Messaging API</a>
+            all MQ Servers implement making it trivial to swap between different MQ Brokers.
+        </p>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/rabbit-mq">Rabbit MQ</a></h3>
+            <p>
+                <a href="https://www.rabbitmq.com">Rabbit MQ</a>
+                is a popular industrial strength open source implementation of the
+                <a href="https://www.amqp.org">AMQP messaging protocol</a>
+                for communicating with MQ middleware on all major OS's.
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.RabbitMq' }"></div>
+
+            <h3>Running RabbitMQ on Windows</h3>
+            <p>
+                See the <a href="https://github.com/mythz/rabbitmq-windows">installation and getting started guide</a>
+                for a walkthrough on setting up Rabbit MQ on windows and accessing it from C#.
+            </p>
+
+            <h3>ServiceStack Rabbit MQ</h3>
+            <p>
+                See <a href="https://docs.servicestack.net/rabbit-mq">ServiceStack's Rabbit MQ docs</a>
+                for an explanation on how Rabbit MQ works with ServiceStack and details on its message workflow.
+            </p>
+
+            <h3><a href="https://docs.servicestack.net/azure">Azure Service Bus</a></h3>
+            <p>
+                If you're hosted on Azure you can utilize Azure Service Bus's highly-reliable and managed cloud
+                messaging service or
+                Windows Service Bus if running Service Bus on Windows Server.
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Azure' }"></div>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/messaging">Redis MQ</a></h3>
+            <p>
+                If Redis is already apart of your infrastructure,
+                <a href="https://docs.servicestack.net/messaging">Redis MQ</a>
+                is an attractive choice to use as an MQ Broker without needing to add any additional
+                infrastructure dependencies.
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Server' }"></div>
+
+            <p>&nbsp;</p>
+
+            <h3><a href="https://docs.servicestack.net/aws">Amazon SQS</a></h3>
+            <p>
+                If you're hosted on AWS you can take advantage Amazon's reliable, scalable, fully managed
+                message queuing service. SQS makes it simple and cost-effective to decouple the components of a cloud
+                application.
+                You can use SQS to transmit any volume of data, at any level of throughput, without losing messages or
+                requiring other services to be always available.
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Aws' }"></div>
+
+            <h3>In Memory MQ</h3>
+            <p>
+                ServiceStack.Server also includes an
+                <a href="https://docs.servicestack.net/messaging">In Memory MQ</a>
+                option useful for testing and for when other MQ Broker options are not available.
+                Although not being able to accept network requests limits its usefulness.
+            </p>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Amazon Web Services</h2>
+        <p class="text-lg text-gray-500">
+            You can participate in AWS's vibrant ecosystem with ServiceStack's first-class support and deep
+            integration with AWS that seamlessly integrates with popular back-end AWS technologies allowing
+            hosting of ServiceStack solutions entirely on the managed AWS platform
+        </p>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3>
+                <a href="https://docs.servicestack.net/aws">ServiceStack.Aws</a>
+            </h3>
+
+            <p>
+                All of ServiceStack's support for AWS is encapsulated within the single ServiceStack.Aws NuGet package:
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Aws' }"></div>
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack</li>
+                <li>AWSSDK.Core</li>
+                <li>AWSSDK.DynamoDBv2</li>
+                <li>AWSSDK.S3</li>
+                <li>AWSSDK.SQS</li>
+            </ul>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+
+            The <b>ServiceStack.Aws</b> NuGet package includes implementations for the following ServiceStack providers:
+
+            <ul class="ul-circle">
+                <li><strong><a href="https://docs.servicestack.net/aws-pocodynamo">PocoDynamo</a></strong> - Declarative,
+                    code-first POCO client for DynamoDB with LINQ
+                </li>
+                <li><strong><a
+                        href="https://docs.servicestack.net/aws#sqsmqserver">SqsMqServer</a></strong> -
+                    <a href="https://docs.servicestack.net/messaging">MQ Server</a> for invoking ServiceStack Services
+                    via Amazon SQS
+                </li>
+                <li><strong><a href="https://docs.servicestack.net/aws#s3virtualpathprovider">S3VirtualPathProvider</a></strong>
+                    - Read/write <a href="https://docs.servicestack.net/virtual-file-system">Virtual FileSystem</a> for
+                    Amazon S3
+                </li>
+                <li><strong><a href="https://docs.servicestack.net/aws#dynamodbauthrepository">DynamoDbAuthRepository</a></strong>
+                    - <a href="https://docs.servicestack.net/authentication-and-authorization">UserAuth repository</a>
+                    for DynamoDB
+                </li>
+                <li><strong><a href="https://docs.servicestack.net/aws#dynamodbappsettings">DynamoDbAppSettings</a></strong>
+                    - <a href="https://docs.servicestack.net/appsettings">AppSettings provider</a> for DynamoDB
+                </li>
+                <li><strong><a href="https://docs.servicestack.net/aws#dynamodbcacheclient">DynamoDbCacheClient</a></strong>
+                    - <a href="https://docs.servicestack.net/caching">Caching Provider</a> for DynamoDB
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Microsoft Azure</h2>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3>
+                <a href="https://docs.servicestack.net/azure">ServiceStack.Azure</a>
+            </h3>
+
+            <p>
+                All of ServiceStack's support for Azure is encapsulated within the single ServiceStack.Azure NuGet
+                package:
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Azure' }"></div>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <b>ServiceStack.Azure</b> includes implementation of the following ServiceStack providers:
+            <ul class="ul-circle">
+                <li><strong><a href="https://docs.servicestack.net/azure/#ServiceBusMqServer">ServiceBusMqServer</a></strong>
+                    - <a href="https://docs.servicestack.net/messaging" rel="nofollow">MQ Server</a> for invoking
+                    ServiceStack Services via Azure ServiceBus
+                </li>
+                <li><strong><a
+                        href="https://docs.servicestack.net/azure/#virtual-filesystem-backed-by-azure-blob-storage">AzureBlobVirtualFiles</a></strong>
+                    - Virtual file system based on Azure Blob Storage
+                </li>
+                <li><strong><a
+                        href="https://docs.servicestack.net/azure/#virtual-filesystem-backed-by-azure-blob-storage">AzureAppendBlobVirtualFiles</a></strong>
+                    - Virtual file system based on Azure Blob Storage for appending scenarios
+                </li>
+                <li><strong><a
+                        href="https://docs.servicestack.net/azure/#caching-support-with-azure-table-storage">AzureTableCacheClient</a></strong>
+                    - Cache client over Azure Table Storage
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Caching and Logging Providers</h2>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/caching">Caching</a></h3>
+            <p>
+                In Memory Caching is available in <b>ServiceStack</b> and
+                <b>ServiceStack.Redis</b> includes the Redis cache client, whilst
+                an OrmLiteCacheClient is available in <b>ServiceStack.Server</b> for
+                utilizing an existing RDBMS as a distributed cache.
+            </p>
+
+            <p>
+                Other External caching providers are also available:
+            </p>
+
+            <h4>AWS Dynamo DB:</h4>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Aws' }"></div>
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack</li>
+                <li>AWSSDK.Core</li>
+                <li>AWSSDK.DynamoDBv2</li>
+                <li>AWSSDK.S3</li>
+                <li>AWSSDK.SQS</li>
+            </ul>
+
+            <h4>Memcached:</h4>
+            <ul class="ul-circle">
+                <li><a href="https://www.nuget.org/packages/ServiceStack.Caching.Memcached">ServiceStack.Caching.Memcached</a>
+            </ul> 
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack.Common</li>
+                <li>EnyimMemcached</li>
+            </ul>
+
+            <h4>Azure:</h4>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Azure' }"></div>
+            <h4>Dependencies</h4>
+            <ul class="ul-circle">
+                <li>ServiceStack.Common</li>
+                <li>WindowsAzure.Caching</li>
+            </ul>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://docs.servicestack.net/logging">Logging</a></h3>
+            <p>
+                ServiceStack also provides an implementation and dependency-free logging API with adapters
+                for all of .NET's popular logging providers. It allows your business logic to bind to an easily-mockable
+                and testable dependency-free interface whilst providing the flexibility to switch logging providers
+                at runtime.
+            </p>
+            <p>
+                Console, Debug and Empty logging providers are already in <b>ServiceStack</b>, whilst you can
+                use NuGet to get the adapter for your preferred logging framework:
+            </p>
+
+            <ul class="ul-circle">
+                <li><a href="https://www.nuget.org/packages/ServiceStack.Logging.NLog">ServiceStack.Logging.NLog</a>
+                </li>
+                <li>
+                    <a href="https://www.nuget.org/packages/ServiceStack.Logging.Log4Net">ServiceStack.Logging.Log4Net</a>
+                </li>
+                <li>
+                    <a href="https://www.nuget.org/packages/ServiceStack.Logging.Serilog">ServiceStack.Logging.Serilog</a>
+                </li>
+                <li><a href="https://www.nuget.org/packages/ServiceStack.Logging.Elmah">ServiceStack.Logging.Elmah</a>
+                </li>
+                <li><a href="https://www.nuget.org/packages/ServiceStack.Logging.Slack">ServiceStack.Logging.Slack</a>
+                </li>
+                <li>
+                    <a href="https://www.nuget.org/packages/ServiceStack.Logging.EntLib5">ServiceStack.Logging.EntLib5</a>
+                </li>
+                <li>
+                    <a href="https://www.nuget.org/packages/ServiceStack.Logging.EventLog">ServiceStack.Logging.EventLog</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Additional Formats</h2>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3>
+                <a href="https://docs.servicestack.net/protobuf-format">Protocol Buffers</a>
+            </h3>
+            <p>
+                <a href="https://github.com/protobuf-net/protobuf-net">Protocol Buffers</a>
+                is a high-performance, compact binary wire format invented by Google who use it
+                internally so they can communicate with their internal network services at very high speed.
+            </p>
+            <p>
+                You can add it to ServiceStack with:
+            </p>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.ProtoBuf' }"></div>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <h3>
+                <a href="https://docs.servicestack.net/messagepack-format">Message Pack</a>
+            </h3>
+            <p>
+                <a href="https://msgpack.org">Message Pack</a>
+                is an efficient binary serialization format. It lets you exchange data among multiple languages
+                like JSON but it's faster and smaller and unlike ProtoBuf supports attribute-less POCOs.
+            </p>
+            <p>
+                You can add it to ServiceStack with:
+            </p>
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.MsgPack' }"></div>
+        </div>
+    </div>
+
+    <a id="client"></a>
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">Client Libraries</h2>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <p>
+                As ServiceStack is just a pure HTTP web service it can be accessed with any HTTP-capable client.
+                However in order to provide the least friction and most productivity end-to-end, we also maintain
+                generic
+                <a href="https://docs.servicestack.net/csharp-client">
+                    C# clients
+                </a>
+                available at:
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Client' }"></div>
+
+            <p>
+                Or use the HttpClient-based JsonHttpClient instead with:
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.HttpClient' }"></div>
+            <p>
+                Also includes Android, iOS, Windows Store, WPF and Silverlight clients,
+                see
+                <a href="https://github.com/ServiceStackApps/HelloMobile">Mobile documentation</a>
+                for more info.
+            </p>
+
+            <p>
+                See the <a href="https://github.com/ServiceStack/Hello">Hello Repository</a>
+                for a portable solution showing how to re-use DTO's and client libraries between
+                Android, iOS, Windows Store, WPF and Silverlight platforms.
+            </p>
+
+            <p>&nbsp;</p>
+            <h3>Service Clients are unrestricted</h3>
+            <p>
+                Explicitly included in the <a href="#free-quotas">free quotas</a> is an exception
+                enabling free, unrestricted use of ServiceStack Service Clients for calling
+                any ServiceStack service.
+            </p>
+            <p>&nbsp;</p>
+        </div>
+    </div>
+
+    <a id="core"></a>
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">.Core Packages</h2>
+        <p class="text-lg text-gray-500">
+            Use <b>.Core</b> packages if <a href="https://docs.servicestack.net/netcore#run-aspnet-core-apps-on-the-net-framework">running ServiceStack ASP.NET Core on .NET Framework</a>.
+        </p>
+    </div>
+
+    <a id="external"></a>
+    <div class="my-10 flex flex-col items-center">
+        <h2 class="text-5xl">External Libraries</h2>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://github.com/ServiceStack/Stripe">Stripe</a></h3>
+            <p>
+                Contains a typed .NET client gateway for accessing
+                <a href="https://stripe.com/docs/api/">Stripe's REST API</a>
+                to process merchant payments and recurring subscriptions online.
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.Stripe' }"></div>
+
+            <p>
+                See the
+                <a href="https://github.com/ServiceStack/Stripe">Stripe GitHub repository</a>
+                for documentation and example source code.
+            </p>
+            <p>&nbsp;</p>
+        </div>
+        <div class="px-1 w-full lg:w-1/2">
+            <h3><a href="https://github.com/ServiceStack/Stripe">ServiceStack.CefGlue</a></h3>
+            <p>
+                Contains
+                <a href="https://gitlab.com/xiliumhq/chromiumembedded/cefglue">CefGlue</a>
+                bindings for .NET Standard 2.0 with support for running Windows 64 Desktop Applications.
+            </p>
+
+            <div data-component="NuGetPackage" data-props="{ name: 'ServiceStack.CefGlue' }"></div>
+            <p>
+                See the
+                <a href="https://github.com/ServiceStack/ServiceStack.CefGlue"></a> project and
+                <a href="https://www.vuedesktop.com">vuedesktop.com</a> website
+                for documentation and examples.
+            </p>
+            <p>&nbsp;</p>
+        </div>
+    </div>
+
+</div>
+
+<section class="w-full py-12 sm:py-24 mb-24">
+    <div class="mx-auto max-w-7xl">
+
+        <a id="register"></a>
+        <div class="my-20">
+            <div class="flex flex-col items-center">
+                <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">License Registration</h2>
+            </div>
+            <div class="mt-12 mx-auto prose" style="max-width: 64em;">
+                
+<p>The ServiceStack license key allows un-restricted access to ServiceStack packages and is available in your My Account Section after purchasing a commercial license.</p>
+<p>There are multiple ways of registering your license key, all options only need to be added to your top-level host projects:</p>
+<h3 id="a-add-it-to-the-projects-appsettings.json-or-web.config">a) Add it to the projects appsettings.json or Web.Config</h3>
+<p>Easiest way to register your license key is to add the <strong>servicestack license</strong> appSetting.
+For ASP.NET Core Apps add it to <strong>appsettings.json</strong>:</p>
+<pre><code class="language-json">{
+    &quot;servicestack&quot;: {
+        &quot;license&quot;: &quot;{licenseKeyText}&quot;
+    }
+}
+</code></pre>
+<div class="info"><p>Non ServiceStack .NET Core <strong>AppHost</strong> Apps (i.e. just using Redis or OrmLite) will also need to explicitly register the license key from IConfiguration: <code>Licensing.RegisterLicense(Configuration.GetValue&lt;string&gt;(&quot;servicestack:license&quot;));</code></p>
+</div>
+<p>For .NET Framework Applications add it to the <strong>Web.config</strong> or App.config's <code>&lt;appSettings/&gt;</code> config section:</p>
+<pre><code class="language-xml">&lt;appSettings&gt;
+    &lt;add key=&quot;servicestack:license&quot; value=&quot;{licenseKeyText}&quot; /&gt;
+&lt;/appSettings&gt;
+</code></pre>
+<h3 id="b-add-it-in-code-before-your-application-starts-up">b) Add it in code before your Application Starts Up</h3>
+<p>By calling Licensing.RegisterLicense() before your application starts up, E.g. For ASP.NET, place it in the Global.asax Application_Start event:</p>
+<pre><code class="language-csharp">protected void Application_Start(object sender, EventArgs e)
+{
+    Licensing.RegisterLicense(licenseKeyText);
+    new AppHost().Init();
+}
+</code></pre>
+<p>Otherwise for a self-hosting Console Application, place it before initializing the AppHost, as shown above.</p>
+<h3 id="c-add-the-system-environment-variable">c) Add the System Environment Variable</h3>
+<p>To simplify license key registration when developing multiple ServiceStack solutions you can register the License Key once in the SERVICESTACK_LICENSE Environment Variable on each pc using ServiceStack libraries:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">SERVICESTACK_LICENSE</td>
+<td style="text-align: left;"><code>{licenseKeyText}</code></td>
+</tr>
+</tbody>
+</table>
+<div class="info"><p>you'll need to restart IIS or VS.NET for them to pickup any new Environment Variables.</p>
+</div>
+<h3 id="d-copy-license-key-text-into-an-external-text-file">d) Copy license key text into an external text file</h3>
+<p>Similar to above, we can register the license from an external plain-text file containing the license key text, e.g:</p>
+<pre><code class="language-csharp">protected void Application_Start(object sender, EventArgs e)
+{
+    Licensing.RegisterLicenseFromFileIfExists(&quot;~/license.txt&quot;.MapHostAbsolutePath());
+    new AppHost().Init();
+}
+</code></pre>
+<p>For Self-Hosting set the BuildAction to Copy if Newer and use &quot;~/license.txt&quot;.MapAbsolutePath() extension method.</p>
+<div class="info"><p>the license key is white-space insensitive so can be broken up over multiple lines.</p>
+</div>
+
+            </div>
+        </div>
+
+        <a id="free-quotas"></a>
+        <div class="my-20">
+            <div class="flex flex-col items-center">
+                <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">Free Quotas</h2>
+            </div>
+            <div class="mt-8">
+                <div class="my-3 max-w-lg mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-5xl">
+                    <p class="my-4">
+                        Whilst ServiceStack v4+ is a commercially-supported product, we allow free usage
+                        of our Commercial Products in small projects and for evaluation purposes. <br>
+                    </p>
+                    <p class="my-4">
+                        The NuGet packages above include the quota's for our Commercial Products below which can be unlocked with a license key:
+                    </p>
+                    <div class="px-1">
+                        <div class="prose lg:prose-xl">
+                            <ul>
+                                <li><b>10 Operations in ServiceStack</b> (i.e. Request DTOs)</li>
+                                <li><b>10 Database Tables in OrmLite</b></li>
+                                <li><b>10 DynamoDB Tables in PocoDynamo</b></li>
+                                <li><b>20 Different Types in Redis Client Typed APIs</b></li>
+                                <li><b>6000 requests per hour with the Redis Client</b></li>
+                            </ul>
+                        </div>
+
+                        <p class="my-4">
+                            You can evaluate all of ServiceStack without these restrictions with our <a class="text-indigo-600 hover:text-indigo-800" href="/trial">30 Day Free Trial</a>.
+                        </p>
+
+                        <p class="my-4">
+                            The rest of ServiceStack outside of these free-usage quotas can be used without a developers license subject to
+                            <a class="text-indigo-600 hover:text-indigo-800" href="/terms">ServiceStack's License Agreement</a>.
+                            A commercial license is required to access commercial support options.
+                        </p>
+                    </div>
+                </div>  
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<link rel="stylesheet" href="/css/highlight.css">
+<script src="/js/highlight.js"></script>
+
+<script>
+hljs.highlightAll()
+</script>
+
+<script type="module">
+import { init } from "/mjs/app.mjs"
+init()
+</script>
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="container mx-auto px-5">
+        
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="/blazor" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blazor WASM</a>
+                    <a href="/autoquery" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">AutoQuery</a>
+                    <a href="/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="/blog" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 sm:w-1/3 xl:w-1/6 sm:mx-auto xl:mt-0 xl:ml-auto">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+                
+                <div class="mt-6 lg:mb-0 mb-6">
+                    <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                    </a>
+                    <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                    </a>
+                </div>                
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="/start"
+                    class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+                
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script src="/lib/js/htmx.js"></script>
+<script type="module">
+import { init } from "/mjs/app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
