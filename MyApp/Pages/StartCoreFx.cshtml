@@ -137,10 +137,10 @@ const App = {
         const name = ref('')
         const mixModel = ref({})
 
-        const isAlphaNumeric = (e) => {
+        function isAlphaNumeric(e) {
             const c = e.charCode;
             if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 48 && c <= 57 || c === 95) //A-Za-z0-9_
-            return;
+                return;
             e.preventDefault()
         }
         
