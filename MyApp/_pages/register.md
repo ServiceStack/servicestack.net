@@ -2,9 +2,10 @@
 title: License Registration
 ---
 
-The ServiceStack license key allows un-restricted access to ServiceStack packages and is available in your My Account Section after purchasing a commercial license.
+The ServiceStack license key allows un-restricted access to ServiceStack packages and is available in your 
+**My Account** Section after purchasing a [commercial license](https://servicestack.net/pricing).
 
-There are multiple ways of registering your license key, all options only need to be added to your top-level host projects:
+There are multiple ways of registering your license key which all need to be added to your top-level host project:
 
 ### a) Add it to the projects appsettings.json or Web.Config
 
@@ -19,9 +20,11 @@ For ASP.NET Core Apps add it to **appsettings.json**:
 }
 ```
 
-::: info
-Non ServiceStack .NET Core **AppHost** Apps (i.e. just using Redis or OrmLite) will also need to explicitly register the license key from IConfiguration: `Licensing.RegisterLicense(Configuration.GetValue<string>("servicestack:license"));`
-:::
+Non ServiceStack .NET Core **AppHost** Apps (i.e. just using Redis or OrmLite) will also need to explicitly register the license key from IConfiguration:
+
+```csharp
+Licensing.RegisterLicense(Configuration.GetValue<string>("servicestack:license"));
+```
 
 For .NET Framework Applications add it to the **Web.config** or App.config's `<appSettings/>` config section:
 
@@ -33,7 +36,7 @@ For .NET Framework Applications add it to the **Web.config** or App.config's `<a
 
 ### b) Add it in code before your Application Starts Up
 
-By calling Licensing.RegisterLicense() before your application starts up, E.g. For ASP.NET, place it in the Global.asax Application_Start event:
+By calling `Licensing.RegisterLicense()` before your application starts up, E.g. For ASP.NET, place it in the Global.asax `Application_Start` event:
 
 ```csharp
 protected void Application_Start(object sender, EventArgs e)
@@ -47,15 +50,14 @@ Otherwise for a self-hosting Console Application, place it before initializing t
 
 ### c) Add the System Environment Variable
 
-To simplify license key registration when developing multiple ServiceStack solutions you can register the License Key once in the SERVICESTACK_LICENSE Environment Variable on each pc using ServiceStack libraries:
+To simplify license key registration when developing multiple ServiceStack solutions you can register the License Key once in the 
+**SERVICESTACK_LICENSE** Environment Variable on each pc using ServiceStack libraries:
 
 | Variable | Value |
 |:-|:-|
 | SERVICESTACK_LICENSE | `{licenseKeyText}` |
 
-::: info
-you'll need to restart IIS or VS.NET for them to pickup any new Environment Variables.
-:::
+You'll need to restart IIS or VS.NET for them to pickup any new Environment Variables.
 
 ### d) Copy license key text into an external text file
 
@@ -69,9 +71,6 @@ protected void Application_Start(object sender, EventArgs e)
 }
 ```
 
-For Self-Hosting set the BuildAction to Copy if Newer and use "~/license.txt".MapAbsolutePath() extension method.
+For Self-Hosting set BuildAction to **Copy if Newer** and use `"~/license.txt".MapAbsolutePath()` method.
 
-::: info
-the license key is white-space insensitive so can be broken up over multiple lines.
-:::
-
+The license key is white-space insensitive so can be broken up over multiple lines.

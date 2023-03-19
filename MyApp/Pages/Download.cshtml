@@ -13,20 +13,22 @@
             <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">Add ServiceStack to your project</h2>
             <div class="my-3 max-w-lg mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-4xl">
                 <p class="my-4">
-                    ServiceStack is an easy drop-in that simplifies creating Web Services in any ASP.NET Web App,
+                    ServiceStack is an easy drop-in that simplifies creating Web Services in any ASP.NET App,
                     but also in Self Hosting
                     <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/self-hosting">Console Apps</a>,
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/templates-windows-service">Windows Services</a> and even
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStackApps/ReactDesktopApps">Windows and OSX Desktop Apps</a> -
-                    supporting both
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStackApps/LiveDemos#live-servicestack-demos">.NET Framework</a> and
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/netcore">.NET Core</a>. The
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/templates-windows-service">Windows Services</a> and
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStackApps/ReactDesktopApps">Desktop Apps</a> -
+                    for both
+                    <a class="text-indigo-600 hover:text-indigo-800" href="/start">.NET</a> &amp;
+                    <a class="text-indigo-600 hover:text-indigo-800" href="/start-netfx">.NET Framework</a>. 
+                    The
                     <a class="text-indigo-600 hover:text-indigo-800" href="/start">easiest way to get started</a> is
                     to create a new project from a
                     <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/templates-overview">ServiceStack VS.NET Template</a>.
                 </p>
                 <p class="my-4">
-                    These packages include the <a href="#free-quotas">Free Usage Quotas</a> listed below.
+                    These packages include the 
+                    <a class="text-indigo-600 hover:text-indigo-800" href="#free-quotas">Free Usage Quotas</a> listed below.
                     The list of supported packages are also listed on
                     <a class="text-indigo-600 hover:text-indigo-800" href="https://www.nuget.org/profiles/ServiceStack">nuget.org/profiles/ServiceStack</a>.
                     Dedicated support for these packages is available for Windows, Linux and OSX on .NET Core or Windows
@@ -617,26 +619,26 @@
 
 </div>
 
-<section class="w-full py-12 sm:py-24 mb-24">
-    <div class="mx-auto max-w-7xl">
+<section class="w-full py-12 sm:py-24">
+    <div class="mx-auto max-w-5xl">
 
         <a id="register"></a>
         <div class="my-20">
             <div class="flex flex-col items-center">
                 <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">License Registration</h2>
             </div>
-            <div class="mt-12 mx-auto prose" style="max-width: 64em;">
+            <div class="mt-12 mx-auto prose lg:prose-xl" style="max-width:none;">
                 @await Html.PartialAsync("RegisterStartLinks")
             </div>
         </div>
 
         <a id="free-quotas"></a>
-        <div class="my-20">
+        <div class="pt-24 my-20">
             <div class="flex flex-col items-center">
                 <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">Free Quotas</h2>
             </div>
             <div class="mt-8">
-                <div class="my-3 max-w-lg mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-5xl">
+                <div class="my-3 mx-auto text-base sm:text-lg md:mt-5 md:text-xl">
                     <p class="my-4">
                         Whilst ServiceStack v4+ is a commercially-supported product, we allow free usage
                         of our Commercial Products in small projects and for evaluation purposes. <br>
