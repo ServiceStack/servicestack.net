@@ -1341,6 +1341,10 @@ input[data-autocompleted] {
   margin-right: 1.5rem;
 }
 
+.-mt-32 {
+  margin-top: -8rem;
+}
+
 .block {
   display: block;
 }
@@ -1751,6 +1755,11 @@ input[data-autocompleted] {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.-translate-y-1\/2 {
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .rotate-3 {
   --tw-rotate: 3deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1959,6 +1968,10 @@ input[data-autocompleted] {
        column-gap: 0.5rem;
 }
 
+.gap-y-20 {
+  row-gap: 5rem;
+}
+
 .space-y-7 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.75rem * calc(1 - var(--tw-space-y-reverse)));
@@ -2125,6 +2138,14 @@ input[data-autocompleted] {
 .rounded-l-3xl {
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
+}
+
+.rounded-bl-2xl {
+  border-bottom-left-radius: 1rem;
+}
+
+.rounded-br-2xl {
+  border-bottom-right-radius: 1rem;
 }
 
 .border {
@@ -2463,12 +2484,37 @@ input[data-autocompleted] {
   background-color: rgb(14 165 233 / var(--tw-bg-opacity));
 }
 
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-gray-800\/90 {
+  background-color: rgb(31 41 55 / 0.9);
+}
+
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
 }
 
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
+}
+
+.bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
+}
+
+.bg-opacity-80 {
+  --tw-bg-opacity: 0.8;
+}
+
+.bg-opacity-90 {
+  --tw-bg-opacity: 0.9;
+}
+
+.bg-opacity-95 {
+  --tw-bg-opacity: 0.95;
 }
 
 .bg-gradient-to-t {
@@ -2548,6 +2594,10 @@ input[data-autocompleted] {
 
 .p-3 {
   padding: 0.75rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-4 {
@@ -2864,6 +2914,10 @@ input[data-autocompleted] {
   padding-top: 3rem;
 }
 
+.pb-32 {
+  padding-bottom: 8rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2940,6 +2994,11 @@ input[data-autocompleted] {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
 }
 
 .font-semibold {
@@ -3360,6 +3419,10 @@ input[data-autocompleted] {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.mix-blend-multiply {
+  mix-blend-mode: multiply;
 }
 
 .shadow {
@@ -5382,6 +5445,10 @@ input[data-autocompleted] {
     line-height: 1.25rem;
   }
 
+  .sm\:tracking-tight {
+    letter-spacing: -0.025em;
+  }
+
   .sm\:duration-700 {
     transition-duration: 700ms;
   }
@@ -5544,8 +5611,17 @@ input[data-autocompleted] {
     line-height: 1.75rem;
   }
 
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
   .md\:leading-none {
     line-height: 1;
+  }
+
+  .md\:tracking-tight {
+    letter-spacing: -0.025em;
   }
 }
 
@@ -5784,6 +5860,10 @@ input[data-autocompleted] {
          column-gap: 2rem;
   }
 
+  .lg\:gap-y-0 {
+    row-gap: 0px;
+  }
+
   .lg\:space-y-20 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
     margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -5896,6 +5976,10 @@ input[data-autocompleted] {
   .lg\:text-8xl {
     font-size: 6rem;
     line-height: 1;
+  }
+
+  .lg\:tracking-tight {
+    letter-spacing: -0.025em;
   }
 }
 

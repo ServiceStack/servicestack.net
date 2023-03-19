@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="/img/logo.svg">
+    <title>Support - ServiceStack</title>
+    <script>
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "vue": "/lib/mjs/vue.min.mjs",
+        "@servicestack/client": "/lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "/lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="/">
+                    <img class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12" src="/img/logo.svg" alt="MyApp logo">
+                    <span class="hidden sm:block text-2xl font-bold">ServiceStack Support</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="/posts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "/mjs/app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+<div class="bg-white dark:bg-black">
+    <div class="relative pb-32 bg-gray-800">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover" src="/img/backgrounds/bg-header8.jfif" alt="">
+            <div class="absolute inset-0 bg-gray-800 mix-blend-multiply " aria-hidden="true"></div>
+        </div>
+        
+        <div class="relative mx-auto max-w-4xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8" style="">
+            <div class="max-w-2xl">
+                <h1 class="font-bold tracking-tight text-white text-4xl lg:text-6xl">Commercial Support</h1>
+                <p class="mt-6 text-lg leading-8 text-gray-300">Registered developers with an active Commercial License can access technical support directly from ServiceStack engineers via the support channels below</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<section>
+    <div class="sticky top-0 z-50">
+        <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 dark:sm:border-slate-700 sm:bg-white/95 dark:bg-black/95 sm:[@supports(backdrop - filter:blur(0))]:bg-white/80 dark:sm:[@supports(backdrop - filter:blur(0))]:bg-black/80 sm:[@supports(backdrop - filter:blur(0))]:backdrop-blur">
+            <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 dark:text-slate-50 [counter-reset:section]">
+                        <li class="flex [counter-increment:section]">
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/">
+                                    <span class="hidden lg:inline">ServiceStack APIs</span><span class="lg:hidden">APIs</span>
+                                </a>
+                        </li>
+                        <li class="flex [counter-increment:section]">
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/auto-ui">
+                                    Built In UIs
+                                </a>
+                        </li>
+                        <li class="flex [counter-increment:section]">
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/autoquery">
+                                    AutoQuery
+                                </a>
+                        </li>
+                        <li class="flex [counter-increment:section]">
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/blazor">
+                                    Blazor
+                                </a>
+                        </li>
+                        <li class="flex [counter-increment:section]">
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="/flutter">
+                                    Flutter
+                                </a>
+                        </li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<div class="relative bg-white dark:bg-black mb-8 py-8 sm:py-12 lg:py-16">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="mt-12">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 dark:bg-gray-900 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <a href="https://forums.servicestack.net" class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg text-white">
+                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.077 3C7.149 3 3 6.96 3 11.843V21l9.075-.01c4.928 0 8.925-4.11 8.925-8.993C21 7.113 17 3 12.077 3zm3.92 12.859a5.568 5.568 0 0 1-6.102 1.043l-3.595.805l1.001-3.192a5.435 5.435 0 0 1 .11-5.415a5.55 5.55 0 0 1 4.753-2.678v.001h.006a5.533 5.533 0 0 1 5.131 3.438a5.442 5.442 0 0 1-1.304 5.998z"/></svg>
+                                </a>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900 dark:text-gray-50">Customer Forums</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                We're here to help! Active Customers can get technical support from our
+                                <a class="text-indigo-600 hover:text-indigo-800" href="https://forums.servicestack.net">Customer Forums</a>.
+                            </p>
+                            <p class="mt-5 text-base text-gray-500">
+                                Your email needs to match your Account's email or a
+                                <a class="text-indigo-600 hover:text-indigo-800" href="https://servicestack.net/account/support">registered support contact</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 dark:bg-gray-900 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <a href="https://github.com/ServiceStack/Issues" class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg text-white">
+                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                                </a>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900 dark:text-gray-50">Report a bug issue</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                If you've found an issue in anyone of our libraries, please report it to our <br>
+                                <a class="text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStack/Issues">GitHub Issues repository</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 dark:bg-gray-900 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <a href="https://servicestack.net/ideas" class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg text-white">
+                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path fill="currentColor" d="M0 262q0 43 24.5 81T90 405q-2 7-4.5 18t-7 34.5t-3.5 39T85 512q30 0 60.5-16t48.5-32t19-16q55 0 107-21q-6-2-22.5-12T277 405h-64q-18 0-38 20q-28 25-53 36l6-77l-17-15q-68-44-68-107q0-16 6-36q-4-6-5.5-18.5T42 185v-23l1-13Q0 195 0 262zM299 0q-89 0-151.5 52T85 177q0 72 62 118t152 46q1 0 20.5 21.5t51.5 43t62 21.5q7 0 8.5-11t-1.5-26.5t-7-31.5t-7-27l-4-11q41-25 65.5-62.5T512 177q0-73-62.5-125T299 0zm102 284l-28 17l11 32q2 5 5 17t6 19q-22-15-52-45q-23-25-42-25q-70 0-120.5-32.5T130 177q-1-56 48.5-95T299 43t120.5 39t49.5 95q0 63-68 107z"/></svg>
+                                </a>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900 dark:text-gray-50">Report a bug issue</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                <a class="text-indigo-600 hover:text-indigo-800" href="https://servicestack.net/ideas">Request a new Feature</a> 
+                                or additional docs, samples and use-cases you would like to see in ServiceStack
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 dark:bg-gray-900 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <a href="https://account.servicestack.net/account/support" class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg text-white">
+                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.79 15.41c.95-2.17.95-4.66 0-6.82l-2.74 1.24c.6 1.38.6 2.95.01 4.34l2.73 1.24m-4.37-11.2a8.54 8.54 0 0 0-6.83 0l1.24 2.73c1.39-.59 2.96-.59 4.35.01l1.24-2.74M4.21 8.58a8.564 8.564 0 0 0 0 6.84l2.74-1.25c-.6-1.38-.6-2.96 0-4.35L4.21 8.58m4.38 11.21a8.5 8.5 0 0 0 6.83-.01l-1.24-2.73a5.5 5.5 0 0 1-4.34.01l-1.25 2.73M12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 6a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4Z"/></svg>
+                                </a>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900 dark:text-gray-50">Premium Support</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                Need direct support from one of ServiceStack's expert engineers?
+                            </p>
+                            <p class="mt-5 text-base text-gray-500">
+                                Go to <a class="text-indigo-600 hover:text-indigo-800" href="https://account.servicestack.net/account/support">your Support page</a> to access your premium support options
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 dark:bg-gray-900 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <a href="mailto:team@servicestack.net" class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg text-white">
+                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6m-2 0l-8 5l-8-5h16m0 12H4V8l8 5l8-5v10Z"/></svg>
+                                </a>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900 dark:text-gray-50">Account, billing or other?</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                <a class="text-indigo-600 hover:text-indigo-800" href="mailto:team@servicestack.net">Email us</a>
+                                if you need to renew your existing subscription or change your Account's email.
+                            </p>
+                            <p class="mt-5 text-base text-gray-500">
+                                <a class="text-indigo-600 hover:text-indigo-800" href="https://account.servicestack.net/account/subscription">Sign In</a> 
+                                with your Email to access your account
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="container mx-auto px-5">
+        
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="/blazor" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blazor WASM</a>
+                    <a href="/autoquery" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">AutoQuery</a>
+                    <a href="/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="/blog" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 sm:w-1/3 xl:w-1/6 sm:mx-auto xl:mt-0 xl:ml-auto">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+                
+                <div class="mt-6 lg:mb-0 mb-6">
+                    <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                    </a>
+                    <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                        <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                    </a>
+                </div>                
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="/start"
+                    class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+                
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script src="/lib/js/htmx.js"></script>
+<script type="module">
+import { init } from "/mjs/app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
