@@ -1,7 +1,7 @@
-import { ref } from "vue"
+import { ref, computed } from "vue"
 import { useUtils } from "@servicestack/vue"
 
-const CopyLine = {
+export const CopyLine = {
     template:`<div class="flex cursor-pointer" @click="copy(text)">
         <div class="flex-grow bg-gray-700">
           <div class="px-4 py-1 align-top text-white select-none">{{prefix||''}}{{text}}</div>
@@ -28,4 +28,14 @@ const CopyLine = {
         return { copied, copy, }
     }
 }
+
+export const NuGetPackage = {
+    template:`<CopyLine :text="text" />`,
+    props:['name','version'],
+    setup(props) {
+        const text = computed(() => `<PackageReference Include="${props.name}" Version="${props.version || '6.*'}" />`)
+        return { text }
+    }
+}
+
 export default CopyLine
