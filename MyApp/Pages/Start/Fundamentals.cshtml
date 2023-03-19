@@ -1,0 +1,55 @@
+﻿@page "/start/fundamentals"
+
+@{
+    ViewData["Title"] = "Fundamentals";
+}
+
+@await Html.PartialAsync("DocsHeader", new Shared.DocsHeader {
+   Heading = "Getting Started - Fundamentals",
+   SubHeading = "Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you",
+})
+
+<div class="bg-white dark:bg-black py-12">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="-mx-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3">
+            <a href="/start/background" class="block m-4 p-4 sm:p-10 flex flex-col text-center items-center justify-center shadow hover:shadow-lg rounded-lg border">
+                <svg class="w-32 h-32 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 2c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h1v2H2v2h4v2H5c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h4c1.11 0 2-.89 2-2v-3c0-1.11-.89-2-2-2H8v-2h8v2h-1c-1.11 0-2 .89-2 2v3c0 1.11.89 2 2 2h4c1.11 0 2-.89 2-2v-3c0-1.11-.89-2-2-2h-1v-2h4v-2h-9V9h1c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2h-4m0 2h4v3h-4V4M5 17h4v3H5v-3m10 0h4v3h-4v-3Z"/></svg>
+                <h2 class="my-4 text-3xl">Background <br> Concepts</h2>
+            </a>
+            <a href="/start/configuration" class="block m-4 p-4 sm:p-10 flex flex-col text-center items-center justify-center shadow hover:shadow-lg rounded-lg border">
+                <svg class="w-32 h-32 text-indigo-600 p-4" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="currentColor"><path fill-rule="evenodd" d="M14.5 10a4.5 4.5 0 0 0 4.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 0 1-.493.11a3.01 3.01 0 0 1-1.618-1.616a.455.455 0 0 1 .11-.494l2.694-2.692c.24-.241.174-.647-.15-.752a4.5 4.5 0 0 0-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.23 6.024a2.724 2.724 0 1 0 3.837 3.837l6.024-7.23c.56-.672 1.495-.855 2.368-.8c.096.007.193.01.291.01ZM5 16a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z" clip-rule="evenodd"></path><path d="M14.5 11.5c.173 0 .345-.007.514-.022l3.754 3.754a2.5 2.5 0 0 1-3.536 3.536l-4.41-4.41l2.172-2.607c.052-.063.147-.138.342-.196a2.28 2.28 0 0 1 .777-.067c.128.008.257.012.387.012ZM6 4.586l2.33 2.33a.452.452 0 0 1-.08.09L6.8 8.214L4.586 6H3.309a.5.5 0 0 1-.447-.276l-1.7-3.402a.5.5 0 0 1 .093-.577l.49-.49a.5.5 0 0 1 .577-.094l3.402 1.7A.5.5 0 0 1 6 3.31v1.277Z"></path></g></svg>
+                <h2 class="my-4 text-3xl">AppHost Configuration</h2>
+            </a>
+            <a href="/start/services" class="block m-4 p-4 sm:p-10 flex flex-col text-center items-center justify-center shadow hover:shadow-lg rounded-lg border">
+                <svg class="w-32 h-32 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="496" height="512" viewBox="0 0 496 512"><path fill="currentColor" d="M88 216c81.7 10.2 273.7 102.3 304 232H0c99.5-8.1 184.5-137 88-232zm32-152c32.3 35.6 47.7 83.9 46.4 133.6C249.3 231.3 373.7 321.3 400 448h96C455.3 231.9 222.8 79.5 120 64z"/></svg>
+                <h2 class="my-4 text-3xl">Services & <br>API Design</h2>
+            </a>
+            <a href="/start/data-access" class="block m-4 p-4 sm:p-10 flex flex-col text-center items-center justify-center shadow hover:shadow-lg rounded-lg border">
+                <svg class="w-32 h-32 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="448" height="512" viewBox="0 0 448 512"><path fill="currentColor" d="M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z"></path></svg>
+                <h2 class="my-4 text-3xl">Data Access</h2>
+            </a>
+            <a href="/start/caching" class="block m-4 p-4 sm:p-10 flex flex-col text-center items-center justify-center shadow hover:shadow-lg rounded-lg border">
+                <svg class="w-32 h-32 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.29 17.29L13 18.59V13a1 1 0 0 0-2 0v5.59l-1.29-1.3a1 1 0 0 0-1.42 1.42l3 3a1 1 0 0 0 .33.21a.94.94 0 0 0 .76 0a1 1 0 0 0 .33-.21l3-3a1 1 0 0 0-1.42-1.42Zm4.13-11.07A7 7 0 0 0 5.06 8.11A4 4 0 0 0 6 16a1 1 0 0 0 0-2a2 2 0 0 1 0-4a1 1 0 0 0 1-1a5 5 0 0 1 9.73-1.61a1 1 0 0 0 .78.67a3 3 0 0 1 .24 5.84a1 1 0 1 0 .5 1.94a5 5 0 0 0 .17-9.62Z"/></svg>
+                <h2 class="my-4 text-3xl">Caching</h2>
+            </a>
+            <a href="/start/clients" class="block m-4 p-4 sm:p-10 flex flex-col text-center items-center justify-center shadow hover:shadow-lg rounded-lg border">
+                <svg class="w-32 h-32 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 1h-8A2.5 2.5 0 0 0 5 3.5v17A2.5 2.5 0 0 0 7.5 23h8a2.5 2.5 0 0 0 2.5-2.5v-17A2.5 2.5 0 0 0 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z"/></svg>
+                <h2 class="my-4 text-3xl">Clients</h2>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="my-20 flex justify-center">
+    <div class="flex items-center">
+        <a href="/start/project-overview">
+            <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+                Project Overview
+            </div>
+        </a>
+        <span class="text-2xl ml-4 text-gray-400">Previous</span>
+    </div>
+</div>
+
+@await Html.PartialAsync("DocsFooter")

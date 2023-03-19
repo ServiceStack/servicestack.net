@@ -24,7 +24,13 @@
                         }
                         RenderNavLink("/whatsnew", "What's New");
                         RenderNavLink("/blog", "Blog");
+                        RenderNavLink("https://docs.servicestack.net", "Docs");
+                        RenderNavLink("https://forums.servicestack.net", "Forums");
+                        RenderNavLink(Html.ApiUrl("/free"), "Free");
+                        RenderNavLink(Html.ApiUrl("/trial"), "Trial");
+                        RenderNavLink(Html.ApiUrl("/pricing"), "Pricing");
                         RenderNavLink("/posts", "Archive");
+                        RenderNavLink(Html.ApiUrl("/account/subscription"), "Sign In");
                     }
                     <li class="relative flex flex-wrap just-fu-start m-0">
                         <div data-component="DarkModeToggle" class="ml-2 w-10"></div>

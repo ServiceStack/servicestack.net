@@ -1,0 +1,441 @@
+﻿@page "/start/services"
+
+@{
+    ViewData["Title"] = "Fundamentals - Services";
+}
+
+@await Html.PartialAsync("DocsHeader", new Shared.DocsHeader {
+   Heading = "Getting Started - Services",
+   SubHeading = "Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you",
+})
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">API Design</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    The primary difference between developing RPC vs ServiceStack's <a href="https://docs.servicestack.net/what-is-a-message-based-web-service">Message-based Services</a> is that the Services entire contract
+                    is defined by its typed messages, specifically the Request DTO which defines both the System inputs and identifies the System output. Typically both are POCO DTOs
+                    however the <a href="https://docs.servicestack.net/service-return-types">response can be any serializable object</a>.
+                </p>
+                <p class="text-left clearfix">
+                    As only the <code class="highlighter-rouge">Any()</code> wildcard method is defined, it will get executed whenever the <code class="highlighter-rouge">GetContacts</code> Service is invoked via <strong>any HTTP Verb</strong>, <a href="https://docs.servicestack.net/grpc">gRPC</a>, <a href="https://docs.servicestack.net/messaging">MQ</a> or <a href="https://docs.servicestack.net/soap-support">SOAP</a> Request.
+                </p>
+                <p class="text-left clearfix">
+                    The Request DTO is also all that’s required to invoke it via any <a href="https://docs.servicestack.net/clients-overview">Typed Generic Service Client</a> in any supported language, e.g: <code>client.Get(new GetContacts());</code>
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/api-design"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class Contact 
+{
+   public int Id { get; set; }
+   public string Name { get; set; }
+}
+
+[Route("/contacts")]
+public class GetContacts : IReturn&lt;List&lt;Contact&gt;&gt; { }
+
+public class ContactsService : Service
+{
+   public object Any(GetContacts request) =&gt; 
+       Db.Select&lt;Contact&gt;();
+}
+</code></pre>
+
+<b>Client.cs</b>
+<pre><code class="language-csharp">var client = new JsonServiceClient(baseUrl);
+
+List&lt;Contact&gt; response = client.Get(new GetContacts());
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Routing</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    Without any configuration required, ServiceStack already includes <a href="https://docs.servicestack.net/routing#pre-defined-routes">pre-defined routes</a> for all services in the format:
+                    <pre>/api?/[xml|json|html|jsv|csv]/[reply|oneway]/[servicename]</pre>
+                    Where <code>servicename</code> is the name of the Request DTO. For example, the pre-defined URL to call a JSON <code>Hello</code> Service is <code style="white-space: nowrap">/json/reply/hello</code>
+                </p>
+                <p class="text-left clearfix">
+                    Friendly custom routes are defined using the <code>RouteAttribute</code> applied to the Request DTO. Variable place holders bind by property name and can be used in the path. For example, the path <code>/hello/world</code> will bind "world" to the <code>Name</code>  property of the Request DTO.
+                </p>
+                <p class="text-left clearfix">
+                    The QueryString, FormData and HTTP Request Body isn’t apart of the Route (i.e. only the /path/info is) but they can all be used in addition to every web service call to further populate the Request DTO. Routing can be limited to specific verbs, have flexible matching rules as well as matching specific service methods to be <code>Content-Type</code> specific.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/routing"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">[Route("/hello")]
+[Route("/hello/{Name}")]
+public class Hello : IReturn&lt;HelloResponse&gt;
+{
+   public string Name { get; set; }
+}
+
+public class HelloResponse
+{
+   public string Result { get; set; }
+}
+
+public class MyServices : Service
+{
+   public object Any(Hello request) =>
+       new HelloResponse {
+           Result = $"Hello, {request.Name}!"
+       };
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">HTTP Verbs</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    ServiceStack Services lets you handle any HTTP Verb in the same way by using a matching method name in your Service class. Routing by default will match All HTTP verbs, but an additional parameter can be specified to limit routes to individual verbs. This lets you route the same path to different services.
+                </p>
+                <p class="text-left clearfix">
+                    Multiple verbs on a <code>Route</code> can be used with a single <code>Any</code> service method to handle situations where you want multiple, but specific, verbs to map to a single service method like handling both the creation and update of a resource.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/api-design#handling-different-http-verbs"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class ContactServices
+{
+   public object Get(GetContacts request)
+   {
+       var contacts = request.Id == null ? 
+           Db.Select&lt;Contact&gt;() :
+           Db.Select&lt;Contact&gt;(x =&gt; x.Id == request.Id.ToInt());
+       return contacts;
+   }
+   
+   public object Any(UpdateContact request)
+   {
+       var contact = Db.SingleById&lt;Contact&gt;(request.Id);
+       contact.PopulateWith(request);
+       Db.Update(contact);
+       return contact;
+   }
+   
+   public void Delete(DeleteContact request) =&gt;
+       Db.Delete&lt;Contact&gt;(x =&gt; x.Id == request.Id);
+}
+</code></pre>
+
+<b>Contacts.cs</b>
+<pre><code class="language-csharp">[Route("/contacts", "GET")]
+[Route("/contacts/{Id}", "GET")]
+public class GetContacts : IReturn&lt;List&lt;Contact&gt;&gt;
+{ 
+   public int? Id { get; set; }
+}
+
+[Route("/contacts/{Id}", "PATCH PUT")]
+public class UpdateContact : IReturn&lt;Contact&gt;
+{
+   public int Id { get; set; }
+}
+
+[Route("/contacts/{Id}", "DELETE")]
+public class DeleteContact : IReturnVoid
+{
+   public int Id { get; set; }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Filters</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    ServiceStack has several ways to have custom filter methods on requests and responses. Global filters will fire every request/response allowing you to apply your own generic custom behavior across your application.
+                </p>
+                <p class="text-left clearfix">
+                    Typed request/response filters give you a strongly typed API for specific message types. These can be registered for MQ and HTTP independently. All filters can access the underlying Request, Response and related typed DTO. If you need access to resources from your IoC, you can also register Autowired Typed Filters which can have IoC dependencies injected like services.
+                </p>
+                <p class="text-left clearfix">
+                    Filter attributes are another powerful way to have generic filter that can be then applied to service methods as .NET attributes as needed. An example of this is the ServiceStack <code>[Authenticate]</code> and <code>[RequiredPermission]</code> attributes are filter attributes.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/request-and-response-filters"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+
+   public override void Configure(Container container)
+   {
+       GlobalRequestFilters.Add((req, res, requestDto) =&gt; {
+           var sessionId = req.GetCookieValue("user-session");
+           if (sessionId == null)
+               res.ReturnAuthRequired();
+       });
+
+       RegisterTypedRequestFilter&lt;Resource&gt;((req, res, dto) =&gt;
+       {
+           var route = req.GetRoute();
+           if (route?.Path == "/tenant/{Name}/resource")
+               dto.SubResourceName = "CustomResource";
+       });
+   }
+}
+
+public class MyServices : Service
+{
+   [NoNumbersInPath]
+   public object Any(Hello request)
+   {
+       return new HelloResponse {
+           Result = $"Hello, {request.Name}!"
+       };
+   }
+}
+
+public class NoNumbersInPathAttribute : RequestFilterAttribute
+{
+   public override void Execute(IRequest req, IResponse res, 
+       object requestDto)
+   {
+       if (Regex.IsMatch(req.PathInfo, "[0-9]"))
+           throw HttpError.BadRequest("No numbers");
+   }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Validation</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    As validation and error handling is an essential part of developing services, ServiceStack provides a rich array of error handling options that work intuitively out-of-the-box.
+                </p>
+                <p class="text-left clearfix">
+                    The <code class="highlighter-rouge">ValidationFeature</code> plugin automatically scans and auto-wires all validators in the <code class="highlighter-rouge">AppHost.ServiceAssemblies</code> that’s injected in the <code class="highlighter-rouge">AppHost</code> constructor. Like services registered in the IoC container, validators are also auto-wired, so if there’s a public property which can be resolved by the IoC container, the IoC container will inject it.
+                </p>
+                <p class="text-left clearfix">
+                    The validation rules for this request dto are made with <a href="https://github.com/JeremySkinner/FluentValidation/wiki">FluentValidation</a>. ServiceStack makes heavy use of <a href="https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#rulesets">rule sets</a> to provide different validation rules for each HTTP method (GET, POST, PUT…). This enables developers to write comprehensive validation rules to suit complex business requirements.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/validation"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+
+   public override void Configure(Container container)
+   {
+       // Register custom validator
+       container.Register&lt;IAddressValidator&gt;(
+           new AddressValidator());
+   }
+}
+
+// ServiceInterface
+public class MyServices : Service
+{
+   public object Post(CreateUser request)
+   {
+       var id = Db.Insert(request.ConvertTo&lt;User&gt;());
+       var user = Db.SingleById&lt;User&gt;(id);
+       return user;
+   }
+}
+
+public interface IAddressValidator
+{
+   bool ValidAddress(string address);
+}
+
+public class AddressValidator : IAddressValidator
+{
+   public bool ValidAddress(string address)
+   {
+       return address != null
+          && address.Length &gt;= 20
+          && address.Length &lt;= 250;
+   }
+}
+
+public class UserValidator : AbstractValidator&lt;CreateUser&gt;
+{
+   // Resolved from IoC
+   public IAddressValidator AddressValidator { get; set; }
+
+   public UserValidator()
+   {
+       //Validation rules for all requests
+       RuleFor(r =&gt; r.Name).NotEmpty();
+       RuleFor(r =&gt; r.Age).GreaterThan(0);
+       RuleFor(x =&gt; x.Address).Must(x =&gt; 
+           AddressValidator.ValidAddress(x));
+   }
+}
+
+// ServiceModel
+[Route("/users", "POST")]
+public class CreateUser : IReturn&lt;User&gt;
+{
+   public string Name { get; set; }
+   public string Company { get; set; }
+   public int Age { get; set; }
+   public int Count { get; set; }
+   public string Address { get; set; }
+}
+
+public class User
+{
+   [AutoIncrement]
+   public int Id { get; set; }
+   public string Name { get; set; }
+   public string Company { get; set; }
+   public int Age { get; set; }
+   public int Count { get; set; }
+   public string Address { get; set; }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Formats</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    ServiceStack bundles support for 5 default formats. Those are HTML, JSON, XML, CSV and JSV. Additionally ServiceStack has support for SOAP, Message Pack, Protocol Buffers and Wire. Since ServiceStack is message based, the serialization of requests and responses are completely interchangeable.
+                </p>
+                <p class="text-left clearfix">
+                    ServiceStack Services supports a number of <a href="https://docs.servicestack.net/routing#content-negotiation">Content Negotiation</a> options where you can define which
+                    format should be returned by adding a <code class="highlighter-rouge" style="white-space: nowrap">.{format}</code> extension to your <code class="highlighter-rouge">/route.{format}</code>. For example, <code>/hello/world.json</code> and <code>/hello/world?format=json</code> will both respond to in the JSON format.
+                </p>
+                <p class="text-left clearfix">
+                    Adding these additional formatters like MessagePack can be done by including the relevant dependency from NuGet and adding support using <code>Plugins.Add</code>. For Example, adding the NuGet package <code>ServiceStack.MsgPack</code> and then in the AppHost, <code style="white-space: nowrap">Plugins.Add(new MsgPackFormat());</code>.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/formats"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+
+   public override void Configure(Container container)
+   {
+       // Add additional format support by using Plugins
+       Plugins.Add(new MsgPackFormat());
+   }
+}
+
+public class MyServices : Service
+{
+   // HTML, JSON, CSV, XML and JSV enabled by default
+   public object Any(Hello request) =&gt;
+       new HelloResponse {
+           Result = $"Hello, {request.Name}"
+       };
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="my-20 flex justify-center">
+    <div class="flex items-center">
+        <a href="/start/fundamentals">
+            <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+                Fundamentals
+            </div>
+        </a>
+        <span class="text-2xl ml-4 text-gray-400">Previous</span>
+    </div>
+</div>
+
+@await Html.PartialAsync("DocsFooter")

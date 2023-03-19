@@ -1,0 +1,153 @@
+﻿@page "/start/caching"
+
+@{
+    ViewData["Title"] = "Fundamentals - Caching";
+}
+
+@await Html.PartialAsync("DocsHeader", new Shared.DocsHeader {
+   Heading = "Getting Started - Caching",
+   SubHeading = "Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you",
+})
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Setting up a caching provider</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="pt-4 text-left clearfix">
+                    By default, a <code>MemoryCacheClient</code> is configured without any additional code in an AppHost. This means the all the features that use <code>ICacheClient</code> will work out of the box with no additional setup.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    Configuring to use another implementation requires registering <code>ICacheClient</code> with your applications IoC. These will usually be registered as a factory <code>Func</code> that resolves a single client from a pool.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/caching#configure-caching-providers"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web", 
+       typeof(MyServices).Assembly) { }
+
+   public override void Configure(Container container)
+   {
+       container.Register&lt;IRedisClientsManager&gt;(c =&gt; 
+           new RedisManagerPool("localhost:6379"));
+
+       container.Register(c =&gt;
+           c.Resolve&lt;IRedisClientsManager&gt;().GetCacheClient());
+   }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Supported Caching Providers</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="pt-4 text-left clearfix">
+                    ServiceStack comes with support for multiple Cache Providers out of the box. These include:
+                </p>
+                <ul>
+                    <li class="list-inside list-disc">Memory Cache</li>
+                    <li class="list-inside list-disc">Redis</li>
+                    <li class="list-inside list-disc">OrmLiteCacheClient</li>
+                    <li class="list-inside list-disc">AWS DynamoDb</li>
+                    <li class="list-inside list-disc">Azure Table Storage</li>
+                    <li class="list-inside list-disc">Memcached</li>
+                </ul>
+                <p class="pt-4 text-left clearfix">
+                    Each of these options have their own strengths. <code>MemoryCache</code> is useful for single host web services without needing any infrastructure dependencies. <code>Redis</code> is a common choice due to being a fast key-value store with non-volatile persistent storage and support for rich comp-sci data structures.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    <code>OrmLiteCacheClient</code> supports all <a href="https://docs.servicestack.net/ormlite/installation">OrmLite’s RDBMS providers</a> for using an existing RDBMS as a distributed cache. <code>Memcached</code> is a tried and tested distributed memory caching provider. <code>AWS DynamoDb</code> and <code>Azure Table Storage</code> give you option to use cloud managed solution that may better suit your use case.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/caching"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<b>Redis</b>
+<pre><code class="language-csharp">container.Register&lt;IRedisClientsManager&gt;(c =&gt; 
+  new RedisManagerPool("localhost:6379"));
+
+container.Register(c =&gt;
+  c.Resolve&lt;IRedisClientsManager&gt;().GetCacheClient());
+</code></pre>
+
+<b>OrmLite</b>
+<pre><code class="language-csharp">// Register OrmLite Db Factory if not already
+container.Register&lt;IDbConnectionFactory&gt;(c =&gt; 
+   new OrmLiteConnectionFactory(connString,
+       SqlServerDialect.Provider));
+
+container.RegisterAs&lt;OrmLiteCacheClient,ICacheClient&gt;();
+
+// Create 'CacheEntry' RDBMS table if doesn't exist
+container.Resolve&lt;ICacheClient&gt;().InitSchema();
+
+// Alternatively, MS SQL Server Optimized cache can
+// be used for improved performance
+container.Register&lt;ICacheClient&gt;(c =&gt; 
+   new OrmLiteCacheClient&lt;SqlServerMemoryOptimizedCacheEntry&gt;());
+</code></pre>
+
+<b>Azure</b>
+<pre><code class="language-csharp">container.Register&lt;ICacheClient&gt;(
+   new AzureTableCacheClient(cacheConnStr));
+</code></pre>
+
+<b>Aws</b>
+<pre><code class="language-csharp">var awsDb = new AmazonDynamoDBClient(
+   Secrets.AWS_ACCESS_KEY, 
+   Secrets.AWS_SECRET_KEY, 
+   RegionEndpoint.USEast1);
+
+container.Register&lt;IPocoDynamo&gt;(new PocoDynamo(awsDb));
+container.Register&lt;ICacheClient&gt;(c =&gt; 
+   new DynamoDbCacheClient(c.Resolve&lt;IPocoDynamo&gt;()));
+
+// Create 'CacheEntry' DynamoDB table if doesn't exist
+container.Resolve&lt;ICacheClient&gt;().InitSchema();
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="my-20 flex justify-center">
+    <div class="flex items-center">
+        <a href="/start/fundamentals">
+            <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+                Fundamentals
+            </div>
+        </a>
+        <span class="text-2xl ml-4 text-gray-400">Previous</span>
+    </div>
+</div>
+
+@await Html.PartialAsync("DocsFooter")

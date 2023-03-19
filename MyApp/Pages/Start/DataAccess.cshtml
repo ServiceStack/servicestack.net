@@ -1,0 +1,224 @@
+﻿@page "/start/data-access"
+
+@{
+    ViewData["Title"] = "Fundamentals - Data Access";
+}
+
+@await Html.PartialAsync("DocsHeader", new Shared.DocsHeader {
+   Heading = "Getting Started - Data Access",
+   SubHeading = "Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you",
+})
+
+
+<div class="bg-white dark:bg-black py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-5xl">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Introducing OrmLite</h2>
+            <p class="mt-2 text-lg leading-8 text-gray-600">
+                OrmLite's goal is to provide a convenient, DRY, config-free, RDBMS-agnostic typed wrapper that retains a high affinity with SQL, exposing intuitive APIs that generate predictable SQL and maps cleanly to (DTO-friendly) disconnected POCO's.
+            </p>
+            <p class="mt-2 text-lg leading-8 text-gray-600">
+                This approach makes easier to reason-about your data access making it obvious what SQL is getting executed at what time, whilst mitigating unexpected behavior, implicit N+1 queries and leaky data access prevalent in Heavy ORMs.
+            </p>
+            <p class="mt-2 text-lg leading-8 text-gray-600">
+                In OrmLite: <strong>1 Class = 1 Table</strong>. There should be no surprising or hidden behaviour, the Typed API that produces the Query doesn't impact how results get intuitively mapped to the returned POCO's which could be different to the POCO used to create the query, e.g. containing only a subset of the fields you want populated.
+            </p>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/ormlite/"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">Learn
+                    more</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Supported Databases</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="pt-4 text-left clearfix">
+                    OrmLite supports most popular RDBMS platforms including:
+                </p>
+                <ul>
+                    <li class="list-disc list-inside">PostgreSQL</li>
+                    <li class="list-disc list-inside">Microsoft SQL Server</li>
+                    <li class="list-disc list-inside">MySQL</li>
+                    <li class="list-disc list-inside">Sqlite</li>
+                </ul>
+                <p class="pt-4 text-left clearfix">
+                    When registering your <code>IDbConnectionFactory</code> in your IoC, you can specify which <code>Provider</code> to use. These providers are available in the respective NuGet packages.
+                </p>
+                <ul>
+                    <li class="list-disc list-inside"><a href="http://nuget.org/List/Packages/ServiceStack.OrmLite.PostgreSQL">ServiceStack.OrmLite.PostgreSQL</a></li>
+                    <li class="list-disc list-inside"><a href="http://nuget.org/List/Packages/ServiceStack.OrmLite.SqlServer">ServiceStack.OrmLite.SqlServer</a></li>
+                    <li class="list-disc list-inside"><a href="http://nuget.org/List/Packages/ServiceStack.OrmLite.MySql">ServiceStack.OrmLite.MySql</a></li>
+                    <li class="list-disc list-inside"><a href="http://nuget.org/packages/ServiceStack.OrmLite.Sqlite">ServiceStack.OrmLite.Sqlite</a></li>
+                </ul>
+                <p class="pt-4 text-left clearfix">
+                    These packages contain both <strong>.NET Framework v4.5</strong>> and <strong>.NET Standard 2.0</strong> versions and supports both .NET Framework and .NET Core projects.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/ormlite/installation"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+
+   public override void Configure(Container container)
+   {
+       var connectionString =
+           "Server=127.0.0.1;Port=5432;" +
+           "Database=host;User Id=user;" +
+           "Password=myPassword;";
+           
+       container.Register&lt;IDbConnectionFactory&gt;(
+           new OrmLiteConnectionFactory(
+               connectionString,
+               PostgreSqlDialect.Provider));
+   }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">API Overview</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="pt-4 text-left clearfix">
+                    OrmLite makes available most of its functionality via extension methods to add enhancments over ADO.NET's <strong>IDbConnection</strong>, providing a Typed RDBMS-agnostic API that transparently handles differences in each supported RDBMS provider.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    OrmLite public API's also have async equivalents of the same name and an additional conventional *Async suffix. The Async API's also take an optional CancellationToken, where you just need to add the <code>Async</code> suffix and <code>await</code> keyword.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    Whilst OrmLite aims to provide a light-weight typed wrapper around SQL, it offers a number of convenient features that makes working with RDBMS's a clean and enjoyable experience, including:
+                </p>
+                <ul>
+                    <li class="list-disc list-inside">Typed SqlExpression support for JOINs</li>
+                    <li class="list-disc list-inside">References by attributes</li>
+                    <li class="list-disc list-inside">Self References</li>
+                    <li class="list-disc list-inside">Merge results</li>
+                    <li class="list-disc list-inside">Nested JOIN table expressions</li>
+                </ul>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/ormlite/ormlite-apis"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+            <img src="/img/start/OrmLiteApi.png" alt="OrmLite API overview">
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Example queries</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="pt-4 text-left clearfix">
+                    Strongly typed LINQ query expressions give an intuitive way to query your database. Equal, GreaterThan, LessThan translate as expected as well as server side utility functions like <code>StartsWith</code>, <code>EndsWith</code> and <code>Contains</code>.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    <code>Sql.In</code> enables the ability to easily perform <code>IN</code> queries with static lists. Other helpful functions like aggregations of <code>SUM</code>, <code>AVG</code>, <code>MIN</code> and <code>MAX</code> are also easily accessible.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/ormlite/apis/select"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">var dbFactory = HostContext.Resolve&lt;IDbConnectionFactory&gt;();
+using var db = dbFactory.OpenDbConnection();
+
+int year = DateTime.Today.AddYears(-20).Year;
+db.Select&lt;Author&gt;(x =&gt; x.Birthday &gt;= new DateTime(year,1,1)
+                   && x.Birthday &lt;= new DateTime(year,12,31));
+                   
+db.Select&lt;Author&gt;(x =&gt; Sql.In(x.City, "London","Madrid","Rome"))
+
+db.Select&lt;Author&gt;(x =&gt; x.Earnings &lt;= 50);
+
+db.Select&lt;Author&gt;(x =&gt; x.Name.StartsWith("A"));
+
+db.Select&lt;Author&gt;(x =&gt; x.Name.EndsWith("garzon"));
+
+db.Select&lt;Author&gt;(x =&gt; x.Name.Contains("Benedict"));
+
+//implicit Server SQL string casting
+db.Select&lt;Author&gt;(x =&gt; x.Rate.ToString() == "10"); 
+
+//Server SQL string concatenation
+db.Select&lt;Author&gt;(x =&gt; "Rate " + x.Rate == "Rate 10"); 
+</code></pre>
+            
+<b>Author.cs</b>
+<pre><code class="language-csharp">public class Author
+{
+   public Author(){}
+   [AutoIncrement]
+   [Alias("AuthorID")]
+   public Int32 Id { get; set;}
+   [Index(Unique = true)]
+   [StringLength(40)]
+   public string Name { get; set;}
+   public DateTime Birthday { get; set;}
+   public DateTime ? LastActivity  { get; set;}
+   public Decimal? Earnings { get; set;}  
+   public bool Active { get; set; } 
+   [StringLength(80)]
+   [Alias("JobCity")]
+   public string City { get; set;}
+   [StringLength(80)]
+   [Alias("Comment")]
+   public string Comments { get; set;}
+   public Int16 Rate { get; set;}
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="my-20 flex justify-center">
+    <div class="flex items-center">
+        <a href="/start/fundamentals">
+            <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+                Fundamentals
+            </div>
+        </a>
+        <span class="text-2xl ml-4 text-gray-400">Previous</span>
+    </div>
+</div>
+
+@await Html.PartialAsync("DocsFooter")

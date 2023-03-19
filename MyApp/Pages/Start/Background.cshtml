@@ -1,0 +1,161 @@
+﻿@page "/start/background"
+
+@{
+    ViewData["Title"] = "Fundamentals - Background Concepts";
+}
+
+
+@await Html.PartialAsync("DocsHeader", new Shared.DocsHeader {
+   Heading = "Getting Started - Background Concepts",
+   SubHeading = "Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you",
+})
+
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Vae0ALalIP0" style="background-image: url('https://img.youtube.com/vi/Vae0ALalIP0/maxresdefault.jpg')"></lite-youtube>
+</div>
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+        <svg class="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]" aria-hidden="true">
+            <defs>
+                <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+                    <path d="M100 200V.5M.5 .5H200" fill="none"/>
+                </pattern>
+            </defs>
+            <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+                <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0"/>
+            </svg>
+            <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)"/>
+        </svg>
+    </div>
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div class="lg:pr-4">
+                <div class="lg:max-w-lg">
+                    <p class="text-base font-semibold leading-7 text-indigo-600">Learn</p>
+                    <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">What is a Message-based WebService?</h1>
+                    <p class="mt-6 text-xl leading-8 text-gray-700">
+                        Message-based design is enabled in ServiceStack by capturing the Services Request Query into a 
+                        Request DTO that’s completely de-coupled from any one implementation.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+            <div class="w-full px-4 py-2">
+                <div class="flex flex-wrap px-10">
+                    <div class="mt-16 lg:mt-24">
+                        <img src="/img/start/dtos-role.png"  alt="Diagram for the role of DTOs">
+                        <img src="/img/start/servicestack-httpclients.png" alt="Diagram for the role of DTOs">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div class="lg:pr-4">
+                <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                    <p class="text-left clearfix">
+                        There are many natural benefits gained when <a href="https://docs.servicestack.net/advantages-of-message-based-web-services">adopting a message-based design</a> they offer better resilience, flexibility, versionability than their RPC cousins.
+                        Most of the benefits of message-based designs are gained over time as you’re developing and evolving your existing services and adding support for more clients.
+                        <strong>One immediate benefit is being able to provide an end-to-end typed API without the use of code-gen</strong>. This is impossible to achieve without a message-based design which ensures the essence of your Service Contract is captured in re-usable DTOs.
+                    </p>
+                    <p class="text-left clearfix">
+                        Conceptually in ServiceStack you’re just sending a message to a ServiceStack instance, the client is not concerned with what ultimately handles it, only that a response is returned for reply requests or that the request is successfully accepted for oneway messages. In a RPC API you’re conceptually invoking a remote method which has the request tightly coupled to its remote implementation method signature.
+                    </p>
+                </div>
+
+                <div class="buttons text-center sm:text-left my-8">
+                    <a href="https://docs.servicestack.net/api-design"
+                       class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                        Learn more
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">API First Development</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="pt-4 text-left clearfix">
+                    The message based approach ServiceStack takes goes hand in hand with API first development.
+                    Having well-defined, coarse-grained Service Contracts which are made up from decoupled, implementation free message DTO, enables a client agnostic API for all client types since they all consume the same published APIs as each other.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    If your Services retain this property then they’ll be able to encapsulate any of its capabilities of infinite complexity and make it available remotely to all consumers with never any more complexity than the cost of a Service call.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    This is ultimately where most of the value of Services are derived, they’re the ultimate form of encapsulating complexity and offers the highest level
+                    of software reuse. ServiceStack amplifies your Services capabilities by making them available in multiple <a href="https://docs.servicestack.net/why-servicestack#multiple-hosting-options">Hosting Options</a>,
+                    <a href="https://docs.servicestack.net/why-servicestack#multiple-pluggable-formats">serialization formats</a>, <a href="https://docs.servicestack.net/why-servicestack#multiple-endpoints">MQ and SOAP endpoints</a> to
+                    enable more seamless integrations in a variety of different scenarios including native end-to-end Typed APIs for the most popular
+                    <a href="https://docs.servicestack.net/why-servicestack#multiple-clients">Web, Mobile and Desktop Apps</a> that reduce the effort and complexity required to call your Services
+                    in all consumers - multiplicatively increasing the value provided.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/api-design#handling-different-http-verbs"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+            <img src="/img/start/servicestack-logical-view-02.png" alt="ServiceStack architecture">
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Architecture Overview</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="pt-4 text-left clearfix">
+                    Ultimately behind-the-scenes ServiceStack is just built on top of ASP.NET’s Raw
+                    <a href="https://msdn.microsoft.com/en-us/library/ms227433.aspx">IHttpAsyncHandler</a>.
+                    Existing abstractions and <a href="http://mono.servicestack.net/mvc-powerpack/">xmlconfig-encumbered legacy ASP.NET providers</a> have been abandoned,
+                    in favour of fresh, simple and clean <a href="https://docs.servicestack.net/caching">Caching</a>, <a href="https://docs.servicestack.net/sessions">Session</a>
+                    and <a href="https://docs.servicestack.net/authentication-and-authorization">Authentication</a> providers all based on clean POCOs,
+                    supporting multiple back-ends and all working seamlessly together.
+                </p>
+                <p class="pt-4 text-left clearfix">
+                    ServiceStack’s <a href="https://docs.servicestack.net/advantages-of-message-based-web-services">Message-based design</a> allows us to easily support <a href="https://docs.servicestack.net/clients-overview">typed, generic and re-usable Service Clients</a> for all our popular formats.
+                    Having all clients share the same interface allow them to be hot-swappable at run-time without code changes and keep them highly testable where the same unit test can also <a href="https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.IntegrationTests/Tests/WebServicesTests.cs">serve as an XML, JSON, JSV, SOAP Integration Test</a>.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/api-design#handling-different-http-verbs"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+            <img src="/img/svgs/servicify.svg" alt="ServiceStack architecture">
+        </div>
+    </div>
+</div>
+
+<div class="my-20 flex justify-center">
+    <div class="flex items-center">
+        <a href="/start/fundamentals">
+        <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+            <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+            Fundamentals
+            </div>
+        </a>
+        <span class="text-2xl ml-4 text-gray-400">Previous</span>
+    </div>
+</div>
+
+@await Html.PartialAsync("DocsFooter")

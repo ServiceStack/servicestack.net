@@ -1,0 +1,193 @@
+﻿@page "/start/project-overview"
+
+@{
+    ViewData["Title"] = "Project Overview";
+}
+
+@await Html.PartialAsync("DocsHeader", new Shared.DocsHeader {
+   Heading = "Getting Started - How it works",
+   SubHeading = "Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you",
+})
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+        <svg class="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]" aria-hidden="true">
+            <defs>
+                <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+                    <path d="M100 200V.5M.5 .5H200" fill="none"/>
+                </pattern>
+            </defs>
+            <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+                <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0"/>
+            </svg>
+            <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)"/>
+        </svg>
+    </div>
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div class="lg:pr-4">
+                <div class="lg:max-w-lg">
+                    <p class="text-base font-semibold leading-7 text-indigo-600">Project Overview</p>
+                    <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Project Structure</h1>
+                    <p class="mt-6 text-xl leading-8 text-gray-700">
+                        All templates have a <b>.sln</b> file which you can open with your favorite C# IDE.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+            <div class="w-full px-4 py-2">
+                <div class="flex flex-wrap px-10">
+                    <img class="w-1/2" src="/img/start/default-template-files.png" alt="Default file explorer with template.">
+                    <img class="w-1/2" src="/img/start/solution-layout.png" alt="Default file explorer with template.">
+                </div>
+            </div>
+        </div>
+        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div class="lg:pr-4">
+                <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                    <p>
+                        Most project templates adopts ServiceStack's recommended Physical Project Structure with solutions
+                        separated into their individual logical components:
+                    </p>
+                    <div>
+                        <ul class="mb-2">
+                            <li>
+                                <a href="https://docs.servicestack.net/create-your-first-webservice#host-project">Host</a>
+                            </li>
+                            <li>
+                                <a href="https://docs.servicestack.net/create-your-first-webservice#serviceinterface-project">Service Interface</a>
+                            </li>
+                            <li>
+                                <a href="https://docs.servicestack.net/create-your-first-webservice#servicemodel-project">Service Model</a>
+                            </li>
+                            <li>
+                                <a href="https://docs.servicestack.net/create-your-first-webservice#test-project">Tests</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <p>
+                        Ensuring ServiceStack solutions start off from an optimal logical project layout that lays the
+                        foundation for a growing maintainable, cohesive and reusable code-base.
+                    </p>
+                    <p class="info-note">
+                        Many SPA project templates use npm which requires running <code>npm install</code> on the
+                        Host project (MyApp) before running the application.
+                    </p>
+                    <p>
+                        Templates are designed with developer workflows in mind, specific to each template. Building
+                        on existing OSS tooling like Vue CLI, and useful NPM scripts, you'll get everything you need
+                        to start integrating with your ServiceStack server quickly right from the beginning.
+                    </p>
+                    <p>
+                        Template specific workflows are documented within the <code>README.md</code> for each template.
+                    </p>
+                </div>
+
+                <div class="buttons text-center sm:text-left my-8">
+                    <a href="https://docs.servicestack.net/physical-project-structure"
+                       class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                        Learn
+                        more
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">How does it work?</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+
+                <p class="py-4 text-left clearfix">
+                    Now that your new project is running, let’s have a look at what we have. The template comes with
+                    a single web service route which comes from the request DTO (Data Transfer Object) which is
+                    located in the <code>MyApp.ServiceModel/Hello.cs</code> file.
+                </p>
+                <p class="py-2 text-left clearfix">
+                    The <code>Route</code> attribute is specifying what path <code>/hello/{Name}</code> where <code>{Name}</code>
+                    binds its value to the public string property of Name.
+                </p>
+                <p class="py-2 text-left clearfix">
+                    The <code>MyServices</code> class is a ServiceStack service with a method utilizing the <code>Hello</code>
+                    and <code>HelloResponse</code> DTOs. The name of the method <code>Any</code> means the server
+                    will run this method for any of the valid HTTP Verbs. Service methods are where you control what
+                    returns from your service.
+                </p>
+                <p class="py-2 text-left clearfix">
+                    Accessing the <a href="https://web.web-templates.io/hello/world">route using your browser</a>
+                    via the <code>/hello/world</code> route, you will see a snapshot of the Result in a friendly
+                    HTML response format. To change the return format to JSON, simply add <code>?format=json</code>
+                    to the end of the URL.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/your-first-webservice-explained"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn
+                    more
+                </a>
+            </div>
+        </div>
+        <div class="w-full mt-8" data-wow-offset="10" data-wow-duration="1.5s">
+            <div>
+<pre><code class="language-csharp">[Route("/hello/{Name}")]
+public class Hello : IReturn&lt;HelloResponse&gt;
+{
+    public string Name { get; set; }
+}
+
+public class HelloResponse
+{
+    public string Result { get; set; }
+}
+
+public class MyServices : Service
+{
+    public object Any(Hello request) =&gt;
+        new HelloResponse {
+            Result = $"Hello, {request.Name}!"
+        };
+}
+</code></pre>                
+                
+            </div>
+            <div class="pt-4">
+                <h2>View in <a href="https://docs.servicestack.net/api-explorer">API Explorer</a></h2>
+                <a href="https://web.web-templates.io/ui/Hello">
+                    <img src="/img/start/hello-world-html.png" class="mt-4 border border-gray-200"
+                         alt="HTML result of the hello world route.">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="my-20 mx-auto lg:max-w-7xl flex justify-between">
+        <div class="flex items-center mx-4">
+            <a href="/start">
+                <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                    <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+                    New Project
+                </div>
+            </a>
+        </div>
+        <div class="flex items-center mx-4">
+            <a href="/start/fundamentals">
+                <div class="rounded-md py-2 pl-6 pr-2 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                    Fundamentals
+                    <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.4 18L8 16.6l4.6-4.6L8 7.4L9.4 6l6 6Z"/></svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("DocsFooter")
