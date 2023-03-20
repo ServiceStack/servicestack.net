@@ -26,7 +26,8 @@ sophisticated development workflow without the need for any npm build tools.
 
 ### Bringing Simplicity Back
 
-This template focuses on simplicity and eschews many aspects that has complicated modern JavaScript development,
+The [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs) template focuses on simplicity and eschews many aspects that has 
+complicated modern JavaScript development,
 specifically:
 
  - No npm node_modules or build tools
@@ -46,7 +47,7 @@ native to modern browsers able to efficiently download the declarative matrix of
 
 ### Best libraries for progressive Multi Page Apps
 
-By default this template includes a collection of libraries we believe offers the best modern development experience in Progressive
+It includes a collection of libraries we believe offers the best modern development experience in Progressive
 MPA Web Apps, specifically:
 
 #### [Tailwind CLI](https://tailwindcss.com/docs/installation)
@@ -124,7 +125,8 @@ const Plugin = {
 
 ### @servicestack/vue
 [@servicestack/vue](https://github.com/ServiceStack/servicestack-vue) is our growing Vue 3 Tailwind component library with a number of rich Tailwind components useful 
-in .NET Web Apps, including Input Components with auto form validation binding which is used by all HTML forms in this template. 
+in .NET Web Apps, including Input Components with auto form validation binding which is used by all HTML forms in
+the [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs) template. 
 
 <div data-component="VueComponentGallery"></div>
 
@@ -532,8 +534,7 @@ Or if you don't want your Web App to reference any external dependencies, have t
 #### Polyfill for Safari
 
 Unfortunately Safari is the last modern browser to [support import maps](https://caniuse.com/import-maps) which is only now in
-Technical Preview. Luckily this feature can be polyfilled with the [ES Module Shims](https://github.com/guybedford/es-module-shims)
-that's configured in this template:
+Technical Preview. Luckily this feature can be polyfilled with the [ES Module Shims](https://github.com/guybedford/es-module-shims):
 
 ```html
 @if (Context.Request.Headers.UserAgent.Any(x => x.Contains("Safari") && !x.Contains("Chrome")))
@@ -588,7 +589,7 @@ main navigation links:
 ```
 
 htmx has lots of useful [real world examples](https://htmx.org/examples/) that can be activated with declarative attributes, 
-another feature this template uses is the [class-tools](https://htmx.org/extensions/class-tools/) extension to hide elements from 
+another useful feature is the [class-tools](https://htmx.org/extensions/class-tools/) extension to hide elements from 
 appearing until after the page is loaded:
 
 ```html
