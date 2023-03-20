@@ -1130,6 +1130,11 @@ input[data-autocompleted] {
   margin-right: -1rem;
 }
 
+.-my-4 {
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -1398,6 +1403,10 @@ input[data-autocompleted] {
   display: none;
 }
 
+.aspect-\[9\/10\] {
+  aspect-ratio: 9/10;
+}
+
 .h-14 {
   height: 3.5rem;
 }
@@ -1614,6 +1623,10 @@ input[data-autocompleted] {
   width: 24rem;
 }
 
+.w-44 {
+  width: 11rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -1776,6 +1789,16 @@ input[data-autocompleted] {
 
 .rotate-180 {
   --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-2 {
+  --tw-rotate: 2deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-rotate-2 {
+  --tw-rotate: -2deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2484,6 +2507,16 @@ input[data-autocompleted] {
   background-color: rgb(21 128 61 / var(--tw-bg-opacity));
 }
 
+.bg-zinc-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
+}
+
+.bg-slate-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
 }
@@ -2898,6 +2931,14 @@ input[data-autocompleted] {
 
 .pb-16 {
   padding-bottom: 4rem;
+}
+
+.pt-40 {
+  padding-top: 10rem;
+}
+
+.pb-36 {
+  padding-bottom: 9rem;
 }
 
 .text-left {
@@ -4490,6 +4531,11 @@ input[data-autocompleted] {
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
+.dark .dark\:bg-zinc-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:fill-gray-300 {
   fill: #d1d5db;
 }
@@ -5023,6 +5069,10 @@ input[data-autocompleted] {
     width: 11rem;
   }
 
+  .sm\:w-72 {
+    width: 18rem;
+  }
+
   .sm\:max-w-3xl {
     max-width: 48rem;
   }
@@ -5108,6 +5158,10 @@ input[data-autocompleted] {
 
   .sm\:gap-12 {
     gap: 3rem;
+  }
+
+  .sm\:gap-8 {
+    gap: 2rem;
   }
 
   .sm\:gap-x-4 {
@@ -5247,6 +5301,10 @@ input[data-autocompleted] {
 
   .sm\:pb-4 {
     padding-bottom: 1rem;
+  }
+
+  .sm\:pt-40 {
+    padding-top: 10rem;
   }
 
   .sm\:text-left {
