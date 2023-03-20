@@ -7,6 +7,13 @@ public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
 {
     public MarkdownVideos(ILogger<MarkdownVideos> log) : base(log) {}
     public Dictionary<string, List<MarkdownFileInfo>> Groups { get; set; } = new();
+
+    public List<MarkdownFileInfo> GetVideos(string group)
+    {
+        return Groups.TryGetValue(group, out var doc)
+            ? Fresh(doc)
+            : new List<MarkdownFileInfo>();
+    }
     
     public void LoadFrom(string fromDirectory)
     {

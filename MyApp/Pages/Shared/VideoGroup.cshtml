@@ -3,7 +3,7 @@
 @inject MarkdownVideos Videos
 
 @{
-    var videos = Videos.Groups[Model.Group];
+    var videos = Videos.GetVideos(Model.Group);
 }
 
 <section>

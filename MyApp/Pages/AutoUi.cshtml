@@ -6,6 +6,47 @@
     ViewData["Brand"] = "ServiceStack UIs";
 }
 
+@await Html.PartialAsync("VideoIncludes")
+
+@await Html.PartialAsync("VideoHero", new Shared.VideoHero {
+    BackgroundUrl = "/img/backgrounds/bg-header3.jpg",
+    Heading = "Built-in Auto UIs",
+    SubHeading = "Explore, discover, query, integrate and call APIs instantly with ServiceStack's built-in Auto UIs " +
+                 "dynamically generated from the rich metadata of your typed APIs declarative C# DTOs",
+    ActionUrl = "https://docs.servicestack.net/auto-html-api",
+    ActionText = "Learn more",
+    YoutubeId = "Qqj6W-4sSXQ",
+})
+
 @await Html.PartialAsync("PrimaryNav", "/auto-ui")
 
-Auto UIs
+<link rel="stylesheet" href="/css/typography.css">
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Auto HTML API",
+  Summary = "The best way to visualize, inspect and integrate with your APIs in an instant",
+  Group = "ui-autohtml",
+  LearnMore = "https://docs.servicestack.net/templates-overview",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "API Explorer",
+  Summary = "A Postman & Swagger UI alternative built into ServiceStack that lets you explore, discover & call your APIs",
+  Group = "ui-explorer",
+  LearnMore = "https://docs.servicestack.net/auto-html-api",
+  Background = "bg-slate-100 dark:bg-slate-800",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Locode",
+  Summary = "Locode lets you rapidly develop beautiful database-powered Web Apps, from an Instant UI around existing database-first RDBMS tables for rapid prototyping, export into declarative code-first development model with unprecedented customizability",
+  Group = "ui-locode",
+  LearnMore = "https://docs.servicestack.net/locode/",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+   Title = "Admin UI",
+   Summary = "A suite of Admin UIs with a number of productivity features ranging from Managing Users & DB Validation Rules to gaining unprecedented insights into running Apps with in-depth Request Logging & Profiling to observe App's in real-time",
+   Group = "ui-admin",
+   LearnMore = "https://docs.servicestack.net/admin-ui",
+})
