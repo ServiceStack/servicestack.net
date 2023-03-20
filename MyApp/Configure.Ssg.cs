@@ -12,24 +12,25 @@ public class ConfigureSsg : IHostingStartup
         {
             services.AddSingleton<RazorPagesEngine>();
             services.AddSingleton<MarkdownPages>();
-            services.AddSingleton<WhatsNew>();
-            services.AddSingleton<Videos>();
-            services.AddSingleton<Blog>();
+            services.AddSingleton<MarkdownWhatsNew>();
+            services.AddSingleton<MarkdownVideos>();
+            services.AddSingleton<MarkdownBlog>();
         })
         .ConfigureAppHost(
             appHost => appHost.Plugins.Add(new CleanUrlsFeature()),
             afterPluginsLoaded: appHost =>
             {
-                var markdownPages = appHost.Resolve<MarkdownPages>();
-                var whatsNew = appHost.Resolve<WhatsNew>();
-                var videos = appHost.Resolve<Videos>();
-                var blogPosts = appHost.Resolve<Blog>();
-                new MarkdownPagesBase[] { markdownPages, whatsNew, videos, blogPosts }
-                    .Each(x => x.VirtualFiles = appHost.VirtualFiles);
+                var pages = appHost.Resolve<MarkdownPages>();
+                var whatsNew = appHost.Resolve<MarkdownWhatsNew>();
+                var videos = appHost.Resolve<MarkdownVideos>();
+                var blogPosts = appHost.Resolve<MarkdownBlog>();
+
+                var markdownFeatures = new IMarkdownPages[] { pages, whatsNew, videos, blogPosts }; 
+                markdownFeatures.Each(x => x.VirtualFiles = appHost.VirtualFiles);
 
                 blogPosts.Authors = Authors;
                 
-                markdownPages.LoadFrom("_pages");
+                pages.LoadFrom("_pages");
                 whatsNew.LoadFrom("_whatsnew");
                 videos.LoadFrom("_videos");
                 blogPosts.LoadFrom("_posts");
@@ -63,6 +64,11 @@ public class ConfigureSsg : IHostingStartup
         },
         new AuthorInfo("Lucy Bates", "/img/authors/author1.svg"),
     };
+}
+
+// Add additional frontmatter info to include
+public class MarkdownFileInfo : MarkdownFileBase
+{
 }
 
 public static class HtmlHelpers
