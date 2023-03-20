@@ -10,13 +10,13 @@ Prerendering static content is a popular technique used by [JAMStack](https://ja
 performance, reliability and scalability of Web Apps that's able to save unnecessary computation at runtime by 
 generating static content at deployment which can be optionally hosted from a CDN for even greater performance.
 
-As such we thought it a valuable technique to include in this template to show how it can be easily achieved
-within a Razor Pages Application. Since prerendered content is only updated at deployment, it's primarily only 
-useful for static content like this Blog which is powered by the static markdown content in 
+As such we thought it a valuable technique to include in the new [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs) 
+template to show how it can be easily achieved within a Razor Pages Application. Since prerendered content is only updated at deployment, 
+it's primarily only useful for static content like Blogs which is powered by the static markdown content in 
 [_blog/posts](https://github.com/NetCoreTemplates/vue-mjs/tree/main/MyApp/wwwroot/_blog/posts) whose content
 is prerendered to: 
 
-  - [/blog](/blog)
+  - [https://vue-mjs.web-templates.io/blog/](/blog)
 
 ### Parsing Markdown Files
 
@@ -229,7 +229,7 @@ Plugins.Add(new CleanUrlsFeature());
 
 Which allows prerendered pages to be accessed with and without its file extension:
 
- - [/blog/prerendering](/blog/prerendering)
- - [/blog/prerendering.html](/blog/prerendering.html)
+ - [vue-mjs.web-templates.io/blog/prerendering](https://vue-mjs.web-templates.io/blog/prerendering)
+ - [vue-mjs.web-templates.io/blog/prerendering.html](https://vue-mjs.web-templates.io/blog/prerendering.html)
 
 ### 
