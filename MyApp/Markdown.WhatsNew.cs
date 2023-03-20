@@ -1,7 +1,8 @@
-﻿using System.Globalization;
+﻿// run node postinstall.js to update with latest version
+using System.Globalization;
 using ServiceStack.IO;
 
-namespace MyApp;
+namespace Ssg;
 
 public class MarkdownWhatsNew : MarkdownPagesBase<MarkdownFileInfo>
 {

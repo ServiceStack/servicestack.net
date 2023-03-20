@@ -1,9 +1,10 @@
-﻿using System.Globalization;
+﻿// run node postinstall.js to update with latest version
+using System.Globalization;
 using Markdig;
 using ServiceStack.IO;
 using ServiceStack.Logging;
 
-namespace MyApp;
+namespace Ssg;
 
 public class AuthorInfo
 {

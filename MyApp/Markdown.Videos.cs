@@ -1,6 +1,7 @@
-﻿using ServiceStack.IO;
+﻿// run node postinstall.js to update with latest version
+using ServiceStack.IO;
 
-namespace MyApp;
+namespace Ssg;
 
 public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
 {

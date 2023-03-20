@@ -1,8 +1,9 @@
-﻿using Markdig;
+﻿// run node postinstall.js to update with latest version
+using Markdig;
 using Markdig.Syntax;
 using ServiceStack.IO;
 
-namespace MyApp;
+namespace Ssg;
 
 public class MarkdownFileBase
 {
