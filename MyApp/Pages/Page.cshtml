@@ -2,6 +2,16 @@
 @model MyApp.Page
 @inject MarkdownPages Markdown
 
+@implements IRenderStatic<MyApp.Page>
+@functions {
+    public List<Page> GetStaticProps(RenderContext ctx)
+    {
+        var markdown = ctx.Resolve<MarkdownPages>();
+        return markdown.Pages.Map(page => new Page { Slug = page.Slug });
+    }
+}
+
+
 @{
     var doc = Markdown.GetBySlug(Model.Slug);
     if (doc == null)
