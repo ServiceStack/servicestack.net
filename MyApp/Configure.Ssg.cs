@@ -27,6 +27,8 @@ public class ConfigureSsg : IHostingStartup
                 new MarkdownPagesBase[] { markdownPages, whatsNew, videos, blogPosts }
                     .Each(x => x.VirtualFiles = appHost.VirtualFiles);
 
+                blogPosts.Authors = Authors;
+                
                 markdownPages.LoadFrom("_pages");
                 whatsNew.LoadFrom("_whatsnew");
                 videos.LoadFrom("_videos");
@@ -47,6 +49,20 @@ public class ConfigureSsg : IHostingStartup
                     RazorSsg.PrerenderAsync(appHost, razorFiles, distDir).GetAwaiter().GetResult();
                 });
             });
+
+    public List<AuthorInfo> Authors { get; } = new() {
+        new("Demis Bellot", "/img/authors/demis.jpg")
+        {
+            GitHubUrl = "https://github.com/mythz",
+            TwitterUrl = "https://twitter.com/demisbellot",
+        },
+        new("Darren Reid", "/img/authors/darren.jpg")
+        {
+            GitHubUrl = "https://github.com/layoric",
+            TwitterUrl = "https://twitter.com/layoric",
+        },
+        new AuthorInfo("Lucy Bates", "/img/authors/author1.svg"),
+    };
 }
 
 public static class HtmlHelpers

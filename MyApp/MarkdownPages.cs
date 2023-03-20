@@ -49,7 +49,7 @@ public class MarkdownPages : MarkdownPagesBase
     public MarkdownPages(ILogger<MarkdownPages> log) : base(log){}
     public List<MarkdownFileInfo> Pages { get; set; } = new();
     
-    public MarkdownFileInfo? GetBySlug(string slug) => Pages.FirstOrDefault(x => x.Slug == slug);
+    public MarkdownFileInfo? GetBySlug(string slug) => Fresh(Pages.FirstOrDefault(x => x.Slug == slug));
 
     public void LoadFrom(string fromDirectory)
     {
@@ -83,6 +83,13 @@ public class WhatsNew : MarkdownPagesBase
 {
     public WhatsNew(ILogger<WhatsNew> log) : base(log){}
     public Dictionary<string, List<MarkdownFileInfo>> Features { get; set; } = new();
+
+    public List<MarkdownFileInfo> GetFeatures(string release)
+    {
+        return Features.TryGetValue(release, out var doc)
+            ? Fresh(doc)
+            : new List<MarkdownFileInfo>();
+    }
     
     public void LoadFrom(string fromDirectory)
     {
@@ -151,20 +158,7 @@ public class Blog : MarkdownPagesBase
     public string FallbackProfileUrl { get; set; } = Svg.ToDataUri(Svg.Create(Svg.Body.User, stroke:"none").Replace("fill='currentColor'","fill='#0891b2'"));
     public string FallbackSplashUrl { get; set; } = "https://source.unsplash.com/random/2000x1000/?stationary";
 
-    public List<AuthorInfo> AuthorInfos { get; set; } = new()
-    {
-        new("Demis Bellot", "/img/authors/demis.jpg")
-        {
-            GitHubUrl = "https://github.com/mythz",
-            TwitterUrl = "https://twitter.com/demisbellot",
-        },
-        new("Darren Reid", "/img/authors/darren.jpg")
-        {
-            GitHubUrl = "https://github.com/layoric",
-            TwitterUrl = "https://twitter.com/layoric",
-        },
-        new AuthorInfo("Lucy Bates", "/img/authors/author1.svg"),
-    };
+    public List<AuthorInfo> Authors { get; set; } = new();
 
     public Dictionary<string, AuthorInfo> AuthorSlugMap { get; } = new();
     public Dictionary<string, string> TagSlugMap { get; } = new();
@@ -174,7 +168,7 @@ public class Blog : MarkdownPagesBase
         AuthorSlugMap.Clear();
         TagSlugMap.Clear();
         
-        foreach (var author in AuthorInfos)
+        foreach (var author in Authors)
         {
             AuthorSlugMap[author.Name.GenerateSlug()] = author;
         }
@@ -188,7 +182,7 @@ public class Blog : MarkdownPagesBase
     }
     
     public string GetAuthorProfileUrl(string? name) => (name != null
-        ? AuthorInfos.FirstOrDefault(x => x.Name == name)
+        ? Authors.FirstOrDefault(x => x.Name == name)
         : null)?.ProfileUrl
         ?? FallbackProfileUrl;
 
@@ -241,7 +235,7 @@ public class Blog : MarkdownPagesBase
     public int WordCount(string str) => str.Split(WordBoundaries, StringSplitOptions.RemoveEmptyEntries).Length;
     public int LineCount(string str) => str.CountOccurrencesOf('\n');
     public int MinutesRead(int? words) => (int)Math.Ceiling((words ?? 1) / (double)WordsPerMin);
-    public MarkdownFileInfo? FindPostBySlug(string name) => Posts.FirstOrDefault(x => x.Slug == name);
+    public MarkdownFileInfo? FindPostBySlug(string name) => Fresh(Posts.FirstOrDefault(x => x.Slug == name));
 
     public override MarkdownFileInfo? Load(string path, MarkdownPipeline? pipeline = null)
     {
@@ -309,6 +303,7 @@ public class Blog : MarkdownPagesBase
     }
 }
 
+
 public class MarkdownFileInfo
 {
     public string Path { get; set; } = default!;
@@ -343,6 +338,41 @@ public abstract class MarkdownPagesBase
             .UseAdvancedExtensions()
             .Build();
         return pipeline;
+    }
+
+    public virtual List<MarkdownFileInfo> Fresh(List<MarkdownFileInfo> docs)
+    {
+        if (docs.IsEmpty())
+            return docs;
+        foreach (var doc in docs)
+        {
+            Fresh(doc);
+        }
+        return docs;
+    }
+    
+    public virtual MarkdownFileInfo? Fresh(MarkdownFileInfo? doc)
+    {
+        // Ignore reloading source .md if run in production or as AppTask
+        if (doc == null || !HostContext.DebugMode || AppTasks.IsRunAsAppTask())
+            return doc;
+        var newDoc = Load(doc.Path);
+        if (newDoc != null)
+        {
+            doc.Layout = newDoc.Layout;
+            doc.Title = newDoc.Title;
+            doc.Summary = newDoc.Summary;
+            doc.Image = newDoc.Image;
+            doc.Author = newDoc.Author;
+            doc.Tags = newDoc.Tags;
+            doc.Content = newDoc.Content;
+            doc.Url = newDoc.Url;
+            doc.Preview = newDoc.Preview;
+            doc.HtmlPage = newDoc.HtmlPage;
+            doc.WordCount = newDoc.WordCount;
+            doc.LineCount = newDoc.LineCount;
+        }
+        return doc;
     }
 
     public virtual MarkdownFileInfo? CreateMarkdownFile(string content, TextWriter writer, MarkdownPipeline? pipeline = null)

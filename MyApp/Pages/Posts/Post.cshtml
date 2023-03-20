@@ -13,7 +13,7 @@
 
 @{
     ViewData["Title"] = Model.Title;
-    var author = Blog.AuthorInfos.FirstOrDefault(x => x.Name == Model.Author);
+    var author = Blog.Authors.FirstOrDefault(x => x.Name == Model.Author);
 }
 
 <link rel="stylesheet" href="/css/typography.css">
