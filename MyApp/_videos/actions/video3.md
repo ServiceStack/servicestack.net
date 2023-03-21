@@ -1,5 +1,5 @@
 ---
-title: Using GitHub Actions to deploy .NET Apps to Docker & AWS ECS
+title: Deploy Docker .NET Apps to AWS ECS with GitHub Actions
 url: https://youtu.be/Eh4tvLN8i8g
 tags: github-actions,deployment,aws,ecs
 date: 21-04-2021
