@@ -582,6 +582,238 @@ making them easy to manage in a team setting</p>
     </div>
 </section>
 
+<div class="buttons my-8 flex text-center justify-center">
+    <a href="https://servicestack.net/free" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
+        Free for Individuals & OSS
+    </a>
+    <span class="mx-1"></span>
+    <a href="https://servicestack.net/trial" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
+        30 Day Free Trial
+    </a>
+</div>
+
+<div class="text-center mb-8 pb-8 text-2xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-100">
+    <a href="https://servicestack.net/pricing">See Pricing</a>
+</div>
+
+<!-- CAROUSEL AND LIGHTBOX -->
+<link rel="stylesheet" href="/css/owl.theme.css">
+<link rel="stylesheet" href="/css/owl.carousel.css">
+<link rel="stylesheet" href="/css/nivo-lightbox.css">
+<link rel="stylesheet" href="/css/nivo_themes/default/default.css">
+
+<link rel="stylesheet" href="/css/lite-yt-embed.css">
+<link rel="stylesheet" href="/css/flip.min.css">
+
+<style>
+.testimonials {
+    background: url(/img/backgrounds/bg-header.jpg) no-repeat center top fixed;
+    z-index: -1;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+}
+.testimonials .color-overlay {
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+.testimonials .feedback {
+    max-width: 750px;
+    margin: auto;
+}
+.testimonials .feedback .image {
+    font-size: 24px;
+    border: 2px solid transparent;
+    -webkit-box-shadow: 0px 0px 0px 2px #ffffff;
+    box-shadow: 0px 0px 0px 2px #ffffff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    margin: 5px auto auto;
+    overflow: hidden;
+}
+.testimonials .feedback .image img {
+    width: 100%;
+    vertical-align: top;
+}
+.testimonials .feedback .message {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.testimonials .feedback blockquote {
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C" "\201D";
+    border: none;
+    display: block;
+}
+.testimonials .feedback blockquote:before {
+    opacity: 40%;
+    content: open-quote;
+    font-size: 5em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+.testimonials .feedback .name {
+    margin-top: 15px;
+    font-weight: 400;
+}
+
+.testimonials .feedback .company-info {
+    font-size: 12px;
+}
+.testimonials .owl-theme .owl-controls .owl-page span {
+    background: #ffffff;
+    border-radius: 50%;
+}
+.testimonials .customNavigation a {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+#feedbacks .owl-dots .owl-dot span {
+    width:5px;
+    height:5px;
+}
+#feedbacks .owl-dot span { background: rgba(255,255,255,.5) !important; }
+#feedbacks .owl-dot.active span { background: #fff !important; }
+.owl-theme .owl-nav [class*='owl-']:hover {
+    background: transparent;
+}
+.owl-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: -200px 0 120px 0 !important;
+}
+.owl-prev, .owl-next {
+    width: 60px;
+    height: 100%;
+    margin: 10px 0;
+    display: block;
+    z-index: 1;
+    opacity: .2;
+    transition: opacity .3s;
+}
+.owl-prev:hover, .owl-next:hover {
+    opacity: 1;
+    transition: opacity .3s;
+}
+.owl-prev:focus, .owl-next:focus, .owl-dot:focus {
+    outline: none;
+}
+</style>
+
+<script src="/js/jquery-1.9.1.min.js"></script><!-- legacy only for / -->
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/nivo-lightbox.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/lite-yt-embed.js"></script>
+<script src="/js/tweets.js"></script>
+<script src="/js/flip.min.js"></script>
+
+<div class="text-center">
+    <section class="testimonials">
+        <div class="color-overlay">
+            <div class="container">
+                <div id="feedbacks" class="owl-carousel owl-theme"></div>
+            </div>
+            <div class="flex justify-center mt-8 pt-8">
+                <a href="https://www.nuget.org/profiles/servicestack" class="text-gray-500 hover:text-blue-500">
+                    <div class="tick" data-did-init="handleTickInit" data-value="136093568" style="width:330px">
+                        <span data-layout="horizontal fit">
+                            <span data-repeat="true">
+                                <span data-view="flip"></span>
+                            </span>
+                        </span>
+                    </div>
+                    <h4 class="mt-2 text-xl text-slate-300">downloads of servicestack packages</h4>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+/* DOWNLOAD COUNTER https://pqina.nl/flip/ */
+function handleTickInit(tick) {
+    Tick.helper.interval(function () {
+        fetch('https://account.servicestack.net/stats/live/servicestack.json')
+            .then(function (r) { return r.json() })
+            .then(function(stats) {
+                if (!stats || tick.value === stats.DownloadCount)
+                    return;
+
+                tick.value = stats.DownloadCount;
+            }, function (err) { console.log('checkDownloadCount', err) });
+    }, 100000);
+}
+
+/* TWEET CAROUSEL*/
+$(document).ready(function () {
+    createOwlCarousel(52);
+});
+/* WOW ANIMATION */
+wow = new WOW({ mobile: false });
+wow.init();
+
+/* OWL CROUSEL */
+$(document).ready(function () {
+    var owl = $("#screenshots");
+
+    owl.owlCarousel({
+        items: 2, //10 items above 1000px browser width
+        itemsDesktop: [1000, 2], //5 items between 1000px and 901px
+        itemsDesktopSmall: [900, 1], // betweem 900px and 601px
+        itemsTablet: [600, 1], //2 items between 600 and 0
+        itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+    });
+});
+/* Nivo Lightbox */
+$(document).ready(function () {
+    $('#screenshots a').nivoLightbox({
+        effect: 'fadeScale',
+    });
+});
+</script>
+
+<style>
+  .brand-bar img {
+    max-height: 70px;
+  }
+</style>
+<section class="text-center">
+  <div class="container">
+    <div class="my-4">
+      <div class="flex flex-wrap justify-center items-center brand-bar">
+        <div class="w-full sm:w-1/6 p-6">
+          <img src="/img/brands/adobe.svg" alt="Adobe" class="inline-flex">
+        </div>
+        <div class="w-full sm:w-1/6 p-6">
+          <img src="/img/brands/nbc.svg" alt="NBC Universal" class="inline-flex bg-white">
+        </div>
+        <div class="w-full sm:w-1/6 p-6">
+          <img src="/img/brands/progress.svg" alt="Progress Software" class="inline-flex">
+        </div>
+        <div class="w-full sm:w-1/6 p-6">
+          <img src="/img/brands/electronic_arts.svg" alt="EA" class="inline-flex bg-white">
+        </div>
+        <div class="w-full sm:w-1/6 p-6">
+          <img src="/img/brands/honeywell.svg" alt="Honeywell" class="inline-flex">
+        </div>
+        <div class="w-full sm:w-1/6 p-6">
+          <img src="/img/brands/nvidia.svg" alt="nVidia" class="inline-flex">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     </main>
 </div>
 
