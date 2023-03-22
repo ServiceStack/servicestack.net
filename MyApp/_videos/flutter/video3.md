@@ -1,10 +1,11 @@
 ---
-title: Fastest way to a working gRPC Server and Flutter solution
-url: https://youtu.be/fgts6sQ2Ags
-tags: grpc,flutter,android
-date: 27-03-2023
+title: Call .NET APIs from a Flutter Android App with native Dart
+url: https://youtu.be/ocH5L-CikQ0
+tags: flutter,android,apis
+date: 29-04-2021
 ---
 
-In this video we'll walk through configuring Flutter and gRPC .NET Services with the `flutter-grpc` mix template
-to add a new Flutter application using your locally installed **Flutter SDK** to an existing ServiceStack `grpc` project
-that has been configured to support gRPC services
+In this video we should how you can quickly get up and running using ServiceStack's 
+Dart client library with your Flutter Android or iOS Apps 
+to generate native typed Dart DTOs with [Add ServiceStack Reference](https://docs.servicestack.net/dart-add-servicestack-reference)
+enabling end-to-end typed integrations to call .NET APIs from Flutter Mobile, Desktop and Dart Web Apps
