@@ -5,9 +5,9 @@ tags: razor-pages,mvc,tailwind,vue
 date: 06-07-2021
 ---
 
-This video shows how ServiceStack templates offer a wide range of options when it comes to using Razor Pages in your .NET application. 
-These templates also come with Tailwind, JavaScript Modules/ES Modules, and Vue components all ready to use in a hybrid apps 
-with both Server Side Rendering (SSR) and static resources.
+ServiceStack templates provide a wide range of options when it comes to using Razor Pages in your .NET application. These templates come with Tailwind, JavaScript Modules/ES Modules, and Vue components already built-in, making it easy to build hybrid apps with both Server-Side Rendering (SSR) and static resources. 
+
+The templates provide a complete starting point for developers, with pre-built UI components and server-side code that can be easily customized to meet specific project requirements.
 
 ### Demos
  - https://razor-tailwind.web-templates.io

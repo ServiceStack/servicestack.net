@@ -5,8 +5,6 @@ tags: razor-pages,mvc,tailwind,vue
 date: 16-08-2022
 ---
 
-In this video we walk through the steps to create a bookings API that is easy to use for non-developers by using ServiceStack Locode and the Admin UI. 
-This enables user management, data editing, and dynamic validation so developers can focus on implementing core business functionality. 
+In this video tutorial, we demonstrate the steps required to create a bookings API that is designed to be easy to use for non-developers. To achieve this, we make use of the ServiceStack Locode and Admin UI features. With Locode, developers can easily generate a fully functional REST API with CRUD functionality. 
 
-REST APIs with Create, Read, Update & Delete (CRUD) functionality are expected, and the ServiceStack framework provides the easiest way to built 
-them while still getting the best developer experience when integrating with external systems or customers.
+The Admin UI, on the other hand, provides a friendly user interface for managing user access, data editing, and dynamic validation. By utilizing these powerful features, developers can focus on implementing core business functionality while providing a highly intuitive API for non-developers.

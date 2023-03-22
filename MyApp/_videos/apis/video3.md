@@ -5,6 +5,6 @@ tags: autoquery,files,locode
 date: 16-08-2022
 ---
 
-A walk through of using the FileUploadFeature plugin to create a service and form to submit resumes. 
-For the UI we use Tailwind and custom Vue 3 component using modular JavaScript. 
-The `FileUploadFeature` plugin is also compatible with AWS S3, Azure Blob Storage and Cloudflare R2.
+The FileUploadFeature plugin in ServiceStack enables developers to add managed file uploads to their applications, providing integration with any ServiceStack service, including AutoQuery services, as well as the Locode App UI. 
+
+The modular JavaScript used in this example provides a structured and organized way to write JavaScript code that can be reused across various components, further simplifying the development process.

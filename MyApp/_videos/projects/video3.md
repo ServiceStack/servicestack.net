@@ -5,5 +5,6 @@ tags: nextjs,react,jamstack
 date: 08-02-2022
 ---
 
-Walk through of the ServiceStack NextJS template using Rider for a rapid development cycle. 
-If you're a Microsoft .NET developer looking for a great Next.js setup using the Jamstack architecture, give this a try!
+In this comprehensive walkthrough, we will guide you through the ServiceStack Next.js template, which offers an exceptional rapid development cycle when used with JetBrains Rider. This template is specifically designed for Microsoft .NET developers seeking a seamless and efficient Next.js React setup while employing the Jamstack architecture. 
+
+Jamstack is a modern web development architecture that focuses on delivering better performance, higher security, and a superior developer experience through the use of pre-rendering and decoupling of the frontend and backend. 

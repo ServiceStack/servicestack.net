@@ -5,5 +5,6 @@ tags: python,vscode,jupyter
 date: 17-08-2021
 ---
 
-In this video tutorial we have a look at how we can leverage Add ServiceStack Reference 
-to call .NET end-to-end typed APIs from Python in PyCharm, VSCode and Jupyter Notebooks.
+The video tutorial walks through how to leverage Add ServiceStack Reference for Python in different Python IDEs such as PyCharm, VSCode, and Jupyter Notebooks. 
+
+Add ServiceStack Reference is a powerful tool that automatically generates a Python API client for your ServiceStack web services, saving you time and effort. With this tool, you can access your web services with ease and benefit from the productivity boost it provides.
