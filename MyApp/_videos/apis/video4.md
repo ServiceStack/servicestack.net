@@ -5,6 +5,10 @@ tags: files,blazor
 date: 07-06-2022
 ---
 
-In this walkthrough, we explore the FilesUploadFeature plugin and its demo app FileBlazor to provide a [Managed Files Uploads solution](https://docs.servicestack.net/locode/files). The FilesUploadFeature plugin is a powerful tool that adds managed file uploads to your ServiceStack application, seamlessly integrating with any ServiceStack service, including AutoQuery services and the Locode App UI.
+In this walkthrough, we explore the `FilesUploadFeature` plugin and a demo FileBlazor App's 
+[Managed Files Uploads](https://docs.servicestack.net/locode/files) solution. 
 
-To demonstrate the versatility of the FilesUploadFeature plugin, we will showcase the FileBlazor demo application, which provides drag-and-drop file uploads to AWS S3, Azure, and local file systems using an all-C# WebAssembly application.
+The plugin is a powerful tool that adds managed file uploads to your ServiceStack App, seamlessly integrating 
+with any ServiceStack service, including AutoQuery services and [Locode](/auto-ui#locode) built-in UI 
+and [Vue AutoQueryGrid](https://docs.servicestack.net/vue/gallery/autoquerygrid) and 
+[Blazor Component Library](https://blazor-gallery.servicestack.net/gallery).
