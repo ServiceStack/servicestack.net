@@ -49,6 +49,7 @@
 
 @await Html.PartialAsync("PrimaryNav", "/flutter")
 
+<a id="videos"></a>
 @await Html.PartialAsync("VideoGroup", new Shared.VideoGroup
 {
    Title = "Flutter iOS and Android Apps",
@@ -81,24 +82,35 @@
         <div class="mt-10 max-w-2xl">
             <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Pre-requisites</h2>
             <p class="my-4">
-                Ensure you have the <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.flutter.dev/get-started/install/windows">Flutter SDK &amp; Android Studio</a>
+                Ensure you have the <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.flutter.dev/get-started/install/windows">Flutter SDK</a>
                 and the <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a> installed:
             </p>
             <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'dotnet tool install --global x' }"></div>
+
+            <p class="my-4">
+                Both Flutter and .NET have great CLI tooling where you can get a great development experience using a 
+                text editor like 
+                <a class="text-indigo-600 hover:text-indigo-800" href="https://code.visualstudio.com/">VS Code</a>
+                with its great multi-terminal support, or if preferred, full-featured IDEs like 
+                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.flutter.dev/get-started/install/windows#android-setup">Android Studio</a>
+                and
+                <a class="text-indigo-600 hover:text-indigo-800" href="https://www.jetbrains.com/rider/">JetBrains Rider</a>
+                for even richer tooling.
+            </p>
         </div>
         
         <div class="mt-10 max-w-2xl">
             <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">1. Create your .NET Project</h2>
 
             <p class="my-4">
-                Start with your <a class="text-indigo-600 hover:text-indigo-800" href="/start">preferred project</a> 
+                Start with your <a class="text-indigo-600 hover:text-indigo-800" href="/start">preferred project</a>, 
                 or create an empty Project with your preferred project name:
             </p>
             
             <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'x new web MyApp' }"></div>
 
             <p class="my-4">
-                That can be run immediately with dotnet watch for a live reload dev UX:
+                That can be run immediately in the <b>Host</b> project with dotnet watch for a live reload dev UX:
             </p>
             
             <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'dotnet watch' }"></div>
@@ -135,14 +147,15 @@
             </p>
             
             <figure class="mt-4">
-                <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-hello.png" alt="">
+                <a href="https://docs.flutter.dev/get-started/codelab">
+                    <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-hello.png" alt=""></a>
             </figure>
         </div>
         
         <div class="mt-10 max-w-2xl">
             <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Create your .NET API</h2>
             <p class="my-4">
-                Lets create a new API to preview the typical dev workflow of calling new .NET APIs from flutter.
+                Lets create a new API to preview the typical dev workflow of calling new .NET APIs from Flutter.
                 First we'll want to define our API's Service Contract with the Request and Response DTOs the API
                 will accept and return in:
             </p>
@@ -166,7 +179,7 @@ public class SearchFilesResponse
 </code></pre>
 
             <p class="my-4">
-                Then its Service Implementation that searches the .NET App's files and returns the results: 
+                Then add its Implementation that scans the .NET App's folder for files and returns the results: 
             </p>
 
 <b>MyApp.ServiceInterface/SearchFilesService.cs</b>
@@ -255,14 +268,25 @@ Widget build(BuildContext context) {
 </code></pre>
 
             <p class="my-4">
-                Which after a restart should now be calling our new API returning .NET App files that
+                Which after a restart should now call our new <b>SearchFiles</b> API returning .NET App files that
                 match the specified pattern:
             </p>
 
             <figure class="mt-4">
-                <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-search-files.png" alt="">
+                <a href="https://docs.servicestack.net/flutter">
+                    <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-search-files.png" alt=""></a>
             </figure>
-
+        </div>
+        
+        <div class="mt-10 max-w-2xl">
+            <p class="my-4">
+                We hope this was a good waltkthrough to showcase the simplified end-to-end typed dev model for working
+                with ServiceStack's APIs, be sure to check out the 
+                <a class="text-indigo-600 hover:text-indigo-800" href="#videos">Flutter videos</a> for more in-depth
+                explanations or head over to our 
+                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/#community-support">Support Channels</a>
+                 if you have any issues or questions.
+            </p>
         </div>
     </div>
 </section>
