@@ -28,9 +28,9 @@
   </svg>
   <div class="mx-auto max-w-7xl px-6 pt-10 pb-24 sm:pb-32 lg:flex lg:py-40 lg:px-8">
     <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
-     <a href="/"><svg class="h-16 w-16 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg></a>
+     <a href="./"><svg class="h-16 w-16 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg></a>
       <div class="mt-24 sm:mt-32 lg:mt-16">
-        <a href="/whatsnew" class="inline-flex space-x-6">
+        <a href="whatsnew" class="inline-flex space-x-6">
           <span class="rounded-full bg-indigo-500/10 dark:bg-indigo-400/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">What's new</span>
           <span class="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
             <span>Just shipped v6.7</span>
@@ -46,7 +46,7 @@
         take advantage of end to end typed integrations for all popular Web, Mobile and Desktop platforms.
       </p>
       <div class="mt-10 flex items-center gap-x-6">
-        <a href="/start" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get ServiceStack</a>
+        <a href="start" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get ServiceStack</a>
         <a href="https://docs.servicestack.net/why-servicestack" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
       </div>
     </div>
@@ -133,7 +133,7 @@
 
 @await Html.PartialAsync("Testimonials")
 
-<link rel="stylesheet" href="/css/typography.css">
+<link rel="stylesheet" href="css/typography.css">
 
 @await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
   Title = "ServiceStack APIs",
@@ -242,7 +242,7 @@
         </dl>
       </div>
     </div>
-    <div id="contact-us"></div>
+    <div id="contact"></div>
   </div>
 </div>
 
@@ -251,8 +251,8 @@
 import { ref } from "vue"
 import { ApiResult } from "@@servicestack/client"
 import { useClient } from "@@servicestack/vue"
-import { SendMessage } from "/mjs/dtos.mjs"
-import { mount } from "/mjs/app.mjs"
+import { SendMessage } from "dtos.mjs"
+import { mount } from "app.mjs"
 
 const ContactUs = {
   template:`<form v-if="!api.succeeded" v-on:submit.prevent="submit" method="POST" class="dark px-6 pb-24 pt-20 sm:pb-32 lg:py-48 lg:px-8">
@@ -302,5 +302,5 @@ const ContactUs = {
   }
 }
 
-mount('#contact-us', ContactUs)
+mount('#contact', ContactUs)
 </script>

@@ -16,7 +16,7 @@
 
 @await Html.PartialAsync("PrimaryNav", "")
 
-<link rel="stylesheet" href="/css/lite-yt-embed.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
 <section class="text-center w-full py-12 sm:py-24">
     <div class="mx-auto max-w-7xl">
         <div class="mb-16">
@@ -101,7 +101,7 @@
 <script type="module">
 import { ref, computed, watch, onMounted } from "vue"
 import { queryString, appendQueryString } from "@@servicestack/client"
-import { mount } from "/mjs/app.mjs"
+import { mount } from "app.mjs"
 
 const App = {
     template:`<div>
@@ -357,7 +357,7 @@ const App = {
         watch([name, storage], () => {
             const args = { Name: name.value || undefined, Mix: 'x-litestream-' + (storage.value || defaultValue) }
             const url = appendQueryString('', args)
-            location.href = '#' + url.substring(1)
+            location.href = '../litestream#' + url.substring(1)
         })
         
         
