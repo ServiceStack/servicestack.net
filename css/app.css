@@ -1090,6 +1090,11 @@ input[data-autocompleted] {
   margin-bottom: 6rem;
 }
 
+.-my-4 {
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -1128,11 +1133,6 @@ input[data-autocompleted] {
 .-mx-4 {
   margin-left: -1rem;
   margin-right: -1rem;
-}
-
-.-my-4 {
-  margin-top: -1rem;
-  margin-bottom: -1rem;
 }
 
 .ml-2 {
@@ -1313,6 +1313,10 @@ input[data-autocompleted] {
 
 .-ml-12 {
   margin-left: -3rem;
+}
+
+.-ml-24 {
+  margin-left: -6rem;
 }
 
 .ml-auto {
@@ -1595,6 +1599,18 @@ input[data-autocompleted] {
   width: 13rem;
 }
 
+.w-\[68rem\] {
+  width: 68rem;
+}
+
+.w-44 {
+  width: 11rem;
+}
+
+.w-\[50rem\] {
+  width: 50rem;
+}
+
 .w-4 {
   width: 1rem;
 }
@@ -1605,6 +1621,10 @@ input[data-autocompleted] {
 
 .w-1\/2 {
   width: 50%;
+}
+
+.w-\[50\.0625rem\] {
+  width: 50.0625rem;
 }
 
 .w-80 {
@@ -1621,34 +1641,6 @@ input[data-autocompleted] {
 
 .w-96 {
   width: 24rem;
-}
-
-.w-44 {
-  width: 11rem;
-}
-
-.w-\[70rem\] {
-  width: 70rem;
-}
-
-.w-\[60rem\] {
-  width: 60rem;
-}
-
-.w-\[50rem\] {
-  width: 50rem;
-}
-
-.w-\[48rem\] {
-  width: 48rem;
-}
-
-.w-\[49rem\] {
-  width: 49rem;
-}
-
-.w-\[68rem\] {
-  width: 68rem;
 }
 
 .min-w-full {
@@ -1709,6 +1701,10 @@ input[data-autocompleted] {
 
 .max-w-screen-md {
   max-width: 768px;
+}
+
+.max-w-screen-xl {
+  max-width: 1280px;
 }
 
 .flex-1 {
@@ -1811,11 +1807,6 @@ input[data-autocompleted] {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.rotate-180 {
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .rotate-2 {
   --tw-rotate: 2deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1823,6 +1814,11 @@ input[data-autocompleted] {
 
 .-rotate-2 {
   --tw-rotate: -2deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-180 {
+  --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2412,6 +2408,16 @@ input[data-autocompleted] {
   background-color: rgb(255 255 255 / 0.2);
 }
 
+.bg-slate-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
+.bg-zinc-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
+}
+
 .bg-pink-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(252 231 243 / var(--tw-bg-opacity));
@@ -2529,16 +2535,6 @@ input[data-autocompleted] {
 .bg-green-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(21 128 61 / var(--tw-bg-opacity));
-}
-
-.bg-zinc-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
-}
-
-.bg-slate-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-60 {
@@ -2769,11 +2765,6 @@ input[data-autocompleted] {
   padding-bottom: 1.25rem;
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
 .pr-3 {
   padding-right: 0.75rem;
 }
@@ -2878,6 +2869,10 @@ input[data-autocompleted] {
   padding-right: 0.5rem;
 }
 
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -2956,22 +2951,6 @@ input[data-autocompleted] {
 
 .pt-0 {
   padding-top: 0px;
-}
-
-.pb-16 {
-  padding-bottom: 4rem;
-}
-
-.pt-40 {
-  padding-top: 10rem;
-}
-
-.pb-36 {
-  padding-bottom: 9rem;
-}
-
-.pt-12 {
-  padding-top: 3rem;
 }
 
 .text-left {
@@ -3295,6 +3274,11 @@ input[data-autocompleted] {
   color: rgb(67 56 202 / var(--tw-text-opacity));
 }
 
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
 .text-pink-800 {
   --tw-text-opacity: 1;
   color: rgb(157 23 77 / var(--tw-text-opacity));
@@ -3408,11 +3392,6 @@ input[data-autocompleted] {
 .text-indigo-200 {
   --tw-text-opacity: 1;
   color: rgb(199 210 254 / var(--tw-text-opacity));
-}
-
-.text-gray-100 {
-  --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 
 .text-purple-50 {
@@ -3727,6 +3706,11 @@ input[data-autocompleted] {
 .\[mask-image\:radial-gradient\(64rem_64rem_at_top\2c white\2c transparent\)\] {
   -webkit-mask-image: radial-gradient(64rem 64rem at top,white,transparent);
           mask-image: radial-gradient(64rem 64rem at top,white,transparent);
+}
+
+.\[mask-image\:radial-gradient\(32rem_32rem_at_center\2c white\2c transparent\)\] {
+  -webkit-mask-image: radial-gradient(32rem 32rem at center,white,transparent);
+          mask-image: radial-gradient(32rem 32rem at center,white,transparent);
 }
 
 .file\:mr-4::-webkit-file-upload-button {
@@ -4485,6 +4469,11 @@ input[data-autocompleted] {
   background-color: rgb(129 140 248 / 0.1);
 }
 
+.dark .dark\:bg-zinc-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:bg-blue-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
@@ -4562,11 +4551,6 @@ input[data-autocompleted] {
 .dark .dark\:bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-zinc-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(39 39 42 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:fill-gray-300 {
@@ -5098,12 +5082,12 @@ input[data-autocompleted] {
     width: 16.666667%;
   }
 
-  .sm\:w-44 {
-    width: 11rem;
-  }
-
   .sm\:w-72 {
     width: 18rem;
+  }
+
+  .sm\:w-44 {
+    width: 11rem;
   }
 
   .sm\:max-w-3xl {
@@ -5334,10 +5318,6 @@ input[data-autocompleted] {
 
   .sm\:pb-4 {
     padding-bottom: 1rem;
-  }
-
-  .sm\:pt-40 {
-    padding-top: 10rem;
   }
 
   .sm\:text-left {
@@ -5698,6 +5678,10 @@ input[data-autocompleted] {
     margin-right: 0px;
   }
 
+  .lg\:ml-24 {
+    margin-left: 6rem;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -5949,6 +5933,10 @@ input[data-autocompleted] {
 
   .xl\:ml-32 {
     margin-left: 8rem;
+  }
+
+  .xl\:ml-48 {
+    margin-left: 12rem;
   }
 
   .xl\:block {
