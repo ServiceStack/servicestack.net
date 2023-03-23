@@ -380,99 +380,99 @@ way across all gRPC languages</p>
 <section id="getting-started">
     <div class="bg-white dark:bg-black py-32 px-6 lg:px-8">
     <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
-        <a href="#getting-started" class="block text-base font-semibold leading-7 text-indigo-600">Getting Started</a>
-        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Create a Flutter App with a .NET API backend
-        </h1>
-        <p class="mt-6 text-xl leading-8">
-            In this example we'll walk through creating a new Flutter Mobile App with a 
-            .NET API backend and demonstrate the development workflow of calling new .NET APIs
-            with typed client APIs from Flutter
+    <a href="#getting-started" class="block text-base font-semibold leading-7 text-indigo-600">Getting Started</a>
+    <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Create a Flutter App with a .NET API backend
+    </h1>
+    <p class="mt-6 text-xl leading-8">
+        In this example we'll walk through creating a new Flutter Mobile App with a 
+        .NET API backend and demonstrate the development workflow of calling new .NET APIs
+        with typed client APIs from Flutter
+    </p>
+    <div class="mt-10 max-w-2xl">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Pre-requisites</h2>
+        <p class="my-4">
+            Ensure you have the <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.flutter.dev/get-started/install/windows">Flutter SDK</a>
+            and the <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a> installed:
         </p>
-        <div class="mt-10 max-w-2xl">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Pre-requisites</h2>
-            <p class="my-4">
-                Ensure you have the <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.flutter.dev/get-started/install/windows">Flutter SDK</a>
-                and the <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a> installed:
-            </p>
-            <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'dotnet tool install --global x' }"></div>
+        <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'dotnet tool install --global x' }"></div>
 
-            <p class="my-4">
-                Both Flutter and .NET have great CLI tooling where you can get a great development experience using a 
-                text editor like 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://code.visualstudio.com/">VS Code</a>
-                with its great multi-terminal support, or if preferred, full-featured IDEs like 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.flutter.dev/get-started/install/windows#android-setup">Android Studio</a>
-                and
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://www.jetbrains.com/rider/">JetBrains Rider</a>
-                for even richer tooling.
-            </p>
-        </div>
+        <p class="my-4">
+            Both Flutter and .NET have great CLI tooling where you can get a great development experience using a 
+            text editor like 
+            <a class="text-indigo-600 hover:text-indigo-800" href="https://code.visualstudio.com/">VS Code</a>
+            with its great multi-terminal support, or if preferred, full-featured IDEs like 
+            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.flutter.dev/get-started/install/windows#android-setup">Android Studio</a>
+            and
+            <a class="text-indigo-600 hover:text-indigo-800" href="https://www.jetbrains.com/rider/">JetBrains Rider</a>
+            for even richer tooling.
+        </p>
+    </div>
         
-        <div class="mt-10 max-w-2xl">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">1. Create your .NET Project</h2>
+    <div class="mt-10 max-w-2xl">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">1. Create your .NET Project</h2>
 
-            <p class="my-4">
-                Start with your <a class="text-indigo-600 hover:text-indigo-800" href="/start">preferred project</a>, 
-                or create an empty Project with your preferred project name:
-            </p>
+        <p class="my-4">
+            Start with your <a class="text-indigo-600 hover:text-indigo-800" href="/start">preferred project</a>, 
+            or create an empty Project with your preferred project name:
+        </p>
             
-            <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'x new web MyApp' }"></div>
+        <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'x new web MyApp' }"></div>
 
-            <p class="my-4">
-                That can be run immediately in the <b>Host</b> project with dotnet watch for a live reload dev UX:
-            </p>
+        <p class="my-4">
+            That can be run immediately in the <b>Host</b> project with dotnet watch for a live reload dev UX:
+        </p>
             
-            <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'dotnet watch' }"></div>
+        <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'dotnet watch' }"></div>
             
-        </div>
+    </div>
         
-        <div class="mt-10 max-w-2xl">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">2. Add a new Flutter App to your project</h2>
-            <p class="my-4">
-                Then from a new Terminal in your Solution folder (e.g. <b>MyApp</b>), add a new Flutter App with: 
-            </p>
+    <div class="mt-10 max-w-2xl">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">2. Add a new Flutter App to your project</h2>
+        <p class="my-4">
+            Then from a new Terminal in your Solution folder (e.g. <b>MyApp</b>), add a new Flutter App with: 
+        </p>
             
-            <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'x mix flutter' }"></div>
+        <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'x mix flutter' }"></div>
 
-            <p class="my-4">
-                This will run <b>flutter create</b> to add a new Flutter App to your solution that should look like: 
-            </p>
+        <p class="my-4">
+            This will run <b>flutter create</b> to add a new Flutter App to your solution that should look like: 
+        </p>
 
-            <figure class="mt-4">
-                <a href="https://docs.servicestack.net/flutter"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-mix-project-structure.png" alt=""></a>
-            </figure>
+        <figure class="mt-4">
+            <a href="https://docs.servicestack.net/flutter"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-mix-project-structure.png" alt=""></a>
+        </figure>
             
-            <p class="my-4">
-                It also adds the <b>servicestack</b> client library package that's pre-configured to 
-                call the default <b>Hello</b> API in new ServiceStack projects which we can test
-                by running fluter from <b>myapp_flutter</b>:
-            </p>
+        <p class="my-4">
+            It also adds the <b>servicestack</b> client library package that's pre-configured to 
+            call the default <b>Hello</b> API in new ServiceStack projects which we can test
+            by running fluter from <b>myapp_flutter</b>:
+        </p>
 
-            <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'flutter run' }"></div>
+        <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'flutter run' }"></div>
 
-            <p class="my-4">
-                We recommend choosing <b>[1]</b> to run the Flutter App as a Windows Desktop App for the best dev UX on Windows,
-                which after a few moments should open the Hello App in a Desktop App:
-            </p>
+        <p class="my-4">
+            We recommend choosing <b>[1]</b> to run the Flutter App as a Windows Desktop App for the best dev UX on Windows,
+            which after a few moments should open the Hello App in a Desktop App:
+        </p>
             
-            <figure class="mt-4">
-                <a href="https://docs.flutter.dev/get-started/codelab">
-                    <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-hello.png" alt=""></a>
-            </figure>
-        </div>
+        <figure class="mt-4">
+            <a href="https://docs.flutter.dev/get-started/codelab">
+                <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-hello.png" alt=""></a>
+        </figure>
+    </div>
         
-        <div class="mt-10 max-w-2xl">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Create your .NET API</h2>
-            <p class="my-4">
-                Lets create a new API to preview the typical dev workflow of calling new .NET APIs from Flutter.
-                First we'll want to define our API's Service Contract with the Request and Response DTOs the API
-                will accept and return in:
-            </p>
+    <div class="mt-10 max-w-2xl">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Create your .NET API</h2>
+        <p class="my-4">
+            Lets create a new API to preview the typical dev workflow of calling new .NET APIs from Flutter.
+            First we'll want to define our API's Service Contract with the Request and Response DTOs the API
+            will accept and return in:
+        </p>
 
-            <b>MyApp.ServiceModel/SearchFiles.cs</b>
+        <b>MyApp.ServiceModel/SearchFiles.cs</b>
             
-<pre><code class="language-csharp">using ServiceStack;
+        <pre><code class="language-csharp">using ServiceStack;
 using System.Collections.Generic;
 
 namespace MyApp.ServiceModel;
@@ -488,13 +488,13 @@ public class SearchFilesResponse
 }
 </code></pre>
 
-            <p class="my-4">
-                Then add its Implementation that scans the .NET App's folder for files and returns the results: 
-            </p>
+        <p class="my-4">
+            Then add its Implementation that scans the .NET App's folder for files and returns the results: 
+        </p>
 
-<b>MyApp.ServiceInterface/SearchFilesService.cs</b>
+        <b>MyApp.ServiceInterface/SearchFilesService.cs</b>
             
-<pre><code class="language-csharp">using ServiceStack;
+        <pre><code class="language-csharp">using ServiceStack;
 using MyApp.ServiceModel;
 
 namespace MyApp.ServiceInterface;
@@ -511,24 +511,24 @@ public class SearchFilesServices : Service
 }
 </code></pre>
             
-            <p class="my-4">
-                <b>dotnet watch</b> should automatically detect the changes and reload the App to take effect.
-            </p>
-        </div>
+        <p class="my-4">
+            <b>dotnet watch</b> should automatically detect the changes and reload the App to take effect.
+        </p>
+    </div>
         
-        <div class="mt-10 max-w-2xl">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Update Flutter App</h2>
-            <p class="my-4">
-                Then to update our clients Dart DTOs we just need to run <b>x dart</b> from the Flutter project:
-            </p>
+    <div class="mt-10 max-w-2xl">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Update Flutter App</h2>
+        <p class="my-4">
+            Then to update our clients Dart DTOs we just need to run <b>x dart</b> from the Flutter project:
+        </p>
 
-            <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'x dart' }"></div>
+        <div data-component="CopyLine" data-props="{ prefix:'$ ', text:'x dart' }"></div>
 
-            <p class="my-4">
-                Which can now be used in our App, by replacing the <b>callService()</b> and <b>build()</b> methods with:
-            </p>
+        <p class="my-4">
+            Which can now be used in our App, by replacing the <b>callService()</b> and <b>build()</b> methods with:
+        </p>
 
-            <pre><code class="language-dart">void callService() async {
+        <pre><code class="language-dart">void callService() async {
  var response = await client.get(SearchFiles(pattern: myController.text));
  setState(() {
    result = response.results!.join('\n');
@@ -577,27 +577,28 @@ Widget build(BuildContext context) {
 }
 </code></pre>
 
-            <p class="my-4">
-                Which after a restart should now call our new <b>SearchFiles</b> API returning .NET App files that
-                match the specified pattern:
-            </p>
+        <p class="my-4">
+            Which after a restart should now call our new <b>SearchFiles</b> API returning .NET App files that
+            match the specified pattern:
+        </p>
 
-            <figure class="mt-4">
-                <a href="https://docs.servicestack.net/flutter">
-                    <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-search-files.png" alt=""></a>
-            </figure>
-        </div>
+        <figure class="mt-4">
+            <a href="https://docs.servicestack.net/flutter">
+                <img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/flutter/flutter-search-files.png" alt=""></a>
+        </figure>
+    </div>
         
-        <div class="mt-10 max-w-2xl">
-            <p class="my-4">
-                We hope this was a good waltkthrough to showcase the simplified end-to-end typed dev model for working
-                with ServiceStack's APIs, be sure to check out the 
-                <a class="text-indigo-600 hover:text-indigo-800" href="#videos">Flutter videos</a> for more in-depth
-                explanations or head over to our 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/#community-support">Support Channels</a>
-                 if you have any issues or questions.
-            </p>
-        </div>
+    <div class="mt-10 max-w-2xl">
+        <p class="my-4">
+            We hope this was a good waltkthrough to showcase the simplified end-to-end typed dev model for working
+            with ServiceStack's APIs, be sure to check out the 
+            <a class="text-indigo-600 hover:text-indigo-800" href="#videos">Flutter videos</a> for more in-depth
+            explanations or head over to our 
+            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/#community-support">Support Channels</a>
+            if you have any issues or questions.
+        </p>
+    </div>
+    </div>
     </div>
 </section>
 
