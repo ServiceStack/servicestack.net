@@ -5,13 +5,13 @@ namespace Ssg;
 
 public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
 {
-    public MarkdownVideos(ILogger<MarkdownVideos> log) : base(log) {}
+    public MarkdownVideos(ILogger<MarkdownVideos> log, IWebHostEnvironment env) : base(log,env) {}
     public Dictionary<string, List<MarkdownFileInfo>> Groups { get; set; } = new();
 
     public List<MarkdownFileInfo> GetVideos(string group)
     {
-        return Groups.TryGetValue(group, out var doc)
-            ? Fresh(doc)
+        return Groups.TryGetValue(group, out var docs)
+            ? Fresh(docs.Where(IsVisible).ToList())
             : new List<MarkdownFileInfo>();
     }
     
@@ -20,7 +20,7 @@ public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
         Groups.Clear();
         var fs = AssertVirtualFiles();
         var dirs = fs.GetDirectory(fromDirectory).GetDirectories().ToList();
-        log.LogInformation("Found {0} video directories", dirs.Count);
+        Log.LogInformation("Found {0} video directories", dirs.Count);
 
         var pipeline = CreatePipeline();
 
@@ -41,7 +41,7 @@ public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
                 }
                 catch (Exception e)
                 {
-                    log.LogError(e, "Couldn't load {0}: {1}", file.VirtualPath, e.Message);
+                    Log.LogError(e, "Couldn't load {0}: {1}", file.VirtualPath, e.Message);
                 }
             }
         }
