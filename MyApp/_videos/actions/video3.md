@@ -5,6 +5,6 @@ tags: github-actions,deployment,aws,ecs
 date: 21-04-2021
 ---
 
-This tutorial shows how you can easily mix GitHub Action scripts into ServiceStack projects to configure them to build, 
-test & deploy them to a cost efficient AWS ECS setup where Docker Apps can be deployed into a single instance auto 
-configured behind an nginx proxy with auto LetsEncrypt SSL support.
+ServiceStack projects, enabling the configuration for building, testing, and deploying to a cost-efficient AWS ECS setup. By utilizing this approach, Docker Apps can be deployed on a single instance, automatically configured behind an NGINX proxy with Let's Encrypt SSL support. 
+
+Following this tutorial will streamline your workflow of your ServiceStack projects.

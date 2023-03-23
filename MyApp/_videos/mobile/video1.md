@@ -5,5 +5,6 @@ tags: flutter,dart,android
 date: 29-04-2021
 ---
 
-In this video we should how you can use ServiceStack's Dart client library with your Flutter Android application to quickly get up 
-and running with Add ServiceStack Reference to call C# .NET APIs from a Flutter Android App with native Dart client and DTOs.
+In this video, we will demonstrate how you can swiftly set up and begin utilizing ServiceStack's Dart client library with your Flutter Android or iOS applications.
+
+This also enables you to automate the generation native typed Dart Data Transfer Objects (DTOs) using the Add ServiceStack Reference feature, which simplifies the integration process and typed end-to-end communication between your Flutter Mobile Apps.

@@ -5,5 +5,6 @@ tags: vue,autoquery
 date: 16-03-2023
 ---
 
-Walkthrough of how to use the ServiceStack Vue 3 library and the functionality of the AutoQueryGrid component. 
-This component makes it easy to integrate your AutoQuery services with a fully generated UI that can be customized.
+This walkthrough explores the ServiceStack Vue 3 library and the functionality of the AutoQueryGrid component. The AutoQueryGrid component simplifies the integration of AutoQuery services by generating a customizable UI. 
+
+By following this guide, you'll learn how to effectively utilize these tools to enhance your application's user interface and overall user experience.

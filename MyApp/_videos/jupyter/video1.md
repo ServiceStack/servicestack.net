@@ -5,5 +5,6 @@ tags: jupyter,python
 date: 17-08-2021
 ---
 
-In this video we walk through how to generate working Jupyter Notebooks using the ServiceStack **x** tool and 
-[Instant Client Apps](https://apps.servicestack.net), and running them in various environments to show how portable they can be
+The video demonstrates generating Jupyter Notebooks using ServiceStack **x** tool and [Instant Client Apps](https://apps.servicestack.net), which together provide an efficient and portable development experience. 
+
+This enables developers to use Jupyter Notebooks for tasks like data analysis, visualization, and machine learning in a transferable manner across environments.

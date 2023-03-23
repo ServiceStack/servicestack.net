@@ -5,5 +5,6 @@ tags: github-actions,deployment
 date: 22-04-2021
 ---
 
-In this tutorial we're going to enable continuous integration, deployment, hosting and Lets Encrypt HTTPS configuration 
-to an existing ServiceStack Project with the new mix support for GitHub Actions.
+This tutorial demonstrates enabling continuous integration, deployment, hosting, and Let's Encrypt HTTPS configuration for an existing ServiceStack Project using the new mix support for GitHub Actions. 
+
+We'll guide you through the process of integrating these powerful features into your project. By following the tutorial, you'll streamline your workflow of your ServiceStack Project.

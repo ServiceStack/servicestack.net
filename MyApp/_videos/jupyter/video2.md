@@ -5,6 +5,7 @@ tags: jupyter,c#
 date: 17-08-2021
 ---
 
-In this video we walk through the steps to get .NET Interactive and JupyterLab working together and show how you can 
-generate working C# notebooks for any ServiceStack API, chart thier results and execute them for 
-FREE on [mybinder.org](https://mybinder.org)
+
+This video demonstrates integrating .NET Interactive and JupyterLab to enhance the development experience, creating a seamless workflow when working with ServiceStack services. 
+
+It guides viewers through generating working C# notebooks for any ServiceStack service, highlighting improved productivity through these tools which are FREE on [mybinder.org](https://mybinder.org).

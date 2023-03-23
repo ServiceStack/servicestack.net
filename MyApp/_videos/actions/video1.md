@@ -5,5 +5,6 @@ tags: ormlite,db,litestream,hosting
 date: 22-07-2022
 ---
 
-Introduction of [Litestream](https://litestream.io) for SQLite and how to use the ServiceStack Litestream mix templates 
-to quickly setup SQLite backup and restores when deploying via SSH and docker-compose using GitHub Actions.
+This guide introduces [Litestream](https://litestream.io) for SQLite and demonstrates using ServiceStack Litestream mix templates for efficient setup. The tutorial focuses on SQLite backup and restore procedures during deployment via SSH and docker-compose, utilizing GitHub Actions. 
+
+By following these steps, you can streamline your SQLite management tasks and enhance your overall deployment process.

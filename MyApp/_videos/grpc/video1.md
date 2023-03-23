@@ -5,6 +5,6 @@ tags: flutter,dart,grpc
 date: 01-04-2022
 ---
 
-In this video we'll walk through configuring Flutter and gRPC .NET Services with the `flutter-grpc` mix template
-to add a new Flutter application using your locally installed **Flutter SDK** to an existing ServiceStack `grpc` project 
-that has been configured to support gRPC services.
+The video guides viewers through configuring a Flutter application with gRPC .NET services using the `flutter-grpc` mix template, starting with Flutter and gRPC services introduction and installation of the required SDK and template. 
+
+It demonstrates creating typed Dart DTOs for gRPC services, making typed requests, and keeping the Flutter app in sync with the .NET backend through automatic updates.
