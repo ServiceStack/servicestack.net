@@ -1,14 +1,13 @@
 <footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
-    <div class="container mx-auto px-5">
-        
+    <div class="max-w-screen-2xl mx-auto px-5">
         <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
                 <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
                 <div>
-                    <a href="blazor" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blazor WASM</a>
-                    <a href="autoquery" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">AutoQuery</a>
-                    <a href="service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
-                    <a href="litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="@Html.ContentUrl("/blazor")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blazor WASM</a>
+                    <a href="@Html.ContentUrl("/autoquery")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">AutoQuery</a>
+                    <a href="@Html.ContentUrl("/service-reference")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="@Html.ContentUrl("/litestream")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
                     <a href="@Html.ApiUrl("/ormlite")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
                     <a href="@Html.ApiUrl("/redis")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
                     <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
@@ -25,7 +24,7 @@
                     <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
                     <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
                     <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
-                    <a href="posts" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                    <a href="@Html.ContentUrl("/posts")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
                 </div>
             </div>
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
@@ -36,17 +35,17 @@
                     <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
                     <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
                     <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
-                    <a href="training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                    <a href="@Html.ContentUrl("/training")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
                 </div>
             </div>
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
                 <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
                 <div>
-                    <a href="support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
-                    <a href="whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
-                    <a href="./#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
-                    <a href="privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
-                    <a href="terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                    <a href="@Html.ContentUrl("/support")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="@Html.ContentUrl("/whatsnew")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="@Html.ContentUrl("/#contact")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="@Html.ContentUrl("/privacy")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="@Html.ContentUrl("/terms")" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
                 </div>
             </div>
             <div class="px-4 mt-4 sm:w-1/3 xl:w-1/6 sm:mx-auto xl:mt-0 xl:ml-auto">
@@ -78,7 +77,7 @@
                 <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
             </div>
             <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
-                <a href="start"
+                <a href="@Html.ContentUrl("/start")"
                     class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                     Get started
                 </a>
