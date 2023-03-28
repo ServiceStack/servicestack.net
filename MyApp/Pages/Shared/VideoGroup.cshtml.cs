@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿// BSD License: https://docs.servicestack.net/BSD-LICENSE.txt
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyApp.Pages.Shared;
 

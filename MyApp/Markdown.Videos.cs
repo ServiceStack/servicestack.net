@@ -1,4 +1,5 @@
-﻿// run node postinstall.js to update to latest version
+﻿// BSD License: https://docs.servicestack.net/BSD-LICENSE.txt
+// run node postinstall.js to update to latest version
 using ServiceStack.IO;
 
 namespace Ssg;
