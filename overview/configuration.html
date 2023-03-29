@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
-    <title>Fundamentals - Background Concepts - ServiceStack</title>
+    <title>Fundamentals - Configuration - ServiceStack</title>
     <base href="/" />
     <script>
     const cls = document.querySelector('html').classList
@@ -107,7 +107,6 @@ mountAll()
         
 
 
-
 <link rel="stylesheet" href="css/typography.css">
 <link rel="stylesheet" href="css/lite-yt-embed.css">
 <link rel="stylesheet" href="css/highlight.css">
@@ -116,7 +115,7 @@ mountAll()
     <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
         <div class="mt-8">
             <h3 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-                Getting Started - Background Concepts
+                Getting Started - Configuration
             </h3>
             <div class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you
@@ -127,103 +126,67 @@ mountAll()
 
 
 <div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Vae0ALalIP0" style="background-image: url('https://img.youtube.com/vi/Vae0ALalIP0/maxresdefault.jpg')"></lite-youtube>
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="mOpx5mUGoqI" style="background-image: url('https://img.youtube.com/vi/mOpx5mUGoqI/maxresdefault.jpg')"></lite-youtube>
 </div>
 
-<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
-    <div class="absolute inset-0 -z-10 overflow-hidden">
-        <svg class="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]" aria-hidden="true">
-            <defs>
-                <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
-                    <path d="M100 200V.5M.5 .5H200" fill="none"/>
-                </pattern>
-            </defs>
-            <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
-                <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0"/>
-            </svg>
-            <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)"/>
-        </svg>
-    </div>
-    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
-        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-            <div class="lg:pr-4">
-                <div class="lg:max-w-lg">
-                    <p class="text-base font-semibold leading-7 text-indigo-600">Learn</p>
-                    <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">What is a Message-based WebService?</h1>
-                    <p class="mt-6 text-xl leading-8 text-gray-700">
-                        Message-based design is enabled in ServiceStack by capturing the Services Request Query into a 
-                        Request DTO that’s completely de-coupled from any one implementation.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
-            <div class="w-full px-4 py-2">
-                <div class="flex flex-wrap px-10">
-                    <div class="mt-16 lg:mt-24">
-                        <img src="/img/start/dtos-role.png"  alt="Diagram for the role of DTOs">
-                        <img src="/img/start/servicestack-httpclients.png" alt="Diagram for the role of DTOs">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-            <div class="lg:pr-4">
-                <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
-                    <p class="text-left clearfix">
-                        There are many natural benefits gained when <a href="https://docs.servicestack.net/advantages-of-message-based-web-services">adopting a message-based design</a> they offer better resilience, flexibility, versionability than their RPC cousins.
-                        Most of the benefits of message-based designs are gained over time as you’re developing and evolving your existing services and adding support for more clients.
-                        <strong>One immediate benefit is being able to provide an end-to-end typed API without the use of code-gen</strong>. This is impossible to achieve without a message-based design which ensures the essence of your Service Contract is captured in re-usable DTOs.
-                    </p>
-                    <p class="text-left clearfix">
-                        Conceptually in ServiceStack you’re just sending a message to a ServiceStack instance, the client is not concerned with what ultimately handles it, only that a response is returned for reply requests or that the request is successfully accepted for oneway messages. In a RPC API you’re conceptually invoking a remote method which has the request tightly coupled to its remote implementation method signature.
-                    </p>
-                </div>
-
-                <div class="buttons text-center sm:text-left my-8">
-                    <a href="https://docs.servicestack.net/api-design"
-                       class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
-                        Learn more
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
     <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         <div class="lg:pr-4">
-            <div class="lg:max-w-lg">
-                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">API First Development</h1>
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Registering IoC Dependencies</h1>
             </div>
             <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
-                <p class="pt-4 text-left clearfix">
-                    The message based approach ServiceStack takes goes hand in hand with API first development.
-                    Having well-defined, coarse-grained Service Contracts which are made up from decoupled, implementation free message DTO, enables a client agnostic API for all client types since they all consume the same published APIs as each other.
+                <p class="text-left clearfix">
+                    In your application's <code class="font-semibold">AppHost</code>, you will see a <code class="font-semibold">Configure(Container container)</code> method which is fired during your application startup and is the location that should contain all your configuration, including registering resources you want easy access to in your Services.
                 </p>
-                <p class="pt-4 text-left clearfix">
-                    If your Services retain this property then they’ll be able to encapsulate any of its capabilities of infinite complexity and make it available remotely to all consumers with never any more complexity than the cost of a Service call.
+                <p class="text-left clearfix">
+                    ServiceStack uses a modified version of Funq as the default Inversion of Control (IoC) container. This the primary way to share code across services as well as configuration your might need.
                 </p>
-                <p class="pt-4 text-left clearfix">
-                    This is ultimately where most of the value of Services are derived, they’re the ultimate form of encapsulating complexity and offers the highest level
-                    of software reuse. ServiceStack amplifies your Services capabilities by making them available in multiple <a href="https://docs.servicestack.net/why-servicestack#multiple-hosting-options">Hosting Options</a>,
-                    <a href="https://docs.servicestack.net/why-servicestack#multiple-pluggable-formats">serialization formats</a>, <a href="https://docs.servicestack.net/why-servicestack#multiple-endpoints">MQ and SOAP endpoints</a> to
-                    enable more seamless integrations in a variety of different scenarios including native end-to-end Typed APIs for the most popular
-                    <a href="https://docs.servicestack.net/why-servicestack#multiple-clients">Web, Mobile and Desktop Apps</a> that reduce the effort and complexity required to call your Services
-                    in all consumers - multiplicatively increasing the value provided.
+                <p class="text-left clearfix">
+                    ServiceStack defaults to public property injection of registered IoC dependencies. This means for if you want a service class to take a dependency on one of your registered IoC instances, you just need to declare a <code class="font-semibold">public property with the matching type</code> and the AppHost will wire up the dependency.
                 </p>
             </div>
             <div class="buttons text-center sm:text-left my-8">
-                <a href="https://docs.servicestack.net/api-design#handling-different-http-verbs"
+                <a href="https://docs.servicestack.net/ioc"
                    class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
                     Learn more
                 </a>
             </div>
         </div>
         <div class="pt-4">
-            <img src="/img/start/servicestack-logical-view-02.png" alt="ServiceStack architecture">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+
+   // Configure your AppHost with the necessary configuration
+   // and dependencies your App needs
+   public override void Configure(Container container)
+   {
+       container.Register&lt;IBar&gt;(new Bar {
+           Name = "Registered as interface"
+       });
+
+       container.Register(new Bar {
+           Name = "Registered as Concrete type"
+       });
+   }
+}
+
+public class MyServices
+{
+    public IBar Bar { get; set; }
+    
+    public object Any(Hello request)
+    {
+        return new HelloResponse {
+            Result = $"Hello, {Bar.Name}";
+        }
+    }
+}
+</code></pre>
+            
         </div>
     </div>
 </div>
@@ -232,42 +195,333 @@ mountAll()
 <div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
     <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         <div class="lg:pr-4">
-            <div class="lg:max-w-lg">
-                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Architecture Overview</h1>
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Add features via Plugins</h1>
             </div>
             <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
-                <p class="pt-4 text-left clearfix">
-                    Ultimately behind-the-scenes ServiceStack is just built on top of ASP.NET’s Raw
-                    <a href="https://msdn.microsoft.com/en-us/library/ms227433.aspx">IHttpAsyncHandler</a>.
-                    Existing abstractions and <a href="http://mono.servicestack.net/mvc-powerpack/">xmlconfig-encumbered legacy ASP.NET providers</a> have been abandoned,
-                    in favour of fresh, simple and clean <a href="https://docs.servicestack.net/caching">Caching</a>, <a href="https://docs.servicestack.net/sessions">Session</a>
-                    and <a href="https://docs.servicestack.net/authentication-and-authorization">Authentication</a> providers all based on clean POCOs,
-                    supporting multiple back-ends and all working seamlessly together.
+                <p class="text-left clearfix">
+                    ServiceStack has an easy way to add packaged up functionality into your application with the use of the <code>Plugin API</code>. Within your <code>AppHost.Configure</code> method, Plugins can be added using the function <code>Plugins.Add</code> which takes an instance of an IPlugin.
                 </p>
-                <p class="pt-4 text-left clearfix">
-                    ServiceStack’s <a href="https://docs.servicestack.net/advantages-of-message-based-web-services">Message-based design</a> allows us to easily support <a href="https://docs.servicestack.net/clients-overview">typed, generic and re-usable Service Clients</a> for all our popular formats.
-                    Having all clients share the same interface allow them to be hot-swappable at run-time without code changes and keep them highly testable where the same unit test can also <a href="https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.IntegrationTests/Tests/WebServicesTests.cs">serve as an XML, JSON, JSV, SOAP Integration Test</a>.
+                <p class="text-left clearfix">
+                    ServiceStack automatically registers several plugins by default including <code>CSV Format</code>, <code>HTML Format</code>, and <code>Predefined Routes</code> but also has a range of other Plugins available to add functionality to configure and add to your application with minimal fuss.
+                </p>
+                <p class="text-left clearfix">
+                    You can create your own Plugins using the IPlugin interface as a way to isolate a feature set you have built which can help if you need to share features among multiple hosts.
                 </p>
             </div>
             <div class="buttons text-center sm:text-left my-8">
-                <a href="https://docs.servicestack.net/api-design#handling-different-http-verbs"
+                <a href="https://docs.servicestack.net/plugins"
                    class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
                     Learn more
                 </a>
             </div>
         </div>
         <div class="pt-4">
-            <img src="/img/svgs/servicify.svg" alt="ServiceStack architecture">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+
+   public override void Configure(Container container)
+   {
+       // Feature Plugin with default configuration
+       Plugins.Add(new ValidationFeature());
+
+       // Feature Plugin with custom configuration
+       Plugins.Add(new AuthFeature(
+           () => new CustomUserSession(),
+           new IAuthProvider[] {
+               new CredentialsAuthProvider(),
+           }));
+   }
+}
+</code></pre>
+            
         </div>
     </div>
 </div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Manage AppSettings</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    ServiceStack has several ways to make it easy to populate application configuration from various data sources into a flexible <code>IAppSettings</code> instance including <code>Web.config</code>, <code>database</code>, <code>environment variables</code>, <code>text files</code> and more.
+                </p>
+                <p class="text-left clearfix">
+                    A <code>MultiAppSettings</code> builder is also provided which creates a cascading configuration that checks various sources in priority order. AppSettings provides a good base for your own custom strongly typed class of settings that can be initialized from AppSettings and then shared in your application as your own custom settings class.
+                </p>
+                <p class="text-left clearfix">
+                    AppSettings can be registered and used like any other auto wired dependency in your IoC container to make it easy to share runtime configuration among your services. This creates an easy to manage a central place for your application settings that can be used anywhere in your application.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/appsettings"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+            <pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly)
+   {
+       var customSettings = new FileInfo("appsettings.txt");
+       if (customSettings.Exists)
+       {
+           AppSettings = new TextFileSettings(customSettings.FullName);
+       }
+   }
+
+   public override void Configure(Container container)
+   {
+       var redisHost = AppSettings.GetString("RedisHost");
+       if (redisHost != null)
+       {
+           container.Register&lt;IServerEvents&gt;(c => 
+               new RedisServerEvents(new PooledRedisClientManager(redisHost)));
+
+           container.Resolve&lt;IServerEvents&gt;().Start();
+       }
+   }
+}
+
+public class ServerEventsServices : Service
+{
+    public IAppSettings AppSettings { get; set; }
+
+    public void Any(PostRawToChannel request)
+    {
+        if (!IsAuthenticated && AppSettings.Get("LimitRemoteControlToAuthenticatedUsers", false))
+            throw new HttpError(HttpStatusCode.Forbidden, 
+                "You must be authenticated to use remote control.");
+        //...
+    }   
+}
+</code></pre>
+ 
+<b>appsettings.txt</b>
+<pre><code class="language-ini"># Which port to host Chat app on
+port 1337
+
+# Change what starting background image should be used
+background /img/bg.jpg
+
+# Don't allow Anon Users to use Remote Control
+LimitRemoteControlToAuthenticatedUsers False
+
+#default settings for all oauth providers uses OAuth configured for http://localhost:1337/
+oauth.RedirectUrl http://localhost:1337/
+oauth.CallbackUrl http://localhost:1337/auth/{0}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Mix in functionality using templates</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    A great way to speed up development is to use the ServiceStack dotnet <code>x</code> tool to create new projects as well as mix in additional functionality. Once installed, using the command <code>x mix</code> will show a list of features that can be mixed into an existing application.
+                </p>
+                <p class="text-left clearfix">
+                    For example, using the command <code>x mix sqlite</code> in the root of your project folder will add the required ServiceStack SQLite related dependencies to your project as well as a startup module <code>Configure.Db.cs</code> file with all the required code to incorporate a SQLite OrmLite connection straight into your application.
+                </p>
+                <p class="text-left clearfix">
+                    The dotnet <code>x</code> tool is cross platform, and can be installed using the command:
+                </p>
+            </div>
+            <div class="mt-4" data-component="CopyLine" data-props="{ prefix:'$ ', text:'dotnet tool install -g x' }"></div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/modular-startup"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureDb))]
+
+namespace MyApp;
+
+public class ConfigureDb : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices((context, services) => {
+            services.AddSingleton&lt;IDbConnectionFactory&gt;(new OrmLiteConnectionFactory(
+                context.Configuration.GetConnectionString("DefaultConnection")
+                ?? ":memory:",
+                SqliteDialect.Provider));
+        })
+        .ConfigureAppHost(appHost => {
+            // Enable built-in Database Admin UI at /admin-ui/database
+            // appHost.Plugins.Add(new AdminDatabaseFeature());
+        });
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Register a Database connection</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    ServiceStack's bundled Object Relational Mapper (ORM), OrmLite, is the standard way to register a RDBMS connect for the rest of your application to use. This can be done by registering an <code>IDbConnectionFactory</code> with your IoC container.
+                </p>
+                <p class="text-left clearfix">
+                    When registering an <code>OrmLiteConnectionFactory</code>, a <code>Provider</code> must be specified to match which vendor technology you are using. For example, if you are using PostgreSQL as your database backend, you'll need to add the <code>ServiceStack.OrmLite.PostgreSQL</code> dependency to your AppHost project and specify the <code>PostgreSqlDialect.Provider</code>.
+                </p>
+                <p class="text-left clearfix">
+                    Once the <code>IDbConnectionFactory</code> is registered, it can be resolved from IoC using <code>container.Resolve&lt;IDbConnectionFactory&gt;</code> to be used in other configuration as well as accessed in your services using the <code>Db</code> property helper to open a new database connection. Your other projects will only need the <code>ServiceStack.OrmLite</code> package to access the OrmLite API.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/ormlite/getting-started"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+
+   public override void Configure(Container container)
+   {
+       var connectionString =
+           "Server=127.0.0.1;Port=5432;" +
+           "Database=myDataBase;User Id=myUsername;" +
+           "Password=myPassword;";
+           
+       container.Register&lt;IDbConnectionFactory&gt;(
+           new OrmLiteConnectionFactory(
+               connectionString,
+               PostgreSqlDialect.Provider));
+       
+       using var db = container
+           .Resolve&lt;IDbConnectionFactory&gt;().Open();
+       if (db.CreateTableIfNotExists&lt;MyTable&gt;())
+       {
+           db.Insert(new MyTable {
+               Name = "Seed Data for new MyTable"
+           });
+       }
+   }
+}
+
+public class MyServices : Service
+{
+    public object Any(Hello request)
+    {
+        // Db property opens a new connection per request
+        var user = Db.Single&lt;User&gt;(x => x.Id == request.Id);
+        return new HelloResponse {
+            Result = $"Hello, {user.Name}!"
+        };
+    }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Register a Redis connection</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    ServiceStack also comes bundled with first class Redis client in the <code>ServiceStack.Redis</code> package. It provides several APIs including a native client, strongly typed client as well as integrating into your application as a
+                    <a href="https://docs.servicestack.net/caching">cache provider</a>.
+                </p>
+                <p class="text-left clearfix">
+                    Registering a Redis connection requires registering a <code>IRedisClientManager</code> with your IoC container. To take advantage of Redis as a caching provider you can register a factory method with your IoC container returning an ICacheClient from the client manager. The will enable use of the <code>Cache</code> and <code>CacheAsync</code> properties in your services.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/redis/client-managers"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">public class AppHost : AppHostBase
+{
+   public AppHost() : base("Web", 
+       typeof(MyServices).Assembly) { }
+   
+   public override void Configure(Container container)
+   {
+       var connectionString = "redis://localhost:6379";
+       // Register client manager.
+       container.Register&lt;IRedisClientsManager&gt;(
+           new RedisManagerPool(connectionString)); 
+
+       // Register client factory
+       container.Register(c =&gt; 
+           c.Resolve&lt;IRedisClientsManager&gt;().GetCacheClient());
+   }
+}
+
+public class MyServices : Service
+{
+    public object Any(Hello request)
+    {
+        var name = Cache.Get&lt;string&gt;(key);
+        return new HelloResponse {
+            Result = $"Hello, {name}!"
+        };
+    }
+    
+    public async Task&lt;object&gt; Any(HelloAsync request)
+    {
+        var name = await CacheAsync.GetAsync&lt;string&gt;(key);
+        return new HelloResponse {
+            Result = $"Hello, {name}!"
+        };
+    }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
 
 <div class="my-20 flex justify-center">
     <div class="flex items-center">
-        <a href="start/fundamentals">
-        <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
-            <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
-            Fundamentals
+        <a href="overview/fundamentals">
+            <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+                Fundamentals
             </div>
         </a>
         <span class="text-2xl ml-4 text-gray-400">Previous</span>

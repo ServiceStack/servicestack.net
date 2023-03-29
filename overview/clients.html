@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
-    <title>Project Overview - ServiceStack</title>
+    <title>Fundamentals - Clients - ServiceStack</title>
     <base href="/" />
     <script>
     const cls = document.querySelector('html').classList
@@ -115,7 +115,7 @@ mountAll()
     <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
         <div class="mt-8">
             <h3 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-                Getting Started - How it works
+                Getting Started - Clients
             </h3>
             <div class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 Different ways for getting started with ServiceStack: Project templates, Walkthroughs, Docs and Videos, choose what's best for you
@@ -125,135 +125,265 @@ mountAll()
 </div>
 
 
-<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
-    <div class="absolute inset-0 -z-10 overflow-hidden">
-        <svg class="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]" aria-hidden="true">
-            <defs>
-                <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
-                    <path d="M100 200V.5M.5 .5H200" fill="none"/>
-                </pattern>
-            </defs>
-            <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
-                <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0"/>
-            </svg>
-            <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)"/>
-        </svg>
-    </div>
-    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
-        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-            <div class="lg:pr-4">
-                <div class="lg:max-w-lg">
-                    <p class="text-base font-semibold leading-7 text-indigo-600">Project Overview</p>
-                    <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Project Structure</h1>
-                    <p class="mt-6 text-xl leading-8 text-gray-700">
-                        All templates have a <b>.sln</b> file which you can open with your favorite C# IDE.
-                    </p>
-                </div>
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">ServiceStack Clients</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    As ServiceStack is just a pure HTTP web service it can be accessed with any HTTP-capable client. ServiceStack libraries provide out of the box client libraries for all of most popular platforms and exposes a consistent and intuitive client API that takes advantage of the message centric design of ServiceStack services.
+                </p>
+                <p class="text-left clearfix">
+                    This supports developers to wrap their own web service APIs in their custom client SDK with minimal effort since underlying ServiceStack libraries can be used as a base.
+                </p>
+                <p class="text-left clearfix">
+                    This is an especially good idea if you want to support static languages (i.e. C# and Java) where having typed client libraries saves end-users from reverse engineering the types and API calls. It also saves them having to look up documentation since a lot of it can be inferred from the type info.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/clients-overview#net-clients"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
             </div>
         </div>
-        <div class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
-            <div class="w-full px-4 py-2">
-                <div class="flex flex-wrap px-10">
-                    <img class="w-1/2" src="/img/start/default-template-files.png" alt="Default file explorer with template.">
-                    <img class="w-1/2" src="/img/start/solution-layout.png" alt="Default file explorer with template.">
-                </div>
-            </div>
-        </div>
-        <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-            <div class="lg:pr-4">
-                <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
-                    <p>
-                        Most project templates adopts ServiceStack's recommended Physical Project Structure with solutions
-                        separated into their individual logical components:
-                    </p>
-                    <div>
-                        <ul class="mb-2">
-                            <li>
-                                <a href="https://docs.servicestack.net/create-your-first-webservice#host-project">Host</a>
-                            </li>
-                            <li>
-                                <a href="https://docs.servicestack.net/create-your-first-webservice#serviceinterface-project">Service Interface</a>
-                            </li>
-                            <li>
-                                <a href="https://docs.servicestack.net/create-your-first-webservice#servicemodel-project">Service Model</a>
-                            </li>
-                            <li>
-                                <a href="https://docs.servicestack.net/create-your-first-webservice#test-project">Tests</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <p>
-                        Ensuring ServiceStack solutions start off from an optimal logical project layout that lays the
-                        foundation for a growing maintainable, cohesive and reusable code-base.
-                    </p>
-                    <p class="info-note">
-                        Many SPA project templates use npm which requires running <code>npm install</code> on the
-                        Host project (MyApp) before running the application.
-                    </p>
-                    <p>
-                        Templates are designed with developer workflows in mind, specific to each template. Building
-                        on existing OSS tooling like Vue CLI, and useful NPM scripts, you'll get everything you need
-                        to start integrating with your ServiceStack server quickly right from the beginning.
-                    </p>
-                    <p>
-                        Template specific workflows are documented within the <code>README.md</code> for each template.
-                    </p>
-                </div>
-
-                <div class="buttons text-center sm:text-left my-8">
-                    <a href="https://docs.servicestack.net/physical-project-structure"
-                       class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
-                        Learn
-                        more
-                    </a>
-                </div>
-
-            </div>
+        <div class="pt-4">
+            <img src="/img/start/servicestack-httpclients.png" alt="ServiceStack Clients">
         </div>
     </div>
 </div>
 
-<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
     <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         <div class="lg:pr-4">
-            <div class="lg:max-w-lg">
-                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">How does it work?</h1>
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Service Clients</h1>
             </div>
             <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
-
-                <p class="py-4 text-left clearfix">
-                    Now that your new project is running, let’s have a look at what we have. The template comes with
-                    a single web service route which comes from the request DTO (Data Transfer Object) which is
-                    located in the <code>MyApp.ServiceModel/Hello.cs</code> file.
+                <p class="text-left clearfix">
+                    Using DTOs to define your web service interface makes it possible to provide strong-typed generic service clients without any code-gen or extra build-steps, leading to a productive end-to-end type-safe communication gateway from client to server.
                 </p>
-                <p class="py-2 text-left clearfix">
-                    The <code>Route</code> attribute is specifying what path <code>/hello/{Name}</code> where <code>{Name}</code>
-                    binds its value to the public string property of Name.
+                <p class="text-left clearfix">
+                    This experience is consistent across ServiceStack client libraries and DTOs can be easily shared through tooling like <strong>Add ServiceStack Reference</strong>. These clients are  optimized for consuming ServiceStack Services including built-in <a href="https://docs.servicestack.net/error-handling">Error handling</a>, <a href="https://docs.servicestack.net/routing">Predefined Routes</a>, <a href="https://docs.servicestack.net/auto-batched-requests">Auto Batched Requests</a>, etc.
                 </p>
-                <p class="py-2 text-left clearfix">
-                    The <code>MyServices</code> class is a ServiceStack service with a method utilizing the <code>Hello</code>
-                    and <code>HelloResponse</code> DTOs. The name of the method <code>Any</code> means the server
-                    will run this method for any of the valid HTTP Verbs. Service methods are where you control what
-                    returns from your service.
-                </p>
-                <p class="py-2 text-left clearfix">
-                    Accessing the <a href="https://web.web-templates.io/hello/world">route using your browser</a>
-                    via the <code>/hello/world</code> route, you will see a snapshot of the Result in a friendly
-                    HTML response format. To change the return format to JSON, simply add <code>?format=json</code>
-                    to the end of the URL.
-                </p>
+                <ul>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/csharp-client">C#/.NET Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/typescript-add-servicestack-reference">TypeScript Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/python-add-servicestack-reference">Python Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/kotlin-add-servicestack-reference">Kotlin Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/java-add-servicestack-reference">Java Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/swift-add-servicestack-reference">Swift Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/dart-add-servicestack-reference#example-usage">Dart Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/javascript-client">JavaScript Client</a></li>
+                    <li class="list-inside list-disc"><a href="https://docs.servicestack.net/redis-mq">MQ Clients</a></li>
+                </ul>
             </div>
             <div class="buttons text-center sm:text-left my-8">
-                <a href="https://docs.servicestack.net/your-first-webservice-explained"
+                <a href="https://docs.servicestack.net/clients-overview#servicestack-clients"
                    class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
-                    Learn
-                    more
+                    Learn more
                 </a>
             </div>
         </div>
-        <div class="w-full mt-8" data-wow-offset="10" data-wow-duration="1.5s">
-            <div>
-<pre><code class="language-csharp">[Route("/hello/{Name}")]
+        <div class="pt-4">
+
+<b>C#</b>
+<pre><code class="language-csharp">var baseUrl = "https://web.web-templates.io";
+var client = new JsonServiceClient(baseUrl);
+var response = client.Get(new Hello { Name = "World!" });
+</code></pre>
+
+<b>Dart</b>
+<pre><code class="language-dart">import 'package:servicestack/client.dart';
+import 'dtos.dart';
+
+var baseUrl = "https://web.web-templates.io";
+var client = new JsonServiceClient(baseUrl);
+var response = await client.get(new Hello(name:"World!"));
+</code></pre>
+
+<b>Java</b>
+<pre><code class="language-java">String baseUrl = "https://web.web-templates.io";
+JsonServiceClient client = new JsonServiceClient(baseUrl);
+HelloResponse = client.get(new Hello().setName("World!"));
+</code></pre>
+
+<b>Swift</b>
+<pre><code class="language-swift">var baseUrl = "https://web.web-templates.io";
+var client = JsonServiceClient(baseUrl:baseUrl)
+
+var request = Hello()
+request.name = "World!"
+let response = client.get(request);
+</code></pre>
+
+<b>TypeScript</b>
+<pre><code class="language-typescript">import { JsonServiceClient } from 'servicestack-client'
+import { Hello } from './web.dtos'
+
+let baseUrl = "https://web.web-templates.io"
+let client = new JsonServiceClient(baseUrl)
+
+let request = new Hello({ name: 'World!' })
+let response = await client.get(request) //res:HelloResponse
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Web Client</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    TypeScript provides a great developer experience for web developers, the additional type information and safety also makes ServiceStack's typed end to end services a pleasure to use.
+                    The NPM library <code>@servicestack/client</code> combined with your service DTOs which are generated by ServiceStack takes the guess work out of what data structures will be returning from each service.
+                </p>
+                <p class="text-left clearfix">
+                    Here, in a VueJS project, we can see the server DTOs in C# as well as what the TypeScript DTOs that the server generates from them. The Service Client can infer the response type from the request type thanks to the use of IReturn&lt;T&gt;.
+                </p>
+                <p class="text-left clearfix">
+                    This provides web development with autocomplete of the available requests as well as typed objects in the response so you know exactly what data is available and it is typed without any additional effort.
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/typescript-add-servicestack-reference#first-class-development-experience"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">[Route("/hello")]
+[Route("/hello/{Name}")]
+public class Hello : IReturn&lt;HelloResponse&gt;
+{
+   public string Name { get; set; }
+}
+
+public class HelloResponse
+{
+   public string Result { get; set; }
+}
+
+public class MyServices : Service
+{
+   public object Any(Hello request) =&gt;
+       new HelloResponse {
+           Result = $"Hello, {request.Name}!"
+       };
+}
+</code></pre>
+
+<b>HelloApi.mjs</b>
+<pre><code class="language-typescript">import { ref } from "vue"
+import { useClient } from "@servicestack/vue"
+import { Hello } from "/dtos.mjs"
+
+export default {
+   template:/*html*/`&lt;div class="flex flex-wrap justify-center"&gt;
+       &lt;TextInput v-model="name" @keyup="update" /&gt;
+       &lt;div class="ml-3 mt-2 text-lg"&gt;{{ result }}&lt;/div&gt;
+   &lt;/div&gt;`,
+   props:['value'],
+   setup(props) {
+       let name = ref(props.value)
+       let result = ref('')
+       let client = useClient()
+
+       async function update() {
+           let api = await client.api(new Hello({ name }))
+           if (api.succeeded) {
+               result.value = api.response.result
+           }
+       }
+       update()
+
+       return { name, update, result }
+   }
+}
+</code></pre>
+
+<b>dtos.ts</b>
+<pre><code class="language-swift">export class HelloResponse
+{
+  public result: string;
+
+  public constructor(init?: Partial&lt;HelloResponse&gt;) { 
+      (Object as any).assign(this, init); 
+  }
+}
+
+export class Hello implements IReturn&lt;HelloResponse&gt;
+{
+  public name: string;
+
+  public constructor(init?: Partial&lt;Hello&gt;) { 
+      (Object as any).assign(this, init); 
+  }
+  public createResponse() { return new HelloResponse(); }
+  public getTypeName() { return 'Hello'; }
+}
+</code></pre>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Native Clients</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    As well as supporting the use of cross platform frameworks like Xamarin, ServiceStack supports building native client apps through the array of service client libraries and tooling.
+                </p>
+                <p class="text-left clearfix">
+                    This means you'll have the most flexibility when it comes to building your client applications when integrating with a ServiceStack backend. You can use <code>Swift</code> for iOS, <code>Java</code> or <code>Kotlin</code> for Android and get the most out of platform you are targeting.
+                </p>
+                <p>
+                    The DTOs are live generated from a running ServiceStack server and can be viewed via the URL <code>/types/{Name}</code>. Test this live using one of our hosted demo applications below.
+                </p>
+                <ul>
+                    <li class="list-inside list-disc"><a href="https://web.web-templates.io/types/java">Java</a></li>
+                    <li class="list-inside list-disc"><a href="https://web.web-templates.io/types/kotlin">Kotlin</a></li>
+                    <li class="list-inside list-disc"><a href="https://web.web-templates.io/types/swift">Swift</a></li>
+                    <li class="list-inside list-disc"><a href="https://web.web-templates.io/types/dart">Dart</a></li>
+                </ul>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/java-add-servicestack-reference"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+
+<pre><code class="language-csharp">
+    public object Any(Hello request)
+    {
+        return new HelloResponse {
+            Result = $"Hello, {request.Name}!" 
+        };
+    }
+}
+
+[Route("/hello")]
+[Route("/hello/{Name}")]
 public class Hello : IReturn&lt;HelloResponse&gt;
 {
     public string Name { get; set; }
@@ -263,49 +393,120 @@ public class HelloResponse
 {
     public string Result { get; set; }
 }
+</code></pre>
 
-public class MyServices : Service
+<b>dtos.kt</b>
+<pre><code class="language-kotlin">open class Hello : IReturn&lt;HelloResponse&gt;
 {
-    public object Any(Hello request) =&gt;
-        new HelloResponse {
-            Result = $"Hello, {request.Name}!"
-        };
+    var name:String? = null
+    companion object { 
+        private val responseType = 
+            HelloResponse::class.java 
+    }
+    
+    override fun getResponseType(): Any? = 
+        Hello.responseType
 }
-</code></pre>                
-                
-            </div>
-            <div class="pt-4">
-                <p class="text-lg font-semibold leading-7">
-                    View in <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/api-explorer">API Explorer</a>
-                </p>
-                
-                <a href="https://web.web-templates.io/ui/Hello">
-                    <img src="/img/start/hello-world-html.png" class="mt-4 border border-gray-200"
-                         alt="HTML result of the hello world route.">
-                </a>
-            </div>
+
+open class HelloResponse
+{
+    var result:String? = null
+}
+</code></pre>
+
+<b>dtos.swift</b>
+<pre><code class="language-swift">public class Hello : IReturn, Codable
+{
+    public typealias Return = 
+        HelloResponse
+
+    public var name:String?
+
+    required public init(){}
+}
+
+public class HelloResponse : Codable
+{
+    public var result:String?
+
+    required public init(){}
+}
+</code></pre>
+            
         </div>
     </div>
 </div>
 
-<div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
-    <div class="my-20 mx-auto lg:max-w-7xl flex justify-between">
-        <div class="flex items-center mx-4">
-            <a href="start">
-                <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
-                    <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
-                    New Project
-                </div>
-            </a>
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Cross platform tooling</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    The ability to generate DTOs from your ServiceStack server can be done with a simple, cross-platform CLI as well as with many populate IDEs via direct integration.
+                </p>
+                <p class="text-left clearfix">
+                    Adding integration only needs the base URL of the ServiceStack server, and a specified language. For example, if you were working on a TypeScript React application and wanted to integrate with a ServiceStack service, you could use the command.
+                    <pre>x typescript https://web.web-template.io</pre>
+                </p>
+                <p class="text-left clearfix">
+                    This would generate the server DTOs in TypeScript, allowing you to easily communicate with the server using <code>@servicestack/client</code> library. The same workflow works for all supported languages!
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://docs.servicestack.net/add-servicestack-reference#installation"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
         </div>
-        <div class="flex items-center mx-4">
-            <a href="start/fundamentals">
-                <div class="rounded-md py-2 pl-6 pr-2 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
-                    Fundamentals
-                    <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.4 18L8 16.6l4.6-4.6L8 7.4L9.4 6l6 6Z"/></svg>
-                </div>
-            </a>
+        <div class="pt-4">
+            <img src="/img/start/add-ss-ref.png" alt="Add ServiceStack Reference">
         </div>
+    </div>
+</div>
+
+
+<div class="relative isolate overflow-hidden bg-white px-6 py-24 lg:overflow-visible lg:px-0">
+    <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div class="lg:pr-4">
+            <div class="lg:max-w-lg mb-4">
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Instant Client Apps</h1>
+            </div>
+            <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
+                <p class="text-left clearfix">
+                    The typed end to end clients also means we can generate complete working client application from a ServiceStack server. This enabled ServiceStack to offer a free web hosted tool to do just that and allow anyone to generate native client apps instantly with just a base URL.
+                </p>
+                <p class="text-left clearfix">
+                    Check out this video to see how this can be used to speed up client application development using Dart and Flutter!
+                </p>
+            </div>
+            <div class="buttons text-center sm:text-left my-8">
+                <a href="https://apps.servicestack.net/"
+                   class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div class="pt-4">
+            <lite-youtube class="shadow-sm border" width="560" height="315" videoid="GTnuMhvUayg" style="margin-bottom:3px;background-image: url('https://img.youtube.com/vi/GTnuMhvUayg/maxresdefault.jpg')"></lite-youtube>
+        </div>
+    </div>
+</div>
+
+
+<div class="my-20 flex justify-center">
+    <div class="flex items-center">
+        <a href="overview/fundamentals">
+            <div class="rounded-md py-2 pl-2 pr-6 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6Z"/></svg>
+                Fundamentals
+            </div>
+        </a>
+        <span class="text-2xl ml-4 text-gray-400">Previous</span>
     </div>
 </div>
 
@@ -313,6 +514,7 @@ public class MyServices : Service
 <script src="js/lite-yt-embed.js"></script>
 <script src="js/highlight.js"></script>
 <script>hljs.highlightAll()</script>
+
 
     </main>
 </div>
