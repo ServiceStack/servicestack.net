@@ -83,6 +83,7 @@ jobs:
           aws s3 sync ./dist/ s3://site.servicestack.net/
           
       - name: Push to S3 prod
+        working-directory: ./MyApp
         run: |
           aws s3 sync ./dist/ s3://servicestack.net/
           
