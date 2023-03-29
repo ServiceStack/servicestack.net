@@ -78,12 +78,13 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Push to S3 staging
+        working_directory: ./MyApp
         run: |
-          aws s3 sync ./_site/ s3://site.servicestack.net/
+          aws s3 sync ./dist/ s3://site.servicestack.net/
           
 #      - name: Push to S3 prod
 #        run: |
-#          aws s3 sync ./_site/ s3://servicestack.net/
+#          aws s3 sync ./dist/ s3://servicestack.net/
           
 #      - name: Invalidate CloudFront Cache
 #        run: |
