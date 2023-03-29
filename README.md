@@ -1,23 +1,45 @@
-# empty
+# servicestack.net
 
-.NET 6.0 Empty Web Single Project Template
+.NET 6.0 razor-ssg Static Generated Razor Pages Project Template
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/web.png)](http://web.web-templates.io/)
+[![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssg/servicestack.net-home-1440.png)](https://servicestack.net)
 
-> Browse [source code](https://github.com/NetCoreTemplates/empty), view live demo [web.web-templates.io](http://web.web-templates.io) and install with [dotnet-new](https://docs.servicestack.net/dotnet-new):
+> Browse [source code](https://github.com/NetCoreTemplates/razor-ssg), view live demo [razor-ssg.web-templates.io](https://razor-ssg.web-templates.io) and install with [dotnet-new](https://docs.servicestack.net/dotnet-new):
 
     $ dotnet tool install -g x
 
-    $ x new empty ProjectName
+    $ x new razor-ssg ProjectName
 
-Alternatively write new project files directly into an empty repository, using the Directory Name as the ProjectName:
+Alternatively write new project files directly into an razor-ssg repository, using the Directory Name as the ProjectName:
 
     $ git clone https://github.com/<User>/<ProjectName>.git
     $ cd <ProjectName>
-    $ x new empty
+    $ x new razor-ssg
 
-### Update Server TypeScript DTOs
+## Documentation
 
-Run the dtos package.json script to update your server dtos:
+Documentation for this template is included at [/posts/razor-ssg](https://razor-ssg.web-templates.io/posts/razor-ssg).
 
-    $ x scripts dtos
+## Development Tasks
+
+Tasks to run live reload Tailwind and .NET Razor Pages App during development:
+
+### Run Tailwind in Background
+
+    $ npm run ui:dev
+
+### Run .NET App with Live Reload
+
+    $ dotnet watch
+
+## Local Production Tasks
+
+Tasks to prerender and preview production ssg website build:
+
+### Prerender website
+
+    $ npm run prerender
+
+### Preview pre-rendered website
+
+    $ npm run serve
