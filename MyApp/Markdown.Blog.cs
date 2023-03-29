@@ -73,7 +73,7 @@ public class MarkdownBlog : MarkdownPagesBase<MarkdownFileInfo>
 
     public string GetPostLink(MarkdownFileInfo post) => $"posts/{post.Slug}";
 
-    public string GetPostsLink() => "posts";
+    public string GetPostsLink() => "posts/";
     public string GetAuthorLink(string author) => $"posts/author/{author.GenerateSlug()}";
     public string GetYearLink(int year) => $"posts/year/{year}";
     public string GetTagLink(string tag) => $"posts/tagged/{tag.GenerateSlug()}";
