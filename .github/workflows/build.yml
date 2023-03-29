@@ -78,7 +78,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Push to S3 staging
-        working_directory: ./MyApp
+        working-directory: ./MyApp
         run: |
           aws s3 sync ./dist/ s3://site.servicestack.net/
           
