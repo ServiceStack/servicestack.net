@@ -82,10 +82,10 @@ jobs:
         run: |
           aws s3 sync ./dist/ s3://site.servicestack.net/
           
-#      - name: Push to S3 prod
-#        run: |
-#          aws s3 sync ./dist/ s3://servicestack.net/
+      - name: Push to S3 prod
+        run: |
+          aws s3 sync ./dist/ s3://servicestack.net/
           
-#      - name: Invalidate CloudFront Cache
-#        run: |
-#          aws cloudfront create-invalidation --distribution-id E3770UUEKTY40O --paths "/*"
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id E3770UUEKTY40O --paths "/*"
