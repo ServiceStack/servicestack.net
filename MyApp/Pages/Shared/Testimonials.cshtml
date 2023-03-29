@@ -148,10 +148,10 @@ function handleTickInit(tick) {
         fetch('https://account.servicestack.net/stats/live/servicestack.json')
             .then(function (r) { return r.json() })
             .then(function(stats) {
-                if (!stats || tick.value === stats.DownloadCount)
+                if (!stats || tick.value === stats.downloadCount)
                     return;
 
-                tick.value = stats.DownloadCount;
+                tick.value = stats.downloadCount;
             }, function (err) { console.log('checkDownloadCount', err) });
     }, 100000);
 }
