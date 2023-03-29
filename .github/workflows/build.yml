@@ -1,7 +1,9 @@
 name: Build
 
+permissions:
+  contents: write
+
 on:
-  pull_request: {}
   push:
     branches:
       - 'main'
@@ -22,15 +24,67 @@ jobs:
         working-directory: ./MyApp
         run: dotnet build .
 
+      - name: Assign default GitHub URL base path
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          custom_domain=$(gh api "/repos/${{ github.repository }}/pages" | jq -r '.cname // empty')
+          echo "CNAME config detected: $custom_domain"
+          repo_name=$(echo ${{ github.repository }} | cut -d '/' -f 2)
+          org_name=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
+          if [ ! -f "./MyApp/wwwroot/CNAME" ] && [ ! custom_domain ] 
+          then
+            echo "ssg_base_href=$(echo https://$org_name.github.io/$repo_name/)" >> $GITHUB_ENV
+          else
+            if [ custom_domain ]
+            then
+              # Persist CNAME settings
+              echo "$custom_domain" >> ./MyApp/wwwroot/CNAME
+            fi
+          fi
+
+      - name: Build tailwind
+        working-directory: ./MyApp
+        run: |
+          npm run build
+
       - name: prerender
         working-directory: ./MyApp
-        run: dotnet run --AppTasks=prerender --environment Production
+        run: |
+          site_base_href=${{ env.ssg_base_href }}
+          if [ ! -z "$site_base_href" ]
+          then
+            echo "Prerendering for deployment to $site_base_href"
+            dotnet run --AppTasks=prerender --environment Production --BaseHref "$site_base_href"
+          else
+            echo "Prerendering for deployment to $(cat ./wwwroot/CNAME)"
+            dotnet run --AppTasks=prerender --environment Production
+          fi
 
       # Deploy UI to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./MyApp/dist
-            user_name: 'GitHub Action'
-            user_email: 'action@github.com'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./MyApp/dist
+          user_name: 'GitHub Action'
+          user_email: 'action@github.com'
+          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Push to S3 staging
+        run: |
+          aws s3 sync ./_site/ s3://site.servicestack.net/
+          
+#      - name: Push to S3 prod
+#        run: |
+#          aws s3 sync ./_site/ s3://servicestack.net/
+          
+#      - name: Invalidate CloudFront Cache
+#        run: |
+#          aws cloudfront create-invalidation --distribution-id E3770UUEKTY40O --paths "/*"
