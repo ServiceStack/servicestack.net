@@ -1,12 +1,18 @@
 ---
-title: Ultimate Vue SPA & SSG Jamstack templates for .NET
-url: https://youtu.be/D-rU0lU_B4I
-tags: vue,vite,jamstack
-date: 01-02-2022
+title: Modern Razor Pages & MVC .NET Tailwind templates
+url: https://youtu.be/SyppvQB7IPs
+tags: razor-pages,mvc,tailwind,vue
+date: 06-07-2021
 ---
 
-In this video tutorial, we introduce the `vue-ssg` template, a powerful combination of Vite, Vue3, and ServiceStack 
-that offers an unparalleled developer experience
+ServiceStack templates provide a wide range of options when it comes to using Razor Pages in your .NET application
 
-This template is specifically designed for .NET developers seeking a seamless and efficient Vue.js setup 
-while employing the Jamstack architecture leveraging capabilities of Vite, Vue & ServiceStack
+These templates come with Tailwind, JS Modules, and Vue components already built-in,
+making it easy to build hybrid apps containing both Server-Side Rendering (SSR) and static resources
+
+### Live Demos
+- https://razor-tailwind.web-templates.io
+- https://web-tailwind.web-templates.io
+- https://mvc-tailwind.web-templates.io
+- https://vue-mjs.web-templates.io
+- https://razor-pages.web-templates.io

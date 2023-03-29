@@ -1,12 +1,12 @@
 ---
-title: Rapidly develop .NET Vue.js SPA Apps
-url: https://youtu.be/4HphWPrKwb0
-tags: vue
-date: 21-05-2021
+title: Rapidly develop C# .NET Next.js JamStack Apps with Rider
+url: https://youtu.be/3pPLRyPsO5A
+tags: nextjs,react,jamstack
+date: 08-02-2022
 ---
 
-In this video tutorial, we will guide you through the process of utilizing the vue-spa template, an exceptional project template 
-that combines the power of ServiceStack and Vue.js to create a seamless development experience. 
+In this comprehensive walkthrough, we will guide you through the ServiceStack Next.js template, which offers an 
+exceptional rapid development cycle when used with JetBrains Rider. 
 
-This template is specifically designed to optimize rapid iterative dev cycles, allowing developers to quickly iterate on their 
-frontend and backend changes.
+This template is specifically designed for Microsoft .NET developers seeking a seamless and efficient Next.js React 
+setup while employing the better performing Jamstack architecture. 
