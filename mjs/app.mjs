@@ -3,6 +3,8 @@ import { JsonApiClient, $1, $$, enc } from "@servicestack/client"
 import ServiceStackVue from "@servicestack/vue"
 import HelloApi from "./components/HelloApi.mjs"
 import { CopyLine, NuGetPackage } from "./components/CopyLine.mjs"
+import GettingStarted from "./components/GettingStarted.mjs"
+import ShellCommand from "./components/ShellCommand.mjs"
 import VueComponentGallery from "./components/VueComponentGallery.mjs"
 import VueComponentLibrary from "./components/VueComponentLibrary.mjs"
 import ProjectTemplate from "./components/ProjectTemplate.mjs"
@@ -41,6 +43,8 @@ const Plugin = {
 /** Shared Components */
 const Components = {
     HelloApi,
+    GettingStarted,
+    ShellCommand,
     CopyLine,
     NuGetPackage,
     Hello,
