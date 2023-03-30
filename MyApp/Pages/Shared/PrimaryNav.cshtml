@@ -1,8 +1,20 @@
 @page
 @model string
 
+@{
+    var Links = new[]
+    {
+        ("./", "<span class=\"hidden lg:inline\">ServiceStack APIs</span><span class=\"lg:hidden\">APIs</span>"),
+        ("auto-ui", "<span class=\"hidden lg:inline\">Built In UIs</span><span class=\"lg:hidden\">UIs</span>"),
+        ("autoquery", "AutoQuery"),
+        ("blazor", "Blazor"),
+        ("flutter", "Flutter"),
+    };
+}
+
 <section>
     <div class="sticky top-0 z-50">
+        <div id="mobile-nav"></div>
         <div class="hidden sm:flex sm:h-32 sm:justify-center sm:border-b sm:border-slate-200 dark:sm:border-slate-700 sm:bg-white/95 dark:bg-black/95 sm:[@@supports(backdrop - filter:blur(0))]:bg-white/80 dark:sm:[@@supports(backdrop - filter:blur(0))]:bg-black/80 sm:[@@supports(backdrop - filter:blur(0))]:backdrop-blur">
             <ol role="list" class="mb-[-2px] grid auto-cols-[minmax(0,15rem)] grid-flow-col text-base font-medium text-slate-900 dark:text-slate-50 [counter-reset:section]">
                 @{
@@ -23,14 +35,66 @@
                             }
                         </li>
                     }
-
-                    RenderNavLink("./", "<span class=\"hidden lg:inline\">ServiceStack APIs</span><span class=\"lg:hidden\">APIs</span>");
-                    RenderNavLink("auto-ui", "Built In UIs");
-                    RenderNavLink("autoquery", "AutoQuery");
-                    RenderNavLink("blazor", "Blazor");
-                    RenderNavLink("flutter", "Flutter");
+                    @foreach (var link in Links)
+                    {
+                        RenderNavLink(link.Item1, link.Item2);
+                    }
                 }
             </ol>
         </div>
     </div>
 </section>
+
+<template id="mobile-nav-template">
+    <div class="sm:hidden">
+        <div class="relative flex items-center px-4 py-3 bg-white/95 shadow-sm [@@supports(backdrop-filter:blur(0))]:bg-white/80 [@@supports(backdrop-filter:blur(0))]:backdrop-blur">
+            @{
+                for (var i = 0; i < Links.Length; i++)
+                {
+                    var link = Links[i];
+                    if (link.Item1.Matches(Model))
+                    {
+                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">0@(i+1)</span>
+                        <span class="ml-4 text-base font-medium text-slate-900">@Html.Raw(link.Item2)</span>
+                    }
+                }
+            }
+            <button v-on:click="expanded=!expanded" :class="['-mr-1 ml-auto flex h-8 w-8 items-center justify-center', expanded ? 'relative z-10' : '']" aria-label="Toggle navigation menu" type="button" aria-expanded="false">
+                <span class="absolute inset-0"></span>
+                <svg v-if="!expanded" class="h-6 w-6 stroke-slate-700" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m15 16-3 3-3-3M15 8l-3-3-3 3"></path></svg>
+                <svg v-else class="h-6 w-6 stroke-slate-700" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 7 7 17M7 7l10 10"></path></svg>
+            </button>
+        </div>
+        <div v-if="!expanded" class="absolute inset-x-0 bottom-full z-10 h-4 bg-white"></div>
+        <div v-else class="absolute inset-x-0 top-0 bg-white/95 py-3.5 shadow-sm [@@supports(backdrop-filter:blur(0))]:bg-white/80 [@@supports(backdrop-filter:blur(0))]:backdrop-blur" tabindex="-1">
+            @{
+                void RenderMobileLink(int num, string href, string childContent, string? cls = null)
+                {
+                    <a class="flex items-center px-4 py-1.5" href="@href">
+                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">0@(num)</span>
+                        <span class="ml-4 text-base font-medium text-slate-900">@Html.Raw(childContent)</span>
+                    </a>
+                }
+                for (var i = 0; i < Links.Length; i++)
+                {
+                    var link = Links[i];
+                    RenderMobileLink(i+1, link.Item1, link.Item2);
+                }
+            }
+        </div>
+    </div>
+</template>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+const MobileNav = {
+    template:document.querySelector('#mobile-nav-template'),
+    setup() {
+        const expanded = ref(false)
+        return { expanded }
+    }
+}
+mount('#mobile-nav', MobileNav)
+</script>
