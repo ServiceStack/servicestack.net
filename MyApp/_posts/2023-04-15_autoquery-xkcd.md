@@ -11,7 +11,7 @@ author: Darren Reid
 # Dataset to Web App with AutoQuery
 
 One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.
-Once your data is exposed as an API, you can use the same data to create a web app with a few lines of code.
+Once your data is exposed as an API, you can use the same data to create a web app while reducing the amount of code you need to write.
 
 In this post, we'll look at how to use AutoQuery to create a web app from a dataset of XKCD comics.
 This dataset is from HuggingFace's [datasets](https://huggingface.co/datasets/olivierdehaene/xkcd) repository if you want to repeat
