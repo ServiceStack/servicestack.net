@@ -73,8 +73,11 @@ public class MarkdownBlog : MarkdownPagesBase<MarkdownFileInfo>
 
     public string GetPostLink(MarkdownFileInfo post) => $"posts/{post.Slug}";
 
-    public string GetPostsLink() => "posts/";
-    public string GetAuthorLink(string author) => $"posts/author/{author.GenerateSlug()}";
+    public string GetPostsLink() => "posts";
+    public string? GetAuthorLink(string? author) => author != null && Authors.Any(x => x.Name.Equals(author, StringComparison.OrdinalIgnoreCase))
+        ? $"posts/author/{author.GenerateSlug()}"
+        : null;
+    
     public string GetYearLink(int year) => $"posts/year/{year}";
     public string GetTagLink(string tag) => $"posts/tagged/{tag.GenerateSlug()}";
     public string GetDateLabel(DateTime? date) => X.Map(date ?? DateTime.UtcNow, d => d.ToString("MMMM d, yyyy"))!;
@@ -98,7 +101,7 @@ public class MarkdownBlog : MarkdownPagesBase<MarkdownFileInfo>
     {
         var splash = post.Image ?? FallbackSplashUrl;
         return splash.StartsWith("https://images.unsplash.com")
-            ? splash.LeftPart('?') + "?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
+            ? splash.LeftPart('?') + "?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=420&q=80"
             : splash;
     }
 
@@ -130,6 +133,8 @@ public class MarkdownBlog : MarkdownPagesBase<MarkdownFileInfo>
             return null;
         }
 
+        doc.WordCount = WordCount(content);
+        doc.LineCount = LineCount(content);
         doc.Date = date;
         writer.Flush();
         doc.Preview = writer.ToString();
