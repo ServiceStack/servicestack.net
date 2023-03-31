@@ -27,6 +27,14 @@ const files = {
   }
 }
 
+const defaultHostPrefix = 'https://raw.githubusercontent.com/NetCoreTemplates/razor-ssg/main/MyApp/'
+const hostFiles = [
+    'Markdown.Blog.cs',
+    'Markdown.Pages.cs',
+    'Markdown.WhatsNew.cs',
+    'MarkdownPagesBase.cs',
+]
+
 const path = require('path')
 const fs = require('fs')
 const http = require('http')
@@ -45,6 +53,18 @@ Object.keys(files).forEach(dir => {
         }
         httpDownload(url, toFile, 5)
     })
+})
+
+hostFiles.forEach(file => {
+    const url = file.includes('://')
+        ? file
+        : defaultHostPrefix + file
+
+    const toDir = path.dirname(file)
+    if (!fs.existsSync(toDir)) {
+        fs.mkdirSync(toDir, { recursive: true })
+    }
+    httpDownload(url, file, 5)
 })
 
 function httpDownload(url, toFile, retries) {
