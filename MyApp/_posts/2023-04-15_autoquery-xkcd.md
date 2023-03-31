@@ -41,7 +41,7 @@ This this example, our data is in a JSONL file which separates row entries by a 
 First we will declare a class that represents a row of data from our file.
 
 ```csharp
-public class XKCDComic
+public class XkcdComic
 {
     public int Id { get; set; }
     public string Title { get; set; }
