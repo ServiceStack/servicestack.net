@@ -2,13 +2,13 @@
 layout: _LayoutContent
 title: AutoQuery with XKCD
 summary: Rapidly create web apps from datasets with AutoQuery
-tags: autoquery, data, development, huggingface
+tags: autoquery, data, development, huggingface, vue.js
 draft: true
 image: ./img/posts/autoquery-xkcd/drawing-xkcd-upscaled.png
 author: Darren Reid
 ---
 
-# Dataset to Web App with AutoQuery
+# Dataset to Web App with AutoQuery and Vue.js
 
 One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.
 Once your data is exposed as an API, you can use the same data to create a web app while reducing the amount of code you need to write.
@@ -236,28 +236,101 @@ We are also using `templates` to customize the rendering of the `imageUrl` and `
 
 ![Customized DataGrid component](/img/posts/autoquery-xkcd/vue-datagrid-custom.png)
 
-## Autocomplete component
-
-We can also use the `AutoComplete` component to create a search box that will autocomplete the comic titles.
+This is rendering the max 1000 items from the AutoQuery API, but we can also use the `Take` parameter on the `QueryXkcdComics` DTO to limit the number of items we want to fetch.
 
 ```html
-<Autocomplete id="comic-search" 
-              :options="comics"
-              v-model="selectedComic"
-              :match="(x: any, value: string) => x.title.toLowerCase().includes(value.toLowerCase())"
-              placeholder="Search for a comic"></Autocomplete>
+<script>comics = @await ApiResultsAsJsonAsync(new QueryXkcdComics { Take: 10 })</script>
 ```
 
 ## Calling the AutoQuery API from Vue
 
-The `mjs/dtos.mjs` file is generated from our web services, and contains all the DTOs that we can use in our application.
-This gives us a typed interface to our API across languages, and allows us to use the same DTOs in our web app as we do in our API.
-We can keep our API and web app in sync by generating the DTOs using the ServiceStack `x` tool, and the following command while your application is running.
+Now our page is being initialized with the data we want to display, but we can also fetch the data from the API dynamically using the `JsonServiceClient` from the ServiceStack Vue library.
+
+Let's update our `Comics.mjs` component to fetch the data from the API if it's not already been passed in as a prop.
+We can do this by using the `JsonServiceClient` with the Request DTO related to the API we want to call.
+
+```javascript
+import { QueryXkcdComics } from "../../mjs/dtos.mjs"
+import {JsonServiceClient} from "../../lib/mjs/servicestack-client.min.mjs";
+let client = new JsonServiceClient("https://localhost:5001/")
+
+export default {
+    template: `...`,
+    props: { comics:Array },
+    setup(props) {
+        const comics = ref(props.comics || [])
+        let selectedComic = ref()
+
+        async function refreshComics() {
+            let api = await client.api(new QueryXkcdComics({take: 10}))
+            if (api.succeeded) {
+                comics.value = api.response.results || []
+            }
+        }
+
+        if(!comics.value.length)
+            refreshComics()
+        return {selectedComic, comics}
+    },
+}
+```
+
+In this case, we want to call the `QueryXkcdComics` API, so we can use the `QueryXkcdComics` DTO to create the request.
+
+However, we don't yet have the `QueryXkcdComics` Request DTO available in our Vue component, or in the `mjs/dtos.mjs` file.
+We can use the ServiceStack dotnet `x` tool to update our `mjs/dtos.mjs` file to include the `QueryXkcdComics` Request DTO.
+
+With our application running, we can run the following command in the terminal to update our `mjs/dtos.mjs` file.
 
 ```bash
 x mjs
 ```
 
-With our `dtos.mjs` file updated, we can now create our Vue component.
+This command pulls the generated DTOs from the ServiceStack server, and updates the `mjs/dtos.mjs` file with the latest DTOs.
+And this workflow works for any of the ServiceStack client libraries and supported languages.
 
+To add some interactivity to our page, we can add a button to refresh the data from the API, and return a random list of 10 comics.
+
+```javascript
+export default {
+    template: `
+    <!-- A button that is at the top right, using TailwindCSS -->
+    <div class="flex justify-end">
+        <button @click="randomComics" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+        Refresh Comics
+    </button>
+    </div>
+    <DataGrid :items="comics"
+    ... `,
+    setup(props) {
+        //...
+        async function randomComics() {
+            let randomIds = randomNumbers(1, 2629, 10);
+            let api = await client.api(new QueryXkcdComics({take: 10, ids: randomIds}))
+            if (api.succeeded) {
+                comics.value = api.response.results || []
+            }
+        }
+    
+        if(!comics.value.length)
+            refreshComics()
+        return {selectedComic, comics, randomComics}
+    },
+}
+```
+
+![Random Comics](/img/posts/autoquery-xkcd/vue-datagrid-random.png)
+
+## Conclusion
+
+In this post we've seen how we can use the AutoQuery API to quickly create a REST API for our data, and then use the ServiceStack Vue library to quickly create a Vue application that can consume the API.
+We've also seen how we can use the `x` tool to update our client DTOs to match the latest generated DTOs from the ServiceStack server.
+
+This typed end-to-end workflow is a great way to quickly create a full-stack application, and the ServiceStack Vue library is a great way to quickly create a Vue application that can consume the AutoQuery API.
+
+Let us know what you think of the ServiceStack Vue library, and if you have any feedback or suggestions for improvements.
+
+- [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions/)
+- [#ServiceStack channel on Discord](https://discord.gg/w4ayGbuYpA)
+- [Example Source Code](https://github.com/NetCoreApps/XkcdApp)
 
