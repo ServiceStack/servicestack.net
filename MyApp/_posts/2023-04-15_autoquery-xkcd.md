@@ -14,12 +14,12 @@ One of the big advantages of using AutoQuery is the ability to turn data into an
 
 Once your data is exposed as an API, you can use it in any way you want, whether that's a web app, a mobile app, a desktop app, or even a CLI app.
 
-A problem I encountered when working for a science company is that modelers and data scientists would often create datasets that were only accessible via a Jupyter notebook or a Python script.
+A problem I encountered when working for a science company is that modelers and data scientists would often create datasets that were only accessible via Jupyter notebook or a Python script which is hard to reuse or share.
 This meant that the data was only accessible to a small number of people, and it was difficult to share the data with other teams or to use the data in other applications.
 Some of these notebooks and scripts would need to use massive datasets for a very small amount of data. The company specialized in weather data and experiments could pull down 100s of GBs of data, but only use a few MBs of it.
 
-Data accessibility is still something that slows down teams. While it is 'easier' sometimes for a single developer/modeler/data scientist to just pull data from static files, not having shared access to the data can make it difficult to reproduce or reuse.
-Web APIs help un-silo the data, create more efficient access points and and reduce the time it takes to get data from a data scientist to a developer.
+Poor data accessibility is still something that slows down teams. While it is 'easier' sometimes for a single developer/modeler/data scientist to just pull data from static files, not having shared access to the data can make it difficult to reproduce or reuse.
+Web APIs help un-silo the data, create more efficient access points and and reduce the time it takes to get data from an experiment into a production application.
 
 ServiceStack and AutoQuery can help solve this problem by making it easy to expose data as an API, and by simplifying the use of that data in any application.
 
