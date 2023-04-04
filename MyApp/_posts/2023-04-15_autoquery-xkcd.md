@@ -183,7 +183,7 @@ This will server render the page, and then hydrate the page with Vue.js.
 </div>
 <script>comics = @await ApiResultsAsJsonAsync(new QueryXkcdComics())</script>
 <script type="module">
-    import { Comics } from "/Pages/Comics.mjs"
+    import { Comics } from "/Pages/ComicsDatagrid.mjs"
     import { mount } from "/mjs/app.mjs"
     mount("#xkcd-comics", Comics, { comics })
 </script>
@@ -195,12 +195,10 @@ This reduces the need to make an API call from the client when it renders the pa
 ## Creating a Vue component
 
 We still need to create the Vue component that will render the data.
-Under the `wwwroot` directory, we can use the `Pages` folder to create a `Comics.mjs` file to create our Vue component.
+Under the `wwwroot` directory, we can use the `Pages` folder to create a `ComicsDatagrid.mjs` file to create our Vue component.
 
 ```javascript
-import { ref } from "vue"
-import { useClient } from "@servicestack/vue"
-import { QueryXkcdComics } from "../../mjs/dtos.mjs"
+import {ref} from "vue"
 
 export default {
     template: `<DataGrid :items="comics"></DataGrid>`,
@@ -211,9 +209,7 @@ export default {
 }
 ```
 
-
-
-We import `vue`, as well as the ServiceStack Vue components library along with our application specific DTOs from the `mjs/dtos.mjs` file.
+Here we can see the use of the ServiceStack Vue components library and the `DataGrid` component.
 The `DataGrid` component is a built in component that will render the data in a table within minimal markup.
 This can be a great way to get the instant usability of a table without having to write a lot of code, and it can be used anywhere in your application.
 
@@ -228,13 +224,13 @@ export default {
           :selected-columns="imageUrl,transcript" 
           :header-titles="{ imageUrl:'Comic',transcript: 'Description' }"
           class="max-w-screen-lg mx-auto">
-        <template #imageUrl="{ imageUrl, title }">
-            <h2 class="text-lg font-semibold text-gray-900">{{ title }}</h2>
-            <img :src="imageUrl" class="h-48" /> 
-        </template>
-        <template #transcript="{ transcript }">
-            <p class="whitespace-normal break-words">{{ transcript }}</p>
-        </template>
+    <template #imageUrl="{ imageUrl, title }">
+        <h2 class="text-lg font-semibold text-gray-900">{{ title }}</h2>
+        <img :src="imageUrl" class="h-48" /> 
+    </template>
+    <template #transcript="{ transcript }">
+        <p class="whitespace-normal break-words">{{ transcript }}</p>
+    </template>
 </DataGrid>`,
     props: { comics:Array },
     setup(props) {
@@ -258,36 +254,54 @@ This is rendering the max 1000 items from the AutoQuery API, but we can also use
 
 Now our page is being initialized with the data we want to display, but we can also fetch the data from the API dynamically using the `JsonServiceClient` from the ServiceStack Vue library.
 
-Let's update our `Comics.mjs` component to fetch the data from the API if it's not already been passed in as a prop.
+Let's create a separate page that will allow us to search comics by title.
+In another Razor page we can initialize a new Vue component with a random 10 comics to initially display.
+
+```html
+<div class="bg-gray-100 py-8 dark:bg-gray-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div id="xkcd-comics"></div>
+    </div> 
+</div>
+<script>
+    comics = @await ApiResultsAsJsonAsync(new QueryXkcdComics
+                {
+                    Ids = Enumerable.Range(1, 10)
+                            .Select(_ => Random.Shared.Next(1,2630))
+                            .ToArray()
+                })
+</script>
+<script type="module">
+import Comics from "/Pages/Comics.mjs"
+import { mount } from "/mjs/app.mjs"
+mount("#xkcd-comics", Comics, { comics })
+</script>
+```
+
+Let's create our new `Comics.mjs` component to display our initial data in a grid layout, and also have a search box at the top that we can use to make additional API calls to filter the data from the AutoQuery API.
 We can do this by using the `JsonServiceClient` with the Request DTO related to the API we want to call.
 
 ```javascript
+import { ref, watch } from "vue"
 import { QueryXkcdComics } from "../../mjs/dtos.mjs"
-import {JsonServiceClient} from "../../lib/mjs/servicestack-client.min.mjs";
-let client = new JsonServiceClient("https://localhost:5001/")
+import { useClient } from "@servicestack/vue"
 
 export default {
     template: `...`,
     props: { comics:Array },
     setup(props) {
         const comics = ref(props.comics || [])
-        let selectedComic = ref()
-
-        async function refreshComics() {
-            let api = await client.api(new QueryXkcdComics({take: 10}))
-            if (api.succeeded) {
-                comics.value = api.response.results || []
-            }
-        }
-
-        if(!comics.value.length)
-            refreshComics()
-        return {selectedComic, comics}
+        const searchTerm = ref()
+        const client = useClient()
+        
+        //...
+        
+        return {comics, searchTerm}
     },
 }
 ```
 
-In this case, we want to call the `QueryXkcdComics` API, so we can use the `QueryXkcdComics` DTO to create the request.
+![Random comics](/img/posts/autoquery-xkcd/column-vue-search-empty.png)
 
 However, we don't yet have the `QueryXkcdComics` Request DTO available in our Vue component, or in the `mjs/dtos.mjs` file.
 We can use the ServiceStack dotnet `x` tool to update our `mjs/dtos.mjs` file to include the `QueryXkcdComics` Request DTO.
@@ -301,37 +315,42 @@ x mjs
 This command pulls the generated DTOs from the ServiceStack server, and updates the `mjs/dtos.mjs` file with the latest DTOs.
 And this workflow works for any of the ServiceStack client libraries and supported languages.
 
-To add some interactivity to our page, we can add a button to refresh the data from the API, and return a random list of 10 comics.
+## Filter with AutoQuery
+
+Now we can use the `QueryXkcdComics` DTO to make API calls to the AutoQuery API.
+We can then use the `useClient` hook to get the `JsonServiceClient` instance, and call the `api` method to make the API call.
+
+We want to search our dataset by the `title` column, so we can use the `titleContains` property on the DTO to filter the results.
 
 ```javascript
 export default {
-    template: `
-    <!-- A button that is at the top right, using TailwindCSS -->
-    <div class="flex justify-end">
-        <button @click="randomComics" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-        Refresh Comics
-    </button>
-    </div>
-    <DataGrid :items="comics"
-    ... `,
+    template: `...`,
+    props: { comics:Array },
     setup(props) {
-        //...
-        async function randomComics() {
-            let randomIds = randomNumbers(1, 2629, 10);
-            let api = await client.api(new QueryXkcdComics({take: 10, ids: randomIds}))
-            if (api.succeeded) {
-                comics.value = api.response.results || []
+        const comics = ref(props.comics || [])
+        const searchTerm = ref()
+        const client = useClient()
+        
+        watch(searchTerm, async () => {
+            if (searchTerm.value) {
+                comics.value = await client.api(new QueryXkcdComics({titleContains: searchTerm.value}))
             }
-        }
-    
-        if(!comics.value.length)
-            refreshComics()
-        return {selectedComic, comics, randomComics}
+        })
+        
+        //...
+        
+        return {comics, searchTerm}
     },
 }
 ```
 
-![Random Comics](/img/posts/autoquery-xkcd/vue-datagrid-random.png)
+Notice here we are using the syntax `new QueryXkcdComics({titleContains: searchTerm.value})` to create the request DTO.
+The `titleContains` property is interpreted by the AutoQuery API to filter the results by the `title` column in our SQLite database by the value passed to the property.
+
+We didn't need to add this additional functionality, and this syntax works for any matching property on the DTO.
+AutoQuery has many of these types of features built in that work out of the box, and since AutoQuery services are ServiceStack services, you can customize their behaviour by adding your own custom logic to the service.
+
+![Filtering comics by title](/img/posts/autoquery-xkcd/column-vue-search-physics.png)
 
 ## Conclusion
 
@@ -344,5 +363,5 @@ Let us know what you think of the ServiceStack Vue library, and if you have any 
 
 - [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions/)
 - [#ServiceStack channel on Discord](https://discord.gg/w4ayGbuYpA)
-- [Example Source Code](https://github.com/NetCoreApps/XkcdApp)
+- [Example Source Code](https://github.com/NetCoreApps/XkcdExample)
 
