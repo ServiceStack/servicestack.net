@@ -1,19 +1,29 @@
 ---
 layout: _LayoutContent
-title: AutoQuery with XKCD
-summary: Rapidly create web apps from datasets with AutoQuery
+title: Using AutoQuery with a static XKCD dataset
+summary: Unsiloing Data quickly with AutoQuery by exposing your datasets as easy to use Web APIs
 tags: autoquery, data, development, huggingface, vue.js
 draft: true
 image: ./img/posts/autoquery-xkcd/drawing-xkcd-upscaled.png
 author: Darren Reid
 ---
 
-# Dataset to Web App with AutoQuery and Vue.js
+# Unsiloing Data with AutoQuery
 
 One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.
-Once your data is exposed as an API, you can use the same data to create a web app while reducing the amount of code you need to write.
 
-In this post, we'll look at how to use AutoQuery to create a web app from a dataset of XKCD comics.
+Once your data is exposed as an API, you can use it in any way you want, whether that's a web app, a mobile app, a desktop app, or even a CLI app.
+
+A problem I encountered when working for a science company is that modelers and data scientists would often create datasets that were only accessible via a Jupyter notebook or a Python script.
+This meant that the data was only accessible to a small number of people, and it was difficult to share the data with other teams or to use the data in other applications.
+Some of these notebooks and scripts would need to use massive datasets for a very small amount of data. The company specialized in weather data and experiments could pull down 100s of GBs of data, but only use a few MBs of it.
+
+Data accessibility is still something that slows down teams. While it is 'easier' sometimes for a single developer/modeler/data scientist to just pull data from static files, not having shared access to the data can make it difficult to reproduce or reuse.
+Web APIs help un-silo the data, create more efficient access points and and reduce the time it takes to get data from a data scientist to a developer.
+
+ServiceStack and AutoQuery can help solve this problem by making it easy to expose data as an API, and by simplifying the use of that data in any application.
+
+In this post, we'll look at how to use AutoQuery to create a web app from a datase, and to make it a bit of fun, we are going to use a dataset of XKCD comics.
 This dataset is from HuggingFace's [datasets](https://huggingface.co/datasets/olivierdehaene/xkcd) repository if you want to repeat
 the process yourself, but any dataset in formats like CSV, JSON, etc or in an existing SQL database like SQLite will work with the same approach.
 
@@ -21,7 +31,7 @@ the process yourself, but any dataset in formats like CSV, JSON, etc or in an ex
 
 The dataset is licensed under the Creative Commons Attribution-ShareAlike 3.0 license, and the code for this example is available on GitHub.
 
-The dataset contains 2630 comics from the XKCD website, with the following fields:
+The dataset contains metadata of 2630 comics from the XKCD website, with the following fields:
 
 - id
 - title
@@ -84,6 +94,8 @@ And lastly, to expose the data over an API, we declare a Request DTO that inheri
 [Route("/xkcd")]
 public class QueryXkcdComicData : QueryData<XkcdComic> {}
 ```
+
+We now have a web API that exposes the our static dataset as an API. Any this already support a lot of different ways you can sort and filter data while also supporting different formats like JSON, CSV, XML and others.
 
 ## Using QueryDb
 
