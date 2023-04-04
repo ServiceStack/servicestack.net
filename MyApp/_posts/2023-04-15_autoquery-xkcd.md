@@ -23,7 +23,7 @@ Web APIs help un-silo the data, create more efficient access points and and redu
 
 ServiceStack and AutoQuery can help solve this problem by making it easy to expose data as an API, and by simplifying the use of that data in any application.
 
-In this post, we'll look at how to use AutoQuery to create a web app from a datase, and to make it a bit of fun, we are going to use a dataset of XKCD comics.
+In this post, we'll look at how to use AutoQuery to create a web app from a dataset, and to make it a bit of fun, we are going to use a dataset of XKCD comics.
 This dataset is from HuggingFace's [datasets](https://huggingface.co/datasets/olivierdehaene/xkcd) repository if you want to repeat
 the process yourself, but any dataset in formats like CSV, JSON, etc or in an existing SQL database like SQLite will work with the same approach.
 
@@ -48,7 +48,7 @@ The most common way to access data is via a SQL database using `AutoQuery RDBMS`
 
 This this example, our data is in a JSONL file which separates row entries by a new line, so we could use AutoQuery Data to load the data into memory and expose it as an API.
 
-First we will declare a class that represents a row of data from our file.
+First we will [declare a class that represents a row of data from our file](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis.ServiceModel/Xkcd.cs).
 
 ```csharp
 public class XkcdComic
@@ -64,7 +64,7 @@ public class XkcdComic
 }
 ```
 
-And then load our data into memory from the JSONL file.
+And then [load our data into memory from the JSONL file](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis/Configure.Db.Xkcd.cs#L13).
 
 ```csharp
 var allLines = "path/to/your/dataset.jsonl"
@@ -112,7 +112,7 @@ if(db.CreateTableIfNotExists<XkcdComic>())
     db.InsertAll(comics);
 ```
 
-Now we can use QueryDb<T> instead of QueryData<T> to access the data from the database, and use the `AutoQueryFeature` Plugin instead of `AutoQueryDataFeature`.
+Now we can use QueryDb<T> instead of QueryData<T> to access the data from the database, and [use the `AutoQueryFeature` Plugin](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis/Configure.AutoQuery.cs) instead of `AutoQueryDataFeature`.
 
 ```csharp
 //AutoQuery Plugin for RDBMS
@@ -363,5 +363,6 @@ Let us know what you think of the ServiceStack Vue library, and if you have any 
 
 - [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions/)
 - [#ServiceStack channel on Discord](https://discord.gg/w4ayGbuYpA)
-- [Example Source Code](https://github.com/NetCoreApps/XkcdExample)
+- [Example Client Source Code](https://github.com/NetCoreApps/Xkcd)
+- [Example AutoQuery DTO](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis.ServiceModel/Xkcd.cs)
 
