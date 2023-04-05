@@ -140,9 +140,11 @@ We can look at the endpoint itself and the default AutoHtml page to see how to i
 
 ## Creating a web app with Razor and Vue.js
 
-If you want to create a fully custom web UI for your data, you can use the same API to create a web app.
+Now our dataset is available from an API, it is far more accessible to using in a variety of different ways.
+In this example, we've hosted our dataset as a web API, and there is a [live demo of the API](https://ssg-examples.netcore.io/ui/QueryXkcdComics) we can use to create a web app.
 
-We can do this from whatever language you prefer, but for this example, we'll use Razor and Vue.js via the [ServiceStack vue-mjs template](https://github.com/NetCoreTemplates/vue-mjs), and the [ServiceStack Vue library](https://docs.servicestack.net/vue) to create our web app.
+We can do this from whatever language you prefer, but for this example, we'll use Razor and Vue.js via the [ServiceStack razor-ssg template](https://github.com/NetCoreTemplates/razor-ssg), and the [ServiceStack Vue library](https://docs.servicestack.net/vue) to create our web app.
+One of the reasons we chose to use this template is because we can prerender the whole application as a static site and deploy it to any CDN including GitHub Pages.
 
 You will need the ServiceStack dotnet `x` tool installed to create a new project from the template. 
 
@@ -153,27 +155,29 @@ dotnet tool install -g x
 First we'll create a new project from the template.
 
 ```bash
-x new vue-mjs XkcdApp
+x new razor-ssg Xkcd
 ```
 
-This template comes with **Vue 3**, **TailwindCSS**, **AutoQuery**, and **SQLite** already configured, so we can get started right away.
+This template comes with **Vue 3** and **TailwindCSS** already configured, so we can get started right away.
 It also utilizes [**JavaScript modules**](./posts/javascript), so we can use the `import` syntax to import the ServiceStack Vue library without having to use a bundler like Webpack.
 This gives us instant feedback when we make changes to our code, instead of having to wait for a build step to complete.
 
-This template also have a way to [manage database migrations](https://docs.servicestack.net/ormlite/db-migrations#introduction), if you want a more formal way to manage your database schema.
-Otherwise, we can just use the `CreateTableIfNotExists` method to create our table like we did in the previous example.
+Since our dataset is available directly from our API, this application doesn't need a dataset or other storage and adds another way we can interact with our dataset.
 
 ## Creating a page with Razor and Vue.js
 
 Now we can create a page to display our XKCD comics data.
 We can do this by creating a new Razor page in the `Pages` folder, and then add a `@page` directive to the top of the file to declare the route.
+We are also going to add the `[RenderStatic]` attribute to the page to tell the ServiceStack razor-ssg template to prerender the page as a static site.
 
 This will server render the page, and then hydrate the page with Vue.js.
 
 ```html
-@page "/comics"
+@page "/comics-datagrid"
+@attribute [RenderStatic]
+
 @{
-  ViewData["Title"] = "Xkcd Comics";
+ViewData["Title"] = "Xkcd Comics";
 }
 
 <div class="bg-gray-100 py-8">
@@ -181,16 +185,13 @@ This will server render the page, and then hydrate the page with Vue.js.
         <div id="xkcd-comics"></div>
     </div>
 </div>
-<script>comics = @await ApiResultsAsJsonAsync(new QueryXkcdComics())</script>
+
 <script type="module">
-    import { Comics } from "/Pages/ComicsDatagrid.mjs"
+    import Comics from "/mjs/ComicsDatagrid.mjs"
     import { mount } from "/mjs/app.mjs"
-    mount("#xkcd-comics", Comics, { comics })
+    mount("#xkcd-comics", Comics, { comics: [] })
 </script>
 ```
-
-The above example uses the `ApiResultsAsJsonAsync` helper method to fetch the data from the API and pass it to the Vue component as a prop.
-This reduces the need to make an API call from the client when it renders the page, since the data is rendered into a JavaScript variable on the page.
 
 ## Creating a Vue component
 
@@ -205,6 +206,36 @@ export default {
     props: { comics:Array },
     setup(props) {
         const comics = ref(props.comics || [])
+        return {comics}
+    },
+}
+```
+
+Since we don't yet have the data, we also need to use the ServiceStack client to fetch the data from the API.
+We can do this with the `useClient` hook, which will return the `JsonServiceClient` instance.
+
+```javascript
+import { ref, onMounted } from "vue"
+import { QueryXkcdComics } from "../../mjs/dtos.mjs"
+import { useClient } from "@servicestack/vue"
+
+export default {
+    template: `<DataGrid :items="comics"></DataGrid>`,
+    props: { comics:Array },
+    setup(props) {
+        const comics = ref(props.comics || [])
+
+        // Get the ServiceStack client
+        const client = useClient()
+
+        onMounted(async () => {
+            await initializeData();
+        })
+        async function initializeData() {
+            let results = await client.api(new QueryXkcdComics({take: 10}))
+            comics.value = results.response.results
+        }
+        return {comics}
     },
 }
 ```
@@ -212,6 +243,21 @@ export default {
 Here we can see the use of the ServiceStack Vue components library and the `DataGrid` component.
 The `DataGrid` component is a built in component that will render the data in a table within minimal markup.
 This can be a great way to get the instant usability of a table without having to write a lot of code, and it can be used anywhere in your application.
+
+## Generating the DTOs
+
+However, we don't yet have the `QueryXkcdComics` Request DTO available in our application since the template isn't aware of the use of the external API.
+By default the `mjs/dtos.mjs` file uses the `BaseUrl` of `https://localhost:5001` to generate the DTOs, but our data is hosted at `https://ssg-examples.netcore.io`.
+We can either change this `BaseUrl` in the `dtos.mjs` file or just delete it and regenerate it using `x mjs https://ssg-examples.netcore.io`.
+
+Any additional updates will read from this `BaseUrl` and update the `dtos.mjs` file with the latest DTOs using the command:
+
+```bash
+x mjs
+```
+
+This command pulls the generated DTOs from the ServiceStack server, and updates the `mjs/dtos.mjs` file with the latest DTOs.
+And this workflow works for any of the ServiceStack client libraries and supported languages.
 
 ![DataGrid component](/img/posts/autoquery-xkcd/vue-datagrid.png)
 
@@ -235,6 +281,8 @@ export default {
     props: { comics:Array },
     setup(props) {
         const comics = ref(props.comics || [])
+        // ...
+        return {comics}
     },
 }
 ```
@@ -244,18 +292,12 @@ We are also using `templates` to customize the rendering of the `imageUrl` and `
 
 ![Customized DataGrid component](/img/posts/autoquery-xkcd/vue-datagrid-custom.png)
 
-This is rendering the max 1000 items from the AutoQuery API, but we can also use the `Take` parameter on the `QueryXkcdComics` DTO to limit the number of items we want to fetch.
-
-```html
-<script>comics = @await ApiResultsAsJsonAsync(new QueryXkcdComics { Take: 10 })</script>
-```
-
-## Calling the AutoQuery API from Vue
+## Filtering using the AutoQuery API
 
 Now our page is being initialized with the data we want to display, but we can also fetch the data from the API dynamically using the `JsonServiceClient` from the ServiceStack Vue library.
 
-Let's create a separate page that will allow us to search comics by title.
-In another Razor page we can initialize a new Vue component with a random 10 comics to initially display.
+Let's create a separate page that will allow us to search comics by title, this time on our Index page.
+We'll update our `Index.cshtml` file to the following.
 
 ```html
 <div class="bg-gray-100 py-8 dark:bg-gray-800">
@@ -263,23 +305,15 @@ In another Razor page we can initialize a new Vue component with a random 10 com
         <div id="xkcd-comics"></div>
     </div> 
 </div>
-<script>
-    comics = @await ApiResultsAsJsonAsync(new QueryXkcdComics
-                {
-                    Ids = Enumerable.Range(1, 10)
-                            .Select(_ => Random.Shared.Next(1,2630))
-                            .ToArray()
-                })
-</script>
 <script type="module">
 import Comics from "/Pages/Comics.mjs"
 import { mount } from "/mjs/app.mjs"
-mount("#xkcd-comics", Comics, { comics })
+mount("#xkcd-comics", Comics, { comics: [] })
 </script>
 ```
 
 Let's create our new `Comics.mjs` component to display our initial data in a grid layout, and also have a search box at the top that we can use to make additional API calls to filter the data from the AutoQuery API.
-We can do this by using the `JsonServiceClient` with the Request DTO related to the API we want to call.
+We can do this again by using the `JsonServiceClient` with the Request DTO related to the API we want to call, but this time we will also pass some additional parameters to the `QueryXkcdComics` DTO to filter the data.
 
 ```javascript
 import { ref, watch } from "vue"
@@ -293,52 +327,15 @@ export default {
         const comics = ref(props.comics || [])
         const searchTerm = ref()
         const client = useClient()
-        
-        //...
-        
-        return {comics, searchTerm}
-    },
-}
-```
 
-![Random comics](/img/posts/autoquery-xkcd/column-vue-search-empty.png)
-
-However, we don't yet have the `QueryXkcdComics` Request DTO available in our Vue component, or in the `mjs/dtos.mjs` file.
-We can use the ServiceStack dotnet `x` tool to update our `mjs/dtos.mjs` file to include the `QueryXkcdComics` Request DTO.
-
-With our application running, we can run the following command in the terminal to update our `mjs/dtos.mjs` file.
-
-```bash
-x mjs
-```
-
-This command pulls the generated DTOs from the ServiceStack server, and updates the `mjs/dtos.mjs` file with the latest DTOs.
-And this workflow works for any of the ServiceStack client libraries and supported languages.
-
-## Filter with AutoQuery
-
-Now we can use the `QueryXkcdComics` DTO to make API calls to the AutoQuery API.
-We can then use the `useClient` hook to get the `JsonServiceClient` instance, and call the `api` method to make the API call.
-
-We want to search our dataset by the `title` column, so we can use the `titleContains` property on the DTO to filter the results.
-
-```javascript
-export default {
-    template: `...`,
-    props: { comics:Array },
-    setup(props) {
-        const comics = ref(props.comics || [])
-        const searchTerm = ref()
-        const client = useClient()
-        
         watch(searchTerm, async () => {
             if (searchTerm.value) {
                 comics.value = await client.api(new QueryXkcdComics({titleContains: searchTerm.value}))
             }
         })
-        
+
         //...
-        
+
         return {comics, searchTerm}
     },
 }
@@ -347,7 +344,7 @@ export default {
 Notice here we are using the syntax `new QueryXkcdComics({titleContains: searchTerm.value})` to create the request DTO.
 The `titleContains` property is interpreted by the AutoQuery API to filter the results by the `title` column in our SQLite database by the value passed to the property.
 
-We didn't need to add this additional functionality, and this syntax works for any matching property on the DTO.
+We didn't need to add this additional functionality, and this syntax works for any matching property on the DTO. Eg, we could have used `explanationContains` to filter the results by the `explanation` column in our SQLite database on our API server.
 AutoQuery has many of these types of features built in that work out of the box, and since AutoQuery services are ServiceStack services, you can customize their behaviour by adding your own custom logic to the service.
 
 ![Filtering comics by title](/img/posts/autoquery-xkcd/column-vue-search-physics.png)
@@ -361,7 +358,9 @@ This typed end-to-end workflow is a great way to quickly create a full-stack app
 
 Let us know what you think of the ServiceStack Vue library, and if you have any feedback or suggestions for improvements.
 
-- [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions/)
+- [Live Demo](https://xkcd-autoquery.netcore.io)
+- [Live Demo API](https://ssg-examples.netcore.io/ui/QueryXkcdComics)
+- [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions)
 - [#ServiceStack channel on Discord](https://discord.gg/w4ayGbuYpA)
 - [Example Client Source Code](https://github.com/NetCoreApps/Xkcd)
 - [Example AutoQuery DTO](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis.ServiceModel/Xkcd.cs)
