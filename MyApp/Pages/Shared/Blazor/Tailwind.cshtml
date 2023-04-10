@@ -1,5 +1,6 @@
 ﻿@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>
 
+<a id="tailwind"></a>
 @await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
    TitleTop = "Creating Beautiful <span class='text-purple-600'>Blazor Apps</span>",
    TitleBottom = "<span style='color:#44A8B3'>with Tailwind</span>",
@@ -377,6 +378,7 @@
     </div>
 </section>
 
+<a id="universal"></a>
 @await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
    TitleTop = "Universal Blazor API Components",
    TitleBottom = "",
@@ -495,6 +497,7 @@
     </div>
 </div>
 
+<a id="litestream"></a>
 @await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
    TitleTop = "Blazor with Litestream",
    TitleBottom = "",
