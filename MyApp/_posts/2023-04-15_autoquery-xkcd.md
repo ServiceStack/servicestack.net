@@ -160,7 +160,7 @@ x new razor-ssg Xkcd
 
 This template comes with **Vue 3** and **TailwindCSS** already configured, so we can get started right away.
 It also utilizes [**JavaScript modules**](./posts/javascript), so we can use the `import` syntax to import the ServiceStack Vue library without having to use a bundler like Webpack.
-This gives us instant feedback when we make changes to our code, instead of having to wait for a build step to complete.
+We can also create these Vue components inline on our razor pages, which will then be served as static files.This gives us instant feedback when we make changes to our code, instead of having to wait for a build step to complete.
 
 Since our dataset is available directly from our API, this application doesn't need a dataset or other storage and adds another way we can interact with our dataset.
 
@@ -170,7 +170,7 @@ Now we can create a page to display our XKCD comics data.
 We can do this by creating a new Razor page in the `Pages` folder, and then add a `@page` directive to the top of the file to declare the route.
 We are also going to add the `[RenderStatic]` attribute to the page to tell the ServiceStack razor-ssg template to prerender the page as a static site.
 
-This will server render the page, and then hydrate the page with Vue.js.
+This server render the page, and then fetch data with Vue.js, which works the same when the page is rendered as static.
 
 ```html
 @page "/comics-datagrid"
@@ -180,69 +180,66 @@ This will server render the page, and then hydrate the page with Vue.js.
 ViewData["Title"] = "Xkcd Comics";
 }
 
-<div class="bg-gray-100 py-8">
+<div class="py-8">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div id="xkcd-comics"></div>
+        <div id="app">
+            <data-grid :items="comics"></data-grid>
+        </div>
     </div>
 </div>
 
 <script type="module">
-    import Comics from "/mjs/ComicsDatagrid.mjs"
+    import { ref, onMounted } from "vue"
+    import { QueryXkcdComics } from "dtos.mjs"
+    import { useClient, useUtils } from "@@servicestack/vue"
     import { mount } from "/mjs/app.mjs"
-    mount("#xkcd-comics", Comics, { comics: [] })
+
+    const App = {
+        props: {comics: Array},
+        setup(props) {
+            const client = useClient()
+            const {pushState} = useUtils()
+            const comics = ref(props.comics || [])
+            const request = ref(new QueryXkcdComics({ take:25 }))
+
+            async function submit() {
+                let results = await client.api(request.value)
+                comics.value = results.response.results
+            }
+            onMounted(submit)
+
+            return { comics, request, submit, client }
+        }
+    };
+
+    mount('#app', App)
 </script>
-```
-
-## Creating a Vue component
-
-We still need to create the Vue component that will render the data.
-Under the `wwwroot` directory, we can use the `Pages` folder to create a `ComicsDatagrid.mjs` file to create our Vue component.
-
-```javascript
-import {ref} from "vue"
-
-export default {
-    template: `<DataGrid :items="comics"></DataGrid>`,
-    props: { comics:Array },
-    setup(props) {
-        const comics = ref(props.comics || [])
-        return {comics}
-    },
-}
 ```
 
 Since we don't yet have the data, we also need to use the ServiceStack client to fetch the data from the API.
 We can do this with the `useClient` hook, which will return the `JsonServiceClient` instance.
 
 ```javascript
-import { ref, onMounted } from "vue"
-import { QueryXkcdComics } from "../../mjs/dtos.mjs"
-import { useClient } from "@servicestack/vue"
-
-export default {
-    template: `<DataGrid :items="comics"></DataGrid>`,
-    props: { comics:Array },
-    setup(props) {
-        const comics = ref(props.comics || [])
-
-        // Get the ServiceStack client
-        const client = useClient()
-
-        onMounted(async () => {
-            await initializeData();
-        })
-        async function initializeData() {
-            let results = await client.api(new QueryXkcdComics({take: 10}))
-            comics.value = results.response.results
-        }
-        return {comics}
-    },
-}
+import { useClient, useUtils } from "@@servicestack/vue"
+//...
+const client = useClient()
 ```
 
-Here we can see the use of the ServiceStack Vue components library and the `DataGrid` component.
-The `DataGrid` component is a built in component that will render the data in a table within minimal markup.
-This can be a great way to get the instant usability of a table without having to write a lot of code, and it can be used anywhere in your application.
+
+## Creating a Vue component
+
+Since we don't yet have the data, we also need to use the ServiceStack client to fetch the data from the API.
+We can do this with the `useClient` hook, which will return the `JsonServiceClient` instance.
+
+```javascript
+const request = ref(new QueryXkcdComics({ take:25 }))
+
+async function submit() {
+    let results = await client.api(request.value)
+    comics.value = results.response.results
+}
+onMounted(submit)
+```
 
 ## Generating the DTOs
 
@@ -259,86 +256,176 @@ x mjs
 This command pulls the generated DTOs from the ServiceStack server, and updates the `mjs/dtos.mjs` file with the latest DTOs.
 And this workflow works for any of the ServiceStack client libraries and supported languages.
 
-![DataGrid component](/img/posts/autoquery-xkcd/vue-datagrid.png)
+![data-grid component](/img/posts/autoquery-xkcd/vue-datagrid.png)
 
-Let's now customize the `DataGrid` so we can have a view of the comics.
+Here we can see the use of the ServiceStack Vue components library and the `data-grid` component.
+The `data-grid` component is a built in component that will render the data in a table within minimal markup.
+This can be a great way to get the instant usability of a table without having to write a lot of code, and it can be used anywhere in your application.
 
-```javascript
-export default {
-    template: `
-<DataGrid :items="comics" 
-          :selected-columns="imageUrl,transcript" 
-          :header-titles="{ imageUrl:'Comic',transcript: 'Description' }"
-          class="max-w-screen-lg mx-auto">
-    <template #imageUrl="{ imageUrl, title }">
-        <h2 class="text-lg font-semibold text-gray-900">{{ title }}</h2>
-        <img :src="imageUrl" class="h-48" /> 
-    </template>
-    <template #transcript="{ transcript }">
-        <p class="whitespace-normal break-words">{{ transcript }}</p>
-    </template>
-</DataGrid>`,
-    props: { comics:Array },
-    setup(props) {
-        const comics = ref(props.comics || [])
-        // ...
-        return {comics}
-    },
-}
+The `data-grid` itself simply takes the `comics` array asigned to the `items` prop, and renders the data in a table.
+
+```html
+<div class="py-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div id="app">
+            <data-grid :items="comics"></data-grid>
+        </div>
+    </div>
+</div>
 ```
 
-Above we've added a few more props to the `DataGrid` component to customize the columns we want to display using `selected-columns`, and the titles of the columns by setting `header-titles` to a map of the column names to the titles we want to display.
+The `data-grid` component also has a number of other props that can be used to customize the table, such as `selected-columns` and `header-titles`.
+Let's now customize the `data-grid` so we can have a view of the comics.
+
+```html
+<data-grid :items="comics"
+           selected-columns="imageUrl,transcript"
+           v-on:row-selected="rowSelected" :is-row-selected="row => row == selected"
+           :header-titles="{ imageUrl:'Comic',transcript: 'Description' }"
+           class="max-w-screen-lg mx-auto">
+    <template #imageUrl="{ imageUrl }">
+        <img :src="imageUrl" class="h-48 object-cover" loading="lazy">
+    </template>
+    <template #transcript="{ title, transcript, width, height }">
+        <div class="flex flex-col max-w-3xl">
+            <div class="flex justify-between">
+                <h2 class="text-lg font-semibold text-gray-900">{{ title }}</h2>
+                <div class="text-right text-sm font-semibold block">{{width}} x {{height}}</div>
+            </div>
+            <p class="whitespace-normal break-words overflow-hidden max-h-40">{{ transcript }}</p>
+        </div>
+    </template>
+</data-grid>
+```
+
+Above we've added a few more props to the `data-grid` component to customize the columns we want to display using `selected-columns`, and the titles of the columns by setting `header-titles` to a map of the column names to the titles we want to display.
 We are also using `templates` to customize the rendering of the `imageUrl` and `transcript` columns to have more control over the layout.
 
-![Customized DataGrid component](/img/posts/autoquery-xkcd/vue-datagrid-custom.png)
+![Customized data-grid component](/img/posts/autoquery-xkcd/vue-datagrid-custom.png)
 
 ## Filtering using the AutoQuery API
 
 Now our page is being initialized with the data we want to display, but we can also fetch the data from the API dynamically using the `JsonServiceClient` from the ServiceStack Vue library.
 
 Let's create a separate page that will allow us to search comics by title, this time on our Index page.
-We'll update our `Index.cshtml` file to the following.
+We'll update our `Index.cshtml` file to the following markup.
+
+First, to display our comics in our own grid.
 
 ```html
-<div class="bg-gray-100 py-8 dark:bg-gray-800">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div id="xkcd-comics"></div>
-    </div> 
+<div id="app">
+    <div class="flex flex-1 flex-col overflow-hidden">
+        <div v-cloak>
+            <div v-if="!loading && hasInit" class="w-full pb-4 bg-white dark:bg-black border border-black flex flex-wrap">
+                <div v-if="comics.length" v-for="comic in comics" class="border-2 border-slate-700 ml-4 mt-4 p-4 flex justify-center items-center hover:shadow-lg hover:bg-slate-50 dark:hover:bg-slate-900 max-w-[48%]">
+                    <div class="cursor-pointer">
+                        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100 text-center">{{ comic.title }}</h2>
+                        <img :src="comic.imageUrl" :width="comic.width" :height="comic.height" class="h-48 object-cover" :aria-description="comic.explanation" :alt="comic.transcript" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<script type="module">
-import Comics from "/Pages/Comics.mjs"
-import { mount } from "/mjs/app.mjs"
-mount("#xkcd-comics", Comics, { comics: [] })
-</script>
 ```
 
-Let's create our new `Comics.mjs` component to display our initial data in a grid layout, and also have a search box at the top that we can use to make additional API calls to filter the data from the AutoQuery API.
+And then we'll add a search box to the top of the page to allow us to search for comics by title.
+
+```html
+<div id="app">
+    <div class="flex flex-1 flex-col overflow-hidden">
+        <div class="mb-8 mx-auto w-96">
+            <!-- search box --->
+            <h2 class="text-center mb-4 max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-800 dark:text-slate-200">search xkcd</h2>
+            <text-input v-cloak class="w-full w-prose w-100" type="search" v-model="searchTerm" placeholder="search xkcd comic titles"></text-input>
+        </div>
+        <div v-cloak>
+            <div v-if="!loading && hasInit" class="w-full pb-4 bg-white dark:bg-black border border-black flex flex-wrap">
+                <!-- comic preview grid --->
+            </div>
+            <div v-else class="flex justify-center items-center pt-8">
+                <loading>searching xkcd...</loading>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+Let's create our new component to display our initial data in a grid layout, and also have a search box at the top that we can use to make additional API calls to filter the data from the AutoQuery API.
 We can do this again by using the `JsonServiceClient` with the Request DTO related to the API we want to call, but this time we will also pass some additional parameters to the `QueryXkcdComics` DTO to filter the data.
 
 ```javascript
-import { ref, watch } from "vue"
-import { QueryXkcdComics } from "../../mjs/dtos.mjs"
-import { useClient } from "@servicestack/vue"
+import { ref, watch, onMounted } from "vue"
+import { mount } from "app.mjs"
+import { QueryXkcdComics } from "dtos.mjs"
+import { useClient, useUtils } from "@@servicestack/vue"
+import { queryString } from "@@servicestack/client"
 
-export default {
-    template: `...`,
-    props: { comics:Array },
+const App = {
     setup(props) {
         const comics = ref(props.comics || [])
-        const searchTerm = ref()
+        const qs = queryString(location.search)
+        const searchTerm = ref(qs.q || '')
         const client = useClient()
+        const { pushState } = useUtils()
+        const selected = ref()
 
-        watch(searchTerm, async () => {
-            if (searchTerm.value) {
-                comics.value = await client.api(new QueryXkcdComics({titleContains: searchTerm.value}))
+        const loading = ref(false)
+        const hasInit = ref(false)
+
+        onMounted(async () => {
+            if (qs.q) {
+                let api = await client.api(new QueryXkcdComics({ titleContains:searchTerm.value, orderByDesc:'id' }))
+                comics.value = api.response.results
+            } else {
+                await init()
             }
+            hasInit.value = true
         })
 
-        //...
+        async function init() {
+            loading.value = true;
+            let randomIds = generateRandomNumbers(1,2630,12)
+            if (qs.id) randomIds.unshift(parseInt(qs.id))
+            let results = await client.api(new QueryXkcdComics({ ids:randomIds }))
+            comics.value = results.response.results
+            loading.value = false
+        }
 
-        return {comics, searchTerm}
+        const searchApi = createDebounce(async (query) => {
+            if (!query || query.length === 0) {
+                pushState({ q: undefined })
+                let randomIds = generateRandomNumbers(1,2630,12);
+                let api = await client.api(new QueryXkcdComics({ ids:randomIds }))
+                if (api.succeeded) {
+                    comics.value = api.response.results
+                }
+            } else {
+                pushState({ q: searchTerm.value })
+
+                await (async (titleContains) => {
+                    let api = await client.api(new QueryXkcdComics({ titleContains, orderByDesc:'id' }))
+                    // discard any invalidated api responses
+                    if (titleContains === searchTerm.value) {
+                        comics.value = api.response.results
+                    }
+                })(searchTerm.value)
+            }
+            loading.value = false
+        },250)
+
+        watch(searchTerm, async(newValue,oldValue) => {
+            loading.value = true
+            searchApi(newValue)
+        })
+
+        //... other functions
+
+        return { comics, searchTerm, hasInit, loading, selected }
     },
 }
+
+mount('#app', App)
 ```
 
 Notice here we are using the syntax `new QueryXkcdComics({titleContains: searchTerm.value})` to create the request DTO.
