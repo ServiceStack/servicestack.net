@@ -105,7 +105,7 @@ export function mountAll() {
 /** @param {any} [exports] */
 export function init(exports) {
     if (AppData.init) return
-    const BaseUrl = location.origin === 'http://localhost:5000'
+    const BaseUrl = location.origin === 'https://localhost:5002'
         ? 'https://localhost:5001'
         : 'https://account.servicestack.net'
     client = JsonApiClient.create(BaseUrl)
