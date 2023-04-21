@@ -454,15 +454,17 @@ We've also seen how we can use the `x` tool to update our client DTOs to match t
 
 This typed end-to-end workflow is a great way to quickly create a full-stack application, and the ServiceStack Vue library is a great way to quickly create a Vue application that can consume the AutoQuery API.
 
-Let us know what you think of the [ServiceStack Vue library](https://docs.servicestack.net/vue/), and if you have any feedback or suggestions for improvements.
+### Links
 
 - **Live Demo UI** - https://xkcd.netcore.io
 - **Live Demo API** - https://ssg-examples.netcore.io/ui/QueryXkcdComics
+- **UI Source Code** - https://github.com/NetCoreApps/Xkcd
+- **API Source Code** - [ExampleDataApis.ServiceModel/Xkcd.cs](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis.ServiceModel/Xkcd.cs)
 
-### Links
+Let us know what you think of the [ServiceStack Vue library](https://docs.servicestack.net/vue/), and if you have any feedback or suggestions for improvements.
+
+### Feedback & Suggestions
 
 - [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions)
 - [#ServiceStack channel on Discord](https://discord.gg/w4ayGbuYpA)
-- [Example Client Source Code](https://github.com/NetCoreApps/Xkcd)
-- [Example AutoQuery DTO](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis.ServiceModel/Xkcd.cs)
 
