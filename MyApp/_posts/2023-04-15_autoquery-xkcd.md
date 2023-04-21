@@ -1,8 +1,8 @@
 ---
 layout: _LayoutContent
-title: Using AutoQuery with a static XKCD dataset
-summary: Unsiloing Data quickly with AutoQuery by exposing your datasets as easy to use Web APIs
-tags: autoquery, data, development, huggingface, vue.js
+title: Bringing xkcd static dataset to life with AutoQuery 
+summary: Unsiloing data quickly with AutoQuery to make your datasets available from queryable Web APIs
+tags: autoquery,db,dev,huggingface,vue.js
 draft: true
 image: ./img/posts/autoquery-xkcd/drawing-xkcd-upscaled.png
 author: Darren Reid
@@ -67,10 +67,8 @@ public class XkcdComic
 And then [load our data into memory from the JSONL file](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis/Configure.Db.Xkcd.cs#L13).
 
 ```csharp
-var allLines = "path/to/your/dataset.jsonl"
-    .ReadAllText().Split("\n");
-using var jsonConfig = JsConfig.With(new Config
-{
+var allLines = "path/to/your/dataset.jsonl".ReadAllText().Split("\n");
+using var jsonConfig = JsConfig.With(new Config {
     TextCase = TextCase.SnakeCase
 });
 var comics = allLines
@@ -107,12 +105,15 @@ First we will load the data into the SQLite database.
 ```csharp
 var dbFactory = new OrmLiteConnectionFactory("App_Data/db.sqlite", SqliteDialect.Provider);
 container.Register<IDbConnectionFactory>(dbFactory);
+
 using var db = dbFactory.Open();
-if(db.CreateTableIfNotExists<XkcdComic>())
+if (db.CreateTableIfNotExists<XkcdComic>())
+{
     db.InsertAll(comics);
+}
 ```
 
-Now we can use QueryDb<T> instead of QueryData<T> to access the data from the database, and [use the `AutoQueryFeature` Plugin](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis/Configure.AutoQuery.cs) instead of `AutoQueryDataFeature`.
+Now we can use `QueryDb<T>` instead of `QueryData<T>` to access the data from the database, and [use the AutoQueryFeature Plugin](https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis/Configure.AutoQuery.cs) instead of `AutoQueryDataFeature`.
 
 ```csharp
 //AutoQuery Plugin for RDBMS
@@ -129,14 +130,14 @@ And that's it, we now have an API that we can use to query our XKCD comics data.
 One of the advantages of loading our data into SQLite is taking advantage of the built in Locode App that comes with the `ServiceStack.Server` library.
 Restarting the application, we can now navigate to the Locode App at `http://localhost:5000/locode` and see our XKCD comics data.
 
-![Locode App](/img/posts/autoquery-xkcd/locode-app.png)
+[![Locode App](/img/posts/autoquery-xkcd/locode-app.png)](https://ssg-examples.netcore.io/locode/QueryXkcdComics)
 
 Looking at the UI, we can see we get a table of data with filtering capabilities in a user friendly way.
 Locode is driven off the web services that are exposed by the AutoQuery API, so we can also use the same data to create a web app.
 
-We can look at the endpoint itself and the default AutoHtml page to see how to interact with the API in 10 different languages.
+We can look at the endpoint itself and the default [Auto HTML API page](https://docs.servicestack.net/auto-html-api) to see how to interact with the API in 10 different languages.
 
-![AutoHtml page](/img/posts/autoquery-xkcd/autohtml-page.png)
+[![AutoHtml page](/img/posts/autoquery-xkcd/autohtml-page.png)](https://ssg-examples.netcore.io/api/QueryXkcdComics?take=25&format=html)
 
 ## Creating a web app with Razor and Vue.js
 
@@ -148,18 +149,14 @@ One of the reasons we chose to use this template is because we can prerender the
 
 You will need the ServiceStack dotnet `x` tool installed to create a new project from the template. 
 
-```
-dotnet tool install -g x
-```
+<div data-component="CopyLine" data-props="{ text: 'dotnet tool install -g x' }"></div>
 
 First we'll create a new project from the template.
 
-```bash
-x new razor-ssg Xkcd
-```
+<div data-component="CopyLine" data-props="{ text: 'x new razor-ssg Xkcd' }"></div>
 
 This template comes with **Vue 3** and **TailwindCSS** already configured, so we can get started right away.
-It also utilizes [**JavaScript modules**](./posts/javascript), so we can use the `import` syntax to import the ServiceStack Vue library without having to use a bundler like Webpack.
+It also utilizes [JavaScript modules](./posts/javascript), so we can use the `import` syntax to import the ServiceStack Vue library without having to use a bundler like Webpack.
 We can also create these Vue components inline on our razor pages, which will then be served as static files.This gives us instant feedback when we make changes to our code, instead of having to wait for a build step to complete.
 
 Since our dataset is available directly from our API, this application doesn't need a dataset or other storage and adds another way we can interact with our dataset.
@@ -177,7 +174,7 @@ This server render the page, and then fetch data with Vue.js, which works the sa
 @attribute [RenderStatic]
 
 @{
-ViewData["Title"] = "Xkcd Comics";
+    ViewData["Title"] = "Xkcd Comics";
 }
 
 <div class="py-8">
@@ -245,13 +242,13 @@ onMounted(submit)
 
 However, we don't yet have the `QueryXkcdComics` Request DTO available in our application since the template isn't aware of the use of the external API.
 By default the `mjs/dtos.mjs` file uses the `BaseUrl` of `https://localhost:5001` to generate the DTOs, but our data is hosted at `https://ssg-examples.netcore.io`.
-We can either change this `BaseUrl` in the `dtos.mjs` file or just delete it and regenerate it using `x mjs https://ssg-examples.netcore.io`.
+We can either change this `BaseUrl` in the `dtos.mjs` file or just delete it and regenerate it using: 
+
+<div data-component="CopyLine" data-props="{ text: 'x mjs https://ssg-examples.netcore.io' }"></div>
 
 Any additional updates will read from this `BaseUrl` and update the `dtos.mjs` file with the latest DTOs using the command:
 
-```bash
-x mjs
-```
+<div data-component="CopyLine" data-props="{ text: 'x mjs' }"></div>
 
 This command pulls the generated DTOs from the ServiceStack server, and updates the `mjs/dtos.mjs` file with the latest DTOs.
 And this workflow works for any of the ServiceStack client libraries and supported languages.
@@ -262,15 +259,11 @@ Here we can see the use of the ServiceStack Vue components library and the `data
 The `data-grid` component is a built in component that will render the data in a table within minimal markup.
 This can be a great way to get the instant usability of a table without having to write a lot of code, and it can be used anywhere in your application.
 
-The `data-grid` itself simply takes the `comics` array asigned to the `items` prop, and renders the data in a table.
+The `data-grid` itself simply takes the `comics` array assigned to the `items` prop, and renders the data in a table.
 
 ```html
-<div class="py-8">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div id="app">
-            <data-grid :items="comics"></data-grid>
-        </div>
-    </div>
+<div id="app">
+    <data-grid :items="comics"></data-grid>
 </div>
 ```
 
@@ -296,12 +289,13 @@ Let's now customize the `data-grid` so we can have a view of the comics.
         </div>
     </template>
 </data-grid>
+<modal-comic v-if="selected" :comic="selected" v-on:done="selected=null"></modal-comic>
 ```
 
 Above we've added a few more props to the `data-grid` component to customize the columns we want to display using `selected-columns`, and the titles of the columns by setting `header-titles` to a map of the column names to the titles we want to display.
 We are also using `templates` to customize the rendering of the `imageUrl` and `transcript` columns to have more control over the layout.
 
-![Customized data-grid component](/img/posts/autoquery-xkcd/vue-datagrid-custom.png)
+[![Customized data-grid component](/img/posts/autoquery-xkcd/vue-datagrid-custom.png)](https://xkcd.netcore.io/comics-datagrid)
 
 ## Filtering using the AutoQuery API
 
@@ -310,43 +304,32 @@ Now our page is being initialized with the data we want to display, but we can a
 Let's create a separate page that will allow us to search comics by title, this time on our Index page.
 We'll update our `Index.cshtml` file to the following markup.
 
-First, to display our comics in our own grid.
-
-```html
-<div id="app">
-    <div class="flex flex-1 flex-col overflow-hidden">
-        <div v-cloak>
-            <div v-if="!loading && hasInit" class="w-full pb-4 bg-white dark:bg-black border border-black flex flex-wrap">
-                <div v-if="comics.length" v-for="comic in comics" class="border-2 border-slate-700 ml-4 mt-4 p-4 flex justify-center items-center hover:shadow-lg hover:bg-slate-50 dark:hover:bg-slate-900 max-w-[48%]">
-                    <div class="cursor-pointer">
-                        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100 text-center">{{ comic.title }}</h2>
-                        <img :src="comic.imageUrl" :width="comic.width" :height="comic.height" class="h-48 object-cover" :aria-description="comic.explanation" :alt="comic.transcript" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-```
-
-And then we'll add a search box to the top of the page to allow us to search for comics by title.
+First we'll add a search box to the top of the page to allow us to search for comics by title then display xkcd comics in a custom flexbox:
 
 ```html
 <div id="app">
     <div class="flex flex-1 flex-col overflow-hidden">
         <div class="mb-8 mx-auto w-96">
-            <!-- search box --->
             <h2 class="text-center mb-4 max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-800 dark:text-slate-200">search xkcd</h2>
             <text-input v-cloak class="w-full w-prose w-100" type="search" v-model="searchTerm" placeholder="search xkcd comic titles"></text-input>
         </div>
         <div v-cloak>
             <div v-if="!loading && hasInit" class="w-full pb-4 bg-white dark:bg-black border border-black flex flex-wrap">
-                <!-- comic preview grid --->
+                <div v-if="comics.length" class="border-2 border-slate-700 ml-4 mt-4 p-4 flex justify-center items-center hover:shadow-lg hover:bg-slate-50 dark:hover:bg-slate-900 max-w-[48%]" v-for="comic in comics">
+                    <div v-on:click="showModal(comic)" class="cursor-pointer">
+                        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100 text-center">{{ comic.title }}</h2>
+                        <img :src="comic.imageUrl" :width="comic.width" :height="comic.height" class="h-48 object-cover" :aria-description="comic.explanation" :alt="comic.transcript" loading="lazy">
+                    </div>
+                </div>
+                <div v-else class="w-full">
+                    <h4 class="text-center text-lg pt-8 pb-4">query returned no results</h4>
+                </div>
             </div>
             <div v-else class="flex justify-center items-center pt-8">
                 <loading>searching xkcd...</loading>
             </div>
         </div>
+        <modal-comic v-if="selected" :comic="selected" v-on:done="done"></modal-comic>
     </div>
 </div>
 ```
@@ -354,13 +337,12 @@ And then we'll add a search box to the top of the page to allow us to search for
 Let's create our new component to display our initial data in a grid layout, and also have a search box at the top that we can use to make additional API calls to filter the data from the AutoQuery API.
 We can do this again by using the `JsonServiceClient` with the Request DTO related to the API we want to call, but this time we will also pass some additional parameters to the `QueryXkcdComics` DTO to filter the data.
 
-```javascript
+```js
 import { ref, watch, onMounted } from "vue"
 import { mount } from "app.mjs"
 import { QueryXkcdComics } from "dtos.mjs"
 import { useClient, useUtils } from "@@servicestack/vue"
 import { queryString } from "@@servicestack/client"
-
 const App = {
     setup(props) {
         const comics = ref(props.comics || [])
@@ -372,13 +354,15 @@ const App = {
 
         const loading = ref(false)
         const hasInit = ref(false)
-
         onMounted(async () => {
             if (qs.q) {
                 let api = await client.api(new QueryXkcdComics({ titleContains:searchTerm.value, orderByDesc:'id' }))
                 comics.value = api.response.results
             } else {
                 await init()
+            }
+            if (qs.id) {
+                showModal(comics.value.find(x => x.id == qs.id))
             }
             hasInit.value = true
         })
@@ -391,7 +375,6 @@ const App = {
             comics.value = results.response.results
             loading.value = false
         }
-
         const searchApi = createDebounce(async (query) => {
             if (!query || query.length === 0) {
                 pushState({ q: undefined })
@@ -413,28 +396,56 @@ const App = {
             }
             loading.value = false
         },250)
-
         watch(searchTerm, async(newValue,oldValue) => {
             loading.value = true
             searchApi(newValue)
         })
+        function createDebounce(fnc, delayMs) {
+            let timeout = null;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    fnc(...args);
+                }, delayMs || 500);
+            };
+        }
 
-        //... other functions
+        function showModal(comic) {
+            selected.value = comic;
+            pushState({ id:comic?.id || undefined })
+        }
+        function done() {
+            showModal(null)
+        }
+        function generateRandomNumbers(low, high, count) {
+            const result = [];
+            for (let i = 0; i < count; i++) {
+                result.push(Math.floor(Math.random() * (high - low + 1) + low));
+            }
+            return result;
+        }
 
-        return { comics, searchTerm, hasInit, loading, selected }
+        return { comics, searchTerm, hasInit, loading, selected, showModal, done }
     },
 }
-
 mount('#app', App)
 ```
 
-Notice here we are using the syntax `new QueryXkcdComics({titleContains: searchTerm.value})` to create the request DTO.
-The `titleContains` property is interpreted by the AutoQuery API to filter the results by the `title` column in our SQLite database by the value passed to the property.
+Notice here we're creating the Request DTO with: 
 
-We didn't need to add this additional functionality, and this syntax works for any matching property on the DTO. Eg, we could have used `explanationContains` to filter the results by the `explanation` column in our SQLite database on our API server.
-AutoQuery has many of these types of features built in that work out of the box, and since AutoQuery services are ServiceStack services, you can customize their behaviour by adding your own custom logic to the service.
+```csharp
+new QueryXkcdComics({ titleContains, orderByDesc:'id' })
+```
 
-![Filtering comics by title](/img/posts/autoquery-xkcd/column-vue-search-physics.png)
+The `titleContains` property is interpreted by the AutoQuery API to filter the results by the `title` column in our 
+SQLite database by the populated property value.
+
+We didn't need to add this additional functionality, and this syntax works for any matching property on the DTO. 
+E.g, we could have used `explanationContains` to filter the results by the `explanation` column in our SQLite database on our API server.
+AutoQuery has many of these types of features built in that work out of the box, and since AutoQuery services are ServiceStack services, 
+you can customize their behaviour by adding your own custom logic to the service.
+
+[![Filtering comics by title](/img/posts/autoquery-xkcd/column-vue-search-physics.png)](https://xkcd.netcore.io/?q=physics)
 
 ## Conclusion
 
@@ -443,10 +454,13 @@ We've also seen how we can use the `x` tool to update our client DTOs to match t
 
 This typed end-to-end workflow is a great way to quickly create a full-stack application, and the ServiceStack Vue library is a great way to quickly create a Vue application that can consume the AutoQuery API.
 
-Let us know what you think of the ServiceStack Vue library, and if you have any feedback or suggestions for improvements.
+Let us know what you think of the [ServiceStack Vue library](https://docs.servicestack.net/vue/), and if you have any feedback or suggestions for improvements.
 
-- [Live Demo](https://xkcd-autoquery.netcore.io)
-- [Live Demo API](https://ssg-examples.netcore.io/ui/QueryXkcdComics)
+- **Live Demo UI** - https://xkcd.netcore.io
+- **Live Demo API** - https://ssg-examples.netcore.io/ui/QueryXkcdComics
+
+### Links
+
 - [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions)
 - [#ServiceStack channel on Discord](https://discord.gg/w4ayGbuYpA)
 - [Example Client Source Code](https://github.com/NetCoreApps/Xkcd)
