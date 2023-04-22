@@ -1,4 +1,4 @@
-import { createApp, reactive, ref, computed } from "vue"
+import { createApp, reactive, ref, computed, nextTick } from "vue"
 import { JsonApiClient, $1, $$, enc } from "@servicestack/client"
 import ServiceStackVue from "@servicestack/vue"
 import HelloApi from "./components/HelloApi.mjs"
@@ -11,9 +11,10 @@ import ProjectTemplate from "./components/ProjectTemplate.mjs"
 
 let client = null, Apps = []
 let AppData = {
-    init:false
+    init:false,
+    installs:{},
 }
-export { client, Apps }
+export { client, AppData, Apps }
 
 /** Simple inline component examples */
 const Hello = {
@@ -111,6 +112,12 @@ export function init(exports) {
     client = JsonApiClient.create(BaseUrl)
     AppData = reactive(AppData)
     AppData.init = true
+    nextTick(async () => {
+        const res = await fetch(BaseUrl + '/stats/projects.json')
+        const json = await res.json()
+        AppData.installs = json.results || {}
+        console.log('AppData.installs', AppData)
+    })
     mountAll()
 
     if (exports) {

@@ -13,8 +13,9 @@ const ProjectTemplate = {
            <div class="flex justify-center h-8">
             <div v-for="tag in tags" class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 dark:text-blue-400 text-sm">{{ tag }}</span></div>
            </div>
-           <span class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{ projectZip }}</span>
-           <div class="count mt-1 text-gray-400 text-sm"></div>
+           <div class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{ projectZip }}</div>
+           <div v-if="count >= 60" class="count mt-1 text-gray-400 text-sm">{{count}} installs</div>
+           <div v-else-if="count > 0" class="inline-flex items-center rounded-full bg-pink-100 px-1.5 py-0.5 text-xs font-medium text-pink-700">new</div>
         </div>
      </a>
     `,
@@ -23,6 +24,7 @@ const ProjectTemplate = {
         name:String,
         mix:{ type:Object, default(rowProps) { return [] } },
         tags:{ type:Object, default(rowProps) { return [] } },
+        count:Number
     },
     setup(props) {
         const projectZip = computed(() => (props.name || 'MyApp') + '.zip')
