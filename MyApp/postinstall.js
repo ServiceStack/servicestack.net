@@ -3,9 +3,6 @@
 const writeTo = './wwwroot/lib'
 const defaultPrefix = 'https://unpkg.com'
 const files = {
-  js: {
-      'htmx.js':                         '/htmx.org@1/dist/htmx.js',
-  },
   mjs: {
       'vue.mjs':                         '/vue@3/dist/vue.esm-browser.js',
       'vue.min.mjs':                     '/vue@3/dist/vue.esm-browser.prod.js',
@@ -24,6 +21,9 @@ const files = {
       '@vue/shared.d.ts':                '/@vue/shared@3/dist/shared.d.ts',
       '@servicestack/client/index.d.ts': '/@servicestack/client/dist/index.d.ts',  
       '@servicestack/vue/index.d.ts':    '/@servicestack/vue@3/dist/index.d.ts',
+  },
+  tailwind: {
+      'ssg-services.js':                 'https://ssg-services.servicestack.net/tailwind/all.components.txt'
   }
 }
 

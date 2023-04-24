@@ -49,14 +49,15 @@ select{
 [type='file']:focus{outline:1px auto -webkit-focus-ring-color;}
 
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+/* dark mode autocomplete fields */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: #ffffff;
 }
-input[data-autocompleted] {
+.dark input[data-autocompleted] {
     background-color: transparent !important;
 }
 
@@ -77,15 +78,6 @@ input[data-autocompleted] {
     right: 0;
     bottom: 0;
     left: 0;
-}
-
-/* dark mode autocomplete fields */
-.dark input:-webkit-autofill,
-.dark input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
-}
-.dark input[data-autocompleted] {
-    background-color: transparent !important;
 }
 
 @tailwind utilities;

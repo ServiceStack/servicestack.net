@@ -117,6 +117,18 @@ import { init } from "app.mjs"
 init()
 </script>
 
+
+<div id="comments" class="my-48"></div>
+<script type="module">
+import { mount, PostComments } from '@(HostContext.DebugMode ? "https://localhost:5001/mjs/components/Posts.mjs" : "https://ssg-services.servicestack.net/mjs/components/Posts.mjs")'
+mount('#comments', PostComments, {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
 <link rel="stylesheet" href="//unpkg.com/@@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
 <script src="//unpkg.com/@@highlightjs/cdn-assets/highlight.min.js"></script>
 <script>hljs.highlightAll()</script>
