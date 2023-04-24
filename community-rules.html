@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
-    <title>Deployment with GitHub Actions - ServiceStack</title>
+    <title>Community Rules - ServiceStack</title>
     <base href="/" />
     <script>
     const cls = document.querySelector('html').classList
@@ -107,162 +107,53 @@ mountAll()
 
 
 <link rel="stylesheet" href="css/typography.css">
-
-<div class="container px-5 mb-32 mx-auto">
-        <article class="mt-20">
-            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Deployment with GitHub Actions
-            </h1>
-            <div class="md:mb-12 flex items-center">
-                    <a href="posts/author/darren-reid"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/darren.jpg"></a>
-                <div class="flex flex-col">
-                        <a class="text-xl font-semibold hover:underline" href="posts/author/darren-reid">Darren Reid</a>
-                        <ul role="list" class="flex">
-                                <li>
-                                    <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/layoric">
-                                        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
-                                            <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/layoric">
-                                        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                        </ul>
-                </div>
-            </div>
-            <div class="mb-8 md:mb-16 sm:mx-0">
-                <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1485841890310-6a055c88698a?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Deployment with GitHub Actions Background" class="shadow-small">
-                </div>
-            </div>
-            <div class="mb-4 max-w-3xl mx-auto flex flex-wrap">
-                    <a href="posts/tagged/github-actions" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
-                    <a href="posts/tagged/devops" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">devops</a>
-            </div>
-                <div class="max-w-3xl mx-auto">
-                    <div class="mb-6 text-lg text-gray-500">
-                        <time datetime="2023-01-01T00:00:00.0000000">January 1, 2023</time>
-                        <span aria-hidden="true">&middot;</span>
-                        <span>4 min read</span>
-                    </div>
-                </div>
-            <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
-                    <h1 id="servicestack-github-action-deployments">ServiceStack GitHub Action Deployments</h1>
-<p>The <a href="https://github.com/NetCoreTemplates/razor-tailwind/blob/main/.github/workflows/release.yml">release.yml</a>
-in this template enables GitHub Actions CI deployment to a dedicated server with SSH access.</p>
-<h2 id="overview">Overview</h2>
-<p><code>release.yml</code> is designed to work with a ServiceStack app deploying directly to a single server via SSH. A docker image is built and stored on GitHub's <code>ghcr.io</code> docker registry when a GitHub Release is created.</p>
-<p>GitHub Actions specified in <code>release.yml</code> then copy files remotely via scp and use <code>docker-compose</code> to run the app remotely via SSH.</p>
-<h2 id="whats-the-process-of-release.yml">What's the process of <code>release.yml</code>?</h2>
-<p><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/release-ghr-vanilla-diagram.png" alt="" /></p>
-<h2 id="deployment-server-setup">Deployment server setup</h2>
-<p>To get this working, a server needs to be setup with the following:</p>
+<section class="flex-col md:flex-row flex justify-center mt-16 mb-16 md:mb-12">
+    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+        Community Rules
+    </h1>
+</section>    
+<div class="mx-auto">
+    <div class="mx-auto prose lg:prose-xl mb-24">
+        <p>servicestack.net is where anyone is welcome to learn about ServiceStack and .NET development.
+We want to keep it a welcome place, so we have created this ruleset to help guide the content posted on servicestack.net.</p>
+<p>If you see a post or comment that breaks the rules, we welcome you to report it to the our moderators.</p>
+<p>These rules apply to all community aspects on servicestack.net: all parts of a public post (title, description, tags, visual content), comments, links, and messages.
+Moderators consider context and intent while enforcing the community rules.</p>
 <ul>
-<li>SSH access</li>
-<li>docker</li>
-<li>docker-compose</li>
-<li>ports 443 and 80 for web access of your hosted application</li>
+<li>No nudity or sexually explicit content.</li>
+<li>Provocative, inflammatory, unsettling, or suggestive content should be marked as Mature.</li>
+<li>No hate speech, abuse, or harassment.</li>
+<li>No content that condones illegal or violent activity.</li>
+<li>No gore or shock content.</li>
+<li>No posting personal information.</li>
 </ul>
-<p>This can be your own server or any cloud hosted server like Digital Ocean, AWS, Azure etc. We use <a href="http://cloud.hetzner.com/">Hetzner Cloud</a>
-to deploy all ServiceStack's <a href="https://github.com/NetCoreTemplates/">GitHub Project Templates</a> as it was the
-<a href="https://servicestack.net/blog/finding-best-us-value-cloud-provider">best value US cloud provider</a> we've found.</p>
-<p>When setting up your server, you'll want to use a dedicated SSH key for access to be used by GitHub Actions. GitHub Actions will need the <em>private</em> SSH key within a GitHub Secret to authenticate. This can be done via ssh-keygen and copying the public key to the authorized clients on the server.</p>
-<p>To let your server handle multiple ServiceStack applications and automate the generation and management of TLS certificates, an additional docker-compose file is provided in this template, <code>nginx-proxy-compose.yml</code>. This docker-compose file is ready to run and can be copied to the deployment server.</p>
-<p>For example, once copied to remote <code>~/nginx-proxy-compose.yml</code>, the following command can be run on the remote server.</p>
-<pre><code>docker-compose -f ~/nginx-proxy-compose.yml up -d
-</code></pre>
-<p>This will run an nginx reverse proxy along with a companion container that will watch for additional containers in the same docker network and attempt to initialize them with valid TLS certificates.</p>
-<h3 id="github-actions-secrets">GitHub Actions secrets</h3>
-<p>The <code>release.yml</code> uses the following secrets.</p>
-<table>
-<thead>
-<tr>
-<th>Required Secrets</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>DEPLOY_HOST</code></td>
-<td>Hostname used to SSH deploy .NET App to, this can either be an IP address or subdomain with A record pointing to the server</td>
-</tr>
-<tr>
-<td><code>DEPLOY_USERNAME</code></td>
-<td>Username to log in with via SSH e.g, <strong>ubuntu</strong>, <strong>ec2-user</strong>, <strong>root</strong></td>
-</tr>
-<tr>
-<td><code>DEPLOY_KEY</code></td>
-<td>SSH private key used to remotely access deploy .NET App</td>
-</tr>
-<tr>
-<td><code>LETSENCRYPT_EMAIL</code></td>
-<td>Email required for Let's Encrypt automated TLS certificates</td>
-</tr>
-</tbody>
-</table>
-<p>These secrets can use the <a href="https://cli.github.com/manual/gh_secret_set">GitHub CLI</a> for ease of creation. Eg, using the GitHub CLI the following can be set.</p>
-<pre><code class="language-bash">gh secret set DEPLOY_HOST -b&quot;&lt;DEPLOY_HOST&gt;&quot;
-gh secret set DEPLOY_USERNAME -b&quot;&lt;DEPLOY_USERNAME&gt;&quot;
-gh secret set DEPLOY_KEY &lt; key.pem # DEPLOY_KEY
-gh secret set LETSENCRYPT_EMAIL -b&quot;&lt;LETSENCRYPT_EMAIL&gt;&quot;
-</code></pre>
-<p>These secrets are used to populate variables within GitHub Actions and other configuration files.</p>
-<h2 id="deployments">Deployments</h2>
-<p>A published version of your .NET App created with the standard dotnet publish tool:</p>
-<pre><code class="language-yaml">dotnet publish -c Release
-</code></pre>
-<p>is used to build a production build of your .NET App inside the standard <code>Dockerfile</code> for dockerizing .NET Applications.</p>
-<p>Additional custom deployment tasks can be added to your project's package.json <strong>postinstall</strong> script which also gets run at deployment.</p>
-<p>If preferred additional MS Build tasks can be run by passing in custom parameters in the publish command, e.g:</p>
-<pre><code class="language-yaml">dotnet publish -c Release /p:APP_TASKS=prerender
-</code></pre>
-<p>Which your <code>MyApp.csproj</code> can detect with a target that checks for it:</p>
-<pre><code class="language-xml">&lt;!-- Prerender tasks run in release.yml --&gt;
-&lt;Target Name=&quot;AppTasks&quot; AfterTargets=&quot;Build&quot; Condition=&quot;$(APP_TASKS) != ''&quot;&gt;
-    &lt;CallTarget Targets=&quot;Prerender&quot; Condition=&quot;$(APP_TASKS.Contains('prerender'))&quot; /&gt;
-&lt;/Target&gt;
-&lt;Target Name=&quot;Prerender&quot;&gt;
-    &lt;Message Text=&quot;Prerender...&quot; /&gt;
-&lt;/Target&gt;
-</code></pre>
-<h2 id="pushing-updates-and-rollbacks">Pushing updates and rollbacks</h2>
-<p>By default, deployments occur on commit to your main branch. A new Docker image for your ServiceStack API is produced, pushed to GHCR.io and hosted on your Linux server with Docker Compose.</p>
-<p>The template also will run the release process on the creation of a GitHub Release making it easier to switch to manual production releases.</p>
-<p>Additionally, the <code>release.yml</code> workflow can be run manually specifying a version. This enables production rollbacks based on previously tagged releases.
-A release must have already been created for the rollback build to work, it doesn't create a new Docker build based on previous code state, only redeploys as existing Docker image.</p>
+<h3 id="good-sharing-practices">Good Sharing Practices</h3>
+<p>Considering these tips when sharing with the servicestack.net community will help ensure you're contributing great content.</p>
+<h4 id="value">1. Value</h4>
+<ul>
+<li>Good sharing means posting content which brings value to the community. Content which opens up a discussion, shares something new and unique, or has a deeper story to tell beyond the image itself is content that generally brings value. Ask yourself first: is this something I would be interested in seeing if someone else posted it?</li>
+</ul>
+<h4 id="transparency">2. Transparency</h4>
+<ul>
+<li>We expect that the original poster (OP) will be explicit about if and how they are connected to the content they are posting. Trying to hide that relationship, or not explaining it well to others, is a common feature of bad sharing.</li>
+</ul>
+<h4 id="respect">3. Respect</h4>
+<ul>
+<li>Good sharing means knowing when the community has spoken through upvotes and downvotes and respecting that. You should avoid constantly reposting content to User Submitted that gets downvoted. This kind of spamming annoys the community, and it won't make your posts any more popular.
+Repeated violations of the good sharing practices after warning may result in account ban.</li>
+</ul>
+<p>If content breaks these community rules, it will be removed and the original poster warned about the removal.
+Warnings will expire. If multiple submissions break the rules in a short time frame, warnings will accumulate, which could lead to a 24-hour suspension, and further, a ban.</p>
+<p>If you aren't sure if your post fits the community rules, please don't post it.
+Just because you've seen a rule-breaking image posted somewhere else on servicestack.net doesn't mean it's okay for you to repost it.</p>
 
-                </div>
-            </div>
-        </article>
+    </div>
 </div>
 
-<script type="module">
-import { init } from "app.mjs"
-init()
-</script>
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
 
-
-<div id="comments" class="my-48"></div>
-<script type="module">
-import { mount, PostComments } from 'https://ssg-services.servicestack.net/mjs/components/Posts.mjs'
-mount('#comments', PostComments, {
-    commentLink: { 
-        href: '/community-rules',
-        label: 'read the community rules'
-    } 
-})
-</script>
-
-<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
-<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
 <script>hljs.highlightAll()</script>
-
     </main>
 </div>
 

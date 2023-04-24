@@ -116,7 +116,6 @@ export function init(exports) {
         const res = await fetch(BaseUrl + '/stats/projects.json')
         const json = await res.json()
         AppData.installs = json.results || {}
-        console.log('AppData.installs', AppData)
     })
     mountAll()
 
