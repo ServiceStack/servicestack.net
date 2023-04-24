@@ -7,14 +7,13 @@ draft: true
 image: ./img/posts/autoquery-xkcd/drawing-xkcd-upscaled.png
 author: Darren Reid
 ---
+One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.
+
+Once your data is exposed as an API, you can use it in any way you want, whether that's a web app, a mobile app, a desktop app, or even a CLI.
 
 # Unsiloing Data with AutoQuery
 
-One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.
-
-Once your data is exposed as an API, you can use it in any way you want, whether that's a web app, a mobile app, a desktop app, or even a CLI app.
-
-A problem I encountered when working for a science company is that modelers and data scientists would often create datasets that were only accessible via Jupyter notebook or a Python script which is hard to reuse or share.
+A problem I encountered when working for a weather forecasting company is that modelers and data scientists would often create datasets that were only accessible via Jupyter notebook or a Python script which is hard to reuse or share.
 This meant that the data was only accessible to a small number of people, and it was difficult to share the data with other teams or to use the data in other applications.
 Some of these notebooks and scripts would need to use massive datasets for a very small amount of data. The company specialized in weather data and experiments could pull down 100s of GBs of data, but only use a few MBs of it.
 
@@ -23,10 +22,21 @@ Web APIs help un-silo the data, create more efficient access points and and redu
 
 ServiceStack and AutoQuery can help solve this problem by making it easy to expose data as an API, and by simplifying the use of that data in any application.
 
+<div class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
+        <div class="aspect-w-16 aspect-h-9">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/CrKtXVrPj8Q"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
 In this post, we'll look at how to use AutoQuery to create a web app from a dataset, and to make it a bit of fun, we are going to use a dataset of XKCD comics.
 This dataset is from HuggingFace's [datasets](https://huggingface.co/datasets/olivierdehaene/xkcd) repository if you want to repeat
 the process yourself, but any dataset in formats like CSV, JSON, etc or in an existing SQL database like SQLite will work with the same approach.
-
 ## What is the dataset?
 
 The dataset is licensed under the Creative Commons Attribution-ShareAlike 3.0 license, and the code for this example is available on GitHub.
@@ -147,7 +157,7 @@ In this example, we've hosted our dataset as a web API, and there is a [live dem
 We can do this from whatever language you prefer, but for this example, we'll use Razor and Vue.js via the [ServiceStack razor-ssg template](https://github.com/NetCoreTemplates/razor-ssg), and the [ServiceStack Vue library](https://docs.servicestack.net/vue) to create our web app.
 One of the reasons we chose to use this template is because we can prerender the whole application as a static site and deploy it to any CDN including GitHub Pages.
 
-You will need the ServiceStack dotnet `x` tool installed to create a new project from the template. 
+You will need the ServiceStack dotnet `x` tool installed to create a new project from the template.
 
 <div data-component="CopyLine" data-props="{ text: 'dotnet tool install -g x' }"></div>
 
@@ -297,9 +307,51 @@ We are also using `templates` to customize the rendering of the `imageUrl` and `
 
 [![Customized data-grid component](/img/posts/autoquery-xkcd/vue-datagrid-custom.png)](https://xkcd.netcore.io/comics-datagrid)
 
-## Filtering using the AutoQuery API
+## AutoQueryGrid vs DataGrid
 
-Now our page is being initialized with the data we want to display, but we can also fetch the data from the API dynamically using the `JsonServiceClient` from the ServiceStack Vue library.
+While the `data-grid` component is a great way to get a table up and running quickly, we can get even more functionality with the `auto-query-grid` component.
+The `auto-query-grid` component is a wrapper around the `data-grid` component that adds a number of features to make it easier to use.
+
+The `auto-query-grid` component will automatically fetch the data for you, and we can customize our columns using the same `template` pattern as the `data-grid`.
+
+```html
+<auto-query-grid type="XkcdComic"
+     selected-columns="imageUrl,width,height,id,title,transcript,explanation,url"
+     :visible-from="{ title:'sm', transcript:'xl', explanation:'2xl', url:'never' }"
+     :header-titles="{ imageUrl:'Comic', transcript:'Description' }"
+     v-on:row-selected="rowSelected"
+     class="mx-auto">
+    <template #imageUrl="{ id, imageUrl }">
+        <img :src="imageUrl" class="h-12 object-cover" loading="lazy">
+    </template>
+    <template #transcript="{ transcript }">
+        <p class="block max-w-sm text-ellipsis overflow-hidden" 
+           :title="transcript">{{ transcript }}
+        </p>
+    </template>
+    <template #explanation="{ explanation }">
+        <p class="block max-w-sm text-ellipsis overflow-hidden">{{ explanation }}</p>
+    </template>
+</auto-query-grid>
+<modal-comic v-if="selected" :comic="selected" v-on:done="selected=null"></modal-comic>
+```
+
+So the only custom behavior code you need is to wire up the `modal-comic` component to the `auto-query-grid` component, is the following:
+
+```js
+setup(props) {
+    const selected = ref()
+    function rowSelected(comic,e) {
+        selected.value = comic
+    }
+    return { selected, rowSelected }
+}
+```
+
+
+## Custom Grid with a Search Box
+
+We can also fetch the data from the API dynamically using the `JsonServiceClient` from the ServiceStack Vue library, and use AutoQuery to easily filter for the data we want.
 
 Let's create a separate page that will allow us to search comics by title, this time on our Index page.
 We'll update our `Index.cshtml` file to the following markup.
@@ -310,26 +362,54 @@ First we'll add a search box to the top of the page to allow us to search for co
 <div id="app">
     <div class="flex flex-1 flex-col overflow-hidden">
         <div class="mb-8 mx-auto w-96">
-            <h2 class="text-center mb-4 max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-800 dark:text-slate-200">search xkcd</h2>
-            <text-input v-cloak class="w-full w-prose w-100" type="search" v-model="searchTerm" placeholder="search xkcd comic titles"></text-input>
+            <h2 class="text-center mb-4 max-w-4xl font-display 
+                       text-5xl font-bold tracking-tight text-slate-800 
+                       dark:text-slate-200">
+                search xkcd
+            </h2>
+            <text-input v-cloak 
+                        class="w-full w-prose w-100" 
+                        type="search" 
+                        v-model="searchTerm" 
+                        placeholder="search xkcd comic titles">
+                
+            </text-input>
         </div>
         <div v-cloak>
-            <div v-if="!loading && hasInit" class="w-full pb-4 bg-white dark:bg-black border border-black flex flex-wrap">
-                <div v-if="comics.length" class="border-2 border-slate-700 ml-4 mt-4 p-4 flex justify-center items-center hover:shadow-lg hover:bg-slate-50 dark:hover:bg-slate-900 max-w-[48%]" v-for="comic in comics">
-                    <div v-on:click="showModal(comic)" class="cursor-pointer">
-                        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100 text-center">{{ comic.title }}</h2>
-                        <img :src="comic.imageUrl" :width="comic.width" :height="comic.height" class="h-48 object-cover" :aria-description="comic.explanation" :alt="comic.transcript" loading="lazy">
+            <div v-if="!loading && hasInit" 
+                 class="w-full pb-4 bg-white dark:bg-black border 
+                        border-black flex flex-wrap">
+                <div v-if="comics.length" 
+                     class="border-2 border-slate-700 ml-4 mt-4 p-4 
+                            flex justify-center items-center 
+                            hover:shadow-lg hover:bg-slate-50 
+                            dark:hover:bg-slate-900 max-w-[48%]" 
+                     v-for="comic in comics">
+                    <div v-on:click="showModal(comic)" 
+                         class="cursor-pointer">
+                        <h2 class="mb-4 text-lg font-semibold text-gray-900 
+                                   dark:text-gray-100 text-center">
+                            {{ comic.title }}
+                        </h2>
+                        <img :src="comic.imageUrl" :width="comic.width" 
+                             :height="comic.height" class="h-48 object-cover" 
+                             :aria-description="comic.explanation" 
+                             :alt="comic.transcript" loading="lazy">
                     </div>
                 </div>
                 <div v-else class="w-full">
-                    <h4 class="text-center text-lg pt-8 pb-4">query returned no results</h4>
+                    <h4 class="text-center text-lg pt-8 pb-4">
+                        query returned no results
+                    </h4>
                 </div>
             </div>
             <div v-else class="flex justify-center items-center pt-8">
                 <loading>searching xkcd...</loading>
             </div>
         </div>
-        <modal-comic v-if="selected" :comic="selected" v-on:done="done"></modal-comic>
+        <modal-comic v-if="selected" :comic="selected" 
+                     v-on:done="done">
+        </modal-comic>
     </div>
 </div>
 ```
@@ -356,7 +436,8 @@ const App = {
         const hasInit = ref(false)
         onMounted(async () => {
             if (qs.q) {
-                let api = await client.api(new QueryXkcdComics({ titleContains:searchTerm.value, orderByDesc:'id' }))
+                let api = await client.api(
+                    new QueryXkcdComics({ titleContains:searchTerm.value, orderByDesc:'id' }))
                 comics.value = api.response.results
             } else {
                 await init()
@@ -387,7 +468,8 @@ const App = {
                 pushState({ q: searchTerm.value })
 
                 await (async (titleContains) => {
-                    let api = await client.api(new QueryXkcdComics({ titleContains, orderByDesc:'id' }))
+                    let api = await client.api(
+                        new QueryXkcdComics({ titleContains, orderByDesc:'id' }))
                     // discard any invalidated api responses
                     if (titleContains === searchTerm.value) {
                         comics.value = api.response.results
