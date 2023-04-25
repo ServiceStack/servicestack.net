@@ -15,6 +15,7 @@ public class ConfigureSsg : IHostingStartup
             services.AddSingleton<MarkdownWhatsNew>();
             services.AddSingleton<MarkdownVideos>();
             services.AddSingleton<MarkdownBlog>();
+            services.AddSingleton<MarkdownMeta>();
         })
         .ConfigureAppHost(
             appHost => appHost.Plugins.Add(new CleanUrlsFeature()),
@@ -48,6 +49,10 @@ public class ConfigureSsg : IHostingStartup
                         new DirectoryInfo(distDir));
                     var razorFiles = appHost.VirtualFiles.GetAllMatchingFiles("*.cshtml");
                     RazorSsg.PrerenderAsync(appHost, razorFiles, distDir).GetAwaiter().GetResult();
+
+                    appHost.Resolve<MarkdownMeta>().RenderToAsync(
+                        metaDir: appHost.ContentRootDirectory.RealPath.CombineWith("wwwroot/meta"),
+                        baseUrl: HtmlHelpers.ToAbsoluteContentUrl("")).GetAwaiter().GetResult();
                 });
             });
 
@@ -73,12 +78,14 @@ public class MarkdownFileInfo : MarkdownFileBase
 
 public static class HtmlHelpers
 {
-    public static string ContentUrl(this IHtmlHelper html, string? relativePath) => 
-        html.IsDebug()
-            ? "https://localhost:5002".CombineWith(relativePath)
-            : "https://servicestack.net".CombineWith(relativePath);
-    public static string ApiUrl(this IHtmlHelper html, string? relativePath) => 
-        html.IsDebug()
-            ? "https://localhost:5001".CombineWith(relativePath)
-            : "https://account.servicestack.net".CombineWith(relativePath);
+    public static string ToAbsoluteContentUrl(string? relativePath) => HostContext.DebugMode 
+        ? "https://localhost:5002".CombineWith(relativePath)
+        : "https://servicestack.net".CombineWith(relativePath);
+    public static string ToAbsoluteApiUrl(string? relativePath) => HostContext.DebugMode 
+        ? "https://localhost:5001".CombineWith(relativePath)
+        : "https://account.servicestack.net".CombineWith(relativePath);
+
+
+    public static string ContentUrl(this IHtmlHelper html, string? relativePath) => ToAbsoluteContentUrl(relativePath); 
+    public static string ApiUrl(this IHtmlHelper html, string? relativePath) => ToAbsoluteApiUrl(relativePath);
 }
