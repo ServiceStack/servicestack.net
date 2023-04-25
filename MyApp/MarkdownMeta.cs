@@ -15,7 +15,7 @@ public class MarkdownMeta
         FileSystemVirtualFiles.RecreateDirectory(metaDir);
         var allYears = Blog.VisiblePosts.Select(x => x.Date!.Value.Year).Distinct().ToList();
         var index = new Dictionary<string, object> {
-            ["posts"] = allYears.Map(x => baseUrl.CombineWith($"/{x}/posts.json"))
+            ["posts"] = allYears.Map(x => baseUrl.CombineWith($"/meta/{x}/posts.json"))
         };
         foreach (var year in allYears)
         {
