@@ -28,6 +28,8 @@ public class MarkdownMeta
                 Tags = x.Tags,
                 Author = x.Author,
                 Image = x.Image,
+                WordCount = x.WordCount,
+                LineCount = x.LineCount,
                 Url = x.Url ?? baseUrl.CombineWith($"/posts/{x.Slug}"),
             });
             var yearDir = metaDir.CombineWith(year).AssertDir();
