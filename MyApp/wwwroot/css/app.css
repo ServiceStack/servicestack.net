@@ -1502,10 +1502,6 @@ select{
   max-height: 130px;
 }
 
-.max-h-\[80px\] {
-  max-height: 80px;
-}
-
 .max-h-\[72px\] {
   max-height: 72px;
 }
@@ -5371,6 +5367,10 @@ select{
     padding-bottom: 0px;
   }
 
+  .sm\:pb-28 {
+    padding-bottom: 7rem;
+  }
+
   .sm\:pb-32 {
     padding-bottom: 8rem;
   }
@@ -5417,11 +5417,6 @@ select{
 
   .sm\:text-center {
     text-align: center;
-  }
-
-  .sm\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 
   .sm\:text-4xl {
@@ -5947,6 +5942,11 @@ select{
     padding-bottom: 6rem;
   }
 
+  .lg\:py-36 {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
+
   .lg\:py-40 {
     padding-top: 10rem;
     padding-bottom: 10rem;
@@ -5955,6 +5955,16 @@ select{
   .lg\:py-48 {
     padding-top: 12rem;
     padding-bottom: 12rem;
+  }
+
+  .lg\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .lg\:py-28 {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
   }
 
   .lg\:pb-14 {
@@ -5983,6 +5993,22 @@ select{
 
   .lg\:pt-8 {
     padding-top: 2rem;
+  }
+
+  .lg\:pb-32 {
+    padding-bottom: 8rem;
+  }
+
+  .lg\:pt-28 {
+    padding-top: 7rem;
+  }
+
+  .lg\:pb-36 {
+    padding-bottom: 9rem;
+  }
+
+  .lg\:pb-40 {
+    padding-bottom: 10rem;
   }
 
   .lg\:text-left {
