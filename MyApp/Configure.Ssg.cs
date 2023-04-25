@@ -41,6 +41,10 @@ public class ConfigureSsg : IHostingStartup
                 // prerender with: `$ npm run prerender` 
                 AppTasks.Register("prerender", args =>
                 {
+                    appHost.Resolve<MarkdownMeta>().RenderToAsync(
+                        metaDir: appHost.ContentRootDirectory.RealPath.CombineWith("wwwroot/meta"),
+                        baseUrl: HtmlHelpers.ToAbsoluteContentUrl("")).GetAwaiter().GetResult();
+
                     var distDir = appHost.ContentRootDirectory.RealPath.CombineWith("dist");
                     if (Directory.Exists(distDir))
                         FileSystemVirtualFiles.DeleteDirectory(distDir);
@@ -49,10 +53,6 @@ public class ConfigureSsg : IHostingStartup
                         new DirectoryInfo(distDir));
                     var razorFiles = appHost.VirtualFiles.GetAllMatchingFiles("*.cshtml");
                     RazorSsg.PrerenderAsync(appHost, razorFiles, distDir).GetAwaiter().GetResult();
-
-                    appHost.Resolve<MarkdownMeta>().RenderToAsync(
-                        metaDir: appHost.ContentRootDirectory.RealPath.CombineWith("wwwroot/meta"),
-                        baseUrl: HtmlHelpers.ToAbsoluteContentUrl("")).GetAwaiter().GetResult();
                 });
             });
 
