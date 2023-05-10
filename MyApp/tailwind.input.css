@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 
+/*vue*/
+[v-cloak] {display:none}
+
 /* override element defaults */
 b { font-weight:600; }
 

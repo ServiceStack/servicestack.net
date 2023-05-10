@@ -8,7 +8,6 @@ At ServiceStack Website, accessible from https://servicestack.net, one of our ma
 If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.
 
 This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in ServiceStack Website. This policy is not applicable to any information collected offline or via channels other than this website. 
-Our Privacy Policy was created with the help of the [Online Generator of Privacy Policy](https://www.privacypolicyonline.com/privacy-policy-generator/).
 
 ### Consent
 By using our website, you hereby consent to our Privacy Policy and agree to its terms.
@@ -27,9 +26,16 @@ We use the information we collect in various ways, including to:
 - Improve, personalize, and expand our website
 - Understand and analyze how you use our website
 - Develop new products, services, features, and functionality
-- Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes
-- Send you emails
 - Find and prevent fraud
+- Send you emails, directly, for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes
+
+### Newsletters
+We offer electronic newsletters which you may voluntarily subscribe to. You may choose to stop receiving our newsletter or marketing emails 
+by following the unsubscribe instructions included in these emails or by contacting us. However, you will continue to receive essential emails.
+
+### Sharing your information with other entities
+We will not share your personal information with third parties, except as necessary for our legitimate professional and business needs,
+to carry out your requests, and/or as required or permitted by law or professional standards.
 
 ### Log Files
 ServiceStack Website follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.
@@ -47,7 +53,9 @@ Third-party ad servers or ad networks uses technologies like cookies, JavaScript
 Note that ServiceStack Website has no access to or control over these cookies that are used by third-party advertisers.
 
 ### Third Party Privacy Policies
-ServiceStack Website's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
+ServiceStack Website's Privacy Policy does not apply to other advertisers or websites. 
+Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. 
+It may include their practices and instructions about how to opt-out of certain options.
 
 You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.
 
