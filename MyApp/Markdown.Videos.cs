@@ -6,6 +6,7 @@ namespace Ssg;
 
 public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
 {
+    public override string Id => "videos";
     public MarkdownVideos(ILogger<MarkdownVideos> log, IWebHostEnvironment env) : base(log,env) {}
     public Dictionary<string, List<MarkdownFileInfo>> Groups { get; set; } = new();
 
@@ -37,6 +38,7 @@ public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
                     if (doc == null)
                         continue;
 
+                    doc.Group = group;
                     var groupVideos = Groups.GetOrAdd(group, v => new List<MarkdownFileInfo>());
                     groupVideos.Add(doc);
                 }
@@ -46,5 +48,15 @@ public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
                 }
             }
         }
+    }
+    
+    public override List<MarkdownFileBase> GetAll()
+    {
+        var to = new List<MarkdownFileBase>();
+        foreach (var entry in Groups)
+        {
+            to.AddRange(entry.Value.Where(IsVisible).Map(x => ToMetaDoc(x)));
+        }
+        return to;
     }
 }
