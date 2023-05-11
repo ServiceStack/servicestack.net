@@ -1,12 +1,13 @@
 ---
-title: Rapidly develop apps with Locode
-url: https://youtu.be/hkuO_DMFXmc
-tags: autoquery,locode
-date: 16-05-2022
+title: Build a Bookings API with Auto Admin UI in minutes
+url: https://youtu.be/rSFiikDjGos
+tags: autoquery
+date: 16-08-2022
 ---
 
-ServiceStack Locode App is a generated API driven by your service metadata. When combined with AutoQuery, 
-it becomes a way to rapidly develop web applications with robust service APIs that can be later extended with custom UIs. 
-
-In this video we show 3 examples from generating everything from an existing database, making customizations to the Locode 
-App, and finally reusing all your services in a custom Blazor WASM App
+From an empty web project, this video shows how to:
+- Add SQLite & Authentication support
+- Define code-first Data Model with Validation
+- Add User Management support
+- Enable Audit History support
+- Add Excel integration
