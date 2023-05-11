@@ -20,6 +20,8 @@ public class MarkdownMeta
             allDocs.ForEach(x => {
                 if (x.Url?.StartsWith("/") == true)
                     x.Url = baseUrl.CombineWith(x.Url);
+                if (x.Image?.StartsWith("/") == true)
+                    x.Image = baseUrl.CombineWith(x.Image);
             });
             featureDocs[feature.Id] = allDocs;
             var featureYears = allDocs.Select(x => x.Date!.Value.Year).Distinct().OrderBy(x => x).ToList();
