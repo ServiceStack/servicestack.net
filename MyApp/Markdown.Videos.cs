@@ -55,7 +55,7 @@ public class MarkdownVideos : MarkdownPagesBase<MarkdownFileInfo>
         var to = new List<MarkdownFileBase>();
         foreach (var entry in Groups)
         {
-            to.AddRange(entry.Value.Where(IsVisible).Map(x => ToMetaDoc(x)));
+            to.AddRange(entry.Value.Where(IsVisible).Map(doc => ToMetaDoc(doc, x => x.Content = StripFrontmatter(doc.Content))));
         }
         return to;
     }

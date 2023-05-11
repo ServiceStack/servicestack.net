@@ -66,7 +66,7 @@ public class MarkdownWhatsNew : MarkdownPagesBase<MarkdownFileInfo>
         var to = new List<MarkdownFileBase>();
         foreach (var entry in Features)
         {
-            to.AddRange(entry.Value.Where(IsVisible).Map(doc => ToMetaDoc(doc)));
+            to.AddRange(entry.Value.Where(IsVisible).Map(doc => ToMetaDoc(doc, x => x.Content = StripFrontmatter(doc.Content))));
         }
         return to;
     }

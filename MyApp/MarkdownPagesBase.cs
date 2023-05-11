@@ -185,6 +185,19 @@ public abstract class MarkdownPagesBase<T> : IMarkdownPages where T : MarkdownFi
 
     public virtual List<MarkdownFileBase> GetAll() => new();
 
+    public virtual string? StripFrontmatter(string? content)
+    {
+        if (content == null)
+            return null;
+        var startPos = content.IndexOf("---", StringComparison.CurrentCulture);
+        if (startPos == -1)
+            return content;
+        var endPos = content.IndexOf("---", startPos + 3, StringComparison.Ordinal);
+        if (endPos == -1)
+            return content;
+        return content.Substring(endPos + 3).Trim();
+    }
+
     public virtual MarkdownFileBase ToMetaDoc(T x, Action<MarkdownFileBase>? fn = null)
     {
         var to = new MarkdownFileBase
