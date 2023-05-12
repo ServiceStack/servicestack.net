@@ -6,6 +6,7 @@ namespace Ssg;
 
 public class MarkdownPages : MarkdownPagesBase<MarkdownFileInfo>
 {
+    public override string Id => "pages";
     public MarkdownPages(ILogger<MarkdownPages> log, IWebHostEnvironment env) : base(log,env) {}
     List<MarkdownFileInfo> Pages { get; set; } = new();
     public List<MarkdownFileInfo> VisiblePages => Pages.Where(IsVisible).ToList();
@@ -38,4 +39,6 @@ public class MarkdownPages : MarkdownPagesBase<MarkdownFileInfo>
             }
         }
     }
+
+    public override List<MarkdownFileBase> GetAll() => VisiblePages.Map(doc => ToMetaDoc(doc, x => x.Url = $"/{x.Slug}"));
 }

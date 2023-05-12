@@ -23,7 +23,7 @@ const files = {
       '@servicestack/vue/index.d.ts':    '/@servicestack/vue@3/dist/index.d.ts',
   },
   tailwind: {
-      'ssg-services.js':                 'https://ssg-services.servicestack.net/tailwind/all.components.txt'
+      'creatorkit.js':                   'https://ssg-services.servicestack.net/tailwind/all.components.txt'
   }
 }
 

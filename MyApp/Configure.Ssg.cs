@@ -25,9 +25,10 @@ public class ConfigureSsg : IHostingStartup
                 var whatsNew = appHost.Resolve<MarkdownWhatsNew>();
                 var videos = appHost.Resolve<MarkdownVideos>();
                 var blogPosts = appHost.Resolve<MarkdownBlog>();
+                var meta = appHost.Resolve<MarkdownMeta>();
 
-                var markdownFeatures = new IMarkdownPages[] { pages, whatsNew, videos, blogPosts }; 
-                markdownFeatures.Each(x => x.VirtualFiles = appHost.VirtualFiles);
+                meta.Features = new() { pages, whatsNew, videos, blogPosts };
+                meta.Features.ForEach(x => x.VirtualFiles = appHost.VirtualFiles);
 
                 blogPosts.Authors = Authors;
                 
