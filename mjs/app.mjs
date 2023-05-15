@@ -8,6 +8,7 @@ import ShellCommand from "./components/ShellCommand.mjs"
 import VueComponentGallery from "./components/VueComponentGallery.mjs"
 import VueComponentLibrary from "./components/VueComponentLibrary.mjs"
 import ProjectTemplate from "./components/ProjectTemplate.mjs"
+import { PagingNav, FileLayout } from './components/Nav.mjs'
 
 let client = null, Apps = []
 let AppData = {
@@ -54,6 +55,8 @@ const Components = {
     VueComponentGallery,
     VueComponentLibrary,
     ProjectTemplate,
+    PagingNav,
+    FileLayout,
 }
 
 const alreadyMounted = el => el.__vue_app__ 
