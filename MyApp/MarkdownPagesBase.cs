@@ -35,6 +35,7 @@ public class MarkdownFileBase
     public int? WordCount { get; set; }
     public int? LineCount { get; set; }
     public string? Group { get; set; }
+    public int? Order { get; set; }
 
     /// <summary>
     /// Update Markdown File to latest version
@@ -56,6 +57,7 @@ public class MarkdownFileBase
         WordCount = newDoc.WordCount;
         LineCount = newDoc.LineCount;
         Group = newDoc.Group;
+        Order = newDoc.Order;
 
         if (newDoc.Date != null)
             Date = newDoc.Date;
@@ -213,6 +215,7 @@ public abstract class MarkdownPagesBase<T> : IMarkdownPages where T : MarkdownFi
             LineCount = x.LineCount,
             Url = x.Url,
             Group = x.Group,
+            Order = x.Order,
         };
         fn?.Invoke(to);
         return to;

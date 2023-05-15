@@ -1,0 +1,64 @@
+﻿@page "/creatorkit/{slug}"
+@model MyApp.Page
+@inject MarkdownPages Markdown
+
+@implements IRenderStatic<MyApp.Page>
+@functions {
+    public List<Page> GetStaticProps(RenderContext ctx)
+    {
+        var markdown = ctx.Resolve<MarkdownPages>();
+        return markdown.GetVisiblePages("creatorkit").Map(page => new Page { Slug = page.Slug! });
+    }
+}
+
+@{
+    var doc = Markdown.GetBySlug("creatorkit/" + Model.Slug);
+    if (doc == null)
+    {
+        Response.Redirect("/404");
+        return;
+    }
+    if (doc.Layout != null) 
+        Layout = doc.Layout == "none"
+            ? null
+            : doc.Layout;
+    ViewData["Title"] = doc.Title;
+}
+
+<link rel="stylesheet" href="css/typography.css">
+<div class="flex flex-wrap">
+    <div class="max-w-xs p-8 flex flex-1">
+        <nav class="flex flex-1 flex-col" aria-label="Sidebar">
+            <a href="/creatorkit/" class="block mb-3">
+                <svg class="h-6 w-6 shrink-0 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path></svg>
+            </a>
+            <ul role="list" class="-mx-2 space-y-1">
+                @foreach (var page in Markdown.GetVisiblePages("creatorkit"))
+                {
+                    <li>
+                        <!-- Current: "bg-gray-50 text-indigo-600", Default: "text-gray-700 hover:text-indigo-600 hover:bg-gray-50" -->
+                        <a href="@(page.Slug)" class="@Html.ClassNames("group flex gap-x-3 rounded-md p-2 pl-3 text-sm leading-6 font-semibold", Html.MatchesPath("/" + page.Slug) ? "bg-gray-50 text-indigo-600" : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50")">
+                            @(page.Title)
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <section class="flex-col md:flex-row flex justify-center mt-16 mb-16 md:mb-12">
+            <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                @doc.Title
+            </h1>
+        </section>
+        <div class="mx-auto">
+            <div class="mx-auto prose lg:prose-xl mb-24">
+                @Html.Raw(doc.Preview)
+                @await Html.PartialAsync("PagingNav", doc)
+            </div>
+        </div>
+    </div>
+</div>
+    
+@await Html.PartialAsync("HighlightIncludes")
+<script>hljs.highlightAll()</script>
