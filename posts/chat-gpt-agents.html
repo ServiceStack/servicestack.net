@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
-    <title>Leveraging ChatGPT Agents to call System APIs - ServiceStack</title>
+    <title>Creating ChatGPT Agents to call System APIs - ServiceStack</title>
     <base href="/" />
     <script>
     const cls = document.querySelector('html').classList
@@ -111,7 +111,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Leveraging ChatGPT Agents to call System APIs
+                Creating ChatGPT Agents to call System APIs
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -140,7 +140,7 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/chat-gpt-agents/office-agent-assistant-2-wide.png" alt="Leveraging ChatGPT Agents to call System APIs Background" class="shadow-small">
+                    <img src="./img/posts/chat-gpt-agents/office-agent-assistant-2-wide.png" alt="Creating ChatGPT Agents to call System APIs Background" class="shadow-small">
                 </div>
             </div>
             <div class="mb-4 max-w-3xl mx-auto flex flex-wrap">
@@ -160,7 +160,7 @@ mountAll()
                 <div class="prose lg:prose-xl max-w-none mb-32">
                     <iframe class="video-hd" src="https://www.youtube.com/embed/7vChIGHWPuI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <h2 id="introduction">Introduction</h2>
-<p>We've been working on a proof of concept project to enable <a href="https://openai.com">ChatGPT</a> to solve tasks using your own ServiceStack APIs.
+<p>We've been working on different patterns and proof of concepts to enable <a href="https://openai.com">ChatGPT</a> to leverage an App's ServiceStack APIs to solve given tasks.
 This is done through various prompting techniques which allows the Agent to reason about the context of the conversation and make decisions to reach for different 'tools' (your APIs) when trying to achieve a specific goal.</p>
 <p>Those tools are your own ServiceStack APIs which can be configured through a plugin in the GptMeetingAgent project.</p>
 <pre><code class="language-csharp">var gptAgentFeature = new GptAgentFeature();
