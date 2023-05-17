@@ -3,7 +3,6 @@ title: Leveraging ChatGPT Agents with ServiceStack
 summary: A walkthrough of how to enable Large Language Model 'Agents' with access to your own ServiceStack APIs
 tags: servicestack, gpt, chatbot, ai
 image: ./img/posts/chat-gpt-agents/office-agent-assistant-2-wide.png
-draft: true
 author: Darren Reid
 ---
 
