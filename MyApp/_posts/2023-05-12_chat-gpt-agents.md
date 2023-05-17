@@ -1,5 +1,5 @@
 ---
-title: Leveraging ChatGPT Agents to call System APIs
+title: Creating ChatGPT Agents to call System APIs
 summary: A walkthrough of how to enable Large Language Model 'Agents' with access to your own ServiceStack APIs
 tags: servicestack, gpt, chatbot, ai
 image: ./img/posts/chat-gpt-agents/office-agent-assistant-2-wide.png
@@ -10,7 +10,7 @@ author: Darren Reid
 
 ## Introduction
 
-We've been working on a proof of concept project to enable [ChatGPT](https://openai.com) to solve tasks using your own ServiceStack APIs.
+We've been working on different patterns and proof of concepts to enable [ChatGPT](https://openai.com) to leverage an App's ServiceStack APIs to solve given tasks.
 This is done through various prompting techniques which allows the Agent to reason about the context of the conversation and make decisions to reach for different 'tools' (your APIs) when trying to achieve a specific goal.
 
 Those tools are your own ServiceStack APIs which can be configured through a plugin in the GptMeetingAgent project.
