@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Leveraging ChatGPT Agents with ServiceStack - ServiceStack</title>
+    <base href="/" />
+    <script>
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+</head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://docs.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Docs
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://forums.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Forums
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://account.servicestack.net/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Free
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://account.servicestack.net/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Trial
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://account.servicestack.net/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Pricing
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://account.servicestack.net/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
+                                    Sign In
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+<link rel="stylesheet" href="css/typography.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Leveraging ChatGPT Agents with ServiceStack
+            </h1>
+            <div class="flex justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/darren-reid"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/darren.jpg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/darren-reid">Darren Reid</a>
+                            <ul role="list" class="flex">
+                                    <li>
+                                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/layoric">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/layoric">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                            </ul>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/chat-gpt-agents/office-agent-assistant-2-wide.png" alt="Leveraging ChatGPT Agents with ServiceStack Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="mb-4 max-w-3xl mx-auto flex flex-wrap">
+                    <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                    <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> gpt</a>
+                    <a href="posts/tagged/chatbot" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> chatbot</a>
+                    <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> ai</a>
+            </div>
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-6 text-lg text-gray-500">
+                        <time datetime="2023-05-12T00:00:00.0000000">May 12, 2023</time>
+                        <span aria-hidden="true">&middot;</span>
+                        <span>9 min read</span>
+                    </div>
+                </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="prose lg:prose-xl max-w-none mb-32">
+                    <iframe class="video-hd" src="https://www.youtube.com/embed/7vChIGHWPuI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<h2 id="introduction">Introduction</h2>
+<p>We've been working on a proof of concept project to enable <a href="https://openai.com">ChatGPT</a> to solve tasks using your own ServiceStack APIs.
+This is done through various prompting techniques which allows the Agent to reason about the context of the conversation and make decisions to reach for different 'tools' (your APIs) when trying to achieve a specific goal.</p>
+<p>Those tools are your own ServiceStack APIs which can be configured through a plugin in the GptMeetingAgent project.</p>
+<pre><code class="language-csharp">var gptAgentFeature = new GptAgentFeature();
+
+gptAgentFeature.RegisterAgent(new GptAgentData
+    {
+        Name = &quot;BookingAgent&quot;,
+        PromptBase = File.ReadAllText(
+            $&quot;{Path.Combine(&quot;Prompts&quot;, &quot;BasePromptExample.txt&quot;)}&quot;
+        ),
+        Role = &quot;An AI that makes meeting bookings between staff.&quot;
+    },
+    agentFactory: data =&gt; new OpenAiChatGptAgent(chatGptApiKey,data),
+    includeApis: new List&lt;string&gt;
+    {
+        Tags.Teams,
+        Tags.Calendar,
+    });
+</code></pre>
+<p>The above configuration registers a new Agent with the name <code>BookingAgent</code> and a description of what it does as the <code>Role</code>.</p>
+<p>It also is configured to include the APIs with the <code>Tags.Teams</code> and <code>Tags.Calendar</code> tags, which are the APIs that the Agent will use to achieve its goals.
+Only these APIs will be exposed to the Agent, and the Agent will only be able to use them in the context of the prompt that is provided to it.</p>
+<p>The Agent will also use the <code>Description</code> of the API to assist the Agent in understanding how and when to use the API.</p>
+<pre><code class="language-csharp">[Tag(&quot;Teams&quot;), Description(&quot;Search for users by name&quot;)]
+public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
+{
+    public string Name { get; set; }
+}
+</code></pre>
+<h2 id="so-how-does-this-work">So How Does This Work?</h2>
+<p>This proof of concept uses several different technologies and techniques to achieve this functionality. A lot of which are quite new, and not nearly as well known as common web development techniques.
+As such, we will go through each of the technologies and techniques used to achieve this functionality as an introduction to using AI Agents in your own projects.</p>
+<h3 id="openai-chatgpt-and-large-language-models">OpenAI ChatGPT and Large Language Models</h3>
+<p>ChatGPT by OpenAI is a chat product that uses large language models that are trained on a large corpus of text from the internet.
+The <code>GPT</code> in ChatGPT stands for <code>Generative Pre-trained Transformer</code> which is a type of neural network architecture that is used to train the model.</p>
+<p><a href="https://arxiv.org/abs/1706.03762"><img src="/img/posts/chat-gpt-agents/Slide10_1080p.png" alt="" /></a></p>
+<p>These Large Language Models are designed to predict the next 'token' or part of a word in a sentence, given the previous tokens.</p>
+<p><a href="https://learn.microsoft.com/en-us/semantic-kernel/concepts-ai/tokens"><img src="/img/posts/chat-gpt-agents/Slide11_1080p.png" alt="" /></a></p>
+<p>This text is called the <code>prompt</code> and is used to 'prime' the model with some context to generate the next token.</p>
+<p>The use of the Transformer architecture has shown to be very effective at learning the structure of language as well as the semantic meaning of words and sentences.</p>
+<p>As these models are scaled up, they are able to learn more and more complex patterns in language, and are able to generate more and more complex sentences.
+Some state of the art models have been able to show emergent capabilities of reasoning and problem solving, which is what we are leveraging in this proof of concept.</p>
+<h3 id="chain-of-thought">Chain-of-Thought</h3>
+<p>One technique that has been discovered when using these Large Language Models is the ability to prompt in a way that improves the ability of the model to perform complex reasoning.
+This is called <a href="https://arxiv.org/abs/2201.11903">Chain-of-Thought</a> and is a technique asks the model to output its 'thoughts' about a task that it is trying to achieve, and then feeding those thoughts back into the model in the next prompt.</p>
+<p><img src="/img/posts/chat-gpt-agents/Slide13_1080p.png" alt="" /></p>
+<p>We can get the model to do this with a surprisingly simple prompt.</p>
+<pre><code class="language-text">Ensure to reason about the tasks in a step by step manner, 
+and provide details about your plan, reasoning, criticism, 
+and reflection about your steps in the thoughts output.
+</code></pre>
+<p>We specifically ask the model to output details about its <code>plan</code>, <code>reasoning</code>, and <code>criticism</code> as they are a part of the final output that we want to generate.</p>
+<p><img src="/img/posts/chat-gpt-agents/Slide12_1080p.png" alt="" /></p>
+<p>This enables the model to break down tasks into smaller steps, and then reason about how to achieve those steps by giving it context of the previous thoughts that it has generated.
+This reinforces why previous decisions were made, which in turn, influences future decisions.</p>
+<h3 id="agents">Agents</h3>
+<p>We can then combine the reasoning capabilities of the model with the ability to take action using 'tools' to achieve a goal.</p>
+<p>Giving the model agency to use external tools and APIs creates the concept of an <code>Agent</code> that can be used to solve a variety of tasks.</p>
+<p>We give the Agent access to these tools by describing them in the prompt. Using the type information about your Request DTOs, and the <code>[Description]</code> attribute, we can describe the tools that the Agent has access to.
+In the prompt, we call these <code>Service Commands</code>.</p>
+<pre><code>[Tag(Tags.Teams)]
+[Description(&quot;Search for users by first or last name and get back their IDs and emails&quot;)]
+public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
+{
+    public string Name { get; set; }
+}
+</code></pre>
+<p>This turns into a Service Command with the following text in the prompt.</p>
+<pre><code class="language-text">1. Search for users by first or last name and get 
+back their IDs and emails: &quot;SearchUsers&quot;, definition: 
+type SearchUsers = { name: string }
+</code></pre>
+<p>The Service Commands each have the Request DTO name as well as the description to help the Agent understand what the tool does and when to use it.
+It also includes a TypeScript definition of the Request DTO so that the Agent can generate the correct request structure when it needs to use the tool, and populate with data from its own context.</p>
+<h3 id="in-context-learning">In Context Learning</h3>
+<p>So now our Agents have access to tools, can reason about problems, and provide feedback about its reasoning, but we still need it to use our own data.</p>
+<p>The prompt technique of <code>In Context Learning</code> allows us to provide the Agent with data returned from the tools that it uses, and then use that data in the next prompt.</p>
+<p>For example, if we want to book a meeting with a colleague, the model can use the <code>SearchUsers</code> tool to find the email address of the person we want to book a meeting with.</p>
+<pre><code class="language-json">{
+  &quot;commandName&quot;: &quot;SearchUsers&quot;,
+  &quot;commandResponse&quot;: [{
+      &quot;displayName&quot;: &quot;Lynne Schoen&quot;,
+      &quot;email&quot;: &quot;Lynne_Schoen9@gmail.com&quot;,
+      &quot;id&quot;: 6
+    }
+  ]
+}
+</code></pre>
+<p>We can then feed back the command and the response into the next prompt, which will allow the model to use the email address of the person we want to book a meeting with.</p>
+<p>Another API that is available to the Agent is the <code>GetUserSchedule</code> API to check the availability of the person we want to book a meeting with.
+This API requires a <code>userId</code>, which the Agent now has from the <code>SearchUsers</code> API.</p>
+<pre><code>2. Get a user's schedule: &quot;GetUserSchedule&quot;, 
+definition: type GetUserSchedule = { userId: number, schedules: string[], 
+startTime: string, endTime: string, availabilityViewInterval: number }
+</code></pre>
+<h3 id="output-format">Output Format</h3>
+<p>Each time we prompt the Agent, we get back a consistent JSON structure with a <code>command</code> and <code>thoughts</code> object.</p>
+<pre><code class="language-json">{
+    &quot;command&quot;: {
+        &quot;name&quot;: &quot;GetUserSchedule&quot;,
+        &quot;body&quot;: {
+            &quot;userId&quot;: 6,
+            &quot;schedules&quot;: [&quot;primary&quot;],
+            &quot;startTime&quot;: &quot;2023-05-09T00:00&quot;,
+            &quot;endTime&quot;: &quot;2023-05-16T00:00&quot;,
+            &quot;availabilityViewInterval&quot;: 60
+        }
+    },
+    &quot;thoughts&quot;: {
+        &quot;text&quot;: &quot;Checking Lynne's schedule for availability on Tuesday ...&quot;,
+        &quot;reasoning&quot;: &quot;Before creating a meeting, it is important to check ...&quot;,
+        &quot;plan&quot;: &quot;- Use the GetUserSchedule command to retrieve Lynne's calendar ...&quot;,
+        &quot;criticism&quot;: &quot;I may need to account for time zone differences ...&quot;,
+        &quot;speak&quot;: &quot;I am now checking Lynne's schedule for availability...&quot;
+    }
+}
+</code></pre>
+<p>Near the end of each interaction with the model, we specify the response format using the following prompt.</p>
+<p><img src="/img/posts/chat-gpt-agents/Slide17.PNG" alt="" /></p>
+<p>The <code>command</code> object contains the name of the command that was used, as well as the body of the command that was generated from the Agent's context.
+The <code>thoughts</code> object contains the text that was generated by the model, as well as the <code>reasoning</code>, <code>plan</code>, and <code>criticism</code> that was generated by the model.</p>
+<p>The <code>body</code> of the command is a TypeScript definition of the Request DTO that was used, and can be used to generate the correct structure of the command when it is used again.</p>
+<h3 id="putting-it-all-together">Putting it all together</h3>
+<p>We can now combine all of these concepts to create an Agent that can book a meeting with a colleague.</p>
+<p><img src="/img/posts/chat-gpt-agents/AgentFlow.drawio.svg" alt="" /></p>
+<p>In the GptMeetingAgent proof of concept, the browser client is the one taking action on behalf of our agent, making requests to your APIs and returning the response to the Agent.</p>
+<p>We can use the <code>[ConfirmationRequired]</code> attribute to put in additional guard rails to prevent the Agent from taking action on sensitive APIs.</p>
+<p>In the GptMeetingAgent project, this is used to prevent the Agent from booking a meeting without confirmation from the user.
+Instead, we use the <code>Submit</code> of an <code>AutoForm</code> to confirm the booking.</p>
+<h2 id="the-gptmeetingagent-project">The GptMeetingAgent Project</h2>
+<p>The example we have built is a simple API that can search for users, list their schedules, and book meetings between users.</p>
+<p>A lot of this example is actually generic and being driven by the Agent and the specific APIs in the example.</p>
+<p>This can be demonstrated by introducing a new <code>ListMeetingRooms</code> API that we add to the APIs the Agent can use.</p>
+<pre><code class="language-csharp">[Tag(Tags.Teams), Description(&quot;Get a list of meeting rooms and their resources.&quot;)]
+public class ListMeetingRooms : QueryDb&lt;MeetingRoom&gt; { }
+</code></pre>
+<p>This AutoQuery service lists meeting rooms along with their related resources like <code>Projector</code>,<code>SmartBoard</code>, and <code>Whiteboard</code>.</p>
+<pre><code class="language-csharp">public enum MeetingRoomResource
+{
+    SmartBoard,
+    Projector,
+    Whiteboard,
+    VideoConference,
+    SpeakerPhone
+}
+</code></pre>
+<p>We can then extend the <code>CreateCalendarEvent</code> API that books the meeting to reference a meeting room by ID.</p>
+<pre><code class="language-csharp">[Tag(Tags.Calendar), Description(&quot;Create a meeting&quot;)]
+[ConfirmationRequired(&quot;Are you sure you want to create a meeting?&quot;)]
+public class CreateCalendarEvent : IReturn&lt;CreateCalendarEventResponse&gt;
+{
+    public string Subject { get; set; }
+    public string Body { get; set; }
+    [Input(Type = &quot;datetime-local&quot;)]
+    public DateTime Start { get; set; }
+    [Input(Type = &quot;datetime-local&quot;)]
+    public DateTime End { get; set; }
+    public string AttendeeEmail { get; set; }
+    // Newly Added
+    public int? MeetingRoomId { get; set; }
+}
+</code></pre>
+<p>Restarting the application, our injected Service Commands now reflect both the new <code>ListMeetingRooms</code> API and the updated <code>CreateCalendarEvent</code> API in the Agent prompt.</p>
+<p>Asking the Agent to &quot;Ensure the meeting room has a projector&quot; will now result in the behavior of our Agent using our new API, finding the request resource, and passing the correct <code>MeetingRoomId</code> when booking a meeting.</p>
+<p>Both the Agent and the UI reflect this change in behavior. Our <code>AutoForms</code> for both APIs are displayed, and we didn't need to make any other changes other than modifying our APIs to support the new behavior.</p>
+<p>You can checkout our <a href="https://gptmeetings.netcore.io/">live demo of this example here</a>.</p>
+<p><img src="/img/posts/chat-gpt-agents/Slide16.PNG" alt="" /></p>
+<h2 id="request-for-feedback">Request for Feedback</h2>
+<p>We are <a href="https://github.com/NetCoreApps/GPTMeetingAgent">releasing this project</a> as a proof of concept to get feedback from the community on how they would like to use this technology in their own projects.
+We plan on continuing to develop examples and documentation for a generic pattern to make this type of development easier to integrate by building a plugin similar to that in the GptMeetingAgent project.</p>
+<p>We would love to hear your feedback on this project, and how you would like to use it in your own projects.
+This will help us to prioritize and focus on the important features of the plugin and the documentation.</p>
+<style>
+.video-hd { width: 640px; height: 360px }
+</style>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<div data-post="PostComments" class="my-48"></div>
+
+<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
+<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script>hljs.highlightAll()</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://servicestack.net/blazor" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blazor WASM</a>
+                    <a href="https://servicestack.net/autoquery" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">AutoQuery</a>
+                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://account.servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://account.servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://ssg-services.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://ssg-services.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+
+<script src="lib/js/htmx.js"></script>
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
