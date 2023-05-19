@@ -49,7 +49,47 @@ CreatorKit:
 
 ### Before you Run
 
+We need to initialize CreatorKit's database which we can populate with our preferred App Users and Mailing List subscribers
+by modifying the CSV files in `/Migrations/seed`:
+
+<div data-component="FileLayout" data-props="{
+    files: {
+        Migrations: { 
+            seed:  { _: ['subscribers.txt','users.txt'] },
+            _:     ['Migration1000.cs','Migration1001.cs'] 
+        }
+    }
+}"></div>
+
+#### subscribers.txt
+
+Add any mailing subscribers you wish to be included by default, it's a good idea to include all Website developer emails 
+so they can test sending emails to themselves: 
+
+```csv
+Email,FirstName,LastName,MailingLists
+test@subscriber.com,Test,Subscriber,3
+```
+
+[Mailing Lists](creatorkit/customize#mailing-lists) is a flag enums where the integer values is a sub of all Mailing Lists
+you want them subscribed to, e.g. use `3` to  subscribe to both the `TestGroup (1)` and `MonthlyNewsletter (2)` Mailing Lists.
+
+#### users.txt
+
+Add any App Users you want your CreatorKit App to include by default, at a minimum you'll need an `Admin` user which is
+required to access the Portal to be able to use CreatorKit:
+
+```csv
+Id,Email,FirstName,LastName,Roles
+1,admin@email.com,Admin,User,"[Admin]"
+2,test@user.com,Test,User,
+```
+
+Once your happy with your seed data run the included [OrmLite DB Migrations](https://docs.servicestack.net/ormlite/db-migrations) with:
+
 <div class="not-prose text-base"><div data-component="ShellCommand" data-props="{ text:'npm run migrate' }"></div></div>
+
+Which will create the CreatorKit SQLite databases with your seed Users and Mailing List subscribers included.
 
 ### What's included
 
@@ -96,12 +136,26 @@ CreatorKit by default is configured to use an embedded SQLite database which can
 backups to AWS S3 or Cloudflare R2 using [Litestream](https://docs.servicestack.net/ormlite/litestream).
 
 Alternatively [Configure.Db.cs](https://github.com/NetCoreApps/CreatorKit/blob/main/CreatorKit/Configure.Db.cs) can 
-be changed to use preferred [supported RDBMS](https://docs.servicestack.net/ormlite/installation).
+be changed to use preferred [RDBMS supported by OrmLite](https://docs.servicestack.net/ormlite/installation).
+
+### CORS
+
+Unless you've configured to run CreatorKit `/api/*` behind a reverse proxy your website will be communicating to your 
+CreatorKit instance using CORS requests which will require your development and production hosts to be configured with
+the `CorsFeature` plugin in [Configure.AppHost.cs](https://github.com/NetCoreApps/CreatorKit/blob/main/CreatorKit/Configure.AppHost.cs):
+
+```csharp
+Plugins.Add(new CorsFeature(allowedHeaders: "Content-Type,Authorization",
+    allowOriginWhitelist: new[]{
+        "https://localhost:5002",
+        "https://localhost:5001",
+        "http://localhost:5000",
+        "http://localhost:8080",
+        "https://example.org",
+    }, allowCredentials: true));
+```
 
 ### Customize
 
 After configuring CreatorKit to run with your preferred Environment, you'll want to customize it to your Organization
 or Personal Brand:
-
-<div class="not-prose mt-20" data-component="PagingNav" 
-     data-props="{ prevHref:'../about', prevLabel:'About', nextHref:'../configuration', nextLabel:'Configuration' }"></div>

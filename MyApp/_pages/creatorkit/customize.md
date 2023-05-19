@@ -16,15 +16,17 @@ The `/emails` folder contains all email templates and layouts made available to 
     }
 }"></div>
 
-Which uses the [#Script](https://sharpscript.net) .NET Templating language to render Emails from Templates 
-where `/layouts` contains [different email layouts](https://sharpscript.net/docs/introduction#multi-page-scripts),
-`/partials` contains all reusable [Partials](https://sharpscript.net/docs/partials) made available to your templates
-and the remaining `*.html` containing the different type of emails you want to send, e.g. **empty.html** is a blank
-template you can use to send custom Markdown email content with the your preferred layout.
+Which uses the [#Script](https://sharpscript.net) .NET Templating language to render Emails from Templates, where:
 
-## Vars
+ - `/layouts` contains different kinds of email layouts
+ - `/partials` contains all reusable [Partials](https://sharpscript.net/docs/partials) made available to your templates
+ 
+The remaining `*.html` contains different type of emails you want to send, e.g. **empty.html** is a blank
+template you can use to send custom Markdown email content with the your preferred email layout.
 
-All Branding Information used in the templates are maintained in the `/vars` folder:
+## Template Variables
+
+All Branding Information referenced in the templates are maintained in the `/vars` folder:
 
 <div data-component="FileLayout" data-props="{ files: { vars: { _: ['info.txt','urls.txt'] } } }"></div>
 
@@ -108,7 +110,7 @@ In addition, a `{{images.*}}` variable collection is also populated from all ima
     } } 
 }"></div>
 
-That's prefixed with the `{{PublicAppBaseUrl}}` where they can be referenced directly in your `*.html` templates:  
+That's prefixed with the `{{PublicAppBaseUrl}}` allowing them to be referenced directly in your `*.html` Email templates:  
 
 ```html
 <img src="{{images.welcome_650x487.jpg}}">
@@ -116,7 +118,7 @@ That's prefixed with the `{{PublicAppBaseUrl}}` where they can be referenced dir
 
 Or from your Markdown Emails using Markdown Image syntax:
 
-```txt
+```markdown
 ![]({{images.welcome_650x487.jpg}})
 ```
 
@@ -131,17 +133,17 @@ public enum MailingList
 {
     None = 0,
     [Description("Test Group")]
-    TestGroup = 1 << 0,         //1
+    TestGroup         = 1 << 0,     //1
     [Description("Monthly Newsletter")]
-    MonthlyNewsletter = 1 << 1, //2
+    MonthlyNewsletter = 1 << 1,     //2
     [Description("New Blog Posts")]
-    BlogPostReleases = 1 << 2,  //4
+    BlogPostReleases  = 1 << 2,     //4
     [Description("New Videos")]
-    VideoReleases = 1 << 3,     //8
+    VideoReleases     = 1 << 3,     //8
     [Description("New Product Releases")]
-    ProductReleases = 1 << 4,   //16
+    ProductReleases   = 1 << 4,     //16
     [Description("Yearly Updates")]
-    YearlyUpdates = 1 << 5,     //32
+    YearlyUpdates     = 1 << 5,     //32
 }
 ```
 
