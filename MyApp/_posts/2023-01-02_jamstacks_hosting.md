@@ -1,5 +1,5 @@
 ---
-title: Jamstacks Hosting Costs @ $0.40 /mo
+title: Jamstack Hosting Costs @ $.40 /mo
 summary: Exploring cost & scalability benefits of hybrid CDN & .NET Apps
 date: 2021-12-04
 image: https://images.unsplash.com/photo-1506399309177-3b43e99fead2?crop=entropy&fit=crop&h=1000&w=2000
@@ -31,7 +31,7 @@ a copy of its static UI generated assets and hosted on:
 
 ### GitHub Pages CDN
 
-### [jamstacks.net](https://jamstacks.net)
+### [*.jamstacks.net](https://jamstacks.net)
 
 This is an optional deployment step which publishes a copy of your .NET App's `/wwwroot` folder to this templates
 [gh-pages]https://github.com/NetCoreTemplates/vue-ssg/tree/gh-pages) branch where it's automatically served from
