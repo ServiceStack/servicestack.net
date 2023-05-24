@@ -20,8 +20,8 @@ tailwind components which are loaded from and communicate back directly to your 
 
 ## Get CreatorKit
 
-To better be able to keep up-to-date with future CreatorKit improvements we recommend 
-[forking CreatorKit](https://github.com/NetCoreApps/CreatorKit/fork) so you can easily apply future changes 
+To better be able to keep up-to-date with future CreatorKit improvements we recommend
+[forking CreatorKit](https://github.com/NetCoreApps/CreatorKit/fork) so you can easily apply future changes
 to your customized forks:
 
 <div class="my-12 text-center">
@@ -31,8 +31,8 @@ to your customized forks:
     </button>
 </div>
 
-Or if you're happy to take CreatorKit's current feature-set as it is, download the .zip to launch a local instance of 
-CreatorKit: 
+Or if you're happy to take CreatorKit's current feature-set as it is, download the .zip to launch a local instance of
+CreatorKit:
 
 <div class="not-prose mt-12 flex justify-center">
 <a class="hover:no-underline" href="https://github.com/NetCoreApps/CreatorKit/archive/refs/heads/main.zip">
@@ -63,8 +63,8 @@ by modifying the CSV files in `/Migrations/seed`:
 
 #### subscribers.txt
 
-Add any mailing subscribers you wish to be included by default, it's a good idea to include all Website developer emails 
-so they can test sending emails to themselves: 
+Add any mailing subscribers you wish to be included by default, it's a good idea to include all Website developer emails
+so they can test sending emails to themselves:
 
 ```csv
 Email,FirstName,LastName,MailingLists
@@ -119,14 +119,14 @@ way to avoid managing your own smtp servers.
 
 #### OAuth Providers
 
-By default CreatorKit is configured to allow Sign In's for authenticated post comments from Facebook, Google, Microsoft 
+By default CreatorKit is configured to allow Sign In's for authenticated post comments from Facebook, Google, Microsoft
 OAuth Providers during development on its `https://localhost:5002`.
 
-You'll need to configure OAuth Apps for your production host in order to support OAuth Sign Ins at deployment: 
+You'll need to configure OAuth Apps for your production host in order to support OAuth Sign Ins at deployment:
 
- - Create App for Facebook at https://developers.facebook.com/apps
- - Create App for Google at https://console.developers.google.com/apis/credentials
- - Create App for Microsoft at https://apps.dev.microsoft.com
+- Create App for Facebook at https://developers.facebook.com/apps
+- Create App for Google at https://console.developers.google.com/apis/credentials
+- Create App for Microsoft at https://apps.dev.microsoft.com
 
 You can Add/Remove to this from the list of [supported OAuth Providers](https://docs.servicestack.net/auth#oauth-providers).
 
@@ -135,14 +135,14 @@ You can Add/Remove to this from the list of [supported OAuth Providers](https://
 CreatorKit by default is configured to use an embedded SQLite database which can be optionally configured to replicate
 backups to AWS S3 or Cloudflare R2 using [Litestream](https://docs.servicestack.net/ormlite/litestream).
 
-Alternatively [Configure.Db.cs](https://github.com/NetCoreApps/CreatorKit/blob/main/CreatorKit/Configure.Db.cs) can 
+Alternatively [Configure.Db.cs](https://github.com/NetCoreApps/CreatorKit/blob/main/CreatorKit/Configure.Db.cs) can
 be changed to use preferred [RDBMS supported by OrmLite](https://docs.servicestack.net/ormlite/installation).
 
 ### App Settings
 
-The **PublicBaseUrl** and **BaseUrl** properties in `appsettings.json` should be updated with the URL where your 
+The **PublicBaseUrl** and **BaseUrl** properties in `appsettings.json` should be updated with the URL where your
 CreatorKit instance is deployed to and replace **WebsiteBaseUrl** with the website you want to use CreatorKit emails
-to be addressed from: 
+to be addressed from:
 
 ```json
 {
@@ -156,7 +156,7 @@ to be addressed from:
 
 ### CORS
 
-Any additional Website URLs that CreatorKit's components will be used in should be included in the CORS **allowOriginWhitelist**
+Any additional Website URLs that utilize CreatorKit's components should be included in the CORS **allowOriginWhitelist**
 to allow CORS requests from that website:
 
 ```json
