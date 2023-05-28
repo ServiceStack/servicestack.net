@@ -157,9 +157,16 @@ organization's website settings.
 ## Future
 
 As we're using CreatorKit ourselves to power all dynamic Mailing List and Comment System features on 
-[https://servicestack.net](servicestack.net), we'll be continuing to develop it with useful features to
-empower static websites with more generic email templates and potential to expand it with commerce features like
-Stripe integration to enable selling products & subscriptions, ordering system, invoicing, quotes, PDF generation, etc.
+[https://servicestack.net](servicestack.net) (inc. this page!), we'll be continuing to develop it with useful features to
+empower static websites with more generic email templates and potential to expand it with commerce features, inc.
+Stripe integration, products & subscriptions, ordering system, invoicing, quotes, PDF generation, etc.
+
+Follow [@ServiceStack](https://twitter.com/ServiceStack), Watch or Star [NetCoreApps/CreatorKit](https://github.com/NetCoreApps/CreatorKit)
+or Join our CreatorKit-powered Monthly Newsletter to follow and keep up to date with new features:
+
+<div class="not-prose">
+    <div class="mt-8 mx-auto max-w-md" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+</div>
 
 As a design goal [CreatorKit's components](/creatorkit/components) will be easily embeddable into any external website,
 where it will be integrated into the [Razor SSG](/posts/razor-ssg) project template to serve as a working demonstration 
