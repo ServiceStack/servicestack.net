@@ -1009,6 +1009,10 @@ select{
   grid-column: span 6 / span 6;
 }
 
+.float-left {
+  float: left;
+}
+
 .-m-2 {
   margin: -0.5rem;
 }
@@ -1604,6 +1608,10 @@ select{
 
 .w-12 {
   width: 3rem;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .w-16 {
@@ -3649,10 +3657,6 @@ select{
 .text-zinc-800 {
   --tw-text-opacity: 1;
   color: rgb(39 39 42 / var(--tw-text-opacity));
-}
-
-.underline {
-  text-decoration-line: underline;
 }
 
 .placeholder-red-300::-moz-placeholder {
