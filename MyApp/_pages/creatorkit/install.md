@@ -47,24 +47,89 @@ CreatorKit:
 </a>
 </div>
 
+## Extending CreatorKit
+
+To minimize disruption when upgrading to future versions of CreatorKit we recommend adding any new Services to 
+[CreatorKit.Extensions](https://github.com/NetCoreApps/CreatorKit/tree/main/CreatorKit.Extensions) and their DTOs
+in [CreatorKit.Extensions.ServiceModel](https://github.com/NetCoreApps/CreatorKit/tree/main/CreatorKit.Extensions.ServiceModel):
+
+<div data-component="FileLayout" data-props="{
+    files: {
+        CreatorKit: { 
+            'CreatorKit.Extensions':  { _: ['CustomEmailRunServices.cs','CustomEmailServices.cs','CustomRendererServices.cs'] },
+            'CreatorKit.Extensions.ServiceModel': { _: ['MarkdownEmail.cs','NewsletterMailRun.cs','RenderNewsletter.cs'] } 
+        }
+    }
+}"></div>
+
+These folders will be limited to optional extras which can added to or removed as needed where it will be isolated from 
+the core set of functionality maintained in the other CreatorKit's folders. 
+
+Any custom AppHost or IOC dependencies your Services require can be added to 
+[Configure.Extensions.cs](https://github.com/NetCoreApps/CreatorKit/blob/main/CreatorKit/Configure.Extensions.cs).
+
 ### Before you Run
 
-We need to initialize CreatorKit's database which we can populate with our preferred App Users and Mailing List subscribers
+We need to initialize CreatorKit's database which we can populate with our preferred App Users, Mailing Lists and Subscribers
 by modifying the CSV files in `/Migrations/seed`:
 
 <div data-component="FileLayout" data-props="{
     files: {
         Migrations: { 
-            seed:  { _: ['subscribers.txt','users.txt'] },
+            seed:  { _: ['mailinglists.csv','subscribers.csv','users.csv'] },
             _:     ['Migration1000.cs','Migration1001.cs'] 
         }
     }
 }"></div>
 
-#### subscribers.txt
+
+## Mailing Lists
+
+You can define all Mailing Lists you wish to send and contacts can subscribe to in **mailinglists.csv**:
+
+#### mailinglists.csv
+
+```csv
+Name,Description
+None,None
+TestGroup,Test Group
+MonthlyNewsletter,Monthly Newsletter
+BlogPostReleases,New Blog Posts
+VideoReleases,New Videos
+ProductReleases,New Product Releases
+YearlyUpdates,Yearly Updates
+```
+
+When the database is first created this list will be used to generate the
+[MailingList.cs](https://github.com/NetCoreApps/CreatorKit/blob/main/CreatorKit.ServiceModel/Types/MailingList.cs) Enum, e.g:
+
+```csharp
+[Flags]
+public enum MailingList
+{
+    None = 0,
+    [Description("Test Group")]
+    TestGroup         = 1 << 0,     //1
+    [Description("Monthly Newsletter")]
+    MonthlyNewsletter = 1 << 1,     //2
+    [Description("New Blog Posts")]
+    BlogPostReleases  = 1 << 2,     //4
+    [Description("New Videos")]
+    VideoReleases     = 1 << 3,     //8
+    [Description("New Product Releases")]
+    ProductReleases   = 1 << 4,     //16
+    [Description("Yearly Updates")]
+    YearlyUpdates     = 1 << 5,     //32
+}
+```
+
+This is a `[Flags]` enum with each value increasing by a power of 2 allowing a single integer value to capture
+all the mailing lists contacts are subscribed to.
+
+#### subscribers.csv
 
 Add any mailing subscribers you wish to be included by default, it's a good idea to include all Website developer emails
-so they can test sending emails to themselves:
+here so they can test sending emails to themselves:
 
 ```csv
 Email,FirstName,LastName,MailingLists
@@ -74,7 +139,7 @@ test@subscriber.com,Test,Subscriber,3
 [Mailing Lists](creatorkit/customize#mailing-lists) is a flag enums where the integer values is a sub of all Mailing Lists
 you want them subscribed to, e.g. use `3` to  subscribe to both the `TestGroup (1)` and `MonthlyNewsletter (2)` Mailing Lists.
 
-#### users.txt
+#### users.csv
 
 Add any App Users you want your CreatorKit App to include by default, at a minimum you'll need an `Admin` user which is
 required to access the Portal to be able to use CreatorKit:
@@ -90,6 +155,9 @@ Once your happy with your seed data run the included [OrmLite DB Migrations](htt
 <div class="not-prose text-base"><div data-component="ShellCommand" data-props="{ text:'npm run migrate' }"></div></div>
 
 Which will create the CreatorKit SQLite databases with your seed Users and Mailing List subscribers included.
+
+Should you need to recreate the database, you can delete the `App_Data/*.sqlite` databases then rerun
+`npm run migrate` to recreate the databases with your updated `*.csv` seed data.
 
 ### What's included
 
@@ -115,7 +183,7 @@ You'll need to configure an SMTP Server to enable sending Emails by adding it to
 ```
 
 If you don't have an existing SMTP Server we recommend using [Amazon SES](https://aws.amazon.com/ses/) as a cost effective
-way to avoid managing your own smtp servers.
+way to avoid managing your own SMTP Servers.
 
 #### OAuth Providers
 
