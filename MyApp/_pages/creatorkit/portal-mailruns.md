@@ -10,7 +10,7 @@ it will generate and send individual emails to every contact in the specified **
 
 ![](/img/pages/creatorkit/portal-mailrun-custom.png)
 
-You'll also be able to send personalized emails with the contact's `{Email}`, `{FirstName}` and `{LastName}`
+You'll also be able to send personalized emails with the contact's `{{Email}}`, `{{FirstName}}` and `{{LastName}}`
 template variables.
 
 ### MailRun Implementation
