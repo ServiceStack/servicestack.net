@@ -9,12 +9,12 @@ author: Demis Bellot
 
 [![](/img/pages/creatorkit/creatorkit-brand.svg)](/creatorkit/)
 
-[CreatorKit](/creatorkit/) is a simple, customizable alternative solution to using Mailchimp for accepting and managing website 
-newsletter subscriptions and other mailing lists, sending rich emails with customizable email layouts and templates to your
-Customers and subscribers using your preferred SMTP provider of choice. 
+[CreatorKit](/creatorkit/) is a simple, customizable, self-hostable alternative solution to using Mailchimp for managing 
+an organization's mailing lists, accepting newsletter subscriptions, defining customizable email layouts and templates 
+and sending rich HTML emails to your Customers and subscribers using your preferred SMTP provider.
 
-It also provides a private alternative to using Disqus to enhance websites with threading and commenting on your preferred 
-blog posts and website pages you want to be able to collaborate with your community on.
+It also provides a private alternative to using Disqus to enhance websites with a threading and commenting system
+on your preferred blog posts and website pages that you want to be able to connect with your community on.
 
 <div class="not-prose bg-white py-12">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -97,9 +97,10 @@ blog posts and website pages you want to be able to collaborate with your commun
 We're developing CreatorKit as an ideal companion for JAMStack or statically generated branded websites like
 [Razor SSG](https://razor-ssg.web-templates.io/posts/razor-ssg)
 enabling you to seamlessly integrate features such as newsletter subscriptions, email management, comments, voting, 
-and moderation into your existing websites without the complexity of a custom solution, that's ideally suited for Websites 
-who want to keep all Mailing Lists Contacts and Authenticated User Comments in a different site, isolated from your
-existing Customer Accounts and internal Systems.
+and moderation into your existing websites without the complexity of a custom solution. 
+
+It's ideally suited for Websites who want to keep all Mailing Lists Contacts and Authenticated User Comments in a 
+different, private self-hosted site, isolated from your existing Customer Accounts and internal Systems.
 
 With CreatorKit, you can enjoy the convenience of managing your blog's comments, votes, and subscriptions directly
 from your own hosted [CreatorKit Portal](/portal/) without needing to rely on complex content management systems to 
