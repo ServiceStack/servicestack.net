@@ -221,7 +221,7 @@ This reinforces why previous decisions were made, which in turn, influences futu
 <p>Giving the model agency to use external tools and APIs creates the concept of an <code>Agent</code> that can be used to solve a variety of tasks.</p>
 <p>We give the Agent access to these tools by describing them in the prompt. Using the type information about your Request DTOs, and the <code>[Description]</code> attribute, we can describe the tools that the Agent has access to.
 In the prompt, we call these <code>Service Commands</code>.</p>
-<pre><code>[Tag(Tags.Teams)]
+<pre><code class="language-csharp">[Tag(Tags.Teams)]
 [Description(&quot;Search for users by first or last name and get back their IDs and emails&quot;)]
 public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
 {
