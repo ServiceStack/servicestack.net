@@ -117,31 +117,52 @@ thread management and moderation workflow.
 
 ### Email Management
 
-[![](/img/pages/creatorkit/portal-messages.png)](/creatorkit/portal-messages)
+<figure class="mt-4">
+    <a class="my-8 max-w-4xl mx-auto block" href="/creatorkit/portal-messages">
+        <img class="rounded shadow hover:shadow-lg" src="/img/pages/creatorkit/portal-messages.png" alt=""></a>
+</figure>
 
 ### Optimized Email UI's with Live Previews
 
-[![](/img/pages/creatorkit/portal-messages-simple.png)](/creatorkit/portal-messages#email-ui)
+<figure class="mt-4">
+    <a class="my-8 max-w-4xl mx-auto block" href="/creatorkit/portal-messages#email-ui">
+        <img class="rounded shadow hover:shadow-lg" src="/img/pages/creatorkit/portal-messages-simple.png" alt=""></a>
+</figure>
 
 ### Custom HTML Templates
 
-[![](/img/pages/creatorkit/portal-messages-custom.png)](/creatorkit/portal-messages#sending-custom-html-emails)
+<figure class="mt-4">
+    <a class="my-8 max-w-4xl mx-auto block" href="/creatorkit/portal-messages#sending-custom-html-emails">
+        <img class="rounded shadow hover:shadow-lg" src="/img/pages/creatorkit/portal-messages-custom.png" alt=""></a>
+</figure>
 
 ### HTML Email Templates
 
-[![](/img/pages/creatorkit/portal-messages-markdown.png)](/creatorkit/portal-messages#sending-html-markdown-emails)
+<figure class="mt-4">
+    <a class="my-8 max-w-4xl mx-auto block" href="/creatorkit/portal-messages#sending-html-markdown-emails">
+        <img class="rounded shadow hover:shadow-lg" src="/img/pages/creatorkit/portal-messages-markdown.png" alt=""></a>
+</figure>
 
 ### Mailing List Email Runs
 
-[![](/img/pages/creatorkit/portal-mailrun-custom.png)](/creatorkit/portal-mailruns)
+<figure class="mt-4">
+    <a class="my-8 max-w-4xl mx-auto block" href="/creatorkit/portal-mailruns">
+        <img class="rounded shadow hover:shadow-lg" src="/img/pages/creatorkit/portal-mailrun-custom.png" alt=""></a>
+</figure>
 
 ### Newsletter Generation
 
-[![](/img/pages/creatorkit/portal-mailrun-newsletter.png)](/creatorkit/portal-mailruns#generating-newsletters)
+<figure class="mt-4">
+    <a class="my-8 max-w-4xl mx-auto block" href="/creatorkit/portal-mailruns#generating-newsletters">
+        <img class="rounded shadow hover:shadow-lg" src="/img/pages/creatorkit/portal-mailrun-newsletter.png" alt=""></a>
+</figure>
 
 ### Comment Moderation
 
-[![](/img/pages/creatorkit/portal-report.png)](/creatorkit/portal-posts)
+<figure class="mt-4">
+    <a class="my-8 max-w-4xl mx-auto block" href="/creatorkit/portal-posts">
+        <img class="rounded shadow hover:shadow-lg" src="/img/pages/creatorkit/portal-report.png" alt=""></a>
+</figure>
 
 ### Use for FREE
 
