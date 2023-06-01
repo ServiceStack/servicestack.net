@@ -103,7 +103,7 @@ Giving the model agency to use external tools and APIs creates the concept of an
 We give the Agent access to these tools by describing them in the prompt. Using the type information about your Request DTOs, and the `[Description]` attribute, we can describe the tools that the Agent has access to.
 In the prompt, we call these `Service Commands`.
 
-```
+```csharp
 [Tag(Tags.Teams)]
 [Description("Search for users by first or last name and get back their IDs and emails")]
 public class SearchUsers : IReturn<SearchUsersResponse>
