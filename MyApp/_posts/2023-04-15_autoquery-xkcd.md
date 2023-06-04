@@ -17,7 +17,7 @@ This meant that the data was only accessible to a small number of people, and it
 Some of these notebooks and scripts would need to use massive datasets for a very small amount of data. The company specialized in weather data and experiments could pull down 100s of GBs of data, but only use a few MBs of it.
 
 Poor data accessibility is still something that slows down teams. While it is 'easier' sometimes for a single developer/modeler/data scientist to just pull data from static files, not having shared access to the data can make it difficult to reproduce or reuse.
-Web APIs help un-silo the data, create more efficient access points and and reduce the time it takes to get data from an experiment into a production application.
+Web APIs help un-silo the data, create more efficient access points and reduce the time it takes to get data from an experiment into a production application.
 
 ServiceStack and AutoQuery can help solve this problem by making it easy to expose data as an API, and by simplifying the use of that data in any application.
 
