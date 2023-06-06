@@ -13,6 +13,10 @@ author: Demis Bellot
 an organization's mailing lists, accepting newsletter subscriptions, defining customizable email layouts and templates 
 and sending rich HTML emails to your Customers and subscribers using your preferred SMTP provider.
 
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="gAqbDU65mlw" style="background-image: url('https://img.youtube.com/vi/gAqbDU65mlw/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 It also provides a private alternative to using Disqus to enhance websites with a threading and commenting system
 on your preferred blog posts and website pages that you want to be able to connect with your community on.
 
