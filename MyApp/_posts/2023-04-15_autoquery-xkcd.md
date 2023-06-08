@@ -3,7 +3,7 @@ layout: _LayoutContent
 title: Bringing xkcd static dataset to life with AutoQuery 
 summary: Unsiloing data quickly with AutoQuery to make your datasets available from queryable Web APIs
 tags: autoquery,db,dev,huggingface,vue.js
-image: ./img/posts/autoquery-xkcd/drawing-xkcd-upscaled.png
+image: ./img/posts/autoquery-xkcd/drawing-xkcd-upscaled.jpg
 author: Darren Reid
 ---
 One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.
