@@ -173,10 +173,10 @@
 })
 
 @await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "Add ServiceStack Reference",
-  Summary = "High performance end-to-end typed APIs that integrate with any platform",
-  LearnMore = "https://docs.servicestack.net/add-servicestack-reference", 
-  Group = "ss-ref",
+  Title = "CreatorKit",
+  Summary = "Open Source self-hosted alternative to Mailchimp and Disqus",
+  Group = "creatorkit",
+  LearnMore = "https://servicestack.net/creatorkit/",
 })
 
 @await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
@@ -185,6 +185,13 @@
   Group = "mobile",
   LearnMore = "https://docs.servicestack.net/clients-overview", 
   Background = "bg-slate-100 dark:bg-slate-800",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+ Title = "Add ServiceStack Reference",
+ Summary = "High performance end-to-end typed APIs that integrate with any platform",
+ LearnMore = "https://docs.servicestack.net/add-servicestack-reference", 
+ Group = "ss-ref",
 })
 
 @await Html.PartialAsync("Home/Languages")
