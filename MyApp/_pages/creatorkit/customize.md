@@ -112,7 +112,7 @@ In addition, a `{{images.*}}` variable collection is also populated from all ima
     } } 
 }"></div>
 
-That's prefixed with the `{{PublicAppBaseUrl}}` allowing them to be referenced directly in your `*.html` Email templates:  
+That's prefixed with the `{{PublicAppBaseUrl}}` allowing them to be referenced directly in your `*.html` Email templates. e.g:  
 
 ```html
 <img src="{{images.welcome_650x487.jpg}}">
