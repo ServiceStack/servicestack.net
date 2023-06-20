@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
-    <title>tailwind tagged posts - ServiceStack</title>
+    <title>Vue Stable Diffusion - ServiceStack</title>
     <base href="/" />
     <script>
     const cls = document.querySelector('html').classList
@@ -106,134 +106,259 @@ mountAll()
         
 
 
-<div class="relative bg-gray-50 dark:bg-gray-900 px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
-    <div class="absolute inset-0">
-        <div class="h-1/3 bg-white dark:bg-black sm:h-2/3"></div>
-    </div>
-    <div class="relative mx-auto max-w-7xl">
-        
-<div class="text-center">
-    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">From the blog</h2>
-    <p class="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-        All posts tagged in <b>tailwind</b>
-    </p>
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Vue Stable Diffusion
+            </h1>
+            <div class="flex justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis-bellot"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.jpg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis-bellot">Demis Bellot</a>
+                            <ul role="list" class="flex">
+                                    <li>
+                                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/demisbellot">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/mythz">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                            </ul>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Vue Stable Diffusion Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="mb-4 max-w-3xl mx-auto flex flex-wrap">
+                    <a href="posts/tagged/vue" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue</a>
+                    <a href="posts/tagged/tailwind" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">tailwind</a>
+            </div>
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-6 text-lg text-gray-500">
+                        <time datetime="2023-06-15T00:00:00.0000000">June 15, 2023</time>
+                        <span aria-hidden="true">&middot;</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="prose lg:prose-xl max-w-none mb-32">
+                    <p>Just as <a href="https://blazordiffusion.com">blazordiffusion.com</a> was created to showcase ServiceStack's
+Blazor Server and Blazor WASM <a href="/blazor">project templates and components</a>, we've also recreated a new Stable Diffusion UI
+in Vue to showcase the <a href="https://razor-ssg.web-templates.io">Razor SSG</a> Project Template and Tailwind
+<a href="https://docs.servicestack.net/vue/">Vue Component Library</a> that's now available at:</p>
+<h3 class="not-prose text-4xl text-center pb-8">
+    <a class="text-blue-600 hover:underline" href="https://diffusion.works">https://diffusion.works</a>
+</h3>
+<h2 id="blazor-diffusion-with-a-vue-ui">Blazor Diffusion with a Vue UI</h2>
+<p>Weighing close to <a href="https://api.blazordiffusion.com/metadata">100 APIs</a>, Blazor Diffusion is good representation of a
+medium-sized real-world App that can be used to compare the end user UX of different popular UI technologies used to
+develop Web Apps.</p>
+<p>These Diffusion Apps are especially comparable as both Blazor WASM and Vue are both SSG Jamstack Apps deployed to a CDN
+which both access the same <a href="https://api.blazordiffusion.com/metadata">https://api.blazordiffusion.com</a> backend .NET APIs and
+both make use of the Tailwind <a href="https://servicestack.net/blazor#blazor-component-gallery">Blazor Component Library</a> and
+<a href="https://docs.servicestack.net/vue/">Vue Component Library</a> rewritten in Vue, so any differences in UX are predominantly
+differences in what the UI technologies can deliver.</p>
+<p>We'll look at covering the development workflow, productivity, startup and runtime performance of Blazor Server,
+Blazor WASM and Vue in a future post, for now you can compare their GitHub code-bases and Live Demos of each or download
+and run them locally to evaluate their code-base size, development workflow and performance to evaluate the different
+UI technologies:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Repo</th>
+<th>Live Demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vue</td>
+<td><a href="https://github.com/NetCoreApps/VueDiffusion">NetCoreApps/VueDiffusion</a></td>
+<td><a href="https://diffusion.works">https://diffusion.works</a></td>
+</tr>
+<tr>
+<td>Blazor WASM</td>
+<td><a href="https://github.com/NetCoreApps/BlazorDiffusionWasm">NetCoreApps/BlazorDiffusionWasm</a></td>
+<td><a href="https://blazordiffusion.com">blazordiffusion.com</a></td>
+</tr>
+<tr>
+<td>Blazor Server</td>
+<td><a href="https://github.com/NetCoreApps/BlazorDiffusion">NetCoreApps/BlazorDiffusion</a></td>
+<td><a href="https://server.blazordiffusion.com">server.blazordiffusion.com</a></td>
+</tr>
+</tbody>
+</table>
+<p>It's best to evaluate Blazor Server by running it locally as it in particular has poor responsiveness when served over
+high internet latencies, but loads and runs exceptional well in low latency environments like Intranets which is the
+only environment where we'd recommend hosting it.</p>
+<h2 id="razor-ssg">Razor SSG</h2>
+<p>Vue Diffusion is built differently from other Razor SSG Apps as instead of being pre-rendered from static content
+like Markdown documents, it's prerendered from <a href="https://blazordiffusion.com">https://blazordiffusion.com</a> APIs to render its dynamic
+<a href="https://diffusion.works/albums/">Albums</a>, <a href="https://diffusion.works/top">Top</a> and <a href="https://diffusion.works/latest">Latest</a>
+pages at deployment which it does by configuring the App's <a href="https://docs.servicestack.net/service-gateway">Service Gateway</a> to reference
+<a href="https://github.com/NetCoreApps/VueDiffusion/blob/0bbbca3970c07c0cf261ae32c24736ae287981f9/MyApp/Configure.Ssg.cs#L22">external Blazor Diffusion APIs</a>:</p>
+<pre><code class="language-csharp">services.AddSingleton&lt;IServiceGateway&gt;(implementationFactory: 
+    provider =&gt; new JsonApiClient(AppConfig.Instance.ApiBaseUrl!));
+</code></pre>
+<p>Resulting in all APIs invoked within Razor Pages being delegated to external Blazor Diffusion APIs as the data source
+to generate its prerendered Razor Pages.</p>
+<h2 id="features">Features</h2>
+<p>For a preview of the development model of Razor SSG enhanced with Vue Components, checkout some of the different pages
+and their implementations:</p>
+<div class="not-prose">
+    <h3 class="text-3xl flex justify-between">
+        <span>Stable Diffusion Search</span>
+        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Index.cshtml">
+            Index.cshtml
+        </a>
+    </h3>
 </div>
-    </div>
-    <div class="relative my-4 mx-auto max-w-7xl">
-        <div class="flex flex-wrap justify-center">
-                    <a href="posts/tagged/dev" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
-                    <a href="posts/tagged/markdown" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">markdown</a>
-                    <a href="posts/tagged/csharp" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
-                    <a href="posts/tagged/vue" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue</a>
-                    <span class="mr-2 mb-2 text-xs leading-5 font-semibold bg-indigo-600 text-white rounded-full py-1 px-3 flex items-center space-x-2">tailwind</span>
-                    <a href="posts/tagged/devops" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">devops</a>
-                    <a href="posts/tagged/docs" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docs</a>
-                    <a href="posts/tagged/admin" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin</a>
-                    <a href="posts/tagged/creatorkit" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">creatorkit</a>
-                    <a href="posts/tagged/marketing" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">marketing</a>
-                    <a href="posts/tagged/publishing" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">publishing</a>
-                    <a href="posts/tagged/servicestack" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
-                    <a href="posts/tagged/gpt" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> gpt</a>
-                    <a href="posts/tagged/chatbot" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> chatbot</a>
-                    <a href="posts/tagged/ai" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> ai</a>
-                    <a href="posts/tagged/autoquery" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">autoquery</a>
-                    <a href="posts/tagged/db" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
-                    <a href="posts/tagged/huggingface" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">huggingface</a>
-                    <a href="posts/tagged/vue-js" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue.js</a>
-                    <a href="posts/tagged/razor" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
-                    <a href="posts/tagged/blog" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">blog</a>
-                    <a href="posts/tagged/js" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">js</a>
-                    <a href="posts/tagged/github-actions" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
-                    <a href="posts/tagged/hosting" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">hosting</a>
-        </div>
-    </div>
-    <div class="mt-12 relative mx-auto max-w-7xl">
-        
-<div class="mx-auto grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
-        <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-            <div class="flex-shrink-0">
-                <a href="posts/vue-stable-diffusion">
-                    <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                </a>
-            </div>
-            <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                <div class="flex-1">
-                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                        Article
-                    </p>
-                    <a href="posts/vue-stable-diffusion" class="mt-2 block">
-                        <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Vue Stable Diffusion">
-                            Vue Stable Diffusion
-                        </p>
-                        <p class="mt-3 text-base text-gray-500">Rewriting Blazor Diffussion image generation &amp; album catalog in Vue &amp; Razor SSG</p>
-                    </a>
+<p><a href="https://diffusion.works"><img src="/img/posts/vue-diffusion/vuediffusion-search.png" alt="" /></a></p>
+<div class="not-prose">
+    <h3 class="text-3xl flex justify-between">
+        <span>Generate Images</span>
+        <span>
+            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Create.cshtml">
+                Create.cshtml
+            </a>
+            <span class="text-gray-400">|</span> 
+            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Create.mjs">
+                Create.mjs
+            </a>
+        </span>
+    </h3>
+</div>
+<p><a href="https://diffusion.works/create"><img src="/img/posts/vue-diffusion/vuediffusion-create.png" alt="" /></a></p>
+<div class="not-prose">
+    <h3 class="text-3xl flex justify-between">
+        <span>Favorites</span>
+        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Favorites.cshtml">
+            Favorites.cshtml
+        </a>
+    </h3>
+</div>
+<p><a href="https://diffusion.works/favorites"><img src="/img/posts/vue-diffusion/vuediffusion-favorites.png" alt="" /></a></p>
+<div class="not-prose">
+    <h3 class="text-3xl flex justify-between">
+        <span>Albums</span>
+        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Albums.cshtml">
+            Albums.cshtml
+        </a>
+    </h3>
+</div>
+<p><a href="https://diffusion.works/albums/"><img src="/img/posts/vue-diffusion/vuediffusion-albums.png" alt="" /></a></p>
+<div class="not-prose">
+    <h3 class="text-3xl flex justify-between">
+        <span>Selected Image</span>
+        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Artifacts.mjs#L303">
+            Artifacts.mjs
+        </a>
+    </h3>
+</div>
+<p><a href="https://diffusion.works/?view=63121"><img src="/img/posts/vue-diffusion/vuediffusion-selected.png" alt="" /></a></p>
+<div class="not-prose">
+    <h3 class="text-3xl flex justify-between">
+        <span>Top Images</span>
+        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Top.cshtml">
+            Top.cshtml
+        </a>
+    </h3>
+</div>
+<p><a href="https://diffusion.works/top"><img src="/img/posts/vue-diffusion/vuediffusion-top.png" alt="" /></a></p>
+<div class="not-prose">
+    <h3 class="text-3xl flex justify-between">
+        <span>Latest Images</span>
+        <span>
+            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Latest.cshtml">
+                Latest.cshtml
+            </a>
+            <span class="text-gray-400">|</span> 
+            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Latest.cshtml.cs">
+                Latest.cshtml.cs
+            </a>
+        </span>
+    </h3>
+</div>
+<p><a href="https://diffusion.works/latest"><img src="/img/posts/vue-diffusion/vuediffusion-latest.png" alt="" /></a></p>
+<p>Most of these pages also utilize the reusable Vue 3 components defined in:</p>
+<ul>
+<li><a href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Artifacts.mjs">Artifacts.mjs</a></li>
+<li><a href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Auth.mjs">Auth.mjs</a></li>
+</ul>
+<h2 id="stale-while-revalidate-apis">Stale-While-Revalidate APIs</h2>
+<p>We'll have a lot more to write up about our experiences with Vue Diffusion vs Blazor Diffusion in future
+<a href="https://servicestack.net/blog">Blog Posts</a>, but we wanted to highlight the performance enhancing technique it uses
+to improve perceived performance between pages by utilizing <code>@servicestack/vue</code> new State-While-Revalidate (SWR) APIs.</p>
+<p>Latency is the biggest performance killer when hosting Web Applications on the Internet, so much so that we'd
+historically look to start with a <a href="https://jamstacks.net">Single Page App template</a> in order to provide the
+best UX up until the advent of native ES Modules support in modern browsers meant we could rid ourselves of
+SPA complexity and adopt a <a href="https://jamstacks.net/posts/javascript">Simple, Modern JavaScript</a> Multi Page App (MPA)
+approach combined with <a href="https://htmx.org/attributes/hx-boost/">htmx's Boost</a> feature to improve performance
+by avoiding full page reloads.</p>
+<p>However we found that to be a fragile approach when navigating back/forward between pages as you'd need to be
+mindful of what scripts to place between <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> tags and which scripts need to be re-executed
+between navigations, reintroducing some of the stateful SPA complexity we want to avoid with a traditional MPA Web App.</p>
+<p>We instead discovered we could get just as good UX with stateless full page reloads of pre-rendered HTML pages
+if we use SWR to fetch all the API data needed to render the page on first load:</p>
+<p><a href="https://diffusion.works"><img src="/img/posts/vue-diffusion/diffusion-swr.gif" alt="" /></a></p>
+<p>This is easily achieved in reactive Vue.js UIs by invoking API requests with the new <code>swr()</code> client API where if
+the same API request had been run before it will execute the callback immediately with its &quot;stale&quot; cached results
+in <code>localStorage</code> first, before executing the callback again after receiving the API response with the latest data:</p>
+<pre><code class="language-ts">import { useClient } from &quot;@servicestack/vue&quot;
+const client = useClient()
+
+const results = ref([])
+const topAlbums = ref([])
+//...
+
+onMounted(async () =&gt; {
+    await Promise.all([
+        client.swr(request.value, api =&gt; {
+            results.value = api.response?.results || []
+            //...
+        }),
+        client.swr(new AnonData(), async api =&gt; {
+            topAlbums.value = api.response?.topAlbums || []
+            //...
+        }),
+    ])
+})
+</code></pre>
+<p>This results in UIs being immediately rendered on load and if the API response has changed, the updated reactive
+collections will re-render the UI with the updated data.</p>
+
                 </div>
-                <div class="mt-6 flex items-center">
-                    <div class="flex-shrink-0">
-                        <a href="">
-                            <span class="sr-only">Demis Bellot</span>
-                            <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Vue Stable Diffusion background">
-                        </a>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-900">
-                                <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                        </p>
-                        <div class="flex space-x-1 text-sm text-gray-500">
-                            <time datetime="2023-06-15T00:00:00.0000000">June 15, 2023</time>
-                            <span aria-hidden="true">&middot;</span>
-                            <span>5 min read</span>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-        <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-            <div class="flex-shrink-0">
-                <a href="posts/admin-uis">
-                    <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1667906962043-a3e82dea23a3?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                </a>
-            </div>
-            <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                <div class="flex-1">
-                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                        Article
-                    </p>
-                    <a href="posts/admin-uis" class="mt-2 block">
-                        <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Build Beautiful Admin UIs, Fast">
-                            Build Beautiful Admin UIs, Fast
-                        </p>
-                        <p class="mt-3 text-base text-gray-500">Taking a look at the new features in Vue Razor Pages template to build Admin UIs, Fast</p>
-                    </a>
-                </div>
-                <div class="mt-6 flex items-center">
-                    <div class="flex-shrink-0">
-                        <a href="">
-                            <span class="sr-only">Demis Bellot</span>
-                            <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Build Beautiful Admin UIs, Fast background">
-                        </a>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-900">
-                                <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                        </p>
-                        <div class="flex space-x-1 text-sm text-gray-500">
-                            <time datetime="2023-06-13T00:00:00.0000000">June 13, 2023</time>
-                            <span aria-hidden="true">&middot;</span>
-                            <span>9 min read</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </article>
 </div>
 
-        
-        <div class="mt-8 text-center">
-            <a class="text-sm font-semibold hover:underline" href="posts">view all posts</a>
-        </div>
-    </div>
-</div>
+<div data-post="PostComments" class="my-48"></div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
+<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+
     </main>
 </div>
 
