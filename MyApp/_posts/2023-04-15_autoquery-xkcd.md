@@ -153,7 +153,7 @@ We can look at the endpoint itself and the default [Auto HTML API page](https://
 Now our dataset is available from an API, it is far more accessible to using in a variety of different ways.
 In this example, we've hosted our dataset as a web API, and there is a [live demo of the API](https://ssg-examples.netcore.io/ui/QueryXkcdComics) we can use to create a web app.
 
-We can do this from whatever language you prefer, but for this example, we'll use Razor and Vue.js via the [ServiceStack razor-ssg template](https://github.com/NetCoreTemplates/razor-ssg), and the [ServiceStack Vue library](https://docs.servicestack.net/vue) to create our web app.
+We can do this from whatever language you prefer, but for this example, we'll use Razor and Vue.js via the [ServiceStack razor-ssg template](https://github.com/NetCoreTemplates/razor-ssg), and the [ServiceStack Vue library](https://docs.servicestack.net/vue/) to create our web app.
 One of the reasons we chose to use this template is because we can prerender the whole application as a static site and deploy it to any CDN including GitHub Pages.
 
 You will need the ServiceStack dotnet `x` tool installed to create a new project from the template.
