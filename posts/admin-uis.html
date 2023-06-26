@@ -196,7 +196,7 @@ in no time!</p>
         </div>
     </div>
  </div>
-<h3 id="sidebarlayout-vue-component">SidebarLayout Vue Component</h3>
+<h3 id="sidebarlayout-vue-component">SidebarLayout Vue Component<a class="header-anchor" href="javascript:;" onclick="location.hash='#sidebarlayout-vue-component'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>So much so that we believe this is a great progressive option for others needing to move beyond Locode or
 looking to create their own customizable Admin UI. To minimize the effort we've encapsulated Tailwind's Responsive
 <a href="https://tailwindui.com/components/application-ui/navigation/sidebar-navigation">Sidebar Navigation</a> into a reusable
@@ -221,7 +221,7 @@ to include both a Razor Pages <a href="https://vue-mjs.web-templates.io/admin">s
 </div>
 <p>We'll quickly go through how we can easily extend each layout to with new pages and AutoQueryGrid components to
 manage new tables.</p>
-<h2 id="client-admin-ui">Client Admin UI</h2>
+<h2 id="client-admin-ui">Client Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#client-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>The customizable UI is maintained within a single JS Object literal that defines all the sections in the
 Admin UI. Each section defines the Menu Item on the Sidebar, the Title of the Page and the Vue 3 component
 body to display when selected:</p>
@@ -379,7 +379,7 @@ body to display when selected:</p>
      },
  }
 </code></pre>
-<h3 id="server-admin-ui">Server Admin UI</h3>
+<h3 id="server-admin-ui">Server Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#server-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>For developers preferring to develop Server rendered Web Apps the <strong>vue-mjs</strong> project template also includes a
 Multi Page App (MPA) Razor Pages &amp; Vue App which defines the Admin Sections in the custom C#
 <a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/_Layout.cshtml">Admin/_Layout.cshtml</a></p>
@@ -391,7 +391,7 @@ Multi Page App (MPA) Razor Pages &amp; Vue App which defines the Admin Sections 
  };
 </code></pre>
 <p>Where each section links to the different Admin UI Razor Pages:</p>
-<h4 id="adminindex.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Index.cshtml">Admin/Index.cshtml</a></h4>
+<h4 id="adminindex.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Index.cshtml">Admin/Index.cshtml</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#adminindex.cshtml'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Generates the Admin UI Dashboard which retrieves the data for the page from the <code>AdminData</code> API invoked
 with the internal <a href="https://docs.servicestack.net/service-gateway">Service Gateway</a>:</p>
 <pre><code class="language-csharp">@page
@@ -412,7 +412,7 @@ with the internal <a href="https://docs.servicestack.net/service-gateway">Servic
     &lt;/dl&gt;
 &lt;/div&gt;
 </code></pre>
-<h4 id="adminbookings.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Bookings.cshtml">Admin/Bookings.cshtml</a></h4>
+<h4 id="adminbookings.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Bookings.cshtml">Admin/Bookings.cshtml</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#adminbookings.cshtml'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Defines the same responsive AutoQueryGrid to manage the Bookings RDBMS Table:</p>
 <pre><code class="language-csharp">@page
 @{
@@ -424,7 +424,7 @@ with the internal <a href="https://docs.servicestack.net/service-gateway">Servic
     :header-titles=&quot;{ roomNumber:'Room No', bookingStartDate:'Start Date', couponId:'Coupon' }&quot;
     :visible-from=&quot;{ roomNumber:'lg', cost:'md', couponId:'xl', discount:'never' }&quot; &gt;&lt;/auto-query-grid&gt;
 </code></pre>
-<h4 id="admincoupons.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Coupons.cshtml">Admin/Coupons.cshtml</a></h4>
+<h4 id="admincoupons.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Coupons.cshtml">Admin/Coupons.cshtml</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#admincoupons.cshtml'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Utilizes the default AutoQueryGrid component to manage the Coupons RDBMS Table:</p>
 <pre><code class="language-csharp">@page
 @{
@@ -433,7 +433,7 @@ with the internal <a href="https://docs.servicestack.net/service-gateway">Servic
 
 &lt;auto-query-grid type=&quot;Coupon&quot;&gt;&lt;/auto-query-grid&gt;
 </code></pre>
-<h2 id="creating-custom-admin-uis">Creating Custom Admin UIs</h2>
+<h2 id="creating-custom-admin-uis">Creating Custom Admin UIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-custom-admin-uis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Easiest way to start creating Custom Admin UIs is to start with a new <strong>vue-mjs</strong> Razor Pages template containing both
 client and server rendered Admin UIs:</p>
 <div class="not-prose flex justify-center"><a class="hover:no-underline" href="https://account.servicestack.net/archive/NetCoreTemplates/vue-mjs?Name=MyApp">
@@ -466,7 +466,7 @@ client and server rendered Admin UIs:</p>
 <li><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Bookings.cshtml">Bookings.cshtml</a></li>
 <li><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Coupons.cshtml">Coupons.cshtml</a></li>
 </ul>
-<h3 id="conclusion">Conclusion</h3>
+<h3 id="conclusion">Conclusion<a class="header-anchor" href="javascript:;" onclick="location.hash='#conclusion'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>In summary, the <code>&lt;SidebarLayout&gt;</code> and <code>&lt;AutoQueryGrid&gt;</code>
 <a href="https://docs.servicestack.net/vue/">Tailwind Vue Components</a> are valuable tools for
 software developers seeking to expedite creation of efficient and user-friendly Admin UIs by

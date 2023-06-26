@@ -8,7 +8,7 @@ import ShellCommand from "./components/ShellCommand.mjs"
 import VueComponentGallery from "./components/VueComponentGallery.mjs"
 import VueComponentLibrary from "./components/VueComponentLibrary.mjs"
 import ProjectTemplate from "./components/ProjectTemplate.mjs"
-import { PagingNav, FileLayout } from './components/CreatorKitDocs.mjs'
+import { PagingNav, FileLayout, ApiReference } from "./components/Docs.mjs"
 
 let client = null, Apps = []
 let AppData = {
@@ -57,7 +57,12 @@ const Components = {
     ProjectTemplate,
     PagingNav,
     FileLayout,
+    
+    ApiReference,
 }
+const CustomElements = [
+    'lite-youtube'
+]
 
 const alreadyMounted = el => el.__vue_app__ 
 
@@ -72,7 +77,6 @@ export function mount(sel, component, props) {
     const el = $1(sel)
     if (alreadyMounted(el)) return
     const app = createApp(component, props)
-    app.provide('client', client)
     Object.keys(Components).forEach(name => {
         app.component(name, Components[name])
     })
@@ -84,6 +88,22 @@ export function mount(sel, component, props) {
             globalThis.hljs.highlightElement(el)
         }
     })
+    app.directive('hash', (el,binding) => {
+        /** @param {Event} e */
+        el.onclick = (e) => {
+            console.log('v-hash', binding)
+            e.preventDefault()
+            location.hash = binding.value
+        }
+    })
+    if (component.install) {
+        component.install(app)
+    }
+    if (client && !app._context.provides.client) {
+        app.provide('client', client)
+    }
+    app.config.compilerOptions.isCustomElement = tag => CustomElements.includes(tag)
+
     app.mount(el)
     Apps.push(app)
     return app

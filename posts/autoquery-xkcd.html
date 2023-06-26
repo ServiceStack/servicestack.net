@@ -187,7 +187,7 @@ mountAll()
                 <div class="prose lg:prose-xl max-w-none mb-32">
                     <p>One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.</p>
 <p>Once your data is exposed as an API, you can use it in any way you want, whether that's a web app, a mobile app, a desktop app, or even a CLI.</p>
-<h1 id="unsiloing-data-with-autoquery">Unsiloing Data with AutoQuery</h1>
+<h1 id="unsiloing-data-with-autoquery">Unsiloing Data with AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#unsiloing-data-with-autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h1>
 <p>A problem I encountered when working for a weather forecasting company is that modelers and data scientists would often create datasets that were only accessible via Jupyter notebook or a Python script which is hard to reuse or share.
 This meant that the data was only accessible to a small number of people, and it was difficult to share the data with other teams or to use the data in other applications.
 Some of these notebooks and scripts would need to use massive datasets for a very small amount of data. The company specialized in weather data and experiments could pull down 100s of GBs of data, but only use a few MBs of it.</p>
@@ -208,7 +208,7 @@ Web APIs help un-silo the data, create more efficient access points and reduce t
 <p>In this post, we'll look at how to use AutoQuery to create a web app from a dataset, and to make it a bit of fun, we are going to use a dataset of XKCD comics.
 This dataset is from HuggingFace's <a href="https://huggingface.co/datasets/olivierdehaene/xkcd">datasets</a> repository if you want to repeat
 the process yourself, but any dataset in formats like CSV, JSON, etc or in an existing SQL database like SQLite will work with the same approach.</p>
-<h2 id="what-is-the-dataset">What is the dataset?</h2>
+<h2 id="what-is-the-dataset">What is the dataset?<a class="header-anchor" href="javascript:;" onclick="location.hash='#what-is-the-dataset'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>The dataset is licensed under the Creative Commons Attribution-ShareAlike 3.0 license, and the code for this example is available on GitHub.</p>
 <p>The dataset contains metadata of 2630 comics from the XKCD website, with the following fields:</p>
 <ul>
@@ -220,7 +220,7 @@ the process yourself, but any dataset in formats like CSV, JSON, etc or in an ex
 <li>transcript: english text transcript of the comic</li>
 <li>explanation: english explanation of the comic</li>
 </ul>
-<h2 id="autoquery-datasources">AutoQuery Datasources</h2>
+<h2 id="autoquery-datasources">AutoQuery Datasources<a class="header-anchor" href="javascript:;" onclick="location.hash='#autoquery-datasources'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>AutoQuery support different ways of accessing data to make it flexible for different use cases.
 The most common way to access data is via a SQL database using <code>AutoQuery RDBMS</code>, but also supports using <code>AutoQuery Data</code> which can with in-memory data, another service or even AWS DynamoDb.</p>
 <p>This this example, our data is in a JSONL file which separates row entries by a new line, so we could use AutoQuery Data to load the data into memory and expose it as an API.</p>
@@ -258,7 +258,7 @@ Plugins.Add(new AutoQueryDataFeature { MaxLimit = 100 }
 public class QueryXkcdComicData : QueryData&lt;XkcdComic&gt; {}
 </code></pre>
 <p>We now have a web API that exposes the our static dataset as an API. Any this already support a lot of different ways you can sort and filter data while also supporting different formats like JSON, CSV, XML and others.</p>
-<h2 id="using-querydb">Using QueryDb</h2>
+<h2 id="using-querydb">Using QueryDb<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-querydb'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Alternatively to using AutoQuery Data, we can use AutoQuery RDBMS to access our data from a SQLite database.
 This is useful if you have a large dataset that you want to query, but don't want to load all the data into memory.</p>
 <p>First we will load the data into the SQLite database.</p>
@@ -279,7 +279,7 @@ Plugins.Add(new AutoQueryFeature { MaxLimit = 100 });
 public class QueryXkcdComics : QueryDb&lt;XkcdComic&gt; {}
 </code></pre>
 <p>And that's it, we now have an API that we can use to query our XKCD comics data.</p>
-<h2 id="locode">Locode</h2>
+<h2 id="locode">Locode<a class="header-anchor" href="javascript:;" onclick="location.hash='#locode'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>One of the advantages of loading our data into SQLite is taking advantage of the built in Locode App that comes with the <code>ServiceStack.Server</code> library.
 Restarting the application, we can now navigate to the Locode App at <code>http://localhost:5000/locode</code> and see our XKCD comics data.</p>
 <p><a href="https://ssg-examples.netcore.io/locode/QueryXkcdComics"><img src="/img/posts/autoquery-xkcd/locode-app.png" alt="Locode App" /></a></p>
@@ -287,7 +287,7 @@ Restarting the application, we can now navigate to the Locode App at <code>http:
 Locode is driven off the web services that are exposed by the AutoQuery API, so we can also use the same data to create a web app.</p>
 <p>We can look at the endpoint itself and the default <a href="https://docs.servicestack.net/auto-html-api">Auto HTML API page</a> to see how to interact with the API in 10 different languages.</p>
 <p><a href="https://ssg-examples.netcore.io/api/QueryXkcdComics?take=25&amp;format=html"><img src="/img/posts/autoquery-xkcd/autohtml-page.png" alt="AutoHtml page" /></a></p>
-<h2 id="creating-a-web-app-with-razor-and-vue.js">Creating a web app with Razor and Vue.js</h2>
+<h2 id="creating-a-web-app-with-razor-and-vue.js">Creating a web app with Razor and Vue.js<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-a-web-app-with-razor-and-vue.js'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Now our dataset is available from an API, it is far more accessible to using in a variety of different ways.
 In this example, we've hosted our dataset as a web API, and there is a <a href="https://ssg-examples.netcore.io/ui/QueryXkcdComics">live demo of the API</a> we can use to create a web app.</p>
 <p>We can do this from whatever language you prefer, but for this example, we'll use Razor and Vue.js via the <a href="https://github.com/NetCoreTemplates/razor-ssg">ServiceStack razor-ssg template</a>, and the <a href="https://docs.servicestack.net/vue">ServiceStack Vue library</a> to create our web app.
@@ -300,7 +300,7 @@ One of the reasons we chose to use this template is because we can prerender the
 It also utilizes <a href="./posts/javascript">JavaScript modules</a>, so we can use the <code>import</code> syntax to import the ServiceStack Vue library without having to use a bundler like Webpack.
 We can also create these Vue components inline on our razor pages, which will then be served as static files.This gives us instant feedback when we make changes to our code, instead of having to wait for a build step to complete.</p>
 <p>Since our dataset is available directly from our API, this application doesn't need a dataset or other storage and adds another way we can interact with our dataset.</p>
-<h2 id="creating-a-page-with-razor-and-vue.js">Creating a page with Razor and Vue.js</h2>
+<h2 id="creating-a-page-with-razor-and-vue.js">Creating a page with Razor and Vue.js<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-a-page-with-razor-and-vue.js'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Now we can create a page to display our XKCD comics data.
 We can do this by creating a new Razor page in the <code>Pages</code> folder, and then add a <code>@page</code> directive to the top of the file to declare the route.
 We are also going to add the <code>[RenderStatic]</code> attribute to the page to tell the ServiceStack razor-ssg template to prerender the page as a static site.</p>
@@ -353,7 +353,7 @@ We can do this with the <code>useClient</code> hook, which will return the <code
 //...
 const client = useClient()
 </code></pre>
-<h2 id="creating-a-vue-component">Creating a Vue component</h2>
+<h2 id="creating-a-vue-component">Creating a Vue component<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-a-vue-component'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Since we don't yet have the data, we also need to use the ServiceStack client to fetch the data from the API.
 We can do this with the <code>useClient</code> hook, which will return the <code>JsonServiceClient</code> instance.</p>
 <pre><code class="language-javascript">const request = ref(new QueryXkcdComics({ take:25 }))
@@ -364,7 +364,7 @@ async function submit() {
 }
 onMounted(submit)
 </code></pre>
-<h2 id="generating-the-dtos">Generating the DTOs</h2>
+<h2 id="generating-the-dtos">Generating the DTOs<a class="header-anchor" href="javascript:;" onclick="location.hash='#generating-the-dtos'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>However, we don't yet have the <code>QueryXkcdComics</code> Request DTO available in our application since the template isn't aware of the use of the external API.
 By default the <code>mjs/dtos.mjs</code> file uses the <code>BaseUrl</code> of <code>https://localhost:5001</code> to generate the DTOs, but our data is hosted at <code>https://ssg-examples.netcore.io</code>.
 We can either change this <code>BaseUrl</code> in the <code>dtos.mjs</code> file or just delete it and regenerate it using:</p>
@@ -407,7 +407,7 @@ Let's now customize the <code>data-grid</code> so we can have a view of the comi
 <p>Above we've added a few more props to the <code>data-grid</code> component to customize the columns we want to display using <code>selected-columns</code>, and the titles of the columns by setting <code>header-titles</code> to a map of the column names to the titles we want to display.
 We are also using <code>templates</code> to customize the rendering of the <code>imageUrl</code> and <code>transcript</code> columns to have more control over the layout.</p>
 <p><a href="https://xkcd.netcore.io/comics-datagrid"><img src="/img/posts/autoquery-xkcd/vue-datagrid-custom.png" alt="Customized data-grid component" /></a></p>
-<h2 id="autoquerygrid-vs-datagrid">AutoQueryGrid vs DataGrid</h2>
+<h2 id="autoquerygrid-vs-datagrid">AutoQueryGrid vs DataGrid<a class="header-anchor" href="javascript:;" onclick="location.hash='#autoquerygrid-vs-datagrid'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>While the <code>data-grid</code> component is a great way to get a table up and running quickly, we can get even more functionality with the <code>auto-query-grid</code> component.
 The <code>auto-query-grid</code> component is a wrapper around the <code>data-grid</code> component that adds a number of features to make it easier to use.</p>
 <p>The <code>auto-query-grid</code> component will automatically fetch the data for you, and we can customize our columns using the same <code>template</code> pattern as the <code>data-grid</code>.</p>
@@ -440,7 +440,7 @@ The <code>auto-query-grid</code> component is a wrapper around the <code>data-gr
     return { selected, rowSelected }
 }
 </code></pre>
-<h2 id="custom-grid-with-a-search-box">Custom Grid with a Search Box</h2>
+<h2 id="custom-grid-with-a-search-box">Custom Grid with a Search Box<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-grid-with-a-search-box'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>We can also fetch the data from the API dynamically using the <code>JsonServiceClient</code> from the ServiceStack Vue library, and use AutoQuery to easily filter for the data we want.</p>
 <p>Let's create a separate page that will allow us to search comics by title, this time on our Index page.
 We'll update our <code>Index.cshtml</code> file to the following markup.</p>
@@ -605,11 +605,11 @@ E.g, we could have used <code>explanationContains</code> to filter the results b
 AutoQuery has many of these types of features built in that work out of the box, and since AutoQuery services are ServiceStack services,
 you can customize their behaviour by adding your own custom logic to the service.</p>
 <p><a href="https://xkcd.netcore.io/?q=physics"><img src="/img/posts/autoquery-xkcd/column-vue-search-physics.png" alt="Filtering comics by title" /></a></p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion">Conclusion<a class="header-anchor" href="javascript:;" onclick="location.hash='#conclusion'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>In this post we've seen how we can use the AutoQuery API to quickly create a REST API for our data, and then use the ServiceStack Vue library to quickly create a Vue application that can consume the API.
 We've also seen how we can use the <code>x</code> tool to update our client DTOs to match the latest generated DTOs from the ServiceStack server.</p>
 <p>This typed end-to-end workflow is a great way to quickly create a full-stack application, and the ServiceStack Vue library is a great way to quickly create a Vue application that can consume the AutoQuery API.</p>
-<h3 id="links">Links</h3>
+<h3 id="links">Links<a class="header-anchor" href="javascript:;" onclick="location.hash='#links'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <ul>
 <li><strong>Live Demo UI</strong> - <a href="https://xkcd.netcore.io">https://xkcd.netcore.io</a></li>
 <li><strong>Live Demo API</strong> - <a href="https://ssg-examples.netcore.io/ui/QueryXkcdComics">https://ssg-examples.netcore.io/ui/QueryXkcdComics</a></li>
@@ -617,7 +617,7 @@ We've also seen how we can use the <code>x</code> tool to update our client DTOs
 <li><strong>API Source Code</strong> - <a href="https://github.com/NetCoreApps/ssg-examples/blob/master/ExampleDataApis.ServiceModel/Xkcd.cs">ExampleDataApis.ServiceModel/Xkcd.cs</a></li>
 </ul>
 <p>Let us know what you think of the <a href="https://docs.servicestack.net/vue/">ServiceStack Vue library</a>, and if you have any feedback or suggestions for improvements.</p>
-<h3 id="feedback-suggestions">Feedback &amp; Suggestions</h3>
+<h3 id="feedback-suggestions">Feedback &amp; Suggestions<a class="header-anchor" href="javascript:;" onclick="location.hash='#feedback-suggestions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <ul>
 <li><a href="https://github.com/ServiceStack/Discuss/discussions">ServiceStack/Discuss</a></li>
 <li><a href="https://discord.gg/w4ayGbuYpA">#ServiceStack channel on Discord</a></li>

@@ -732,7 +732,7 @@ mountAll()
 <p>The ServiceStack license key allows un-restricted access to ServiceStack packages and is available in your
 <strong>My Account</strong> Section after purchasing a <a href="https://servicestack.net/pricing">commercial license</a>.</p>
 <p>There are multiple ways of registering your license key which all need to be added to your top-level host project:</p>
-<h3 id="a-add-it-to-the-projects-appsettings.json-or-web.config">a) Add it to the projects appsettings.json or Web.Config</h3>
+<h3 id="a-add-it-to-the-projects-appsettings.json-or-web.config">a) Add it to the projects appsettings.json or Web.Config<a class="header-anchor" href="javascript:;" onclick="location.hash='#a-add-it-to-the-projects-appsettings.json-or-web.config'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Easiest way to register your license key is to add the <strong>servicestack license</strong> appSetting.
 For ASP.NET Core Apps add it to <strong>appsettings.json</strong>:</p>
 <pre><code class="language-json">{
@@ -749,7 +749,7 @@ For ASP.NET Core Apps add it to <strong>appsettings.json</strong>:</p>
     &lt;add key=&quot;servicestack:license&quot; value=&quot;{licenseKeyText}&quot; /&gt;
 &lt;/appSettings&gt;
 </code></pre>
-<h3 id="b-add-it-in-code-before-your-application-starts-up">b) Add it in code before your Application Starts Up</h3>
+<h3 id="b-add-it-in-code-before-your-application-starts-up">b) Add it in code before your Application Starts Up<a class="header-anchor" href="javascript:;" onclick="location.hash='#b-add-it-in-code-before-your-application-starts-up'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>By calling <code>Licensing.RegisterLicense()</code> before your application starts up, E.g. For ASP.NET, place it in the Global.asax <code>Application_Start</code> event:</p>
 <pre><code class="language-csharp">protected void Application_Start(object sender, EventArgs e)
 {
@@ -758,7 +758,7 @@ For ASP.NET Core Apps add it to <strong>appsettings.json</strong>:</p>
 }
 </code></pre>
 <p>Otherwise for a self-hosting Console Application, place it before initializing the AppHost, as shown above.</p>
-<h3 id="c-add-the-system-environment-variable">c) Add the System Environment Variable</h3>
+<h3 id="c-add-the-system-environment-variable">c) Add the System Environment Variable<a class="header-anchor" href="javascript:;" onclick="location.hash='#c-add-the-system-environment-variable'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>To simplify license key registration when developing multiple ServiceStack solutions you can register the License Key once in the
 <strong>SERVICESTACK_LICENSE</strong> Environment Variable on each pc using ServiceStack libraries:</p>
 <table>
@@ -776,7 +776,7 @@ For ASP.NET Core Apps add it to <strong>appsettings.json</strong>:</p>
 </tbody>
 </table>
 <p>You'll need to restart IIS or VS.NET for them to pickup any new Environment Variables.</p>
-<h3 id="d-copy-license-key-text-into-an-external-text-file">d) Copy license key text into an external text file</h3>
+<h3 id="d-copy-license-key-text-into-an-external-text-file">d) Copy license key text into an external text file<a class="header-anchor" href="javascript:;" onclick="location.hash='#d-copy-license-key-text-into-an-external-text-file'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Similar to above, we can register the license from an external plain-text file containing the license key text, e.g:</p>
 <pre><code class="language-csharp">protected void Application_Start(object sender, EventArgs e)
 {

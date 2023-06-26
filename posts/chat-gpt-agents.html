@@ -160,7 +160,7 @@ mountAll()
             <div class="max-w-3xl mx-auto">
                 <div class="prose lg:prose-xl max-w-none mb-32">
                     <iframe class="video-hd" src="https://www.youtube.com/embed/7vChIGHWPuI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<h2 id="introduction">Introduction</h2>
+<h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>We've been working on different patterns and proof of concepts to enable <a href="https://openai.com">ChatGPT</a> to leverage an App's ServiceStack APIs to solve given tasks.
 This is done through various prompting techniques which allows the Agent to reason about the context of the conversation and make decisions to reach for different 'tools' (your APIs) when trying to achieve a specific goal.</p>
 <p>Those tools are your own ServiceStack APIs which can be configured through a plugin in the GptMeetingAgent project.</p>
@@ -191,10 +191,10 @@ public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
     public string Name { get; set; }
 }
 </code></pre>
-<h2 id="so-how-does-this-work">So How Does This Work?</h2>
+<h2 id="so-how-does-this-work">So How Does This Work?<a class="header-anchor" href="javascript:;" onclick="location.hash='#so-how-does-this-work'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This proof of concept uses several different technologies and techniques to achieve this functionality. A lot of which are quite new, and not nearly as well known as common web development techniques.
 As such, we will go through each of the technologies and techniques used to achieve this functionality as an introduction to using AI Agents in your own projects.</p>
-<h3 id="openai-chatgpt-and-large-language-models">OpenAI ChatGPT and Large Language Models</h3>
+<h3 id="openai-chatgpt-and-large-language-models">OpenAI ChatGPT and Large Language Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#openai-chatgpt-and-large-language-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>ChatGPT by OpenAI is a chat product that uses large language models that are trained on a large corpus of text from the internet.
 The <code>GPT</code> in ChatGPT stands for <code>Generative Pre-trained Transformer</code> which is a type of neural network architecture that is used to train the model.</p>
 <p><a href="https://arxiv.org/abs/1706.03762"><img src="/img/posts/chat-gpt-agents/Slide10_1080p.png" alt="" /></a></p>
@@ -204,7 +204,7 @@ The <code>GPT</code> in ChatGPT stands for <code>Generative Pre-trained Transfor
 <p>The use of the Transformer architecture has shown to be very effective at learning the structure of language as well as the semantic meaning of words and sentences.</p>
 <p>As these models are scaled up, they are able to learn more and more complex patterns in language, and are able to generate more and more complex sentences.
 Some state of the art models have been able to show emergent capabilities of reasoning and problem solving, which is what we are leveraging in this proof of concept.</p>
-<h3 id="chain-of-thought">Chain-of-Thought</h3>
+<h3 id="chain-of-thought">Chain-of-Thought<a class="header-anchor" href="javascript:;" onclick="location.hash='#chain-of-thought'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>One technique that has been discovered when using these Large Language Models is the ability to prompt in a way that improves the ability of the model to perform complex reasoning.
 This is called <a href="https://arxiv.org/abs/2201.11903">Chain-of-Thought</a> and is a technique asks the model to output its 'thoughts' about a task that it is trying to achieve, and then feeding those thoughts back into the model in the next prompt.</p>
 <p><img src="/img/posts/chat-gpt-agents/Slide13_1080p.png" alt="" /></p>
@@ -217,7 +217,7 @@ and reflection about your steps in the thoughts output.
 <p><img src="/img/posts/chat-gpt-agents/Slide12_1080p.png" alt="" /></p>
 <p>This enables the model to break down tasks into smaller steps, and then reason about how to achieve those steps by giving it context of the previous thoughts that it has generated.
 This reinforces why previous decisions were made, which in turn, influences future decisions.</p>
-<h3 id="agents">Agents</h3>
+<h3 id="agents">Agents<a class="header-anchor" href="javascript:;" onclick="location.hash='#agents'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>We can then combine the reasoning capabilities of the model with the ability to take action using 'tools' to achieve a goal.</p>
 <p>Giving the model agency to use external tools and APIs creates the concept of an <code>Agent</code> that can be used to solve a variety of tasks.</p>
 <p>We give the Agent access to these tools by describing them in the prompt. Using the type information about your Request DTOs, and the <code>[Description]</code> attribute, we can describe the tools that the Agent has access to.
@@ -236,7 +236,7 @@ type SearchUsers = { name: string }
 </code></pre>
 <p>The Service Commands each have the Request DTO name as well as the description to help the Agent understand what the tool does and when to use it.
 It also includes a TypeScript definition of the Request DTO so that the Agent can generate the correct request structure when it needs to use the tool, and populate with data from its own context.</p>
-<h3 id="in-context-learning">In Context Learning</h3>
+<h3 id="in-context-learning">In Context Learning<a class="header-anchor" href="javascript:;" onclick="location.hash='#in-context-learning'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>So now our Agents have access to tools, can reason about problems, and provide feedback about its reasoning, but we still need it to use our own data.</p>
 <p>The prompt technique of <code>In Context Learning</code> allows us to provide the Agent with data returned from the tools that it uses, and then use that data in the next prompt.</p>
 <p>For example, if we want to book a meeting with a colleague, the model can use the <code>SearchUsers</code> tool to find the email address of the person we want to book a meeting with.</p>
@@ -257,7 +257,7 @@ This API requires a <code>userId</code>, which the Agent now has from the <code>
 definition: type GetUserSchedule = { userId: number, schedules: string[], 
 startTime: string, endTime: string, availabilityViewInterval: number }
 </code></pre>
-<h3 id="output-format">Output Format</h3>
+<h3 id="output-format">Output Format<a class="header-anchor" href="javascript:;" onclick="location.hash='#output-format'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Each time we prompt the Agent, we get back a consistent JSON structure with a <code>command</code> and <code>thoughts</code> object.</p>
 <pre><code class="language-json">{
     &quot;command&quot;: {
@@ -284,14 +284,14 @@ startTime: string, endTime: string, availabilityViewInterval: number }
 <p>The <code>command</code> object contains the name of the command that was used, as well as the body of the command that was generated from the Agent's context.
 The <code>thoughts</code> object contains the text that was generated by the model, as well as the <code>reasoning</code>, <code>plan</code>, and <code>criticism</code> that was generated by the model.</p>
 <p>The <code>body</code> of the command is a TypeScript definition of the Request DTO that was used, and can be used to generate the correct structure of the command when it is used again.</p>
-<h3 id="putting-it-all-together">Putting it all together</h3>
+<h3 id="putting-it-all-together">Putting it all together<a class="header-anchor" href="javascript:;" onclick="location.hash='#putting-it-all-together'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>We can now combine all of these concepts to create an Agent that can book a meeting with a colleague.</p>
 <p><img src="/img/posts/chat-gpt-agents/AgentFlow.drawio.svg" alt="" /></p>
 <p>In the GptMeetingAgent proof of concept, the browser client is the one taking action on behalf of our agent, making requests to your APIs and returning the response to the Agent.</p>
 <p>We can use the <code>[ConfirmationRequired]</code> attribute to put in additional guard rails to prevent the Agent from taking action on sensitive APIs.</p>
 <p>In the GptMeetingAgent project, this is used to prevent the Agent from booking a meeting without confirmation from the user.
 Instead, we use the <code>Submit</code> of an <code>AutoForm</code> to confirm the booking.</p>
-<h2 id="the-gptmeetingagent-project">The GptMeetingAgent Project</h2>
+<h2 id="the-gptmeetingagent-project">The GptMeetingAgent Project<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-gptmeetingagent-project'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>The example we have built is a simple API that can search for users, list their schedules, and book meetings between users.</p>
 <p>A lot of this example is actually generic and being driven by the Agent and the specific APIs in the example.</p>
 <p>This can be demonstrated by introducing a new <code>ListMeetingRooms</code> API that we add to the APIs the Agent can use.</p>
@@ -329,7 +329,7 @@ public class CreateCalendarEvent : IReturn&lt;CreateCalendarEventResponse&gt;
 <p>Both the Agent and the UI reflect this change in behavior. Our <code>AutoForms</code> for both APIs are displayed, and we didn't need to make any other changes other than modifying our APIs to support the new behavior.</p>
 <p>You can checkout our <a href="https://gptmeetings.netcore.io/">live demo of this example here</a>.</p>
 <p><img src="/img/posts/chat-gpt-agents/Slide16.PNG" alt="" /></p>
-<h2 id="request-for-feedback">Request for Feedback</h2>
+<h2 id="request-for-feedback">Request for Feedback<a class="header-anchor" href="javascript:;" onclick="location.hash='#request-for-feedback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>We are <a href="https://github.com/NetCoreApps/GPTMeetingAgent">releasing this project</a> as a proof of concept to get feedback from the community on how they would like to use this technology in their own projects.
 We plan on continuing to develop examples and documentation for a generic pattern to make this type of development easier to integrate by building a plugin similar to that in the GptMeetingAgent project.</p>
 <p>We would love to hear your feedback on this project, and how you would like to use it in your own projects.

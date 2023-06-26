@@ -169,7 +169,7 @@ is prerendered to:</p>
 <ul>
 <li><a href="/blog">https://vue-mjs.web-templates.io/blog/</a></li>
 </ul>
-<h3 id="parsing-markdown-files">Parsing Markdown Files</h3>
+<h3 id="parsing-markdown-files">Parsing Markdown Files<a class="header-anchor" href="javascript:;" onclick="location.hash='#parsing-markdown-files'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>All the functionality to load and render Markdown files is maintained in
 <a href="https://github.com/NetCoreTemplates/vue-mjs/blob/prerender/MyApp/Configure.Markdown.cs">Configure.Markdown.cs</a>,
 most of which is spent populating the POCO below from the content and frontmatter of each Markdown file:</p>
@@ -283,7 +283,7 @@ if (renderTo != null)
         new Pages.Posts.IndexModel { Static = true }, $&quot;{renderTo}/index.html&quot;);
 }
 </code></pre>
-<h3 id="prerendering-pages-task">Prerendering Pages Task</h3>
+<h3 id="prerendering-pages-task">Prerendering Pages Task<a class="header-anchor" href="javascript:;" onclick="location.hash='#prerendering-pages-task'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Next we need to come up with a solution to run this from the command-line.
 <a href="https://docs.servicestack.net/app-tasks">App Tasks</a> is ideal for this which lets you run one-off tasks within the full context of your App
 but without the overhead of maintaining a separate .exe with duplicated App configuration &amp; logic, instead we can run the .NET App to
@@ -304,7 +304,7 @@ run the specified Tasks then exit before launching its HTTP Server.</p>
 <p>That can now be run to prerender this blog to <code>/wwwroot/blog</code> with:</p>
 <pre><code class="language-bash">$ npm run prerender
 </code></pre>
-<h3 id="prerendering-at-deployment">Prerendering at Deployment</h3>
+<h3 id="prerendering-at-deployment">Prerendering at Deployment<a class="header-anchor" href="javascript:;" onclick="location.hash='#prerendering-at-deployment'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>To ensure this is always run at deployment it's also added as an MS Build task in
 <a href="https://github.com/NetCoreTemplates/vue-mjs/blob/prerender/MyApp/MyApp.csproj">MyApp.csproj</a>:</p>
 <pre><code class="language-xml">&lt;Target Name=&quot;AppTasks&quot; AfterTargets=&quot;Build&quot; Condition=&quot;$(APP_TASKS) != ''&quot;&gt;
@@ -324,7 +324,7 @@ run the specified Tasks then exit before launching its HTTP Server.</p>
      dotnet publish -c Release /p:APP_TASKS=prerender
 </code></pre>
 <p>Where it's able to control which App Tasks are run at deployment.</p>
-<h3 id="pretty-urls-for-static.html-pages">Pretty URLs for static .html pages</h3>
+<h3 id="pretty-urls-for-static.html-pages">Pretty URLs for static .html pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#pretty-urls-for-static.html-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>A nicety we can add to serving static <code>.html</code> pages is giving them <a href="https://en.wikipedia.org/wiki/Clean_URL">Pretty URLs</a>
 by registering the Plugin:</p>
 <pre><code class="language-csharp">Plugins.Add(new CleanUrlsFeature());
@@ -334,7 +334,7 @@ by registering the Plugin:</p>
 <li><a href="https://vue-mjs.web-templates.io/blog/prerendering">vue-mjs.web-templates.io/blog/prerendering</a></li>
 <li><a href="https://vue-mjs.web-templates.io/blog/prerendering.html">vue-mjs.web-templates.io/blog/prerendering.html</a></li>
 </ul>
-<h3 id="section"></h3>
+<h3 id="section"><a class="header-anchor" href="javascript:;" onclick="location.hash='#section'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 
                 </div>
             </div>
