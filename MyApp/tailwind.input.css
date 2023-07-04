@@ -83,4 +83,8 @@ select{
     left: 0;
 }
 
+[role=dialog].z-10 {
+    z-index: 60;
+}
+
 @tailwind utilities;

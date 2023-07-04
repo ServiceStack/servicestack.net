@@ -1,7 +1,7 @@
 ---
 title: Introducing CreatorKit
 url: https://docs.servicestack.net/releases/v6_9
-image: /img/whatsnew/v6.9/creatorkit.svg
+image: /img/whatsnew/v6.9/creatorkit-splash.png
 ---
 
 CreatorKit is a simple, customizable, self-hostable alternative solution to using Mailchimp for managing an organization's 

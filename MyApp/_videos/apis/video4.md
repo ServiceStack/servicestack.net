@@ -10,5 +10,5 @@ In this walkthrough, we explore the `FilesUploadFeature` plugin and a demo FileB
 
 The plugin is a powerful tool that adds managed file uploads to your ServiceStack App, seamlessly integrating 
 with any ServiceStack service, including AutoQuery services and [Locode](/auto-ui#locode) built-in UI 
-and [Vue AutoQueryGrid](https://docs.servicestack.net/vue/gallery/autoquerygrid) and 
+and [Vue AutoQueryGrid](/vue/autoquerygrid) and 
 [Blazor Component Library](https://blazor-gallery.servicestack.net/gallery).
