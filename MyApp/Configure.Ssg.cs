@@ -8,8 +8,10 @@ namespace MyApp;
 public class ConfigureSsg : IHostingStartup
 {
     public void Configure(IWebHostBuilder builder) => builder
-        .ConfigureServices(services =>
+        .ConfigureServices((context,services) =>
         {
+            context.Configuration.GetSection(nameof(AppConfig)).Bind(AppConfig.Instance);
+            services.AddSingleton(AppConfig.Instance);
             services.AddSingleton<RazorPagesEngine>();
             services.AddSingleton<MarkdownPages>();
             services.AddSingleton<MarkdownWhatsNew>();
@@ -27,10 +29,9 @@ public class ConfigureSsg : IHostingStartup
                 var blogPosts = appHost.Resolve<MarkdownBlog>();
                 var meta = appHost.Resolve<MarkdownMeta>();
 
+                blogPosts.Authors = AppConfig.Instance.Authors;
                 meta.Features = new() { pages, whatsNew, videos, blogPosts };
                 meta.Features.ForEach(x => x.VirtualFiles = appHost.VirtualFiles);
-
-                blogPosts.Authors = Authors;
                 
                 pages.LoadFrom("_pages");
                 whatsNew.LoadFrom("_whatsnew");
@@ -56,20 +57,15 @@ public class ConfigureSsg : IHostingStartup
                     RazorSsg.PrerenderAsync(appHost, razorFiles, distDir).GetAwaiter().GetResult();
                 });
             });
+}
 
-    public List<AuthorInfo> Authors { get; } = new() {
-        new("Demis Bellot", "/img/authors/demis.jpg")
-        {
-            GitHubUrl = "https://github.com/mythz",
-            TwitterUrl = "https://twitter.com/demisbellot",
-        },
-        new("Darren Reid", "/img/authors/darren.jpg")
-        {
-            GitHubUrl = "https://github.com/layoric",
-            TwitterUrl = "https://twitter.com/layoric",
-        },
-        new AuthorInfo("Lucy Bates", "/img/authors/author1.svg"),
-    };
+public class AppConfig
+{
+    public static AppConfig Instance { get; } = new();
+    public string LocalBaseUrl { get; set; }
+    public string PublicBaseUrl { get; set; }
+    public string? GitPagesBaseUrl { get; set; }
+    public List<AuthorInfo> Authors { get; set; } = new();
 }
 
 // Add additional frontmatter info to include
@@ -80,11 +76,11 @@ public class MarkdownFileInfo : MarkdownFileBase
 public static class HtmlHelpers
 {
     public static string ToAbsoluteContentUrl(string? relativePath) => HostContext.DebugMode 
-        ? "https://localhost:5002".CombineWith(relativePath)
-        : "https://servicestack.net".CombineWith(relativePath);
+        ? AppConfig.Instance.LocalBaseUrl.CombineWith(relativePath)
+        : AppConfig.Instance.PublicBaseUrl.CombineWith(relativePath);
     public static string ToAbsoluteApiUrl(string? relativePath) => HostContext.DebugMode 
-        ? "https://localhost:5001".CombineWith(relativePath)
-        : "https://account.servicestack.net".CombineWith(relativePath);
+        ? AppConfig.Instance.LocalBaseUrl.CombineWith(relativePath)
+        : AppConfig.Instance.PublicBaseUrl.CombineWith(relativePath);
 
 
     public static string ContentUrl(this IHtmlHelper html, string? relativePath) => ToAbsoluteContentUrl(relativePath); 

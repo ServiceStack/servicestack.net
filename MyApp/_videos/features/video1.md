@@ -1,10 +1,14 @@
 ---
-title: Create testable code-first RDBMS migrations in C#
-url: https://youtu.be/NIVFqute7JQ
-tags: ormlite,db,migrations
-date: 13-10-2022
+title: Getting Started with OrmLite fast, code-first ORM for .NET
+url: https://youtu.be/vUbpwjfEYzg
+tags: ormlite,db
+date: 04-07-2023
+order: 1
 ---
 
-In this video, we guide you through creating OrmLite DB Migrations, which enhance OrmLite's lightweight code-first development approach by offering a simple change-based migration solution. This solution supports the code-first development workflow of OrmLite, streamlining the process. 
+This video walks though getting started with OrmLite - a powerful, fast  and easy to use ORM for .NET that 
+can be used in any .NET and .NET Framework App without the complexity of larger ORMs. 
 
-By following the video, you'll learn how to effectively manage database schema changes while leveraging OrmLite's capabilities.
+In this tutorial we'll demonstrate the best patterns to use to install, configure and use OrmLite in your Application, 
+defining code-first POCOs, using them to create RDBMS tables and explore how to Create, Query, Update and Delete them 
+using OrmLite's Typed APIs.

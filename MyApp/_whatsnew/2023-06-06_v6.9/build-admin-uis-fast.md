@@ -2,6 +2,7 @@
 title: Build Admin UIs, Fast
 url: https://docs.servicestack.net/releases/v6_9#build-admin-uis-fast
 image: /img/whatsnew/v6.9/admin-ui.png
+order: 2
 ---
 
 The new `<SidebarLayout>` is a high-productivity Vue Component that combined with the `<AutoQueryGrid>` content
