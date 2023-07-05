@@ -91,7 +91,6 @@ export function mount(sel, component, props) {
     app.directive('hash', (el,binding) => {
         /** @param {Event} e */
         el.onclick = (e) => {
-            console.log('v-hash', binding)
             e.preventDefault()
             location.hash = binding.value
         }
