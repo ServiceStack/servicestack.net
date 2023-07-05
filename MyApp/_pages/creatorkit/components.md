@@ -18,7 +18,7 @@ this script at the bottom of your page, e.g. in [Footer.cshtml](https://github.c
 ```html
 <script type="module">
 @{ var components = HostContext.DebugMode 
-     ? "https://localhost:5001/mjs/components" 
+     ? "https://localhost:5003/mjs/components" 
      : "https://creatorkit.netcore.io/mjs/components"; }
 
 import { mail } from '@components/mail.mjs'
