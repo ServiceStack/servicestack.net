@@ -1,6 +1,6 @@
 ---
 title: Harnessing the Power of JSON Patching
-summary: A useful feature I wanted to share is the support for JSON Patching that is in the ServiceStack dotnet `x` tool. This feature provides you with a robust mechanism for modifying your JSON files, providing a precise and granular way to manage configurations, especially useful when automating changes like in a continuous integration environment.  
+summary: Using the ServiceStack dotnet `x` tool to modify your JSON files to manage configuration
 tags: dotnet,automation,github actions
 image: https://images.unsplash.com/photo-1563089145-599997674d42?crop=entropy&fit=crop&h=1000&w=2000
 draft: true
