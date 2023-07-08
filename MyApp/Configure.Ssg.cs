@@ -23,6 +23,19 @@ public class ConfigureSsg : IHostingStartup
             appHost => appHost.Plugins.Add(new CleanUrlsFeature()),
             afterPluginsLoaded: appHost =>
             {
+                MarkdigConfig.Set(new MarkdigConfig
+                {
+                    ConfigurePipeline = pipeline =>
+                    {
+                        // Extend Markdig Pipeline
+                    },
+                    ConfigureContainers = config =>
+                    {
+                        config.AddBuiltInContainers();
+                        // Add Custom Block or Inline containers
+                    }
+                });
+
                 var pages = appHost.Resolve<MarkdownPages>();
                 var whatsNew = appHost.Resolve<MarkdownWhatsNew>();
                 var videos = appHost.Resolve<MarkdownVideos>();
