@@ -3,10 +3,8 @@ title: New Razor SSG generated docs.servicestack.net
 summary: The new docs.servicestack.net website is now generated with Razor SSG - now with Dark Mode!
 tags: razor,ssg,documentation
 image: https://images.unsplash.com/photo-1526243741027-444d633d7365?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 author: Demis Bellot
 ---
-
 
 Following in the footsteps of [porting servicestack.net](/posts/new_razor_ssg_website) website 
 [from Jekyll](https://github.com/mythz/site) to 
@@ -36,7 +34,7 @@ Given we've already spent time & effort porting docs.servicestack.net
 [from Jekyll to VitePress](/posts/jekyll-to-vitepress) less than 2 years ago and after the success 
 we had of rapidly [porting servicestack.net](/posts/new_razor_ssg_website) to Razor SSG and rapidly creating 
 [Vue Stable Diffusion](https://servicestack.net/posts/vue-stable-diffusion) with Razor SSG in a fraction of the time it 
-took to develop the equivalent [Blazor Diffusion](https://docs2.servicestack.net/blazor-diffusion), it was clear we
+took to develop the equivalent [Blazor Diffusion](https://docs.servicestack.net/blazor-diffusion), it was clear we
 should also do the same for the new documentation website. 
 
 Porting **docs.servicestack.net** ended up being fairly straightforward process that was completed in just a few days, 
@@ -49,11 +47,11 @@ cleaner traditional architecture of generating clean HTML from Markdown and Razo
 We're extremely happy with the result, a much lighter and cleaner HTML generated site that now finally supports Dark Mode!
 
 <div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs2.servicestack.net?light">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net?light">
         <img class="p-2" src="/img/posts/razor-ssg/docs.servicestack.net.png">
         <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
     </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs2.servicestack.net?dark">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net?dark">
         <img class="p-2" src="/img/posts/razor-ssg/docs.servicestack.net-dark.png">
         <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
     </a>
@@ -67,11 +65,11 @@ We're extremely happy with the result, a much lighter and cleaner HTML generated
 ## Razor Pages Benefits
 
 The new Razor SSG implementation now benefits from Razor Pages flexible layouts and partials where pages can be optionally
-implemented in just markdown, Razor or a hybrid mix of both. The [Vue](https://docs2.servicestack.net/vue/?light) splash page is an example of this implemented in a custom
+implemented in just markdown, Razor or a hybrid mix of both. The [Vue](https://docs.servicestack.net/vue/?light) splash page is an example of this implemented in a custom
 [/Vue/Index.cshtml](https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/Pages/Vue/Index.cshtml) Razor Page:
 
 <div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs2.servicestack.net/vue/?light">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/vue/?light">
         <img class="p-2" src="/img/posts/razor-ssg/razor-pages-vue.png">
         <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
     </a>

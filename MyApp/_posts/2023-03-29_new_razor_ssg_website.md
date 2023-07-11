@@ -3,7 +3,6 @@ title: New Razor SSG generated servicestack.net
 summary: Celebrating 150M Downloads with a new Razor SSG generated Website
 tags: razor,ssg,website
 image: https://images.unsplash.com/photo-1475669698648-2f144fcaaeb1?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 author: Demis Bellot
 ---
 
@@ -15,7 +14,7 @@ We're happy to report that ServiceStack has eclipsed **150M total downloads!**
    <a href="https://www.nuget.org/profiles/servicestack"><img class="w-96" src="/img/posts/razor-ssg/150M-downloads.png"></a>
 </div>
 
-Which comes just after a year from **100M downloads** in [v6 Release](https://docs2.servicestack.net/releases/v6_0) when we announced 
+Which comes just after a year from **100M downloads** in [v6 Release](https://docs.servicestack.net/releases/v6_0) when we announced 
 [ServiceStack is now FREE for Individuals & OSS!](https://servicestack.net/free)
 
 We're celebrating this new milestone with a **brand new website**, rewritten from Ruby's Jekyll with an exciting new 
