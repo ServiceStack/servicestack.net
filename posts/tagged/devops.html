@@ -124,13 +124,14 @@ mountAll()
     <div class="relative my-4 mx-auto max-w-7xl">
         <div class="flex flex-wrap justify-center">
                     <a href="posts/tagged/dev" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
+                    <span class="mr-2 mb-2 text-xs leading-5 font-semibold bg-indigo-600 text-white rounded-full py-1 px-3 flex items-center space-x-2">devops</span>
                     <a href="posts/tagged/razor" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
                     <a href="posts/tagged/markdown" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">markdown</a>
                     <a href="posts/tagged/csharp" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
+                    <a href="posts/tagged/github-actions" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
                     <a href="posts/tagged/ssg" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ssg</a>
                     <a href="posts/tagged/vue" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue</a>
                     <a href="posts/tagged/tailwind" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">tailwind</a>
-                    <span class="mr-2 mb-2 text-xs leading-5 font-semibold bg-indigo-600 text-white rounded-full py-1 px-3 flex items-center space-x-2">devops</span>
                     <a href="posts/tagged/docs" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docs</a>
                     <a href="posts/tagged/documentation" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">documentation</a>
                     <a href="posts/tagged/admin" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin</a>
@@ -148,13 +149,50 @@ mountAll()
                     <a href="posts/tagged/blog" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">blog</a>
                     <a href="posts/tagged/website" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">website</a>
                     <a href="posts/tagged/js" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">js</a>
-                    <a href="posts/tagged/github-actions" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
                     <a href="posts/tagged/hosting" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">hosting</a>
         </div>
     </div>
     <div class="mt-12 relative mx-auto max-w-7xl">
         
 <div class="mx-auto grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
+        <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+            <div class="flex-shrink-0">
+                <a href="posts/using-json-patch">
+                    <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                </a>
+            </div>
+            <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                <div class="flex-1">
+                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                        Article
+                    </p>
+                    <a href="posts/using-json-patch" class="mt-2 block">
+                        <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="JSON Patch secrets into appsettings.json">
+                            JSON Patch secrets into appsettings.json
+                        </p>
+                        <p class="mt-3 text-base text-gray-500">Simplify managing App secrets by JSON patching them into your appsettings.json with during deployments</p>
+                    </a>
+                </div>
+                <div class="mt-6 flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="">
+                            <span class="sr-only">Darren Reid</span>
+                            <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="JSON Patch secrets into appsettings.json background">
+                        </a>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-900">
+                                <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
+                        </p>
+                        <div class="flex space-x-1 text-sm text-gray-500">
+                            <time datetime="2023-07-11T00:00:00.0000000">July 11, 2023</time>
+                            <span aria-hidden="true">&middot;</span>
+                            <span>3 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
             <div class="flex-shrink-0">
                 <a href="posts/deploy">
