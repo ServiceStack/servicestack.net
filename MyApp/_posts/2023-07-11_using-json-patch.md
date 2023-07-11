@@ -1,9 +1,8 @@
 ---
 title: JSON Patch secrets into appsettings.json
 summary: Simplify managing App secrets by JSON patching them into your appsettings.json with during deployments
-tags: dotnet,automation,github actions
+tags: devops,github-actions
 image: https://images.unsplash.com/photo-1563089145-599997674d42?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 author: Darren Reid
 ---
 
