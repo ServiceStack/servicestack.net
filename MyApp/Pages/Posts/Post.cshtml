@@ -3,7 +3,6 @@
 @inject MarkdownBlog Blog
 @inject AppConfig AppConfig
 
-@using Microsoft.AspNetCore.Http.Extensions
 @implements IRenderStatic<PostModel>
 @functions {
     public List<PostModel> GetStaticProps(RenderContext ctx)
