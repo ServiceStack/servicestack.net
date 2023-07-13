@@ -1,7 +1,9 @@
 @page "/posts/{slug}"
 @model PostModel
 @inject MarkdownBlog Blog
+@inject AppConfig AppConfig
 
+@using Microsoft.AspNetCore.Http.Extensions
 @implements IRenderStatic<PostModel>
 @functions {
     public List<PostModel> GetStaticProps(RenderContext ctx)
@@ -19,6 +21,23 @@
     
     ViewData["Title"] = Model.Title;
     var author = Blog.Authors.FirstOrDefault(x => x.Name == Model.Author);
+}
+
+@section head {
+    <meta name="twitter:card" content="@Model.Summary" />
+    @if (AppConfig.SiteTwitter != null)
+    {
+    <meta name="twitter:site" content="@AppConfig.SiteTwitter" />
+    }
+    @if (author?.TwitterUrl != null)
+    {
+        var twitterUser = "@" + author.TwitterUrl.LastRightPart('/');
+    <meta name="twitter:creator" content="@twitterUser" />
+    }
+    <meta property="og:url" content="@Request.GetDisplayUrl()" />
+    <meta property="og:title" content="@Model.Title" />
+    <meta property="og:description" content="@Model.Summary" />
+    <meta property="og:image" content="@Model.Splash" />
 }
 
 <link rel="stylesheet" href="css/typography.css">
