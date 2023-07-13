@@ -34,7 +34,7 @@
         var twitterUser = "@" + author.TwitterUrl.LastRightPart('/');
     <meta name="twitter:creator" content="@twitterUser" />
     }
-    <meta property="og:url" content="@Request.GetDisplayUrl()" />
+    <meta property="og:url" content="@AppConfig.PublicBaseUrl.CombineWith("posts",Model.Slug)" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Summary" />
     <meta property="og:image" content="@Model.Splash" />
