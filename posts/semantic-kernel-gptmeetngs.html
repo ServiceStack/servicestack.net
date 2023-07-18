@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
-    <title>docs tagged posts - ServiceStack</title>
+    <title>Trying Microsoft&#x27;s Semantic Kernel - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -30,6 +30,15 @@
 }
 </script>
     
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:creator" content="@layoric" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Incorporating the Semantic Kernel into our GPT Meeting Agent gives developers more flexibility when working with LLMs" />
+    <meta property="og:url" content="https://servicestack.net/posts/semantic-kernel-gptmeetngs" />
+    <meta property="og:title" content="Trying Microsoft&#x27;s Semantic Kernel" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+
+
 </head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
 <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
@@ -109,141 +118,105 @@ mountAll()
         
 
 
-<div class="relative bg-gray-50 dark:bg-gray-900 px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
-    <div class="absolute inset-0">
-        <div class="h-1/3 bg-white dark:bg-black sm:h-2/3"></div>
-    </div>
-    <div class="relative mx-auto max-w-7xl">
-        
-<div class="text-center">
-    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">From the blog</h2>
-    <p class="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-        All posts tagged in <b>docs</b>
-    </p>
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Trying Microsoft&#x27;s Semantic Kernel
+            </h1>
+            <div class="flex justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/darren-reid"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/darren.jpg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/darren-reid">Darren Reid</a>
+                            <ul role="list" class="flex">
+                                    <li>
+                                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/layoric">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/layoric">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                            </ul>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Trying Microsoft&#x27;s Semantic Kernel Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="mb-4 max-w-3xl mx-auto flex flex-wrap">
+                    <a href="posts/tagged/dotnet" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dotnet</a>
+                    <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                    <a href="posts/tagged/semantic-kernel" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">semantic-kernel</a>
+                    <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
+            </div>
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-6 text-lg text-gray-500">
+                        <time datetime="2023-07-18T00:00:00.0000000">July 18, 2023</time>
+                        <span aria-hidden="true">&middot;</span>
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="prose lg:prose-xl max-w-none mb-32">
+                    <p>In the rapidly evolving landscape of AI, a constant challenge that developers face is the integration and use of advanced models, like OpenAI's Large Language Models (LLMs), into our applications. To help bridge the gap between developers and these intricate models, Microsoft has introduced Semantic Kernel, a .NET library that offers a robust and more interactive platform to leverage OpenAI's ChatGPT API.</p>
+<h2 id="the-journey-so-far">The Journey So Far<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-journey-so-far'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Our <a href="https://gptmeetings.netcore.io">initial demonstration of the GPT Meeting Agent</a> offered an exciting glimpse into how developers could leverage the reasoning capability of Large Language Models such as <code>gpt-3.5-turbo</code> with the ServiceStack framework. We <a href="https://github.com/NetCoreApps/GPTMeetingAgent">showcased an application</a> that could use In Context Learning, Chain Of Thought Prompting, and the defining of your own ServiceStack services using TypeScript definition format.</p>
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7vChIGHWPuI" style="background-image: url('https://img.youtube.com/vi/7vChIGHWPuI/maxresdefault.jpg')"></lite-youtube>
 </div>
-    </div>
-    <div class="relative my-4 mx-auto max-w-7xl">
-        <div class="flex flex-wrap justify-center">
-                    <a href="posts/tagged/dev" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
-                    <a href="posts/tagged/devops" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">devops</a>
-                    <a href="posts/tagged/razor" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
-                    <a href="posts/tagged/markdown" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">markdown</a>
-                    <a href="posts/tagged/csharp" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
-                    <a href="posts/tagged/github-actions" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
-                    <a href="posts/tagged/ssg" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ssg</a>
-                    <a href="posts/tagged/vue" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue</a>
-                    <a href="posts/tagged/tailwind" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">tailwind</a>
-                    <span class="mr-2 mb-2 text-xs leading-5 font-semibold bg-indigo-600 text-white rounded-full py-1 px-3 flex items-center space-x-2">docs</span>
-                    <a href="posts/tagged/dotnet" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dotnet</a>
-                    <a href="posts/tagged/ai" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
-                    <a href="posts/tagged/semantic-kernel" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">semantic-kernel</a>
-                    <a href="posts/tagged/gpt" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
-                    <a href="posts/tagged/documentation" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">documentation</a>
-                    <a href="posts/tagged/admin" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin</a>
-                    <a href="posts/tagged/creatorkit" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">creatorkit</a>
-                    <a href="posts/tagged/marketing" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">marketing</a>
-                    <a href="posts/tagged/publishing" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">publishing</a>
-                    <a href="posts/tagged/servicestack" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
-                    <a href="posts/tagged/gpt" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> gpt</a>
-                    <a href="posts/tagged/chatbot" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> chatbot</a>
-                    <a href="posts/tagged/ai" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> ai</a>
-                    <a href="posts/tagged/autoquery" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">autoquery</a>
-                    <a href="posts/tagged/db" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
-                    <a href="posts/tagged/huggingface" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">huggingface</a>
-                    <a href="posts/tagged/vue-js" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue.js</a>
-                    <a href="posts/tagged/blog" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">blog</a>
-                    <a href="posts/tagged/website" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">website</a>
-                    <a href="posts/tagged/js" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">js</a>
-                    <a href="posts/tagged/hosting" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">hosting</a>
-        </div>
-    </div>
-    <div class="mt-12 relative mx-auto max-w-7xl">
-        
-<div class="mx-auto grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
-        <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-            <div class="flex-shrink-0">
-                <a href="posts/typesense">
-                    <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                </a>
-            </div>
-            <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                <div class="flex-1">
-                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                        Article
-                    </p>
-                    <a href="posts/typesense" class="mt-2 block">
-                        <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Real-time search with Typesense">
-                            Real-time search with Typesense
-                        </p>
-                        <p class="mt-3 text-base text-gray-500">As part of migrating docs to VitePress we&#x27;ve added UX improvements like instant search powered by Typesense!</p>
-                    </a>
-                </div>
-                <div class="mt-6 flex items-center">
-                    <div class="flex-shrink-0">
-                        <a href="">
-                            <span class="sr-only">Darren Reid</span>
-                            <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Real-time search with Typesense background">
-                        </a>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-900">
-                                <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                        </p>
-                        <div class="flex space-x-1 text-sm text-gray-500">
-                            <time datetime="2021-11-08T00:00:00.0000000">November 8, 2021</time>
-                            <span aria-hidden="true">&middot;</span>
-                            <span>21 min read</span>
-                        </div>
-                    </div>
+<p>The LLM was then able to determine which ServiceStack service should be called and what parameter values to use. This demonstration included APIs for searching for users, checking availability, reserving meeting room resources, and creating a booking. The application was then integrated with ServiceStack's Vue.js library, generating UI forms for each service the AI called. This not only illustrated what the Agent was doing but also gave the user control of more critical APIs like booking the actual meeting.</p>
+<p>This integration was accomplished directly through OpenAI's ChatGPT API. While it served its purpose, we wanted to make it easier for those that had projects that already leveraged OpenAI integration. Microsoft's Semantic Kernel library offered a solution that would allow us to do just that, and is looking to be a promising avenue for future development.</p>
+<h2 id="the-shift-to-semantic-kernel">The Shift to Semantic Kernel<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-shift-to-semantic-kernel'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Enter <a href="https://github.com/microsoft/semantic-kernel">Microsoft's Semantic Kernel</a>. This .NET Library makes the integration with OpenAI's ChatGPT API far more flexible and developer-friendly. It allows developers to interact with LLMs as 'functions', catering to a wide range of use cases.</p>
+<p>By switching the API integration with Semantic Kernel for the GPT Meeting Agent, we've made it easier to incorporate a custom Agent with your ServiceStack services, and this is by just switching over how the LLM APIs are integrated. The Semantic Kernel makes configuration easier and opens the door to the use of Open Source Large Language Models without the need for significant changes to the codebase, as well as future improvements as this library evolves.</p>
+<pre><code class="language-csharp">var kernel = Kernel.Builder
+    .WithOpenAIChatCompletionService(&quot;gpt-3.5-turbo&quot;, chatGptApiKey)
+    // Easy to switch out to custom implementations.
+    //.WithOobaboogaApiChatCompletionService(&quot;http://localhost:5010/api/v1/generate&quot;);
+    .Build();
+</code></pre>
+<h2 id="advantages-of-semantic-kernel">Advantages of Semantic Kernel<a class="header-anchor" href="javascript:;" onclick="location.hash='#advantages-of-semantic-kernel'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Semantic Kernel allows you to encapsulate your interaction with the LLMs, giving you the ability to use the model as a function. This abstraction facilitates the implementation of use cases where you need the model to serve as an endpoint that can handle and respond to a diverse array of requests. It means your application can stay relatively lean, focusing more on managing the responses from these models than worrying about their specific implementation details.</p>
+<h2 id="moving-forward-servicestack-and-llm-integration">Moving Forward: ServiceStack and LLM Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#moving-forward-servicestack-and-llm-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Currently, at the time of writing, the <code>function</code> support from OpenAI is not yet available via the Semantic Kernel library. But, we see this as a future improvement opportunity, which could further enhance the Semantic Kernel library's functionality and streamline its integration with OpenAI's APIs.</p>
+<p>Our vision for the future involves evaluating further integration with Semantic Kernel to add more value to your ServiceStack projects if they need to leverage LLMs.</p>
+<p>The goal is to create a more efficient and streamlined development experience that simplifies the integration of LLMs into your ServiceStack applications. The developer's focus should be on the business logic, the services that they are creating, and not on the technical complexities of integrating with AI models, this is where we think we can add value to .NET developers.</p>
+<p>In the context of the GPT Meeting Agent demonstration, this would mean even smoother interactions between the AI agent and the ServiceStack services, resulting in a more intuitive and responsive user experience. By being able to leverage ServiceStack UI features like our Vue.js library's AutoForm components, we hope to make it a lot easier to create new ways of interacting with these models, like the ways we have demonstrated in the GPT Meetings applications.</p>
+<h2 id="wrapping-up">Wrapping Up<a class="header-anchor" href="javascript:;" onclick="location.hash='#wrapping-up'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Microsoft's Semantic Kernel provides an avenue for developers to interact more flexibly with Large Language Models, opening up new possibilities and potential use cases. By integrating the Semantic Kernel library in our GPT Meeting Agent demonstration, we've made our application more configurable and opened the door for integrating Open Source Large Language Models without major codebase alterations.</p>
+<p>Through further development, we aim to make this technology easier to leverage in your ServiceStack applications, helping you to create more intelligent, responsive, and effective software.</p>
+
                 </div>
             </div>
-        </div>
-        <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-            <div class="flex-shrink-0">
-                <a href="posts/jekyll-to-vitepress">
-                    <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1524668951403-d44b28200ce0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                </a>
-            </div>
-            <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                <div class="flex-1">
-                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                        Article
-                    </p>
-                    <a href="posts/jekyll-to-vitepress" class="mt-2 block">
-                        <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Migrating from Jekyll to VitePress">
-                            Migrating from Jekyll to VitePress
-                        </p>
-                        <p class="mt-3 text-base text-gray-500">Since Jekyll support has been officially sunset, we decided to migrate our docs site to VitePress</p>
-                    </a>
-                </div>
-                <div class="mt-6 flex items-center">
-                    <div class="flex-shrink-0">
-                        <a href="">
-                            <span class="sr-only">Darren Reid</span>
-                            <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Migrating from Jekyll to VitePress background">
-                        </a>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-900">
-                                <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                        </p>
-                        <div class="flex space-x-1 text-sm text-gray-500">
-                            <time datetime="2021-11-01T00:00:00.0000000">November 1, 2021</time>
-                            <span aria-hidden="true">&middot;</span>
-                            <span>12 min read</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </article>
 </div>
 
-        
-        <div class="mt-8 text-center">
-            <a class="text-sm font-semibold hover:underline" href="posts">view all posts</a>
-        </div>
-    </div>
-</div>
+<div data-post="PostComments" class="my-48"></div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
+<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+
     </main>
 </div>
 
