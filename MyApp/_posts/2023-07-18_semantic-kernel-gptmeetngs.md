@@ -3,7 +3,6 @@ title: Trying Microsoft's Semantic Kernel
 summary: Incorporating the Semantic Kernel into our GPT Meeting Agent gives developers more flexibility when working with LLMs  
 tags: dotnet,ai,semantic-kernel,gpt
 image: https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 author: Darren Reid
 ---
 
