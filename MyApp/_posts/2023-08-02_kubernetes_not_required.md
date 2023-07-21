@@ -370,21 +370,22 @@ In the YAML provided, the secrets are used in multiple places:
 - `DEPLOY_KEY`: This is the private SSH key used for remote access to your deployment server or application host. This secret is crucial for securing your SSH connections. It's important to generate this key securely and to store it safely within your GitHub secrets to ensure your server remains secure.
 - `LETSENCRYPT_EMAIL`: This secret represents the email address used for Let's Encrypt certificate registration. Let's Encrypt provides free automated TLS (Transport Layer Security) certificates, which help secure the communication between your server and its clients. The email is used to receive important notices.
 
-These secrets are utilized in both jobs, and they provide a secure way to use sensitive data across multiple steps. This helps maintain a secure and DRY (Don't Repeat Yourself) codebase.
+These secrets are utilized in both jobs, and they provide a secure way to use sensitive data across multiple steps.
 
 ```yml
-- name: copy compose file via scp
+# Copy only the docker-compose.yml to remote server home folder
+- name: copy files to target server via scp
   uses: appleboy/scp-action@v0.1.3
   with:
-    host: ${{ secrets.DEPLOY_HOST }}
-    username: ${{ secrets.DEPLOY_USERNAME }}
-    port: 22
-    key: ${{ secrets.DEPLOY_KEY }}
-    source: ".deploy/${{ github.event.repository.name }}/docker-compose.yml"
-    target: "~/"
+     host: ${{ secrets.DEPLOY_HOST }}
+     username: ${{ secrets.DEPLOY_USERNAME }}
+     port: 22
+     key: ${{ secrets.DEPLOY_KEY }}
+     source: "./docker-compose.yml,./docker-compose.prod.yml,./.env"
+     target: "~/.deploy/${{ github.event.repository.name }}/"
 ```
 
-In the example above, secrets are used to provide the `scp-action` with necessary information to copy files to the remote server.
+In the example above, secrets are used to provide the `scp-action` with necessary information to copy our `docker-compose.yml`,`docker-compose.prod.yml`, and generated `.env` file to the remote server.
 
 ## How They All Work Together
 
@@ -398,8 +399,8 @@ The deployment process is a series of operations that involve our main actors: G
 2. The GitHub repository responds to this by initiating the workflow defined in our GitHub Action.
 3. The GitHub Action then retrieves the necessary secrets stored in GitHub Action Secrets. These are essential for secure operations such as logging into the GitHub Container Registry (GHCR).
 4. After logging in, the GitHub Action builds the Docker image from your application's source code and pushes the image to GHCR.
-5. Once the Docker image is securely stored in GHCR, the GitHub Action uses Secure Copy Protocol (SCP) to transfer the `docker-compose` file to your remote Linux server.
-6. Using SSH, the GitHub Action then logs into the remote server and runs the database migrations.
+5. Once the Docker image is securely stored in GHCR, the GitHub Action uses Secure Copy Protocol (SCP) to transfer the `docker-compose.yml`,`docker-compose.prod.yml`, and `.env` files to your remote Linux server.
+6. Using SSH, the GitHub Action then logs into the remote server and runs the database migrations service defined in your `docker-compose.yml` file called the `app-migrate` service.
 7. Finally, the GitHub Action instructs your server to pull the new Docker image from GHCR and start your application using Docker Compose.
 
 ![](./img/posts/docker-compose/sequence-diagram.PNG)
@@ -473,20 +474,16 @@ Once your application is set up, you can push it to GitHub. JetBrains Rider IDE 
 
 Your .NET application is now on GitHub, ready for collaboration and continuous integration.
 
-## 3. Automatic Pilot: Implementing GitHub Actions for CI
+## 3. Implementing GitHub Actions for CI
 
 To automate the build and test process every time you push to your GitHub repository, you can use GitHub Actions. A simple .NET workflow file, `build.yml`, can be created and placed in the `.github/workflows` directory. Here's a minimal example:
 
 ```yaml
 name: Build
-
 on: [push]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
 
@@ -504,20 +501,25 @@ jobs:
 
 You can also add a `test` step to run your tests here.
 
-This will run alongside any other workflows, like a `release.yml`, to ensure your application is always in a deployable state.
+This will run alongside any other workflows, like the `release.yml` outlined above, to ensure your application is always in a deployable state.
 When the `Build` step completes, it will trigger the `release.yml` workflow.
 
-## 4. Secret Keepers: Setting Up and Using GitHub Action Secrets
+## 4. Setting Up and Using GitHub Action Secrets
 
 Next, you'll need to create secrets for sensitive data. In GitHub, you can store them as "Secrets". Follow these steps:
 
 - Go to your GitHub repository and click on `Settings`.
-- Click on `Secrets` in the left sidebar.
+- Click on `Actions`->`Secrets` in the left sidebar.
 - Click on `New repository secret`.
 - Enter the `Name` and `Value` of the secret.
 - Click on `Add secret`.
 
-Refer to the previous section to see which secrets are necessary for your application.
+Create the following secrets:
+
+- `DEPLOY_HOST`: This secret represents the hostname to which SSH connections will be made during the deployment phase. This could be an IP address or a subdomain, as long as it's correctly set with an A record pointing to your server.
+- `DEPLOY_USERNAME`: This secret corresponds to the username required for logging into the deployment server via SSH. 
+- `DEPLOY_KEY`: This is the private SSH key used for remote access to your deployment server or application host. 
+- `LETSENCRYPT_EMAIL`: This secret represents the email address used for Let's Encrypt certificate registration.
 
 ## 5. Finding Your Home: Create an A Record DNS Entry
 
@@ -532,21 +534,19 @@ To link your domain to your server, you need to create an A Record DNS entry. He
 Now, you can populate the `DEPLOY_HOST` secret in GitHub with your DNS.
 This will be used by the `release.yml` workflow to deploy your application to your server via SSH.
 
-## 6. The Docker Home: Configuring Linux Server with Docker
+## 6. Configuring Linux Server with Docker
 
 By now, you should have a Linux server with Docker installed, and the NGINX reverse proxy with LetsEncrypt running, just as we did in the previous section.
 
 Your server will also need to be accessible via SSH on port 22 so that GitHub Actions can deploy your application.
 
-## 7. Pulling the Trigger: Commit Change and Deploy Application
+## 7. Commit Change and Deploy Application
 
 Now, commit any changes and push to your GitHub repository. If you've set up your GitHub Actions correctly, the CI will kick off. After a successful build, your application will be deployed and accessible from your specified domain.
 
-# Deploying Multiple Applications on the Same Server
+## Deploying Multiple Applications on the Same Server
 
-This section will guide you on how to effectively manage and deploy multiple applications on the same Linux server. Regardless of the programming language or framework you're using, as long as your web application is dockerized, the release pattern can be applied with ease.
-
-## Harmonious Coexistence: Same Pattern, Multiple Applications
+### Same Pattern, Multiple Applications
 
 One of the core strengths of Docker is the ability to isolate and manage applications in their individual containers. This means you can deploy numerous applications, each from its separate GitHub repository, onto the same Linux server. All these applications can coexist and operate independently, provided each one is correctly dockerized. The release pattern remains unchanged and consistently easy to apply.
 
@@ -556,7 +556,7 @@ One of the core strengths of Docker is the ability to isolate and manage applica
 3. MyApp3/ -> GitHub Repo 3 -> Docker Image 3 -> Server (Container 3)
 ```
 
-## Sharpening Efficiency: Best Practices
+### Organization Secrets
 
 To maintain a streamlined deployment process when dealing with multiple applications, you can utilize the GitHub Actions' Organization Secrets. This feature allows secrets to be shared across multiple repositories in an organization, which saves time and reduces redundancy. The only secret that needs to be set up individually for each repository would be the `DEPLOY_HOST` and corresponding DNS for each application.
 
@@ -570,9 +570,9 @@ To set up organization secrets:
 
 Each deployed application now shares the organization-level secrets, simplifying the setup process for new applications to just a new DNS entry and `DEPLOY_HOST` environment variable.
 
-By applying these principles, you're setting up a flexible, efficient, and robust multi-application deployment setup.
+And since every GitHub Repository in the organization is unique, there is no conflicting files deployed to the same server.
 
-## Cost Optimization: Using a Single Server
+### Cost Optimization: Using a Single Server
 
 In our previous post,[In pursuit of the best value US cloud provider](/posts/hetzner-cloud), we looked for the most cost-effective cloud provider. We found that Hetzner Cloud offers the best value for money, with a powerful server costing well under $10 USD per month. This means you can deploy multiple applications on a single server, saving you money and resources.
 
