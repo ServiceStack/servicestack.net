@@ -7,6 +7,22 @@ author: Darren Reid
 draft: true
 ---
 
+## TL;DR
+
+This post outlines a cost-effective and straightforward approach to deploying your web applications directly from GitHub to a Linux server, without needing Kubernetes. At its core, the process leverages GitHub infrastructure, Docker Compose, SSH, and a Linux server setup with an NGINX reverse proxy and LetsEncrypt for routing, TLS, and certificate management.
+
+The process triggers automatic deployment upon a GitHub event such as a push to the main or master branch, or a new release. GitHub Actions automatically build and push Docker images to the GitHub Container Registry, then securely transfers the Docker Compose file to the remote server. The server pulls the new Docker image and starts the application using Docker Compose.
+
+This system is not exclusive to any specific type of application; it is flexible enough to be adapted to any type of web application that can be containerized using Docker.
+
+Important dependencies for this deployment process include:
+
+- `DEPLOY_HOST`: IP address or domain name of the deployment server.
+- `DEPLOY_USERNAME`: SSH username for the deployment server.
+- `DEPLOY_KEY`: Private SSH key for the deployment server.
+- `LETSENCRYPT_EMAIL`: Registration email for Let's Encrypt certificate.
+
+These secrets are stored in GitHub Action secrets for secure use throughout the end-to-end deployment process. The deployment strategy also needs Docker-enabled Linux server, NGINX for managing routing and a Docker Compose file.
 
 ## Introduction
 
@@ -16,9 +32,9 @@ This is why we're going to explore an alternative, simpler, and cost-effective a
 
 This pattern we'll discuss consists of some core components: GitHub and its various functionalities, Docker Compose files, SSH for remote deployments, and a Linux server setup with an NGINX reverse proxy and LetsEncrypt companion containers for automation of routing, TLS, and certificate management.
 
-By the end of this post, you will understand how to set up this simple deployment pattern. We will walk you through each step in detail, focusing on actionable, practical advice that you can apply right away.
+By the end of this post, you will understand how to set up this deployment pattern. We will walk you through each step in detail, focusing on actionable, practical advice that you can apply right away.
 
-Whether you're a .NET developer or working with other technologies, this pattern is flexible and can be adapted to your unique needs. As we progress, we will highlight how cost-effective and efficient this deployment strategy is for hosting your proof-of-concept or lower environment applications, and discuss the cases where horizontal scaling is not a necessity.
+Whether you're a .NET developer or working with other technologies, this pattern is flexible and can be adapted to your unique needs. As we progress, we will highlight how cost-effective and efficient this deployment strategy is for hosting your proof-of-concept, lower environment applications, or lower traffic systems, where horizontal scaling is not a necessity.
 
 ## Understanding the Core Components
 
@@ -35,31 +51,30 @@ The backbone of our deployment pipeline is GitHub, a platform that provides a ho
 
 ### Docker Compose
 
-Docker Compose is a tool that simplifies the management of multi-container Docker applications. It allows us to define our application's environment in a YAML file (`docker-compose.yml`), enabling consistent setups across different environments. We will use it to configure our Linux server for application hosting.
+Docker Compose is a tool that simplifies the management of multi-container Docker applications. It allows us to define our application's environment in a YAML file (`docker-compose.yml`), enabling consistent setups across different environments. This will be installed on your target Linux server, where it will be used to pull Docker images and run our application.
 
 ### Secure Shell (SSH)
 
 SSH is a protocol used for securely connecting to a remote server. In our deployment process, we'll use SSH for copying Docker Compose files and executing commands on the Linux server, such as pulling Docker images and running Docker Compose.
+This is done via GitHub Actions where we will use the `ssh-action` to securely transfer the Docker Compose file to the Linux server, and execute commands remotely.
 
 ### Linux Server, NGINX, and LetsEncrypt
 
-Our Linux server is where the magic happens. It's where our application will be hosted, and where the Docker Compose file will be executed. But that's not all; we'll set up NGINX reverse proxy on this server to manage requests and responses between clients and our application.
+Our Linux server is where everything comes together. It's where our application will be hosted, and where the Docker Compose file will be executed. But that's not all; we'll set up NGINX reverse proxy on this server to manage HTTP requests and responses between clients and our application.
 
 We're also adding LetsEncrypt into the mix. LetsEncrypt will work in conjunction with NGINX to automate routing, provide Transport Layer Security (TLS), and manage SSL certificates. This combination will ensure our application is secure and readily accessible.
 
 By understanding these core components, we can now piece together our deployment pipeline. But before we proceed, it's essential to ensure you have access to the required tools. Make sure you have a GitHub account, Docker installed on your local machine, access to a Linux server, and the necessary knowledge to work with these tools. Don't worry if you're unsure about any steps; we'll guide you through each stage as we move forward.
 
-In the next section, we'll dive into setting up the Linux server and installing the necessary components to prepare for deployment. Stick with us as we go step by step towards achieving a seamless, cost-effective deployment process.
-
 ## Setting Up Your Linux Server
 
-The heart of your web application deployment, the Linux server, requires proper setup and configuration to ensure seamless deployment and operation of your applications. Here, we'll be using Ubuntu 22.04 as our target server, although you can adapt these instructions for other distributions as well.
+The heart of your web application deployment, the Linux server, requires proper setup and configuration to ensure the deployment and operation of your applications. Here, we'll be using Ubuntu 22.04 as our target server, although you can adapt these instructions for other distributions as well.
 
-Firstly, you need to ensure you have a Linux server at your disposal. This could be a virtual private server (VPS) from any cloud provider, a dedicated server, or even a Linux machine in your local network.
+Firstly, you need to ensure you have a Linux server at your disposal. This could be a virtual private server (VPS) from any cloud provider, a dedicated server, or even a Linux machine in your local network (provided it can be accessed via GitHub Actions).
 
 Once you have access to your server, follow these steps:
 
-### Installing Docker and Docker-Compose
+### Installing Docker and Docker Compose
 
 Docker is a crucial component that enables us to build, ship, and run applications inside containers. Docker Compose, on the other hand, simplifies the process of managing multi-container Docker applications. Here's how to install them:
 
@@ -70,49 +85,68 @@ Docker is a crucial component that enables us to build, ship, and run applicatio
     ```
 2. **Install Docker:** Docker provides an official guide to install Docker Engine on Ubuntu, which you can follow [here](https://docs.docker.com/engine/install/ubuntu/).
 
-3. **Install Docker-Compose:** Similarly, Docker Compose can be installed by following the official Docker Compose guide available [here](https://docs.docker.com/compose/install/).
+By default, this should come with the latest version of Docker Compose. However, if you need to install Docker Compose separately, you can follow the official guide [here](https://docs.docker.com/compose/install/).
 
-After the installation, confirm that Docker and Docker-Compose have been correctly installed by running `docker --version` and `docker-compose --version`. The terminal should print the version of Docker and Docker-Compose, respectively.
+After the installation, confirm that Docker and Docker Compose have been correctly installed by running `docker --version` and `docker compose`. The terminal should print the version of Docker and show command options for Docker Compose, respectively.
 
 ### Setting up NGINX and LetsEncrypt
 
 Next, we will set up NGINX and LetsEncrypt in Docker containers. These are responsible for handling client requests, routing, SSL encryption, and certificate management.
 
-1. **Pull the NGINX and LetsEncrypt Docker images:** Use the following commands to pull the Docker images for NGINX and LetsEncrypt:
-    ```
-    docker pull jwilder/nginx-proxy
-    docker pull jrcs/letsencrypt-nginx-proxy-companion
-    ```
-2. **Setup the NGINX reverse proxy and LetsEncrypt companion containers:** We will use Docker Compose to manage these containers. Create a `docker-compose.yml` file in a suitable directory using your preferred text editor (like nano, vi, etc.). This `docker-compose.yml` should look something like this:
-    ```yml
-    version: '3'
-    services:
-      nginx-proxy:
-        container_name: nginx-proxy
-        image: jwilder/nginx-proxy
-        ports:
-          - "80:80"
-          - "443:443"
-        volumes:
-          - "/etc/nginx/vhost.d"
-          - "/usr/share/nginx/html"
-          - "/var/run/docker.sock:/tmp/docker.sock:ro"
-          - "/etc/nginx/certs"
+- **Create the following YAML file** on your Linux server:
 
-      letsencrypt-companion:
-        container_name: letsencrypt-companion
-        image: jrcs/letsencrypt-nginx-proxy-companion
-        volumes:
-          - "/var/run/docker.sock:/var/run/docker.sock:ro"
-          - "/etc/nginx/certs"
-        depends_on:
-          - nginx-proxy
-    ```
-   This configuration sets up the NGINX reverse proxy and LetsEncrypt containers, ensuring they can communicate with other Docker containers and handle certificates.
+```yaml
+version: "3.9"
 
-3. **Start the containers:** Use the command `docker-compose up -d` in the directory containing your `docker-compose.yml` file to start the NGINX reverse proxy and LetsEncrypt containers.
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - dhparam:/etc/nginx/dhparam
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
 
-With Docker, Docker-Compose, NGINX, and LetsEncrypt setup, your Linux server is ready for deployments. Note that these are one-off tasks. Once set up, you won't need to repeat them for deploying additional applications.
+  letsencrypt:
+    image: nginxproxy/acme-companion:2.2
+    container_name: nginx-proxy-le
+    restart: always
+    depends_on:
+      - "nginx-proxy"
+    environment:
+      - DEFAULT_EMAIL=you@example.com
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+networks:
+  default:
+    name: nginx
+
+volumes:
+  conf:
+  vhost:
+  html:
+  dhparam:
+  certs:
+  acme:
+```
+
+- **Start the containers:** Use the command `docker compose up -d` in the directory containing your `docker-compose.yml` file to start the NGINX reverse proxy and LetsEncrypt containers.
+
+With Docker, Docker Compose, NGINX, and LetsEncrypt setup, your Linux server is ready for deployments. Note that these are one-off tasks. Once set up, you won't need to repeat them for deploying additional applications.
 
 For subsequent deployments, GitHub Actions will take care of creating necessary directories and SCP copying the `docker-compose.yml` file from the repository to the target Linux server. This allows your deployment pipeline to be simple, repeatable, and reliable.
 
@@ -153,6 +187,163 @@ Go to `Settings` -> `Secrets` -> `New repository secret`
 ### Leveraging GitHub Container Registry
 
 The GitHub Container Registry is a place to store Docker images within GitHub, which can then be used in your GitHub Actions workflows or pulled directly to any server with Docker installed.
+
+The following `release.yml` can be used with any dockerized application with a `docker-compose.yml`,`docker-compose.prod.yml` with an `app` and `app-migration` services, and the secrets above.
+
+```yaml
+name: Release
+permissions:
+  packages: write
+  contents: write
+on:
+  # Triggered on new GitHub Release
+  release:
+    types: [published]
+  # Triggered on every successful Build action
+  workflow_run:
+    workflows: ["Build"]
+    branches: [main,master]
+    types:
+      - completed
+  # Manual trigger for rollback to specific release or redeploy latest
+  workflow_dispatch:
+    inputs:
+      version:
+        default: latest
+        description: Tag you want to release.
+        required: true
+
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-22.04
+    if: ${{ github.event.workflow_run.conclusion != 'failure' }}
+    steps:
+      # Checkout latest or specific tag
+      - name: checkout
+        if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
+        uses: actions/checkout@v3
+      - name: checkout tag
+        if: ${{ github.event.inputs.version != '' && github.event.inputs.version != 'latest' }}
+        uses: actions/checkout@v3
+        with:
+          ref: refs/tags/${{ github.event.inputs.version }}
+          
+      # Assign environment variables used in subsequent steps
+      - name: Env variable assignment
+        run: echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      # TAG_NAME defaults to 'latest' if not a release or manual deployment
+      - name: Assign version
+        run: |
+          echo "TAG_NAME=latest" >> $GITHUB_ENV
+          if [ "${{ github.event.release.tag_name }}" != "" ]; then
+            echo "TAG_NAME=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          fi;
+          if [ "${{ github.event.inputs.version }}" != "" ]; then
+            echo "TAG_NAME=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+          fi;
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Build and push new docker image, skip for manual redeploy other than 'latest'
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3
+        if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
+        with:
+          file: Dockerfile
+          context: .
+          push: true
+          tags: ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
+  
+  deploy_via_ssh:
+    needs: push_to_registry
+    runs-on: ubuntu-22.04
+    if: ${{ github.event.workflow_run.conclusion != 'failure' }}
+    steps:
+      # Checkout latest or specific tag
+      - name: checkout
+        if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
+        uses: actions/checkout@v3
+      - name: checkout tag
+        if: ${{ github.event.inputs.version != '' && github.event.inputs.version != 'latest' }}
+        uses: actions/checkout@v3
+        with:
+          ref: refs/tags/${{ github.event.inputs.version }}
+
+      - name: repository name fix and env
+        run: |
+          echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "domain=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
+          echo "letsencrypt_email=${{ secrets.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV
+          echo "TAG_NAME=latest" >> $GITHUB_ENV
+          if [ "${{ github.event.release.tag_name }}" != "" ]; then
+            echo "TAG_NAME=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          fi;
+          if [ "${{ github.event.inputs.version }}" != "" ]; then
+            echo "TAG_NAME=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+          fi;
+
+      - name: Create .env file
+        run: |
+          echo "Generating .env file"
+
+          echo "# Autogenerated .env file" > .env
+          echo "HOST_DOMAIN=${{ secrets.DEPLOY_HOST }}" >> .env
+          echo "LETSENCRYPT_EMAIL=${{ secrets.LETSENCRYPT_EMAIL }}" >> .env
+
+          echo "IMAGE_REPO=${{ env.image_repository_name }}" >> .env
+          echo "RELEASE_VERSION=${{ env.TAG_NAME }}" >> .env
+      
+      # Copy only the docker-compose.yml to remote server home folder
+      - name: copy files to target server via scp
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          port: 22
+          key: ${{ secrets.DEPLOY_KEY }}
+          source: "./docker-compose.yml,./docker-compose.prod.yml,./.env"
+          target: "~/.deploy/${{ github.event.repository.name }}/"
+      
+      - name: Run remote db migrations
+        uses: appleboy/ssh-action@v0.1.5
+        env:
+          APPTOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          envs: APPTOKEN,USERNAME
+          script: |
+            echo $APPTOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+            cd ~/.deploy/${{ github.event.repository.name }}
+            docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml pull
+            docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml up app-migration
+
+      # Deploy Docker image with your application using `docker compose up` remotely
+      - name: remote docker-compose up via ssh
+        uses: appleboy/ssh-action@v0.1.5
+        env:
+          APPTOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          envs: APPTOKEN,USERNAME
+          script: |
+            echo $APPTOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+            cd ~/.deploy/${{ github.event.repository.name }}
+            docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml pull
+            docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml up app -d
+```
 
 In the provided YAML, the image is built and pushed to the registry in the `push_to_registry` job with the `docker/build-push-action@v3` action.
 
@@ -195,4 +386,202 @@ These secrets are utilized in both jobs, and they provide a secure way to use se
 
 In the example above, secrets are used to provide the `scp-action` with necessary information to copy files to the remote server.
 
+## How They All Work Together
 
+Having a clear grasp of the components involved in our deployment pipeline, it's now time to delve into how they work together end to end to deploy your dockerized application. This section will help you visualize the bigger picture, breaking down the deployment process into a series of understandable steps.
+
+### Setting the Stage: The Deployment Process
+
+The deployment process is a series of operations that involve our main actors: GitHub, Docker, and your Linux server. Here is how each step unfolds:
+
+1. The process begins when the user triggers an event such as a push to the `main` or `master` branch, creates a release, or manually triggers a dispatch.
+2. The GitHub repository responds to this by initiating the workflow defined in our GitHub Action.
+3. The GitHub Action then retrieves the necessary secrets stored in GitHub Action Secrets. These are essential for secure operations such as logging into the GitHub Container Registry (GHCR).
+4. After logging in, the GitHub Action builds the Docker image from your application's source code and pushes the image to GHCR.
+5. Once the Docker image is securely stored in GHCR, the GitHub Action uses Secure Copy Protocol (SCP) to transfer the `docker-compose` file to your remote Linux server.
+6. Using SSH, the GitHub Action then logs into the remote server and runs the database migrations.
+7. Finally, the GitHub Action instructs your server to pull the new Docker image from GHCR and start your application using Docker Compose.
+
+![](./img/posts/docker-compose/sequence-diagram.PNG)
+
+Remember, this series of steps repeats each time a change triggers the GitHub Action, ensuring that your application is continuously integrated and deployed.
+
+### Flexibility
+
+It's important to note that this process is not exclusive to a specific kind of application. The versatility of Docker allows us to adapt this process to deploy any web application that can be containerized using Docker, giving you a reliable and repeatable deployment process for a broad range of web applications.
+
+## Concrete Example: Deploying a .NET Application
+
+Let's see how you can use it to deploy a specific application. In this section, we will look at how to deploy a .NET application using the `release.yml` workflow.
+It needs 3 files to run, as well as some GitHub Actions secrets like `DEPLOY_HOST`, `DEPLOY_USERNAME`, `DEPLOY_KEY`, and `LETSENCRYPT_EMAIL`.
+
+### docker-compose.yml
+
+This file is used by Docker Compose to define the services that make up your application, so they can be run together in an isolated environment. 
+The `release.yml` expects a web application service called `app` and a database migration service called `app-migration` to be declared.
+
+This file is also designed to be used in a local development environment. It uses the `build` keyword to build the Docker image from the Dockerfile in the current directory.
+
+### docker-compose.prod.yml
+
+This file is similar to `docker-compose.yml`, but it is specifically tailored for your production environment. Instead of building from the Dockerfile like in the development version, it pulls a specific image from a repository (`ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}`) which come from a `.env` file. 
+It also connects to an external network (`nginx`) which is our reverse proxy on our target Linux server.
+
+### Dockerfile
+
+The Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. In this example, it first creates a build environment based on `dotnet/sdk:6.0-focal`, copies your application code into the container, and restores any necessary .NET dependencies. It then switches to your application's directory and publishes your application in release mode. Finally, it creates the runtime environment based on `dotnet/aspnet:6.0-focal`, copies the built application from the previous stage, and sets the Docker entrypoint to run your application.
+
+### .env (generated)
+
+This file, `.env`, is a plain text file that stores environment variables for your Docker containers. Docker Compose automatically looks for this file in the same deployment directory as your `docker-compose.yml` and `docker-compose.prod.yml` files, and variables defined in `.env` can be read into the Compose file. The variables in this file could be secrets, URLs, or other configuration values. The `.env` file itself is typically not included in source control and instead, you might include a `.env.example` file to highlight the required environment variables.
+This means when using `docker-compose.yml` locally, you can have a `.env` file with your local database credentials, and when using `docker-compose.prod.yml` on your server, you can have a `.env` file with your production database credentials, for example.
+
+# Applying the Deployment Pattern: A Practical Guide
+
+The following step-by-step guide will show you how to create, prepare, and deploy your .NET application using best practices.
+
+## 1. Building Blocks: Creating Your .NET Application
+
+Kick-off your development process by creating your .NET application. In this example, we use the ServiceStack's `x` tool to create our web app from a template with the command `x new web MyApp`.
+
+Your application will have a structure that may look something like this:
+
+```
+MyApp/
+|-- MyApp/
+|   |-- wwwroot/
+|   |-- Configure.AppHost.cs
+|   |-- Program.cs
+|-- MyApp.ServiceModel/
+|-- MyApp.ServiceInterface/
+|-- MyApp.Tests/
+|-- MyApp.sln
+|-- Dockerfile
+|-- docker-compose.yml
+|-- docker-compose.prod.yml
+|-- .gitignore
+```
+
+## 2. Join the Hub: Pushing Your Application to GitHub
+
+Once your application is set up, you can push it to GitHub. JetBrains Rider IDE has a handy "Share On GitHub" functionality that streamlines this process. Here's how you use it:
+
+- Right-click on your solution.
+- Select `Git -> GitHub -> Share Project on GitHub`.
+- Enter your repository name and description.
+- Click `Share`.
+
+Your .NET application is now on GitHub, ready for collaboration and continuous integration.
+
+## 3. Automatic Pilot: Implementing GitHub Actions for CI
+
+To automate the build and test process every time you push to your GitHub repository, you can use GitHub Actions. A simple .NET workflow file, `build.yml`, can be created and placed in the `.github/workflows` directory. Here's a minimal example:
+
+```yaml
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+```
+
+You can also add a `test` step to run your tests here.
+
+This will run alongside any other workflows, like a `release.yml`, to ensure your application is always in a deployable state.
+When the `Build` step completes, it will trigger the `release.yml` workflow.
+
+## 4. Secret Keepers: Setting Up and Using GitHub Action Secrets
+
+Next, you'll need to create secrets for sensitive data. In GitHub, you can store them as "Secrets". Follow these steps:
+
+- Go to your GitHub repository and click on `Settings`.
+- Click on `Secrets` in the left sidebar.
+- Click on `New repository secret`.
+- Enter the `Name` and `Value` of the secret.
+- Click on `Add secret`.
+
+Refer to the previous section to see which secrets are necessary for your application.
+
+## 5. Finding Your Home: Create an A Record DNS Entry
+
+To link your domain to your server, you need to create an A Record DNS entry. Here's a generalized step-by-step:
+
+- Go to your DNS provider's website and sign in.
+- Find the domain you want to update and go to its DNS records.
+- Create a new record. For the type, select `A`.
+- Enter your server's IP address in the `Value` or `Points to` field.
+- Save the changes.
+
+Now, you can populate the `DEPLOY_HOST` secret in GitHub with your DNS.
+This will be used by the `release.yml` workflow to deploy your application to your server via SSH.
+
+## 6. The Docker Home: Configuring Linux Server with Docker
+
+By now, you should have a Linux server with Docker installed, and the NGINX reverse proxy with LetsEncrypt running, just as we did in the previous section.
+
+Your server will also need to be accessible via SSH on port 22 so that GitHub Actions can deploy your application.
+
+## 7. Pulling the Trigger: Commit Change and Deploy Application
+
+Now, commit any changes and push to your GitHub repository. If you've set up your GitHub Actions correctly, the CI will kick off. After a successful build, your application will be deployed and accessible from your specified domain.
+
+# Deploying Multiple Applications on the Same Server
+
+This section will guide you on how to effectively manage and deploy multiple applications on the same Linux server. Regardless of the programming language or framework you're using, as long as your web application is dockerized, the release pattern can be applied with ease.
+
+## Harmonious Coexistence: Same Pattern, Multiple Applications
+
+One of the core strengths of Docker is the ability to isolate and manage applications in their individual containers. This means you can deploy numerous applications, each from its separate GitHub repository, onto the same Linux server. All these applications can coexist and operate independently, provided each one is correctly dockerized. The release pattern remains unchanged and consistently easy to apply.
+
+```markdown
+1. MyApp1/ -> GitHub Repo 1 -> Docker Image 1 -> Server (Container 1)
+2. MyApp2/ -> GitHub Repo 2 -> Docker Image 2 -> Server (Container 2)
+3. MyApp3/ -> GitHub Repo 3 -> Docker Image 3 -> Server (Container 3)
+```
+
+## Sharpening Efficiency: Best Practices
+
+To maintain a streamlined deployment process when dealing with multiple applications, you can utilize the GitHub Actions' Organization Secrets. This feature allows secrets to be shared across multiple repositories in an organization, which saves time and reduces redundancy. The only secret that needs to be set up individually for each repository would be the `DEPLOY_HOST` and corresponding DNS for each application.
+
+To set up organization secrets:
+
+- Go to your GitHub organization's settings.
+- Click on `Secrets` in the left sidebar.
+- Click on `New organization secret`.
+- Enter the `Name` and `Value` of the secret.
+- Click on `Add secret`.
+
+Each deployed application now shares the organization-level secrets, simplifying the setup process for new applications to just a new DNS entry and `DEPLOY_HOST` environment variable.
+
+By applying these principles, you're setting up a flexible, efficient, and robust multi-application deployment setup.
+
+## Cost Optimization: Using a Single Server
+
+In our previous post,[In pursuit of the best value US cloud provider](/posts/hetzner-cloud), we looked for the most cost-effective cloud provider. We found that Hetzner Cloud offers the best value for money, with a powerful server costing well under $10 USD per month. This means you can deploy multiple applications on a single server, saving you money and resources.
+
+To host lots of our demo applications, we are doing exactly this, meaning we have a per container of less than $0.50 USD per month.
+
+## Conclusion
+
+By avoiding Kubernetes, you can simplify your deployment process, and have more control over your applications. You can also save money by using a single server to host multiple applications. The release pattern is a simple, yet effective way to deploy your applications, and it can be applied to any programming language or framework. 
+
+## Feedback
+
+If you have any feedback on this article, please let us know by commenting below, joining our [Discord](https://servicestack.net/discord), [GitHub Discussions](https://servicestack.net/ask), or [Customer Forums](https://forums.servicestack.net).
