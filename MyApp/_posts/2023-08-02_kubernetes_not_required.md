@@ -414,6 +414,28 @@ Remember, this series of steps repeats each time a change triggers the GitHub Ac
 
 It's important to note that this process is not exclusive to a specific kind of application. The versatility of Docker allows us to adapt this process to deploy any web application that can be containerized using Docker, giving you a reliable and repeatable deployment process for a broad range of web applications.
 
+## Monitoring with LazyDocker
+
+LazyDocker is a terminal UI for both Docker and Docker Compose. It allows you to monitor your Docker containers and services in real-time, giving you a visual representation of your application's health.
+
+Part of what makes LazyDocker such an awesome tool is that you can use it anywhere from a terminal.
+
+![](./img/posts/docker-compose/lazydocker.png)
+
+To run it as a docker container itself, you can use the following command.
+
+::: sh
+docker run --name lazydocker --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.lazydocker:/.config/jessedufffield/lazydocker lazyteam/lazydocker
+:::
+
+Or better yet, use it as an alias in your `.bashrc` or `.zshrc` file.
+
+::: sh
+alias lazydocker="docker run --name lazydocker --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.lazydocker:/.config/jessedufffield/lazydocker lazyteam/lazydocker"
+:::
+
+So you can run `lazydocker` easily from your terminal.
+
 ## Concrete Example: Deploying a .NET Application
 
 Let's see how you can use it to deploy a specific application. In this section, we will look at how to deploy a .NET application using the `release.yml` workflow.
