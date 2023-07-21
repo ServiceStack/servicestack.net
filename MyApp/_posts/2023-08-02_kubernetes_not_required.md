@@ -301,7 +301,7 @@ jobs:
           echo "IMAGE_REPO=${{ env.image_repository_name }}" >> .env
           echo "RELEASE_VERSION=${{ env.TAG_NAME }}" >> .env
       
-      # Copy only the docker-compose.yml to remote server home folder
+      # Copy docker-compose and .env files to target server
       - name: copy files to target server via scp
         uses: appleboy/scp-action@v0.1.3
         with:
@@ -329,7 +329,7 @@ jobs:
             docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml pull
             docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml up app-migration
 
-      # Deploy Docker image with your application using `docker compose up` remotely
+      # Deploy Docker image with your application using `docker compose up app` remotely
       - name: remote docker-compose up via ssh
         uses: appleboy/ssh-action@v0.1.5
         env:
