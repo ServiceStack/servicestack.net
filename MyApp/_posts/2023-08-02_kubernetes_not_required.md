@@ -2,7 +2,7 @@
 title: Kubernetes Not Required - Using GitHub for Auto Deployments
 summary: A cost-effective and straightforward web app deployment pattern using GitHub and a single Linux server
 tags: github,deployment,devops
-image: https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&fit=crop&h=1000&w=2000
+image: https://images.unsplash.com/photo-1620503374956-c942862f0372?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
 draft: true
 ---
