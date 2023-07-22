@@ -2,7 +2,7 @@
 title: Kubernetes Not Required - Using GitHub for Auto Deployments
 summary: A cost-effective and straightforward web app deployment pattern using GitHub and a single Linux server
 tags: github,deployment,devops
-image: https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&fit=crop&h=1000&w=2000
+image: https://images.unsplash.com/photo-1620503374956-c942862f0372?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
 draft: true
 ---
@@ -150,6 +150,7 @@ With Docker, Docker Compose, NGINX, and LetsEncrypt setup, your Linux server is 
 
 For subsequent deployments, GitHub Actions will take care of creating necessary directories and SCP copying the `docker-compose.yml` file from the repository to the target Linux server. This allows your deployment pipeline to be simple, repeatable, and reliable.
 
+![](./img/posts/docker-compose/linux-server.png)
 
 ## GitHub: The Backbone of Your Deployment Pipeline
 
@@ -179,6 +180,8 @@ The YAML script uses the following secrets:
 - `LETSENCRYPT_EMAIL`: The email used for Let's Encrypt certificate registration.
 
 These secrets can be set up in your repository settings under the `Secrets` section.
+
+![](./img/posts/docker-compose/secrets-separation.PNG)
 
 ```markdown
 Go to `Settings` -> `Secrets` -> `New repository secret`
@@ -298,7 +301,7 @@ jobs:
           echo "IMAGE_REPO=${{ env.image_repository_name }}" >> .env
           echo "RELEASE_VERSION=${{ env.TAG_NAME }}" >> .env
       
-      # Copy only the docker-compose.yml to remote server home folder
+      # Copy docker-compose and .env files to target server
       - name: copy files to target server via scp
         uses: appleboy/scp-action@v0.1.3
         with:
@@ -326,7 +329,7 @@ jobs:
             docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml pull
             docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml up app-migration
 
-      # Deploy Docker image with your application using `docker compose up` remotely
+      # Deploy Docker image with your application using `docker compose up app` remotely
       - name: remote docker-compose up via ssh
         uses: appleboy/ssh-action@v0.1.5
         env:
@@ -411,6 +414,28 @@ Remember, this series of steps repeats each time a change triggers the GitHub Ac
 
 It's important to note that this process is not exclusive to a specific kind of application. The versatility of Docker allows us to adapt this process to deploy any web application that can be containerized using Docker, giving you a reliable and repeatable deployment process for a broad range of web applications.
 
+## Monitoring with LazyDocker
+
+LazyDocker is a terminal UI for both Docker and Docker Compose. It allows you to monitor your Docker containers and services in real-time, giving you a visual representation of your application's health.
+
+Part of what makes LazyDocker such an awesome tool is that you can use it anywhere from a terminal.
+
+![](./img/posts/docker-compose/lazydocker.png)
+
+To run it as a docker container itself, you can use the following command.
+
+::: sh
+docker run --name lazydocker --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.lazydocker:/.config/jessedufffield/lazydocker lazyteam/lazydocker
+:::
+
+Or better yet, use it as an alias in your `.bashrc` or `.zshrc` file.
+
+::: sh
+alias lazydocker="docker run --name lazydocker --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.lazydocker:/.config/jessedufffield/lazydocker lazyteam/lazydocker"
+:::
+
+So you can run `lazydocker` easily from your terminal.
+
 ## Concrete Example: Deploying a .NET Application
 
 Let's see how you can use it to deploy a specific application. In this section, we will look at how to deploy a .NET application using the `release.yml` workflow.
@@ -437,11 +462,11 @@ The Dockerfile is a text document that contains all the commands a user could ca
 This file, `.env`, is a plain text file that stores environment variables for your Docker containers. Docker Compose automatically looks for this file in the same deployment directory as your `docker-compose.yml` and `docker-compose.prod.yml` files, and variables defined in `.env` can be read into the Compose file. The variables in this file could be secrets, URLs, or other configuration values. The `.env` file itself is typically not included in source control and instead, you might include a `.env.example` file to highlight the required environment variables.
 This means when using `docker-compose.yml` locally, you can have a `.env` file with your local database credentials, and when using `docker-compose.prod.yml` on your server, you can have a `.env` file with your production database credentials, for example.
 
-# Applying the Deployment Pattern: A Practical Guide
+## Applying the Deployment Pattern: A Practical Guide
 
 The following step-by-step guide will show you how to create, prepare, and deploy your .NET application using best practices.
 
-## 1. Building Blocks: Creating Your .NET Application
+### 1. Building Blocks: Creating Your .NET Application
 
 Kick-off your development process by creating your .NET application. In this example, we use the ServiceStack's `x` tool to create our web app from a template with the command `x new web MyApp`.
 
@@ -463,7 +488,7 @@ MyApp/
 |-- .gitignore
 ```
 
-## 2. Join the Hub: Pushing Your Application to GitHub
+### 2. Join the Hub: Pushing Your Application to GitHub
 
 Once your application is set up, you can push it to GitHub. JetBrains Rider IDE has a handy "Share On GitHub" functionality that streamlines this process. Here's how you use it:
 
@@ -474,7 +499,7 @@ Once your application is set up, you can push it to GitHub. JetBrains Rider IDE 
 
 Your .NET application is now on GitHub, ready for collaboration and continuous integration.
 
-## 3. Implementing GitHub Actions for CI
+### 3. Implementing GitHub Actions for CI
 
 To automate the build and test process every time you push to your GitHub repository, you can use GitHub Actions. A simple .NET workflow file, `build.yml`, can be created and placed in the `.github/workflows` directory. Here's a minimal example:
 
@@ -504,7 +529,7 @@ You can also add a `test` step to run your tests here.
 This will run alongside any other workflows, like the `release.yml` outlined above, to ensure your application is always in a deployable state.
 When the `Build` step completes, it will trigger the `release.yml` workflow.
 
-## 4. Setting Up and Using GitHub Action Secrets
+### 4. Setting Up and Using GitHub Action Secrets
 
 Next, you'll need to create secrets for sensitive data. In GitHub, you can store them as "Secrets". Follow these steps:
 
@@ -521,7 +546,7 @@ Create the following secrets:
 - `DEPLOY_KEY`: This is the private SSH key used for remote access to your deployment server or application host. 
 - `LETSENCRYPT_EMAIL`: This secret represents the email address used for Let's Encrypt certificate registration.
 
-## 5. Finding Your Home: Create an A Record DNS Entry
+### 5. Finding Your Home: Create an A Record DNS Entry
 
 To link your domain to your server, you need to create an A Record DNS entry. Here's a generalized step-by-step:
 
@@ -534,13 +559,13 @@ To link your domain to your server, you need to create an A Record DNS entry. He
 Now, you can populate the `DEPLOY_HOST` secret in GitHub with your DNS.
 This will be used by the `release.yml` workflow to deploy your application to your server via SSH.
 
-## 6. Configuring Linux Server with Docker
+### 6. Configuring Linux Server with Docker
 
 By now, you should have a Linux server with Docker installed, and the NGINX reverse proxy with LetsEncrypt running, just as we did in the previous section.
 
 Your server will also need to be accessible via SSH on port 22 so that GitHub Actions can deploy your application.
 
-## 7. Commit Change and Deploy Application
+### 7. Commit Change and Deploy Application
 
 Now, commit any changes and push to your GitHub repository. If you've set up your GitHub Actions correctly, the CI will kick off. After a successful build, your application will be deployed and accessible from your specified domain.
 
@@ -555,6 +580,8 @@ One of the core strengths of Docker is the ability to isolate and manage applica
 2. MyApp2/ -> GitHub Repo 2 -> Docker Image 2 -> Server (Container 2)
 3. MyApp3/ -> GitHub Repo 3 -> Docker Image 3 -> Server (Container 3)
 ```
+
+![](./img/posts/docker-compose/graph-diagram.PNG)
 
 ### Organization Secrets
 
@@ -574,9 +601,16 @@ And since every GitHub Repository in the organization is unique, there is no con
 
 ### Cost Optimization: Using a Single Server
 
-In our previous post,[In pursuit of the best value US cloud provider](/posts/hetzner-cloud), we looked for the most cost-effective cloud provider. We found that Hetzner Cloud offers the best value for money, with a powerful server costing well under $10 USD per month. This means you can deploy multiple applications on a single server, saving you money and resources.
+In our previous post,[In pursuit of the best value US cloud provider](/posts/hetzner-cloud), we looked for the most cost-effective cloud provider. We found that Hetzner Cloud offers the best value for money, with a powerful server costing around $10 USD per month. This means you can deploy multiple applications on a single server, saving you money and resources.
 
 To host lots of our demo applications, we are doing exactly this, meaning we have a per container of less than $0.50 USD per month.
+
+<div class="mx-auto mt-4 mb-4">
+    <div class="inline-flex justify-center w-full">
+      <img src="/img/posts/hetzner-cloud/litestream-costs.svg" alt="">
+    </div>
+<div class="text-gray-500 text-center">Previous test result price comparison without AWS using Provisioned IOPS.</div>
+</div>
 
 ## Conclusion
 
