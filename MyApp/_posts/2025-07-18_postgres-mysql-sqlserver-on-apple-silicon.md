@@ -3,7 +3,6 @@ title: Install PostgreSQL, MySql and SQL Server on Apple Silicon
 summary: Easiest way to install PostgreSQL, MySql and SQL Server on macOS running Apple Silicon's M2
 tags: db,dev
 image: https://images.unsplash.com/photo-1517663404855-6f96c7aa20e2?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 author: Demis Bellot
 ---
 
