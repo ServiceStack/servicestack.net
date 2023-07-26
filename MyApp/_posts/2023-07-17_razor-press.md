@@ -6,11 +6,23 @@ image: https://images.unsplash.com/photo-1681301968680-fe46a0cd51be?crop=entropy
 author: Demis Bellot
 ---
 
+In a nutshell the new Razor Press template is a Simple, Powerful, Fast, Flexible & FREE! Use Razor Pages to generate 
+beautiful Tailwind static websites powered by Markdown & enhanced with Vue Auto deploys to GitHub Pages to Host 
+for FREE on GitHub CDN
 
-Simple, Powerful, Fast, Flexible & FREE! Use Razor Pages to generate beautiful Tailwind static websites powered by Markdown & enhanced with Vue
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="uqEa_DfFFDQ" style="background-image: url('https://img.youtube.com/vi/uqEa_DfFFDQ/maxresdefault.jpg')"></lite-youtube>
+</div>
 
-Auto deploys to GitHub Pages to Host for FREE on GitHub CDN
+After having finished porting [docs.servicestack.net to Razor SSG](/posts/new_razor_ssg_docs), we've extracted the core
+functionality useful for documentation and content centric websites into a reusable project template you can create
+with the [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
 
+:::sh
+x new razor-press ProjectName
+:::
+
+## What is Razor Press?
 
 Razor Press is a Razor Pages powered Markdown alternative to Ruby's Jekyll, Vue & VitePress that's ideal for
 generating fast, static content-centric & documentation websites. Inspired by [VitePress](https://vitepress.dev),
