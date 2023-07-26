@@ -102,8 +102,8 @@ mount('#counter', Counter)
 
 Both methods create components with access to all your Shared Components and any 3rd Party Plugins which
 we can preview in this example that uses **@servicestack/vue**'s 
-[PrimaryButton](/vue/navigation#primarybutton)
-and [ModalDialog](/vue/modals):
+[PrimaryButton](https://docs.servicestack.net/vue//navigation#primarybutton)
+and [ModalDialog](https://docs.servicestack.net/vue//modals):
 
 
 ```js
@@ -214,7 +214,7 @@ VS Code extension to provide syntax highlighting and an enhanced authoring exper
 
 ### useClient
 
-[useClient()](/vue/use-client) provides managed APIs around the `JsonServiceClient` 
+[useClient()](https://docs.servicestack.net/vue//use-client) provides managed APIs around the `JsonServiceClient` 
 instance registered in Vue App's with:
 
 ```js
@@ -389,7 +389,7 @@ Input Components are able to automatically apply contextual validation errors ne
 ### AutoForm Components
 
 We can elevate our productivity even further with
-[Auto Form Components](/vue/autoform) that can automatically generate an
+[Auto Form Components](https://docs.servicestack.net/vue//autoform) that can automatically generate an
 instant API-enabled form with validation binding by just specifying the Request DTO you want to create the form of, e.g:
 
 ```html
@@ -398,7 +398,7 @@ instant API-enabled form with validation binding by just specifying the Request 
 
 <div class="not-prose" data-component="AutoCreateForm" data-props="{ type:'CreateBooking', formStyle:'card' }"></div>
 
-The AutoForm components are powered by your [App Metadata](/vue/use-appmetadata) which allows creating 
+The AutoForm components are powered by your [App Metadata](https://docs.servicestack.net/vue//use-appmetadata) which allows creating 
 highly customized UIs from [declarative C# attributes](https://docs.servicestack.net/locode/declarative) whose customizations are
 reused across all ServiceStack Auto UIs, including:
 
@@ -408,12 +408,12 @@ reused across all ServiceStack Auto UIs, including:
 
 ### Form Input Components
 
-In addition to including Tailwind versions of the standard [HTML Form Inputs](/vue/form-inputs) controls to create beautiful Tailwind Forms,
+In addition to including Tailwind versions of the standard [HTML Form Inputs](https://docs.servicestack.net/vue//form-inputs) controls to create beautiful Tailwind Forms,
 it also contains a variety of integrated high-level components:
 
-- [FileInput](/vue/fileinput)
-- [TagInput](/vue/taginput)
-- [Autocomplete](/vue/autocomplete)
+- [FileInput](https://docs.servicestack.net/vue//fileinput)
+- [TagInput](https://docs.servicestack.net/vue//taginput)
+- [Autocomplete](https://docs.servicestack.net/vue//autocomplete)
 
 ### useAuth
 
