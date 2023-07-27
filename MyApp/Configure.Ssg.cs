@@ -104,7 +104,13 @@ public class AppConfig
     public string? GitPagesBaseUrl { get; set; }
     public string? SiteTwitter { get; set; }
     public List<AuthorInfo> Authors { get; set; } = new();
+    public string? BlogTitle { get; set; }
+    public string? BlogDescription { get; set; }
+    public string? BlogEmail { get; set; }
+    public string? CopyrightOwner { get; set; }
+    public string? BlogImageUrl { get; set; }
 }
+
 
 // Add additional frontmatter info to include
 public class MarkdownFileInfo : MarkdownFileBase
