@@ -107,6 +107,55 @@ All Docker containers runs native ARM Builds whilst SQL Server's **AMD64** Docke
 
 These benchmarks below uses the default optimal Bulk Insert implementation for each RDBMS:
 
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+        '10,000 Rows',
+        '100,000 Rows'
+    ],
+    datasets: [
+        {
+            label: 'SQLite Memory',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [1.812, 17.066, 166.747]
+        },
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [2.330, 20.224, 199.697]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [6.123, 14.389, 115.645]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [9.676, 64.389, 310.966]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [8.778, 64.427, 308.574]
+        },
+    ]
+}"></chart-js>
+
+:::{.text-xs .text-gray-500 .text-center}
+_SQL Server results removed due to poor outlier performance_
+:::
+
 :::{.table .table-striped .text-base}
 #### Inserting 1,000 Rows
 
@@ -161,6 +210,55 @@ impact on performance.
 
 These benchmarks show the performance of executing **Multiple Row Inserts** in batches of **1000**
 which is a good example to show the comparative performance for executing SQL Inserts:
+
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+        '10,000 Rows',
+        '100,000 Rows'
+    ],
+    datasets: [
+        {
+            label: 'SQLite Memory',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [1.812, 17.066, 166.747]
+        },
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [2.306, 20.149, 201.074]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [8.073, 48.502, 425.789]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [11.210, 98.179, 718.902]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [9.154, 79.905, 630.839]
+        },
+    ]
+}"></chart-js>
+
+:::{.text-xs .text-gray-500 .text-center}
+_SQL Server results removed due to poor outlier performance_
+:::
 
 :::{.table .table-striped .text-base}
 #### Inserting 1,000 Rows
@@ -217,6 +315,49 @@ other distributed RDBMS's.
 This benchmark measures the performance of multiple single inserts, i.e. using the traditional Single Insert ORM APIs 
 when Bulk Insert is not available: 
 
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+    ],
+    datasets: [
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [224.2379]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [349.2328]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [1272.0975]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [1209.4689]
+        },
+        {
+            label: 'SQL Server',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [978.0029]
+        }
+    ]
+}"></chart-js>
+
 :::{.table .table-striped .text-base}
 #### Inserting 1,000 Rows
 
@@ -265,6 +406,58 @@ All benchmarks were run against local databases, installed using their native Wi
 ## Optimized Bulk Insert Performance
 
 These benchmarks below uses the default optimal Bulk Insert implementation for each RDBMS:
+
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+        '10,000 Rows',
+        '100,000 Rows'
+    ],
+    datasets: [
+        {
+            label: 'SQLite Memory',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [2.638, 23.424, 240.111]
+        },
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(255, 205, 86, 0.2)',
+            borderColor: 'rgb(255, 205, 86)',
+            borderWidth: 1,
+            data: [9.884, 102.848, 1049.120]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [4.507, 17.796, 265.161]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [23.952, 145.037, 714.550]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [21.791, 143.624, 580.433]
+        },
+        {
+            label: 'SQL Server',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [6.432, 53.330, 580.433]
+        }
+    ]
+}"></chart-js>
 
 :::{.table .table-striped .text-base}
 #### Inserting 1,000 Rows
@@ -325,6 +518,57 @@ Although they're not directly comparable with their different configurations, bu
 shows how much faster my new Macbook Air M2 is compared to my primary 
 Intel iMac 5K Desktop, even with the overhead of running RDBMS's from within Docker containers:
 
+<chart-js :data="{
+    labels: [
+        'M2 Macbook Air',
+        'Intel iMac 5K'
+    ],
+    datasets: [
+        {
+            label: 'SQLite Memory',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [166.747, 240.111]
+        },
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(255, 205, 86, 0.2)',
+            borderColor: 'rgb(255, 205, 86)',
+            borderWidth: 1,
+            data: [199.697, 265.161]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [115.645, 265.161]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [310.966, 714.550]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [308.574, 729.408]
+        },
+        {
+            label: 'SQL Server',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [835.181, 580.433]
+        }
+    ]
+}"></chart-js>
+
 :::{.table .table-striped .text-base}
 #### Relative performance for Bulk Insert of 100,000 records
 
@@ -342,6 +586,63 @@ Intel iMac 5K Desktop, even with the overhead of running RDBMS's from within Doc
 
 These benchmarks show the performance of executing **Multiple Row Inserts** in batches of **1000**
 which is a good example to show the comparative RDBMS performance for executing SQL Inserts:
+
+
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+        '10,000 Rows',
+        '100,000 Rows'
+    ],
+    datasets: [
+        {
+            label: 'SQLite Memory',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [2.710, 25.784, 246.285]
+        },
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(255, 205, 86, 0.2)',
+            borderColor: 'rgb(255, 205, 86)',
+            borderWidth: 1,
+            data: [9.944, 105.551, 1048.217]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [7.270, 64.107, 522.203]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [24.016, 217.394, 1656.828]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [20.869, 184.193, 1359.005]
+        },
+        {
+            label: 'SQL Server',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [75.994, 819.829, 0]
+        }
+    ]
+}"></chart-js>
+
+:::{.text-xs .text-gray-500 .text-center}
+_Last SQL Server result removed due to poor outlier performance_
+:::
 
 :::{.table .table-striped .text-base}
 #### Inserting 1,000 Rows
@@ -396,6 +697,50 @@ result of a naive unoptimized implementation for these types of large INSERT sta
 ## Single Insert Performance
 
 This benchmark measures the performance of multiple single inserts (i.e. when Bulk Insert is not available):
+
+
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+    ],
+    datasets: [
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [7620.93]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [465.43]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [4282.89]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [4261.57]
+        },
+        {
+            label: 'SQL Server',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [582.33]
+        }
+    ]
+}"></chart-js>
 
 :::{.table .table-striped .text-base}
 
