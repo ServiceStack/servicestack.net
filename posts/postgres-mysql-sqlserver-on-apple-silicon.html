@@ -175,7 +175,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>Becoming a <a href="https://twitter.com/demisbellot/status/1678256650753552384">recent owner</a> of Apple's shiny new 15&quot; Macbook Air
 was my first foray into Apple's exciting new ARM chips where they've somehow managed to package all day battery life
 with performance exceeding my primary Intel iMac 5K Desktop into the the thinnest of form factors.</p>
@@ -546,6 +546,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>

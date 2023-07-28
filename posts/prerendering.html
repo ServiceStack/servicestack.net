@@ -176,7 +176,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>Prerendering static content is a popular technique used by <a href="https://jamstack.org">JAMStack</a> Apps to improve the
 performance, reliability and scalability of Web Apps that's able to save unnecessary computation at runtime by
 generating static content at deployment which can be optionally hosted from a CDN for even greater performance.</p>
@@ -372,6 +372,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>

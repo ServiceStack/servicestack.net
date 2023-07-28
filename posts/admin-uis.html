@@ -176,7 +176,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>Built into the latest <a href="https://vue-mjs.web-templates.io">vue-mjs</a> project template include examples of both Server
 Multi Razor Page and Client rendered Admin UI Pages demonstrating how to use the new <code>&lt;sidebar-layout&gt;</code> and
 <code>&lt;auto-query-grid&gt;</code> Vue Tailwind components to build beautiful Admin UI Pages in minutes.</p>
@@ -252,8 +252,8 @@ body to display when selected:</p>
             &lt;div&gt;
               &lt;dl class=&quot;mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3&quot;&gt;
                 &lt;div v-for=&quot;stat in stats&quot; @click=&quot;$emit('nav',stat.label)&quot; class=&quot;...&quot;&gt;
-                  &lt;dt class=&quot;...&quot;&gt;Total {{humanize(stat.label)}}&lt;/dt&gt;
-                  &lt;dd class=&quot;...&quot;&gt;{{formatNumber(stat.total)}}&lt;/dd&gt;
+                  &lt;dt class=&quot;...&quot;&gt;Total {‎{humanize(stat.label)}‎}&lt;/dt&gt;
+                  &lt;dd class=&quot;...&quot;&gt;{‎{formatNumber(stat.total)}‎}&lt;/dd&gt;
                 &lt;/div&gt;
               &lt;/dl&gt;
             &lt;/div&gt;`,
@@ -316,8 +316,8 @@ body to display when selected:</p>
              &lt;div&gt;
                &lt;dl class=&quot;...&quot;&gt;
                  &lt;div v-for=&quot;stat in stats&quot; @click=&quot;$emit('nav',stat.label)&quot; class=&quot;...&quot;&gt;
-                   &lt;dt class=&quot;...&quot;&gt;Total {{humanize(stat.label)}}&lt;/dt&gt;
-                   &lt;dd class=&quot;...&quot;&gt;{{formatNumber(stat.total)}}&lt;/dd&gt;
+                   &lt;dt class=&quot;...&quot;&gt;Total {‎{humanize(stat.label)}‎}&lt;/dt&gt;
+                   &lt;dd class=&quot;...&quot;&gt;{‎{formatNumber(stat.total)}‎}&lt;/dd&gt;
                  &lt;/div&gt;
                &lt;/dl&gt;
              &lt;/div&gt;`,
@@ -509,6 +509,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>

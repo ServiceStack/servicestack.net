@@ -177,7 +177,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>In a nutshell the new Razor Press template is a Simple, Powerful, Fast, Flexible &amp; FREE! Use Razor Pages to generate
 beautiful Tailwind static websites powered by Markdown &amp; enhanced with Vue Auto deploys to GitHub Pages to Host
 for FREE on GitHub CDN</p>
@@ -342,6 +342,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>

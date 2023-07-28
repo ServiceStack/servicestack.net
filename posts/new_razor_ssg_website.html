@@ -176,7 +176,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <h2 id="celebrating-150m-total-downloads">Celebrating 150M Total Downloads<a class="header-anchor" href="javascript:;" onclick="location.hash='#celebrating-150m-total-downloads'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>We're happy to report that ServiceStack has eclipsed <strong>150M total downloads!</strong></p>
 <div class="my-16 flex mx-auto justify-center">
@@ -250,6 +250,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>

@@ -202,7 +202,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>One of the big advantages of using AutoQuery is the ability to turn data into an API with very little effort.</p>
 <p>Once your data is exposed as an API, you can use it in any way you want, whether that's a web app, a mobile app, a desktop app, or even a CLI.</p>
 <h1 id="unsiloing-data-with-autoquery">Unsiloing Data with AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#unsiloing-data-with-autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h1>
@@ -413,10 +413,10 @@ Let's now customize the <code>data-grid</code> so we can have a view of the comi
     &lt;template #transcript=&quot;{ title, transcript, width, height }&quot;&gt;
         &lt;div class=&quot;flex flex-col max-w-3xl&quot;&gt;
             &lt;div class=&quot;flex justify-between&quot;&gt;
-                &lt;h2 class=&quot;text-lg font-semibold text-gray-900&quot;&gt;{{ title }}&lt;/h2&gt;
-                &lt;div class=&quot;text-right text-sm font-semibold block&quot;&gt;{{width}} x {{height}}&lt;/div&gt;
+                &lt;h2 class=&quot;text-lg font-semibold text-gray-900&quot;&gt;{‎{ title }‎}&lt;/h2&gt;
+                &lt;div class=&quot;text-right text-sm font-semibold block&quot;&gt;{‎{width}‎} x {‎{height}‎}&lt;/div&gt;
             &lt;/div&gt;
-            &lt;p class=&quot;whitespace-normal break-words overflow-hidden max-h-40&quot;&gt;{{ transcript }}&lt;/p&gt;
+            &lt;p class=&quot;whitespace-normal break-words overflow-hidden max-h-40&quot;&gt;{‎{ transcript }‎}&lt;/p&gt;
         &lt;/div&gt;
     &lt;/template&gt;
 &lt;/data-grid&gt;
@@ -440,11 +440,11 @@ The <code>auto-query-grid</code> component is a wrapper around the <code>data-gr
     &lt;/template&gt;
     &lt;template #transcript=&quot;{ transcript }&quot;&gt;
         &lt;p class=&quot;block max-w-sm text-ellipsis overflow-hidden&quot; 
-           :title=&quot;transcript&quot;&gt;{{ transcript }}
+           :title=&quot;transcript&quot;&gt;{‎{ transcript }‎}
         &lt;/p&gt;
     &lt;/template&gt;
     &lt;template #explanation=&quot;{ explanation }&quot;&gt;
-        &lt;p class=&quot;block max-w-sm text-ellipsis overflow-hidden&quot;&gt;{{ explanation }}&lt;/p&gt;
+        &lt;p class=&quot;block max-w-sm text-ellipsis overflow-hidden&quot;&gt;{‎{ explanation }‎}&lt;/p&gt;
     &lt;/template&gt;
 &lt;/auto-query-grid&gt;
 &lt;modal-comic v-if=&quot;selected&quot; :comic=&quot;selected&quot; v-on:done=&quot;selected=null&quot;&gt;&lt;/modal-comic&gt;
@@ -493,7 +493,7 @@ We'll update our <code>Index.cshtml</code> file to the following markup.</p>
                          class=&quot;cursor-pointer&quot;&gt;
                         &lt;h2 class=&quot;mb-4 text-lg font-semibold text-gray-900 
                                    dark:text-gray-100 text-center&quot;&gt;
-                            {{ comic.title }}
+                            {‎{ comic.title }‎}
                         &lt;/h2&gt;
                         &lt;img :src=&quot;comic.imageUrl&quot; :width=&quot;comic.width&quot; 
                              :height=&quot;comic.height&quot; class=&quot;h-48 object-cover&quot; 
@@ -658,6 +658,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
   </main>
 </div>

@@ -175,7 +175,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>Another useful feature in the ServiceStack <code>x</code> <a href="https://docs.servicestack.net/dotnet-tool">dotnet tool</a> I wanted to highlight
 is its built-in support for JSON Patching. This feature provides you with a robust mechanism for modifying your JSON files,
 providing a precise and granular way to manage configurations, that's especially useful when automating changes from a
@@ -287,7 +287,7 @@ This is where JSON patching can be extremely useful.</p>
   working-directory: ./MyApp
   run: | 
     cat &lt;&lt;EOF &gt;&gt; appsettings.json.patch
-    ${{ secrets.APPSETTINGS_PATCH}}
+    ${‎{ secrets.APPSETTINGS_PATCH}‎}
     EOF
     x patch appsettings.json.patch
 </code></pre>
@@ -317,6 +317,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>

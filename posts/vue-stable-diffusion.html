@@ -175,7 +175,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>Just as <a href="https://blazordiffusion.com">blazordiffusion.com</a> was created to showcase ServiceStack's
 Blazor Server and Blazor WASM <a href="/blazor">project templates and components</a>, we've also recreated a new Stable Diffusion UI
 in Vue to showcase the <a href="https://razor-ssg.web-templates.io">Razor SSG</a> Project Template and Tailwind
@@ -378,6 +378,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>

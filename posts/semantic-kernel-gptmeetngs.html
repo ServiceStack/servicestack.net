@@ -177,7 +177,7 @@ mountAll()
                     </div>
                 </div>
             <div class="max-w-3xl mx-auto">
-                <div class="prose lg:prose-xl max-w-none mb-32">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p>In the rapidly evolving landscape of AI, a constant challenge that developers face is the integration and use of advanced models, like OpenAI's Large Language Models (LLMs), into our applications. To help bridge the gap between developers and these intricate models, Microsoft has introduced Semantic Kernel, a .NET library that offers a robust and more interactive platform to leverage OpenAI's ChatGPT API.</p>
 <h2 id="the-journey-so-far">The Journey So Far<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-journey-so-far'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Our <a href="https://gptmeetings.netcore.io">initial demonstration of the GPT Meeting Agent</a> offered an exciting glimpse into how developers could leverage the reasoning capability of Large Language Models such as <code>gpt-3.5-turbo</code> with the ServiceStack framework. We <a href="https://github.com/NetCoreApps/GPTMeetingAgent">showcased an application</a> that could use In Context Learning, Chain Of Thought Prompting, and the defining of your own ServiceStack services using TypeScript definition format.</p>
@@ -223,6 +223,13 @@ init()
 <script>hljs.highlightAll()</script>
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
+
+<script src="js/chart.js"></script>
+<script type="module">
+import { mount } from "app.mjs"
+import App from "./mjs/post.mjs"
+mount('#post', App)
+</script>
 
     </main>
 </div>
