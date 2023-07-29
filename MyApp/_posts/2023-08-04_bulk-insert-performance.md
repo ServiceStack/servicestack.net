@@ -64,17 +64,24 @@ db.BulkInsert(rows, new BulkInsertConfig {
 
 ## Benchmarks
 
-[All benchmarks](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.OrmLite/src/ServiceStack.OrmLite.Benchmarks/Program.cs)
+[All benchmarks](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.OrmLite/tests/ServiceStack.OrmLite.Benchmarks/Program.cs)
 were run with [BenchmarkDotNet](https://benchmarkdotnet.org) running on an 
-**M2 Apple Macbook / 24GB RAM** and an **Intel iMac 5K / 24GB RAM**.   
+**M2 Apple Macbook / 24GB RAM**, a **Ubuntu 22.04 Linux VM / 7GB RAM** and an **Intel iMac 5K / 24GB RAM**.   
 
 Hopefully these benchmarks are informative in showing the performance benefits you can expect from Bulk Inserts across
-the multiple RDBMS's although its results should be considered in the context in which they were run: 
+the multiple RDBMS's on different operating systems, although its results should be considered in the context in which 
+they were run: 
 
 #### Apple M2 Benchmarks 
 
  - macOS / ARM
  - .NET 6.0 / ARM
+ - ADO .NET library implementations
+ - RDBMS run from local Docker containers
+
+#### Linux VM Benchmarks
+ - Ubuntu 22.04 LTS / x64
+ - .NET 6.0 / x64
  - ADO .NET library implementations
  - RDBMS run from local Docker containers
 
@@ -307,7 +314,7 @@ _SQL Server results removed due to poor outlier performance_
 
 :::
 
-Take aways from these results include PostgreSQL continuing to be a star performer, consistently out-performing 
+Takeaways from these results include PostgreSQL continuing to be a star performer, consistently out-performing 
 other distributed RDBMS's.
 
 ## Single Insert Performance
@@ -388,6 +395,281 @@ Effectively showing the cost of Single Inserts multiple I/O calls vs Bulk or SQL
 Bulk Inserts offer vastly better performance when needing to insert a significant number of rows.
 
 :::
+
+## Ubuntu Linux VM Benchmarks
+
+The Ubuntu Linux VM Benchmarks were run on a GitHub Actions VM which are reported to run on a 2 Core CPU with 
+[7 GB of RAM](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources),
+specifications reported by BenchmarkDotnet:
+
+```txt
+BenchmarkDotNet v0.13.6, Ubuntu 22.04.2 LTS (Jammy Jellyfish)
+Intel Xeon Platinum 8370C CPU 2.80GHz, 1 CPU, 2 logical and 2 physical cores
+.NET SDK 6.0.412
+  [Host]     : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
+  Job-HXEVFT : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
+```
+
+## Optimized Bulk Insert Performance
+
+These benchmarks below uses the default optimal Bulk Insert implementation for each RDBMS:
+
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+        '10,000 Rows',
+        '100,000 Rows'
+    ],
+    datasets: [
+        {
+            label: 'SQLite Memory',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [3.025, 27.653, 303.348]
+        },
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [4.520, 40.234, 417.378]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [5.646, 26.436, 211.951]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [10.597, 80.429, 670.859]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [53.698, 80.535, 693.690]
+        },
+        {
+            label: 'SQL Server',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [12.201, 94.899, 986.676]
+        }
+    ]
+}"></chart-js>
+
+:::{.table .table-striped .text-base}
+#### Inserting 1,000 Rows
+
+| Database       | Relative |      Mean |     Error |    StdDev |    Median |
+|----------------|---------:|----------:|----------:|----------:|----------:|
+| SQLite Memory  |       1x |  3.025 ms | 0.0527 ms | 0.1089 ms |  3.053 ms |
+| SQLite Disk    |    1.49x |  4.520 ms | 0.0898 ms | 0.1794 ms |  4.576 ms |
+| PostgreSQL     |    1.87x |  5.646 ms | 0.2275 ms | 0.6415 ms |  5.630 ms |
+| MySqlConnector |    3.50x | 10.597 ms | 0.2045 ms | 0.1813 ms | 10.608 ms |
+| SqlServer      |    4.03x | 12.201 ms | 0.2420 ms | 0.5845 ms | 12.104 ms |
+| MySql          |   17.75x | 53.698 ms | 1.0640 ms | 2.0753 ms | 53.425 ms |
+
+As the poor MySql performance is more prevalent the smaller number of rows are Bulk Inserted suggests it's the result of a 
+1-time cost like writing to the temporary file, which is less of a overhead when more rows are inserted.
+
+#### Inserting 10,000 Rows
+
+| Database       | Relative |      Mean |     Error |    StdDev |    Median |
+|----------------|---------:|----------:|----------:|----------:|----------:|
+| PostgreSQL     |       1x | 26.436 ms | 1.8383 ms | 5.1848 ms | 23.624 ms |
+| SQLite Memory  |    1.05x | 27.653 ms | 0.5439 ms | 1.0478 ms | 27.100 ms |
+| SQLite Disk    |    1.52x | 40.234 ms | 0.7801 ms | 1.2817 ms | 40.189 ms |
+| MySqlConnector |    3.04x | 80.429 ms | 1.6022 ms | 2.0833 ms | 80.585 ms |
+| MySql          |    3.05x | 80.535 ms | 1.5778 ms | 2.5478 ms | 80.400 ms |
+| SqlServer      |    3.59x | 94.899 ms | 1.8399 ms | 2.6388 ms | 95.128 ms |
+
+PostgreSQL continues to shine on its native Linux platform which somehow bests bulk inserts to an In Memory SQLite database?
+
+#### Inserting 100,000 Rows
+
+| Database       | Relative |       Mean |      Error |     StdDev |     Median |
+|----------------|---------:|-----------:|-----------:|-----------:|-----------:|
+| PostgreSQL     |       1x | 211.951 ms |  4.2186 ms | 11.1134 ms | 210.844 ms |
+| SQLite Memory  |    1.43x | 303.348 ms |  5.9261 ms |  8.6864 ms | 305.627 ms |
+| SQLite Disk    |    1.97x | 417.378 ms |  8.0392 ms |  8.6019 ms | 418.351 ms |
+| MySqlConnector |    3.17x | 670.859 ms | 11.1014 ms |  9.8411 ms | 668.926 ms |
+| MySql          |    3.28x | 693.690 ms |  8.6160 ms |  8.0594 ms | 691.702 ms |
+| SqlServer      |    4.66x | 986.676 ms | 19.0059 ms | 18.6663 ms | 983.779 ms |
+:::
+
+Unfortunately SQL Server AMD64 image is not just slow under Rosetta/ARM, it's also the slowest RDBMS running on Linux -
+surprising how much slower a multi-billion dollar commercial database is vs the Free and Open Source PostgreSQL.
+
+## Multiple Inserts Rows Performance
+
+These benchmarks show the performance of executing **Multiple Row Inserts** in batches of **1000** rows:
+
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+        '10,000 Rows',
+        '100,000 Rows'
+    ],
+    datasets: [
+        {
+            label: 'SQLite Memory',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [3.117, 28.106, 302.656]
+        },
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [4.543, 39.774, 424.378]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [7.481, 65.437, 649.366]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [12.025, 100.473, 917.979]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [15.204, 142.609, 1282.074]
+        },
+    ]
+}"></chart-js>
+
+:::{.text-xs .text-gray-500 .text-center}
+_SQL Server results removed due to poor outlier performance_
+:::
+
+:::{.table .table-striped .text-base}
+#### Inserting 1,000 Rows
+
+| Database       | Relative |       Mean |     Error |    StdDev |     Median |
+|----------------|---------:|-----------:|----------:|----------:|-----------:|
+| SQLite Memory  |       1x |   3.117 ms | 0.0293 ms | 0.0274 ms |   3.116 ms |
+| SQLite Disk    |    1.46x |   4.543 ms | 0.0898 ms | 0.2235 ms |   4.519 ms |
+| PostgreSQL     |    2.40x |   7.481 ms | 0.1495 ms | 0.1325 ms |   7.469 ms |
+| MySqlConnector |    3.86x |  12.025 ms | 0.2265 ms | 0.2946 ms |  11.966 ms |
+| MySql          |    4.88x |  15.204 ms | 0.3003 ms | 0.7254 ms |  15.106 ms |
+| SqlServer      |   39.61x | 123.473 ms | 2.2482 ms | 1.9930 ms | 123.270 ms |
+
+#### Inserting 10,000 Rows
+
+| Database       | Relative |         Mean |      Error |     StdDev |       Median |
+|----------------|---------:|-------------:|-----------:|-----------:|-------------:|
+| SQLite Memory  |       1x |    28.106 ms |  0.5567 ms |  1.1621 ms |    27.552 ms |
+| SQLite Disk    |    1.42x |    39.774 ms |  0.5604 ms |  0.4968 ms |    39.701 ms |
+| PostgreSQL     |    2.33x |    65.437 ms |  1.2455 ms |  1.4343 ms |    65.431 ms |
+| MySqlConnector |    3.57x |   100.473 ms |  1.9342 ms |  1.7146 ms |   100.253 ms |
+| MySql          |    5.07x |   142.609 ms |  9.0717 ms | 26.3187 ms |   130.328 ms |
+| SqlServer      |   41.47x | 1,165.550 ms | 11.0161 ms |  9.7655 ms | 1,167.982 ms |
+
+#### Inserting 100,000 Rows
+
+| Database       | Relative |          Mean |       Error |      StdDev |        Median |
+|----------------|---------:|--------------:|------------:|------------:|--------------:|
+| SQLite Memory  |       1x |    302.656 ms |   5.9832 ms |   6.4019 ms |    301.417 ms |
+| SQLite Disk    |    1.40x |    424.378 ms |   6.9570 ms |   6.5076 ms |    424.492 ms |
+| PostgreSQL     |    2.15x |    649.366 ms |  10.3512 ms |   9.6826 ms |    651.269 ms |
+| MySqlConnector |    3.03x |    917.979 ms |   7.5867 ms |   6.7254 ms |    917.177 ms |
+| MySql          |    4.24x |  1,282.074 ms |  25.3866 ms |  69.0662 ms |  1,277.800 ms |
+| SqlServer      |   39.24x | 11,875.196 ms | 190.5093 ms | 178.2025 ms | 11,881.457 ms |
+
+Unfortunately SQL Server's performance is even more abysmal in executing large SQL Insert statements, effectively
+suggesting there's no good way to import large amounts of data in a SQL Server Linux instance from code, you'll likely 
+get better performance from an external solution like [bcp utility or SSIS](https://learn.microsoft.com/en-us/sql/relational-databases/import-export/bulk-import-and-export-of-data-sql-server).
+
+:::
+
+## Single Insert Performance
+
+This benchmark measures the performance of multiple single inserts:
+
+<chart-js :data="{
+    labels: [
+        '1,000 Rows',
+    ],
+    datasets: [
+        {
+            label: 'SQLite Disk',
+            backgroundColor: 'rgba(201, 203, 207, 0.2)',
+            borderColor: 'rgb(201, 203, 207)',
+            borderWidth: 1,
+            data: [781.708]
+        },
+        {
+            label: 'PostgreSQL',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgb(153, 102, 255)',
+            borderWidth: 1,
+            data: [315.935]
+        },
+        {
+            label: 'MySqlConnector',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgb(255, 159, 64)',
+            borderWidth: 1,
+            data: [747.250]
+        },
+        {
+            label: 'MySQL',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1,
+            data: [833.046]
+        },
+        {
+            label: 'SQL Server',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            data: [690.398]
+        }
+    ]
+}"></chart-js>
+
+:::{.table .table-striped .text-base}
+#### Inserting 1,000 Rows
+
+| Database       | Relative |       Mean |      Error |     StdDev |     Median |
+|----------------|---------:|-----------:|-----------:|-----------:|-----------:|
+| SQLite Memory  |       1x |  15.970 ms |  0.3430 ms |  1.0004 ms |  15.334 ms |
+| PostgreSQL     |   19.78x | 315.935 ms |  6.3063 ms | 16.6133 ms | 316.822 ms |
+| SqlServer      |   43.23x | 690.398 ms | 13.6920 ms | 36.3094 ms | 685.644 ms |
+| MySqlConnector |   46.79x | 747.250 ms | 14.5164 ms | 19.3789 ms | 748.131 ms |
+| SQLite Disk    |   48.95x | 781.708 ms | 12.4966 ms | 10.4352 ms | 780.188 ms |
+| MySql          |   52.16x | 833.046 ms | 16.5805 ms | 28.1550 ms | 837.304 ms |
+:::
+
+Here we see overhead cost of multiple I/O calls being significantly slower than an In Memory SQLite database whilst
+PostgreSQL continues to be a standout performer vs other RDBMS's.
+
+### Linux Benchmarks Takeaways
+
+It's not clear if SQL Server's poor performance is due to having a suboptimal implementation for Linux, running in Docker 
+or running in a Linux VM with only 7GB RAM, either way if you're running SQL Server on Linux you may want to consider 
+running your own benchmarks to check you're also not getting poor performance in your own environment. 
 
 ## Intel iMac 5K Benchmarks
 
@@ -697,7 +979,6 @@ result of a naive unoptimized implementation for these types of large SQL INSERT
 ## Single Insert Performance
 
 This benchmark measures the performance of multiple single inserts (i.e. when Bulk Insert is not available):
-
 
 <chart-js :data="{
     labels: [
