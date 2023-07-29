@@ -692,7 +692,7 @@ _Last SQL Server result removed due to poor outlier performance_
 
 PostgreSQL continues to shine here, significantly out performing other distributed RDBMS's for processing large, multi-row
 INSERT statements whilst SQL Server has a surprisingly poor showing on its native Windows/Intel platform - likely the 
-result of a naive unoptimized implementation for these types of large INSERT statements.
+result of a naive unoptimized implementation for these types of large SQL INSERT statements.
 
 ## Single Insert Performance
 
@@ -755,6 +755,8 @@ This benchmark measures the performance of multiple single inserts (i.e. when Bu
 
 :::
 
-We hope these results have been informative and have highlighted areas of opportunity for improvements in your own systems. 
+We hope these results have been informative and have highlighted opportunities for improvements in your own systems
+needing to perform large inserts or data imports. 
 
-Please let us know in the comments if you'd like us to run these benchmarks on other popular platforms like Linux on AWS or Hetzner Cloud VMs.
+Please let us know in the comments if you'd like us to run these benchmarks on other popular platforms like Linux on 
+AWS or Hetzner Cloud VMs.
