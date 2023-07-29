@@ -1038,6 +1038,3 @@ This benchmark measures the performance of multiple single inserts (i.e. when Bu
 
 We hope these results have been informative and have highlighted opportunities for improvements in your own systems
 needing to perform large inserts or data imports. 
-
-Please let us know in the comments if you'd like us to run these benchmarks on other popular platforms like Linux on 
-AWS or Hetzner Cloud VMs.
