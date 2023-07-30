@@ -412,7 +412,7 @@ Relative performance for Inserting **100,000** records:
 | SqlServer      |           1x |                10.14x |
 
 Showing large batched SQL Insert statements staying within 2-3.7x performance range of their efficient Bulk Insert 
-implementations, except for SQL Server which is an order of magnitude worse than using `SqlBulkCopy`
+implementations, except for SQL Server which is an order of magnitude slower than `SqlBulkCopy`
 
 :::
 
