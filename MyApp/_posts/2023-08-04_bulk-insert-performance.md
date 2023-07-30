@@ -512,7 +512,8 @@ As the poor MySql performance is more prevalent the smaller number of rows are B
 | MySql          |    3.05x | 80.535 ms | 1.5778 ms | 2.5478 ms | 80.400 ms |
 | SqlServer      |    3.59x | 94.899 ms | 1.8399 ms | 2.6388 ms | 95.128 ms |
 
-PostgreSQL continues to shine on its native Linux platform which somehow bests bulk inserts to an In Memory SQLite database?
+PostgreSQL continues to shine on its native Linux platform which somehow has a magically efficient implementation that 
+bests bulk inserts to an In Memory SQLite database?
 
 #### Inserting 100,000 Rows
 
@@ -526,7 +527,7 @@ PostgreSQL continues to shine on its native Linux platform which somehow bests b
 | SqlServer      |    4.66x | 986.676 ms | 19.0059 ms | 18.6663 ms | 983.779 ms |
 :::
 
-Unfortunately SQL Server AMD64 image is not just slow under Rosetta/ARM, it's also the slowest RDBMS running on Linux -
+Here we see that SQL Server AMD64 image is not just slow under Rosetta/ARM, it's just consistently slow on Linux -
 surprising how much slower a multi-billion dollar commercial database is vs the Free and Open Source PostgreSQL.
 
 ## Multiple Inserts Rows Performance
@@ -616,7 +617,7 @@ _SQL Server results removed due to poor outlier performance_
 | MySql          |    4.24x |  1,282.074 ms |  25.3866 ms |  69.0662 ms |  1,277.800 ms |
 | SqlServer      |   39.24x | 11,875.196 ms | 190.5093 ms | 178.2025 ms | 11,881.457 ms |
 
-Unfortunately SQL Server's performance is even more abysmal in executing large SQL Insert statements, effectively
+SQL Server's performance goes from slow to abysmal when executing large SQL Insert statements, effectively
 suggesting there's no good way to import large amounts of data in a SQL Server Linux instance from code, you'll likely 
 get better performance from an external solution like [bcp utility or SSIS](https://learn.microsoft.com/en-us/sql/relational-databases/import-export/bulk-import-and-export-of-data-sql-server).
 
@@ -818,8 +819,8 @@ how [macOS implements fsync](https://news.ycombinator.com/item?id=30370551).
 
 ### Relative performance of ARM vs Intel
 
-Although they're not directly comparable with their different configurations, but the relative performance numbers
-shows how much faster my new Macbook Air M2 is compared to my primary 
+Although they're not directly comparable with their different configurations, although the relative performance numbers
+provides some indication on how much faster my new Macbook Air M2 is compared to my primary 
 Intel iMac 5K Desktop, even with the overhead of running RDBMS's from within Docker containers:
 
 <chart-js :data="{
