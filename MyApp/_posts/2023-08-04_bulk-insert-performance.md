@@ -41,9 +41,9 @@ INSERT INTO Contact (Id, FirstName, LastName, Age) VALUES
 (2, 'Jane', 'Doe', 42);
 ```
 
-Normally OrmLite APIs uses parameterized statements however for Bulk Inserts it uses inline rasterized values in order 
-to send and construct a single statement, which if preferred can be configured to be used instead of its default optimal
-implementation:
+Normally OrmLite APIs uses parameterized statements however for Bulk Inserts it uses inline rasterized values in order
+to construct and send large SQL INSERT statements that avoids RDBMS's max parameter limitations, which if preferred can 
+be configured to be used instead of its default optimal implementation:
 
 ```csharp
 db.BulkInsert(rows, new BulkInsertConfig {
@@ -412,7 +412,7 @@ Relative performance for Inserting **100,000** records:
 | SqlServer      |           1x |                10.14x |
 
 Showing large batched SQL Insert statements staying within 2-3.7x performance range of their efficient Bulk Insert 
-implementations, except for SQL Server which is an order of magnitude worse than using `SqlBulkCopy`
+implementations, except for SQL Server which is an order of magnitude slower than `SqlBulkCopy`
 
 :::
 
