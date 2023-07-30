@@ -344,11 +344,18 @@ init()
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
 
-<script src="js/chart.js"></script>
 <script type="module">
 import { mount } from "app.mjs"
-import App from "./mjs/post.mjs"
-mount('#post', App)
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    mount('#post', App)
 </script>
 
     </main>
