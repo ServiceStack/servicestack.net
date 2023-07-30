@@ -1,4 +1,5 @@
 ﻿@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>
+@inject AppConfig AppConfig
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="@AppConfig.PublicBaseUrl.CombineWith("feed")" />
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <title>@ViewData["Title"] - ServiceStack</title>
     <base href="@(RazorSsg.GetBaseHref() ?? "/")" />
