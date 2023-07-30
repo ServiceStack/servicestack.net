@@ -6,9 +6,9 @@ image: https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?crop=entropy
 author: Demis Bellot
 ---
 
-The main thing that stands out after having implemented Bulk Inserts in the latest release of 
-[OrmLite](https://docs.servicestack.net/ormlite/) is that each [supported RDBMS](https://docs.servicestack.net/ormlite/installation) 
-has very different ways for how best to insert large amounts of data which is encapsulated behind OrmLite's new `BulkInsert` API:
+After having implemented Bulk Inserts in the latest release of [OrmLite](https://docs.servicestack.net/ormlite/) 
+the main thing that stands out is how [each RDBMS](https://docs.servicestack.net/ormlite/installation) 
+has very different ways for how best to insert large amounts of data, which is encapsulated behind OrmLite's new `BulkInsert` API:
 
 ```csharp
 db.BulkInsert(rows);
@@ -16,15 +16,15 @@ db.BulkInsert(rows);
 
 ## Bulk Insert Implementations
 
-Where the optimal implementation for each RDBMS is all implemented differently:
+Where the optimal implementation for each RDBMS were all implemented differently:
 
 - **PostgreSQL** - Uses PostgreSQL's [COPY](https://www.postgresql.org/docs/current/sql-copy.html) 
-command via Npgsql's [Binary Copy](https://www.npgsql.org/doc/copy.html) import feature
+command via Npgsql's [Binary Copy](https://www.npgsql.org/doc/copy.html) import
 - **MySql** - Uses [MySqlBulkLoader](https://dev.mysql.com/doc/connector-net/en/connector-net-programming-bulk-loader.html)
 feature where data is written to a temporary **CSV** file that's imported directly by `MySqlBulkLoader` 
 - **MySqlConnector** - Uses [MySqlConnector's MySqlBulkLoader](https://mysqlconnector.net/api/mysqlconnector/mysqlbulkloadertype/)
 implementation which makes use of its `SourceStream` feature to avoid writing to a temporary file
-- **SQL Server** - Uses SQL Server's `SqlBulkCopy` which imports data written to an in-memory `DataTable` 
+- **SQL Server** - Uses SQL Server's `SqlBulkCopy` feature which imports data written to an in-memory `DataTable` 
 - **SQLite** - SQLite doesn't have a specific import feature, instead Bulk Inserts are performed using batches of [Multiple Rows Inserts](https://www.tutorialscampus.com/sql/insert-multiple-rows.htm)
 to reduce I/O calls down to a configurable batch size
 - **Firebird** - Is also implemented using **Multiple Rows Inserts** within an [EXECUTE BLOCK](https://firebirdsql.org/refdocs/langrefupd20-execblock.html)
@@ -42,8 +42,8 @@ INSERT INTO Contact (Id, FirstName, LastName, Age) VALUES
 ```
 
 Normally OrmLite APIs uses parameterized statements however for Bulk Inserts it uses inline rasterized values in order 
-to send and construct a single statement, which if preferred you can configure to use instead of its default optimal
-implementation with:
+to send and construct a single statement, which if preferred can be configured to be used instead of its default optimal
+implementation:
 
 ```csharp
 db.BulkInsert(rows, new BulkInsertConfig {
@@ -54,7 +54,7 @@ db.BulkInsert(rows, new BulkInsertConfig {
 ### Batch Size
 
 **Multiple Row Inserts** are sent in batches of **1000** (Maximum for SQL Server), Firebird uses a maximum of **256** 
-whilst other RDBMS's can be configured to use much larger batch sizes:
+whilst other RDBMS's can be configured to use larger batch sizes:
 
 ```csharp
 db.BulkInsert(rows, new BulkInsertConfig {
@@ -66,31 +66,28 @@ db.BulkInsert(rows, new BulkInsertConfig {
 
 [All benchmarks](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.OrmLite/tests/ServiceStack.OrmLite.Benchmarks/Program.cs)
 were run with [BenchmarkDotNet](https://benchmarkdotnet.org) running on an 
-**M2 Apple Macbook / 24GB RAM**, a **Ubuntu 22.04 Linux VM / 7GB RAM** and an **Intel iMac 5K / 24GB RAM**.   
+**macOS M2 Apple Macbook**, an **Ubuntu 22.04 Linux VM** and an **Windows 10 Intel iMac 5K**.   
 
-Hopefully these benchmarks are informative in showing the performance benefits you can expect from Bulk Inserts across
-the multiple RDBMS's on different operating systems, although its results should be considered in the context in which 
-they were run: 
+Hopefully these benchmarks are informative in showing the performance you can expect from Bulk Inserts
+for each popular RDBMS's across on different operating systems. For context, these benchmarks were run on the configurations below:
 
-#### Apple M2 Benchmarks 
-
+#### Apple M2 / 24GB RAM
  - macOS / ARM
  - .NET 6.0 / ARM
- - ADO .NET library implementations
  - RDBMS run from local Docker containers
 
-#### Linux VM Benchmarks
+#### Linux VM / 7GB RAM
  - Ubuntu 22.04 LTS / x64
  - .NET 6.0 / x64
- - ADO .NET library implementations
  - RDBMS run from local Docker containers
 
-#### Intel iMac 5K Benchmarks
-
+#### Intel iMac 5K / 24GB RAM
  - Windows 10 / x64
  - .NET 6.0 / x64
- - ADO .NET library implementations
  - RDBMS run from local Windows installations
+
+Performance is also affected by the quality and efficiency of the ADO .NET library implementations specific to each RDBMS,
+which can result in non .NET languages yielding different results based on the quality of their data access implementations.
 
 ## Apple M2 Benchmarks
 
@@ -210,13 +207,13 @@ _SQL Server results removed due to poor outlier performance_
 :::
 
 Effectively showing PostgreSQL binary COPY is the fastest Bulk Insert implementation of all RDBMS providers,
-we're also seeing the overhead of running SQL Server's **AMD64** images on ARM has a significant
-impact on performance.
+we're also seeing the overhead of running SQL Server's **AMD64** images on ARM having a significant
+impact on its performance.
 
 ## Multiple Inserts Rows Performance
 
 These benchmarks show the performance of executing **Multiple Row Inserts** in batches of **1000**
-which is a good example to show the comparative performance for executing SQL Inserts:
+which is a good example to show the comparative performance of each RDBMS for executing large SQL Insert statements:
 
 <chart-js :data="{
     labels: [
@@ -314,8 +311,8 @@ _SQL Server results removed due to poor outlier performance_
 
 :::
 
-Takeaways from these results include PostgreSQL continuing to be a star performer, consistently out-performing 
-other distributed RDBMS's.
+Takeaways from these results show PostgreSQL continuing to be a star performer, consistently out-performing 
+other distributed RDBMS's whilst SQL Server yields even worse comparative performances.
 
 ## Single Insert Performance
 
@@ -391,8 +388,31 @@ vs Single Inserts of each database for **1,000** records:
 | MySql          |           1x |                 1.16x |            131.47x |
 | SqlServer      |           1x |                 6.61x |             74.19x |
 
-Effectively showing the cost of Single Inserts multiple I/O calls vs Bulk or SQL Batch Inserts - confirming that 
-Bulk Inserts offer vastly better performance when needing to insert a significant number of rows.
+Effectively showing the cost of Single Inserts multiple I/O calls vs Bulk or SQL Batch Inserts - confirming that
+Bulk Inserts offer much better performance when needing to insert a significant number of rows.
+
+Relative performance for Inserting **10,000** records:
+
+| Database       | Bulk Inserts | Multiple Rows Inserts |
+|----------------|-------------:|----------------------:|
+| SQLite Disk    |           1x |                    1x |
+| PostgreSQL     |           1x |                 3.37x |
+| MySqlConnector |           1x |                 1.24x |
+| MySql          |           1x |                 1.52x |
+| SqlServer      |           1x |                 9.36x |
+
+Relative performance for Inserting **100,000** records:
+
+| Database       | Bulk Inserts | Multiple Rows Inserts |
+|----------------|-------------:|----------------------:|
+| SQLite Disk    |           1x |                 1.01x |
+| PostgreSQL     |           1x |                 3.68x |
+| MySqlConnector |           1x |                 2.04x |
+| MySql          |           1x |                 2.31x |
+| SqlServer      |           1x |                10.14x |
+
+Showing large batched SQL Insert statements staying within 2-3.7x performance range of their efficient Bulk Insert 
+implementations, except for SQL Server which is an order of magnitude worse than using `SqlBulkCopy`
 
 :::
 
@@ -667,23 +687,25 @@ PostgreSQL continues to be a standout performer vs other RDBMS's.
 
 ### Linux Benchmarks Takeaways
 
-It's not clear if SQL Server's poor performance is due to having a suboptimal implementation for Linux, running in Docker 
-or running in a Linux VM with only 7GB RAM, either way if you're running SQL Server on Linux you may want to consider 
-running your own benchmarks to check you're also not getting poor performance in your own environment. 
+It's not clear if SQL Server's poor performance is due to having a suboptimal Linux port, running from Docker 
+or running in a Linux VM with only 7GB RAM. 
+
+Either way if you're running SQL Server on Linux you may want to consider running your own load tests to check you're 
+not getting poor performance in your environment and whether or not you're better off running SQL Server on a Windows instance. 
 
 ## Intel iMac 5K Benchmarks
 
-The Intel iMac 5K / 24GB RAM were run on **Windows 10**, specifications reported by BenchmarkDotNet:
+The Intel iMac 5K / 24GB RAM benchmarks were run on **Windows 10**, specifications reported by BenchmarkDotNet:
 
 ```txt
 BenchmarkDotNet v0.13.6, Windows 10 (10.0.19045.3208/22H2/2022Update)
-Intel Core i7-7700K CPU 4.20GHz (Kaby Lake), 8 logical and 4 physical cores
+Intel Core i7-7700K CPU 4.20GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
 .NET SDK 7.0.203
   [Host]     : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
-  Job-YNLYPT : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
+  Job-ILIRNE : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
 ```
 
-All benchmarks were run against local databases, installed using their native Windows Installers.
+With all benchmarks running against local databases, installed using their native Windows Installers.
 
 ## Optimized Bulk Insert Performance
 
@@ -789,9 +811,9 @@ These benchmarks below uses the default optimal Bulk Insert implementation for e
 :::
 
 Here we see that PostgreSQL continue to take the Bulk Insert crown platform even on Windows
-and SQL Server is also a performer now that it's running on its native Windows/Intel platform.
+and SQL Server is also a good performer now that it's running on its native Windows/Intel platform.
 
-It also highlights a significant performance of SQLite disk write performance on Windows/x64 which is likely due to
+It also highlights a significant performance of SQLite disk write performance on Windows/x64 which may be due to
 how [macOS implements fsync](https://news.ycombinator.com/item?id=30370551).
 
 ### Relative performance of ARM vs Intel
@@ -864,11 +886,12 @@ Intel iMac 5K Desktop, even with the overhead of running RDBMS's from within Doc
 | SqlServer      |  1.44x |             1x |
 :::
 
+Where other than SQL Server's poor performance on Linux/Rosetta, the benchmarks run much faster on Apple M2 Macbook Air.
+
 ## Multiple Inserts Rows Performance
 
-These benchmarks show the performance of executing **Multiple Row Inserts** in batches of **1000**
-which is a good example to show the comparative RDBMS performance for executing SQL Inserts:
-
+These benchmarks show the performance of executing **Multiple Row Inserts** in batches of **1000** -
+measuring the comparative performance of each RDBMS in executing large SQL Insert statements:
 
 <chart-js :data="{
     labels: [
@@ -1038,3 +1061,5 @@ This benchmark measures the performance of multiple single inserts (i.e. when Bu
 
 We hope these results have been informative and have highlighted opportunities for improvements in your own systems
 needing to perform large inserts or data imports. 
+
+Feel free to leave any feedback or suggest improvements or other environments to run these benchmarks on in the comments. 
