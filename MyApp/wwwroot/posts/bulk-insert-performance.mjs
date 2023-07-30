@@ -1,4 +1,7 @@
 import { ref, onMounted } from "vue"
+import { addScript } from "@servicestack/client"
+
+const addChartsJs = await addScript('../js/chart.js')
 
 const ChartJs = {
     template:`
@@ -9,8 +12,9 @@ const ChartJs = {
     props:['type','data','options'],
     setup(props) {
         const chart = ref()
-        onMounted(() => {
-            
+        onMounted(async () => {
+            await addChartsJs
+
             const options = props.options || {
                 responsive: true,
                 legend: {
@@ -29,7 +33,7 @@ const ChartJs = {
                 data: props.data,
                 options,
             })
-            
+
         })
         return { chart }
     }
@@ -38,3 +42,4 @@ const ChartJs = {
 export default {
     components: { ChartJs }
 }
+
