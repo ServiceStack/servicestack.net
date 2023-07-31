@@ -414,6 +414,7 @@ by adding the necessary RDBMS and <code>AdminDatabaseFeature</code> NuGet packag
 </code></pre>
 <p>This will now let us access the <a href="https://docs.servicestack.net/ormlite/getting-started#multiple-database-connections">registered databases</a>
 in our APIs, but first lets populate the databases with some data.</p>
+<h3 id="multi-database-migrations">Multi Database Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#multi-database-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>When a new project is created it populates its default configured SQLite database with some test data, we can do the same
 for the other registered database by duplicating the App's initial <a href="https://docs.servicestack.net/ormlite/db-migrations">DB migration</a>
 to a new DB <code>Migration1001.cs</code> with:</p>
