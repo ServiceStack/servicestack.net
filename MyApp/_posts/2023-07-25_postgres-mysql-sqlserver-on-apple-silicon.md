@@ -223,6 +223,8 @@ public class ConfigureDb : IHostingStartup
 This will now let us access the [registered databases](https://docs.servicestack.net/ormlite/getting-started#multiple-database-connections)
 in our APIs, but first lets populate the databases with some data. 
 
+### Multi Database Migrations
+
 When a new project is created it populates its default configured SQLite database with some test data, we can do the same 
 for the other registered database by duplicating the App's initial [DB migration](https://docs.servicestack.net/ormlite/db-migrations) 
 to a new DB `Migration1001.cs` with:
