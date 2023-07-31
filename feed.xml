@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Mon, 31 Jul 2023 06:35:22 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 31 Jul 2023 14:05:03 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Which RDBMS has the fastest Bulk Insert implementation?</title>
+        <link>https://servicestack.net/posts/bulk-insert-performance</link>
+        <author>demis@servicestack.com (Demis Bellot)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/bulk-insert-performance</guid>
+        <pubDate>Mon, 31 Jul 2023 00:00:00 GMT</pubDate>
+        <atom:updated>2023-07-31T00:00:00Z</atom:updated>
+        <category>db</category>
+        <category>dev</category>
+        <category>dotnet</category>
+        <description>Measuring the different performance of RDBMS Bulk Insert implementations</description>
+    </item>
     <item>
         <title>Install PostgreSQL, MySql and SQL Server on Apple Silicon</title>
         <link>https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon</link>
@@ -121,20 +133,6 @@
         <category> chatbot</category>
         <category> ai</category>
         <description>A walkthrough of how to enable Large Language Model &#x27;Agents&#x27; with access to your own ServiceStack APIs</description>
-    </item>
-    <item>
-        <title>Bringing xkcd static dataset to life with AutoQuery</title>
-        <link>https://servicestack.net/posts/autoquery-xkcd</link>
-        <author>darren@servicestack.com (Darren Reid)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/autoquery-xkcd</guid>
-        <pubDate>Sat, 15 Apr 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-04-15T00:00:00Z</atom:updated>
-        <category>autoquery</category>
-        <category>db</category>
-        <category>dev</category>
-        <category>huggingface</category>
-        <category>vue.js</category>
-        <description>Unsiloing data quickly with AutoQuery to make your datasets available from queryable Web APIs</description>
     </item>
 </channel>
 </rss>

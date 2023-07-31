@@ -1,0 +1,2652 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>Which RDBMS has the fastest Bulk Insert implementation? - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:creator" content="@demisbellot" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Measuring the different performance of RDBMS Bulk Insert implementations" />
+    <meta property="og:url" content="https://servicestack.net/posts/bulk-insert-performance" />
+    <meta property="og:title" content="Which RDBMS has the fastest Bulk Insert implementation?" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://docs.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Docs
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://forums.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Forums
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Free
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Trial
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Pricing
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
+                                    Sign In
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Which RDBMS has the fastest Bulk Insert implementation?
+            </h1>
+            <div class="flex justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis-bellot"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.jpg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis-bellot">Demis Bellot</a>
+                            <ul role="list" class="flex">
+                                    <li>
+                                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/demisbellot">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a title="Follow on threads.net" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://threads.net/@demisbellot">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7.5c-1.333-3-3.667-4.5-7-4.5c-5 0-8 2.5-8 9s3.5 9 8 9s7-3 7-5s-1-5-7-5c-2.5 0-3 1.25-3 2.5C9 15 10 16 11.5 16c2.5 0 3.5-1.5 3.5-5s-2-4-3-4s-1.833.333-2.5 1"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/mythz">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                            </ul>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Which RDBMS has the fastest Bulk Insert implementation? Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="mb-4 max-w-3xl mx-auto flex flex-wrap">
+                    <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
+                    <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
+                    <a href="posts/tagged/dotnet" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dotnet</a>
+            </div>
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-6 text-lg text-gray-500">
+                        <time datetime="2023-07-31T00:00:00.0000000">July 31, 2023</time>
+                        <span aria-hidden="true">&middot;</span>
+                        <span>31 min read</span>
+                    </div>
+                </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <p>After having implemented Bulk Inserts in the latest release of <a href="https://docs.servicestack.net/ormlite/">OrmLite</a>
+the main thing that stands out is how <a href="https://docs.servicestack.net/ormlite/installation">each RDBMS</a>
+has very different ways for how best to insert large amounts of data, which is encapsulated behind OrmLite's new <code>BulkInsert</code> API:</p>
+<pre><code class="language-csharp">db.BulkInsert(rows);
+</code></pre>
+<h2 id="bulk-insert-implementations">Bulk Insert Implementations<a class="header-anchor" href="javascript:;" onclick="location.hash='#bulk-insert-implementations'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Where the optimal implementation for each RDBMS were all implemented differently:</p>
+<ul>
+<li><strong>PostgreSQL</strong> - Uses PostgreSQL's <a href="https://www.postgresql.org/docs/current/sql-copy.html">COPY</a>
+command via Npgsql's <a href="https://www.npgsql.org/doc/copy.html">Binary Copy</a> import</li>
+<li><strong>MySql</strong> - Uses <a href="https://dev.mysql.com/doc/connector-net/en/connector-net-programming-bulk-loader.html">MySqlBulkLoader</a>
+feature where data is written to a temporary <strong>CSV</strong> file that's imported directly by <code>MySqlBulkLoader</code></li>
+<li><strong>MySqlConnector</strong> - Uses <a href="https://mysqlconnector.net/api/mysqlconnector/mysqlbulkloadertype/">MySqlConnector's MySqlBulkLoader</a>
+implementation which makes use of its <code>SourceStream</code> feature to avoid writing to a temporary file</li>
+<li><strong>SQL Server</strong> - Uses SQL Server's <code>SqlBulkCopy</code> feature which imports data written to an in-memory <code>DataTable</code></li>
+<li><strong>SQLite</strong> - SQLite doesn't have a specific import feature, instead Bulk Inserts are performed using batches of <a href="https://www.tutorialscampus.com/sql/insert-multiple-rows.htm">Multiple Rows Inserts</a>
+to reduce I/O calls down to a configurable batch size</li>
+<li><strong>Firebird</strong> - Is also implemented using <strong>Multiple Rows Inserts</strong> within an <a href="https://firebirdsql.org/refdocs/langrefupd20-execblock.html">EXECUTE BLOCK</a>
+configurable up to Firebird's maximum of <strong>256</strong> statements</li>
+</ul>
+<h3 id="sql-multiple-row-inserts">SQL Multiple Row Inserts<a class="header-anchor" href="javascript:;" onclick="location.hash='#sql-multiple-row-inserts'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>It should be noted that all RDBMS's has broad support SQL's Multiple Insert Rows feature which is an efficient and compact
+alternative to inserting multiple rows within a single INSERT statement:</p>
+<pre><code class="language-sql">INSERT INTO Contact (Id, FirstName, LastName, Age) VALUES 
+(1, 'John', 'Doe', 27),
+(2, 'Jane', 'Doe', 42);
+</code></pre>
+<p>Normally OrmLite APIs uses parameterized statements however for Bulk Inserts it uses inline rasterized values in order
+to construct and send large SQL INSERT statements that avoids RDBMS's max parameter limitations, which if preferred can
+be configured to be used instead of its default optimal implementation:</p>
+<pre><code class="language-csharp">db.BulkInsert(rows, new BulkInsertConfig {
+    Mode = BulkInsertMode.Sql
+});
+</code></pre>
+<h3 id="batch-size">Batch Size<a class="header-anchor" href="javascript:;" onclick="location.hash='#batch-size'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><strong>Multiple Row Inserts</strong> are sent in batches of <strong>1000</strong> (Maximum for SQL Server), Firebird uses a maximum of <strong>256</strong>
+whilst other RDBMS's can be configured to use larger batch sizes:</p>
+<pre><code class="language-csharp">db.BulkInsert(rows, new BulkInsertConfig {
+    BatchSize = 1000
+});
+</code></pre>
+<h2 id="benchmarks">Benchmarks<a class="header-anchor" href="javascript:;" onclick="location.hash='#benchmarks'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.OrmLite/tests/ServiceStack.OrmLite.Benchmarks/Program.cs">All benchmarks</a>
+were run with <a href="https://benchmarkdotnet.org">BenchmarkDotNet</a> running on an
+<strong>macOS M2 Apple Macbook</strong>, an <strong>Ubuntu 22.04 Linux VM</strong> and an <strong>Windows 10 Intel iMac 5K</strong>.</p>
+<p>Hopefully these benchmarks are informative in showing the performance you can expect from Bulk Inserts
+for each popular RDBMS's across on different operating systems. For context, these benchmarks were run on the configurations below:</p>
+<h4 id="apple-m2-24gb-ram">Apple M2 / 24GB RAM<a class="header-anchor" href="javascript:;" onclick="location.hash='#apple-m2-24gb-ram'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<ul>
+<li>macOS / ARM</li>
+<li>.NET 6.0 / ARM</li>
+<li>RDBMS run from local Docker containers</li>
+</ul>
+<h4 id="linux-vm-7gb-ram">Linux VM / 7GB RAM<a class="header-anchor" href="javascript:;" onclick="location.hash='#linux-vm-7gb-ram'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<ul>
+<li>Ubuntu 22.04 LTS / x64</li>
+<li>.NET 6.0 / x64</li>
+<li>RDBMS run from local Docker containers</li>
+</ul>
+<h4 id="intel-imac-5k-24gb-ram">Intel iMac 5K / 24GB RAM<a class="header-anchor" href="javascript:;" onclick="location.hash='#intel-imac-5k-24gb-ram'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<ul>
+<li>Windows 10 / x64</li>
+<li>.NET 6.0 / x64</li>
+<li>RDBMS run from local Windows installations</li>
+</ul>
+<p>Performance is also affected by the quality and efficiency of the ADO .NET library implementations specific to each RDBMS,
+which can result in non .NET languages yielding different results based on the quality of their data access implementations.</p>
+<h2 id="apple-m2-benchmarks">Apple M2 Benchmarks<a class="header-anchor" href="javascript:;" onclick="location.hash='#apple-m2-benchmarks'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Apple M2 Benchmarks were run on an Apple M2 Macbook Air 15&quot; / 24GB RAM, specifications reported by BenchmarkDotNet:</p>
+<pre><code class="language-txt">BenchmarkDotNet v0.13.6, macOS Ventura 13.4.1 (22F2083) [Darwin 22.5.0]
+Apple M2, 1 CPU, 8 logical and 8 physical cores
+.NET SDK 6.0.411
+  [Host]     : .NET 6.0.19 (6.0.1923.31806), Arm64 RyuJIT AdvSIMD
+  Job-VQWEED : .NET 6.0.19 (6.0.1923.31806), Arm64 RyuJIT AdvSIMD
+</code></pre>
+<p>All benchmarks were run against local databases with most RDBMS's installed and
+<a href="https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon">running from a Docker container</a>.</p>
+<p>All Docker containers runs native ARM Builds whilst SQL Server's <strong>AMD64</strong> Docker image runs emulated on Rosetta using
+<a href="https://developer.apple.com/documentation/virtualization">Apple's Virtualization Framework</a>.</p>
+<h2 id="optimized-bulk-insert-performance">Optimized Bulk Insert Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#optimized-bulk-insert-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>These benchmarks below uses the default optimal Bulk Insert implementation for each RDBMS:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+'10,000 Rows',
+'100,000 Rows'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [1.812, 17.066, 166.747]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [2.330, 20.224, 199.697]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [6.123, 14.389, 115.645]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [9.676, 64.389, 310.966]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [8.778, 64.427, 308.574]
+},
+]
+}"></chart-js></p>
+<div class="text-xs text-gray-500 text-center"><p><em>SQL Server results removed due to poor outlier performance</em></p>
+</div>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.812 ms</td>
+<td style="text-align: right;">0.0355 ms</td>
+<td style="text-align: right;">0.0520 ms</td>
+<td style="text-align: right;">1.813 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.29x</td>
+<td style="text-align: right;">2.330 ms</td>
+<td style="text-align: right;">0.0463 ms</td>
+<td style="text-align: right;">0.0664 ms</td>
+<td style="text-align: right;">2.331 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">3.38x</td>
+<td style="text-align: right;">6.123 ms</td>
+<td style="text-align: right;">0.2952 ms</td>
+<td style="text-align: right;">0.8705 ms</td>
+<td style="text-align: right;">6.280 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">4.84x</td>
+<td style="text-align: right;">8.778 ms</td>
+<td style="text-align: right;">0.2387 ms</td>
+<td style="text-align: right;">0.6962 ms</td>
+<td style="text-align: right;">8.821 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">5.34x</td>
+<td style="text-align: right;">9.676 ms</td>
+<td style="text-align: right;">0.2860 ms</td>
+<td style="text-align: right;">0.8159 ms</td>
+<td style="text-align: right;">9.575 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">7.27x</td>
+<td style="text-align: right;">13.182 ms</td>
+<td style="text-align: right;">0.3376 ms</td>
+<td style="text-align: right;">0.9795 ms</td>
+<td style="text-align: right;">12.987 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-10000-rows">Inserting 10,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-10000-rows'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">14.389 ms</td>
+<td style="text-align: right;">0.4020 ms</td>
+<td style="text-align: right;">1.1533 ms</td>
+<td style="text-align: right;">14.181 ms</td>
+</tr>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1.19x</td>
+<td style="text-align: right;">17.066 ms</td>
+<td style="text-align: right;">0.3119 ms</td>
+<td style="text-align: right;">0.4269 ms</td>
+<td style="text-align: right;">16.899 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.41x</td>
+<td style="text-align: right;">20.224 ms</td>
+<td style="text-align: right;">0.3869 ms</td>
+<td style="text-align: right;">0.4139 ms</td>
+<td style="text-align: right;">20.212 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">4.47x</td>
+<td style="text-align: right;">64.389 ms</td>
+<td style="text-align: right;">1.3736 ms</td>
+<td style="text-align: right;">3.9411 ms</td>
+<td style="text-align: right;">65.195 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">4.48x</td>
+<td style="text-align: right;">64.427 ms</td>
+<td style="text-align: right;">1.4085 ms</td>
+<td style="text-align: right;">3.9496 ms</td>
+<td style="text-align: right;">64.854 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">6.24x</td>
+<td style="text-align: right;">89.821 ms</td>
+<td style="text-align: right;">2.9396 ms</td>
+<td style="text-align: right;">8.6213 ms</td>
+<td style="text-align: right;">91.203 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-100000-rows">Inserting 100,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-100000-rows'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">115.645 ms</td>
+<td style="text-align: right;">3.6250 ms</td>
+<td style="text-align: right;">10.5744 ms</td>
+<td style="text-align: right;">111.401 ms</td>
+</tr>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1.44x</td>
+<td style="text-align: right;">166.747 ms</td>
+<td style="text-align: right;">0.4975 ms</td>
+<td style="text-align: right;">0.4154 ms</td>
+<td style="text-align: right;">166.742 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.73x</td>
+<td style="text-align: right;">199.697 ms</td>
+<td style="text-align: right;">3.8056 ms</td>
+<td style="text-align: right;">5.9249 ms</td>
+<td style="text-align: right;">201.890 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">2.67x</td>
+<td style="text-align: right;">308.574 ms</td>
+<td style="text-align: right;">6.0372 ms</td>
+<td style="text-align: right;">7.8501 ms</td>
+<td style="text-align: right;">307.322 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">2.69x</td>
+<td style="text-align: right;">310.966 ms</td>
+<td style="text-align: right;">6.2043 ms</td>
+<td style="text-align: right;">10.3660 ms</td>
+<td style="text-align: right;">308.421 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">7.22x</td>
+<td style="text-align: right;">835.181 ms</td>
+<td style="text-align: right;">16.5847 ms</td>
+<td style="text-align: right;">15.5133 ms</td>
+<td style="text-align: right;">836.200 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-1000000-rows">Inserting 1,000,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000000-rows'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">980.558 ms</td>
+<td style="text-align: right;">18.6512 ms</td>
+<td style="text-align: right;">39.3418 ms</td>
+<td style="text-align: right;">973.302 ms</td>
+</tr>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1.73x</td>
+<td style="text-align: right;">1,697.041 ms</td>
+<td style="text-align: right;">12.3617 ms</td>
+<td style="text-align: right;">11.5632 ms</td>
+<td style="text-align: right;">1,692.348 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">2.01x</td>
+<td style="text-align: right;">1,975.092 ms</td>
+<td style="text-align: right;">15.7094 ms</td>
+<td style="text-align: right;">13.1181 ms</td>
+<td style="text-align: right;">1,971.127 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">2.71x</td>
+<td style="text-align: right;">2,654.076 ms</td>
+<td style="text-align: right;">37.9302 ms</td>
+<td style="text-align: right;">33.6241 ms</td>
+<td style="text-align: right;">2,662.150 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">2.71x</td>
+<td style="text-align: right;">2,661.294 ms</td>
+<td style="text-align: right;">29.3865 ms</td>
+<td style="text-align: right;">26.0504 ms</td>
+<td style="text-align: right;">2,661.826 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">8.67x</td>
+<td style="text-align: right;">8,517.809 ms</td>
+<td style="text-align: right;">55.3398 ms</td>
+<td style="text-align: right;">49.0573 ms</td>
+<td style="text-align: right;">8,514.901 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Effectively showing PostgreSQL binary COPY is the fastest Bulk Insert implementation of all RDBMS providers,
+we're also seeing the overhead of running SQL Server's <strong>AMD64</strong> images on ARM having a significant
+impact on its performance.</p>
+<h2 id="multiple-inserts-rows-performance">Multiple Inserts Rows Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#multiple-inserts-rows-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>These benchmarks show the performance of executing <strong>Multiple Row Inserts</strong> in batches of <strong>1000</strong>
+which is a good example to show the comparative performance of each RDBMS for executing large SQL Insert statements:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+'10,000 Rows',
+'100,000 Rows'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [1.812, 17.066, 166.747]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [2.306, 20.149, 201.074]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [8.073, 48.502, 425.789]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [11.210, 98.179, 718.902]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [9.154, 79.905, 630.839]
+},
+]
+}"></chart-js></p>
+<div class="text-xs text-gray-500 text-center"><p><em>SQL Server results removed due to poor outlier performance</em></p>
+</div>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows-1">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.774 ms</td>
+<td style="text-align: right;">0.0331 ms</td>
+<td style="text-align: right;">0.0554 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.30x</td>
+<td style="text-align: right;">2.306 ms</td>
+<td style="text-align: right;">0.0398 ms</td>
+<td style="text-align: right;">0.0531 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">4.55x</td>
+<td style="text-align: right;">8.073 ms</td>
+<td style="text-align: right;">0.5297 ms</td>
+<td style="text-align: right;">1.5452 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">5.16x</td>
+<td style="text-align: right;">9.154 ms</td>
+<td style="text-align: right;">0.3355 ms</td>
+<td style="text-align: right;">0.9681 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">6.32x</td>
+<td style="text-align: right;">11.210 ms</td>
+<td style="text-align: right;">0.3573 ms</td>
+<td style="text-align: right;">1.0252 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">49.11x</td>
+<td style="text-align: right;">87.128 ms</td>
+<td style="text-align: right;">0.8415 ms</td>
+<td style="text-align: right;">0.7460 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-10000-rows-1">Inserting 10,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-10000-rows-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">16.724 ms</td>
+<td style="text-align: right;">0.3183 ms</td>
+<td style="text-align: right;">0.3406 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.20x</td>
+<td style="text-align: right;">20.149 ms</td>
+<td style="text-align: right;">0.2649 ms</td>
+<td style="text-align: right;">0.2212 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.90x</td>
+<td style="text-align: right;">48.502 ms</td>
+<td style="text-align: right;">2.3704 ms</td>
+<td style="text-align: right;">6.9893 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">4.78x</td>
+<td style="text-align: right;">79.905 ms</td>
+<td style="text-align: right;">2.5416 ms</td>
+<td style="text-align: right;">7.4540 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">5.97x</td>
+<td style="text-align: right;">98.179 ms</td>
+<td style="text-align: right;">2.5259 ms</td>
+<td style="text-align: right;">7.4080 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">50.28x</td>
+<td style="text-align: right;">840.832 ms</td>
+<td style="text-align: right;">3.6211 ms</td>
+<td style="text-align: right;">2.8271 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-100000-rows-1">Inserting 100,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-100000-rows-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">168.207 ms</td>
+<td style="text-align: right;">1.8704 ms</td>
+<td style="text-align: right;">1.4603 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.20x</td>
+<td style="text-align: right;">201.074 ms</td>
+<td style="text-align: right;">3.7597 ms</td>
+<td style="text-align: right;">5.3920 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.53x</td>
+<td style="text-align: right;">425.789 ms</td>
+<td style="text-align: right;">8.4799 ms</td>
+<td style="text-align: right;">12.6922 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.75x</td>
+<td style="text-align: right;">630.839 ms</td>
+<td style="text-align: right;">11.4516 ms</td>
+<td style="text-align: right;">19.1330 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">4.27x</td>
+<td style="text-align: right;">718.902 ms</td>
+<td style="text-align: right;">14.0201 ms</td>
+<td style="text-align: right;">15.5833 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">50.35x</td>
+<td style="text-align: right;">8,469.901 ms</td>
+<td style="text-align: right;">48.8046 ms</td>
+<td style="text-align: right;">43.2640 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-1000000-rows-1">Inserting 1,000,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000000-rows-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1,710.710 ms</td>
+<td style="text-align: right;">5.0494 ms</td>
+<td style="text-align: right;">4.2165 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.34x</td>
+<td style="text-align: right;">1,949.376 ms</td>
+<td style="text-align: right;">7.3221 ms</td>
+<td style="text-align: right;">6.4909 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.93x</td>
+<td style="text-align: right;">5,009.395 ms</td>
+<td style="text-align: right;">99.4490 ms</td>
+<td style="text-align: right;">93.0246 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.82x</td>
+<td style="text-align: right;">6,541.659 ms</td>
+<td style="text-align: right;">61.4450 ms</td>
+<td style="text-align: right;">57.4757 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">4.04x</td>
+<td style="text-align: right;">6,905.332 ms</td>
+<td style="text-align: right;">72.1600 ms</td>
+<td style="text-align: right;">63.9680 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">52.31x</td>
+<td style="text-align: right;">89,485.334 ms</td>
+<td style="text-align: right;">713.9731 ms</td>
+<td style="text-align: right;">596.1999 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Takeaways from these results show PostgreSQL continuing to be a star performer, consistently out-performing
+other distributed RDBMS's whilst SQL Server yields even worse comparative performances.</p>
+<h2 id="single-insert-performance">Single Insert Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#single-insert-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This benchmark measures the performance of multiple single inserts, i.e. using the traditional Single Insert ORM APIs
+when Bulk Insert is not available:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+],
+datasets: [
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [224.2379]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [349.2328]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [1272.0975]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [1209.4689]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [978.0029]
+}
+]
+}"></chart-js></p>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows-2">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows-2'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">15,417.3 μs</td>
+<td style="text-align: right;">1,820.82 μs</td>
+<td style="text-align: right;">5,311.41 μs</td>
+<td style="text-align: right;">18,153.2 μs</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">14.54x</td>
+<td style="text-align: right;">224,237.9 μs</td>
+<td style="text-align: right;">1,777.94 μs</td>
+<td style="text-align: right;">1,388.10 μs</td>
+<td style="text-align: right;">224,184.8 μs</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">22.65x</td>
+<td style="text-align: right;">349,232.8 μs</td>
+<td style="text-align: right;">3,255.67 μs</td>
+<td style="text-align: right;">2,541.81 μs</td>
+<td style="text-align: right;">349,404.4 μs</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">63.44x</td>
+<td style="text-align: right;">978,002.9 μs</td>
+<td style="text-align: right;">19,327.88 μs</td>
+<td style="text-align: right;">19,848.30 μs</td>
+<td style="text-align: right;">982,696.9 μs</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">78.45x</td>
+<td style="text-align: right;">1,209,468.9 μs</td>
+<td style="text-align: right;">24,150.34 μs</td>
+<td style="text-align: right;">38,305.00 μs</td>
+<td style="text-align: right;">1,201,763.9 μs</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">82.51x</td>
+<td style="text-align: right;">1,272,097.5 μs</td>
+<td style="text-align: right;">24,790.10 μs</td>
+<td style="text-align: right;">38,595.20 μs</td>
+<td style="text-align: right;">1,287,374.8 μs</td>
+</tr>
+</tbody>
+</table>
+<p>Where we can see that PostgreSQL/Npgsql holds the performance crown for Multiple Single Inserts, in addition to
+Multiple Rows Inserts and Bulk Inserts implementations.</p>
+<p>We can the use this compare the relative performance benefits of Bulk Inserts vs Multiple Rows Inserts
+vs Single Inserts of each database for <strong>1,000</strong> records:</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Bulk Inserts</th>
+<th style="text-align: right;">Multiple Rows Inserts</th>
+<th style="text-align: right;">Single Row Inserts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">97.24x</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.32x</td>
+<td style="text-align: right;">57.04x</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.04x</td>
+<td style="text-align: right;">137.78x</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.16x</td>
+<td style="text-align: right;">131.47x</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">6.61x</td>
+<td style="text-align: right;">74.19x</td>
+</tr>
+</tbody>
+</table>
+<p>Effectively showing the cost of Single Inserts multiple I/O calls vs Bulk or SQL Batch Inserts - confirming that
+Bulk Inserts offer much better performance when needing to insert a significant number of rows.</p>
+<p>Relative performance for Inserting <strong>10,000</strong> records:</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Bulk Inserts</th>
+<th style="text-align: right;">Multiple Rows Inserts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1x</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">3.37x</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.24x</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.52x</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">9.36x</td>
+</tr>
+</tbody>
+</table>
+<p>Relative performance for Inserting <strong>100,000</strong> records:</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Bulk Inserts</th>
+<th style="text-align: right;">Multiple Rows Inserts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.01x</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">3.68x</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.04x</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.31x</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">10.14x</td>
+</tr>
+</tbody>
+</table>
+<p>Showing large batched SQL Insert statements staying within 2-3.7x performance range of their efficient Bulk Insert
+implementations, except for SQL Server which is an order of magnitude slower than <code>SqlBulkCopy</code></p>
+</div>
+<h2 id="ubuntu-linux-vm-benchmarks">Ubuntu Linux VM Benchmarks<a class="header-anchor" href="javascript:;" onclick="location.hash='#ubuntu-linux-vm-benchmarks'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The Ubuntu Linux VM Benchmarks were run on a GitHub Actions VM which are reported to run on a 2 Core CPU with
+<a href="https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources">7 GB of RAM</a>,
+specifications reported by BenchmarkDotnet:</p>
+<pre><code class="language-txt">BenchmarkDotNet v0.13.6, Ubuntu 22.04.2 LTS (Jammy Jellyfish)
+Intel Xeon Platinum 8370C CPU 2.80GHz, 1 CPU, 2 logical and 2 physical cores
+.NET SDK 6.0.412
+  [Host]     : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
+  Job-HXEVFT : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
+</code></pre>
+<h2 id="optimized-bulk-insert-performance-1">Optimized Bulk Insert Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#optimized-bulk-insert-performance-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>These benchmarks below uses the default optimal Bulk Insert implementation for each RDBMS:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+'10,000 Rows',
+'100,000 Rows'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [3.025, 27.653, 303.348]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [4.520, 40.234, 417.378]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [5.646, 26.436, 211.951]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [10.597, 80.429, 670.859]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [53.698, 80.535, 693.690]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [12.201, 94.899, 986.676]
+}
+]
+}"></chart-js></p>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows-3">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows-3'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">3.025 ms</td>
+<td style="text-align: right;">0.0527 ms</td>
+<td style="text-align: right;">0.1089 ms</td>
+<td style="text-align: right;">3.053 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.49x</td>
+<td style="text-align: right;">4.520 ms</td>
+<td style="text-align: right;">0.0898 ms</td>
+<td style="text-align: right;">0.1794 ms</td>
+<td style="text-align: right;">4.576 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1.87x</td>
+<td style="text-align: right;">5.646 ms</td>
+<td style="text-align: right;">0.2275 ms</td>
+<td style="text-align: right;">0.6415 ms</td>
+<td style="text-align: right;">5.630 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.50x</td>
+<td style="text-align: right;">10.597 ms</td>
+<td style="text-align: right;">0.2045 ms</td>
+<td style="text-align: right;">0.1813 ms</td>
+<td style="text-align: right;">10.608 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">4.03x</td>
+<td style="text-align: right;">12.201 ms</td>
+<td style="text-align: right;">0.2420 ms</td>
+<td style="text-align: right;">0.5845 ms</td>
+<td style="text-align: right;">12.104 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">17.75x</td>
+<td style="text-align: right;">53.698 ms</td>
+<td style="text-align: right;">1.0640 ms</td>
+<td style="text-align: right;">2.0753 ms</td>
+<td style="text-align: right;">53.425 ms</td>
+</tr>
+</tbody>
+</table>
+<p>As the poor MySql performance is more prevalent the smaller number of rows are Bulk Inserted suggests it's the result of a
+1-time cost like writing to the temporary file, which is less of a overhead when more rows are inserted.</p>
+<h4 id="inserting-10000-rows-2">Inserting 10,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-10000-rows-2'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">26.436 ms</td>
+<td style="text-align: right;">1.8383 ms</td>
+<td style="text-align: right;">5.1848 ms</td>
+<td style="text-align: right;">23.624 ms</td>
+</tr>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1.05x</td>
+<td style="text-align: right;">27.653 ms</td>
+<td style="text-align: right;">0.5439 ms</td>
+<td style="text-align: right;">1.0478 ms</td>
+<td style="text-align: right;">27.100 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.52x</td>
+<td style="text-align: right;">40.234 ms</td>
+<td style="text-align: right;">0.7801 ms</td>
+<td style="text-align: right;">1.2817 ms</td>
+<td style="text-align: right;">40.189 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.04x</td>
+<td style="text-align: right;">80.429 ms</td>
+<td style="text-align: right;">1.6022 ms</td>
+<td style="text-align: right;">2.0833 ms</td>
+<td style="text-align: right;">80.585 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">3.05x</td>
+<td style="text-align: right;">80.535 ms</td>
+<td style="text-align: right;">1.5778 ms</td>
+<td style="text-align: right;">2.5478 ms</td>
+<td style="text-align: right;">80.400 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">3.59x</td>
+<td style="text-align: right;">94.899 ms</td>
+<td style="text-align: right;">1.8399 ms</td>
+<td style="text-align: right;">2.6388 ms</td>
+<td style="text-align: right;">95.128 ms</td>
+</tr>
+</tbody>
+</table>
+<p>PostgreSQL continues to shine on its native Linux platform which somehow has a magically efficient implementation that
+bests bulk inserts to an In Memory SQLite database?</p>
+<h4 id="inserting-100000-rows-2">Inserting 100,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-100000-rows-2'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">211.951 ms</td>
+<td style="text-align: right;">4.2186 ms</td>
+<td style="text-align: right;">11.1134 ms</td>
+<td style="text-align: right;">210.844 ms</td>
+</tr>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1.43x</td>
+<td style="text-align: right;">303.348 ms</td>
+<td style="text-align: right;">5.9261 ms</td>
+<td style="text-align: right;">8.6864 ms</td>
+<td style="text-align: right;">305.627 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.97x</td>
+<td style="text-align: right;">417.378 ms</td>
+<td style="text-align: right;">8.0392 ms</td>
+<td style="text-align: right;">8.6019 ms</td>
+<td style="text-align: right;">418.351 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.17x</td>
+<td style="text-align: right;">670.859 ms</td>
+<td style="text-align: right;">11.1014 ms</td>
+<td style="text-align: right;">9.8411 ms</td>
+<td style="text-align: right;">668.926 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">3.28x</td>
+<td style="text-align: right;">693.690 ms</td>
+<td style="text-align: right;">8.6160 ms</td>
+<td style="text-align: right;">8.0594 ms</td>
+<td style="text-align: right;">691.702 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">4.66x</td>
+<td style="text-align: right;">986.676 ms</td>
+<td style="text-align: right;">19.0059 ms</td>
+<td style="text-align: right;">18.6663 ms</td>
+<td style="text-align: right;">983.779 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here we see that SQL Server AMD64 image is not just slow under Rosetta/ARM, it's just consistently slow on Linux -
+surprising how much slower a multi-billion dollar commercial database is vs the Free and Open Source PostgreSQL.</p>
+<h2 id="multiple-inserts-rows-performance-1">Multiple Inserts Rows Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#multiple-inserts-rows-performance-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>These benchmarks show the performance of executing <strong>Multiple Row Inserts</strong> in batches of <strong>1000</strong> rows:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+'10,000 Rows',
+'100,000 Rows'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [3.117, 28.106, 302.656]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [4.543, 39.774, 424.378]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [7.481, 65.437, 649.366]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [12.025, 100.473, 917.979]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [15.204, 142.609, 1282.074]
+},
+]
+}"></chart-js></p>
+<div class="text-xs text-gray-500 text-center"><p><em>SQL Server results removed due to poor outlier performance</em></p>
+</div>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows-4">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows-4'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">3.117 ms</td>
+<td style="text-align: right;">0.0293 ms</td>
+<td style="text-align: right;">0.0274 ms</td>
+<td style="text-align: right;">3.116 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.46x</td>
+<td style="text-align: right;">4.543 ms</td>
+<td style="text-align: right;">0.0898 ms</td>
+<td style="text-align: right;">0.2235 ms</td>
+<td style="text-align: right;">4.519 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.40x</td>
+<td style="text-align: right;">7.481 ms</td>
+<td style="text-align: right;">0.1495 ms</td>
+<td style="text-align: right;">0.1325 ms</td>
+<td style="text-align: right;">7.469 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.86x</td>
+<td style="text-align: right;">12.025 ms</td>
+<td style="text-align: right;">0.2265 ms</td>
+<td style="text-align: right;">0.2946 ms</td>
+<td style="text-align: right;">11.966 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">4.88x</td>
+<td style="text-align: right;">15.204 ms</td>
+<td style="text-align: right;">0.3003 ms</td>
+<td style="text-align: right;">0.7254 ms</td>
+<td style="text-align: right;">15.106 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">39.61x</td>
+<td style="text-align: right;">123.473 ms</td>
+<td style="text-align: right;">2.2482 ms</td>
+<td style="text-align: right;">1.9930 ms</td>
+<td style="text-align: right;">123.270 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-10000-rows-3">Inserting 10,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-10000-rows-3'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">28.106 ms</td>
+<td style="text-align: right;">0.5567 ms</td>
+<td style="text-align: right;">1.1621 ms</td>
+<td style="text-align: right;">27.552 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.42x</td>
+<td style="text-align: right;">39.774 ms</td>
+<td style="text-align: right;">0.5604 ms</td>
+<td style="text-align: right;">0.4968 ms</td>
+<td style="text-align: right;">39.701 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.33x</td>
+<td style="text-align: right;">65.437 ms</td>
+<td style="text-align: right;">1.2455 ms</td>
+<td style="text-align: right;">1.4343 ms</td>
+<td style="text-align: right;">65.431 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.57x</td>
+<td style="text-align: right;">100.473 ms</td>
+<td style="text-align: right;">1.9342 ms</td>
+<td style="text-align: right;">1.7146 ms</td>
+<td style="text-align: right;">100.253 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">5.07x</td>
+<td style="text-align: right;">142.609 ms</td>
+<td style="text-align: right;">9.0717 ms</td>
+<td style="text-align: right;">26.3187 ms</td>
+<td style="text-align: right;">130.328 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">41.47x</td>
+<td style="text-align: right;">1,165.550 ms</td>
+<td style="text-align: right;">11.0161 ms</td>
+<td style="text-align: right;">9.7655 ms</td>
+<td style="text-align: right;">1,167.982 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-100000-rows-3">Inserting 100,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-100000-rows-3'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">302.656 ms</td>
+<td style="text-align: right;">5.9832 ms</td>
+<td style="text-align: right;">6.4019 ms</td>
+<td style="text-align: right;">301.417 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1.40x</td>
+<td style="text-align: right;">424.378 ms</td>
+<td style="text-align: right;">6.9570 ms</td>
+<td style="text-align: right;">6.5076 ms</td>
+<td style="text-align: right;">424.492 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.15x</td>
+<td style="text-align: right;">649.366 ms</td>
+<td style="text-align: right;">10.3512 ms</td>
+<td style="text-align: right;">9.6826 ms</td>
+<td style="text-align: right;">651.269 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.03x</td>
+<td style="text-align: right;">917.979 ms</td>
+<td style="text-align: right;">7.5867 ms</td>
+<td style="text-align: right;">6.7254 ms</td>
+<td style="text-align: right;">917.177 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">4.24x</td>
+<td style="text-align: right;">1,282.074 ms</td>
+<td style="text-align: right;">25.3866 ms</td>
+<td style="text-align: right;">69.0662 ms</td>
+<td style="text-align: right;">1,277.800 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">39.24x</td>
+<td style="text-align: right;">11,875.196 ms</td>
+<td style="text-align: right;">190.5093 ms</td>
+<td style="text-align: right;">178.2025 ms</td>
+<td style="text-align: right;">11,881.457 ms</td>
+</tr>
+</tbody>
+</table>
+<p>SQL Server's performance goes from slow to abysmal when executing large SQL Insert statements, effectively
+suggesting there's no good way to import large amounts of data in a SQL Server Linux instance from code, you'll likely
+get better performance from an external solution like <a href="https://learn.microsoft.com/en-us/sql/relational-databases/import-export/bulk-import-and-export-of-data-sql-server">bcp utility or SSIS</a>.</p>
+</div>
+<h2 id="single-insert-performance-1">Single Insert Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#single-insert-performance-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This benchmark measures the performance of multiple single inserts:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+],
+datasets: [
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [781.708]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [315.935]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [747.250]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [833.046]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [690.398]
+}
+]
+}"></chart-js></p>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows-5">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows-5'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">15.970 ms</td>
+<td style="text-align: right;">0.3430 ms</td>
+<td style="text-align: right;">1.0004 ms</td>
+<td style="text-align: right;">15.334 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">19.78x</td>
+<td style="text-align: right;">315.935 ms</td>
+<td style="text-align: right;">6.3063 ms</td>
+<td style="text-align: right;">16.6133 ms</td>
+<td style="text-align: right;">316.822 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">43.23x</td>
+<td style="text-align: right;">690.398 ms</td>
+<td style="text-align: right;">13.6920 ms</td>
+<td style="text-align: right;">36.3094 ms</td>
+<td style="text-align: right;">685.644 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">46.79x</td>
+<td style="text-align: right;">747.250 ms</td>
+<td style="text-align: right;">14.5164 ms</td>
+<td style="text-align: right;">19.3789 ms</td>
+<td style="text-align: right;">748.131 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">48.95x</td>
+<td style="text-align: right;">781.708 ms</td>
+<td style="text-align: right;">12.4966 ms</td>
+<td style="text-align: right;">10.4352 ms</td>
+<td style="text-align: right;">780.188 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">52.16x</td>
+<td style="text-align: right;">833.046 ms</td>
+<td style="text-align: right;">16.5805 ms</td>
+<td style="text-align: right;">28.1550 ms</td>
+<td style="text-align: right;">837.304 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here we see overhead cost of multiple I/O calls being significantly slower than an In Memory SQLite database whilst
+PostgreSQL continues to be a standout performer vs other RDBMS's.</p>
+<h3 id="linux-benchmarks-takeaways">Linux Benchmarks Takeaways<a class="header-anchor" href="javascript:;" onclick="location.hash='#linux-benchmarks-takeaways'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>It's not clear if SQL Server's poor performance is due to having a suboptimal Linux port, running from Docker
+or running in a Linux VM with only 7GB RAM.</p>
+<p>Either way if you're running SQL Server on Linux you may want to consider running your own load tests to check you're
+not getting poor performance in your environment and whether or not you're better off running SQL Server on a Windows instance.</p>
+<h2 id="intel-imac-5k-benchmarks">Intel iMac 5K Benchmarks<a class="header-anchor" href="javascript:;" onclick="location.hash='#intel-imac-5k-benchmarks'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The Intel iMac 5K / 24GB RAM benchmarks were run on <strong>Windows 10</strong>, specifications reported by BenchmarkDotNet:</p>
+<pre><code class="language-txt">BenchmarkDotNet v0.13.6, Windows 10 (10.0.19045.3208/22H2/2022Update)
+Intel Core i7-7700K CPU 4.20GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET SDK 7.0.203
+  [Host]     : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
+  Job-ILIRNE : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
+</code></pre>
+<p>With all benchmarks running against local databases, installed using their native Windows Installers.</p>
+<h2 id="optimized-bulk-insert-performance-2">Optimized Bulk Insert Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#optimized-bulk-insert-performance-2'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>These benchmarks below uses the default optimal Bulk Insert implementation for each RDBMS:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+'10,000 Rows',
+'100,000 Rows'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [2.638, 23.424, 240.111]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 205, 86, 0.2)',
+borderColor: 'rgb(255, 205, 86)',
+borderWidth: 1,
+data: [9.884, 102.848, 1049.120]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [4.507, 17.796, 265.161]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [23.952, 145.037, 714.550]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [21.791, 143.624, 580.433]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [6.432, 53.330, 580.433]
+}
+]
+}"></chart-js></p>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows-6">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows-6'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.638 ms</td>
+<td style="text-align: right;">0.0675 ms</td>
+<td style="text-align: right;">0.1981 ms</td>
+<td style="text-align: right;">2.660 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1.71x</td>
+<td style="text-align: right;">4.507 ms</td>
+<td style="text-align: right;">0.1548 ms</td>
+<td style="text-align: right;">0.4442 ms</td>
+<td style="text-align: right;">4.431 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">2.44x</td>
+<td style="text-align: right;">6.432 ms</td>
+<td style="text-align: right;">0.1342 ms</td>
+<td style="text-align: right;">0.3763 ms</td>
+<td style="text-align: right;">6.319 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">3.75x</td>
+<td style="text-align: right;">9.884 ms</td>
+<td style="text-align: right;">0.2986 ms</td>
+<td style="text-align: right;">0.8226 ms</td>
+<td style="text-align: right;">9.814 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">8.26x</td>
+<td style="text-align: right;">21.791 ms</td>
+<td style="text-align: right;">1.4271 ms</td>
+<td style="text-align: right;">4.0017 ms</td>
+<td style="text-align: right;">20.746 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">9.08x</td>
+<td style="text-align: right;">23.952 ms</td>
+<td style="text-align: right;">1.3798 ms</td>
+<td style="text-align: right;">3.8234 ms</td>
+<td style="text-align: right;">22.884 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-10000-rows-4">Inserting 10,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-10000-rows-4'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">17.796 ms</td>
+<td style="text-align: right;">0.3128 ms</td>
+<td style="text-align: right;">0.4486 ms</td>
+<td style="text-align: right;">17.743 ms</td>
+</tr>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1.32x</td>
+<td style="text-align: right;">23.424 ms</td>
+<td style="text-align: right;">0.4573 ms</td>
+<td style="text-align: right;">0.5444 ms</td>
+<td style="text-align: right;">23.354 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">3.0x</td>
+<td style="text-align: right;">53.330 ms</td>
+<td style="text-align: right;">0.7668 ms</td>
+<td style="text-align: right;">0.7173 ms</td>
+<td style="text-align: right;">53.499 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">5.78x</td>
+<td style="text-align: right;">102.848 ms</td>
+<td style="text-align: right;">2.0194 ms</td>
+<td style="text-align: right;">5.2845 ms</td>
+<td style="text-align: right;">101.927 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">8.07x</td>
+<td style="text-align: right;">143.624 ms</td>
+<td style="text-align: right;">6.7792 ms</td>
+<td style="text-align: right;">19.3413 ms</td>
+<td style="text-align: right;">139.740 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">8.15x</td>
+<td style="text-align: right;">145.037 ms</td>
+<td style="text-align: right;">6.1655 ms</td>
+<td style="text-align: right;">17.7889 ms</td>
+<td style="text-align: right;">141.211 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-100000-rows-4">Inserting 100,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-100000-rows-4'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">240.111 ms</td>
+<td style="text-align: right;">2.6344 ms</td>
+<td style="text-align: right;">2.3353 ms</td>
+<td style="text-align: right;">239.452 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1.10x</td>
+<td style="text-align: right;">265.161 ms</td>
+<td style="text-align: right;">12.6705 ms</td>
+<td style="text-align: right;">36.9604 ms</td>
+<td style="text-align: right;">261.027 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">2.42x</td>
+<td style="text-align: right;">580.433 ms</td>
+<td style="text-align: right;">9.3144 ms</td>
+<td style="text-align: right;">7.7779 ms</td>
+<td style="text-align: right;">580.560 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">2.98x</td>
+<td style="text-align: right;">714.550 ms</td>
+<td style="text-align: right;">13.6676 ms</td>
+<td style="text-align: right;">28.5294 ms</td>
+<td style="text-align: right;">707.452 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">3.04x</td>
+<td style="text-align: right;">729.408 ms</td>
+<td style="text-align: right;">14.6735 ms</td>
+<td style="text-align: right;">43.2651 ms</td>
+<td style="text-align: right;">722.036 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">4.37x</td>
+<td style="text-align: right;">1,049.120 ms</td>
+<td style="text-align: right;">20.9215 ms</td>
+<td style="text-align: right;">29.3290 ms</td>
+<td style="text-align: right;">1,045.173 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-1000000-rows-2">Inserting 1,000,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000000-rows-2'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.573 s</td>
+<td style="text-align: right;">0.0508 s</td>
+<td style="text-align: right;">0.0624 s</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1.51x</td>
+<td style="text-align: right;">3.895 s</td>
+<td style="text-align: right;">0.0769 s</td>
+<td style="text-align: right;">0.2067 s</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">2.31x</td>
+<td style="text-align: right;">5.934 s</td>
+<td style="text-align: right;">0.1002 s</td>
+<td style="text-align: right;">0.0888 s</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">2.56x</td>
+<td style="text-align: right;">6.585 s</td>
+<td style="text-align: right;">0.1253 s</td>
+<td style="text-align: right;">0.1287 s</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">2.64x</td>
+<td style="text-align: right;">6.803 s</td>
+<td style="text-align: right;">0.1339 s</td>
+<td style="text-align: right;">0.1920 s</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">4.33x</td>
+<td style="text-align: right;">11.146 s</td>
+<td style="text-align: right;">0.1228 s</td>
+<td style="text-align: right;">0.1149 s</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here we see that PostgreSQL continue to take the Bulk Insert crown platform even on Windows
+and SQL Server is also a good performer now that it's running on its native Windows/Intel platform.</p>
+<p>It also highlights a significant performance of SQLite disk write performance on Windows/x64 which may be due to
+how <a href="https://news.ycombinator.com/item?id=30370551">macOS implements fsync</a>.</p>
+<h3 id="relative-performance-of-arm-vs-intel">Relative performance of ARM vs Intel<a class="header-anchor" href="javascript:;" onclick="location.hash='#relative-performance-of-arm-vs-intel'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Although they're not directly comparable with their different configurations, although the relative performance numbers
+provides some indication on how much faster my new Macbook Air M2 is compared to my primary
+Intel iMac 5K Desktop, even with the overhead of running RDBMS's from within Docker containers:</p>
+<p><chart-js :data="{
+labels: [
+'M2 Macbook Air',
+'Intel iMac 5K'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [166.747, 240.111]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 205, 86, 0.2)',
+borderColor: 'rgb(255, 205, 86)',
+borderWidth: 1,
+data: [199.697, 265.161]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [115.645, 265.161]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [310.966, 714.550]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [308.574, 729.408]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [835.181, 580.433]
+}
+]
+}"></chart-js></p>
+<div class="table table-striped text-base"><h4 id="relative-performance-for-bulk-insert-of-100000-records">Relative performance for Bulk Insert of 100,000 records<a class="header-anchor" href="javascript:;" onclick="location.hash='#relative-performance-for-bulk-insert-of-100000-records'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">M2 ARM</th>
+<th style="text-align: right;">Intel i7-7700K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.92x</td>
+</tr>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">1.44x</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">5.25x</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.30x</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.30x</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">1.44x</td>
+<td style="text-align: right;">1x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Where other than SQL Server's poor performance on Linux/Rosetta, the benchmarks run much faster on Apple M2 Macbook Air.</p>
+<h2 id="multiple-inserts-rows-performance-2">Multiple Inserts Rows Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#multiple-inserts-rows-performance-2'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>These benchmarks show the performance of executing <strong>Multiple Row Inserts</strong> in batches of <strong>1000</strong> -
+measuring the comparative performance of each RDBMS in executing large SQL Insert statements:</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+'10,000 Rows',
+'100,000 Rows'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [2.710, 25.784, 246.285]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 205, 86, 0.2)',
+borderColor: 'rgb(255, 205, 86)',
+borderWidth: 1,
+data: [9.944, 105.551, 1048.217]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [7.270, 64.107, 522.203]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [24.016, 217.394, 1656.828]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [20.869, 184.193, 1359.005]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [75.994, 819.829, 0]
+}
+]
+}"></chart-js></p>
+<div class="text-xs text-gray-500 text-center"><p><em>Last SQL Server result removed due to poor outlier performance</em></p>
+</div>
+<div class="table table-striped text-base"><h4 id="inserting-1000-rows-7">Inserting 1,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000-rows-7'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.710 ms</td>
+<td style="text-align: right;">0.0726 ms</td>
+<td style="text-align: right;">0.2084 ms</td>
+<td style="text-align: right;">2.745 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.68x</td>
+<td style="text-align: right;">7.270 ms</td>
+<td style="text-align: right;">0.1439 ms</td>
+<td style="text-align: right;">0.2874 ms</td>
+<td style="text-align: right;">7.192 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">3.67x</td>
+<td style="text-align: right;">9.944 ms</td>
+<td style="text-align: right;">0.3215 ms</td>
+<td style="text-align: right;">0.8692 ms</td>
+<td style="text-align: right;">9.754 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">7.70x</td>
+<td style="text-align: right;">20.869 ms</td>
+<td style="text-align: right;">1.2050 ms</td>
+<td style="text-align: right;">3.4380 ms</td>
+<td style="text-align: right;">19.956 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">8.86x</td>
+<td style="text-align: right;">24.016 ms</td>
+<td style="text-align: right;">1.3810 ms</td>
+<td style="text-align: right;">3.9845 ms</td>
+<td style="text-align: right;">22.311 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">28.04x</td>
+<td style="text-align: right;">75.994 ms</td>
+<td style="text-align: right;">1.3113 ms</td>
+<td style="text-align: right;">1.5610 ms</td>
+<td style="text-align: right;">76.456 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-10000-rows-5">Inserting 10,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-10000-rows-5'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">25.784 ms</td>
+<td style="text-align: right;">0.6895 ms</td>
+<td style="text-align: right;">2.0005 ms</td>
+<td style="text-align: right;">26.021 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.49x</td>
+<td style="text-align: right;">64.107 ms</td>
+<td style="text-align: right;">1.2164 ms</td>
+<td style="text-align: right;">1.0783 ms</td>
+<td style="text-align: right;">64.225 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">4.09x</td>
+<td style="text-align: right;">105.551 ms</td>
+<td style="text-align: right;">2.3293 ms</td>
+<td style="text-align: right;">6.7579 ms</td>
+<td style="text-align: right;">103.989 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">7.14x</td>
+<td style="text-align: right;">184.193 ms</td>
+<td style="text-align: right;">4.3627 ms</td>
+<td style="text-align: right;">12.4471 ms</td>
+<td style="text-align: right;">180.157 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">8.43x</td>
+<td style="text-align: right;">217.394 ms</td>
+<td style="text-align: right;">5.6931 ms</td>
+<td style="text-align: right;">16.6968 ms</td>
+<td style="text-align: right;">214.477 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">31.80x</td>
+<td style="text-align: right;">819.829 ms</td>
+<td style="text-align: right;">16.1172 ms</td>
+<td style="text-align: right;">38.3043 ms</td>
+<td style="text-align: right;">829.895 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-100000-rows-5">Inserting 100,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-100000-rows-5'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">246.285 ms</td>
+<td style="text-align: right;">3.9630 ms</td>
+<td style="text-align: right;">3.3093 ms</td>
+<td style="text-align: right;">246.185 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.12x</td>
+<td style="text-align: right;">522.203 ms</td>
+<td style="text-align: right;">9.1596 ms</td>
+<td style="text-align: right;">8.1198 ms</td>
+<td style="text-align: right;">519.607 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">4.26x</td>
+<td style="text-align: right;">1,048.217 ms</td>
+<td style="text-align: right;">17.4291 ms</td>
+<td style="text-align: right;">14.5541 ms</td>
+<td style="text-align: right;">1,044.868 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">5.52x</td>
+<td style="text-align: right;">1,359.005 ms</td>
+<td style="text-align: right;">26.2161 ms</td>
+<td style="text-align: right;">29.1391 ms</td>
+<td style="text-align: right;">1,360.109 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">6.73x</td>
+<td style="text-align: right;">1,656.828 ms</td>
+<td style="text-align: right;">32.2114 ms</td>
+<td style="text-align: right;">49.1902 ms</td>
+<td style="text-align: right;">1,649.606 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">34.75x</td>
+<td style="text-align: right;">8,558.850 ms</td>
+<td style="text-align: right;">89.6498 ms</td>
+<td style="text-align: right;">83.8585 ms</td>
+<td style="text-align: right;">8,582.563 ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inserting-1000000-rows-3">Inserting 1,000,000 Rows<a class="header-anchor" href="javascript:;" onclick="location.hash='#inserting-1000000-rows-3'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">2.332 s</td>
+<td style="text-align: right;">0.0288 s</td>
+<td style="text-align: right;">0.0255 s</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">2.61x</td>
+<td style="text-align: right;">6.098 s</td>
+<td style="text-align: right;">0.1199 s</td>
+<td style="text-align: right;">0.1559 s</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">4.76x</td>
+<td style="text-align: right;">11.099 s</td>
+<td style="text-align: right;">0.1153 s</td>
+<td style="text-align: right;">0.1022 s</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">5.92x</td>
+<td style="text-align: right;">13.800 s</td>
+<td style="text-align: right;">0.1668 s</td>
+<td style="text-align: right;">0.1393 s</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">6.7x</td>
+<td style="text-align: right;">15.546 s</td>
+<td style="text-align: right;">0.3095 s</td>
+<td style="text-align: right;">0.3801 s</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">33.11x</td>
+<td style="text-align: right;">77.221 s</td>
+<td style="text-align: right;">0.5015 s</td>
+<td style="text-align: right;">0.4445 s</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>PostgreSQL continues to shine here, significantly out performing other distributed RDBMS's for processing large, multi-row
+INSERT statements whilst SQL Server has a surprisingly poor showing on its native Windows/Intel platform - likely the
+result of a naive unoptimized implementation for these types of large SQL INSERT statements.</p>
+<h2 id="single-insert-performance-2">Single Insert Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#single-insert-performance-2'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This benchmark measures the performance of multiple single inserts (i.e. when Bulk Insert is not available):</p>
+<p><chart-js :data="{
+labels: [
+'1,000 Rows',
+],
+datasets: [
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [7620.93]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [465.43]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [4282.89]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [4261.57]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [582.33]
+}
+]
+}"></chart-js></p>
+<div class="table table-striped text-base">
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: right;">Relative</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite Memory</td>
+<td style="text-align: right;">1x</td>
+<td style="text-align: right;">12.30 ms</td>
+<td style="text-align: right;">0.244 ms</td>
+<td style="text-align: right;">0.453 ms</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td style="text-align: right;">37.84x</td>
+<td style="text-align: right;">465.43 ms</td>
+<td style="text-align: right;">9.082 ms</td>
+<td style="text-align: right;">10.812 ms</td>
+</tr>
+<tr>
+<td>SqlServer</td>
+<td style="text-align: right;">47.34x</td>
+<td style="text-align: right;">582.33 ms</td>
+<td style="text-align: right;">8.988 ms</td>
+<td style="text-align: right;">8.408 ms</td>
+</tr>
+<tr>
+<td>MySqlConnector</td>
+<td style="text-align: right;">346.47x</td>
+<td style="text-align: right;">4,261.57 ms</td>
+<td style="text-align: right;">81.441 ms</td>
+<td style="text-align: right;">96.950 ms</td>
+</tr>
+<tr>
+<td>MySql</td>
+<td style="text-align: right;">348.20x</td>
+<td style="text-align: right;">4,282.89 ms</td>
+<td style="text-align: right;">83.393 ms</td>
+<td style="text-align: right;">99.273 ms</td>
+</tr>
+<tr>
+<td>SQLite Disk</td>
+<td style="text-align: right;">619.59x</td>
+<td style="text-align: right;">7,620.93 ms</td>
+<td style="text-align: right;">89.152 ms</td>
+<td style="text-align: right;">83.393 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We hope these results have been informative and have highlighted opportunities for improvements in your own systems
+needing to perform large inserts or data imports.</p>
+<p>Feel free to leave any feedback or suggest improvements or other environments to run these benchmarks on in the comments.</p>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div data-post="PostComments" class="my-48"></div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
+<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/bulk-insert-performance.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                    <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
