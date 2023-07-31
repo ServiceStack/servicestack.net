@@ -28,7 +28,7 @@ These secrets are stored in GitHub Action secrets for secure use throughout the 
 
 Every developer knows the struggle: you've written a fantastic application, it works flawlessly on your local machine, but now you need to get it out there in the world. The traditional cloud-native way often involves complex orchestration platforms like Kubernetes, which, while extremely powerful, can be overwhelming and overkill for smaller projects or applications with low traffic.
 
-This is why we're going to explore an alternative, simpler, and cost-effective approach in this blog post: deploying your web applications directly from GitHub to a Linux server, without the need for Kubernetes. This approach not only allows for affordable deployment of your applications but also promotes a quick and straightforward process, making it an excellent option for proof of concept or low-traffic applications.
+This is why we're going to explore an alternative and cost-effective approach in this blog post: deploying your web applications directly from GitHub to a Linux server, without the need for Kubernetes. This approach not only allows for affordable deployment of your applications but also promotes a quick and straightforward process, making it an excellent option for proof of concept or low-traffic applications.
 
 This pattern we'll discuss consists of some core components: GitHub and its various functionalities, Docker Compose files, SSH for remote deployments, and a Linux server setup with an NGINX reverse proxy and LetsEncrypt companion containers for automation of routing, TLS, and certificate management.
 
@@ -38,7 +38,7 @@ Whether you're a .NET developer or working with other technologies, this pattern
 
 ## Understanding the Core Components
 
-Before we get our hands dirty with deployment, let's take a moment to understand the essential components involved in this process. We'll also explain why we've chosen each one and how they contribute to our simple, cost-effective deployment pipeline.
+Before we get our hands dirty with deployment, let's take a moment to understand the essential components involved in this process. We'll also explain why we've chosen each one and how they contribute to our this cost-effective deployment pipeline.
 
 ### GitHub and Its Functions
 
@@ -51,7 +51,7 @@ The backbone of our deployment pipeline is GitHub, a platform that provides a ho
 
 ### Docker Compose
 
-Docker Compose is a tool that simplifies the management of multi-container Docker applications. It allows us to define our application's environment in a YAML file (`docker-compose.yml`), enabling consistent setups across different environments. This will be installed on your target Linux server, where it will be used to pull Docker images and run our application.
+Docker Compose is a tool that helps with the management of multi-container Docker applications. It allows us to define our application's environment in a YAML file (`docker-compose.yml`), enabling consistent setups across different environments. This will be installed on your target Linux server, where it will be used to pull Docker images and run our application.
 
 ### Secure Shell (SSH)
 
@@ -76,7 +76,7 @@ Once you have access to your server, follow these steps:
 
 ### Installing Docker and Docker Compose
 
-Docker is a crucial component that enables us to build, ship, and run applications inside containers. Docker Compose, on the other hand, simplifies the process of managing multi-container Docker applications. Here's how to install them:
+Docker is a crucial component that enables us to build, ship, and run applications inside containers. Docker Compose, on the other hand, streamlines the process of managing multi-container Docker applications. Here's how to install them:
 
 1. **Update your server:** Before we start, let's make sure our server has the latest updates. Run the following commands:
     ```
@@ -148,7 +148,7 @@ volumes:
 
 With Docker, Docker Compose, NGINX, and LetsEncrypt setup, your Linux server is ready for deployments. Note that these are one-off tasks. Once set up, you won't need to repeat them for deploying additional applications.
 
-For subsequent deployments, GitHub Actions will take care of creating necessary directories and SCP copying the `docker-compose.yml` file from the repository to the target Linux server. This allows your deployment pipeline to be simple, repeatable, and reliable.
+For subsequent deployments, GitHub Actions will take care of creating necessary directories and SCP copying the `docker-compose.yml` file from the repository to the target Linux server. This allows your deployment pipeline to be flexible, repeatable, and reliable.
 
 ![](./img/posts/docker-compose/linux-server.png)
 
@@ -446,6 +446,34 @@ It needs 3 files to run, as well as some GitHub Actions secrets like `DEPLOY_HOS
 This file is used by Docker Compose to define the services that make up your application, so they can be run together in an isolated environment. 
 The `release.yml` expects a web application service called `app` and a database migration service called `app-migration` to be declared.
 
+```yaml
+version: "3.9"
+services:
+    app:
+        build: .
+        restart: always
+        ports:
+            - "5000:80"
+        environment:
+            VIRTUAL_HOST: ${HOST_DOMAIN}
+            LETSENCRYPT_HOST: ${HOST_DOMAIN}
+            LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+        volumes:
+            - app-mydb:/app/App_Data
+    # Dotnet migrations using ServiceStack AppTasks
+    app-migration:
+        build: .
+        restart: "no"
+        profiles:
+            - migration
+        command: --AppTasks=migrate
+        volumes:
+            - app-mydb:/app/App_Data
+
+volumes:
+    app-mydb:
+```
+
 This file is also designed to be used in a local development environment. It uses the `build` keyword to build the Docker image from the Dockerfile in the current directory.
 
 ### docker-compose.prod.yml
@@ -453,9 +481,59 @@ This file is also designed to be used in a local development environment. It use
 This file is similar to `docker-compose.yml`, but it is specifically tailored for your production environment. Instead of building from the Dockerfile like in the development version, it pulls a specific image from a repository (`ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}`) which come from a `.env` file. 
 It also connects to an external network (`nginx`) which is our reverse proxy on our target Linux server.
 
+```yaml
+version: "3.9"
+services:
+    app:
+        image: ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}
+        restart: always
+        ports: !reset ["80"]
+        container_name: ${IMAGE_REPO}-app
+        environment:
+            VIRTUAL_HOST: ${HOST_DOMAIN}
+            LETSENCRYPT_HOST: ${HOST_DOMAIN}
+            LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+        volumes:
+            - app-mydb:/app/App_Data
+    app-migration:
+        image: ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}
+        restart: "no"
+        container_name: ${IMAGE_REPO}-app-migration
+        profiles:
+            - migration
+        command: --AppTasks=migrate
+        volumes:
+            - app-mydb:/app/App_Data
+
+networks:
+  default:
+    external: true
+    name: nginx
+
+volumes:
+    app-mydb:
+```
+
 ### Dockerfile
 
 The Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. In this example, it first creates a build environment based on `dotnet/sdk:6.0-focal`, copies your application code into the container, and restores any necessary .NET dependencies. It then switches to your application's directory and publishes your application in release mode. Finally, it creates the runtime environment based on `dotnet/aspnet:6.0-focal`, copies the built application from the previous stage, and sets the Docker entrypoint to run your application.
+
+```dockerfile
+# Example dotnet app built from Dockerfile
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+WORKDIR /app
+
+COPY . .
+RUN dotnet restore
+
+WORKDIR /app/MyApp
+RUN dotnet publish -c release -o /out --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS runtime
+WORKDIR /app
+COPY --from=build /out .
+ENTRYPOINT ["dotnet", "MyApp.dll"]
+```
 
 ### .env (generated)
 
@@ -501,7 +579,7 @@ Your .NET application is now on GitHub, ready for collaboration and continuous i
 
 ### 3. Implementing GitHub Actions for CI
 
-To automate the build and test process every time you push to your GitHub repository, you can use GitHub Actions. A simple .NET workflow file, `build.yml`, can be created and placed in the `.github/workflows` directory. Here's a minimal example:
+To automate the build and test process every time you push to your GitHub repository, you can use GitHub Actions. A minimal .NET workflow file, `build.yml`, can be created and placed in the `.github/workflows` directory. Here's a minimal example:
 
 ```yaml
 name: Build
@@ -561,7 +639,7 @@ This will be used by the `release.yml` workflow to deploy your application to yo
 
 ### 6. Configuring Linux Server with Docker
 
-By now, you should have a Linux server with Docker installed, and the NGINX reverse proxy with LetsEncrypt running, just as we did in the previous section.
+By now, you should have a Linux server with Docker installed, and the NGINX reverse proxy with LetsEncrypt running, as we did in the previous section.
 
 Your server will also need to be accessible via SSH on port 22 so that GitHub Actions can deploy your application.
 
@@ -573,7 +651,7 @@ Now, commit any changes and push to your GitHub repository. If you've set up you
 
 ### Same Pattern, Multiple Applications
 
-One of the core strengths of Docker is the ability to isolate and manage applications in their individual containers. This means you can deploy numerous applications, each from its separate GitHub repository, onto the same Linux server. All these applications can coexist and operate independently, provided each one is correctly dockerized. The release pattern remains unchanged and consistently easy to apply.
+One of the core strengths of Docker is the ability to isolate and manage applications in their individual containers. This means you can deploy numerous applications, each from its separate GitHub repository, onto the same Linux server. All these applications can coexist and operate independently, provided each one is correctly dockerized. The release pattern remains unchanged and consistent to apply.
 
 ```markdown
 1. MyApp1/ -> GitHub Repo 1 -> Docker Image 1 -> Server (Container 1)
@@ -595,7 +673,7 @@ To set up organization secrets:
 - Enter the `Name` and `Value` of the secret.
 - Click on `Add secret`.
 
-Each deployed application now shares the organization-level secrets, simplifying the setup process for new applications to just a new DNS entry and `DEPLOY_HOST` environment variable.
+Each deployed application now shares the organization-level secrets, streamline the setup process for new applications to a new DNS entry and `DEPLOY_HOST` environment variable.
 
 And since every GitHub Repository in the organization is unique, there is no conflicting files deployed to the same server.
 
@@ -614,7 +692,7 @@ To host lots of our demo applications, we are doing exactly this, meaning we hav
 
 ## Conclusion
 
-By avoiding Kubernetes, you can simplify your deployment process, and have more control over your applications. You can also save money by using a single server to host multiple applications. The release pattern is a simple, yet effective way to deploy your applications, and it can be applied to any programming language or framework. 
+By avoiding Kubernetes, you can have less complex control your deployment process, and have more control over your applications. You can also save money by using a single server to host multiple applications. The release pattern is a flexible, yet effective way to deploy your applications, and it can be applied to any programming language or framework. 
 
 ## Feedback
 
