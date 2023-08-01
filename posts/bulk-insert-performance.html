@@ -178,13 +178,13 @@ mountAll()
                 </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>After having implemented Bulk Inserts in the latest release of <a href="https://docs.servicestack.net/ormlite/">OrmLite</a>
-the main thing that stands out is how <a href="https://docs.servicestack.net/ormlite/installation">each RDBMS</a>
-has very different ways for how best to insert large amounts of data, which is encapsulated behind OrmLite's new <code>BulkInsert</code> API:</p>
+                    <p>The Bulk Insert support in the latest release of <a href="https://docs.servicestack.net/ormlite/">OrmLite</a> enables accessing
+different efficient ways made available for <a href="https://docs.servicestack.net/ormlite/installation">each RDBMS</a> for
+inserting large amounts of data from a .NET App, encapsulated behind OrmLite's new <code>BulkInsert</code> API:</p>
 <pre><code class="language-csharp">db.BulkInsert(rows);
 </code></pre>
 <h2 id="bulk-insert-implementations">Bulk Insert Implementations<a class="header-anchor" href="javascript:;" onclick="location.hash='#bulk-insert-implementations'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Where the optimal implementation for each RDBMS were all implemented differently:</p>
+<p>Where the optimal implementation for each RDBMS utilize the different RDBMS-specific implementations below:</p>
 <ul>
 <li><strong>PostgreSQL</strong> - Uses PostgreSQL's <a href="https://www.postgresql.org/docs/current/sql-copy.html">COPY</a>
 command via Npgsql's <a href="https://www.npgsql.org/doc/copy.html">Binary Copy</a> import</li>
@@ -199,11 +199,12 @@ to reduce I/O calls down to a configurable batch size</li>
 configurable up to Firebird's maximum of <strong>256</strong> statements</li>
 </ul>
 <h3 id="sql-multiple-row-inserts">SQL Multiple Row Inserts<a class="header-anchor" href="javascript:;" onclick="location.hash='#sql-multiple-row-inserts'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>It should be noted that all RDBMS's has broad support SQL's Multiple Insert Rows feature which is an efficient and compact
-alternative to inserting multiple rows within a single INSERT statement:</p>
+<p>An efficient and compact alternative to inserting large amounts of data that enjoys broad support from all RDBMS's is
+to use SQL's Multiple Insert Rows feature to insert multiple rows within a single INSERT statement:</p>
 <pre><code class="language-sql">INSERT INTO Contact (Id, FirstName, LastName, Age) VALUES 
-(1, 'John', 'Doe', 27),
-(2, 'Jane', 'Doe', 42);
+(1, 'John', 'Doe', 21),
+(2, 'Jane', 'Doe', 27),
+(3, 'Jack', 'Doe', 42);
 </code></pre>
 <p>Normally OrmLite APIs uses parameterized statements however for Bulk Inserts it uses inline rasterized values in order
 to construct and send large SQL INSERT statements that avoids RDBMS's max parameter limitations, which if preferred can
