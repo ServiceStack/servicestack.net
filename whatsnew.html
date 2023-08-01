@@ -137,6 +137,109 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.10</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">July 31, 2023</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v6_10"><img src="/img/whatsnew/v6.10/razor-press.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_10">Introducing Razor Press</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Razor Press is a <strong>Razor Pages</strong> and <strong>Markdown</strong> powered alternative to Ruby's Jekyll &amp; Vue's VitePress that's ideal for
+generating fast, static content-centric &amp; documentation websites. Inspired by <a href="https://vitepress.dev">VitePress</a>,
+it's designed to effortlessly create documentation around content written in Markdown, rendered using C# Razor Pages
+that's beautifully styled with <a href="https://tailwindcss.com">tailwindcss</a> and <a href="https://tailwindcss.com/docs/typography-plugin">@tailwindcss/typography</a>.</p>
+<p>The resulting statically generated HTML pages can be easily deployed anywhere, where it can be hosted by any HTTP Server or CDN.
+By default it includes GitHub Actions to deploy it your GitHub Repo's <strong>gh-pages</strong> branch where it's hosted for FREE
+on <a href="https://pages.github.com">GitHub Pages</a> CDN which can be easily configured to use your
+<a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">Custom Domain</a>.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_10" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v6_10#new-in-razor-ssg"><img src="/img/whatsnew/v6.10/twitter-cards.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_10#new-in-razor-ssg">New in Razor SSG</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The Razor SSG template continues to see improvements for creating richer static websites and Blogs:</p>
+<ul>
+<li>RSS Feed for Blog Posts</li>
+<li>New Razor Press Markdown Containers</li>
+<li>Support for Markdown Includes</li>
+<li>Meta Headers support for Twitter cards and Improved SEO</li>
+<li>Blog Posts can include rich Vue Components</li>
+<li>Light and Dark Mode Query Params</li>
+<li>Threads and Mastodon Links for Blog Authors</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_10#new-in-razor-ssg" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v6_10#rdbms-bulk-inserts"><img src="/img/whatsnew/v6.10/bulk-inserts.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_10#rdbms-bulk-inserts">RDBMS Bulk Inserts</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The latest release of OrmLite includes Bulk Inserts implementations for each supported RDBMS to support the most
+efficient ways for inserting large amounts of data, which is encapsulated behind OrmLite's new BulkInsert API
+which are up to <strong>138x times faster</strong> than traditional single INSERT statements.</p>
+<p>In addition to an optimal default Bulk Insert implementation, it can also be configured to execute batched
+SQL Insert statements with configurable batch sizes which enjoys broad support across all RDBMS's.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_10#rdbms-bulk-inserts" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v6_10#json-lines-data-format"><img src="/img/whatsnew/v6.10/jsonl.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v6_10#json-lines-data-format">JSON Lines Data Format</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>JSON Lines is an efficient JSON data format parseable by streaming parsers and text processing tools like Unix
+shell pipelines, whose streamable properties is making it a popular data format for maintaining large datasets
+like the large AI datasets maintained on <a href="https://huggingface.co">huggingface.co</a> that's now accessible on
+<a href="https://docs.servicestack.net/auto-html-api">Auto HTML API pages</a>.</p>
+<p>The JSON Lines data format behaves the same way as the CSV format where it will automatically serialize the
+first IEnumerable property, including for all AutoQuery APIs which now benefit from a streamable JSON data format.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v6_10#json-lines-data-format" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.9</h2>
         <div class="text-center text-lg font-normal text-gray-500 mb-8">June 6, 2023</div>
             <div class="flex flex-wrap my-24">
