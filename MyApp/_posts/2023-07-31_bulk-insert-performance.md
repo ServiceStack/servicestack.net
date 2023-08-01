@@ -6,9 +6,9 @@ image: https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?crop=entropy
 author: Demis Bellot
 ---
 
-After having implemented Bulk Inserts in the latest release of [OrmLite](https://docs.servicestack.net/ormlite/) 
-the main thing that stands out is how [each RDBMS](https://docs.servicestack.net/ormlite/installation) 
-has very different ways for how best to insert large amounts of data, which is encapsulated behind OrmLite's new `BulkInsert` API:
+The Bulk Insert support in the latest release of [OrmLite](https://docs.servicestack.net/ormlite/) enables accessing 
+different efficient ways made available for [each RDBMS](https://docs.servicestack.net/ormlite/installation) for 
+inserting large amounts of data from a .NET App, encapsulated behind OrmLite's new `BulkInsert` API:
 
 ```csharp
 db.BulkInsert(rows);
@@ -16,7 +16,7 @@ db.BulkInsert(rows);
 
 ## Bulk Insert Implementations
 
-Where the optimal implementation for each RDBMS were all implemented differently:
+Where the optimal implementation for each RDBMS utilize the different RDBMS-specific implementations below:
 
 - **PostgreSQL** - Uses PostgreSQL's [COPY](https://www.postgresql.org/docs/current/sql-copy.html) 
 command via Npgsql's [Binary Copy](https://www.npgsql.org/doc/copy.html) import
@@ -32,13 +32,14 @@ configurable up to Firebird's maximum of **256** statements
 
 ### SQL Multiple Row Inserts
 
-It should be noted that all RDBMS's has broad support SQL's Multiple Insert Rows feature which is an efficient and compact
-alternative to inserting multiple rows within a single INSERT statement:
+An efficient and compact alternative to inserting large amounts of data that enjoys broad support from all RDBMS's is
+to use SQL's Multiple Insert Rows feature to insert multiple rows within a single INSERT statement:
 
 ```sql
 INSERT INTO Contact (Id, FirstName, LastName, Age) VALUES 
-(1, 'John', 'Doe', 27),
-(2, 'Jane', 'Doe', 42);
+(1, 'John', 'Doe', 21),
+(2, 'Jane', 'Doe', 27),
+(3, 'Jack', 'Doe', 42);
 ```
 
 Normally OrmLite APIs uses parameterized statements however for Bulk Inserts it uses inline rasterized values in order
