@@ -19,13 +19,6 @@ const ChartJs = {
                 responsive: true,
                 legend: {
                     position: "top"
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
                 }
             }
             new Chart(chart.value, {
