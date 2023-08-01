@@ -68,6 +68,10 @@ db.BulkInsert(rows, new BulkInsertConfig {
 were run with [BenchmarkDotNet](https://benchmarkdotnet.org) running on an 
 **macOS M2 Apple Macbook**, an **Ubuntu 22.04 Linux VM** and an **Windows 10 Intel iMac 5K**.   
 
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="3gO_OEWIyPo" style="background-image: url('https://img.youtube.com/vi/3gO_OEWIyPo/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 Hopefully these benchmarks are informative in showing the performance you can expect from Bulk Inserts
 for each popular RDBMS's across on different operating systems. For context, these benchmarks were run on the configurations below:
 
