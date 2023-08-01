@@ -16,7 +16,7 @@ db.BulkInsert(rows);
 
 ## Bulk Insert Implementations
 
-Where the optimal implementation for each RDBMS utilize the different RDBMS-specific implementations below:
+Where the optimal implementation for each RDBMS utilize the different available RDBMS-specific implementations below:
 
 - **PostgreSQL** - Uses PostgreSQL's [COPY](https://www.postgresql.org/docs/current/sql-copy.html) 
 command via Npgsql's [Binary Copy](https://www.npgsql.org/doc/copy.html) import
@@ -42,9 +42,9 @@ INSERT INTO Contact (Id, FirstName, LastName, Age) VALUES
 (3, 'Jack', 'Doe', 42);
 ```
 
-Normally OrmLite APIs uses parameterized statements however for Bulk Inserts it uses inline rasterized values in order
+Normally OrmLite APIs uses parameterized statements however for SQL Multiple Row Inserts it uses inline rasterized values in order
 to construct and send large SQL INSERT statements that avoids RDBMS's max parameter limitations, which if preferred can 
-be configured to be used instead of its default optimal implementation:
+be configured to be used instead of its default optimal Bulk Insert implementation:
 
 ```csharp
 db.BulkInsert(rows, new BulkInsertConfig {
