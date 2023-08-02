@@ -824,8 +824,8 @@ how [macOS implements fsync](https://news.ycombinator.com/item?id=30370551).
 
 ### Relative performance of ARM vs Intel
 
-Although they're not directly comparable with their different configurations, although the relative performance numbers
-provides some indication on how much faster my new Macbook Air M2 is compared to my primary 
+Whilst they're not directly comparable with their different configurations, their relative performance numbers
+provides some indication of how much faster my new Macbook Air M2 is compared to my primary 
 Intel iMac 5K Desktop, even with the overhead of running RDBMS's from within Docker containers:
 
 <chart-js :data="{
