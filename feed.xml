@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Tue, 08 Aug 2023 08:29:22 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 08 Aug 2023 14:07:16 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Using GitHub for Auto Deployments - Kubernetes Not Required</title>
+        <link>https://servicestack.net/posts/kubernetes_not_required</link>
+        <author>darren@servicestack.com (Darren Reid)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/kubernetes_not_required</guid>
+        <pubDate>Tue, 08 Aug 2023 00:00:00 GMT</pubDate>
+        <atom:updated>2023-08-08T00:00:00Z</atom:updated>
+        <category>github-actions</category>
+        <category>devops</category>
+        <category>hosting</category>
+        <description>A cost-effective and straightforward web app deployment pattern using GitHub and a single Linux server</description>
+    </item>
     <item>
         <title>Which RDBMS has the fastest .NET Bulk Insert implementation?</title>
         <link>https://servicestack.net/posts/bulk-insert-performance</link>
@@ -120,19 +132,6 @@
         <category>marketing</category>
         <category>publishing</category>
         <description>Exploring CreatorKit - an OSS Self-Hosting alternative to Mailchimp and Disqus</description>
-    </item>
-    <item>
-        <title>Creating ChatGPT Agents to call System APIs</title>
-        <link>https://servicestack.net/posts/chat-gpt-agents</link>
-        <author>darren@servicestack.com (Darren Reid)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/chat-gpt-agents</guid>
-        <pubDate>Fri, 12 May 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-05-12T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category> gpt</category>
-        <category> chatbot</category>
-        <category> ai</category>
-        <description>A walkthrough of how to enable Large Language Model &#x27;Agents&#x27; with access to your own ServiceStack APIs</description>
     </item>
 </channel>
 </rss>
