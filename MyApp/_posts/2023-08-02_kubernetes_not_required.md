@@ -454,7 +454,7 @@ services:
 ```
 
 This file is the common denominator between your development and production environments. It is used by Docker Compose to build your application locally and by the `release.yml` workflow to deploy your application to your server.
-We can control the behavior of Docker Compose for local development by using the `docker-compose.override.yml` file, which is not used by the `release.yml` workflow.
+We can control the behavior of Docker Compose for [local development by using the `docker-compose.override.yml` file](https://docs.docker.com/compose/multiple-compose-files/merge/), which is not used by the `release.yml` workflow.
 
 ### docker-compose.override.yml
 
