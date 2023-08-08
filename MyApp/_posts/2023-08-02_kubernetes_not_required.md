@@ -449,32 +449,28 @@ The `release.yml` expects a web application service called `app` and a database 
 ```yaml
 version: "3.9"
 services:
-    app:
-        build: .
-        restart: always
-        ports:
-            - "5000:80"
-        environment:
-            VIRTUAL_HOST: ${HOST_DOMAIN}
-            LETSENCRYPT_HOST: ${HOST_DOMAIN}
-            LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-        volumes:
-            - app-mydb:/app/App_Data
-    # Dotnet migrations using ServiceStack AppTasks
-    app-migration:
-        build: .
-        restart: "no"
-        profiles:
-            - migration
-        command: --AppTasks=migrate
-        volumes:
-            - app-mydb:/app/App_Data
-
-volumes:
-    app-mydb:
+   app:
+      container_name: my_app
 ```
 
-This file is also designed to be used in a local development environment. It uses the `build` keyword to build the Docker image from the Dockerfile in the current directory.
+This file is the common denominator between your development and production environments. It is used by Docker Compose to build your application locally and by the `release.yml` workflow to deploy your application to your server.
+We can control the behavior of Docker Compose for local development by using the `docker-compose.override.yml` file, which is not used by the `release.yml` workflow.
+
+### docker-compose.override.yml
+
+The override file is used by default when calling the command `docker compose up` without any arguments.
+
+
+```yaml
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "5000:80"
+```
+
+Here we are telling Docker Compose to build the application from the Dockerfile in the current directory and expose port 80 on the container to port 5000 on the host machine. This allows us to access the application locally at `http://localhost:5000`.
 
 ### docker-compose.prod.yml
 
@@ -484,34 +480,22 @@ It also connects to an external network (`nginx`) which is our reverse proxy on 
 ```yaml
 version: "3.9"
 services:
-    app:
-        image: ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}
-        restart: always
-        ports: !reset ["80"]
-        container_name: ${IMAGE_REPO}-app
-        environment:
-            VIRTUAL_HOST: ${HOST_DOMAIN}
-            LETSENCRYPT_HOST: ${HOST_DOMAIN}
-            LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-        volumes:
-            - app-mydb:/app/App_Data
-    app-migration:
-        image: ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}
-        restart: "no"
-        container_name: ${IMAGE_REPO}-app-migration
-        profiles:
-            - migration
-        command: --AppTasks=migrate
-        volumes:
-            - app-mydb:/app/App_Data
+   app:
+      image: ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}
+      restart: always
+      ports:
+         - "80"
+      container_name: ${APP_NAME}_app
+      environment:
+         VIRTUAL_HOST: ${HOST_DOMAIN}
+         LETSENCRYPT_HOST: ${HOST_DOMAIN}
+         LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
 
 networks:
-  default:
-    external: true
-    name: nginx
+   default:
+      external: true
+      name: nginx
 
-volumes:
-    app-mydb:
 ```
 
 ### Dockerfile
@@ -538,7 +522,15 @@ ENTRYPOINT ["dotnet", "MyApp.dll"]
 ### .env (generated)
 
 This file, `.env`, is a plain text file that stores environment variables for your Docker containers. Docker Compose automatically looks for this file in the same deployment directory as your `docker-compose.yml` and `docker-compose.prod.yml` files, and variables defined in `.env` can be read into the Compose file. The variables in this file could be secrets, URLs, or other configuration values. The `.env` file itself is typically not included in source control and instead, you might include a `.env.example` file to highlight the required environment variables.
-This means when using `docker-compose.yml` locally, you can have a `.env` file with your local database credentials, and when using `docker-compose.prod.yml` on your server, you can have a `.env` file with your production database credentials, for example.
+This means when using `docker-compose.yml` locally, you can have a `.env` file with your local settings, and when using `docker-compose.prod.yml` on your server, you can have a `.env` file with your production settings, for example.
+
+```.env
+HOST_DOMAIN=razor-pages.web-templates.io
+LETSENCRYPT_EMAIL=team@servicestack.com
+APP_NAME=razor-pages
+IMAGE_REPO=netcoretemplates/razor-pages
+RELEASE_VERSION=latest
+```
 
 ## Applying the Deployment Pattern: A Practical Guide
 
