@@ -24,6 +24,10 @@ Important dependencies for this deployment process include:
 
 These secrets are stored in GitHub Action secrets for secure use throughout the end-to-end deployment process. The deployment strategy also needs Docker-enabled Linux server, NGINX for managing routing and a Docker Compose file.
 
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7dardvqBFbE" style="background-image: url('https://img.youtube.com/vi/7dardvqBFbE/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 ## Introduction
 
 Every developer knows the struggle: you've written a fantastic application, it works flawlessly on your local machine, but now you need to get it out there in the world. The traditional cloud-native way often involves complex orchestration platforms like Kubernetes, which, while extremely powerful, can be overwhelming and overkill for smaller projects or applications with low traffic.
