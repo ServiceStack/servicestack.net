@@ -20,15 +20,15 @@ Before we dive into the details of using the new feature, let's take a moment to
 
 The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with Unix shell pipelines, making it an ideal format for handling large datasets efficiently.
 
-# Setting up an Endpoint to Support JSONL in ServiceStack
+## Setting up an Endpoint to Support JSONL in ServiceStack
 
 To enable the JSON Lines (JSONL) format for your ServiceStack endpoint, there are several ways to configure your Request DTO and Response DTO. JSONL behaves similarly to the CSV format, where the first `IEnumerable` property is automatically serialized in the streamable JSONL format. In this section, we will explore different ways to configure your DTOs for JSONL serialization.
 
-## Automatic JSONL Serialization with AutoQuery
+### Automatic JSONL Serialization with AutoQuery
 
 If you're using AutoQuery services in ServiceStack, JSONL serialization is already supported by default. The first `IEnumerable` property in your Request DTO will be automatically serialized in the JSONL format. This means that all AutoQuery APIs will return their `IEnumerable` datasets in the streamable JSONL format without any additional configuration.
 
-## Configuring the Request DTO and Response DTO
+### Configuring the Request DTO and Response DTO
 
 To configure your own Request DTO and Response DTO for JSONL serialization, you can use either the `[DataContract]` and `[DataMember]` annotations or the `[Csv(CsvBehavior.FirstEnumerable)]` attribute.
 
@@ -111,8 +111,6 @@ var jsonl = JsonlSerializer.SerializeToString(objects);
 JsonlSerializer.SerializeToStream(objects, stream);
 JsonlSerializer.SerializeToWriter(objects, textWriter);
 ```
-
----
 
 ## Indexing AI-Generated Art Albums with JSONL
 
