@@ -11,6 +11,11 @@ ServiceStack already supports a range of serializers out of the box like CSV,JSO
 
 ## Introducing the JSON Lines Format
 
+
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="m0tAfjvJaZg" style="background-image: url('https://img.youtube.com/vi/m0tAfjvJaZg/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 Before we dive into the details of using the new feature, let's take a moment to understand what JSON Lines is and why it is beneficial. JSON Lines is similar to the CSV format in the way it behaves, where each line in the file represents a separate JSON object. This makes it easy to process large datasets incrementally, without having to load the entire file into memory.
 
 The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with Unix shell pipelines, making it an ideal format for handling large datasets efficiently.
