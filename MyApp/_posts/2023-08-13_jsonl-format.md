@@ -155,7 +155,7 @@ Here we have the service client initialization with the `TypesenseUtils.InitProv
 
 ## Indexing Creative Data into Typesense
 
-With Typesense, implementation of full-text search for our data can be achieved efficiently. Once we have fetched the Creative data from Blazor's API, we can proceed to index it into Typesense for easy searching and analysis of the indexed documents. To index the Creative data, we're using [a C# client library built by the community](https://github.com/DAXGRID/typesense-dotnet).
+With Typesense, implementation of full-text search for our data can be achieved efficiently. Once we have fetched the Creative data from Blazor Diffusion's API, we can proceed to index it into Typesense for easy searching and analysis of the indexed documents. To index the Creative data, we're using [a C# client library built by the community](https://github.com/DAXGRID/typesense-dotnet).
 
 Processed data are saved into IndexedCreative instances and are added into the Typesense server. Under the hood, the C# client library interacts with Typesense's API and handles all HTTP requests and responses for us.
 
