@@ -30,7 +30,12 @@ public class MarkdownMeta
             index[feature.Id] = featureYears.Map(x => baseUrl.CombineWith($"/meta/{x}/{feature.Id}.json"));
             foreach (var year in featureYears)
             {
-                var yearDocs = allDocs.Where(x => x.Date!.Value.Year == year).OrderBy(x => x.Date!.Value).ToList();
+                var yearDocs = allDocs
+                    .Where(x => x.Date!.Value.Year == year)
+                    .OrderBy(x => x.Date!.Value)
+                    .ThenBy(x => x.Order)
+                    .ThenBy(x => x.FileName)
+                    .ToList();
                 var yearDir = metaDir.CombineWith(year).AssertDir();
                 var metaPath = yearDir.CombineWith($"{feature.Id}.json");
                 await File.WriteAllTextAsync(metaPath, yearDocs.ToJson());
@@ -44,7 +49,12 @@ public class MarkdownMeta
             var yearDocs = new Dictionary<string, List<MarkdownFileBase>>();
             foreach (var entry in featureDocs)
             {
-                yearDocs[entry.Key] = entry.Value.Where(x => x.Date!.Value.Year == year).OrderBy(x => x.Date!.Value).ToList();
+                yearDocs[entry.Key] = entry.Value
+                    .Where(x => x.Date!.Value.Year == year)
+                    .OrderBy(x => x.Date!.Value)
+                    .ThenBy(x => x.Order)
+                    .ThenBy(x => x.FileName)
+                    .ToList();
             }
             await File.WriteAllTextAsync(metaDir.CombineWith($"{year}/all.json"), JSON.stringify(yearDocs));
         }
