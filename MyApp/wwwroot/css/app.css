@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -191,6 +191,10 @@ select,
 textarea {
   font-family: inherit;
   /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
   font-size: 100%;
   /* 1 */
   font-weight: inherit;
@@ -338,6 +342,14 @@ ul,
 menu {
   list-style: none;
   margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
   padding: 0;
 }
 
@@ -816,10 +828,6 @@ select{
   visibility: hidden;
 }
 
-.collapse {
-  visibility: collapse;
-}
-
 .static {
   position: static;
 }
@@ -1023,10 +1031,6 @@ select{
   grid-column: span 3 / span 3;
 }
 
-.col-span-4 {
-  grid-column: span 4 / span 4;
-}
-
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
@@ -1195,10 +1199,6 @@ select{
 
 .-ml-24 {
   margin-left: -6rem;
-}
-
-.-ml-40 {
-  margin-left: -10rem;
 }
 
 .-ml-48 {
@@ -1581,14 +1581,6 @@ select{
   height: 21.1875rem;
 }
 
-.h-\[45em\] {
-  height: 45em;
-}
-
-.h-\[46em\] {
-  height: 46em;
-}
-
 .h-\[64rem\] {
   height: 64rem;
 }
@@ -1757,10 +1749,6 @@ select{
   width: 128rem;
 }
 
-.w-\[1330px\] {
-  width: 1330px;
-}
-
 .w-\[1px\] {
   width: 1px;
 }
@@ -1863,10 +1851,6 @@ select{
 
 .max-w-screen-md {
   max-width: 768px;
-}
-
-.max-w-screen-sm {
-  max-width: 640px;
 }
 
 .max-w-sm {
@@ -2848,10 +2832,6 @@ select{
   --tw-bg-opacity: 0.75;
 }
 
-.bg-opacity-80 {
-  --tw-bg-opacity: 0.8;
-}
-
 .bg-gradient-to-t {
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
@@ -3089,6 +3069,11 @@ select{
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .pb-0 {
@@ -4870,11 +4855,6 @@ select{
   border-color: rgb(219 39 119 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:border-slate-600) {
-  --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity));
-}
-
 :is(.dark .dark\:border-slate-800) {
   --tw-border-opacity: 1;
   border-color: rgb(30 41 59 / var(--tw-border-opacity));
@@ -6582,24 +6562,12 @@ select{
   }
 }
 
-@@supports (backdrop-filter:blur(0)) {
+@@supports(backdrop-filter:blur(0)) {
   .\[\@\@supports\(backdrop-filter\:blur\(0\)\)\]\:bg-white\/80 {
     background-color: rgb(255 255 255 / 0.8);
   }
 
   .\[\@\@supports\(backdrop-filter\:blur\(0\)\)\]\:backdrop-blur {
-    --tw-backdrop-blur: blur(8px);
-    -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-            backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-  }
-}
-
-@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
-  .\[\@supports\(backdrop-filter\:blur\(0\)\)\]\:bg-white\/80 {
-    background-color: rgb(255 255 255 / 0.8);
-  }
-
-  .\[\@supports\(backdrop-filter\:blur\(0\)\)\]\:backdrop-blur {
     --tw-backdrop-blur: blur(8px);
     -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
             backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);

@@ -6,7 +6,10 @@ image: https://images.unsplash.com/photo-1675271591211-126ad94e495d?crop=entropy
 author: Darren Reid
 ---
 
-<iframe class="video-hd" src="https://www.youtube.com/embed/7vChIGHWPuI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7vChIGHWPuI" style="background-image: url('https://img.youtube.com/vi/7vChIGHWPuI/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 
 ## Introduction
 
