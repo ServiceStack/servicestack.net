@@ -1,10 +1,13 @@
 ---
-title: Create Simple, Fast, Reliable Apps with Litestream
-url: https://youtu.be/WXRwT7ayc1Y
-tags: ormlite,db,litestream,hosting
-date: 22-07-2022
+title: GitHub for Auto Deployments - Kubernetes Not Required
+url: https://youtu.be/7dardvqBFbE
+tags: github-actions,deployment,hosting
+date: 08-08-2023
 ---
 
-This guide introduces [Litestream](https://litestream.io) for SQLite and demonstrates using ServiceStack Litestream mix templates for efficient setup. The tutorial focuses on SQLite backup and restore procedures during deployment via SSH and docker-compose, utilizing GitHub Actions. 
+Step by step walkthrough for deploying your App via GitHub Actions and plain old SSH. 
+Cheap hardware is getting fast enough that a lot of Web Apps don't need sophisticated orchestration tools like Kubernetes, 
+so we show how you can use fundamental tools like SSH, Docker Compose and GitHub Actions to do it yourself! 
 
-By following these steps, you can streamline your SQLite management tasks and enhance your overall deployment process.
+Low traffic Apps & proof of concepts can easily share cost effective server running Linux, 
+Nginx Reverse Proxy with LetsEncrypt. 
