@@ -26,6 +26,12 @@ Before we dive into the details of using the new feature, let's take a moment to
 
 The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with even Unix shell pipelines, making it an ideal format for handling large datasets efficiently, or hacking together a data pipeline quickly for large scale experimentation.
 
+For example, you can pull out the `title` property from a JSON Lines file using the following command line using just `curl` and `jq`:
+
+```shell
+curl https://blazor-gallery.servicestack.net/albums.jsonl -s | jq '.title'
+```
+
 ## Setting up an Endpoint to Support JSONL in ServiceStack
 
 To enable the JSON Lines (JSONL) format for your ServiceStack endpoint, there are several ways to configure your Request DTO and Response DTO. JSONL behaves similarly to the CSV format, where the first `IEnumerable` property is automatically serialized in the streamable JSONL format. In this section, we will explore different ways to configure your DTOs for JSONL serialization.
