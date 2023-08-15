@@ -1,13 +1,14 @@
 ---
-title: Using the JSON Lines Format in ServiceStack
+title: Exploring the new streamable JSON Lines Format
 summary: A dive into the JSON Lines format and how to use it in ServiceStack
-tags: serialization, jsonl, json-lines, streaming, servicestack
-image: https://images.unsplash.com/photo-1518336751805-17d4ea1ba5a0?crop=entropy&fit=crop&h=1000&w=2000
+tags: serialization, servicestack, jsonl
+image: https://images.unsplash.com/photo-1687042268541-5cc60ad9d3de?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
-draft: true
 ---
 
-ServiceStack already supports a range of serializers out of the box like CSV,JSON,JSV and XML, but today we will explore the new support for the JSON Lines (JSONL) format. JSON Lines is an efficient JSON data format that is parseable by streaming parsers and text processing tools. It is a popular data format for maintaining large datasets, such as the AI datasets maintained on [Huggingface](https://huggingface.co).
+ServiceStack already supports a range of serializers out of the box like CSV,JSON,JSV and XML, but today we will explore the new support for the 
+[JSON Lines](https://jsonlines.org) (JSONL) format. JSON Lines is an efficient JSON data format that is parseable by streaming parsers and 
+text processing tools. It is a popular data format for maintaining large datasets, such as the AI datasets maintained on [Huggingface](https://huggingface.co).
 
 ## Introducing the JSON Lines Format
 
@@ -149,7 +150,11 @@ var lastIndexedCreative = 0;
 
 while (true)
 {
-    await using var stream = await $"{ApiUrl}?IdGreaterThan={lastIndexedCreative}&OrderBy=Id".GetStreamFromUrlAsync();
+    await using var stream = await ApiUrl.AddQueryParams(new() {
+            ["IdGreaterThan"] = lastIndexedCreative,
+            ["OrderBy"] = "Id",
+        })
+        .GetStreamFromUrlAsync();
     await foreach (var line in stream.ReadLinesAsync())
     {
         var creative = line.FromJson<Creative>();
@@ -157,7 +162,9 @@ while (true)
         // processing
         if (creative.Artifacts.Count == 0)
             return;
-        var imageId = creative.PrimaryArtifactId ?? creative.CuratedArtifactId ?? creative.Artifacts.First().Id;
+        var imageId = creative.PrimaryArtifactId 
+            ?? creative.CuratedArtifactId 
+            ?? creative.Artifacts.First().Id;
         var artifact = creative.Artifacts.First(x => x.Id == imageId);
         var indexedCreative = new IndexedCreative
         {
@@ -191,7 +198,10 @@ For increased efficiency, instead of re-indexing all the data each time our prog
 This is done by appending the `IdGreaterThan` query parameter to our AutoQuery endpoint.
 
 ```csharp
-await using var stream = await $"{ApiUrl}?IdGreaterThan={lastIndexedCreative}&OrderBy=Id".GetStreamFromUrlAsync();
+await using var stream = await ApiUrl.AddQueryParams(new() {
+        ["IdGreaterThan"] = lastIndexedCreative,
+        ["OrderBy"] = "Id",
+    }).GetStreamFromUrlAsync();
 ```
 
 ## Visualizing Indexed Documents with Typesense Dashboard
