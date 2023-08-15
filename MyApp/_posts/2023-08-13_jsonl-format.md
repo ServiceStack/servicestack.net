@@ -178,7 +178,7 @@ Processed data are saved into IndexedCreative instances and are added into the T
 
 Our application logs the memory usage over time, and we see it’s constant relative to the size of our process. Streamed JSONL parsing and async indexing allows us processing infinite datasets size without hitting the memory bounds.
 
-## Skipping Already Indexed Data
+## Skipping Already Indexed Data Example
 
 For increased efficiency, instead of re-indexing all the data each time our program runs, we will only fetch and index data that hasn't been indexed already. We use `lastIndexedCreative` integer variable to keep track of the last creative indexed. On subsequent runs of our program, we fetch only new data by modifying the API URL to fetch Creative objects starting from the ID greater than `lastIndexedCreative`.
 
