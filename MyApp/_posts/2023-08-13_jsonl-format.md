@@ -18,6 +18,12 @@ ServiceStack already supports a range of serializers out of the box like CSV,JSO
 
 Before we dive into the details of using the new feature, let's take a moment to understand what JSON Lines is and why it is beneficial. JSON Lines is similar to the CSV format in the way it behaves, where each line in the file represents a separate JSON object. This makes it easy to process large datasets incrementally, without having to load the entire file into memory.
 
+```json lines
+{"id": 1, "name": "John Doe"}
+{"id": 2, "name": "Jane Doe"}
+{"id": 3, "name": "John Smith"}
+```
+
 The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with Unix shell pipelines, making it an ideal format for handling large datasets efficiently.
 
 ## Setting up an Endpoint to Support JSONL in ServiceStack
@@ -90,6 +96,12 @@ await foreach (var line in stream.ReadLinesAsync())
 In this example, we start by obtaining a stream from the URL of the JSON Lines file using the `url.GetStreamFromUrlAsync()` method provided by the ServiceStack HTTP Utils package. Then, we iterate over each line of the stream using the `stream.ReadLinesAsync()` method. Finally, we deserialize each line into the desired data type and process it accordingly.
 
 Using async streaming parsing ensures that you can process large JSON Lines files efficiently, without consuming excessive memory.
+
+You can access JSON Lines data using the following methods:
+
+- A `.jsonl` suffix on the URL
+- An `Accepts: text/jsonl` header
+- A `?format=jsonl` query string parameter
 
 ## Using the JsonlSerializer
 
