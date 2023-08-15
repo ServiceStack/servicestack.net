@@ -1,6 +1,6 @@
 ---
 title: Using the JSON Lines Format in ServiceStack
-summary: A cost-effective and straightforward web app deployment pattern using GitHub and a single Linux server
+summary: A dive into the JSON Lines format and how to use it in ServiceStack
 tags: serialization, jsonl, json-lines, streaming, servicestack
 image: https://images.unsplash.com/photo-1518336751805-17d4ea1ba5a0?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
