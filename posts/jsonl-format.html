@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Migrating from Jekyll to VitePress - ServiceStack</title>
+    <title>Exploring the new streamable JSON Lines Format - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@layoric" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Since Jekyll support has been officially sunset, we decided to migrate our docs site to VitePress" />
-    <meta property="og:url" content="https://servicestack.net/posts/jekyll-to-vitepress" />
-    <meta property="og:title" content="Migrating from Jekyll to VitePress" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1524668951403-d44b28200ce0?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="A dive into the JSON Lines format and how to use it in ServiceStack" />
+    <meta property="og:url" content="https://servicestack.net/posts/jsonl-format" />
+    <meta property="og:title" content="Exploring the new streamable JSON Lines Format" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1687042268541-5cc60ad9d3de?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Migrating from Jekyll to VitePress
+                Exploring the new streamable JSON Lines Format
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,20 +166,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1524668951403-d44b28200ce0?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Migrating from Jekyll to VitePress Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1687042268541-5cc60ad9d3de?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Exploring the new streamable JSON Lines Format Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/docs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docs</a>
-                            <a href="posts/tagged/markdown" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">markdown</a>
+                            <a href="posts/tagged/serialization" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">serialization</a>
+                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> servicestack</a>
+                            <a href="posts/tagged/jsonl" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> jsonl</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2021-11-01T00:00:00.0000000">November 1, 2021</time>
+                                <time datetime="2023-08-15T00:00:00.0000000">August 15, 2023</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>12 min read</span>
+                                <span>8 min read</span>
                             </div>
                         </div>
                 </div>
@@ -192,325 +193,152 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <style>
-table {
-    margin-bottom: 2em;
-}
-th, td {
-    padding: 1em 1.5em;
-}
-tbody tr:nth-child(odd) {
-    --tw-bg-opacity: 1;
-    background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-}
-</style>
-<p>Since Jekyll support has been officially sunset, we decided to migrate our docs site to VitePress. VitePress is a new static site generator based on Vite and Vue 3. It is a cut down version of VuePress but using the blisteringly fast Vite build tool.</p>
-<p>This has given us the ability to update our docs locally with instant on save update to view the final result quickly while we edit/create docs.</p>
-<div class="my-8 ml-20 flex justify-center">
-    <img style="max-height:150px" src="/img/posts/jekyll-to-vitepress/vite.svg" alt="Vite logo">
-    <img style="max-height:150px" src="/img/posts/jekyll-to-vitepress/vuepress.png" alt="VitePress logo">
+                    <p>ServiceStack already supports a range of serializers out of the box like CSV,JSON,JSV and XML, but today we will explore the new support for the
+<a href="https://jsonlines.org">JSON Lines</a> (JSONL) format. JSON Lines is an efficient JSON data format that is parseable by streaming parsers and
+text processing tools. It is a popular data format for maintaining large datasets, such as the AI datasets maintained on <a href="https://huggingface.co">Huggingface</a>.</p>
+<h2 id="introducing-the-json-lines-format">Introducing the JSON Lines Format<a class="header-anchor" href="javascript:;" onclick="location.hash='#introducing-the-json-lines-format'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="m0tAfjvJaZg" style="background-image: url('https://img.youtube.com/vi/m0tAfjvJaZg/maxresdefault.jpg')"></lite-youtube>
 </div>
-<p>We wanted to share our experience with this process in the hope it might help others that are performing the same migration, document common errors and help other developer to get an idea about what is involved before you might undertake such a task.</p>
-<h2 id="jekyll-vs-vitepress">Jekyll vs VitePress<a class="header-anchor" href="javascript:;" onclick="location.hash='#jekyll-vs-vitepress'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Below is not an exhaustive list of features but more focusing on pros and cons when it comes to comparing these two options for use as the static site generator for a documentation site.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Features</th>
-<th style="text-align: left;">Jekyll</th>
-<th style="text-align: left;">VitePress</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Native Language</td>
-<td style="text-align: left;">Ruby</td>
-<td style="text-align: left;">JavaScript</td>
-</tr>
-<tr>
-<td style="text-align: left;">Template Syntax</td>
-<td style="text-align: left;">Liquid</td>
-<td style="text-align: left;">Vue</td>
-</tr>
-<tr>
-<td style="text-align: left;">Update Time</td>
-<td style="text-align: left;">6-30 seconds</td>
-<td style="text-align: left;">30-500 ms</td>
-</tr>
-<tr>
-<td style="text-align: left;">Themes</td>
-<td style="text-align: left;">✅ - mature market</td>
-<td style="text-align: left;">✅ - limited</td>
-</tr>
-<tr>
-<td style="text-align: left;">Extensible</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">✅ (only themes + vite plugins)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Client framework</td>
-<td style="text-align: left;">None</td>
-<td style="text-align: left;">Vue 3</td>
-</tr>
-<tr>
-<td style="text-align: left;">Maintained</td>
-<td style="text-align: left;">No longer</td>
-<td style="text-align: left;">New project</td>
-</tr>
-<tr>
-<td style="text-align: left;">1.0+ release</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-<tr>
-<td style="text-align: left;">Permalink</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖ (depends on filename)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Markdown support</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">HTML support</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">✅ (must use Vue component)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Sitemap generation</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-<tr>
-<td style="text-align: left;">Tags</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-<tr>
-<td style="text-align: left;">Clean URLs</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-</tbody>
-</table>
-<p>This list might look bad for VitePress, but it comes down to a young library that is still in active development. The default theme for VitePress is also centered around technical documentation making it quick to get up and running looking good for this use case.</p>
-<h2 id="killer-feature-performance">Killer feature - Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#killer-feature-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The stand out feature and one of the most compelling reason for us to undertake this migration was not the default theme (although that helped) but the user experience when editing documentation locally.</p>
-<p><img src="/img/posts/jekyll-to-vitepress/vitepress-update-large.gif" alt="" /></p>
-<p>In contrast, editing this blog post for our main site which is still currently using Jekyll, it takes between 6-8 seconds for a small single page change. Previously our docs page with over 300 pages could take over a minute depending on the type of change.</p>
-<pre><code>Regenerating: 1 file(s) changed at 2021-10-29 16:17:00
-                    _blog/posts/2021-10-29-jekyll-migration.md
-                    ...done in 6.3882767 seconds.
+<p>Before we dive into the details of using the new feature, let's take a moment to understand what JSON Lines is and why it is beneficial. JSON Lines is similar to the CSV format in the way it behaves, where each line in the file represents a separate JSON object. This makes it easy to process large datasets incrementally, without having to load the entire file into memory.</p>
+<pre><code class="language-json">{&quot;id&quot;: 1, &quot;name&quot;: &quot;John Doe&quot;}
+{&quot;id&quot;: 2, &quot;name&quot;: &quot;Jane Doe&quot;}
+{&quot;id&quot;: 3, &quot;name&quot;: &quot;John Smith&quot;}
 </code></pre>
-<p>Having a statically generated site that is hard to preview or has a slow iteration cycle can be extremely frustrating to work with so we were looking for something that a pleasure to work with and well suited to documentation.</p>
-<h2 id="common-migration-problems">Common Migration Problems<a class="header-anchor" href="javascript:;" onclick="location.hash='#common-migration-problems'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>When we started this task to migrate, we want to first have a proof of concept of migrating all the content to the same URLs.
-This required us to achieve a few things before we could get stuck into fixing content/syntax related changes.</p>
-<ul>
-<li>Page URLs must be the same.</li>
-<li>Project must be able to run locally and deploy.</li>
-<li>Side menu links must be present.</li>
-</ul>
-<p>These were our minimum requirements before we wanted to commit to making all the changes required to migrate.</p>
-<h2 id="file-name-vs-slug">File name vs <code>slug</code><a class="header-anchor" href="javascript:;" onclick="location.hash='#file-name-vs-slug'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The first one surfaced a design difference straight away. While Jekyll created HTML output based on frontmatter <code>slug</code> property, VitePress only works off the MarkDown file name.</p>
-<p>We would commonly create a MarkDown file called one thing but change our mind on the URL and change the frontmatter <code>permalink</code> to something else. This broke all our existing paths, so we needed a way to parse the markdown files, and produce copies with the updated name using the <code>slug</code> value in the frontmatter.</p>
-<p>Since we were still evaluating this process, we created a quick C# script that would take in a file, extract the <code>slug</code> value and copy a file with that name back out into a separate directory.</p>
-<pre><code class="language-csharp">static void Main(string[] args)
+<p>The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with even Unix shell pipelines, making it an ideal format for handling large datasets efficiently, or hacking together a data pipeline quickly for large scale experimentation.</p>
+<p>For example, you can pull out the <code>title</code> property from a JSON Lines file using the following command line using just <code>curl</code> and <code>jq</code>:</p>
+<pre><code class="language-shell">curl https://blazor-gallery.servicestack.net/albums.jsonl -s | jq '.title'
+</code></pre>
+<h2 id="setting-up-an-endpoint-to-support-jsonl-in-servicestack">Setting up an Endpoint to Support JSONL in ServiceStack<a class="header-anchor" href="javascript:;" onclick="location.hash='#setting-up-an-endpoint-to-support-jsonl-in-servicestack'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To enable the JSON Lines (JSONL) format for your ServiceStack endpoint, there are several ways to configure your Request DTO and Response DTO. JSONL behaves similarly to the CSV format, where the first <code>IEnumerable</code> property is automatically serialized in the streamable JSONL format. In this section, we will explore different ways to configure your DTOs for JSONL serialization.</p>
+<h3 id="automatic-jsonl-serialization-with-autoquery">Automatic JSONL Serialization with AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#automatic-jsonl-serialization-with-autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you're using AutoQuery services in ServiceStack, JSONL serialization is already supported by default. The first <code>IEnumerable</code> property in your Request DTO will be automatically serialized in the JSONL format. This means that all AutoQuery APIs will return their <code>IEnumerable</code> datasets in the streamable JSONL format without any additional configuration.</p>
+<h3 id="configuring-the-request-dto-and-response-dto">Configuring the Request DTO and Response DTO<a class="header-anchor" href="javascript:;" onclick="location.hash='#configuring-the-request-dto-and-response-dto'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To configure your own Request DTO and Response DTO for JSONL serialization, you can use either the <code>[DataContract]</code> and <code>[DataMember]</code> annotations or the <code>[Csv(CsvBehavior.FirstEnumerable)]</code> attribute.</p>
+<h3 id="using-the-datacontract-and-datamember-annotations">Using the <code>[DataContract]</code> and <code>[DataMember]</code> Annotations<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-the-datacontract-and-datamember-annotations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>By applying the <code>[DataContract]</code> annotation to your Response DTO and the <code>[DataMember]</code> annotation to the <code>IEnumerable</code> property, you can specify that the first <code>IEnumerable</code> property should be serialized in the JSONL format. Here's an example:</p>
+<pre><code class="language-csharp">[Route(&quot;/albums&quot;)]
+public class QueryAlbums : IReturn&lt;QueryAlbumsResponse&gt;
 {
-    var filename = args[0];
-    var fileLines = File.ReadAllLines(filename).ToList();
-    if (!Directory.Exists(&quot;updated&quot;))
-    {
-        Directory.CreateDirectory(&quot;updated&quot;);
-    }
-    foreach (var line in fileLines)
-    {
-        if (line.StartsWith(&quot;slug:&quot;))
-        {
-            var newName = line.Split(&quot;:&quot;)[1].Trim();
-            File.WriteAllLines(&quot;./updated/&quot; + newName + &quot;.md&quot;, fileLines);
-        }
-    }
-}
-</code></pre>
-<p>Not very elegant, but it did the job. This was published as a <code>single file</code> executable targeting linux so it could be easily used with tools like <code>find</code> with <code>--exec</code>.</p>
-<pre><code class="language-shell">find *.md -maxdepth 1 -type f -exec ./RenameMd {} \;
-</code></pre>
-<p>All round pretty hacky, but this was also while we were still evaluating VitePress, so it was considered a throw away script.</p>
-<blockquote>
-<p>This was run in each directory as needed, if <code>slug</code> or <code>permalink</code> is controlling your nested pathing, this problem will be more complex to handle.</p>
-</blockquote>
-<p>This was run for our main folder of docs as well as our <code>releases</code> folder and we have successfully renamed files.</p>
-<h2 id="broken-links-are-build-failures">Broken links are build failures<a class="header-anchor" href="javascript:;" onclick="location.hash='#broken-links-are-build-failures'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>VitePress is more strict with issues than Jekyll. This is actually a good thing, especially as your site content grows. VitePress will fail building your site if in your markdown to link to a relative link that it can't see is a file.</p>
-<p>This comes from the above design decision of not aliasing files to output paths. Markdown links like <code>[My link](/my-cool-page)</code> needs to be able to see <code>my-cool-page.md</code>. This means if you move or rename a file, it will break if something else links to it. Jekyll got around this by allowing the use of <code>permalink</code> and <code>slug</code> which is great for flexibility, but means at build time it can't be sure (without a lot more work) if the relative path won't be valid.</p>
-<p>There are drawbacks to this though. If you host multiple resources under the same root path as your VitePress site and you want to reference this, I'm not sure you will be able to. You might have to resort to absolute URLs to link out to resources like this. And since VitePress doesn't alias any paths, it means your hosting environment will need to do this.</p>
-<h2 id="syntax-issues">Syntax issues<a class="header-anchor" href="javascript:;" onclick="location.hash='#syntax-issues'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Jekyll is very forgiving when it comes to content that is passed around as straight html and put in various places using Liquid. For example if you have the following HTML in an <code>include</code> for Jekyll.</p>
-<pre><code class="language-html">&lt;p&gt;This solution is &lt;50 lines of code&lt;/p&gt;
-</code></pre>
-<p>Jekyll will just copy it and not bother you about the invalid HTML issues of having a <code>less-than (&lt;)</code> in the middle of a <code>&lt;p&gt;</code> element. VitePress won't however, and you'll need to correctly use <code>&amp;lt;</code> and <code>&amp;gt;</code> encoded symbols appropriately.</p>
-<h2 id="include-html">Include HTML<a class="header-anchor" href="javascript:;" onclick="location.hash='#include-html'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Another issue is the difference of how to reuse content. In Jekyll, you would use <code>{% include my/path/to/file.html %}</code>. This will likely show up in errors like <code>[vite:vue] Duplicate attribute</code>.</p>
-<p>Instead in VitePress, an include of straight HTML will require migrating that content to a Vue component.</p>
-<p>For example, if we have content file <code>catchphrase.html</code> like the following.</p>
-<pre><code class="language-html">&lt;div&gt;
-    &lt;h4&gt;Catchphrase&lt;/h4&gt;
-    &lt;p&gt;It's.. what I do..&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>We would need to wrap this in a Vue component like <code>catchphrase.vue</code>:</p>
-<pre><code class="language-html">&lt;template&gt;
-    &lt;div&gt;
-        &lt;h4&gt;Catchphrase&lt;/h4&gt;
-        &lt;p&gt;It's.. what I do..&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-    export default {
-        name: &quot;catchphrase&quot;
-    }
-&lt;/script&gt;
-
-&lt;style scoped&gt;
-
-&lt;/style&gt;
-</code></pre>
-<p>Then it would need to be imported. This can be declared globally in the vitepress theme config or adhoc in the consuming Markdown file itself.</p>
-<pre><code class="language-markdown">&lt;script setup&gt;
-import catchphrase from './catchphrase.vue';
-&lt;/script&gt;
-
-&lt;catchphrase /&gt;
-</code></pre>
-<p>The <code>&lt;catchphrase /&gt;</code> is where it is injected into the output. For HTML so simple, this could be instead converted to Markdown and used the same way.</p>
-<pre><code class="language-markdown">## Catchphrase
-it's.. what I do..
-</code></pre>
-<p>And then used:</p>
-<pre><code class="language-markdown">&lt;script setup&gt;
-import catchphrase from './catchphrase.md';
-&lt;/script&gt;
-
-&lt;catchphrase /&gt;
-</code></pre>
-<h2 id="jekyll-markdownify-redundant">Jekyll markdownify redundant<a class="header-anchor" href="javascript:;" onclick="location.hash='#jekyll-markdownify-redundant'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Something similar is done in Jekyll, but with the use of Liquid filters.</p>
-<pre><code class="language-markdown">{% capture projects %}
-{% include web-new-netfx.md %}
-{% endcapture %} 
-{‎{ projects | markdownify }‎}
-</code></pre>
-<p>This use of <code>capture</code> and passing the content to be converted is done by default when importing.</p>
-<pre><code class="language-markdown">&lt;script setup&gt;
-import netfxtable from './.vitepress/includes/web-new-netfx.md';
-&lt;/script&gt;
-
-&lt;netfxtable /&gt;
-</code></pre>
-<p>If the module is declared global, then only the <code>&lt;netfxtable /&gt;</code> is needed anywhere in your site to embed the content.</p>
-<h2 id="templating-syntax-the-same-but-different">Templating syntax the same but different<a class="header-anchor" href="javascript:;" onclick="location.hash='#templating-syntax-the-same-but-different'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>When moving from Jekyll to VitePress, I came across errors like <code>Cannot read property 'X' of undefined</code>. It was referring to some example code in a page we had that looked something like this.</p>
-<pre><code class="language-markdown">Content text here with templating code example below.
-
-    Value: {‎{X.prop}‎}
-
-More explanation here.
-</code></pre>
-<p>This error came about because we didn't religiously fence our code examples. Jekyll let us get away with this and actually produced the visuals we wanted without trying to render value in the handlebars <code>{‎{ }‎}</code> syntax.</p>
-<p>VitePress only ignores these if they are in a code fence using the triple tilda syntax OR if the content is within a <code>:::v-pre</code> block.</p>
-<h2 id="replacing-raw-and-endraw">Replacing <code>raw</code> and <code>endraw</code><a class="header-anchor" href="javascript:;" onclick="location.hash='#replacing-raw-and-endraw'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Since some of our documentation used handlebar syntax in example code, we needed a way for Jekyll to ignore these statements and just present our code.
-<code>raw</code> and <code>endraw</code> were used which were usually wrapping code blocks. VitePress doesn't have a problem with this syntax which means the <code>{% raw %}</code> statements were included in our page which we didn't want.</p>
-<p>This was a matter of finding where these were used in all our documents and replace them with <code>::: v-pre</code> blocks as needed.</p>
-<h2 id="sidebar">Sidebar<a class="header-anchor" href="javascript:;" onclick="location.hash='#sidebar'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This was a different situation. In Jekyll, we had created a <code>SideBar.md</code> file to help us render a left hand side menu of contents for the docs site.
-In VitePress's default theme, we could provide a JSON representation and the client would then dynamically populate it further using different levels of headings.</p>
-<p>To do this, we used a simple NodeJs script that used the <code>markdown-it</code> library to parse the MarkDown itself and produce the expected JSON.</p>
-<p>Loading the file and extracting the elements we needed was quite straight forward.</p>
-<pre><code class="language-js">let fs = require('fs')
-let MarkdownIt = require('markdown-it');
-let md = new MarkdownIt();
-
-let content = fs.readFileSync('SideBar.md','utf8')
-let res = md.parse(content).filter((element, index) =&gt; {
-    return (element.level == '3' || element.level == '5') &amp;&amp; element.type == 'inline';
-});
-</code></pre>
-<p>Now we had <code>res</code> that contained all the information we would need, we can iterate the array, transforming the data as we go.</p>
-<pre><code class="language-js">let sidebarObjs = {
-    '/': []
-};
-var lastHeading = null;
-var lastHeadingIndex = -1;
-for(let i = 0; i &lt; res.length; i++) {
-    let item = res[i];
-    if(item.level == '3') {
-        lastHeading = item.content;
-        sidebarObjs['/'].push({
-            text: lastHeading,
-            children: []
-        })
-        lastHeadingIndex++;
-        continue;
-    }
-    let text = item.children[1].content;
-    let link = item.children[0].attrs[0][1];
-    sidebarObjs['/'][lastHeadingIndex].children.push({
-        text: text,
-        link: link
-    })
 }
 
-fs.writeFileSync('SideBar_format.json',JSON.stringify(sidebarObjs),'utf-8')
+[DataContract]
+public class QueryAlbumsResponse
+{
+    [DataMember]
+    public List&lt;Album&gt; Albums { get; set; }
+}
 </code></pre>
-<p>Once working, we later split this into multiple menus and condensed what we already had to make the menu more manageable.</p>
-<h2 id="problems-we-worked-around">Problems we worked around<a class="header-anchor" href="javascript:;" onclick="location.hash='#problems-we-worked-around'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>That covers the bulk of the changes we made that prevented us from running, building and deploying our application, however there were some short comings that we had to work around outside of VitePress itself.
-There were 2 main sticking points for which we had to come up with a creative work around.</p>
+<p>In this example, the <code>QueryAlbumsResponse</code> class is annotated with <code>[DataContract]</code>, and the <code>Albums</code> property is annotated with <code>[DataMember]</code>. This signifies that the <code>Albums</code> property should be serialized in the JSONL format when returned as a response.</p>
+<h3 id="using-the-csvcsvbehavior.firstenumerable-attribute">Using the <code>[Csv(CsvBehavior.FirstEnumerable)]</code> Attribute<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-the-csvcsvbehavior.firstenumerable-attribute'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Alternatively, you can use the <code>[Csv(CsvBehavior.FirstEnumerable)]</code> attribute on your Response DTO to indicate that the first <code>IEnumerable</code> property should be serialized in the JSONL format. Here's an example:</p>
+<pre><code class="language-csharp">[Route(&quot;/users&quot;)]
+public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
+{
+    public string Name { get; set; }
+}
+
+[Csv(CsvBehavior.FirstEnumerable)]
+public class SearchUsersResponse
+{
+    public List&lt;User&gt; Users { get; set; }
+}
+</code></pre>
+<h2 id="async-streaming-parsing-example">Async Streaming Parsing Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#async-streaming-parsing-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To process each row of a JSON Lines file one at a time and avoid large allocations, ServiceStack provides convenient extension methods in the <a href="https://docs.servicestack.net/http-utils">HTTP Utils</a> package. These methods allow you to implement async streaming parsing effortlessly.</p>
+<p>Let's take a look at an example that demonstrates how to use async streaming parsing to process each row of a JSON Lines file:</p>
+<pre><code class="language-csharp">const string BaseUrl = &quot;https://api.example.com&quot;;
+var url = BaseUrl.CombineWith(&quot;data.jsonl&quot;);
+await using var stream = await url.GetStreamFromUrlAsync();
+await foreach (var line in stream.ReadLinesAsync())
+{
+    var row = line.FromJson&lt;DataType&gt;();
+    // Process each row as needed
+}
+</code></pre>
+<p>In this example, we start by obtaining a stream from the URL of the JSON Lines file using the <code>url.GetStreamFromUrlAsync()</code> method provided by the ServiceStack HTTP Utils package. Then, we iterate over each line of the stream using the <code>stream.ReadLinesAsync()</code> method. Finally, we deserialize each line into the desired data type and process it accordingly.</p>
+<p>Using async streaming parsing ensures that you can process large JSON Lines files efficiently, without consuming excessive memory.</p>
+<p>You can access JSON Lines data using the following methods:</p>
 <ul>
-<li>Client router always appending <code>.html</code> (breaking clean URLs)</li>
-<li>Failing to route to paths with addition dots (<code>.</code>) in the URL</li>
+<li>A <code>.jsonl</code> suffix on the URL</li>
+<li>An <code>Accepts: text/jsonl</code> header</li>
+<li>A <code>?format=jsonl</code> query string parameter</li>
 </ul>
-<p>Hosting clean URLs can be done from the server side, so we used AWS CloudWatch functions to rewrite the request to append the <code>.html</code> in the backend if it was not provided.
-However, VitePress still generated all page links with <code>.html</code>, creating multiple paths for the single document which can cause problems with other processes such as search indexing.</p>
-<p>Since our documentation is something we edit quite frequently, we didn't want to be stuck in limbo due to these two problems while we workout and propose how VitePress itself might allow for such a setup.
-Our solution <strong>is NOT recommended</strong> since it will be quite brittle which we have accepted. We found the 2 locations in the VitePress source that were causing this problem during static site generation.
-Thankfully, the logic is simple and we can remove 2 lines of code during the <code>npm install</code> phase out of our <code>node_modules</code> directory so that our CI builds would be consistent.</p>
-<pre><code class="language-js">const fs = require('fs');
-const glob = require('glob');
-let js = 'node_modules/vitepress/dist/client/app/router.js';
-fs.writeFileSync(js, fs.readFileSync(js, 'utf8').replace(&quot;url.pathname += '.html';&quot;, ''))
-
-glob('node_modules/vitepress/dist/node/serve-*.js',{},(err,files) =&gt;{
-    let file = files[0];
-    fs.writeFileSync(file,fs.readFileSync(file,'utf8').replace(&quot;cleanUrl += \&quot;.html\&quot;;&quot;,''))
-})
-
-console.log('Completed post install process...')
+<h2 id="using-the-jsonlserializer">Using the JsonlSerializer<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-the-jsonlserializer'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If streaming the results is not necessary, ServiceStack also provides the <code>JsonlSerializer</code> class to directly serialize and deserialize JSON Lines data. The <code>JsonlSerializer</code> can be used in scenarios where you want to work with the JSON Lines format as a whole, rather than streaming it line by line.</p>
+<p>Here's an example of how to use the <code>JsonlSerializer</code> to deserialize a JSON Lines string into a list of objects:</p>
+<pre><code class="language-csharp">var jsonl = await url.GetStringFromUrlAsync();
+var objects = JsonlSerializer.DeserializeFromString&lt;List&lt;DataType&gt;&gt;(jsonl);
 </code></pre>
-<blockquote>
-<p>NOT RECOMMENDED</p>
-</blockquote>
-<p>If you have standard <code>.html</code> paths on your existing site, you won't need the above. It is just a temporary workaround for getting clean URLs, which is again, <em>not recommended</em>.</p>
-<h2 id="verdict">Verdict<a class="header-anchor" href="javascript:;" onclick="location.hash='#verdict'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>While we have made the jump to VitePress, it is still young and under heavy development.
-There is a good chance that some of the behaviour and lacking features will make this not a viable option for migrating off Jekyll.</p>
-<p>And we knew this going in as it is very clearly outlined on the front page of their docs:</p>
-<p><img src="/img/posts/jekyll-to-vitepress/vitepress-warning.png" alt="" /></p>
-<p>However, while there are still outstanding issues, the developer experience of Vue 3 combined with Vite and an SSG theme
-aimed at producing documentation is extremely compelling.
-The work Even You and the VitePress community are doing is something to look out for as currently we believe it offers
-one of the best content heavy site development experiences currently possible.</p>
-<h2 id="servicestack-a-sponsor-of-vues-evan-you">ServiceStack a Sponsor of Vue's Evan You<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-a-sponsor-of-vues-evan-you'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>As maintainers of several <a href="https://docs.servicestack.net/templates-vue">Vue &amp; .NET Project Templates</a>, we're big fans of
-Evan's work creating Vue, Vite and his overall stewardship of their surrounding ecosystems which greatly benefits from his
-master design skills and fine attention to detail in both library and UI design who has a talent in creating inherently
-simple technologies that progressively scales up to handle the complexest of Apps.</p>
-<p>We believe in and are excited for the future of Vue and Vite that to show our support ServiceStack is now a sponsor of
-<a href="https://github.com/sponsors/yyx990803">Evan You on GitHub sponsors</a> 🎉 🎉</p>
+<p>In this example, we start by fetching the JSON Lines data as a string using the <code>url.GetStringFromUrlAsync()</code> method. Then, we use the <code>JsonlSerializer</code> to deserialize the string into a list of objects of the desired data type.</p>
+<p>The <code>JsonlSerializer</code> can also be used to serialize objects to the JSON Lines format:</p>
+<pre><code class="language-csharp">var jsonl = JsonlSerializer.SerializeToString(objects);
+JsonlSerializer.SerializeToStream(objects, stream);
+JsonlSerializer.SerializeToWriter(objects, textWriter);
+</code></pre>
+<h2 id="indexing-ai-generated-art-albums-with-jsonl">Indexing AI-Generated Art Albums with JSONL<a class="header-anchor" href="javascript:;" onclick="location.hash='#indexing-ai-generated-art-albums-with-jsonl'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In this part, we will walk you through a practical demonstration of using JSON Lines to index AI-generated art albums. We will fetch data from the Blazor Diffusion API, which provides &quot;Creatives&quot; generated based on user-provided text prompts. Our goal is to index the text and image URLs of these Creatives into a Typesense search server.</p>
+<p>Here is the code snippet with a practical implementation of interacting with <code>creatives.jsonl</code> endpoint:</p>
+<pre><code class="language-csharp">const string ApiUrl = &quot;https://localhost:5001/creatives.jsonl&quot;;
+
+var provider = TypesenseUtils.InitProvider();
+var typesenseClient = provider.GetRequiredService&lt;ITypesenseClient&gt;();
+await typesenseClient.InitCollection();
+var sw = new Stopwatch();
+sw.Start();
+
+var lastIndexedCreative = 0;
+
+while (true)
+{
+    await using var stream = await ApiUrl.AddQueryParams(new() {
+            [&quot;IdGreaterThan&quot;] = lastIndexedCreative,
+            [&quot;OrderBy&quot;] = &quot;Id&quot;,
+        })
+        .GetStreamFromUrlAsync();
+    await foreach (var line in stream.ReadLinesAsync())
+    {
+        var creative = line.FromJson&lt;Creative&gt;();
+        lastIndexedCreative = creative.Id;
+        // processing
+        if (creative.Artifacts.Count == 0)
+            return;
+        var imageId = creative.PrimaryArtifactId 
+            ?? creative.CuratedArtifactId 
+            ?? creative.Artifacts.First().Id;
+        var artifact = creative.Artifacts.First(x =&gt; x.Id == imageId);
+        var indexedCreative = new IndexedCreative
+        {
+            Text = creative.Prompt,
+            Url = $&quot;https://cdn.diffusion.works{artifact.FilePath}&quot;
+        };
+        // Process and index the creative data
+        await typesenseClient.CreateDocument(&quot;Creatives&quot;, indexedCreative);
+    } 
+    
+    // sleep if no new data ..
+}
+</code></pre>
+<p>Here we have the service client initialization with the <code>TypesenseUtils.InitProvider()</code>. Then, inside an infinite loop, we fetch data using <code>GetStreamFromUrlAsync()</code> and stream it line by line using the <code>ReadLinesAsync()</code> method. After processing each line, we index the creative item into typesense.</p>
+<h2 id="indexing-creative-data-into-typesense">Indexing Creative Data into Typesense<a class="header-anchor" href="javascript:;" onclick="location.hash='#indexing-creative-data-into-typesense'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>With Typesense, implementation of full-text search for our data can be achieved efficiently. Once we have fetched the Creative data from Blazor Diffusion's API, we can proceed to index it into Typesense for easy searching and analysis of the indexed documents. To index the Creative data, we're using <a href="https://github.com/DAXGRID/typesense-dotnet">a C# client library built by the community</a>.</p>
+<p>Processed data are saved into IndexedCreative instances and are added into the Typesense server. Under the hood, the C# client library interacts with Typesense's API and handles all HTTP requests and responses for us.</p>
+<h3 id="memory-foot-print">Memory Foot Print<a class="header-anchor" href="javascript:;" onclick="location.hash='#memory-foot-print'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Our application logs the memory usage over time, and we see it’s constant relative to the size of our process. Streamed JSONL parsing and async indexing allows us processing infinite datasets size without hitting the memory bounds.</p>
+<h2 id="skipping-already-indexed-data-example">Skipping Already Indexed Data Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#skipping-already-indexed-data-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>For increased efficiency, instead of re-indexing all the data each time our program runs, we will only fetch and index data that hasn't been indexed already. We use <code>lastIndexedCreative</code> integer variable to keep track of the last creative indexed. On subsequent runs of our program, we fetch only new data by modifying the API URL to fetch Creative objects starting from the ID greater than <code>lastIndexedCreative</code>.</p>
+<p>This is done by appending the <code>IdGreaterThan</code> query parameter to our AutoQuery endpoint.</p>
+<pre><code class="language-csharp">await using var stream = await ApiUrl.AddQueryParams(new() {
+        [&quot;IdGreaterThan&quot;] = lastIndexedCreative,
+        [&quot;OrderBy&quot;] = &quot;Id&quot;,
+    }).GetStreamFromUrlAsync();
+</code></pre>
+<h2 id="visualizing-indexed-documents-with-typesense-dashboard">Visualizing Indexed Documents with Typesense Dashboard<a class="header-anchor" href="javascript:;" onclick="location.hash='#visualizing-indexed-documents-with-typesense-dashboard'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Another great community feature is the <a href="https://github.com/bfritscher/typesense-dashboard">Typesense dashboard project</a>, providing a user-friendly interface to manage and browse collections in a Typesense search server. The dashboard, which can be accessed via the browser or as a downloadable desktop app, provides real-time statistics and overview over the indexed collections.</p>
+<p>The indexed creative data can now be explored and analyzed using the dashboard's intuitive interface. You can apply filters, perform searches, and manipulate the stored data through the user interface.</p>
+<h2 id="conclusion">Conclusion<a class="header-anchor" href="javascript:;" onclick="location.hash='#conclusion'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The JSON lines format is a versatile and efficient standard for working with large datasets. Its streamable properties make it particularly useful for handling big data and its ease of use makes it an ideal choice for developers working in any client language.</p>
+<p>Streaming data directly to and from HTTP APIs — a major power of the JSON lines format — can dramatically improve the performance of data-intensive applications. Furthermore, ServiceStack's new JSON Lines support makes it straight forward serve and consume these streams.</p>
 
                 </div>
             </div>
@@ -569,47 +397,6 @@ simple technologies that progressively scales up to handle the complexest of App
                         More from Darren Reid
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/jsonl-format">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1687042268541-5cc60ad9d3de?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/jsonl-format" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Exploring the new streamable JSON Lines Format">
-                                                    Exploring the new streamable JSON Lines Format
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">A dive into the JSON Lines format and how to use it in ServiceStack</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Darren Reid</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Exploring the new streamable JSON Lines Format background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2023-08-15T00:00:00.0000000">August 15, 2023</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>8 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -726,6 +513,47 @@ simple technologies that progressively scales up to handle the complexest of App
                                                     <time datetime="2023-07-11T00:00:00.0000000">July 11, 2023</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>3 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/chat-gpt-agents">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1675271591211-126ad94e495d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/chat-gpt-agents" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Creating ChatGPT Agents to call System APIs">
+                                                    Creating ChatGPT Agents to call System APIs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">A walkthrough of how to enable Large Language Model &#x27;Agents&#x27; with access to your own ServiceStack APIs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Darren Reid</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Creating ChatGPT Agents to call System APIs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-05-12T00:00:00.0000000">May 12, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>9 min read</span>
                                                 </div>
                                             </div>
                                         </div>
