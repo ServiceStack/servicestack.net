@@ -78,7 +78,7 @@ public class SearchUsersResponse
 
 ## Async Streaming Parsing Example
 
-To process each row of a JSON Lines file one at a time and avoid large allocations, ServiceStack provides convenient extension methods in the [HTTP Utils](/http-utils) package. These methods allow you to implement async streaming parsing effortlessly.
+To process each row of a JSON Lines file one at a time and avoid large allocations, ServiceStack provides convenient extension methods in the [HTTP Utils](https://docs.servicestack.net/http-utils) package. These methods allow you to implement async streaming parsing effortlessly.
 
 Let's take a look at an example that demonstrates how to use async streaming parsing to process each row of a JSON Lines file:
 
