@@ -24,7 +24,7 @@ Before we dive into the details of using the new feature, let's take a moment to
 {"id": 3, "name": "John Smith"}
 ```
 
-The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with Unix shell pipelines, making it an ideal format for handling large datasets efficiently.
+The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with even Unix shell pipelines, making it an ideal format for handling large datasets efficiently, or hacking together a data pipeline quickly for large scale experimentation.
 
 ## Setting up an Endpoint to Support JSONL in ServiceStack
 
