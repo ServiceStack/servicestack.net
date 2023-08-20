@@ -1,6 +1,6 @@
 ---
 title: ES6 JS Module Add ServiceStack Reference
-url: https://docs.servicestack.net/releases/v6_6#js-module-es6-class-dtos
+url: https://docs.servicestack.net/releases/v6_06#js-module-es6-class-dtos
 image: /img/whatsnew/v6.6/mjs-update-reference-rider.png
 ---
 

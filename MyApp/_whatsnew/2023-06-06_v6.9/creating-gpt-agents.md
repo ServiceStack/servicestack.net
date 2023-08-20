@@ -1,6 +1,6 @@
 ---
 title: Creating ChatGPT Agents to call System APIs
-url: https://docs.servicestack.net/releases/v6_9#creating-chatgpt-agents-to-call-system-apis
+url: https://docs.servicestack.net/releases/v6_09#creating-chatgpt-agents-to-call-system-apis
 image: /img/whatsnew/v6.9/gptmeetings.jpg
 order: 3
 ---

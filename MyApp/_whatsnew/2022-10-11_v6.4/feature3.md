@@ -1,6 +1,6 @@
 ---
 title: Blazor Component Gallery
-url: https://docs.servicestack.net/releases/v6_4#blazor-gallery
+url: https://docs.servicestack.net/releases/v6_04#blazor-gallery
 image: /img/whatsnew/v6.4/gallery-splash.png
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Rapid Application Development with Locode
-url: https://docs.servicestack.net/releases/v6_1
+url: https://docs.servicestack.net/releases/v6_01
 image: /img/whatsnew/v6.1/locode-splash.png
 ---
 

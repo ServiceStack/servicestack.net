@@ -1,6 +1,6 @@
 ---
 title: Vue AutoQueryGrid Component for Auto CRUD UIs
-url: https://docs.servicestack.net/releases/v6_7#autoquerygrid
+url: https://docs.servicestack.net/releases/v6_07#autoquerygrid
 image: /img/whatsnew/v6.7/gallery-contacts.png
 ---
 

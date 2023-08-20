@@ -1,6 +1,6 @@
 ---
 title: New Auto API HTML Page for all APIs!
-url: https://docs.servicestack.net/releases/v6_7
+url: https://docs.servicestack.net/releases/v6_07
 image: /img/whatsnew/v6.7/autohtml-preview.png
 ---
 

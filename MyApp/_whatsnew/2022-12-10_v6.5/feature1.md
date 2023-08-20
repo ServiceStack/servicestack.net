@@ -1,6 +1,6 @@
 ---
 title: Blazor Dark Mode Everywhere
-url: https://docs.servicestack.net/releases/v6_5
+url: https://docs.servicestack.net/releases/v6_05
 image: /img/whatsnew/v6.5/dark-and-light-mode.png
 ---
 

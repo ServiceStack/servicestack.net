@@ -1,6 +1,6 @@
 ---
 title: New Blazor Components
-url: https://docs.servicestack.net/releases/v6_5#blazor-components
+url: https://docs.servicestack.net/releases/v6_05#blazor-components
 image: /img/whatsnew/v6.5/blazordiffusion-Autocomplete.png
 ---
 

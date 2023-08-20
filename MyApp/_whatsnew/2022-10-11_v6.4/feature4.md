@@ -1,6 +1,6 @@
 ---
 title: Debug DB Migrations from IDE
-url: https://docs.servicestack.net/releases/v6_4#db-migrations
+url: https://docs.servicestack.net/releases/v6_04#db-migrations
 image: /img/whatsnew/v6.4/database-migrations-youtube.jpg
 ---
 

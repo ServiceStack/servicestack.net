@@ -1,6 +1,6 @@
 ---
 title: Vue Stable Diffusion
-url: https://docs.servicestack.net/releases/v6_9#vue-stable-diffusion
+url: https://docs.servicestack.net/releases/v6_09#vue-stable-diffusion
 image: /img/whatsnew/v6.9/vuediffusion.png
 order: 4
 ---

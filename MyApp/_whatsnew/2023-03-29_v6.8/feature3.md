@@ -1,6 +1,6 @@
 ---
 title: Streamlined Development for creating Flutter Apps
-url: https://docs.servicestack.net/releases/v6_8#flutter
+url: https://docs.servicestack.net/releases/v6_08#flutter
 image: /img/whatsnew/v6.8/flutter-todos.jpg
 ---
 

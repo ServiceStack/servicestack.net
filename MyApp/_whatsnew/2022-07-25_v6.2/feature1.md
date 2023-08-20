@@ -1,6 +1,6 @@
 ---
 title: Beautiful Blazor Tailwind Template
-url: https://docs.servicestack.net/releases/v6_2
+url: https://docs.servicestack.net/releases/v6_02
 image: /img/whatsnew/v6.2/blazor-tailwind.png
 ---
 

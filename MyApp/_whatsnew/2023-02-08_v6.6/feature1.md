@@ -1,6 +1,6 @@
 ---
 title: New Tailwind Razor Pages & MVC Templates
-url: https://docs.servicestack.net/releases/v6_6
+url: https://docs.servicestack.net/releases/v6_06
 image: /img/whatsnew/v6.6/vue-mjs.png
 ---
 

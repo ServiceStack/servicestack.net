@@ -1,6 +1,6 @@
 ---
 title: Code-First Development Model
-url: https://docs.servicestack.net/releases/v6_1#code-first
+url: https://docs.servicestack.net/releases/v6_01#code-first
 image: /img/whatsnew/v6.1/chinook-splash.png
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Browse App RDBMS Tables with Database Admin
-url: https://docs.servicestack.net/releases/v6_3#database-admin-ui
+url: https://docs.servicestack.net/releases/v6_03#database-admin-ui
 image: /img/whatsnew/v6.3/admin-ui-database.png
 ---
 

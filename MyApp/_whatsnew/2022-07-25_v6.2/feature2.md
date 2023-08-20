@@ -1,6 +1,6 @@
 ---
 title: Create Litestream Apps and Save 10x on Hosting
-url: https://docs.servicestack.net/releases/v6_2.html#litestream
+url: https://docs.servicestack.net/releases/v6_02.html#litestream
 image: /img/whatsnew/v6.2/litestream-costs.svg
 ---
 

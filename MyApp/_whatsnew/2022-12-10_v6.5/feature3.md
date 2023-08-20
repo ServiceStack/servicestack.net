@@ -1,6 +1,6 @@
 ---
 title: Blazor Diffusion
-url: https://docs.servicestack.net/releases/v6_5#blazor-diffusion
+url: https://docs.servicestack.net/releases/v6_05#blazor-diffusion
 image: /img/whatsnew/v6.5/blazordiffusion.com_splash.png
 ---
 

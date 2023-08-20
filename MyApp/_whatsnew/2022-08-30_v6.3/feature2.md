@@ -1,6 +1,6 @@
 ---
 title: Manage App Redis Servers with Redis Admin
-url: https://docs.servicestack.net/releases/v6_3#redis-admin-ui
+url: https://docs.servicestack.net/releases/v6_03#redis-admin-ui
 image: /img/whatsnew/v6.3/admin-ui-redis.png
 ---
 

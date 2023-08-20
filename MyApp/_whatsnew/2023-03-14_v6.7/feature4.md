@@ -1,6 +1,6 @@
 ---
 title: New API Index Page
-url: https://docs.servicestack.net/releases/v6_7#api-index
+url: https://docs.servicestack.net/releases/v6_07#api-index
 image: /img/whatsnew/v6.7/api-gallery.png
 ---
 

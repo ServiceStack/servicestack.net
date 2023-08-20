@@ -1,6 +1,6 @@
 ---
 title: Database-First Development Model
-url: https://docs.servicestack.net/releases/v6_1#database-first
+url: https://docs.servicestack.net/releases/v6_01#database-first
 image: /img/whatsnew/v6.1/youtube-locode-intro.png
 ---
 

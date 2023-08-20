@@ -1,6 +1,6 @@
 ---
 title: Gain real-time insights with built-in Profiling
-url: https://docs.servicestack.net/releases/v6_2.html#request-logging-profiling
+url: https://docs.servicestack.net/releases/v6_02.html#request-logging-profiling
 image: /img/whatsnew/v6.2/profiling.png
 ---
 

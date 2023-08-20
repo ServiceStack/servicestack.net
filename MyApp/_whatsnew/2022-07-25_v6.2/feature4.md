@@ -1,6 +1,6 @@
 ---
 title: Manage DB Validation Rules with Validation UI
-url: https://docs.servicestack.net/releases/v6_2.html#db-validation
+url: https://docs.servicestack.net/releases/v6_02.html#db-validation
 image: /img/whatsnew/v6.2/validation-video.png
 ---
 

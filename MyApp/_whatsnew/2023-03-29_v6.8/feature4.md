@@ -1,6 +1,6 @@
 ---
 title: Improved workflow for creating Flutter gRPC Apps
-url: https://docs.servicestack.net/releases/v6_8#flutter-grpc
+url: https://docs.servicestack.net/releases/v6_08#flutter-grpc
 image: /img/whatsnew/v6.8/flutter-grpc.jpg
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Blazor Server Template
-url: https://docs.servicestack.net/releases/v6_4#blazor-server
+url: https://docs.servicestack.net/releases/v6_04#blazor-server
 image: /img/whatsnew/v6.4/blazor-server.png
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: New Vue 3 Locode, API Explorer & Admin UIs
-url: https://docs.servicestack.net/releases/v6_7#new-locode-api-explorer-admin-uis-now-in-vue-3
+url: https://docs.servicestack.net/releases/v6_07#new-locode-api-explorer-admin-uis-now-in-vue-3
 image: /img/whatsnew/v6.7/new-vue3-uis.png
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: New statically generated Razor Pages & Vue website
-url: https://docs.servicestack.net/releases/v6_8
+url: https://docs.servicestack.net/releases/v6_08
 image: /img/whatsnew/v6.8/servicestack.net-home-1440.png
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Simple Code-First DB Migrations
-url: https://docs.servicestack.net/releases/v6_3#code-first-db-migrations
+url: https://docs.servicestack.net/releases/v6_03#code-first-db-migrations
 image: /img/whatsnew/v6.3/db-migrations.png
 ---
 

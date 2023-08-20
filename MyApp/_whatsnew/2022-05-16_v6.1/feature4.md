@@ -1,6 +1,6 @@
 ---
 title: Hybrid Locode Apps with Blazor WASM
-url: https://docs.servicestack.net/releases/v6_1#hybrid-locode-apps
+url: https://docs.servicestack.net/releases/v6_01#hybrid-locode-apps
 image: /img/whatsnew/v6.1/talent-splash.png
 ---
 

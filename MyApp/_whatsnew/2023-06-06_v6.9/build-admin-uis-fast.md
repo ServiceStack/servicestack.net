@@ -1,6 +1,6 @@
 ---
 title: Build Admin UIs, Fast
-url: https://docs.servicestack.net/releases/v6_9#build-admin-uis-fast
+url: https://docs.servicestack.net/releases/v6_09#build-admin-uis-fast
 image: /img/whatsnew/v6.9/admin-ui.png
 order: 2
 ---

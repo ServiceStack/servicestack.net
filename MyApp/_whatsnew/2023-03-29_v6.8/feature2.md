@@ -1,6 +1,6 @@
 ---
 title: New Razor Pages & Markdown powered static website
-url: https://docs.servicestack.net/releases/v6_8#razor-ssg
+url: https://docs.servicestack.net/releases/v6_08#razor-ssg
 image: /img/whatsnew/v6.8/razor-ssg.png
 ---
 

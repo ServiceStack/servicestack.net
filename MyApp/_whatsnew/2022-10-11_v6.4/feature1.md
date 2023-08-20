@@ -1,6 +1,6 @@
 ---
 title: RAD Blazor
-url: https://docs.servicestack.net/releases/v6_4
+url: https://docs.servicestack.net/releases/v6_04
 image: /img/whatsnew/v6.4/blazor-components-youtube.jpg
 ---
 
