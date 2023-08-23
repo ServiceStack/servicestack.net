@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Jamstack Hosting Costs @ $.40 /mo - ServiceStack</title>
+    <title>New Blogging features in Razor SSG - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Exploring cost &amp; scalability benefits of hybrid CDN &amp; .NET Apps" />
-    <meta property="og:url" content="https://servicestack.net/posts/jamstacks_hosting" />
-    <meta property="og:title" content="Jamstack Hosting Costs @ $.40 /mo" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1506399309177-3b43e99fead2?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Explore the new Blogging Features in Razor SSG" />
+    <meta property="og:url" content="https://servicestack.net/posts/razor-ssg-new-blog-features" />
+    <meta property="og:title" content="New Blogging features in Razor SSG" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Jamstack Hosting Costs @ $.40 /mo
+                New Blogging features in Razor SSG
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,18 +166,22 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1506399309177-3b43e99fead2?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Jamstack Hosting Costs @ $.40 /mo Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="New Blogging features in Razor SSG Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
+                            <a href="posts/tagged/razor" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
+                            <a href="posts/tagged/markdown" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> markdown</a>
+                            <a href="posts/tagged/blog" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> blog</a>
+                            <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> dev</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-01-02T00:00:00.0000000">January 2, 2023</time>
+                                <time datetime="2023-08-23T00:00:00.0000000">August 23, 2023</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>14 min read</span>
+                                <span>6 min read</span>
                             </div>
                         </div>
                 </div>
@@ -190,59 +194,277 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <a href="https://jamstack.org">
-    <svg class="w-14 h-14 float-left mt-2 mr-4" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><path fill="#F0047F" d="M128 0C57.221 0 0 57.221 0 128c0 70.778 57.221 128 128 128c70.778 0 128-57.222 128-128V0H128Z"/><path fill="#FFF" d="M121.04 134.96v93.312c-49.663-2.837-89.64-42.345-93.215-91.81l-.097-1.502h93.312Zm90.962 0c-2.6 49.664-38.816 89.64-84.159 93.215l-1.377.097V134.96h85.536Zm.112-91.074v85.648h-85.648V43.886h85.648Z"/></svg>
-</a>
-<p>The modern <a href="https://jamstack.org">jamstack.org</a> approach for developing websites is primarily concerned with adopting
-the architecture yielding the best performance and superior UX by minimizing the time to first byte from serving
-pre-built static assets from CDN edge caches.</p>
-<h2 id="cheaper-hosting">Cheaper Hosting<a class="header-anchor" href="javascript:;" onclick="location.hash='#cheaper-hosting'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<a href="https://jamstack.org">
-    <svg class="w-14 h-14 float-left mt-2 mr-4" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><path fill="#699635" d="M61 20.9C54.8 15.3 48.6 9.6 42.4 4C33.3 17.8 17.9 30.1 3.3 39c-.4 1.9-.8 3.7-1.3 5.5C8.4 50.3 14.8 56.2 21.2 62C36.3 53.7 52.3 41.9 62 28.5c-.3-2.5-.7-5-1-7.6"/><path fill="#83bf4f" d="M22.4 54.6C16.1 48.8 9.8 43 3.5 37.3c15.7-8.9 28.9-21 38.6-35.3C48.4 7.8 54.7 13.5 61 19.3c-9.7 14.3-22.9 26.4-38.6 35.3"/><g fill="#699635"><path d="M20.8 50.8c-4.2-3.8-8.4-7.7-12.6-11.5c.3-.2.5-.3.8-.5c.8-.5 1-1.4.3-2.1l-.6-.6C21.4 28.3 32.4 18.3 41 6.7l.6.6c.7.6 1.7.5 2.3-.2c.2-.2.3-.5.5-.7c4.2 3.8 8.4 7.7 12.6 11.5c-.2.2-.3.5-.5.7c-.6.8-.5 1.9.2 2.6l.6.6C48.7 33.3 37.7 43.3 25 51.1l-.6-.6c-.7-.6-1.9-.7-2.8-.2c-.3.2-.5.3-.8.5m-9.9-11.4c3.4 3.1 6.8 6.2 10.3 9.4c1.3-.4 2.8-.3 4 .3C36.8 41.7 46.9 32.5 55 21.8c-.7-1.1-.8-2.5-.3-3.7c-3.4-3.1-6.8-6.2-10.3-9.4c-.9.8-2.2.9-3.3.3C33 19.8 22.9 29 11.3 36.4c.6 1 .5 2.2-.4 3"/><path d="M20 37.3c1.1-.4 2.3-.3 3.1.4c-.5.4-1.1.8-1.6 1.2c-.2-.2-.7-.2-.9 0c-.3.2-.4.5-.1.7c.2.2.7.2 1 0c1.2-.8 2.9-.9 3.8 0c.7.7.8 1.7.1 2.5c.2.2.4.3.6.5c-.5.3-1 .7-1.5 1c-.2-.2-.4-.4-.6-.5c-1.1.3-2.3.2-3-.5c.6-.4 1.1-.7 1.7-1.1c.2.2.7.2 1 0c.3-.2.3-.5.1-.7c-.2-.2-.6-.2-.9 0c-.7.5-1.6.7-2.4.6c-.6-.1-1.1-.3-1.5-.6c-.7-.7-.7-1.6-.1-2.4c-.2-.1-.3-.3-.5-.5c.5-.3 1-.7 1.5-1c-.1.1.1.2.2.4m23.2-21.4c.9-.6 2-.6 2.7.1l-1.2 1.5c-.2-.2-.6-.2-.8.1c-.2.3-.2.7 0 .9s.6.2.8-.1c.9-1.1 2.4-1.3 3.3-.5c.7.7.9 1.8.5 2.8c.2.2.4.3.6.5c-.4.5-.7.9-1.1 1.4c-.2-.2-.4-.4-.6-.5c-.9.5-1.9.5-2.6-.2c.4-.5.9-1 1.3-1.5c.2.2.6.2.8-.1s.2-.7 0-.9c-.2-.2-.6-.2-.8.1c-.5.6-1.3 1-2 1c-.5 0-1-.2-1.4-.5c-.7-.7-.9-1.7-.5-2.7c-.2-.1-.3-.3-.5-.5c.4-.4.8-.9 1.1-1.4c0 .2.2.3.4.5m-3 19.6c-3.2 2.9-8.6 2.8-11.7 0c-3.1-2.9-2.9-7.4.3-10.3c3.2-2.9 8.2-3.2 11.3-.3c3.2 2.8 3.3 7.7.1 10.6"/></g><path fill="#ffdd7d" d="m21.8 24.5l18.9 17.3c2.2-1.8 4.2-3.7 6.2-5.7L28.1 18.8c-2 1.9-4.1 3.8-6.3 5.7"/><path fill="#dbb471" d="M40.8 49.4c2.1-1.6 4.2-3.3 6.2-5V36c-2 2-4.1 3.9-6.2 5.7v7.7"/><path id="emojioneMoneyWithWings0" fill="#8d9998" d="M12.1 24.7c1.1-.4 2-1 2.9-1.7c.9-.7 1.7-1.4 2.6-2.2c.9-.7 1.8-1.5 2.8-2c1-.6 2.3-.9 3.4-.7c-1.1.2-2.1.7-3 1.4c-.9.6-1.7 1.4-2.6 2.1c-.9.7-1.8 1.5-2.8 2.1c-1 .6-2.2 1-3.3 1"/><path fill="#e8e8e8" d="M39.8 33.1s4.9 1.4 16.3-1.6s6 29.8-14.8 29.8c-2.3 0-2.4-2.9 4-8.1c0 0-9 2.1-5.1-4.6c0 0-6.4 1.1-3.5-4c0 0 1.3-3.8.1-8.1c.1 0 .8-2.2 3-3.4"/><g fill="#d1d1d1"><path d="M61.5 34.7c.2 8.8-6.8 23.4-20.7 23.4h-.2c-1.3 2.1-.7 3.3.7 3.3c15.8-.1 22.7-18.9 20.2-26.7"/><path d="M54.3 39.5c-3 10.8-15 11.7-15 11.7c-.5 2.3.5 3.3 1.8 3.3c4.4.1 12.6-7.2 13.2-15m-8.4 0c-7.1 10-9.6 6.3-9.6 6.3c-1.8 4 2.9 4 3.7 3.1c2.3-2.5 6-7.7 5.9-9.4"/></g><path fill="#8d9998" d="M40.5 58.4c1.2-1.6 2.7-2.9 4.2-4.2c1.5-1.3 3-2.6 4.5-4c1.4-1.4 2.8-3 3.8-4.8c1-1.8 1.5-3.9 1.3-5.9c-.2 2-.9 3.9-2 5.5s-2.4 3.1-3.8 4.5s-2.9 2.7-4.3 4.2c-1.5 1.3-2.8 2.9-3.7 4.7m-1.2-7.2c.4-1.1 1-2 1.7-2.9c.7-.9 1.4-1.7 2.2-2.6c.7-.9 1.5-1.8 2-2.8c.6-1 .9-2.3.7-3.4c-.2 1.1-.7 2.1-1.4 3c-.6.9-1.4 1.7-2.1 2.6c-.7.9-1.5 1.8-2.1 2.8c-.6 1-1 2.2-1 3.3"/><path fill="#e8e8e8" d="M30.2 24.2s-1.4-4.9 1.6-16.3S2 1.9 2 22.7c0 2.3 2.9 2.4 8.1-4c0 0-2.1 9 4.6 5.1c0 0-1.1 6.4 4 3.5c0 0 3.8-1.3 8.1-.1c0-.1 2.2-.8 3.4-3"/><g fill="#d1d1d1"><path d="M28.6 2.5C19.8 2.3 5.2 9.3 5.2 23.2v.2c-2.1 1.2-3.2.7-3.2-.7C2 6.9 20.8 0 28.6 2.5"/><path d="M23.8 9.7c-10.8 3-11.7 15-11.7 15c-2.3.5-3.3-.5-3.3-1.8c-.1-4.4 7.2-12.6 15-13.2m0 8.4c-10 7.1-6.3 9.6-6.3 9.6c-4 1.8-4-2.9-3.1-3.7c2.5-2.3 7.7-6 9.4-5.9"/></g><path fill="#8d9998" d="M4.9 23.5c1.6-1.2 2.9-2.7 4.2-4.2c1.3-1.5 2.6-3 4-4.5c1.4-1.4 3-2.8 4.8-3.8c1.8-1 3.9-1.5 5.9-1.3c-2 .2-3.9.9-5.5 2s-3.1 2.4-4.5 3.8s-2.7 2.9-4.2 4.3c-1.4 1.5-2.9 2.8-4.7 3.7"/><use href="#emojioneMoneyWithWings0"/></svg>
-</a>
-<p>A consequence of designing your UI decoupled from your back-end server is that it also becomes considerably
-cheaper to host as its static files can be hosted by any web server and is a task highly optimized by CDNs
-who are able to provide generous free &amp; low cost hosting options.</p>
-<h2 id="ui"><a href="https://github.com/NetCoreTemplates/vue-ssg/tree/main/ui">/ui</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This template takes advantage of its decoupled architecture and uses <a href="/posts/deploy">GitHub Actions to deploy</a>
-a copy of its static UI generated assets and hosted on:</p>
-<h3 id="github-pages-cdn">GitHub Pages CDN<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-pages-cdn'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<h3 id="jamstacks.net"><a href="https://jamstacks.net">*.jamstacks.net</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#jamstacks.net'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This is an optional deployment step which publishes a copy of your .NET App's <code>/wwwroot</code> folder to this templates
-[gh-pages]https://github.com/NetCoreTemplates/vue-ssg/tree/gh-pages) branch where it's automatically served from
-<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages">GitHub Pages CDN</a> at <strong>no cost</strong>.</p>
-<p>It's an optional but recommended optimization as it allows the initial download from your website to be served
-directly from CDN edge caches.</p>
-<h2 id="api"><a href="https://github.com/NetCoreTemplates/vue-ssg/tree/main/api">/api</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#api'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The .NET 6 <code>/api</code> backend server is required for this App's dynamic functions including the Hello API on the home page
-and its <a href="https://docs.servicestack.net/auth">built-in Authentication</a>.</p>
-<p>The C# project still contains the complete App and can be hosted independently with the entire App served
-directly from its deployed ASP.NET Core server at:</p>
-<h3 id="digital-ocean">Digital Ocean<a class="header-anchor" href="javascript:;" onclick="location.hash='#digital-ocean'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<h3 id="vue-ssg.jamstacks.net"><a href="https://vue-ssg.jamstacks.net">vue-ssg.jamstacks.net</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#vue-ssg.jamstacks.net'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>But when accessed from the CDN <a href="https://vue-ssg.jamstacks.net">vue-ssg.jamstacks.net</a> that contains a
-copy of its static <code>/wwwroot</code> UI assets, only its back-end JSON APIs are used to power its dynamic features.</p>
-<h2 id="total-cost">Total Cost<a class="header-anchor" href="javascript:;" onclick="location.hash='#total-cost'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<a href="https://www.digitalocean.com/pricing">
-    <svg class="w-24 h-24 float-left mt-0 mr-8" xmlns="http://www.w3.org/2000/svg" width="256" height="192" viewBox="0 0 256 192"><path fill="#0080FF" d="M127.806 103.432v24.705c41.874 0 74.478-40.453 60.78-84.332C182.6 24.63 167.363 9.393 148.188 3.407c-43.88-13.698-84.333 18.906-84.333 60.78h24.762c.003 0 .006-.006.006-.006c.004-26.28 26.01-46.596 53.639-36.57c10.236 3.714 18.4 11.877 22.117 22.112c10.027 27.612-10.26 53.609-36.516 53.646V78.744l-.004-.002h-24.686c-.002 0-.004.004-.004.004v24.686h24.637Zm-24.642 18.974H84.197l-.004-.005v-18.969h18.976v18.97s-.002.004-.005.004Zm-18.958-18.974h-15.9c-.007 0-.012-.004-.012-.004V87.535s.005-.012.012-.012h15.888c.007 0 .012.005.012.005v15.904Zm-62.11 49.766c-3.219-2.234-7.225-3.366-11.906-3.366H0v32.329h10.19c4.67 0 8.677-1.195 11.91-3.55c1.76-1.249 3.142-2.994 4.11-5.184c.962-2.18 1.45-4.75 1.45-7.64c0-2.857-.488-5.395-1.452-7.543c-.966-2.16-2.35-3.857-4.112-5.046Zm-16.144 2.098H9.15c3.559 0 6.488.7 8.71 2.083c2.465 1.487 3.716 4.315 3.716 8.407c0 4.215-1.254 7.171-3.726 8.79h-.002c-2.127 1.406-5.039 2.12-8.654 2.12H5.952v-21.4Zm25.881 26.865h5.73v-22.77h-5.73v22.77Zm2.92-32.727c-.98 0-1.823.347-2.503 1.027c-.687.655-1.036 1.486-1.036 2.468c0 .98.347 1.823 1.032 2.507c.684.686 1.528 1.033 2.507 1.033c.979 0 1.822-.347 2.508-1.033c.686-.685 1.032-1.529 1.032-2.507c0-.981-.348-1.811-1.032-2.463a3.43 3.43 0 0 0-2.508-1.032Zm23.618 11.86c-1.728-1.538-3.657-2.434-5.743-2.434c-3.163 0-5.792 1.094-7.813 3.25c-2.046 2.138-3.085 4.89-3.085 8.18c0 3.213 1.022 5.956 3.042 8.156c2.035 2.128 4.679 3.206 7.856 3.206c2.209 0 4.108-.615 5.655-1.83v.525c0 1.889-.506 3.359-1.503 4.368c-.997 1.008-2.379 1.519-4.107 1.519c-2.645 0-4.303-1.04-6.321-3.767l-3.902 3.749l.105.148c.843 1.182 2.134 2.34 3.838 3.44c1.704 1.095 3.846 1.652 6.368 1.652c3.402 0 6.153-1.049 8.18-3.116c2.037-2.079 3.07-4.862 3.07-8.27v-20.68h-5.64v1.903Zm-1.503 13.447c-1.001 1.138-2.287 1.689-3.93 1.689c-1.643 0-2.922-.551-3.909-1.687c-.981-1.13-1.48-2.63-1.48-4.454c0-1.854.499-3.371 1.481-4.51c.973-1.126 2.288-1.698 3.908-1.698c1.641 0 2.928.556 3.93 1.701c.997 1.138 1.503 2.654 1.503 4.507c0 1.824-.506 3.323-1.503 4.452Zm12.047 7.42h5.73v-22.77h-5.73v22.77Zm2.92-32.727c-.979 0-1.823.347-2.503 1.027c-.687.655-1.036 1.486-1.036 2.468c0 .98.347 1.823 1.032 2.507c.684.686 1.528 1.033 2.508 1.033a3.43 3.43 0 0 0 2.508-1.033c.685-.685 1.032-1.529 1.032-2.507c0-.981-.35-1.811-1.032-2.463a3.433 3.433 0 0 0-2.508-1.032Zm15.369 3.805h-5.64v6.152h-3.277v5.222h3.276v9.458c0 2.96.591 5.078 1.758 6.294c1.17 1.222 3.247 1.841 6.174 1.841c.931 0 1.868-.031 2.784-.09l.258-.018v-5.218l-1.964.103c-1.365 0-2.275-.24-2.708-.711c-.44-.48-.661-1.494-.661-3.013v-8.646h5.333v-5.222h-5.333v-6.152Zm24.998 7.855c-1.737-1.482-4.137-2.234-7.134-2.234c-1.907 0-3.69.418-5.302 1.236c-1.492.757-2.957 2.01-3.888 3.65l.058.07l3.669 3.512c1.511-2.41 3.192-3.247 5.42-3.247c1.197 0 2.19.322 2.954.955c.76.629 1.13 1.429 1.13 2.442v1.106a14.494 14.494 0 0 0-4.217-.65c-2.852 0-5.172.67-6.895 1.993c-1.746 1.34-2.63 3.255-2.63 5.696c0 2.139.745 3.877 2.222 5.169c1.49 1.246 3.35 1.879 5.533 1.879c2.181 0 4.222-.88 6.075-2.385v1.875h5.641v-14.638c0-2.771-.887-4.934-2.636-6.429Zm-10.173 12.366c.65-.453 1.568-.682 2.73-.682c1.379 0 2.841.277 4.35.824v2.234c-1.246 1.157-2.91 1.745-4.947 1.745c-.992 0-1.763-.22-2.293-.657c-.52-.426-.773-.969-.773-1.656c0-.781.305-1.373.933-1.808Zm17.374 8.701h5.73v-32.33h-5.73v32.33Zm26.52.487c-9.19 0-16.667-7.476-16.667-16.666c0-9.19 7.476-16.667 16.666-16.667c9.19 0 16.666 7.477 16.666 16.667c0 9.19-7.476 16.666-16.666 16.666Zm0-27.46c-5.952 0-10.793 4.842-10.793 10.794c0 5.951 4.841 10.792 10.792 10.792s10.793-4.84 10.793-10.792s-4.842-10.793-10.793-10.793Zm37.096 18.831c-1.025 1.149-2.073 2.145-2.881 2.662v.001c-.792.508-1.792.767-2.971.767c-1.689 0-3.046-.615-4.152-1.882c-1.1-1.26-1.657-2.878-1.657-4.814c0-1.934.55-3.55 1.636-4.801c1.091-1.26 2.441-1.87 4.128-1.87c1.846 0 3.792 1.147 5.459 3.119l3.787-3.632c-2.47-3.214-5.619-4.709-9.378-4.709c-3.146 0-5.873 1.146-8.105 3.405c-2.22 2.242-3.346 5.099-3.346 8.488c0 3.39 1.125 6.254 3.343 8.512c2.22 2.26 4.948 3.406 8.108 3.406c4.148 0 7.497-1.791 9.754-5.072l-3.725-3.58Zm23.516-11.447c-.812-1.132-1.918-2.043-3.29-2.71c-1.366-.665-2.96-1.002-4.734-1.002c-3.198 0-5.816 1.18-7.78 3.51c-1.908 2.31-2.874 5.183-2.874 8.539c0 3.45 1.06 6.307 3.152 8.489c2.08 2.171 4.865 3.273 8.276 3.273c3.864 0 7.035-1.563 9.424-4.645l.129-.166l-3.738-3.592c-.346.418-.837.892-1.286 1.314c-.565.534-1.097.947-1.665 1.23c-.857.426-1.817.637-2.892.637c-1.587 0-2.902-.467-3.907-1.388c-.94-.862-1.49-2.024-1.636-3.459h15.18l.052-2.091c0-1.48-.202-2.906-.599-4.24a12.37 12.37 0 0 0-1.812-3.699Zm-12.523 5.361c.276-1.09.778-1.996 1.497-2.7c.776-.765 1.787-1.152 3.003-1.152c1.39 0 2.465.395 3.196 1.177c.678.722 1.06 1.621 1.14 2.675h-8.836Zm34.528-6.839c-1.737-1.482-4.138-2.234-7.134-2.234c-1.907 0-3.69.418-5.302 1.236c-1.493.757-2.958 2.01-3.888 3.65l.058.07l3.669 3.512c1.511-2.41 3.192-3.247 5.42-3.247c1.197 0 2.19.322 2.954.955c.76.629 1.13 1.429 1.13 2.442v1.106a14.5 14.5 0 0 0-4.218-.65c-2.85 0-5.172.67-6.895 1.993c-1.745 1.34-2.63 3.255-2.63 5.696c0 2.139.746 3.877 2.223 5.169c1.489 1.246 3.35 1.879 5.532 1.879s4.223-.88 6.075-2.385v1.875h5.642v-14.638c0-2.771-.887-4.934-2.636-6.429Zm-10.173 12.366c.65-.453 1.567-.682 2.73-.682c1.379 0 2.841.277 4.35.824v2.234c-1.247 1.157-2.91 1.745-4.948 1.745c-.991 0-1.762-.22-2.292-.657c-.52-.426-.773-.969-.773-1.656c0-.781.305-1.373.933-1.808Zm34.851-11.919c-1.596-1.778-3.838-2.681-6.667-2.681c-2.273 0-4.119.653-5.5 1.94v-1.41h-5.619v22.771h5.73v-12.558c0-1.725.41-3.095 1.22-4.073c.808-.974 1.918-1.449 3.395-1.449c1.298 0 2.281.424 3.007 1.295c.729.875 1.098 2.08 1.098 3.586v13.199h5.73v-13.199c0-3.154-.805-5.65-2.394-7.42Z"/></svg>
-</a>
-<p>Since hosting on GitHub Pages CDN is free, the only cost is for hosting this App's .NET Server which is being hosted
-from a basic <a href="https://www.digitalocean.com/pricing">$10 /mo</a> droplet which is currently hosting <strong>25</strong> .NET Docker
-Apps and demos of <a href="https://servicestack.net/start">starting project templates</a> which works out to be just <strong>$0.40 /mo</strong>!</p>
-<h2 id="jamstack-benefits">Jamstack Benefits<a class="header-anchor" href="javascript:;" onclick="location.hash='#jamstack-benefits'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Jamstack is quickly becoming the preferred architecture for the development of modern web apps with
-<a href="https://jamstack.org/why-jamstack/">benefits</a> that extend beyond performance to improved:</p>
+                    <h2 id="new-blogging-features-in-razor-ssg">New Blogging features in Razor SSG<a class="header-anchor" href="javascript:;" onclick="location.hash='#new-blogging-features-in-razor-ssg'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><a href="https://razor-ssg.web-templates.io">Razor SSG</a> is our Free Project Template for creating fast, statically generated Websites and Blogs with
+Markdown &amp; C# Razor Pages. A benefit of using Razor SSG to maintain this
+<a href="https://github.com/ServiceStack/servicestack.net">servicestack.net(github)</a> website is that any improvements added
+to our website end up being rolled into the Razor SSG Project Template for everyone else to enjoy.</p>
+<p>This latest release brings a number of features and enhancements to improve Razor SSG usage as a Blogging Platform -
+a primary use-case we're focused on as we pen our <a href="/posts/year/2023">22nd Blog Post for the year</a> with improvements
+in both discoverability and capability of blog posts:</p>
+<h3 id="rss-feed">RSS Feed<a class="header-anchor" href="javascript:;" onclick="location.hash='#rss-feed'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Razor SSG websites now generates a valid RSS Feed for its blog to support their readers who'd prefer to read blog posts
+and notify them as they're published with their favorite RSS reader:</p>
+<div class="not-prose my-8">
+   <a href="https://razor-ssg.web-templates.io/feed.xml">
+      <div class="block flex justify-center shadow hover:shadow-lg rounded overflow-hidden">
+         <img class="max-w-3xl py-8" src="/img/posts/razor-ssg/valid-rss.png">
+      </div>
+   </a>
+    <div class="mt-4 flex justify-center">
+        <a class="text-indigo-600 hover:text-indigo-800" href="https://razor-ssg.web-templates.io/feed.xml">https://razor-ssg.web-templates.io/feed.xml</a>
+        <a class="ml-4 text-indigo-600 hover:text-indigo-800" href="https://servicestack.net/feed.xml">https://servicestack.net/feed.xml</a>
+    </div>
+</div>
+<h3 id="meta-headers-support-for-twitter-cards-and-seo">Meta Headers support for Twitter cards and SEO<a class="header-anchor" href="javascript:;" onclick="location.hash='#meta-headers-support-for-twitter-cards-and-seo'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Blog Posts and Pages now include additional <code>&lt;meta&gt;</code> HTML Headers to enable support for
+<a href="https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards">Twitter Cards</a> in both
+Twitter and Meta's new <a href="https://threads.net">threads.net</a>, e.g:</p>
+<div class="not-prose my-8 flex justify-center">
+   <a class="block max-w-2xl" href="https://www.threads.net/@servicestack/post/CvIFobPBs5h">
+      <div class="block flex justify-center shadow hover:shadow-lg rounded overflow-hidden">
+         <img class="py-8" src="/img/posts/razor-ssg/twitter-cards.png">
+      </div>
+   </a>
+</div>
+<h3 id="improved-discoverability">Improved Discoverability<a class="header-anchor" href="javascript:;" onclick="location.hash='#improved-discoverability'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To improve discoverability and increase site engagement, bottom of blog posts now include links to other posts by
+the same Blog Author, including links to connect to their preferred social networks and contact preferences:</p>
+<p><img src="https://servicestack.net/img/posts/razor-ssg/other-author-posts.png" alt="" /></p>
+<h3 id="posts-can-include-vue-components">Posts can include Vue Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#posts-can-include-vue-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Blog Posts can now embed any global Vue Components directly in its Markdown, e.g:</p>
+<pre><code class="language-html">&lt;getting-started template=&quot;razor-ssg&quot;&gt;&lt;/getting-started&gt;
+</code></pre>
+<h4 id="mjscomponentsgettingstarted.mjs"><a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/wwwroot/mjs/components/GettingStarted.mjs">/mjs/components/GettingStarted.mjs</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#mjscomponentsgettingstarted.mjs'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<div class="not-prose my-20 flex justify-center">
+    <getting-started template="razor-ssg"></getting-started>
+</div>
+<h4 id="individual-blog-post-dependencies">Individual Blog Post dependencies<a class="header-anchor" href="javascript:;" onclick="location.hash='#individual-blog-post-dependencies'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Just like Pages and Docs they can also include specific JavaScript <strong>.mjs</strong> or <strong>.css</strong> in the <code>/wwwroot/posts</code> folder
+which will only be loaded for that post:</p>
+<p><file-layout :files="{
+wwwroot: { 
+posts: { _: ['<slug>.mjs','<slug>.css'] },
+}
+}"></file-layout></p>
+<p>Now posts that need it can dynamically load large libraries like <a href="https://www.chartjs.org">Chart.js</a> and use it
+inside a custom Vue component by creating a custom <code>/posts/&lt;slug&gt;.mjs</code> that exports what components and features
+your blog post needs, e.g:</p>
+<h4 id="postsnew-blog-features.mjs"><a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/wwwroot/posts/new-blog-features.mjs">/posts/new-blog-features.mjs</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#postsnew-blog-features.mjs'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-js">import ChartJs from './components/ChartJs.mjs'
+
+export default {
+    components: { ChartJs }
+}
+</code></pre>
+<p>In this case it enables support for <a href="https://www.chartjs.org">Chart.js</a> by including a custom Vue component that makes it
+easy to create charts from Vue Components embedded in markdown:</p>
+<h4 id="postscomponentschartjs.mjs"><a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/wwwroot/posts/components/ChartJs.mjs">/posts/components/ChartJs.mjs</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#postscomponentschartjs.mjs'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-js">import { ref, onMounted } from &quot;vue&quot;
+import { addScript } from &quot;@servicestack/client&quot;
+
+let loadJs = addScript('https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js')
+
+export default {
+    template:`&lt;div&gt;&lt;canvas ref=&quot;chart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;`,
+    props:['type','data','options'],
+    setup(props) {
+        const chart = ref()
+        onMounted(async () =&gt; {
+            await loadJs
+
+            const options = props.options || {
+                responsive: true,
+                legend: {
+                    position: &quot;top&quot;
+                }
+            }
+            new Chart(chart.value, {
+                type: props.type || &quot;bar&quot;,
+                data: props.data,
+                options,
+            })
+
+        })
+        return { chart }
+    }
+}
+</code></pre>
+<p>Which allows this post to embed Chart.js charts using the above custom <code>&lt;chart-js&gt;</code> Vue component and a JS Object literal, e.g:</p>
+<pre><code class="language-html">&lt;chart-js :data=&quot;{
+    labels: [
+        //...
+    ],
+    datasets: [
+        //...
+    ]
+}&quot;&gt;&lt;/chart-js&gt;
+</code></pre>
+<p>Which the <a href="/posts/bulk-insert-performance">Bulk Insert Performance</a> Blog Post uses extensively to embeds its
+Chart.js Bar charts:</p>
+<p><chart-js :data="{
+labels: [
+'10,000 Rows',
+'100,000 Rows'
+],
+datasets: [
+{
+label: 'SQLite Memory',
+backgroundColor: 'rgba(201, 203, 207, 0.2)',
+borderColor: 'rgb(201, 203, 207)',
+borderWidth: 1,
+data: [17.066, 166.747]
+},
+{
+label: 'SQLite Disk',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [20.224, 199.697]
+},
+{
+label: 'PostgreSQL',
+backgroundColor: 'rgba(153, 102, 255, 0.2)',
+borderColor: 'rgb(153, 102, 255)',
+borderWidth: 1,
+data: [14.389, 115.645]
+},
+{
+label: 'MySQL',
+backgroundColor: 'rgba(54, 162, 235, 0.2)',
+borderColor: 'rgb(54, 162, 235)',
+borderWidth: 1,
+data: [64.389, 310.966]
+},
+{
+label: 'MySqlConnector',
+backgroundColor: 'rgba(255, 159, 64, 0.2)',
+borderColor: 'rgb(255, 159, 64)',
+borderWidth: 1,
+data: [64.427, 308.574]
+},
+{
+label: 'SQL Server',
+backgroundColor: 'rgba(255, 99, 132, 0.2)',
+borderColor: 'rgb(255, 99, 132)',
+borderWidth: 1,
+data: [89.821, 835.181]
+}
+]
+}"></chart-js></p>
+<h3 id="new-markdown-containers">New Markdown Containers<a class="header-anchor" href="javascript:;" onclick="location.hash='#new-markdown-containers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><a href="https://github.com/xoofx/markdig/blob/master/src/Markdig.Tests/Specs/CustomContainerSpecs.md">Custom Containers</a>
+are a popular method for implementing Markdown Extensions for enabling rich, wrist-friendly consistent
+content in your Markdown documents.</p>
+<p>Most of <a href="https://vitepress.dev/guide/markdown#custom-containers">VitePress Markdown Containers</a>
+are also available in Razor SSG websites for enabling rich, wrist-friendly consistent markup in your Markdown pages, e.g:</p>
+<pre><code class="language-md">::: info
+This is an info box.
+:::
+
+::: tip
+This is a tip.
+:::
+
+::: warning
+This is a warning.
+:::
+
+::: danger
+This is a dangerous warning.
+:::
+
+:::copy
+Copy Me!
+:::
+</code></pre>
+<div class="info custom-block">
+                <p class="custom-block-title">INFO</p><p>This is an info box.</p>
+</div>
+<div class="tip custom-block">
+                <p class="custom-block-title">TIP</p><p>This is a tip.</p>
+</div>
+<div class="warning custom-block">
+                <p class="custom-block-title">WARNING</p><p>This is a warning.</p>
+</div>
+<div class="danger custom-block">
+                <p class="custom-block-title">DANGER</p><p>This is a dangerous warning.</p>
+</div>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>Copy Me!</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>See Razor Press's <a href="https://razor-press.web-templates.io/containers">Markdown Containers docs</a> for the complete list of available containers and examples on how to
+implement your own <a href="https://razor-press.web-templates.io/containers#implementing-block-containers">Custom Markdown containers</a>.</p>
+<h3 id="support-for-includes">Support for Includes<a class="header-anchor" href="javascript:;" onclick="location.hash='#support-for-includes'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Markdown fragments can be added to <code>_pages/_include</code> - a special folder rendered with
+<a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/Pages/Includes.cshtml">Pages/Includes.cshtml</a> using
+an <a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/Pages/Shared/_LayoutEmpty.cshtml">Empty Layout</a>
+which can be included in other Markdown and Razor Pages or fetched on demand with Ajax.</p>
+<p>Markdown Fragments can be then included inside other markdown documents with the <code>::include</code> inline container, e.g:</p>
+<pre class="pre">
+::include vue/formatters.md::</pre>
+<p>Where it will be replaced with the HTML rendered markdown contents of fragments maintained in <code>_pages/_include</code>.</p>
+<h3 id="include-markdown-in-razor-pages">Include Markdown in Razor Pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#include-markdown-in-razor-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Markdown Fragments can also be included in Razor Pages using the custom <code>MarkdownTagHelper.cs</code> <code>&lt;markdown/&gt;</code> tag:</p>
+<pre><code class="language-html">&lt;markdown include=&quot;vue/formatters.md&quot;&gt;&lt;/markdown&gt;
+</code></pre>
+<h3 id="inline-markdown-in-razor-pages">Inline Markdown in Razor Pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#inline-markdown-in-razor-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Alternatively markdown can be rendered inline with:</p>
+<pre><code class="language-html">&lt;markdown&gt;
+## Using Formatters
+
+Your App and custom templates can also utilize @servicestack/vue's
+[built-in formatting functions](href=&quot;/vue/use-formatters).
+&lt;/markdown&gt;
+</code></pre>
+<h3 id="light-and-dark-mode-query-params">Light and Dark Mode Query Params<a class="header-anchor" href="javascript:;" onclick="location.hash='#light-and-dark-mode-query-params'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>You can link to Dark and Light modes of your Razor SSG website with the <code>?light</code> and <code>?dark</code> query string params:</p>
 <ul>
-<li><strong>Security</strong> from a reduced attack surface from hosting read-only static resources and requiring fewer App Servers</li>
-<li><strong>Scale</strong> with non-essential load removed from App Servers to CDN's architecture capable of incredible scale &amp; load capacity</li>
-<li><strong>Maintainability</strong> resulting from reduced hosting complexity and the clean decoupling of UI and server logic</li>
-<li><strong>Portability</strong> with your static UI assets being easily capable from being deployed and generically hosted from any CDN or web server</li>
-<li><strong>Developer Experience</strong> with the major JavaScript frameworks at the forefront of amazing DX are embracing Jamstack in their dev model, libraries &amp; tooling</li>
+<li><a href="https://razor-ssg.web-templates.io/?dark">https://razor-ssg.web-templates.io/?dark</a></li>
+<li><a href="https://razor-ssg.web-templates.io/?light">https://razor-ssg.web-templates.io/?light</a></li>
 </ul>
-<p>Best of all the Jamstack approach fits perfectly with ServiceStack's recommended
-<a href="https://docs.servicestack.net/api-first-development">API First Development</a> model which encourages development of
-reusable message-based APIs where the same System APIs can be reused from all Web, Mobile &amp; Desktop Apps
-from multiple HTTP, MQ or gRPC endpoints.</p>
+<h3 id="blog-post-authors-threads.net-and-mastodon-links">Blog Post Authors threads.net and Mastodon links<a class="header-anchor" href="javascript:;" onclick="location.hash='#blog-post-authors-threads.net-and-mastodon-links'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The social links for Blog Post Authors can now include <a href="https://threads.net">threads.net</a> and <a href="https://mastodon.social">mastodon.social</a> links, e.g:</p>
+<pre><code class="language-json">{
+  &quot;AppConfig&quot;: {
+    &quot;BlogImageUrl&quot;: &quot;https://servicestack.net/img/logo.png&quot;,
+    &quot;Authors&quot;: [
+      {
+        &quot;Name&quot;: &quot;Lucy Bates&quot;,
+        &quot;Email&quot;: &quot;lucy@email.org&quot;,
+        &quot;ProfileUrl&quot;: &quot;img/authors/author1.svg&quot;,
+        &quot;TwitterUrl&quot;: &quot;https://twitter.com/lucy&quot;,
+        &quot;ThreadsUrl&quot;: &quot;https://threads.net/@lucy&quot;,
+        &quot;GitHubUrl&quot;: &quot;https://github.com/lucy&quot;,
+        &quot;MastodonUrl&quot;: &quot;https://mastodon.social/@luch&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<h2 id="feature-requests-welcome">Feature Requests Welcome<a class="header-anchor" href="javascript:;" onclick="location.hash='#feature-requests-welcome'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Most of Razor SSG's features are currently being driven by requirements from the new
+<a href="https://razor-ssg.web-templates.io/#showcase">Websites built with Razor SSG</a> and features we want available in our Blogs,
+we welcome any requests for missing features in other popular Blogging Platforms you'd like to see in Razor SSG to help
+make it a high quality blogging solution built with our preferred C#/.NET Technology Stack, by submitting them to:</p>
+<div class="text-indigo-600 text-3xl text-center"><p><a href="https://servicestack.net/ideas">https://servicestack.net/ideas</a></p>
+</div>
+<h3 id="ssg-or-dynamic-features">SSG or Dynamic Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#ssg-or-dynamic-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst statically generated websites and blogs are generally limited to features that can be generated at build time, we're able to
+add any dynamic features we need in <a href="/creatorkit">CreatorKit</a> - a Free companion self-host .NET App Mailchimp and Disqus
+alternative which powers any dynamic functionality in Razor SSG Apps like the blogs comments and Mailing List features
+in this Blog Post.</p>
 
                 </div>
             </div>
@@ -301,47 +523,6 @@ from multiple HTTP, MQ or gRPC endpoints.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/razor-ssg-new-blog-features">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/razor-ssg-new-blog-features" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New Blogging features in Razor SSG">
-                                                    New Blogging features in Razor SSG
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Explore the new Blogging Features in Razor SSG</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="New Blogging features in Razor SSG background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2023-08-23T00:00:00.0000000">August 23, 2023</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>6 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -465,6 +646,47 @@ from multiple HTTP, MQ or gRPC endpoints.</p>
                                 </div>
 
                             </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/new_razor_ssg_docs">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1526243741027-444d633d7365?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/new_razor_ssg_docs" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New Razor SSG generated docs.servicestack.net">
+                                                    New Razor SSG generated docs.servicestack.net
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">The new docs.servicestack.net website is now generated with Razor SSG - now with Dark Mode!</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="New Razor SSG generated docs.servicestack.net background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-07-10T00:00:00.0000000">July 10, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>4 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -484,14 +706,7 @@ init()
 <script type="module">
 import { mount } from "app.mjs"
 
-    const App = {
-        setup() {
-            function nav(url) {
-                window.open(url)
-            }
-            return { nav }
-        }
-    }
+        import App from "./posts/razor-ssg-new-blog-features.mjs" 
     mount('#post', App)
 </script>
 

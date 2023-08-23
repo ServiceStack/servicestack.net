@@ -1,5 +1,6 @@
-import { ChartJs } from "./bulk-insert-performance.mjs"
+import ChartJs from './components/ChartJs.mjs'
+import GettingStarted from "./components/GettingStarted.mjs"
 
 export default {
-    components: { ChartJs }
+    components: { ChartJs, GettingStarted }
 }
