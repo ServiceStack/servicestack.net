@@ -3,7 +3,7 @@ import { addScript } from "@servicestack/client"
 
 const addChartsJs = await addScript('../js/chart.js')
 
-const ChartJs = {
+export const ChartJs = {
     template:`
         <div>
             <canvas ref="chart"></canvas>
