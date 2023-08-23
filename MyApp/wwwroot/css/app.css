@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -191,10 +191,6 @@ select,
 textarea {
   font-family: inherit;
   /* 1 */
-  font-feature-settings: inherit;
-  /* 1 */
-  font-variation-settings: inherit;
-  /* 1 */
   font-size: 100%;
   /* 1 */
   font-weight: inherit;
@@ -342,14 +338,6 @@ ul,
 menu {
   list-style: none;
   margin: 0;
-  padding: 0;
-}
-
-/*
-Reset default styling for dialogs.
-*/
-
-dialog {
   padding: 0;
 }
 
@@ -2368,6 +2356,10 @@ select{
   white-space: nowrap;
 }
 
+.whitespace-pre {
+  white-space: pre;
+}
+
 .break-words {
   overflow-wrap: break-word;
 }
@@ -2830,6 +2822,10 @@ select{
 
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
+}
+
+.bg-opacity-80 {
+  --tw-bg-opacity: 0.8;
 }
 
 .bg-gradient-to-t {
@@ -4855,6 +4851,11 @@ select{
   border-color: rgb(219 39 119 / var(--tw-border-opacity));
 }
 
+:is(.dark .dark\:border-slate-600) {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 85 105 / var(--tw-border-opacity));
+}
+
 :is(.dark .dark\:border-slate-800) {
   --tw-border-opacity: 1;
   border-color: rgb(30 41 59 / var(--tw-border-opacity));
@@ -6562,12 +6563,24 @@ select{
   }
 }
 
-@@supports(backdrop-filter:blur(0)) {
+@@supports (backdrop-filter:blur(0)) {
   .\[\@\@supports\(backdrop-filter\:blur\(0\)\)\]\:bg-white\/80 {
     background-color: rgb(255 255 255 / 0.8);
   }
 
   .\[\@\@supports\(backdrop-filter\:blur\(0\)\)\]\:backdrop-blur {
+    --tw-backdrop-blur: blur(8px);
+    -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+            backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  }
+}
+
+@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+  .\[\@supports\(backdrop-filter\:blur\(0\)\)\]\:bg-white\/80 {
+    background-color: rgb(255 255 255 / 0.8);
+  }
+
+  .\[\@supports\(backdrop-filter\:blur\(0\)\)\]\:backdrop-blur {
     --tw-backdrop-blur: blur(8px);
     -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
             backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
