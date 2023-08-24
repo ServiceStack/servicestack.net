@@ -96,7 +96,9 @@ Another interesting insight from this analysis is the potential for cost savings
 #### AWS ARM vs x86
 
 ![](./img/posts/arm-vs-x86/aws-x86-vs-arm-http.png)
-
+::: info
+Note: Values above are normalized from the lowest value to 100% across all instance types which is why some values start above 100%. This is to make it easier to compare the relative value of each instance type.
+:::
 ## Conclusion
 
 The analysis of cost efficiency across Hetzner, AWS, and Azure, considering both ARM and x86 architectures, unveils significant insights that can guide software developers and businesses in their decision-making process. Here are the key implications and takeaways:
