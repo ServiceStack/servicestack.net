@@ -85,6 +85,18 @@ Lets now have a look at the results for cost efficiency across providers (Hetzne
 
 ![](./img/posts/arm-vs-x86/geekbench-provider-comparison.png)
 
+### Stuck in AWS or Azure? ARM Could Deliver Savings
+
+Another interesting insight from this analysis is the potential for cost savings within AWS and Azure, where Azure showed the largest potential for savings. While Hetzner offers the best value, it's not always feasible to switch providers. In this case, ARM could still be a viable option for those seeking to save money.
+
+#### Azure ARM vs x86
+
+![](./img/posts/arm-vs-x86/azure-x86-vs-arm-http.png)
+
+#### AWS ARM vs x86
+
+![](./img/posts/arm-vs-x86/aws-x86-vs-arm-http.png)
+
 ## Conclusion
 
 The analysis of cost efficiency across Hetzner, AWS, and Azure, considering both ARM and x86 architectures, unveils significant insights that can guide software developers and businesses in their decision-making process. Here are the key implications and takeaways:
