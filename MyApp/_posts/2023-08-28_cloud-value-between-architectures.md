@@ -1,7 +1,7 @@
 ---
 title: The ARM Advantage? A Cost & Performance Guide
 summary: Unpacking the cost and performance of ARM vs x86 in cloud computing.
-tags: cloud-computing, arm, x86, cost-efficiency, performance
+tags: cloud-computing, arm, performance
 image: https://images.unsplash.com/photo-1587845323226-bad89242c735?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
 draft: true
