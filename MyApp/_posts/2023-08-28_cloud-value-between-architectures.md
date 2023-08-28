@@ -1,6 +1,6 @@
 ---
-title: The ARM Advantage? A Cost & Performance Guide
-summary: Unpacking the cost and performance of ARM vs x86 in cloud computing.
+title: Should we switch to ARM?
+summary: Evaluating the cost and performance of ARM vs x86 in AWS, Azure, and Hetzner
 tags: cloud-computing, arm, performance
 image: https://images.unsplash.com/photo-1587845323226-bad89242c735?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
@@ -30,9 +30,9 @@ The methodology for this analysis was designed to capture differences in perform
 - **Test Repetition:** Each test was conducted three times to mitigate the impact of outliers, providing a more accurate representation of performance.
 
 ### Benchmarks Used
-- **.NET HTTP Load Test:** Focusing on web service performance, this test runs a ServiceStack service with SQLite. The code will be shared and linked in the blog post ([link placeholder](#)).
-- **Postgres Benchmark (`pgbench`):** Specifically targeting database performance, the Postgres benchmark was conducted using `pgbench`. The code will also be linked ([link placeholder](#)).
-- **Geekbench:** As a rounded synthetic benchmark, Geekbench was run using the standard binary distributed by the creators.
+- **.NET HTTP**: Load test Focusing on web service performance, this test runs a ServiceStack service with SQLite. This tests concurrent workload of a HTTP server to show the change in performance between architectures.
+- **pgbench**: Specifically targeting database performance, the Postgres benchmark was conducted using `pgbench`. This tests SQL transaction throughput across cores, calculating average transactions per second.
+- **Geekbench**: As a rounded synthetic benchmark, Geekbench was run using the standard binary distributed by the creators. A well rounded benchmark that tests CPU performance across different tasks.
 
 ### Objective
 While you should always do your own performance testing for your use case, the combination of these three distinct benchmarks offers a multifaceted view of the computing capabilities of different instance types across providers and architectures. By analyzing web service performance, database performance, and synthetic benchmarks, this approach aims to hopefully provide insights for developers and businesses seeking cost-efficient compute power.
@@ -45,7 +45,7 @@ Lets now have a look at the results for cost efficiency across providers (Hetzne
 
 Hetzer, AWS, and Azure were chosen for this analysis due to their popularity and the availability of ARM instances. While AWS and Azure are well-known, Hetzner is a lesser-known provider that offers great value for money. Here we can see an overview of the cost efficiency of x86 and ARM across the three providers.
 
-### pgbench TPS (Transactions Per Second) Database Workloads
+### pgbench Database Workload
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -64,7 +64,7 @@ Hetzer, AWS, and Azure were chosen for this analysis due to their popularity and
 | Hetzner  | ARM          | 35.70x          |
 
 
-### .NET HTTP Requests Per Second Web Service Workloads
+### .NET HTTP Web Service Workload
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -102,9 +102,9 @@ Hetzer offers the best value by a large margin across these 3 providers, but AWS
 
 So while the savings for switching to ARM for Hetzner servers are relatively small, for Azure and AWS, ARM offers a significant cost saving, lets have a look at the specific benchmarks to see where ARM shines.
 
-## pgbench TPS (Transactions Per Second) Database Workloads
+## pgbench TPS Across Instance Types
 
-### AWS x86 vs ARM Performance
+### AWS pgbench Performance
 
 Here we have a performance comparison of the TPS (Transactions Per Second) for AWS x86 vs ARM, comparing matching instance types within AWS T series.
 
@@ -117,13 +117,13 @@ Here we have a performance comparison of the TPS (Transactions Per Second) for A
 | Provider | Instance Type | Architecture | CPUs | Memory | Monthly Cost | Relative Performance |
 |----------|---------------|--------------|------|--------|--------------|----------------------|
 | AWS      | t3.medium     | x86          | 2    | 4      | $17.23       | 1.01x                |
-| AWS      | t4g.medium    | ARM          | 2    | 4      | $15.4        | 1.0x                 |
+| AWS      | t4g.medium    | ARM          | 2    | 4      | $15.40       | 1.0x                 |
 | AWS      | t3.large      | x86          | 2    | 8      | $38.11       | 1.03x                |
 | AWS      | t4g.large     | ARM          | 2    | 8      | $30.73       | 1.02x                |
 | AWS      | t3.xlarge     | x86          | 4    | 16     | $76.14       | 1.21x                |
 | AWS      | t4g.xlarge    | ARM          | 4    | 16     | $61.54       | 1.55x                |
 
-### AWS x86 vs ARM Cost Efficiency
+### AWS pgbench Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -132,9 +132,9 @@ Here we have a performance comparison of the TPS (Transactions Per Second) for A
 [![](./img/posts/arm-vs-x86/aws-x86-vs-arm-pgbench.png)](./img/posts/arm-vs-x86/aws-x86-vs-arm-pgbench.png)
 
 We can see as the ARM cores scale up, the cost savings can increase and so can performance. This is a great example of how ARM can be a cost-effective option for workloads that can scale across cores.
-For example if you had an existing workload running on 3x t3.xlarge instances you could drop your **monthly costs from $228.417 to $184.617** by switching to 3x t4g.xlarge instances, a **saving of $43.8 per month or $525.6 per year**.
+For example if you had an existing workload running on **3x t3.xlarge** instances you could drop your monthly costs from **$228.42 to $184.62** by switching to 3x t4g.xlarge instances, a saving of **$43.8 per month** or **$525.6 per year**.
 
-### Azure x86 vs ARM Performance
+### Azure pgbench Performance
 
 For Azure, we tested the D series, comparing the D4sv3 x86 instance type with the D4psv5 ARM instance type, and same with the D2.
 The D2 instances have two cores, while the D4 instances have four cores, so again we can see how well ARM scales up.
@@ -147,12 +147,12 @@ The D2 instances have two cores, while the D4 instances have four cores, so agai
 
 | Provider | Instance Type | Architecture | CPUs | Memory | Monthly Cost | Relative Performance |
 |----------|---------------|--------------|------|--------|--------------|----------------------|
-| Azure    | D4sv3         | x86          | 4    | 16     | $121.4       | 1.11x                |
+| Azure    | D4sv3         | x86          | 4    | 16     | $121.40      | 1.11x                |
 | Azure    | D2psv5        | ARM          | 2    | 8      | $38.62       | 1.32x                |
 | Azure    | D2sv3         | x86          | 2    | 8      | $60.74       | 1.0x                 |
 | Azure    | D4psv5        | ARM          | 4    | 16     | $77.23       | 1.9x                 |
 
-### Azure x86 vs ARM Cost Efficiency
+### Azure pgbench Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -160,11 +160,11 @@ The D2 instances have two cores, while the D4 instances have four cores, so agai
 
 [![](./img/posts/arm-vs-x86/azure-x86-vs-arm-pgbench.png)](./img/posts/arm-vs-x86/azure-x86-vs-arm-pgbench.png)
 
-Azure costs are significantly higher than AWS, and the cost savings opportunity by switching to ARM is even larger. For example, if you had an existing workload running on 3x D4sv3 instances you could drop your **monthly costs from $364.197 to $231.702** by switching to 3x D4psv5 instances, a **saving of $132.495 per month or a whopping $1589.94 per year**, and you would get a **performance boost of around 30%** for these kinds of workloads.
+Azure costs are significantly higher than AWS, and the cost savings opportunity by switching to ARM is even larger. For example, if you had an existing workload running on **3x D4sv3** instances you could drop your monthly costs from **$364.20 to $231.70** by switching to **3x D4psv5** instances, a saving of **$132.50** per month or a whopping **$1,589.94** per year, and you would get a performance **boost of around 30%** for these kinds of workloads.
 
 If you are running on Azure, ARM could be a great way to save money.
 
-### Hetzner x86 vs ARM Performance
+### Hetzner pgbench Performance
 
 For Hetzner we tested the AMD CPX series against the ARM CAX series, comparing matching instance types.
 
@@ -188,7 +188,7 @@ For Hetzner we tested the AMD CPX series against the ARM CAX series, comparing m
 
 Core counts don't match up exactly between instances, but we can see how well ARM scales up as the core count increases, but it doesn't quite close the gap in this benchmark.
 
-### Hetzner x86 vs ARM Cost Efficiency
+### Hetzner pgbench Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -196,13 +196,13 @@ Core counts don't match up exactly between instances, but we can see how well AR
 
 [![](./img/posts/arm-vs-x86/hetzner-x86-vs-arm-pgbench.png)](./img/posts/arm-vs-x86/hetzner-x86-vs-arm-pgbench.png)
 
-Hetzner offers the best value across all providers, but for cost vs performance, x86 still comes out on top for this benchmark. So for Hetzner, **there isn't a large saving by switching to ARM in this workload**.
+Hetzner offers the best value across all providers, but for cost vs performance, x86 still comes out on top for this benchmark. So for Hetzner, there isn't a large saving by switching to ARM in this workload.
 
-## .NET HTTP Requests Per Second Web Service Workloads
+## .NET HTTP Across Instance Types
 
 Switching gears to web service workloads, we can see how ARM performs in this scenario where we have a .NET web service running on ServiceStack with SQLite, and .NET client that scales with available cores to perform 100,000 requests as quickly as possible.
 
-### AWS x86 vs ARM Performance
+### AWS .NET HTTP Performance
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -213,7 +213,7 @@ Switching gears to web service workloads, we can see how ARM performs in this sc
 | Provider | Instance Type | Architecture | CPUs | Memory | Monthly Cost | Relative Performance |
 |----------|---------------|--------------|------|--------|--------------|----------------------|
 | AWS      | t3.medium     | x86          | 2    | 4      | $17.23       | 1.1x                 |
-| AWS      | t4g.medium    | ARM          | 2    | 4      | $15.4        | 1.04x                |
+| AWS      | t4g.medium    | ARM          | 2    | 4      | $15.40       | 1.04x                |
 | AWS      | t3.large      | x86          | 2    | 8      | $38.11       | 1.08x                |
 | AWS      | t4g.large     | ARM          | 2    | 8      | $30.73       | 1.0x                 |
 | AWS      | t3.xlarge     | x86          | 4    | 16     | $76.14       | 2.24x                |
@@ -222,7 +222,7 @@ Switching gears to web service workloads, we can see how ARM performs in this sc
 
 While x86 still comes out on top for this benchmark in regards to performance, the cost savings are even better than the previous test with the same instances.
 
-### AWS x86 vs ARM Cost Efficiency
+### AWS .NET HTTP Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -232,7 +232,7 @@ While x86 still comes out on top for this benchmark in regards to performance, t
 
 A lot smaller than we saw with the pgbench test, but still a saving which can add up over time.
 
-### Azure x86 vs ARM Performance
+### Azure .NET HTTP Performance
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -245,11 +245,11 @@ A lot smaller than we saw with the pgbench test, but still a saving which can ad
 | Azure    | D2psv5        | ARM          | 2    | 8      | $38.62       | 1.0x                 |
 | Azure    | D2sv3         | x86          | 2    | 8      | $60.74       | 1.01x                |
 | Azure    | D4psv5        | ARM          | 4    | 16     | $77.23       | 1.65x                |
-| Azure    | D4sv3         | x86          | 4    | 16     | $121.4       | 1.85x                |
+| Azure    | D4sv3         | x86          | 4    | 16     | $121.40      | 1.85x                |
 
 Again, we see x86 win in raw performance, but for Azure the cost savings are a lot better than AWS.
 
-### Azure x86 vs ARM Cost Efficiency
+### Azure .NET HTTP Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -259,7 +259,7 @@ Again, we see x86 win in raw performance, but for Azure the cost savings are a l
 
 We see nearly a **50% saving for the same performance**, which is a great result for ARM.
 
-### Hetzner x86 vs ARM Performance
+### Hetzner .NET HTTP Performance
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -280,7 +280,7 @@ The performance is a lot closer for this benchmark, but x86 still comes out on t
 | Hetzner  | CPX41         | x86          | 8    | 16     | $32.85       | 7.82x                |
 | Hetzner  | CAX41         | ARM          | 16   | 32     | $29.93       | 8.33x                |
 
-### Hetzner x86 vs ARM Cost Efficiency
+### Hetzner .NET HTTP Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -292,11 +292,11 @@ Hetzner offers the best value over all compared to the other providers, but for 
 This is partly due again to the difference in core count for the instance types, as they are a lot more matched in value proposition.
 So we essentially get the same performance for the same cost.
 
-## Geekbench Scores
+## Geekbench Scores Across Instance Types
 
 Geekbench is a synthetic benchmark, but it can be useful for comparing the relative performance of different architectures and instance types.
 
-### AWS x86 vs ARM Performance
+### AWS Geekbench Performance
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -307,7 +307,7 @@ Geekbench is a synthetic benchmark, but it can be useful for comparing the relat
 | Provider | Instance Type | Architecture | CPUs | Memory | Monthly Cost | Relative Performance |
 |----------|---------------|--------------|------|--------|--------------|----------------------|
 | AWS      | t3.medium     | x86          | 2    | 4      | $17.23       | 1.0x                 |
-| AWS      | t4g.medium    | ARM          | 2    | 4      | $15.4        | 1.55x                |
+| AWS      | t4g.medium    | ARM          | 2    | 4      | $15.40       | 1.55x                |
 | AWS      | t3.large      | x86          | 2    | 8      | $38.11       | 1.12x                |
 | AWS      | t4g.large     | ARM          | 2    | 8      | $30.73       | 1.55x                |
 | AWS      | t3.xlarge     | x86          | 4    | 16     | $76.14       | 1.91x                |
@@ -315,7 +315,7 @@ Geekbench is a synthetic benchmark, but it can be useful for comparing the relat
 
 Here we can see even though the ARM instances are cheaper, they still offer better performance for this benchmark once we scale up to 4 cores.
 
-### AWS x86 vs ARM Cost Efficiency
+### AWS Geekbench Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -326,7 +326,7 @@ Here we can see even though the ARM instances are cheaper, they still offer bett
 If we use Geekbench as an overall we can see ARM offers about a ~70% saving for the same performance.
 These are synthetic benchmarks, so your mileage may vary, but it's a good indicator of the possible savings.
 
-### Azure x86 vs ARM Performance
+### Azure Geekbench Performance
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
@@ -341,7 +341,7 @@ These are synthetic benchmarks, so your mileage may vary, but it's a good indica
 | Azure    | D4psv5        | ARM          | 4    | 16     | $77.23       | 2.89x                |
 | Azure    | D4sv3         | x86          | 4    | 16     | $121.4       | 1.86x                |
 
-### Azure x86 vs ARM Cost Efficiency
+### Azure Geekbench Cost Efficiency
 
 <div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
     Higher is Better
