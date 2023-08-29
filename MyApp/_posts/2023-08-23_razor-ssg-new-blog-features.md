@@ -332,6 +332,6 @@ make it a high quality blogging solution built with our preferred C#/.NET Techno
 ### SSG or Dynamic Features
 
 Whilst statically generated websites and blogs are generally limited to features that can be generated at build time, we're able to
-add any dynamic features we need in [CreatorKit](/creatorkit) - a Free companion self-host .NET App Mailchimp and Disqus 
+add any dynamic features we need in [CreatorKit](/creatorkit/) - a Free companion self-host .NET App Mailchimp and Disqus 
 alternative which powers any dynamic functionality in Razor SSG Apps like the blogs comments and Mailing List features 
 in this Blog Post.
