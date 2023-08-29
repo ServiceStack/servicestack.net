@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Tue, 29 Aug 2023 09:14:28 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 29 Aug 2023 13:41:34 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Should we switch to ARM?</title>
+        <link>https://servicestack.net/posts/cloud-value-between-architectures</link>
+        <author>darren@servicestack.com (Darren Reid)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/cloud-value-between-architectures</guid>
+        <pubDate>Mon, 28 Aug 2023 00:00:00 GMT</pubDate>
+        <atom:updated>2023-08-28T00:00:00Z</atom:updated>
+        <category>hosting</category>
+        <category> arm</category>
+        <category> performance</category>
+        <description>Evaluating the cost and performance of ARM vs x86 in AWS, Azure, and Hetzner</description>
+    </item>
     <item>
         <title>New Blogging features in Razor SSG</title>
         <link>https://servicestack.net/posts/razor-ssg-new-blog-features</link>
@@ -122,17 +134,6 @@
         <category>ssg</category>
         <category>documentation</category>
         <description>The new docs.servicestack.net website is now generated with Razor SSG - now with Dark Mode!</description>
-    </item>
-    <item>
-        <title>Vue Stable Diffusion</title>
-        <link>https://servicestack.net/posts/vue-stable-diffusion</link>
-        <author>demis@servicestack.com (Demis Bellot)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/vue-stable-diffusion</guid>
-        <pubDate>Thu, 15 Jun 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-06-15T00:00:00Z</atom:updated>
-        <category>vue</category>
-        <category>tailwind</category>
-        <description>Rewriting Blazor Diffussion image generation &amp; album catalog in Vue &amp; Razor SSG</description>
     </item>
 </channel>
 </rss>

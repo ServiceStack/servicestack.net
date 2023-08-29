@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Trying Microsoft&#x27;s Semantic Kernel - ServiceStack</title>
+    <title>Should we switch to ARM? - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@layoric" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Incorporating the Semantic Kernel into our GPT Meeting Agent gives developers more flexibility when working with LLMs" />
-    <meta property="og:url" content="https://servicestack.net/posts/semantic-kernel-gptmeetngs" />
-    <meta property="og:title" content="Trying Microsoft&#x27;s Semantic Kernel" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Evaluating the cost and performance of ARM vs x86 in AWS, Azure, and Hetzner" />
+    <meta property="og:url" content="https://servicestack.net/posts/cloud-value-between-architectures" />
+    <meta property="og:title" content="Should we switch to ARM?" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1587845323226-bad89242c735?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Trying Microsoft&#x27;s Semantic Kernel
+                Should we switch to ARM?
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,22 +166,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Trying Microsoft&#x27;s Semantic Kernel Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1587845323226-bad89242c735?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Should we switch to ARM? Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/dotnet" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dotnet</a>
-                            <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
-                            <a href="posts/tagged/semantic-kernel" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">semantic-kernel</a>
-                            <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
+                            <a href="posts/tagged/hosting" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">hosting</a>
+                            <a href="posts/tagged/arm" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> arm</a>
+                            <a href="posts/tagged/performance" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> performance</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-07-18T00:00:00.0000000">July 18, 2023</time>
+                                <time datetime="2023-08-28T00:00:00.0000000">August 28, 2023</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>4 min read</span>
+                                <span>15 min read</span>
                             </div>
                         </div>
                 </div>
@@ -194,33 +193,856 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>In the rapidly evolving landscape of AI, a constant challenge that developers face is the integration and use of advanced models, like OpenAI's Large Language Models (LLMs), into our applications. To help bridge the gap between developers and these intricate models, Microsoft has introduced Semantic Kernel, a .NET library that offers a robust and more interactive platform to leverage OpenAI's ChatGPT API.</p>
-<h2 id="the-journey-so-far">The Journey So Far<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-journey-so-far'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Our <a href="https://gptmeetings.netcore.io">initial demonstration of the GPT Meeting Agent</a> offered an exciting glimpse into how developers could leverage the reasoning capability of Large Language Models such as <code>gpt-3.5-turbo</code> with the ServiceStack framework. We <a href="https://github.com/NetCoreApps/GPTMeetingAgent">showcased an application</a> that could use In Context Learning, Chain Of Thought Prompting, and the defining of your own ServiceStack services using TypeScript definition format.</p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7vChIGHWPuI" style="background-image: url('https://img.youtube.com/vi/7vChIGHWPuI/maxresdefault.jpg')"></lite-youtube>
+                    <p>In the ever-competitive landscape of cloud computing, choices abound for software developers seeking to harness the power of various providers and architectures. This blog post presents an insightful analysis comparing three major providers: Hetzner, AWS, and Azure. Focusing on cost efficiency and performance, I've explored different instance types utilizing both ARM and x86 architectures. The benchmarks used for this comparison include the Postgres benchmark (<code>pgbench</code>), a .NET HTTP load test, and Geekbench scores.</p>
+<h2 id="benchmarks-and-tools">Benchmarks and Tools<a class="header-anchor" href="javascript:;" onclick="location.hash='#benchmarks-and-tools'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<ul>
+<li><strong>Postgres Benchmark:</strong> Utilizing <code>pgbench</code>, I ran the same Docker setup on each provider's instances to ensure consistency.</li>
+<li><strong>HTTP RPS Benchmark:</strong> A simple .NET load test was executed, performing approximately 100,000 requests as quickly as possible to measure the Requests Per Second (RPS).</li>
+<li><strong>Geekbench Scores:</strong> Geekbench 6.0 for x86 and 6.1-Preview for ARM were used to generate scores. Some scores were gathered from public community results, while others were manually retested.</li>
+</ul>
+<div class="info custom-block">
+                <p class="custom-block-title">INFO</p><p>All tests were conducted on Ubuntu 22.04, providing a uniform testing environment.</p>
 </div>
-<p>The LLM was then able to determine which ServiceStack service should be called and what parameter values to use. This demonstration included APIs for searching for users, checking availability, reserving meeting room resources, and creating a booking. The application was then integrated with ServiceStack's Vue.js library, generating UI forms for each service the AI called. This not only illustrated what the Agent was doing but also gave the user control of more critical APIs like booking the actual meeting.</p>
-<p>This integration was accomplished directly through OpenAI's ChatGPT API. While it served its purpose, we wanted to make it easier for those that had projects that already leveraged OpenAI integration. Microsoft's Semantic Kernel library offered a solution that would allow us to do just that, and is looking to be a promising avenue for future development.</p>
-<h2 id="the-shift-to-semantic-kernel">The Shift to Semantic Kernel<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-shift-to-semantic-kernel'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Enter <a href="https://github.com/microsoft/semantic-kernel">Microsoft's Semantic Kernel</a>. This .NET Library makes the integration with OpenAI's ChatGPT API far more flexible and developer-friendly. It allows developers to interact with LLMs as 'functions', catering to a wide range of use cases.</p>
-<p>By switching the API integration with Semantic Kernel for the GPT Meeting Agent, we've made it easier to incorporate a custom Agent with your ServiceStack services, and this is by just switching over how the LLM APIs are integrated. The Semantic Kernel makes configuration easier and opens the door to the use of Open Source Large Language Models without the need for significant changes to the codebase, as well as future improvements as this library evolves.</p>
-<pre><code class="language-csharp">var kernel = Kernel.Builder
-    .WithOpenAIChatCompletionService(&quot;gpt-3.5-turbo&quot;, chatGptApiKey)
-    // Easy to switch out to custom implementations.
-    //.WithOobaboogaApiChatCompletionService(&quot;http://localhost:5010/api/v1/generate&quot;);
-    .Build();
-</code></pre>
-<h2 id="advantages-of-semantic-kernel">Advantages of Semantic Kernel<a class="header-anchor" href="javascript:;" onclick="location.hash='#advantages-of-semantic-kernel'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Semantic Kernel allows you to encapsulate your interaction with the LLMs, giving you the ability to use the model as a function. This abstraction facilitates the implementation of use cases where you need the model to serve as an endpoint that can handle and respond to a diverse array of requests. It means your application can stay relatively lean, focusing more on managing the responses from these models than worrying about their specific implementation details.</p>
-<h2 id="moving-forward-servicestack-and-llm-integration">Moving Forward: ServiceStack and LLM Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#moving-forward-servicestack-and-llm-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Currently, at the time of writing, the <code>function</code> support from OpenAI is not yet available via the Semantic Kernel library. But, we see this as a future improvement opportunity, which could further enhance the Semantic Kernel library's functionality and streamline its integration with OpenAI's APIs.</p>
-<p>Our vision for the future involves evaluating further integration with Semantic Kernel to add more value to your ServiceStack projects if they need to leverage LLMs.</p>
-<p>The goal is to create a more efficient and streamlined development experience that simplifies the integration of LLMs into your ServiceStack applications. The developer's focus should be on the business logic, the services that they are creating, and not on the technical complexities of integrating with AI models, this is where we think we can add value to .NET developers.</p>
-<p>In the context of the GPT Meeting Agent demonstration, this would mean even smoother interactions between the AI agent and the ServiceStack services, resulting in a more intuitive and responsive user experience. By being able to leverage ServiceStack UI features like our Vue.js library's AutoForm components, we hope to make it a lot easier to create new ways of interacting with these models, like the ways we have demonstrated in the GPT Meetings applications.</p>
-<h2 id="wrapping-up">Wrapping Up<a class="header-anchor" href="javascript:;" onclick="location.hash='#wrapping-up'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Microsoft's Semantic Kernel provides an avenue for developers to interact more flexibly with Large Language Models, opening up new possibilities and potential use cases. By integrating the Semantic Kernel library in our GPT Meeting Agent demonstration, we've made our application more configurable and opened the door for integrating Open Source Large Language Models without major codebase alterations.</p>
-<p>Through further development, we aim to make this technology easier to leverage in your ServiceStack applications, helping you to create more intelligent, responsive, and effective software.</p>
+<h2 id="upselling-and-value">Upselling and Value<a class="header-anchor" href="javascript:;" onclick="location.hash='#upselling-and-value'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In a world where numerous large cloud providers are competing, the focus on value often takes a backseat. While giants like AWS and Azure offer an extensive array of managed services, there are scenarios where developers simply need raw compute power at a reasonable price. This is where providers like Hetzner, focusing more on value, come into play.</p>
+<p>The emergence of ARM as a cost-effective option for production systems is also noteworthy, especially for those who are 'locked in' to one of the large vendors. With improving support and compatibility, ARM presents a viable way to save money without switching providers, especially if you're already on AWS or Azure.</p>
+<h2 id="methodology">Methodology<a class="header-anchor" href="javascript:;" onclick="location.hash='#methodology'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The methodology for this analysis was designed to capture differences in performance and value between architectures (ARM and x86) and providers (Hetzner, AWS, Azure). Here's a brief overview of the approach:</p>
+<h3 id="testing-environment">Testing Environment<a class="header-anchor" href="javascript:;" onclick="location.hash='#testing-environment'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>Docker Containers:</strong> Both the .NET HTTP load test and <code>pgbench</code> were run inside Docker containers to ensure consistency across all instances.</li>
+<li><strong>Test Repetition:</strong> Each test was conducted three times to mitigate the impact of outliers, providing a more accurate representation of performance.</li>
+</ul>
+<h3 id="benchmarks-used">Benchmarks Used<a class="header-anchor" href="javascript:;" onclick="location.hash='#benchmarks-used'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>.NET HTTP</strong>: Load test Focusing on web service performance, this test runs a ServiceStack service with SQLite. This tests concurrent workload of a HTTP server to show the change in performance between architectures.</li>
+<li><strong>pgbench</strong>: Specifically targeting database performance, the Postgres benchmark was conducted using <code>pgbench</code>. This tests SQL transaction throughput across cores, calculating average transactions per second.</li>
+<li><strong>Geekbench</strong>: As a rounded synthetic benchmark, Geekbench was run using the standard binary distributed by the creators. A well rounded benchmark that tests CPU performance across different tasks.</li>
+</ul>
+<h3 id="objective">Objective<a class="header-anchor" href="javascript:;" onclick="location.hash='#objective'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>While you should always do your own performance testing for your use case, the combination of these three distinct benchmarks offers a multifaceted view of the computing capabilities of different instance types across providers and architectures. By analyzing web service performance, database performance, and synthetic benchmarks, this approach aims to hopefully provide insights for developers and businesses seeking cost-efficient compute power.</p>
+<h2 id="results-overview">Results Overview<a class="header-anchor" href="javascript:;" onclick="location.hash='#results-overview'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Lets now have a look at the results for cost efficiency across providers (Hetzner, AWS, Azure) and architectures (ARM and x86) for three distinct benchmarks: TPS (Transactions Per Second), HTTP RPS (Requests Per Second), and Geekbench.</p>
+<h3 id="provider-comparison">Provider Comparison<a class="header-anchor" href="javascript:;" onclick="location.hash='#provider-comparison'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Hetzer, AWS, and Azure were chosen for this analysis due to their popularity and the availability of ARM instances. While AWS and Azure are well-known, Hetzner is a lesser-known provider that offers great value for money. Here we can see an overview of the cost efficiency of x86 and ARM across the three providers.</p>
+<h3 id="pgbench-database-workload">pgbench Database Workload<a class="header-anchor" href="javascript:;" onclick="location.hash='#pgbench-database-workload'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/pgbench-provider-cost-efficiency.png"><img src="./img/posts/arm-vs-x86/pgbench-provider-cost-efficiency.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Architecture</th>
+<th>Cost Efficiency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure</td>
+<td>x86</td>
+<td>1.00x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>ARM</td>
+<td>2.29x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>x86</td>
+<td>6.13x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>ARM</td>
+<td>7.45x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>x86</td>
+<td>39.57x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>ARM</td>
+<td>35.70x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="net-http-web-service-workload">.NET HTTP Web Service Workload<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-http-web-service-workload'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/http-provider-cost-efficiency.png"><img src="./img/posts/arm-vs-x86/http-provider-cost-efficiency.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Architecture</th>
+<th>Cost Efficiency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure</td>
+<td>x86</td>
+<td>1.00x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>ARM</td>
+<td>1.49x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>x86</td>
+<td>1.87x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>ARM</td>
+<td>2.04x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>x86</td>
+<td>10.26x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>ARM</td>
+<td>10.23x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="geekbench-scores">Geekbench Scores<a class="header-anchor" href="javascript:;" onclick="location.hash='#geekbench-scores'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/geekbench-provider-cost-efficiency.png"><img src="./img/posts/arm-vs-x86/geekbench-provider-cost-efficiency.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Architecture</th>
+<th>Cost Efficiency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure</td>
+<td>x86</td>
+<td>1.00x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>ARM</td>
+<td>2.45x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>x86</td>
+<td>1.97x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>ARM</td>
+<td>3.48x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>x86</td>
+<td>15.41x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>ARM</td>
+<td>19.06x</td>
+</tr>
+</tbody>
+</table>
+<p>Hetzer offers the best value by a large margin across these 3 providers, but AWS and Azure offer a much wider range of managed services and features.</p>
+<p>So while the savings for switching to ARM for Hetzner servers are relatively small, for Azure and AWS, ARM offers a significant cost saving, lets have a look at the specific benchmarks to see where ARM shines.</p>
+<h2 id="pgbench-tps-across-instance-types">pgbench TPS Across Instance Types<a class="header-anchor" href="javascript:;" onclick="location.hash='#pgbench-tps-across-instance-types'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="aws-pgbench-performance">AWS pgbench Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws-pgbench-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Here we have a performance comparison of the TPS (Transactions Per Second) for AWS x86 vs ARM, comparing matching instance types within AWS T series.</p>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/aws-pgbench-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/aws-pgbench-x86-arm-performance-comparison.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td>t3.medium</td>
+<td>x86</td>
+<td>2</td>
+<td>4</td>
+<td>$17.23</td>
+<td>1.01x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.medium</td>
+<td>ARM</td>
+<td>2</td>
+<td>4</td>
+<td>$15.40</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t3.large</td>
+<td>x86</td>
+<td>2</td>
+<td>8</td>
+<td>$38.11</td>
+<td>1.03x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.large</td>
+<td>ARM</td>
+<td>2</td>
+<td>8</td>
+<td>$30.73</td>
+<td>1.02x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t3.xlarge</td>
+<td>x86</td>
+<td>4</td>
+<td>16</td>
+<td>$76.14</td>
+<td>1.21x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.xlarge</td>
+<td>ARM</td>
+<td>4</td>
+<td>16</td>
+<td>$61.54</td>
+<td>1.55x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="aws-pgbench-cost-efficiency">AWS pgbench Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws-pgbench-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/aws-x86-vs-arm-pgbench.png"><img src="./img/posts/arm-vs-x86/aws-x86-vs-arm-pgbench.png" alt="" /></a></p>
+<p>We can see as the ARM cores scale up, the cost savings can increase and so can performance. This is a great example of how ARM can be a cost-effective option for workloads that can scale across cores.
+For example if you had an existing workload running on <strong>3x t3.xlarge</strong> instances you could drop your monthly costs from <strong>$228.42 to $184.62</strong> by switching to 3x t4g.xlarge instances, a saving of <strong>$43.8 per month</strong> or <strong>$525.6 per year</strong>.</p>
+<h3 id="azure-pgbench-performance">Azure pgbench Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#azure-pgbench-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>For Azure, we tested the D series, comparing the D4sv3 x86 instance type with the D4psv5 ARM instance type, and same with the D2.
+The D2 instances have two cores, while the D4 instances have four cores, so again we can see how well ARM scales up.</p>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/azure-pgbench-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/azure-pgbench-x86-arm-performance-comparison.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure</td>
+<td>D4sv3</td>
+<td>x86</td>
+<td>4</td>
+<td>16</td>
+<td>$121.40</td>
+<td>1.11x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D2psv5</td>
+<td>ARM</td>
+<td>2</td>
+<td>8</td>
+<td>$38.62</td>
+<td>1.32x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D2sv3</td>
+<td>x86</td>
+<td>2</td>
+<td>8</td>
+<td>$60.74</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D4psv5</td>
+<td>ARM</td>
+<td>4</td>
+<td>16</td>
+<td>$77.23</td>
+<td>1.9x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="azure-pgbench-cost-efficiency">Azure pgbench Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#azure-pgbench-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/azure-x86-vs-arm-pgbench.png"><img src="./img/posts/arm-vs-x86/azure-x86-vs-arm-pgbench.png" alt="" /></a></p>
+<p>Azure costs are significantly higher than AWS, and the cost savings opportunity by switching to ARM is even larger. For example, if you had an existing workload running on <strong>3x D4sv3</strong> instances you could drop your monthly costs from <strong>$364.20 to $231.70</strong> by switching to <strong>3x D4psv5</strong> instances, a saving of <strong>$132.50</strong> per month or a whopping <strong>$1,589.94</strong> per year, and you would get a performance <strong>boost of around 30%</strong> for these kinds of workloads.</p>
+<p>If you are running on Azure, ARM could be a great way to save money.</p>
+<h3 id="hetzner-pgbench-performance">Hetzner pgbench Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#hetzner-pgbench-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>For Hetzner we tested the AMD CPX series against the ARM CAX series, comparing matching instance types.</p>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/hetzner-pgbench-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/hetzner-pgbench-x86-arm-performance-comparison.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hetzner</td>
+<td>CPX11</td>
+<td>x86</td>
+<td>2</td>
+<td>2</td>
+<td>$4.74</td>
+<td>1.47x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX11</td>
+<td>ARM</td>
+<td>2</td>
+<td>4</td>
+<td>$4.02</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CPX21</td>
+<td>x86</td>
+<td>3</td>
+<td>4</td>
+<td>$8.76</td>
+<td>1.69x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX21</td>
+<td>ARM</td>
+<td>4</td>
+<td>8</td>
+<td>$8.03</td>
+<td>1.53x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CPX31</td>
+<td>x86</td>
+<td>4</td>
+<td>8</td>
+<td>$16.79</td>
+<td>2.5x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX31</td>
+<td>ARM</td>
+<td>8</td>
+<td>16</td>
+<td>$15.33</td>
+<td>2.12x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CPX41</td>
+<td>x86</td>
+<td>8</td>
+<td>16</td>
+<td>$32.85</td>
+<td>3.36x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX41</td>
+<td>ARM</td>
+<td>16</td>
+<td>32</td>
+<td>$29.93</td>
+<td>3.06x</td>
+</tr>
+</tbody>
+</table>
+<p>Core counts don't match up exactly between instances, but we can see how well ARM scales up as the core count increases, but it doesn't quite close the gap in this benchmark.</p>
+<h3 id="hetzner-pgbench-cost-efficiency">Hetzner pgbench Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#hetzner-pgbench-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/hetzner-x86-vs-arm-pgbench.png"><img src="./img/posts/arm-vs-x86/hetzner-x86-vs-arm-pgbench.png" alt="" /></a></p>
+<p>Hetzner offers the best value across all providers, but for cost vs performance, x86 still comes out on top for this benchmark. So for Hetzner, there isn't a large saving by switching to ARM in this workload.</p>
+<h2 id="net-http-across-instance-types">.NET HTTP Across Instance Types<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-http-across-instance-types'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Switching gears to web service workloads, we can see how ARM performs in this scenario where we have a .NET web service running on ServiceStack with SQLite, and .NET client that scales with available cores to perform 100,000 requests as quickly as possible.</p>
+<h3 id="aws.net-http-performance">AWS .NET HTTP Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws.net-http-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/aws-http-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/aws-http-x86-arm-performance-comparison.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td>t3.medium</td>
+<td>x86</td>
+<td>2</td>
+<td>4</td>
+<td>$17.23</td>
+<td>1.1x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.medium</td>
+<td>ARM</td>
+<td>2</td>
+<td>4</td>
+<td>$15.40</td>
+<td>1.04x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t3.large</td>
+<td>x86</td>
+<td>2</td>
+<td>8</td>
+<td>$38.11</td>
+<td>1.08x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.large</td>
+<td>ARM</td>
+<td>2</td>
+<td>8</td>
+<td>$30.73</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t3.xlarge</td>
+<td>x86</td>
+<td>4</td>
+<td>16</td>
+<td>$76.14</td>
+<td>2.24x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.xlarge</td>
+<td>ARM</td>
+<td>4</td>
+<td>16</td>
+<td>$61.54</td>
+<td>2.01x</td>
+</tr>
+</tbody>
+</table>
+<p>While x86 still comes out on top for this benchmark in regards to performance, the cost savings are even better than the previous test with the same instances.</p>
+<h3 id="aws.net-http-cost-efficiency">AWS .NET HTTP Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws.net-http-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/aws-x86-vs-arm-http.png"><img src="./img/posts/arm-vs-x86/aws-x86-vs-arm-http.png" alt="" /></a></p>
+<p>A lot smaller than we saw with the pgbench test, but still a saving which can add up over time.</p>
+<h3 id="azure.net-http-performance">Azure .NET HTTP Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#azure.net-http-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/azure-http-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/azure-http-x86-arm-performance-comparison.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure</td>
+<td>D2psv5</td>
+<td>ARM</td>
+<td>2</td>
+<td>8</td>
+<td>$38.62</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D2sv3</td>
+<td>x86</td>
+<td>2</td>
+<td>8</td>
+<td>$60.74</td>
+<td>1.01x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D4psv5</td>
+<td>ARM</td>
+<td>4</td>
+<td>16</td>
+<td>$77.23</td>
+<td>1.65x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D4sv3</td>
+<td>x86</td>
+<td>4</td>
+<td>16</td>
+<td>$121.40</td>
+<td>1.85x</td>
+</tr>
+</tbody>
+</table>
+<p>Again, we see x86 win in raw performance, but for Azure the cost savings are a lot better than AWS.</p>
+<h3 id="azure.net-http-cost-efficiency">Azure .NET HTTP Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#azure.net-http-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/azure-x86-vs-arm-http.png"><img src="./img/posts/arm-vs-x86/azure-x86-vs-arm-http.png" alt="" /></a></p>
+<p>We see nearly a <strong>50% saving for the same performance</strong>, which is a great result for ARM.</p>
+<h3 id="hetzner.net-http-performance">Hetzner .NET HTTP Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#hetzner.net-http-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/hetzner-http-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/hetzner-http-x86-arm-performance-comparison.png" alt="" /></a></p>
+<p>The performance is a lot closer for this benchmark, but x86 still comes out on top on a per core basis since the instances like the CAX41 have 16 cores, but the CPX41 only has 8 cores.</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hetzner</td>
+<td>CPX11</td>
+<td>x86</td>
+<td>2</td>
+<td>2</td>
+<td>$4.74</td>
+<td>1.53x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX11</td>
+<td>ARM</td>
+<td>2</td>
+<td>4</td>
+<td>$4.02</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CPX21</td>
+<td>x86</td>
+<td>3</td>
+<td>4</td>
+<td>$8.76</td>
+<td>1.39x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX21</td>
+<td>ARM</td>
+<td>4</td>
+<td>8</td>
+<td>$8.03</td>
+<td>2.04x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CPX31</td>
+<td>x86</td>
+<td>4</td>
+<td>8</td>
+<td>$16.79</td>
+<td>3.75x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX31</td>
+<td>ARM</td>
+<td>8</td>
+<td>16</td>
+<td>$15.33</td>
+<td>2.41x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CPX41</td>
+<td>x86</td>
+<td>8</td>
+<td>16</td>
+<td>$32.85</td>
+<td>7.82x</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>CAX41</td>
+<td>ARM</td>
+<td>16</td>
+<td>32</td>
+<td>$29.93</td>
+<td>8.33x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hetzner.net-http-cost-efficiency">Hetzner .NET HTTP Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#hetzner.net-http-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/hetzner-x86-vs-arm-http.png"><img src="./img/posts/arm-vs-x86/hetzner-x86-vs-arm-http.png" alt="" /></a></p>
+<p>Hetzner offers the best value over all compared to the other providers, but for this benchmark we get a mixed result when it comes to performance.
+This is partly due again to the difference in core count for the instance types, as they are a lot more matched in value proposition.
+So we essentially get the same performance for the same cost.</p>
+<h2 id="geekbench-scores-across-instance-types">Geekbench Scores Across Instance Types<a class="header-anchor" href="javascript:;" onclick="location.hash='#geekbench-scores-across-instance-types'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Geekbench is a synthetic benchmark, but it can be useful for comparing the relative performance of different architectures and instance types.</p>
+<h3 id="aws-geekbench-performance">AWS Geekbench Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws-geekbench-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/aws-geekbench-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/aws-geekbench-x86-arm-performance-comparison.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td>t3.medium</td>
+<td>x86</td>
+<td>2</td>
+<td>4</td>
+<td>$17.23</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.medium</td>
+<td>ARM</td>
+<td>2</td>
+<td>4</td>
+<td>$15.40</td>
+<td>1.55x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t3.large</td>
+<td>x86</td>
+<td>2</td>
+<td>8</td>
+<td>$38.11</td>
+<td>1.12x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.large</td>
+<td>ARM</td>
+<td>2</td>
+<td>8</td>
+<td>$30.73</td>
+<td>1.55x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t3.xlarge</td>
+<td>x86</td>
+<td>4</td>
+<td>16</td>
+<td>$76.14</td>
+<td>1.91x</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>t4g.xlarge</td>
+<td>ARM</td>
+<td>4</td>
+<td>16</td>
+<td>$61.54</td>
+<td>2.94x</td>
+</tr>
+</tbody>
+</table>
+<p>Here we can see even though the ARM instances are cheaper, they still offer better performance for this benchmark once we scale up to 4 cores.</p>
+<h3 id="aws-geekbench-cost-efficiency">AWS Geekbench Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws-geekbench-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/aws-x86-vs-arm-geekbench.png"><img src="./img/posts/arm-vs-x86/aws-x86-vs-arm-geekbench.png" alt="" /></a></p>
+<p>If we use Geekbench as an overall we can see ARM offers about a ~70% saving for the same performance.
+These are synthetic benchmarks, so your mileage may vary, but it's a good indicator of the possible savings.</p>
+<h3 id="azure-geekbench-performance">Azure Geekbench Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#azure-geekbench-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/azure-geekbench-x86-arm-performance-comparison.png"><img src="./img/posts/arm-vs-x86/azure-geekbench-x86-arm-performance-comparison.png" alt="" /></a></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Instance Type</th>
+<th>Architecture</th>
+<th>CPUs</th>
+<th>Memory</th>
+<th>Monthly Cost</th>
+<th>Relative Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure</td>
+<td>D2psv5</td>
+<td>ARM</td>
+<td>2</td>
+<td>8</td>
+<td>$38.62</td>
+<td>1.56x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D2sv3</td>
+<td>x86</td>
+<td>2</td>
+<td>8</td>
+<td>$60.74</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D4psv5</td>
+<td>ARM</td>
+<td>4</td>
+<td>16</td>
+<td>$77.23</td>
+<td>2.89x</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>D4sv3</td>
+<td>x86</td>
+<td>4</td>
+<td>16</td>
+<td>$121.4</td>
+<td>1.86x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="azure-geekbench-cost-efficiency">Azure Geekbench Cost Efficiency<a class="header-anchor" href="javascript:;" onclick="location.hash='#azure-geekbench-cost-efficiency'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<div style="color: dimgrey; text-align: center; width: 100%;margin-bottom: -2em">
+    Higher is Better
+</div>
+<p><a href="./img/posts/arm-vs-x86/azure-x86-vs-arm-geekbench.png"><img src="./img/posts/arm-vs-x86/azure-x86-vs-arm-geekbench.png" alt="" /></a></p>
+<p>Due to the higher costs of Azure, we see a much better saving for ARM at ~2.5-3x the performance for the same cost.
+This is higher than the other benchmarks, so it is likely you can consider something like Geekbench as a theoretical maximum saving.</p>
+<p><strong>For Azure, the message is clear, if you are running on x86, you should consider switching to ARM where possible as it will likely result in significant savings.</strong></p>
+<h2 id="summary">Summary<a class="header-anchor" href="javascript:;" onclick="location.hash='#summary'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<ul>
+<li><strong>Hetzner's Focus on Value:</strong> Hetzner consistently offers strong performance at a reasonable price, particularly with x86 architectures in database performance.</li>
+<li><strong>ARM's Rising Potential:</strong> ARM emerges as a cost-effective option, especially for web services and scalable workloads. On AWS and Azure, the savings could be substantial.</li>
+<li><strong>Workload Consideration:</strong> The choice between ARM and x86 may depend on the specific workload, with ARM showing particular strength in web services and scalability.</li>
+</ul>
+<p>The analysis of cost efficiency across Hetzner, AWS, and Azure, considering both ARM and x86 architectures, unveils significant insights that can guide software developers and businesses in their decision-making process. Here are the key implications and takeaways:</p>
+<h3 id="choosing-the-right-provider-and-architecture">Choosing the Right Provider and Architecture<a class="header-anchor" href="javascript:;" onclick="location.hash='#choosing-the-right-provider-and-architecture'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>Value vs. Features:</strong> Hetzner stands out as a provider focusing on value, offering great performance at a reasonable price. AWS and Azure, with their multitude of managed services, come with complex billing structures that might lead to unexpected expenses.</li>
+<li><strong>ARM's Emergence:</strong> ARM emerges as an attractive, cost-effective option, especially for scalable workloads and web services. Its value is notable within AWS and Azure, potentially leading to substantial savings.</li>
+</ul>
+<h3 id="considerations-for-arm-on-hetzner">Considerations for ARM on Hetzner<a class="header-anchor" href="javascript:;" onclick="location.hash='#considerations-for-arm-on-hetzner'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>Regional Availability:</strong> ARM on Hetzner is currently limited to one region and offered as a shared resource. This limitation could lead to occasional performance inconsistencies.</li>
+</ul>
+<h3 id="egress-cost-considerations">Egress Cost Considerations<a class="header-anchor" href="javascript:;" onclick="location.hash='#egress-cost-considerations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>Bandwidth/Traffic Costs:</strong> AWS and Azure's high egress costs contrast sharply with Hetzner's generous free bandwidth. For large compute tasks involving extensive data transfer, Hetzner could present significant cost savings.</li>
+</ul>
+<h2 id="final-thoughts">Final Thoughts<a class="header-anchor" href="javascript:;" onclick="location.hash='#final-thoughts'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<ul>
+<li><strong>Balancing Features and Costs:</strong> Developers must weigh the trade-offs between feature-rich offerings and straightforward value. Hetzner's focus on value may appeal to those seeking robust performance without complexity, while AWS and Azure may be suitable for those requiring a wide array of managed services.</li>
+<li><strong>The Role of Workload:</strong> The choice between ARM and x86, or between providers, may hinge on specific workload requirements, scalability needs, and budget constraints.</li>
+</ul>
+<h3 id="performance-testing-code">Performance Testing Code<a class="header-anchor" href="javascript:;" onclick="location.hash='#performance-testing-code'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The code for each performance test is linked below, along with a gist with scripts for running each test.
+These were only used on Ubuntu 22.04, so they may not work on other distributions, and may require some tweaking depending on your environment.</p>
+<ul>
+<li><a href="https://github.com/Layoric/pgbench-docker">pgbench</a></li>
+<li><a href="https://github.com/Layoric/ArmBenchmarks">.NET HTTP Load Test</a></li>
+<li><a href="https://gist.github.com/Layoric/ee75e380210f29355aeebb746b641bcb">Scripts for Run</a></li>
+</ul>
+<h2 id="feedback">Feedback<a class="header-anchor" href="javascript:;" onclick="location.hash='#feedback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If you have any feedback or questions, please feel free to reach out. I'd love to hear your thoughts on this analysis and any suggestions for future posts.</p>
 
                 </div>
             </div>
@@ -279,47 +1101,6 @@ mountAll()
                         More from Darren Reid
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/cloud-value-between-architectures">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1587845323226-bad89242c735?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/cloud-value-between-architectures" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Should we switch to ARM?">
-                                                    Should we switch to ARM?
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Evaluating the cost and performance of ARM vs x86 in AWS, Azure, and Hetzner</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Darren Reid</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Should we switch to ARM? background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2023-08-28T00:00:00.0000000">August 28, 2023</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>15 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -395,6 +1176,47 @@ mountAll()
                                                     <time datetime="2023-08-08T00:00:00.0000000">August 8, 2023</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>24 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/semantic-kernel-gptmeetngs">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/semantic-kernel-gptmeetngs" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Trying Microsoft&#x27;s Semantic Kernel">
+                                                    Trying Microsoft&#x27;s Semantic Kernel
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Incorporating the Semantic Kernel into our GPT Meeting Agent gives developers more flexibility when working with LLMs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Darren Reid</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Trying Microsoft&#x27;s Semantic Kernel background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-07-18T00:00:00.0000000">July 18, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>4 min read</span>
                                                 </div>
                                             </div>
                                         </div>
