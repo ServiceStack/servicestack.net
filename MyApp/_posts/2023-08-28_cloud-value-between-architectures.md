@@ -1,18 +1,12 @@
 ---
 title: Should we switch to ARM?
 summary: Evaluating the cost and performance of ARM vs x86 in AWS, Azure, and Hetzner
-tags: cloud-computing, arm, performance
+tags: hosting, arm, performance
 image: https://images.unsplash.com/photo-1587845323226-bad89242c735?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
-draft: true
 ---
 
 In the ever-competitive landscape of cloud computing, choices abound for software developers seeking to harness the power of various providers and architectures. This blog post presents an insightful analysis comparing three major providers: Hetzner, AWS, and Azure. Focusing on cost efficiency and performance, I've explored different instance types utilizing both ARM and x86 architectures. The benchmarks used for this comparison include the Postgres benchmark (`pgbench`), a .NET HTTP load test, and Geekbench scores.
-
-
-<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="DLmzWNSoWE0" style="background-image: url('https://img.youtube.com/vi/DLmzWNSoWE0/maxresdefault.jpg')"></lite-youtube>
-</div>
 
 ## Benchmarks and Tools
 - **Postgres Benchmark:** Utilizing `pgbench`, I ran the same Docker setup on each provider's instances to ensure consistency.
