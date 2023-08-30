@@ -8,6 +8,10 @@ author: Darren Reid
 
 In the ever-competitive landscape of cloud computing, choices abound for software developers seeking to harness the power of various providers and architectures. This blog post presents an insightful analysis comparing three major providers: Hetzner, AWS, and Azure. Focusing on cost efficiency and performance, I've explored different instance types utilizing both ARM and x86 architectures. The benchmarks used for this comparison include the Postgres benchmark (`pgbench`), a .NET HTTP load test, and Geekbench scores.
 
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="PryW8bFKWJ0" style="background-image: url('https://img.youtube.com/vi/PryW8bFKWJ0/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 ## Benchmarks and Tools
 - **Postgres Benchmark:** Utilizing `pgbench`, I ran the same Docker setup on each provider's instances to ensure consistency.
 - **HTTP RPS Benchmark:** A simple .NET load test was executed, performing approximately 100,000 requests as quickly as possible to measure the Requests Per Second (RPS).
