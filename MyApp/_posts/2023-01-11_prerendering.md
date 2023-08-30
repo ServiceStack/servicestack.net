@@ -1,7 +1,7 @@
 ---
 title: Prerendering Razor Pages
 summary: Improving Blog Performance with Prerendering
-tags: c#,dev,markdown
+tags: [c#, dev, markdown]
 image: https://images.unsplash.com/photo-1522526886914-6e8d4fd91399?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
 ---

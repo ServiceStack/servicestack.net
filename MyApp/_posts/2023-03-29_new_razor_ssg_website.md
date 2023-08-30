@@ -1,7 +1,7 @@
 ---
 title: New Razor SSG generated servicestack.net
 summary: Celebrating 150M Downloads with a new Razor SSG generated Website
-tags: razor,ssg,website
+tags: [razor, ssg, website]
 image: https://images.unsplash.com/photo-1475669698648-2f144fcaaeb1?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
 ---

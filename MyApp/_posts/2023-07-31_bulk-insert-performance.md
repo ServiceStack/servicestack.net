@@ -1,7 +1,7 @@
 ---
 title: Which RDBMS has the fastest .NET Bulk Insert implementation?
 summary: Measuring the different performance of RDBMS Bulk Insert implementations
-tags: db,dev,dotnet
+tags: [db, dev, dotnet]
 image: https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
 ---
