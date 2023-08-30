@@ -11,8 +11,8 @@ Blazor Server and Blazor WASM [project templates and components](/blazor), we've
 in Vue to showcase the [Razor SSG](https://razor-ssg.web-templates.io) Project Template and Tailwind
 [Vue Component Library](https://docs.servicestack.net/vue/) that's now available at:
 
-<h3 class="not-prose text-4xl text-center pb-8">
-    <a class="text-blue-600 hover:underline" href="https://diffusion.works">https://diffusion.works</a>
+<h3 class="not-prose text-center pb-8">
+    <a class="text-4xl text-blue-600 hover:underline" href="https://diffusion.works">https://diffusion.works</a>
 </h3>
 
 ## Blazor Diffusion with a Vue UI

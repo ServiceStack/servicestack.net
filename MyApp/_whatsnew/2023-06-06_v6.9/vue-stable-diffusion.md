@@ -11,8 +11,8 @@ we've rewritten a new Stable Diffusion App in Vue adopting a
 [Simple Modern JavaScript](https://razor-ssg.web-templates.io/posts/javascript) approach to showcase the **Razor SSG**
 Project Template and Tailwind [Vue Component Library](https://docs.servicestack.net/vue/) available at:
 
-<h3 class="not-prose text-4xl text-center pb-8">
-    <a class="text-blue-600 hover:underline" href="https://diffusion.works">https://diffusion.works</a>
+<h3 class="not-prose text-center pb-8">
+    <a class="text-4xl text-blue-600 hover:underline" href="https://diffusion.works">https://diffusion.works</a>
 </h3>
 
 Vue Diffusion is built differently from other Razor SSG Apps as instead of being pre-rendered from static content 
