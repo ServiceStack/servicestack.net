@@ -1,7 +1,7 @@
 ---
 title: Introducing Razor Press
 summary: Markdown & Razor Pages Static Site Generator for beautiful fast Content & Documentation
-tags: razor,markdown,blog,dev
+tags: [razor, markdown, blog, dev]
 image: https://images.unsplash.com/photo-1681301968680-fe46a0cd51be?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
 ---
