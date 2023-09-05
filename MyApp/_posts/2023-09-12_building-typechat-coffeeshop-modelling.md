@@ -1126,5 +1126,5 @@ export interface Creamers {
 export type OptionQuantity = 'no' | 'light' | 'regular' | 'extra' | number;
 ```
 
-In part 2 we'll cover the different options and challenges to use this schema to build a functional Voice Activated 
-Order Page for our CoffeeShop comparing the results of using different Transcribing and LLM Providers.
+Come back at the end of this week for Part 2 which we'll cover the different options and challenges to use this schema to create a 
+functional Voice Command Activated Order System for our CoffeeShop comparing the results of using different Transcribing and LLM Providers.
