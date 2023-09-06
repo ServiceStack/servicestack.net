@@ -404,7 +404,9 @@ By default CoffeeShop is configured to use an embedded SQLite database at `App_D
 with your favorite RDBMS viewer. My favorite all-purpose database tool is [JetBrains DataGrip](https://www.jetbrains.com/datagrip/)
 but if you're using Rider you can simply drag **db.sqlite** to Rider's **Database** panel to view it within the same IDE:
 
+:::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/db.png)](/img/posts/building-typechat-coffeeshop-modelling/db.png)
+:::
 
 ## Building the UI and API
 
@@ -593,14 +595,18 @@ Where it will now show up next to each Table in [Locode's CRUD UI](https://docs.
 
 Which we can login with the `admin@email.com` user and default `p@55wOrd` created in [Configure.AuthRepository.cs](https://github.com/NetCoreApps/CoffeeShop/blob/f00d4e5d3edd3dd23e325d1899e0078db025204a/CoffeeShop/Configure.AuthRepository.cs#L44).
 
+:::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/query-products.png)](/img/posts/building-typechat-coffeeshop-modelling/query-products.png)
+:::
 
 So without having needing to write any implementation, Locode provides us with a full CRUD UI generated from your APIs typed
 Request DTOs that's used to render all UI Forms using Vue [Auto Form Components](https://docs.servicestack.net/vue/autoform),
 which we can see makes use of our customizations with `Sizes` and `Temperatures` properties managed by **full-width** `Tag` Input components
 and `ImageUrl` managed by the [FileInput Component](https://docs.servicestack.net/vue/fileinput): 
 
+:::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/update-category.png)](/img/posts/building-typechat-coffeeshop-modelling/update-category.png)
+:::
 
 And because we have [Crud Events registered](https://github.com/NetCoreApps/CoffeeShop/blob/f00d4e5d3edd3dd23e325d1899e0078db025204a/CoffeeShop/Configure.AutoQuery.cs#L13)
 our UI Forms also shows the [AutoQuery CRUD Executable Audit Log](https://docs.servicestack.net/autoquery/audit-log) to be able to track and view 
@@ -691,7 +697,9 @@ custom [AutoQueryGrid components](https://docs.servicestack.net/vue/autoquerygri
 showing a customized view with just the columns we want, the order and format we want it in whilst **Options** and 
 **OptionQuantities** continue to use the default AutoQueryGrid components:
 
+:::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/portal-products.png)](/img/posts/building-typechat-coffeeshop-modelling/portal-products.png)
+:::
 
 ## Custom UI Forms
 
@@ -886,7 +894,9 @@ const sections = {
 
 With those finishing touches our back-end Admin UI is now complete which CoffeeShop owners can use to manage their entire database:
 
+:::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/portal-update-category.png)](/img/posts/building-typechat-coffeeshop-modelling/portal-update-category.png)
+:::
 
 ### Generate TypeScript Schema
 
@@ -949,22 +959,24 @@ With the only added functionality our schema makes use of are the simple helpers
 [TypeScriptMethods.cs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Common/Script/Methods/TypeScriptMethods.cs)
 
 ```csharp
+public class TypeScriptPlugin : IScriptPlugin
+{
+    public void Register(ScriptContext context) => 
+        context.ScriptMethods.Add(new TypeScriptMethods());
+}
+
 public class TypeScriptMethods : ScriptMethods
 {
-    public IRawString tsUnionStrings(IEnumerable<string> strings)
-    {
-        return new RawString(string.Join(" | ", strings.Map(x => $"'{x}'")));
-    }
+    public IRawString tsUnionStrings(IEnumerable<string> strings) => 
+        new RawString(string.Join(" | ", strings.Map(x => $"'{x}'")));
 
-    public IRawString tsUnionTypes(IEnumerable<string> strings)
-    {
-        return new RawString(string.Join(" | ", strings));
-    }
+    public IRawString tsUnionTypes(IEnumerable<string> strings) => 
+        new RawString(string.Join(" | ", strings));
 }
 ```
 
 The populated `ScriptContext` is then used to execute the
-[gpt/coffeeshop/schema.ss](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/gpt/coffeeshop/schema.ss) #Script template:
+[gpt/coffeeshop/schema.ss](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/gpt/coffeeshop/schema.ss) **#Script** template:
 
 ```js
 // The following is a schema definition for ordering lattes.
@@ -1126,5 +1138,5 @@ export interface Creamers {
 export type OptionQuantity = 'no' | 'light' | 'regular' | 'extra' | number;
 ```
 
-Come back at the end of this week for Part 2 which we'll cover the different options and challenges to use this schema to create a 
+Check back-in at the end of this week for Part 2 which we'll cover the different options and challenges to use this schema to create a 
 functional Voice Command Activated Order System for our CoffeeShop comparing the results of using different Transcribing and LLM Providers.
