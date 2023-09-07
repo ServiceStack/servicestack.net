@@ -240,7 +240,9 @@ pre-processors like JSX.</p>
     props: { name:String }
 }
 </code></pre>
-<div data-component="Hello" data-props="{ name: 'Vue 3' }" class="text-center text-2xl py-2"></div>
+<div class="text-center text-2xl py-2">
+    <hello name="Vue 3"></hello>
+</div>
 <p>Or a simple reactive example:</p>
 <pre><code class="language-js">import { ref } from &quot;vue&quot;
 
@@ -252,7 +254,9 @@ const Counter = {
     }
 }
 </code></pre>
-<div data-component="Counter" class="text-center text-2xl py-2 cursor-pointer select-none"></div>
+<div class="text-center text-2xl py-2 cursor-pointer select-none">
+    <counter></counter>
+</div>
 <p>These components can be mounted using the standard <a href="https://vuejs.org/api/application.html#app-mount">Vue 3 mount</a> API, but to
 make it easier we've added additional APIs for declaratively mounting components to pages using the <code>data-component</code> and <code>data-props</code>
 attributes, especially useful for including Vue components in Markdown content like this, e.g:</p>
@@ -279,12 +283,14 @@ and <a href="https://docs.servicestack.net/vue//modals">ModalDialog</a>:</p>
     }
 }
 </code></pre>
-<div class="text-center"><div data-component="Plugin" id="plugin" class="text-2xl py-4"></div></div>
+<div class="text-center">
+    <plugin id="plugin" class="text-2xl py-4"></plugin>
+</div>
 <h3 id="servicestackvue">@servicestack/vue<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestackvue'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p><a href="https://github.com/ServiceStack/servicestack-vue">@servicestack/vue</a> is our growing Vue 3 Tailwind component library with a number of rich Tailwind components useful
 in .NET Web Apps, including Input Components with auto form validation binding which is used by all HTML forms in
 the <a href="https://github.com/NetCoreTemplates/vue-mjs">vue-mjs</a> template.</p>
-<div data-component="VueComponentGallery"></div>
+<p><vue-component-gallery></vue-component-gallery></p>
 <h3 id="servicestackclient">@servicestack/client<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestackclient'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p><a href="https://docs.servicestack.net/javascript-client">@servicestack/client</a> is our generic JS/TypeScript client library
 which enables a terse, typed API for using your App's typed DTOs from the built-in
@@ -344,7 +350,7 @@ export default {
 }
 </code></pre>
 <p>Which we can also mount below:</p>
-<div data-component="HelloApi" data-props="{ value: 'Vue 3' }" class="w-full font-semibold"></div>
+<p><hello-api value="Vue 3" class="w-full font-semibold"></hello-api></p>
 <p>We'll also go through and explain other features used in this component:</p>
 <h4 id="html"><code>/*html*/</code><a class="header-anchor" href="javascript:;" onclick="location.hash='#html'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Although not needed in <a href="rider">Rider</a> (which can automatically infer HTML in strings), the <code>/*html*/</code> type hint can be used
@@ -493,7 +499,7 @@ Input Components are able to automatically apply contextual validation errors ne
 instant API-enabled form with validation binding by just specifying the Request DTO you want to create the form of, e.g:</p>
 <pre><code class="language-html">&lt;AutoCreateForm type=&quot;CreateBooking&quot; formStyle=&quot;card&quot; /&gt;
 </code></pre>
-<div class="not-prose" data-component="AutoCreateForm" data-props="{ type:'CreateBooking', formStyle:'card' }"></div>
+<p><auto-create-form type="CreateBooking" form-style="card"></auto-create-form></p>
 <p>The AutoForm components are powered by your <a href="https://docs.servicestack.net/vue//use-appmetadata">App Metadata</a> which allows creating
 highly customized UIs from <a href="https://docs.servicestack.net/locode/declarative">declarative C# attributes</a> whose customizations are
 reused across all ServiceStack Auto UIs, including:</p>
@@ -649,7 +655,7 @@ Vue.js development model across our <a href="https://docs.servicestack.net/templ
 we'll continue to significantly invest in to unlock even greater productivity benefits in all Vue Tailwind Apps.</p>
 <p>In addition to a variety of high-productive components, it also contains a core library of functionality
 underpinning the Vue Components that most Web Apps should also find useful:</p>
-<div data-component="VueComponentLibrary" class="mt-4"></div>
+<p><vue-component-library class="mt-4"></vue-component-library></p>
 
                 </div>
             </div>
