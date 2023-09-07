@@ -67,7 +67,9 @@ const Hello = {
     props: { name:String }
 }
 ```
-<div data-component="Hello" data-props="{ name: 'Vue 3' }" class="text-center text-2xl py-2"></div>
+<div class="text-center text-2xl py-2">
+    <hello name="Vue 3"></hello>
+</div>
 
 Or a simple reactive example:
 
@@ -83,7 +85,9 @@ const Counter = {
 }
 ```
 
-<div data-component="Counter" class="text-center text-2xl py-2 cursor-pointer select-none"></div>
+<div class="text-center text-2xl py-2 cursor-pointer select-none">
+    <counter></counter>
+</div>
 
 These components can be mounted using the standard [Vue 3 mount](https://vuejs.org/api/application.html#app-mount) API, but to 
 make it easier we've added additional APIs for declaratively mounting components to pages using the `data-component` and `data-props`
@@ -121,14 +125,16 @@ const Plugin = {
 }
 ```
 
-<div class="text-center"><div data-component="Plugin" id="plugin" class="text-2xl py-4"></div></div>
+<div class="text-center">
+    <plugin id="plugin" class="text-2xl py-4"></plugin>
+</div>
 
 ### @servicestack/vue
 [@servicestack/vue](https://github.com/ServiceStack/servicestack-vue) is our growing Vue 3 Tailwind component library with a number of rich Tailwind components useful 
 in .NET Web Apps, including Input Components with auto form validation binding which is used by all HTML forms in
 the [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs) template. 
 
-<div data-component="VueComponentGallery"></div>
+<vue-component-gallery></vue-component-gallery>
 
 ### @servicestack/client
 [@servicestack/client](https://docs.servicestack.net/javascript-client) is our generic JS/TypeScript client library
@@ -202,7 +208,7 @@ export default {
 
 Which we can also mount below:
 
-<div data-component="HelloApi" data-props="{ value: 'Vue 3' }" class="w-full font-semibold"></div>
+<hello-api value="Vue 3" class="w-full font-semibold"></hello-api>
 
 We'll also go through and explain other features used in this component:
 
@@ -396,7 +402,7 @@ instant API-enabled form with validation binding by just specifying the Request 
 <AutoCreateForm type="CreateBooking" formStyle="card" />
 ```
 
-<div class="not-prose" data-component="AutoCreateForm" data-props="{ type:'CreateBooking', formStyle:'card' }"></div>
+<auto-create-form type="CreateBooking" form-style="card"></auto-create-form>
 
 The AutoForm components are powered by your [App Metadata](https://docs.servicestack.net/vue//use-appmetadata) which allows creating 
 highly customized UIs from [declarative C# attributes](https://docs.servicestack.net/locode/declarative) whose customizations are
@@ -610,4 +616,4 @@ we'll continue to significantly invest in to unlock even greater productivity be
 In addition to a variety of high-productive components, it also contains a core library of functionality 
 underpinning the Vue Components that most Web Apps should also find useful: 
 
-<div data-component="VueComponentLibrary" class="mt-4"></div>
+<vue-component-library class="mt-4"></vue-component-library>
