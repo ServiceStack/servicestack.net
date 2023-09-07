@@ -231,11 +231,12 @@ free on GitHub Pages CDN:</p>
 <h3 id="enhance-with-simple-modern-javascript">Enhance with simple, modern JavaScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#enhance-with-simple-modern-javascript'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>For enhanced interactivity, static markdown content can be <a href="/posts/javascript">progressively enhanced</a> with Vue 3 components,
 as done in this example that embed's the
-<a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/wwwroot/mjs/components/GettingStarted.mjs">GettingStarted.mjs</a>
-Vue Component to create new Razor SSG App's below with:</p>
-<pre><code class="language-html">&lt;div data-component=&quot;GettingStarted&quot; data-props=&quot;{template:'razor-ssg'}&quot;&gt;&lt;/div&gt;
+<a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/wwwroot/mjs/components/GettingStarted.mjs">GettingStarted.mjs</a> Vue Component to create new Razor SSG App's below with:</p>
+<pre><code class="language-html">&lt;getting-started template=&quot;razor-ssg&quot;&gt;&lt;/getting-started&gt;
 </code></pre>
-<div class="py-8 not-prose text-base flex justify-center" data-component="GettingStarted" data-props="{template:'razor-ssg'}"></div>
+<div class="py-8 not-prose text-base flex justify-center">
+  <getting-started template="razor-ssg"></getting-started>
+</div>
 <p>Although with full control over the websites <code>_Layout.cshtml</code>, you're free to use any preferred JS Module or Web Component you prefer.</p>
 <h2 id="razor-pages">Razor Pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#razor-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Your website can be built using either Markdown <code>.md</code> or Razor <code>.cshtml</code> pages, although it's generally recommended to
@@ -519,7 +520,20 @@ values into native .NET types.</p>
 <h3 id="updating-to-latest-versions">Updating to latest versions<a class="header-anchor" href="javascript:;" onclick="location.hash='#updating-to-latest-versions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>You can easily update all the JavaScript dependencies used in
 <a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/postinstall.js">postinstall.js</a> by running:</p>
-<div class="not-prose text-base" data-component="ShellCommand" data-props="{ text: 'node postinstall.js' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>node postinstall.js</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>This will also update the Markdown features <code>*.cs</code> implementations which is delivered as source files instead of an external
 NuGet package to enable full customization, easier debugging whilst supporting easy upgrades.</p>
 <p>If you do customize any of the <code>.cs</code> files, you'll want to exclude them from being updated by removing them from:</p>
@@ -547,7 +561,20 @@ styles by including <strong>typography.css</strong> and annotating it with your 
 differs in its published output, where instead of a .NET App deployed to a VM or App server it generates static <code>*.html</code> files that's
 bundled together with <code>/wwwroot</code> static assets in the <code>/dist</code> folder that can be previewed by launching a HTTP Server from that
 folder with the built-in npm script:</p>
-<div class="not-prose text-base" data-component="ShellCommand" data-props="{ text: 'npm run serve' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run serve</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>To run <strong>npx http-server</strong> on <code>http://localhost:8080</code> that you can open in a browser to preview the published version of your
 site as it would be when hosted on a CDN.</p>
 <h3 id="static-razor-pages">Static Razor Pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#static-razor-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
@@ -678,9 +705,35 @@ QueryString params, but are instead extracted into different pages to support it
 specified <code>/dist</code> folder.</p>
 <h3 id="previewing-prerendered-site">Previewing prerendered site<a class="header-anchor" href="javascript:;" onclick="location.hash='#previewing-prerendered-site'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>To preview your SSG website, run the prerendered task with:</p>
-<div class="not-prose text-base" data-component="ShellCommand" data-props="{ text: 'npm run prerender' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run prerender</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>Which renders your site to <code>/_dist</code> which you can run a HTTP Server from with:</p>
-<div class="not-prose text-base" data-component="ShellCommand" data-props="{ text: 'npm run serve' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run serve</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>That you can preview with your browser at <code>http://localhost:8080</code>.</p>
 <h3 id="publishing">Publishing<a class="header-anchor" href="javascript:;" onclick="location.hash='#publishing'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>The included <a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/.github/workflows/build.yml">build.yml</a> GitHub Action

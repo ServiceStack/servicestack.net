@@ -257,9 +257,15 @@ const Counter = {
 <div class="text-center text-2xl py-2 cursor-pointer select-none">
     <counter></counter>
 </div>
-<p>These components can be mounted using the standard <a href="https://vuejs.org/api/application.html#app-mount">Vue 3 mount</a> API, but to
-make it easier we've added additional APIs for declaratively mounting components to pages using the <code>data-component</code> and <code>data-props</code>
-attributes, especially useful for including Vue components in Markdown content like this, e.g:</p>
+<h3 id="vue-components-in-markdown">Vue Components in Markdown<a class="header-anchor" href="javascript:;" onclick="location.hash='#vue-components-in-markdown'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Inside <code>.md</code> Markdown pages Vue Components can be embedded using Vue's progressive
+<a href="https://vuejs.org/guide/essentials/template-syntax.html">HTML Template Syntax</a>:</p>
+<pre><code class="language-html">&lt;counter&gt;&lt;/counter&gt;
+</code></pre>
+<h3 id="vue-components-in-razor-pages">Vue Components in Razor Pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#vue-components-in-razor-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Inside <code>.cshtml</code> Razor Pages these components can be mounted using the standard <a href="https://vuejs.org/api/application.html#app-mount">Vue 3 mount</a> API, but to
+make it easier we've added additional APIs for declaratively mounting components to pages using <code>data-component</code> and <code>data-props</code>
+attributes:</p>
 <pre><code class="language-html">&lt;div data-component=&quot;Hello&quot; data-props=&quot;{ name: 'Vue 3' }&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>Alternatively they can be programatically added using the custom <code>mount</code> method in <code>api.mjs</code>:</p>

@@ -326,9 +326,35 @@ In this example, we've hosted our dataset as a web API, and there is a <a href="
 <p>We can do this from whatever language you prefer, but for this example, we'll use Razor and Vue.js via the <a href="https://github.com/NetCoreTemplates/razor-ssg">ServiceStack razor-ssg template</a>, and the <a href="https://docs.servicestack.net/vue/">ServiceStack Vue library</a> to create our web app.
 One of the reasons we chose to use this template is because we can prerender the whole application as a static site and deploy it to any CDN including GitHub Pages.</p>
 <p>You will need the ServiceStack dotnet <code>x</code> tool installed to create a new project from the template.</p>
-<div data-component="CopyLine" data-props="{ text: 'dotnet tool install -g x' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet tool install -g x</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>First we'll create a new project from the template.</p>
-<div data-component="CopyLine" data-props="{ text: 'x new razor-ssg Xkcd' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new razor-ssg Xkcd</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>This template comes with <strong>Vue 3</strong> and <strong>TailwindCSS</strong> already configured, so we can get started right away.
 It also utilizes <a href="./posts/javascript">JavaScript modules</a>, so we can use the <code>import</code> syntax to import the ServiceStack Vue library without having to use a bundler like Webpack.
 We can also create these Vue components inline on our razor pages, which will then be served as static files.This gives us instant feedback when we make changes to our code, instead of having to wait for a build step to complete.</p>
@@ -401,9 +427,35 @@ onMounted(submit)
 <p>However, we don't yet have the <code>QueryXkcdComics</code> Request DTO available in our application since the template isn't aware of the use of the external API.
 By default the <code>mjs/dtos.mjs</code> file uses the <code>BaseUrl</code> of <code>https://localhost:5001</code> to generate the DTOs, but our data is hosted at <code>https://ssg-examples.netcore.io</code>.
 We can either change this <code>BaseUrl</code> in the <code>dtos.mjs</code> file or just delete it and regenerate it using:</p>
-<div data-component="CopyLine" data-props="{ text: 'x mjs https://ssg-examples.netcore.io' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mjs <a href="https://ssg-examples.netcore.io">https://ssg-examples.netcore.io</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>Any additional updates will read from this <code>BaseUrl</code> and update the <code>dtos.mjs</code> file with the latest DTOs using the command:</p>
-<div data-component="CopyLine" data-props="{ text: 'x mjs' }"></div>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mjs</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>This command pulls the generated DTOs from the ServiceStack server, and updates the <code>mjs/dtos.mjs</code> file with the latest DTOs.
 And this workflow works for any of the ServiceStack client libraries and supported languages.</p>
 <p><img src="/img/posts/autoquery-xkcd/vue-datagrid.png" alt="data-grid component" /></p>
