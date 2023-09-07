@@ -158,11 +158,15 @@ One of the reasons we chose to use this template is because we can prerender the
 
 You will need the ServiceStack dotnet `x` tool installed to create a new project from the template.
 
-<div data-component="CopyLine" data-props="{ text: 'dotnet tool install -g x' }"></div>
+:::sh
+dotnet tool install -g x
+:::
 
 First we'll create a new project from the template.
 
-<div data-component="CopyLine" data-props="{ text: 'x new razor-ssg Xkcd' }"></div>
+:::sh
+x new razor-ssg Xkcd
+:::
 
 This template comes with **Vue 3** and **TailwindCSS** already configured, so we can get started right away.
 It also utilizes [JavaScript modules](./posts/javascript), so we can use the `import` syntax to import the ServiceStack Vue library without having to use a bundler like Webpack.
@@ -253,11 +257,15 @@ However, we don't yet have the `QueryXkcdComics` Request DTO available in our ap
 By default the `mjs/dtos.mjs` file uses the `BaseUrl` of `https://localhost:5001` to generate the DTOs, but our data is hosted at `https://ssg-examples.netcore.io`.
 We can either change this `BaseUrl` in the `dtos.mjs` file or just delete it and regenerate it using: 
 
-<div data-component="CopyLine" data-props="{ text: 'x mjs https://ssg-examples.netcore.io' }"></div>
+:::sh
+x mjs https://ssg-examples.netcore.io
+:::
 
 Any additional updates will read from this `BaseUrl` and update the `dtos.mjs` file with the latest DTOs using the command:
 
-<div data-component="CopyLine" data-props="{ text: 'x mjs' }"></div>
+:::sh
+x mjs
+:::
 
 This command pulls the generated DTOs from the ServiceStack server, and updates the `mjs/dtos.mjs` file with the latest DTOs.
 And this workflow works for any of the ServiceStack client libraries and supported languages.

@@ -89,9 +89,20 @@ const Counter = {
     <counter></counter>
 </div>
 
-These components can be mounted using the standard [Vue 3 mount](https://vuejs.org/api/application.html#app-mount) API, but to 
-make it easier we've added additional APIs for declaratively mounting components to pages using the `data-component` and `data-props`
-attributes, especially useful for including Vue components in Markdown content like this, e.g:  
+### Vue Components in Markdown
+
+Inside `.md` Markdown pages Vue Components can be embedded using Vue's progressive 
+[HTML Template Syntax](https://vuejs.org/guide/essentials/template-syntax.html):
+
+```html
+<counter></counter>
+```
+
+### Vue Components in Razor Pages
+
+Inside `.cshtml` Razor Pages these components can be mounted using the standard [Vue 3 mount](https://vuejs.org/api/application.html#app-mount) API, but to 
+make it easier we've added additional APIs for declaratively mounting components to pages using `data-component` and `data-props`
+attributes:  
 
 ```html
 <div data-component="Hello" data-props="{ name: 'Vue 3' }"></div>
