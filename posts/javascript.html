@@ -274,8 +274,8 @@ mount('#counter', Counter)
 </code></pre>
 <p>Both methods create components with access to all your Shared Components and any 3rd Party Plugins which
 we can preview in this example that uses <strong>@servicestack/vue</strong>'s
-<a href="https://docs.servicestack.net/vue//navigation#primarybutton">PrimaryButton</a>
-and <a href="https://docs.servicestack.net/vue//modals">ModalDialog</a>:</p>
+<a href="https://docs.servicestack.net/vue/navigation#primarybutton">PrimaryButton</a>
+and <a href="https://docs.servicestack.net/vue/modals">ModalDialog</a>:</p>
 <pre><code class="language-js">const Plugin = {
     template:`&lt;div&gt;
         &lt;PrimaryButton @click=&quot;show=true&quot;&gt;Open Modal&lt;/PrimaryButton&gt;
@@ -363,7 +363,7 @@ export default {
 to instruct tooling like the <a href="https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html">es6-string-html</a>
 VS Code extension to provide syntax highlighting and an enhanced authoring experience for HTML content in string literals.</p>
 <h3 id="useclient">useClient<a class="header-anchor" href="javascript:;" onclick="location.hash='#useclient'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><a href="https://docs.servicestack.net/vue//use-client">useClient()</a> provides managed APIs around the <code>JsonServiceClient</code>
+<p><a href="https://docs.servicestack.net/vue/use-client">useClient()</a> provides managed APIs around the <code>JsonServiceClient</code>
 instance registered in Vue App's with:</p>
 <pre><code class="language-js">let client = JsonApiClient.create()
 app.provide('client', client)
@@ -501,12 +501,12 @@ Input Components are able to automatically apply contextual validation errors ne
 <p><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/edit-contact-validation.png" alt="" /></p>
 <h3 id="autoform-components">AutoForm Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#autoform-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>We can elevate our productivity even further with
-<a href="https://docs.servicestack.net/vue//autoform">Auto Form Components</a> that can automatically generate an
+<a href="https://docs.servicestack.net/vue/autoform">Auto Form Components</a> that can automatically generate an
 instant API-enabled form with validation binding by just specifying the Request DTO you want to create the form of, e.g:</p>
 <pre><code class="language-html">&lt;AutoCreateForm type=&quot;CreateBooking&quot; formStyle=&quot;card&quot; /&gt;
 </code></pre>
 <p><auto-create-form type="CreateBooking" form-style="card"></auto-create-form></p>
-<p>The AutoForm components are powered by your <a href="https://docs.servicestack.net/vue//use-appmetadata">App Metadata</a> which allows creating
+<p>The AutoForm components are powered by your <a href="https://docs.servicestack.net/vue/use-appmetadata">App Metadata</a> which allows creating
 highly customized UIs from <a href="https://docs.servicestack.net/locode/declarative">declarative C# attributes</a> whose customizations are
 reused across all ServiceStack Auto UIs, including:</p>
 <ul>
@@ -515,12 +515,12 @@ reused across all ServiceStack Auto UIs, including:</p>
 <li><a href="https://docs.servicestack.net/templates-blazor-components">Blazor Tailwind Components</a></li>
 </ul>
 <h3 id="form-input-components">Form Input Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#form-input-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>In addition to including Tailwind versions of the standard <a href="https://docs.servicestack.net/vue//form-inputs">HTML Form Inputs</a> controls to create beautiful Tailwind Forms,
+<p>In addition to including Tailwind versions of the standard <a href="https://docs.servicestack.net/vue/form-inputs">HTML Form Inputs</a> controls to create beautiful Tailwind Forms,
 it also contains a variety of integrated high-level components:</p>
 <ul>
-<li><a href="https://docs.servicestack.net/vue//fileinput">FileInput</a></li>
-<li><a href="https://docs.servicestack.net/vue//taginput">TagInput</a></li>
-<li><a href="https://docs.servicestack.net/vue//autocomplete">Autocomplete</a></li>
+<li><a href="https://docs.servicestack.net/vue/fileinput">FileInput</a></li>
+<li><a href="https://docs.servicestack.net/vue/taginput">TagInput</a></li>
+<li><a href="https://docs.servicestack.net/vue/autocomplete">Autocomplete</a></li>
 </ul>
 <h3 id="useauth">useAuth<a class="header-anchor" href="javascript:;" onclick="location.hash='#useauth'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Your Vue.js code can access Authenticated Users using <a href="https://docs.servicestack.net/vue/use-auth">useAuth()</a>
