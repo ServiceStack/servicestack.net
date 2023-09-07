@@ -140,7 +140,7 @@ A **500+** pages documentation website ported from VitePress, which prompted the
 experiencing issues with VitePress's SSR/SPA model whose workaround became too time consuming to maintain.
 
 The new Razor SSG implementation now benefits from Razor Pages flexible layouts and partials where pages can be optionally
-implemented in just markdown, Razor or a hybrid mix of both. The [Vue](https://docs.servicestack.net/vue//) splash page is an example of this implemented in a custom
+implemented in just markdown, Razor or a hybrid mix of both. The [Vue](https://docs.servicestack.net/vue/) splash page is an example of this implemented in a custom
 [/Vue/Index.cshtml](https://github.com/NetCoreTemplates/razor-press/blob/main/MyApp/Pages/Vue/Index.cshtml) Razor Page.
 
 <div class="not-prose mt-8 grid grid-cols-2 gap-4">

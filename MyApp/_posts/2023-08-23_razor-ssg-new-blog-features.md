@@ -15,7 +15,7 @@ to our website end up being rolled into the Razor SSG Project Template for every
 
 This latest release brings a number of features and enhancements to improve Razor SSG usage as a Blogging Platform -
 a primary use-case we're focused on as we pen our [22nd Blog Post for the year](/posts/year/2023) with improvements
-in both discoverability and capability of blog posts:
+in both discoverability and capability of blog posts:~~~~
 
 ### RSS Feed
 
