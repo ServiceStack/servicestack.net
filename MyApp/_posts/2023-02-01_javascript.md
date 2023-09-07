@@ -16,7 +16,7 @@ that we used to rely on external tools for is now available in modern browsers a
 complex tooling and npm dependencies that have historically plagued modern web development.
 
 The good news is that the complex npm tooling that was previously considered mandatory in modern JavaScript App 
-development can be considered optional as we can now utilize modern browser features like  
+development can be considered optional as we can now utilize modern browser features like 
 [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function),
 [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), 
 [dynamic imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import), 
