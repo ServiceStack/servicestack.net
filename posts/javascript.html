@@ -897,14 +897,7 @@ init()
 <script type="module">
 import { mount } from "app.mjs"
 
-    const App = {
-        setup() {
-            function nav(url) {
-                window.open(url)
-            }
-            return { nav }
-        }
-    }
+        import App from "./posts/javascript.mjs" 
     mount('#post', App)
 </script>
 
