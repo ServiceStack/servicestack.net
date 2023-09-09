@@ -319,8 +319,20 @@ on('#txtName', {
 &lt;/script&gt;
 </code></pre>
 <p>For better IDE intelli-sense during development, save the annotated Typed DTOs to disk with:</p>
-<pre><code class="language-bash">$ npm run dtos
-</code></pre>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run dtos</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>That can be referenced instead to unlock your IDE's static analysis type-checking and intelli-sense benefits during development:</p>
 <pre><code class="language-js">import { Hello } from '/js/dtos.mjs'
 client.api(new Hello({ name }))
@@ -505,7 +517,9 @@ Input Components are able to automatically apply contextual validation errors ne
 instant API-enabled form with validation binding by just specifying the Request DTO you want to create the form of, e.g:</p>
 <pre><code class="language-html">&lt;AutoCreateForm type=&quot;CreateBooking&quot; formStyle=&quot;card&quot; /&gt;
 </code></pre>
-<p><auto-create-form type="CreateBooking" form-style="card"></auto-create-form></p>
+<div class="not-prose">
+    <auto-create-form type="CreateBooking" form-style="card"></auto-create-form>
+</div>
 <p>The AutoForm components are powered by your <a href="https://docs.servicestack.net/vue/use-appmetadata">App Metadata</a> which allows creating
 highly customized UIs from <a href="https://docs.servicestack.net/locode/declarative">declarative C# attributes</a> whose customizations are
 reused across all ServiceStack Auto UIs, including:</p>
