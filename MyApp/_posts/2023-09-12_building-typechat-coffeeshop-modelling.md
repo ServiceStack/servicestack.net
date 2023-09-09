@@ -1000,7 +1000,6 @@ export interface LineItem {
 export type Product = {{categories.map(x => x.name) |> tsUnionTypes}};
 
 {{#each category in categories}}
-{{ var options = category.categoryOptions.map(x => optionsMap[x.optionId]) }}
 export interface {{category.name}} {
     type: '{{category.name}}';
     name: {{ category.products.map(x => x.name.lower()) |> tsUnionStrings }};
@@ -1025,7 +1024,6 @@ export interface {{option.type}} {
     optionQuantity?: OptionQuantity;
 {{/if}}
 }
-
 {{/each}}
 
 export type OptionQuantity = {{optionQuantities.map(x => x.name.lower()) |> tsUnionStrings}} | number;
@@ -1058,7 +1056,8 @@ export type Product = BakeryProducts | LatteDrinks | EspressoDrinks | CoffeeDrin
 export interface BakeryProducts {
     type: 'BakeryProducts';
     name: 'apple bran muffin' | 'blueberry muffin' | 'lemon poppy seed muffin' | 'bagel';
-    options?: (BakeryOptions | BakeryPreparations)[];
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations | 
+        Creamers)[];
 }
 
 export interface LatteDrinks {
@@ -1066,7 +1065,8 @@ export interface LatteDrinks {
     name: 'cappuccino' | 'flat white' | 'latte' | 'latte macchiato' | 'mocha' | 'chai latte';
     temperature?: 'iced' | 'warm' | 'hot' | 'extra hot'; // The default is 'hot'
     size?: 'short' | 'tall' | 'grande' | 'venti'; // The default is 'grande'
-    options?: (Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations)[];
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations | 
+        Creamers)[];
 }
 
 export interface EspressoDrinks {
@@ -1074,7 +1074,8 @@ export interface EspressoDrinks {
     name: 'espresso' | 'lungo' | 'ristretto' | 'macchiato';
     temperature?: 'iced' | 'warm' | 'hot' | 'extra hot'; // The default is 'hot'
     size?: 'solo' | 'doppio' | 'triple' | 'quad'; // The default is 'doppio'
-    options?: (Creamers | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations)[];
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations | 
+        Creamers)[];
 }
 
 export interface CoffeeDrinks {
@@ -1082,19 +1083,194 @@ export interface CoffeeDrinks {
     name: 'americano' | 'coffee';
     temperature?: 'iced' | 'warm' | 'hot' | 'extra hot'; // The default is 'hot'
     size?: 'short' | 'tall' | 'grande' | 'venti'; // The default is 'grande'
-    options?: (Creamers | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations)[];
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations | 
+        Creamers)[];
 }
 
 
 export interface BakeryOptions {
     type: 'BakeryOptions';
     name: 'butter' | 'strawberry jam' | 'cream cheese';
+    optionQuantity?: OptionQuantity;
+}
+export interface BakeryPreparations {
+    type: 'BakeryPreparations';
+    name: 'warmed' | 'cut in half';
+}
+export interface Milks {
+    type: 'Milks';
+    name: 'whole milk' | 'two percent milk' | 'nonfat milk' | 'coconut milk' | 'soy milk' | 'almond milk' | 'oat milk';
+}
+export interface Sweeteners {
+    type: 'Sweeteners';
+    name: 'equal' | 'honey' | 'splenda' | 'sugar' | 'sugar in the raw' | 'sweet n low';
+    optionQuantity?: OptionQuantity;
+}
+export interface Syrups {
+    type: 'Syrups';
+    name: 'almond syrup' | 'buttered rum syrup' | 'caramel syrup' | 'cinnamon syrup' | 'hazelnut syrup' | 
+        'orange syrup' | 'peppermint syrup' | 'raspberry syrup' | 'toffee syrup' | 'vanilla syrup';
+    optionQuantity?: OptionQuantity;
+}
+export interface Toppings {
+    type: 'Toppings';
+    name: 'cinnamon' | 'foam' | 'ice' | 'nutmeg' | 'whipped cream' | 'water';
+    optionQuantity?: OptionQuantity;
+}
+export interface Caffeines {
+    type: 'Caffeines';
+    name: 'regular' | 'two thirds caf' | 'half caf' | 'one third caf' | 'decaf';
+    optionQuantity?: OptionQuantity;
+}
+export interface LattePreparations {
+    type: 'LattePreparations';
+    name: 'for here cup' | 'lid' | 'with room' | 'to go' | 'dry' | 'wet';
+}
+export interface Creamers {
+    type: 'Creamers';
+    name: 'whole milk creamer' | 'two percent milk creamer' | 'one percent milk creamer' | 'nonfat milk creamer' | 
+        'coconut milk creamer' | 'soy milk creamer' | 'almond milk creamer' | 'oat milk creamer' | 
+        'half and half' | 'heavy cream';
+}
+
+export type OptionQuantity = 'no' | 'light' | 'regular' | 'extra' | number;
+```
+
+### Optimizing TypeScript Schema Generation
+
+Whilst our schema is functionally equivalent to TypeChat's [coffeeShopSchema.ts](https://github.com/microsoft/TypeChat/blob/main/examples/coffeeShop/src/coffeeShopSchema.ts), we noticed that some 
+of the prompts were not returning the same desirable results. After several iterations of experimentation we learned
+that several factors about the structure of the schema contributed to the effectiveness of the results.
+
+For example the `CoffeeTemperature`, `CoffeeSize`, `EspressoSize` Types aren't just inert aliases and adds descriptive
+context to the prompt. Likewise the proximity and order of the Types affects the strength of their relationships and
+we were able to get more effective results by defining Options next to the Categories they apply to. 
+
+We applied both changes to our [schema.ss](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/gpt/coffeeshop/schema.ss) 
+which now looks like:
+
+```js
+{{* Type Aliases *}}
+{{ var coffeeTemperatures = ['Iced','Warm','Hot','Extra Hot'] }}
+{{ var coffeeSizes        = ['Short','Tall','Grande','Venti'] }}
+{{ var espressoSizes      = ['Solo','Doppio','Triple','Quad'] }}
+
+// The following is a schema definition for ordering lattes.
+
+export interface Cart {
+    items: (LineItem | UnknownText)[];
+}
+
+// Use this type for order items that match nothing else
+export interface UnknownText {
+    type: 'unknown',
+    text: string; // The text that wasn't understood
+}
+
+export interface LineItem {
+    type: 'lineitem',
+    product: Product;
+    quantity: number;
+}
+
+export type Product = {{categories.map(x => x.name) |> tsUnionTypes}};
+
+{{ var generatedOptionTypes = [] }}
+{{#each category in categories}}
+export interface {{category.name}} {
+    type: '{{category.name}}';
+    name: {{ category.products.map(x => x.name.lower()) |> tsUnionStrings }};
+{{#if coffeeTemperatures.equivalentTo(category.temperatures) }}
+    temperature?: CoffeeTemperature;{{category.defaultTemperature ? `  // The default is '${category.defaultTemperature.lower()}'`.raw() : ''}}
+{{else if !category.temperatures.isEmpty() }}
+    temperature?: {{category.temperatures.map(x => x.lower()) |> tsUnionStrings}};{{category.defaultTemperature ? `  // The default is '${category.defaultTemperature.lower()}'`.raw() : ''}}
+{{/if}}
+{{#if coffeeSizes.equivalentTo(category.sizes) }}
+    size?: CoffeeSize;{{category.defaultSize ? `  // The default is '${category.defaultSize.lower()}'`.raw() : ''}}
+{{else if espressoSizes.equivalentTo(category.sizes) }}
+    size?: EspressoSize;{{category.defaultSize ? `  // The default is '${category.defaultSize.lower()}'`.raw() : ''}}
+{{else if !category.sizes.isEmpty() }}
+    size?: {{category.sizes.map(x => x.lower()) |> tsUnionStrings}};{{category.defaultSize ? `  // The default is '${category.defaultSize.lower()}'`.raw() : ''}}
+{{/if}}
+{{#if options.count > 0}}
+    options?: ({{ options.map(x => x.type) |> tsUnionTypes }})[];
+{{/if}}
+}
+
+{{ var options = category.categoryOptions.map(x => optionsMap[x.optionId]) }}
+{{#each option in options.where(x => !generatedOptionTypes.contains(x.type)) }}
+{{ generatedOptionTypes.push(option.type) |> ignore }}
+export interface {{option.type}} {
+    type: '{{option.type}}';
+    name: {{ option.names.map(x => x.lower()) |> tsUnionStrings }};
+{{#if option.allowQuantity}}
+    optionQuantity?: OptionQuantity;
+{{/if}}
+}
+{{/each}}
+
+{{/each}}
+
+export type CoffeeTemperature = {{coffeeTemperatures.map(x => x.lower()) |> tsUnionStrings}};
+
+export type CoffeeSize = {{coffeeSizes.map(x => x.lower()) |> tsUnionStrings}};
+
+export type EspressoSize = {{espressoSizes.map(x => x.lower()) |> tsUnionStrings}};
+
+export type OptionQuantity = {{optionQuantities.map(x => x.name.lower()) |> tsUnionStrings}} | number;
+```
+
+To generate our restructured and more effective resulting Schema:
+
+```typescript
+// The following is a schema definition for ordering lattes.
+
+export interface Cart {
+    items: (LineItem | UnknownText)[];
+}
+
+// Use this type for order items that match nothing else
+export interface UnknownText {
+    type: 'unknown',
+    text: string; // The text that wasn't understood
+}
+
+export interface LineItem {
+    type: 'lineitem',
+    product: Product;
+    quantity: number;
+}
+
+export type Product = BakeryProducts | LatteDrinks | EspressoDrinks | CoffeeDrinks;
+
+export interface BakeryProducts {
+    type: 'BakeryProducts';
+    name: 'apple bran muffin' | 'blueberry muffin' | 'lemon poppy seed muffin' | 'bagel';
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations |
+        Creamers)[];
+}
+
+
+export interface BakeryOptions {
+    type: 'BakeryOptions';
+    name: 'butter' | 'strawberry jam' | 'cream cheese';
+    optionQuantity?: OptionQuantity;
 }
 
 export interface BakeryPreparations {
     type: 'BakeryPreparations';
     name: 'warmed' | 'cut in half';
 }
+
+export interface LatteDrinks {
+    type: 'LatteDrinks';
+    name: 'cappuccino' | 'flat white' | 'latte' | 'latte macchiato' | 'mocha' | 'chai latte';
+    temperature?: CoffeeTemperature;  // The default is 'hot'
+    size?: CoffeeSize;  // The default is 'grande'
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations |
+        Creamers)[];
+}
+
 
 export interface Milks {
     type: 'Milks';
@@ -1109,13 +1285,15 @@ export interface Sweeteners {
 
 export interface Syrups {
     type: 'Syrups';
-    name: 'almond syrup' | 'buttered rum syrup' | 'caramel syrup' | 'cinnamon syrup' | 'hazelnut syrup' | 'orange syrup' | 'peppermint syrup' | 'raspberry syrup' | 'toffee syrup' | 'vanilla syrup';
+    name: 'almond syrup' | 'buttered rum syrup' | 'caramel syrup' | 'cinnamon syrup' | 'hazelnut syrup' |
+        'orange syrup' | 'peppermint syrup' | 'raspberry syrup' | 'toffee syrup' | 'vanilla syrup';
     optionQuantity?: OptionQuantity;
 }
 
 export interface Toppings {
     type: 'Toppings';
     name: 'cinnamon' | 'foam' | 'ice' | 'nutmeg' | 'whipped cream' | 'water';
+    optionQuantity?: OptionQuantity;
 }
 
 export interface Caffeines {
@@ -1129,14 +1307,50 @@ export interface LattePreparations {
     name: 'for here cup' | 'lid' | 'with room' | 'to go' | 'dry' | 'wet';
 }
 
-export interface Creamers {
-    type: 'Creamers';
-    name: 'whole milk creamer' | 'two percent milk creamer' | 'one percent milk creamer' | 'nonfat milk creamer' | 'coconut milk creamer' | 'soy milk creamer' | 'almond milk creamer' | 'oat milk creamer' | 'half and half' | 'heavy cream';
+export interface EspressoDrinks {
+    type: 'EspressoDrinks';
+    name: 'espresso' | 'lungo' | 'ristretto' | 'macchiato';
+    temperature?: CoffeeTemperature;  // The default is 'hot'
+    size?: EspressoSize;  // The default is 'doppio'
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations |
+        Creamers)[];
 }
 
+
+export interface Creamers {
+    type: 'Creamers';
+    name: 'whole milk creamer' | 'two percent milk creamer' | 'one percent milk creamer' | 'nonfat milk creamer' |
+        'coconut milk creamer' | 'soy milk creamer' | 'almond milk creamer' | 'oat milk creamer' |
+        'half and half' | 'heavy cream';
+}
+
+export interface CoffeeDrinks {
+    type: 'CoffeeDrinks';
+    name: 'americano' | 'coffee';
+    temperature?: CoffeeTemperature;  // The default is 'hot'
+    size?: CoffeeSize;  // The default is 'grande'
+    options?: (BakeryOptions | BakeryPreparations | Milks | Sweeteners | Syrups | Toppings | Caffeines | LattePreparations |
+        Creamers)[];
+}
+
+
+export type CoffeeTemperature = 'iced' | 'warm' | 'hot' | 'extra hot';
+
+export type CoffeeSize = 'short' | 'tall' | 'grande' | 'venti';
+
+export type EspressoSize = 'solo' | 'doppio' | 'triple' | 'quad';
 
 export type OptionQuantity = 'no' | 'light' | 'regular' | 'extra' | number;
 ```
 
-Check back-in at the end of this week for Part 2 which we'll cover the different options and challenges to use this schema to create a 
-functional Voice Command Activated Order System for our CoffeeShop comparing the results of using different Transcribing and LLM Providers.
+As prompt engineering is more an Art than a Science it took several iterations of experimentation across multiple prompts 
+to be able to measure the effectiveness of different changes, as such it was important to be able to modify and test 
+prompts quickly which generating prompts with **#Script** lets us do as we could make changes to the
+[schema.ss](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/gpt/coffeeshop/schema.ss) template and 
+get immediate feedback of their efficacy whilst the App was running.  
+
+## Part 2
+
+Check back-in at the end of this week for Part 2 which will cover the different options and challenges for using this 
+schema to create a functional Voice Command Activated Order System for our CoffeeShop comparing the results of using 
+different Transcribing and LLM Providers.
