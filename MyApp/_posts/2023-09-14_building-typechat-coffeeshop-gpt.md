@@ -130,7 +130,7 @@ else if (speechProvider == nameof(WhisperLocalSpeechToText))
 }
 ```
 
-To use `GoogleCloudSpeechToText` your pc needs to be [configured with Credentials](https://cloud.google.com/speech-to-text/docs/before-you-begin)
+To use `GoogleCloudSpeechToText` your pc needs to be configured with [GoogleCloud Credentials](https://cloud.google.com/speech-to-text/docs/before-you-begin)
 on a project with Speech-to-Text enabled.
 
 To use `WhisperLocalSpeechToText` you'll need a [local install of OpenAI Whisper](https://github.com/openai/whisper)
@@ -574,7 +574,7 @@ So how does TypeChat fair when handling the same problematic prompt?
 It expectedly fails in the same way, but as it's able to validate JSON responses against the TypeScript's schema it 
 knows and can report back where the failure occurs through the TypeScript's compiler schema validation errors.
 
-### Auto Retry Failed Requests
+### TypeChat's Auto Retry of Failed Requests
 
 Interestingly before reporting back the schema validation error TypeChat had transparently sent a **retry** request back 
 to Chat GPT with the original prompt with some additional context to help guide GPT into returning a valid response 
@@ -667,19 +667,19 @@ TypeScript Schema validation errors is likely preferred.
 As we're not able to achieve a successful response from this problematic request from GPT-3.5, would ChatGPT 4 fair
 any better?
 
-Lets try by setting the `OPENAI_MODEL` Environment Variable to **gpt-4** in our shell:
+Lets try by setting the `OPENAI_MODEL` Environment Variable to **gpt-4** in your shell:
 
 :::sh
 set OPENAI_MODEL=gpt-4
 :::
 
-Then retry the request:
+Then retry the same request:
 
 :::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/typechat-success-vanilla-latte-macchiato.png)](/img/posts/building-typechat-coffeeshop-modelling/typechat-success-vanilla-latte-macchiato.png)
 :::
 
-No sweat! GPT-4 didn't need the retry and gets it right in one-shot on the first try.
+Success! GPT-4 didn't even need the retry and gets it right in one-shot on its first try.
 
 So the easiest way to improve the success rate of your TypeChat GPT solutions is to switch to GPT-4, or for a more cost
 effective approach you can start with GPT-3.5 than retry failed requests with GPT-4.
@@ -712,18 +712,397 @@ can understand, which you can also invoke manually from the command line with:
 node typechat.mjs json gpt\coffeeshop\schema.ts "i wanna latte macchiato with vanilla"
 :::
 
-Lets test this out this with `OPENAI_MODEL=gpt-4` so we can see the problematic prompt above working in our App:
+Lets test this out this with an `OPENAI_MODEL=gpt-4` Environment Variable so we can see the above problematic prompt 
+working in our App:
 
 :::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-nodegpt4-vanilla-latte-macchiato.png)](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-nodegpt4-vanilla-latte-macchiato.png)
 :::
 
-## Alternate Speech-to-Text Providers
+With everything now connected and working together, try it out by ordering something from the CoffeeShop Menu or
+try out some of TypeChat's [input.txt](https://github.com/microsoft/TypeChat/blob/main/examples/coffeeShop/src/input.txt) examples for inspiration.
 
-//....
+## Try Alternative Providers
+
+You can also try and evaluate different providers to measure how well each perform, if you prefer a managed cloud option 
+you can switch to use GoogleCloud to store voice recordings and transcribe audio by configuring **appsettings.json** with:
 
 ```json
 {
-    "SpeechProvider": "GoogleCloudSpeechToText"
+  "VfsProvider": "GoogleCloudVirtualFiles",
+  "SpeechProvider": "GoogleCloudSpeechToText"
 }
 ```
+
+To use `GoogleCloudSpeechToText` your workstation needs to be configured with [GoogleCloud Credentials](https://cloud.google.com/speech-to-text/docs/before-you-begin).
+
+A nice feature from using Cloud Services is the built-in tooling in IDEs like JetBrains 
+[Big Data Tools](https://plugins.jetbrains.com/plugin/12494-big-data-tools) where you can inspect new Recordings and ChatGPT
+JSON responses from within your IDE, instead of SSH'ing into remote servers to inspect local volumes: 
+
+:::{.max-w-sm .mx-auto}
+[![](/img/posts/building-typechat-coffeeshop-modelling/googlcloud-plugin.png)](/img/posts/building-typechat-coffeeshop-modelling/googlcloud-plugin.png)
+:::
+
+### Workaround for Safari
+
+CoffeeShop worked great in all modern browsers we tested on in Windows including: Chrome, Edge, Firefox and Vivaldi but
+unfortunately failed in Safari which seemed strange since we're using [WebM](https://en.wikipedia.org/wiki/WebM) - the
+"open, royalty-free, media file format designed for the web"!
+
+That's disappointing, so much for "open formats". Guess we'll have to switch to the format that all browsers support.
+This information isn't readily available so I created a little script to detect the popular formats  
+
+```js
+const containers = ['webm', 'ogg', 'mp4', 'x-matroska', '3gpp', '3gpp2', 
+                    '3gp2', 'quicktime', 'mpeg', 'aac', 'flac', 'wav']
+const codecs = ['vp9', 'vp8', 'avc1', 'av1', 'h265', 'h.265', 'h264',             
+                'h.264', 'opus', 'pcm', 'aac', 'mpeg', 'mp4a'];
+
+const supportedAudios = containers.map(format => `audio/${format}`)
+  .filter(mimeType => MediaRecorder.isTypeSupported(mimeType))
+const supportedAudioCodecs = supportedAudios.flatMap(audio => 
+  codecs.map(codec => `${audio};codecs=${codec}`))
+      .filter(mimeType => MediaRecorder.isTypeSupported(mimeType))
+
+console.log('Supported Audio formats:', supportedAudios)
+console.log('Supported Audio codecs:', supportedAudioCodecs)
+```
+
+### Windows
+
+All Chrome and Blink-based browsers inc. Edge and Vivaldi reported the same results:
+
+```
+Supported Audio formats: ['audio/webm']
+Supported Audio codecs: ['audio/webm;codecs=opus', 'audio/webm;codecs=pcm']
+```
+
+Whilst Firefox reported:
+
+```
+Supported Audio formats: ["audio/webm", "audio/ogg"]
+Supported Audio codecs: ["audio/webm;codecs=opus", "audio/ogg;codecs=opus"]
+```
+
+Things aren't looking good, we have exactly one Audio Format and Codec supported by all modern browsers on Windows.
+
+### macOS
+
+What does Safari say it supports?
+
+```
+Supported Audio formats: ["audio/mp4"]
+Supported Audio codecs: ["audio/mp4;codecs=avc1", "audio/mp4;codecs=mp4a"]
+```
+
+That's unfortunate, Safari only supports 1 Audio format that no other browser support, even worse it's not an audio
+encoding that [Google Speech-to-text supports](https://cloud.google.com/speech-to-text/docs/encoding). 
+
+This means if we want to be able to serve Customers with shiny iPhone's we're going to need to convert it into a format
+that the Speech-to-text APIs accepts, the logical choice being to use the same format that we're capturing from other
+browsers natively, i.e. `audio/webm`.
+
+### ffmpeg
+
+Our first attempt to do this in .NET with [NAudio](https://github.com/naudio/NAudio) failed on macOS since it relied
+on Windows APIs to perform the conversion.
+
+Luckily this is pretty easy to do with the amazingly versatile [ffmpeg](https://ffmpeg.org) - that can be installed with
+[Homebrew](https://brew.sh):
+
+:::sh
+brew install ffmpeg
+:::
+
+### Converting Uploaded Files
+
+We now need to integrate this conversion into our workflow. As we're using 
+[Managed Files Uploads](https://docs.servicestack.net/locode/files-overview) to handle our uploads, the best place to
+add support for it is in `transformFile` where you can intercept the file upload and transform it to a more suitable
+upload for your App to work with, by configuring the `UploadLocation` in 
+[Configure.AppHost.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.AppHost.cs):
+
+```csharp
+Plugins.Add(new FilesUploadFeature(
+    new UploadLocation("recordings", VirtualFiles, allowExtensions:FileExt.WebAudios, writeAccessRole: RoleNames.AllowAnon,
+        maxFileBytes: 1024 * 1024,
+        transformFile: ctx => ConvertAudioToWebM(ctx.File),
+        resolvePath: ctx => $"/recordings/{ctx.DateSegment}/{DateTime.UtcNow.TimeOfDay.TotalMilliseconds}.{ctx.FileExtension}")
+));
+```
+
+Where the `ConvertAudioToWebM` handles converting Safari's **.mp4** Audio recordings into **.webm** format by executing 
+the external **ffmpeg** process, that is returned in a new `HttpFile` referencing the **.webm** Stream contents:
+
+```csharp
+public async Task<IHttpFile?> ConvertAudioToWebM(IHttpFile file)
+{
+    if (!file.FileName.EndsWith("mp4")) 
+        return file;
+    
+    var ffmpegPath = ProcessUtils.FindExePath("ffmpeg") 
+        ?? throw new Exception("Could not resolve path to ffmpeg");
+    
+    var now = DateTime.UtcNow;
+    var time = $"{now:yyyy-M-d_s.fff}";
+    var tmpDir = Environment.CurrentDirectory.CombineWith("App_Data/tmp").AssertDir();
+    var tmpMp4 = tmpDir.CombineWith($"{time}.mp4");
+    await using (File.Create(tmpMp4)) {}
+    var tmpWebm = tmpDir.CombineWith($"{time}.webm");
+    
+    var msMp4 = await file.InputStream.CopyToNewMemoryStreamAsync();
+    await using (var fsMp4 = File.OpenWrite(tmpMp4))
+    {
+        await msMp4.WriteToAsync(fsMp4);
+    }
+    await ProcessUtils.RunShellAsync($"{ffmpegPath} -i {tmpMp4} {tmpWebm}");
+    File.Delete(tmpMp4);
+    
+    HttpFile? to = null;
+    await using (var fsWebm = File.OpenRead(tmpWebm))
+    {
+        to = new HttpFile(file) {
+            FileName = file.FileName.WithoutExtension() + ".webm",
+            InputStream = await fsWebm.CopyToNewMemoryStreamAsync()
+        };
+    }
+    File.Delete(tmpWebm);
+
+    return to;
+}
+```
+
+In the terminal this is simple done by specifying the **file.mp4** input file and the output file extension and format
+you want it converted to:
+
+:::sh
+ffmpeg -i file.mp4 file.webm
+:::
+
+With this finishing touch CoffeeShop is now accepting Customer Orders from all modern browsers in all major Operating Systems at:
+
+<h3 class="not-prose text-center pb-8">
+    <a class="text-4xl text-blue-600 hover:underline" href="https://coffeeshop.netcore.io">https://coffeeshop.netcore.io</a>
+</h3>
+
+## Local OpenAI Whisper
+
+CoffeeShop also serves as nice real-world example we can use to evaluate the effectiveness of different GPT models,
+which has been surprisingly [effortless on Apple Silicon](https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon) 
+whose great specs and popularity amongst developers means a lot of the new GPT projects are well supported on my new M2 Macbook.
+
+As we already have **ffmpeg** installed, installing [OpenAI's Whisper](https://github.com/openai/whisper) can be done with:
+
+:::sh
+pip install -U openai-whisper
+:::
+
+Where you'll then be able to transcribe Audio recordings that's as easy as specifying the recording you want a transcription of:
+
+:::sh
+whisper recording.webm
+:::
+
+#### Usage Notes
+
+ - The `--language` flag helps speed up transcriptions by avoiding needing to run auto language detection
+ - By default whisper will generate its transcription results in all supported `.txt`, `.json`, `.tsv`, `.srt` and `.vtt` formats
+   - you can limit to just the format you want it in with `--output_format`, e.g. use `txt` if you're just interested in the transcribed text
+ - The default install also had warnings [FP16](https://github.com/openai/whisper/discussions/301) and 
+[Numba Deprecation](https://github.com/openai/whisper/discussions/1344) warnings
+
+All these issues can be resolved with the modified prompt: 
+
+```bash
+export PYTHONWARNINGS="ignore"
+whisper --language=en --fp16 False --output_format txt recording.webm
+```
+
+Which should now generate a clean output containing the recordings transcribed text, that's also written to `recording.txt`:
+
+```
+[00:00.000 --> 00:02.000]  A latte, please.
+```
+
+Which took **9 seconds** to transcribe on my M2 Macbook Air, a bit longer than the **1-2 seconds** it takes to upload
+and transcribe recordings to Google Cloud, but still within acceptable response times for real-time transcriptions.  
+
+### Switch to local OpenAI Whisper
+
+You can evaluate how well local `whisper` performs for transcribing CoffeeShop recordings in **appsettings.json**: 
+
+```json
+{
+  "SpeechProvider": "WhisperLocalSpeechToText"
+}
+```
+
+Which configures [Configure.Speech.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Speech.cs)
+to use `WhisperLocalSpeechToText`:
+
+```csharp
+services.AddSingleton<ISpeechToText>(c => new WhisperLocalSpeechToText {
+   WhisperPath = c.Resolve<AppConfig>().WhisperPath ?? ProcessUtils.FindExePath("whisper"),
+   TimeoutMs = c.Resolve<AppConfig>().NodeProcessTimeoutMs,
+});
+```
+
+## Running LLMs Locally
+
+Being able to run [OpenAI's Whisper](https://openai.com/research/whisper) locally gives our App the option for removing  
+an external API and infrastructure dependency, will it also be possible to run LLM locally to remove our ChatGPT dependency?
+
+Thanks to tools like [llama.cpp](https://github.com/ggerganov/llama.cpp) we're able to run popular Open Source LLMs 
+from our laptops. An easy way to easily download and evaluate different LLMs is using the [llm](https://llm.datasette.io) 
+Python utility that can be installed with:
+
+:::sh
+pip install llm
+:::
+
+That you can use to install the **llama.cpp** plugin with:
+
+:::sh
+llm install llm-llama-cpp
+:::
+
+Then use that it to download the popular Llama2 7B model with: 
+
+```bash
+llm llama-cpp download-model \
+https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/resolve/main/llama-2-7b-chat.ggmlv3.q8_0.bin \
+--alias llama2-chat --alias l2c --llama2-chat
+```
+
+Which lets us ask our local LLama2 model what we want, a great list used to measure the effectiveness of 
+different LLMs can be found at [benchmarks.llmonitor.com](https://benchmarks.llmonitor.com):
+
+:::sh
+llm -m l2c 'Argue for and against the use of kubernetes in the style of a haiku.' 
+:::
+
+Which our Llama2 took **64.51s** to responded with:
+
+```
+Sure, I can provide a haiku argument for and against the use of Kubernetes:
+
+**For Kubernetes:**
+
+Containerized world
+Efficiently orchestrated bliss
+Apps swim with ease
+
+Kubernetes reigns
+Managing pods with grace
+Smooth sailing ahead
+
+**Against Kubernetes:**
+
+Overcomplicated sea
+Cluttered with APIs and tools
+Tainted by complexity
+
+Kubernetes, alas
+Forcing us to conform
+To its rigid ways
+```
+
+The response is impressive, unfortunately taking over 1 minute to execute wasn't. 
+
+Whilst we're here lets see how viable the Open Source models are for evaluating our natural language CoffeeShop orders,
+which we can do with: 
+
+```bash
+curl --get --data-urlencode "userMessage=i'd like a latte that's it" \
+https://coffeeshop.netcore.io/coffeeshop/prompt | llm -m l2c
+```
+
+::: info tip
+Or use `https://localhost:5001/coffeeshop/prompt` to use a local App prompt
+:::
+
+Which we're happy to report returns a valid JSON prompt our App can process:
+
+```json
+{
+    "items": [
+        {
+            "type": "lineitem",
+            "product": {
+                "type": "LatteDrinks",
+                "name": "latte",
+                "temperature": "hot",
+                "size": "grande"
+            },
+            "quantity": 1
+        }
+    ]
+}
+```
+
+Whilst Llama2 7B isn't nearly as capable or accurate as ChatGPT, it demonstrates potential for Open Source LLMs to
+eventually become a viable option for being able to add support for natural language requests in our Apps.
+
+Unfortunately the **105s** time it took to execute makes it unsuitable for handling any real-time tasks, when running on 
+laptop hardware at least with only a **10-core GPU** and **24GB RAM** with **100GB/s** memory bandwidth. 
+
+But the top-line specs of PC's equipped with high-end Nvidia GPUs or Apple Silicon's [Mac Studio](https://www.apple.com/au/mac-studio/) 
+Ultra's impressive **76-core GPU** with **192GB RAM** at **800GB/s** memory bandwidth should mean we'll be able to run our 
+AI workloads on consumer hardware in the not too distant future.
+
+### Local AI Workflows
+
+Whilst running all our App's AI requirements from a laptop may not be feasible just yet, we're still able to execute
+some cool AI workflows that's only been possible to do from our laptop's until very recently.
+
+For example, this shell command:
+
+ - uses **ffmpeg** to capture 5 seconds of our voice recording 
+ - uses **whisper** to transcribe our recording to text
+ - uses CoffeeShop Prompt API to create a TypeChat Request from our text order
+ - uses **llm** to execute our App's TypeChat prompt with our local Llama2 7B LLM
+
+```bash
+ffmpeg -f avfoundation -i ":1" -t 5 order.mp3 \
+&& whisper --language=en --fp16 False --output_format txt order.mp3 \
+&& curl --get --data-urlencode "userMessage=$(cat order.txt)" \
+https://coffeeshop.netcore.io/coffeeshop/prompt | llm -m l2c
+```
+
+If all stars have aligned you should get a machine readable JSON response the CoffeeShop can process to turn your 
+voice recording into a Cart order:
+
+```json
+{
+    "items": [
+        {
+            "type": "lineitem",
+            "product": {
+                "type": "LatteDrinks",
+                "name": "latte",
+                "temperature": "hot",
+                "size": "grande"
+            },
+            "quantity": 1
+        }
+    ]
+}
+```
+
+## ServiceStack.Gpt
+
+We'll be maintaining implementations and abstractions of different AI & GPT Services used to build **AI powered**
+features in our new **ServiceStack.Gpt** project which will be a **Free** package .NET project's can use to decouple their 
+**Speech-to-text** or **ChatGPT** requirements from any single implementation so they can be easily substituted.
+
+Please submit feature requests or other providers you'd like to see support for to:
+
+<h3 class="not-prose text-center pb-8">
+    <a class="text-4xl text-blue-600 hover:underline" href="https://servicestack.net/ideas">https://servicestack.net/ideas</a>
+</h3>
+
+## New .NET TypeChat Examples Soon
+
+We plan on implementing all of TypeChat's Examples in .NET Apps so watch this space or join our Newsletter (max 1 email / 2-3 months)
+to find out when they're available. 
