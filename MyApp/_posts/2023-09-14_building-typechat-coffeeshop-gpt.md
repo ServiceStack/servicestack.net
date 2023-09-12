@@ -265,7 +265,7 @@ public class CoffeeShopServices : Service
 
 Now that our Server supports it we can start using this API to upload Audio Recordings. To simplify reuse we've 
 encapsulated Web Audio API usage behind the [AudioRecorder.mjs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/wwwroot/mjs/AudioRecorder.mjs)
-class which can start recording Audio from the Users microphone with `start()`:
+class whose `start()` method starts recording Audio from the Users microphone:
 
 ```js
 import { AudioRecorder } from "/mjs/AudioRecorder.mjs"
@@ -274,25 +274,25 @@ let audioRecorder = new AudioRecorder()
 await audioRecorder.start()
 ```
 
-Which will capture audio chunks until `stop()` is called which stitches them into a `Blob` that it converts into
-a Blob DataURL that is returned within a populated [Audio](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement)
+Where it captures audio chunks until `stop()` is called that are then stitched together into a `Blob` and converted into
+a Blob DataURL that's returned within a populated [Audio](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement)
 Media element:
 
 ```js
 const audio = await audioRecorder.stop()
 ```
 
-Which supports the [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#instance_methods) API
-allowing you to playback and pause recordings with:
+That supports the [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#instance_methods) API
+allowing pause and playback of recordings:
 
 ```js
 audio.play()
 audio.pause()
 ```
 
-The `AudioRecorder` also maintains the `Blob` of its latest recording in the `audioBlob` and the Mime Type that it was
-captured with in `audioExt` field, which we can use to upload it to the `CreateCoffeeShopRecording` API, which
-if successful will return a transcription of the Audio recording: 
+The `AudioRecorder` also maintains the `Blob` of its latest recording in its `audioBlob` field and the **MimeType** that it was
+captured with in `audioExt` field, which we can use to upload it to the `CreateCoffeeShopRecording` API, which if 
+successful will return a transcription of the Audio recording: 
 
 ```js
 import { JsonApiClient } from "@servicestack/client"
@@ -326,7 +326,7 @@ public interface ITypeChatProvider
 ```
 
 Whilst a simple API on the surface, different execution and customizations options are available in the 
-`TypeChatRequest` which at a minimum requires the Schema & Prompt to use and the **UserMessage** to convert:
+`TypeChatRequest` which at a minimum requires the **Schema** & **Prompt** to use and the **UserMessage** to convert:
 
 ```csharp
 // Request to process a TypeChat Request
@@ -390,9 +390,8 @@ public interface IPromptProvider
 
 ### Semantic Kernel TypeChat Provider
 
-The natural approach for doing this in .NET is to use [Microsoft's Semantic Kernel](https://github.com/microsoft/semantic-kernel)    
-to talk to OpenAI's Chat GPT API directly which the CoffeeShop App can be configured to use by specifying to use
-`KernelTypeChatProvider` in **appsettings.json**:
+The natural approach for interfacing with OpenAI's ChatGPT API in .NET is to use [Microsoft's Semantic Kernel](https://github.com/microsoft/semantic-kernel) 
+to call it directly, that CoffeeShop can be configured with by specifying to use `KernelTypeChatProvider` provider in **appsettings.json**:
 
 ```json
 {
@@ -400,7 +399,7 @@ to talk to OpenAI's Chat GPT API directly which the CoffeeShop App can be config
 }
 ```
 
-Which will configure to use the `KernelTypeChatProvider` in [Configure.Gpt.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Gpt.cs)
+Which registers the `KernelTypeChatProvider` in [Configure.Gpt.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Gpt.cs)
 
 ```csharp
 var kernel = Kernel.Builder.WithOpenAIChatCompletionService(
@@ -417,7 +416,7 @@ services.AddSingleton<ITypeChatProvider>(c =>
 We now have everything we need to start leveraging Chat GPT to convert our Customers **Natural Language** requests 
 into Machine readable instructions that our App can understand, guided by TypeChat's TypeScript Schema.
 
-The API to do this needs only a single property to capture the Customer request, that will be either provided from a 
+The API to do this needs only a single property to capture the Customer request, that's either provided from a 
 free-text text input or a Voice Input captured by Web Audio:  
 
 ```csharp
@@ -428,7 +427,7 @@ public class CreateCoffeeShopChat : ICreateDb<Chat>, IReturn<Chat>
 ```
 
 That just like `CreateCoffeeShopRecording` is a custom AutoQuery CRUD Service that uses AutoQuery to create the 
-initial `Chat` record, that is later updated with the GPT Chat API Response, executed from the configured
+initial `Chat` record, that's later updated with the GPT Chat API Response, executed from the configured
 `ITypeChatProvider` provider:
 
 ```csharp
@@ -488,7 +487,7 @@ public class CoffeeShopServices : Service
 }
 ```
 
-`CreateCoffeeShopChat` API returns Chat GPTs JSON Response directly to the client:  
+The API then returns Chat GPTs JSON Response directly to the client:  
 
 ```js
 apiChat.value = await client.api(new CreateCoffeeShopChat({
@@ -502,16 +501,16 @@ if (apiChat.value.response) {
 }
 ```
 
-Which parses and goes through all Cart Items that's in the structure of the TypeScript Schema and matches it against 
-products and their customizations from the App's database before adding it to the user's cart in the 
+That's in the structure of the TypeScript Schema's array of `Cart` LineItem's which are matched against the
+products and available customizations from the App's database before being added to the user's cart in the 
 [processChatItems(items)](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Pages/Index.cshtml#L507) function.
 
 ### Trying it Out
 
-Now that we've connected all the pieces together we can try it out! We'll hit the **Record** Icon to start our microphone 
-recording so we can capture our Customer Order via Voice Input. 
+Now that all the pieces are connected together, we can finally try it out! By hitting the **Record** Icon to start the 
+microphone recording so that it can capture Customer Orders via Voice Input. 
 
-We'll try with a Natural Language Order whose free-text input would be notoriously difficult to parse with traditional 
+Let's try a Natural Language Customer Order whose free-text input would be notoriously difficult to parse with traditional 
 programming methods:  
 
 > two tall lattes, the first one with no foam, the second one with whole milk. actually, make the first one a grande.
@@ -523,7 +522,7 @@ the transcribed text whilst the request is being processed by Chat GPT:
 [![](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-natural-language-1.png)](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-natural-language-1.png)
 :::
 
-Then if all was successful we should see the Customer Order magically get added to the Customer Cart:
+Then if all was successful we should see the Customer Order appear in the Customer's Cart, as if by magic!
 
 :::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-natural-language-2.png)](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-natural-language-2.png)
@@ -564,7 +563,7 @@ That our Semantic Kernel Request translates into a reasonable Cart Item order:
 }
 ```
 
-The problem being "vanilla" is close, but it's not an **exact match** for a **Syrup** on offer, so our order only gets partially filled:
+The problem being **"vanilla"** is close, but it's not an **exact match** for a **Syrup** on offer, so our order only gets partially filled:
 
 :::{.shadow .rounded-sm}
 [![](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-kernel-vanilla-latte-macchiato.png)](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-kernel-vanilla-latte-macchiato.png)
@@ -639,7 +638,7 @@ export interface Syrups {
 }
 ```
 
-Lo and behold we get what we're after, an expected valid response with the correct **vanilla syrup** value: 
+Lo and behold we get what we're after, an expected valid response with the correct **"vanilla syrup"** value: 
 
 ```json
 {
@@ -663,10 +662,11 @@ Lo and behold we get what we're after, an expected valid response with the corre
 ```
 
 This goes to show that interfacing with ChatGPT in C# with Semantic Kernel is a viable solution that whilst requires
-more bespoke logic and manual validation, can produce a more effective response than what's possible with TypeChat.
+more bespoke logic and manual validation, can produce a more effective response than what's possible with TypeChat's schema
+validation errors.
 
 If you need to maintain few interfaces with ChatGPT, building your solution all in .NET might be the best option, but if
-you need to generate and maintain multiple schemas than using a generic library with automated retries like TypeChat utilizing 
+you need to generate and maintain multiple schemas then using a generic library with automated retries like TypeChat utilizing 
 TypeScript Schema validation errors is likely preferred.
 
 ### TypeChat with ChatGPT 4
@@ -696,7 +696,7 @@ effective approach you can start with GPT-3.5 than retry failed requests with GP
 As TypeChat uses **typescript** we'll need to call out to the **node** executable in order to be able to use it from
 our .NET App.
 
-To configure our App to talk to ChatGPT API via TypeChat we need to specify to use `NodeTypeChatProvider` in **appsettings.json**:
+To configure our App to talk to ChatGPT API via TypeChat we need to specify to use `NodeTypeChatProvider` provider in **appsettings.json**:
 
 ```json
 {
@@ -712,7 +712,7 @@ services.AddSingleton<ITypeChatProvider>(c => new NodeTypeChatProvider());
 
 It works by executing an **external process** that invokes our custom
 [typechat.mjs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/typechat.mjs) wrapper around TypeChat's
-functionality to invoke it and return any structured error responses in a `ResponseStatus` format that our .NET App 
+functionality to invoke it and return any error responses in a structured `ResponseStatus` format that our .NET App 
 can understand, which you can also invoke manually from the command line with:
 
 :::sh
@@ -726,13 +726,13 @@ working in our App:
 [![](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-nodegpt4-vanilla-latte-macchiato.png)](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-nodegpt4-vanilla-latte-macchiato.png)
 :::
 
-With everything now connected and working together, try it out by ordering something from the CoffeeShop Menu or
+With everything connected and working together, try node's TypeChat out by ordering something from the CoffeeShop Menu or
 try out some of TypeChat's [input.txt](https://github.com/microsoft/TypeChat/blob/main/examples/coffeeShop/src/input.txt) examples for inspiration.
 
 ## Try Alternative Providers
 
-You can also try and evaluate different providers to measure how well each perform, if you prefer a managed cloud option 
-you can switch to use GoogleCloud to store voice recordings and transcribe audio by configuring **appsettings.json** with:
+Feel free to try and evaluate different providers to measure how well each performs, if you prefer a managed cloud option 
+switch to use GoogleCloud to store voice recordings and transcribe audio by configuring **appsettings.json** with:
 
 ```json
 {
@@ -741,7 +741,7 @@ you can switch to use GoogleCloud to store voice recordings and transcribe audio
 }
 ```
 
-To use `GoogleCloudSpeechToText` your workstation needs to be configured with [GoogleCloud Credentials](https://cloud.google.com/speech-to-text/docs/before-you-begin).
+Using GoogleCloud Services requires your workstation to be configured with [GoogleCloud Credentials](https://cloud.google.com/speech-to-text/docs/before-you-begin).
 
 A nice feature from using Cloud Services is the built-in tooling in IDEs like JetBrains 
 [Big Data Tools](https://plugins.jetbrains.com/plugin/12494-big-data-tools) where you can inspect new Recordings and ChatGPT
@@ -754,11 +754,12 @@ JSON responses from within your IDE, instead of SSH'ing into remote servers to i
 ### Workaround for Safari
 
 CoffeeShop worked great in all modern browsers we tested on in Windows including: Chrome, Edge, Firefox and Vivaldi but
-unfortunately failed in Safari which seemed strange since we're using [WebM](https://en.wikipedia.org/wiki/WebM) - the
-"open, royalty-free, media file format designed for the web"!
+unfortunately failed in Safari which seemed strange since we're using [WebM](https://en.wikipedia.org/wiki/WebM):
 
-That's disappointing, so much for "open formats". Guess we'll have to switch to the format that all browsers support.
-This information isn't readily available so I created a little script to detect the popular formats  
+> the open, royalty-free, media file format designed for the web!
+
+So much for "open formats", guess we'll have to switch to the format that all browsers support.
+This information isn't readily available so I used this little script to detect which popular formats are supported in each browser:  
 
 ```js
 const containers = ['webm', 'ogg', 'mp4', 'x-matroska', '3gpp', '3gpp2', 
@@ -792,7 +793,7 @@ Supported Audio formats: ["audio/webm", "audio/ogg"]
 Supported Audio codecs: ["audio/webm;codecs=opus", "audio/ogg;codecs=opus"]
 ```
 
-Things aren't looking good, we have exactly one Audio Format and Codec supported by all modern browsers on Windows.
+Things aren't looking good, we have exactly one shared Audio Format and Codec supported by all modern browsers on Windows.
 
 ### macOS
 
@@ -803,7 +804,7 @@ Supported Audio formats: ["audio/mp4"]
 Supported Audio codecs: ["audio/mp4;codecs=avc1", "audio/mp4;codecs=mp4a"]
 ```
 
-That's unfortunate, Safari only supports 1 Audio format that no other browser support, even worse it's not an audio
+That's unfortunate, The only Audio format Safari supports isn't supported by any other browser, even worse it's not an audio
 encoding that [Google Speech-to-text supports](https://cloud.google.com/speech-to-text/docs/encoding). 
 
 This means if we want to be able to serve Customers with shiny iPhone's we're going to need to convert it into a format
@@ -840,7 +841,7 @@ Plugins.Add(new FilesUploadFeature(
 ```
 
 Where the `ConvertAudioToWebM` handles converting Safari's **.mp4** Audio recordings into **.webm** format by executing 
-the external **ffmpeg** process, that is returned in a new `HttpFile` referencing the **.webm** Stream contents:
+the external **ffmpeg** process, the converted file is then returned in a new `HttpFile` referencing the new **.webm** Stream contents:
 
 ```csharp
 public async Task<IHttpFile?> ConvertAudioToWebM(IHttpFile file)
@@ -880,7 +881,7 @@ public async Task<IHttpFile?> ConvertAudioToWebM(IHttpFile file)
 }
 ```
 
-In the terminal this is simple done by specifying the **file.mp4** input file and the output file extension and format
+In the terminal this simply done by specifying the **file.mp4** input file and the output file extension and format
 you want it converted to:
 
 :::sh
@@ -897,7 +898,7 @@ With this finishing touch CoffeeShop is now accepting Customer Orders from all m
 
 CoffeeShop also serves as nice real-world example we can use to evaluate the effectiveness of different GPT models,
 which has been surprisingly [effortless on Apple Silicon](https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon) 
-whose great specs and popularity amongst developers means a lot of the new GPT projects are well supported on my new M2 Macbook.
+whose great specs and popularity amongst developers means a lot of the new GPT projects are well supported on my new M2 Macbook Air.
 
 As we already have **ffmpeg** installed, installing [OpenAI's Whisper](https://github.com/openai/whisper) can be done with:
 
@@ -916,10 +917,10 @@ whisper recording.webm
  - The `--language` flag helps speed up transcriptions by avoiding needing to run auto language detection
  - By default whisper will generate its transcription results in all supported `.txt`, `.json`, `.tsv`, `.srt` and `.vtt` formats
    - you can limit to just the format you want it in with `--output_format`, e.g. use `txt` if you're just interested in the transcribed text
- - The default install also had warnings [FP16](https://github.com/openai/whisper/discussions/301) and 
+ - The default install also had [FP16](https://github.com/openai/whisper/discussions/301) and 
 [Numba Deprecation](https://github.com/openai/whisper/discussions/1344) warnings
 
-All these issues can be resolved with the modified prompt: 
+All these issues were resolved by using the modified prompt: 
 
 ```bash
 export PYTHONWARNINGS="ignore"
@@ -932,7 +933,7 @@ Which should now generate a clean output containing the recordings transcribed t
 [00:00.000 --> 00:02.000]  A latte, please.
 ```
 
-Which took **9 seconds** to transcribe on my M2 Macbook Air, a bit longer than the **1-2 seconds** it takes to upload
+Which took **9 seconds** to transcribe on my M2 Macbook Air, a fair bit longer than the **1-2 seconds** it takes to upload
 and transcribe recordings to Google Cloud, but still within acceptable response times for real-time transcriptions.  
 
 ### Switch to local OpenAI Whisper
