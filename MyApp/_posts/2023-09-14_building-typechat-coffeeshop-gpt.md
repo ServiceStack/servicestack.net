@@ -24,11 +24,12 @@ by the data in CoffeeShop's Database.
 ## CoffeeShop UI
 
 The purpose of which is to implement a CoffeeShop Menu which can fulfil ordering any of the products along with any 
-toppings, customizations and preparation options allowed by the App's database and resulting TypeScript Schema.
+toppings, customizations and preparation options listed by the App's database and resulting TypeScript Schema.
 
 The resulting App implements a standard Web UI to navigate all categories and products offered in the CoffeeShop Menu,
-in addition it also supports an Audio Interface that lets customers order from the Menu with their **Voice** - which
-is where we make use of Microsoft's [TypeChat](https://github.com/microsoft/TypeChat) and Open AI's GPT services:
+that also supports an Audio Input letting customers order from the Menu using their **Voice** - which relies on Open AI's 
+GPT services utilising Microsoft's [TypeChat](https://github.com/microsoft/TypeChat) schema prompt and node library
+to convert a natural language order into a `Cart` order our App can understand, you can try at:
 
 <h3 class="not-prose text-center pb-8">
     <a class="text-4xl text-blue-600 hover:underline" href="https://coffeeshop.netcore.io">https://coffeeshop.netcore.io</a>
@@ -38,7 +39,14 @@ is where we make use of Microsoft's [TypeChat](https://github.com/microsoft/Type
 [![](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-ui.png)](/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-ui.png)
 :::
 
-The Web UI adopts the same build-free [Simple, Modern JavaScript](/posts/javascript) approach that was used to create vue-mjs's [Client Admin UI](/posts/admin-uis)
+<h3 class="not-prose text-center pb-8">
+   <span class="text-gray-600 font-normal text-xl">
+      source <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/CoffeeShop">https://github.com/NetCoreApps/CoffeeShop</a>
+   </span> 
+</h3>
+
+
+The Web UI adopts the same build-free [Simple, Modern JavaScript](/posts/javascript) approach used to create vue-mjs's [Client Admin UI](/posts/admin-uis),
 to create the CoffeeShop's reactive frontend UI utilizing progressive Vue.mjs, which is maintained in the
 [Index.cshtml](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Pages/Index.cshtml) Home page.
 
@@ -51,7 +59,7 @@ we can add to our cart.
 Before we're able to enlist Chat GPT to do our bidding for us, we need to capture our Customer's CoffeeShop Order
 Voice Recording and transcribe it to text.
 
-We have a few options when it comes to real-time Speech-to-Text translation services you can choose from, including:
+We have a few options when it comes to real-time **Speech-to-Text** translation services you can choose from, including:
 
  - [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text/) - Starts from **$0.016** /minute or **$0.012** 
 if you're ok with Google to use your recordings to improve their AI models
@@ -160,9 +168,9 @@ providers including Azure's Blob Storage, AWS S3 or Cloudflare's R2.
 ### Managed File Uploads
 
 The File Uploads themselves are managed by the [Managed File Uploads](https://docs.servicestack.net/locode/files-upload-filesystem)
-feature which specifies the configuration below for **recordings**, which only allows uploading:
+feature which uses the configuration below to only allows uploading **recordings**:
 
- - Known **Web Audio** File Types
+ - For known **Web Audio** File Types
  - Accepts uploads by **anyone**
  - A maximum size of **1MB**
 
@@ -191,13 +199,12 @@ public class CreateCoffeeShopRecording : ICreateDb<Recording>, IReturn<Recording
 }
 ```
 
-Where it will be uploaded to the `VirtualFiles` provider configured in the **recordings** File Upload location.
+Where it will be uploaded to the `VirtualFiles` provider configured in the **recordings** file `UploadLocation`.
 
-As we want the same API to also transcribe the recording we've implemented a [Custom AutoQuery implementation](https://docs.servicestack.net/autoquery/crud#custom-autoquery-crud-implementation) in 
+As we want the same API to also transcribe the recording, we've implemented a [Custom AutoQuery implementation](https://docs.servicestack.net/autoquery/crud#custom-autoquery-crud-implementation) in 
 [CoffeeShopServices.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop.ServiceInterface/CoffeeShopServices.cs)
-that after creating the `Recording` entry with the populated relative `Path` of where the Audio file was uploaded
-to, calls `ISpeechToText.TranscribeAsync()` to kick off the recording transcription request with the configured
-Speech-to-text provider. 
+that after creating the `Recording` entry with a populated relative `Path` of where the Audio file was uploaded to, 
+calls `ISpeechToText.TranscribeAsync()` to kick off the recording transcription request with the configured Speech-to-text provider. 
 
 After it completes its JSON Response is then added to the `Recording` row and saved to the configured VirtualFiles provider before
 being returned in the API Response:
