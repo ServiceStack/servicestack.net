@@ -11,8 +11,7 @@ draft: true
 
 Since the release of [Open AI's Chat GPT](https://chat.openai.com) we've been exploring its potential
 in unlocking new AI powered capabilities in our Apps that were previously limited to Large companies
-with dedicated AI development teams, now their capabilities is within everyone's reach with just 1 API call away - 
-as-is the [nature of remote APIs](https://docs.servicestack.net/service-complexity-and-dto-roles#services).
+with dedicated AI development teams, now their capabilities is within everyone's reach with just 1 API call away!
 
 <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
     <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="MjNqPAXLH5w" style="background-image: url('https://img.youtube.com/vi/MjNqPAXLH5w/maxresdefault.jpg')"></lite-youtube>

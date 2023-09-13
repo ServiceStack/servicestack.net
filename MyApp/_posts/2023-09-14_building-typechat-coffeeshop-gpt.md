@@ -123,7 +123,7 @@ if (speechProvider == nameof(GoogleCloudSpeechToText))
 {
     AppHost.AssertGoogleCloudCredentials();
     services.AddSingleton<ISpeechToText>(c => new GoogleCloudSpeechToText(
-        c.Resolve<AppConfig>().CoffeeShopGoogleSpeechConfig(),SpeechClient.Create()));
+        c.Resolve<AppConfig>().SpeechConfig(Tags.CoffeeShop), SpeechClient.Create()));
 }
 else if (speechProvider == nameof(WhisperApiSpeechToText))
 {
@@ -188,12 +188,15 @@ Plugins.Add(new FilesUploadFeature(
 
 ## Transcribe Audio Recording API
 
-This feature allows the `CreateCoffeeShopRecording` [AutoQuery CRUD API](https://docs.servicestack.net/autoquery/crud) 
+This feature allows the `CreateRecording` [AutoQuery CRUD API](https://docs.servicestack.net/autoquery/crud) 
 to declaratively support file uploads with the `[UploadTo("recordings")]` attribute: 
 
 ```csharp
-public class CreateCoffeeShopRecording : ICreateDb<Recording>, IReturn<Recording>
+public class CreateRecording : ICreateDb<Recording>, IReturn<Recording>
 {
+    [ValidateNotEmpty]
+    public string Feature { get; set; }
+
     [Input(Type="file"), UploadTo("recordings")]
     public string Path { get; set; }
 }
@@ -202,7 +205,7 @@ public class CreateCoffeeShopRecording : ICreateDb<Recording>, IReturn<Recording
 Where it will be uploaded to the `VirtualFiles` provider configured in the **recordings** file `UploadLocation`.
 
 As we want the same API to also transcribe the recording, we've implemented a [Custom AutoQuery implementation](https://docs.servicestack.net/autoquery/crud#custom-autoquery-crud-implementation) in 
-[CoffeeShopServices.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop.ServiceInterface/CoffeeShopServices.cs)
+[GptServices.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop.ServiceInterface/GptServices.cs)
 that after creating the `Recording` entry with a populated relative `Path` of where the Audio file was uploaded to, 
 calls `ISpeechToText.TranscribeAsync()` to kick off the recording transcription request with the configured Speech-to-text provider. 
 
@@ -210,14 +213,15 @@ After it completes its JSON Response is then added to the `Recording` row and sa
 being returned in the API Response:
 
 ```csharp
-public class CoffeeShopServices : Service
+public class GptServices : Service
 {
     //...
     public IAutoQueryDb AutoQuery { get; set; }
     public ISpeechToText SpeechToText { get; set; }
     
-    public async Task<object> Any(CreateCoffeeShopRecording request)
+    public async Task<object> Any(CreateRecording request)
     {
+        var feature = request.Feature.ToLower();
         var recording = (Recording)await AutoQuery.CreateAsync(request, Request);
 
         var transcribeStart = DateTime.UtcNow;
@@ -231,6 +235,7 @@ public class CoffeeShopServices : Service
             var transcribeEnd = DateTime.UtcNow;
             await Db.UpdateOnlyAsync(() => new Recording
             {
+                Feature = feature,
                 Provider = SpeechToText.GetType().Name,
                 Transcript = response.Transcript,
                 TranscriptConfidence = response.Confidence,
@@ -250,7 +255,7 @@ public class CoffeeShopServices : Service
 
         recording = await Db.SingleByIdAsync<Recording>(recording.Id);
 
-        WriteJsonFile($"/speech-to-text/{recording.CreatedDate:yyyy/MM/dd}/{recording.CreatedDate.TimeOfDay.TotalMilliseconds}.json", 
+        WriteJsonFile($"/speech-to-text/{feature}/{recording.CreatedDate:yyyy/MM/dd}/{recording.CreatedDate.TimeOfDay.TotalMilliseconds}.json", 
             recording.ToJson());
 
         if (responseStatus != null)
@@ -291,7 +296,7 @@ audio.pause()
 ```
 
 The `AudioRecorder` also maintains the `Blob` of its latest recording in its `audioBlob` field and the **MimeType** that it was
-captured with in `audioExt` field, which we can use to upload it to the `CreateCoffeeShopRecording` API, which if 
+captured with in `audioExt` field, which we can use to upload it to the `CreateRecording` API, which if 
 successful will return a transcription of the Audio recording: 
 
 ```js
@@ -301,9 +306,9 @@ const client = JsonApiClient.create()
 
 const formData = new FormData()
 formData.append('path', audioRecorder.audioBlob, `file.${audioRecorder.audioExt}`)
-const api = await client.apiForm(new CreateCoffeeShopRecording(), formData)
+const api = await client.apiForm(new CreateRecording({feature:'coffeeshop'}),formData)
 if (api.succeeded) {
-    transcript.value = api.response.transcript
+   transcript.value = api.response.transcript
 }
 ```
 
@@ -312,13 +317,13 @@ if (api.succeeded) {
 Now that we have a transcript of the Customers recording we need to enlist the services of Chat GPT to convert it into 
 an Order request that our App can understand. 
 
-### ITypeChatProvider
+### ITypeChat
 
 Just as we've abstracted the Transcription Services our App binds to, we also want to abstract the TypeChat provider
 our App uses so we can easily swap out and evaluate different solutions:
 
 ```csharp
-public interface ITypeChatProvider
+public interface ITypeChat
 {
     Task<TypeChatResponse> TranslateMessageAsync(TypeChatRequest request, 
         CancellationToken token = default);
@@ -391,15 +396,15 @@ public interface IPromptProvider
 ### Semantic Kernel TypeChat Provider
 
 The natural approach for interfacing with OpenAI's ChatGPT API in .NET is to use [Microsoft's Semantic Kernel](https://github.com/microsoft/semantic-kernel) 
-to call it directly, that CoffeeShop can be configured with by specifying to use `KernelTypeChatProvider` provider in **appsettings.json**:
+to call it directly, that CoffeeShop can be configured with by specifying to use `KernelTypeChat` provider in **appsettings.json**:
 
 ```json
 {
-  "TypeChatProvider": "KernelTypeChatProvider"
+  "TypeChatProvider": "KernelTypeChat"
 }
 ```
 
-Which registers the `KernelTypeChatProvider` in [Configure.Gpt.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Gpt.cs)
+Which registers the `KernelTypeChat` in [Configure.Gpt.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Gpt.cs)
 
 ```csharp
 var kernel = Kernel.Builder.WithOpenAIChatCompletionService(
@@ -407,8 +412,7 @@ var kernel = Kernel.Builder.WithOpenAIChatCompletionService(
         Environment.GetEnvironmentVariable("OPENAI_API_KEY")!)
     .Build();
 services.AddSingleton(kernel);
-services.AddSingleton<ITypeChatProvider>(c => 
-    new KernelTypeChatProvider(c.Resolve<IKernel>()));
+services.AddSingleton<ITypeChat>(c => new KernelTypeChat(c.Resolve<IKernel>()));
 ```
 
 ## Using Chat GPT to process Natural Language Orders
@@ -420,26 +424,31 @@ The API to do this needs only a single property to capture the Customer request,
 free-text text input or a Voice Input captured by Web Audio:  
 
 ```csharp
-public class CreateCoffeeShopChat : ICreateDb<Chat>, IReturn<Chat>
+public class CreateChat : ICreateDb<Chat>, IReturn<Chat>
 {
+    [ValidateNotEmpty]
+    public string Feature { get; set; }
+
     public string UserMessage { get; set; }
 }
 ```
 
-That just like `CreateCoffeeShopRecording` is a custom AutoQuery CRUD Service that uses AutoQuery to create the 
+That just like `CreateRecording` is a custom AutoQuery CRUD Service that uses AutoQuery to create the 
 initial `Chat` record, that's later updated with the GPT Chat API Response, executed from the configured
-`ITypeChatProvider` provider:
+`ITypeChat` provider:
 
 ```csharp
-public class CoffeeShopServices : Service
+public class GptServices : Service
 {
     //...
     public IAutoQueryDb AutoQuery { get; set; }
     public IPromptProvider PromptProvider { get; set; }
-    public ITypeChatProvider TypeChatProvider { get; set; }
+    public ITypeChat TypeChatProvider { get; set; }
     
-    public async Task<object> Any(CreateCoffeeShopChat request)
+    public async Task<object> Any(CreateChat request)
     {
+        var feature = request.Feature.ToLower();
+        var promptProvider = PromptFactory.Get(feature);
         var chat = (Chat)await AutoQuery.CreateAsync(request, Request);
 
         var chatStart = DateTime.UtcNow;
@@ -449,16 +458,17 @@ public class CoffeeShopServices : Service
         ResponseStatus? responseStatus = null;
         try
         {
-            var schema = await PromptProvider.CreateSchemaAsync();
-            var prompt = await PromptProvider.CreatePromptAsync(request.UserMessage);
-            var typeChatRequest = CreateTypeChatRequest(schema, prompt, request.UserMessage);
+            var schema = await promptProvider.CreateSchemaAsync();
+            var prompt = await promptProvider.CreatePromptAsync(request.UserMessage);
+            var typeChatRequest = CreateTypeChatRequest(feature, schema, prompt, request.UserMessage);
             
-            var response = await TypeChatProvider.TranslateMessageAsync(typeChatRequest);
+            var response = await TypeChat.TranslateMessageAsync(typeChatRequest);
             var chatEnd = DateTime.UtcNow;
             await Db.UpdateOnlyAsync(() => new Chat
             {
                 Request = request.UserMessage,
-                Provider = TypeChatProvider.GetType().Name,
+                Feature = feature,
+                Provider = TypeChat.GetType().Name,
                 Schema = schema,
                 Prompt = prompt,
                 ChatResponse = response.Result,
@@ -477,20 +487,21 @@ public class CoffeeShopServices : Service
 
         chat = await Db.SingleByIdAsync<Chat>(chat.Id);
         
-        WriteJsonFile($"/chat/{chat.CreatedDate:yyyy/MM/dd}/{chat.CreatedDate.TimeOfDay.TotalMilliseconds}.json", chat.ToJson());
+        WriteJsonFile($"/chat/{feature}/{chat.CreatedDate:yyyy/MM/dd}/{chat.CreatedDate.TimeOfDay.TotalMilliseconds}.json", chat.ToJson());
 
         if (responseStatus != null)
             throw new HttpError(responseStatus, HttpStatusCode.BadRequest);
         
         return chat;
-    }    
+    }
 }
 ```
 
 The API then returns Chat GPTs JSON Response directly to the client:  
 
 ```js
-apiChat.value = await client.api(new CreateCoffeeShopChat({
+apiChat.value = await client.api(new CreateChat({
+    feature: 'coffeeshop',
     userMessage: request.toLowerCase()
 }))
 
@@ -507,8 +518,8 @@ products and available customizations from the App's database before being added
 
 ### Trying it Out
 
-Now that all the pieces are connected together, we can finally try it out! By hitting the **Record** Icon to start the 
-microphone recording so that it can capture Customer Orders via Voice Input. 
+Now that all the pieces are connected together, we can finally try it out! Hit the **Record** Icon to start the 
+microphone recording to capture CoffeeShop Orders via Voice Input. 
 
 Let's try a Natural Language Customer Order whose free-text input would be notoriously difficult to parse with traditional 
 programming methods:  
@@ -696,18 +707,18 @@ effective approach you can start with GPT-3.5 than retry failed requests with GP
 As TypeChat uses **typescript** we'll need to call out to the **node** executable in order to be able to use it from
 our .NET App.
 
-To configure our App to talk to ChatGPT API via TypeChat we need to specify to use `NodeTypeChatProvider` provider in **appsettings.json**:
+To configure our App to talk to ChatGPT API via TypeChat we need to specify to use `NodeTypeChat` provider in **appsettings.json**:
 
 ```json
 {
-  "TypeChatProvider": "NodeTypeChatProvider"
+  "TypeChatProvider": "NodeTypeChat"
 }
 ```
 
-Which will configure to use the `NodeTypeChatProvider` in [Configure.Gpt.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Gpt.cs)
+Which will configure to use the `NodeTypeChat` in [Configure.Gpt.cs](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Gpt.cs)
 
 ```csharp
-services.AddSingleton<ITypeChatProvider>(c => new NodeTypeChatProvider());
+services.AddSingleton<ITypeChat>(c => new NodeTypeChat());
 ```
 
 It works by executing an **external process** that invokes our custom
