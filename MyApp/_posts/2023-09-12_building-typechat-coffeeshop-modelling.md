@@ -14,6 +14,10 @@ in unlocking new AI powered capabilities in our Apps that were previously limite
 with dedicated AI development teams, now their capabilities is within everyone's reach with just 1 API call away - 
 as-is the [nature of remote APIs](https://docs.servicestack.net/service-complexity-and-dto-roles#services).
 
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="MjNqPAXLH5w" style="background-image: url('https://img.youtube.com/vi/MjNqPAXLH5w/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 ### Chain of thought Prompt engineering
 
 Our initial approach of leveraging LLMs was to [create ChatGPT Agents to call APIs](/posts/chat-gpt-agents) 
@@ -751,8 +755,7 @@ as well as removing or adding any Options the user makes to the `Category`:
 public class CoffeeShopServices : Service
 {
     public IAutoQueryDb AutoQuery { get; set; }
-    //...
-
+    
     public async Task<object> Any(UpdateCategory request)
     {
         // Perform all RDBMS Updates within the same Transaction
@@ -967,11 +970,11 @@ public class TypeScriptPlugin : IScriptPlugin
 
 public class TypeScriptMethods : ScriptMethods
 {
-    public IRawString tsUnionStrings(IEnumerable<string> strings) => 
-        new RawString(string.Join(" | ", strings.Map(x => $"'{x}'")));
+    public RawString tsUnionStrings(IEnumerable<string> strings) => new(
+        StringUtils.Join(" | ", strings.Map(x => $"'{x}'"), lineBreak:108));
 
-    public IRawString tsUnionTypes(IEnumerable<string> strings) => 
-        new RawString(string.Join(" | ", strings));
+    public RawString tsUnionTypes(IEnumerable<string> strings) => new(
+        StringUtils.Join(" | ", strings, lineBreak:108));
 }
 ```
 
