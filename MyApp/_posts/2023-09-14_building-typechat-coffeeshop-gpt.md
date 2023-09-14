@@ -84,14 +84,14 @@ then using either Open AI's Whisper API or a local Whisper installation to do th
 At a minimum to use CoffeeShop's text or voice activated commands your pc will need the `OPENAI_API_KEY` Environment Variable 
 configured with your [OpenAI API Key](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
 
-## ServiceStack.Gpt Providers
+## ServiceStack.AI Providers
 
 As the AI landscape is actively changing we want our Apps to be able to easily switch to different Speech-to-text providers
 so we're able to evaluate and use the best provider for each use-case. 
 
 ### ISpeechToText
 
-To support this we're maintaining abstractions for different AI and GPT Providers in **ServiceStack.Gpt** starting with
+To support this we're maintaining abstractions for different AI and GPT Providers in **ServiceStack.AI** starting with
 `ISpeechToText` for abstracting Speech-to-text services behind a simple API:
 
 ```csharp
@@ -1109,13 +1109,22 @@ voice recording into a Cart order:
 }
 ```
 
-## ServiceStack.Gpt
+## ServiceStack.AI
 
-We'll be maintaining implementations and abstractions of different AI & GPT Services used to build **AI powered**
-features in our new **ServiceStack.Gpt** project which will be a **Free** package .NET project's can use to decouple their 
-**Speech-to-text** or **ChatGPT** requirements from any single implementation so they can be easily substituted.
+We'll be maintaining **FREE** abstractions of different AI & GPT Services used to build **AI-powered** features in the new 
+**ServiceStack.AI** namespace within the dependency and impl-free **ServiceStack.Interfaces** NuGet Package so they're
+decoupled from any implementation, which are instead maintained across the following NuGet packages according to their 
+required dependencies:
 
-Please submit feature requests or other providers you'd like to see support for to:
+ - `ServiceStack.Aws` - AI & GPT Providers for Amazon Web Services
+ - `ServiceStack.Azure` - AI & GPT Providers for Microsoft Azure
+ - `ServiceStack.GoogleCloud` - AI & GPT Providers for Google Cloud
+ - `ServiceStack.AI` - AI & GPT Providers for OpenAI APIs and local Whisper and Node TypeChat installs
+
+These free abstractions and implementations will allow .NET project's to decouple their **Speech-to-text** or **ChatGPT** 
+requirements from any single implementation where they can be easily substituted.
+
+You're welcome to submit feature requests for other providers you'd like to see at:
 
 <h3 class="not-prose text-center pb-8">
     <a class="text-4xl text-blue-600 hover:underline" href="https://servicestack.net/ideas">https://servicestack.net/ideas</a>
@@ -1123,5 +1132,5 @@ Please submit feature requests or other providers you'd like to see support for 
 
 ## New .NET TypeChat Examples Soon
 
-We plan on implementing all of TypeChat's Examples in .NET Apps so watch this space or join our Newsletter (max 1 email / 2-3 months)
-to find out when they're available. 
+Watch this space or [join our Newsletter](/posts/building-typechat-coffeeshop-gpt#top) (max 1 email / 2-3 months) 
+to find out when new .NET implementations for TypeChat's different GPT examples become available.
