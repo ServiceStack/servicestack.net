@@ -1,5 +1,5 @@
 ---
-title: Implementing TypeChat's GPT CoffeeShop in .NET
+title: Creating a Voice Activated CoffeeShop in .NET
 summary: Guide to implementing Voice Transcriptions and TypeChat GPT in .NET    
 tags: [autoquery, c#, dev, servicestack]
 image: https://images.unsplash.com/photo-1678483789107-0029c61fdcca?crop=entropy&fit=crop&h=1000&w=2000
