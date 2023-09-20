@@ -181,7 +181,7 @@ mountAll()
                             <div class="mb-6 text-lg text-gray-500">
                                 <time datetime="2023-09-19T00:00:00.0000000">September 19, 2023</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>25 min read</span>
+                                <span>27 min read</span>
                             </div>
                         </div>
                 </div>
@@ -243,45 +243,91 @@ if you're ok with Google to use your recordings to improve their AI models</li>
 <li><a href="https://github.com/openai/whisper">OpenAI Whisper Local</a> - Whisper is also available as an OSS project you can run yourself
 if you prefer to manage your own servers and local Whisper install</li>
 </ul>
-<h3 id="managed-cloud-solution">Managed Cloud Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#managed-cloud-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>As we also want to upload and store our Customer voice recordings in managed storage (and be able to later measure their effectiveness)
-we decided to build the initial implementation with <strong>Google Cloud</strong> since it offers the best value. This generally means
-you'll also want to use their <a href="https://cloud.google.com/storage">Google Cloud Storage</a> for best latency since you'll<br />
-only need to upload it once to Google Cloud Storage which can be referenced directly by their Speech-to-text services.</p>
-<h3 id="local-solution">Local Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#local-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>We also enabled support for a minimal infrastructure dependency solution by storing voice recordings to local disk
-then using either Open AI's Whisper API or a local Whisper installation to do the transcribing.</p>
-<p>At a minimum to use CoffeeShop's text or voice activated commands your pc will need the <code>OPENAI_API_KEY</code> Environment Variable
-configured with your <a href="https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety">OpenAI API Key</a>.</p>
 <h2 id="servicestack.ai-providers">ServiceStack.AI Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack.ai-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>As the AI landscape is actively changing we want our Apps to be able to easily switch to different Speech-to-text providers
 so we're able to evaluate and use the best provider for each use-case.</p>
+<p>To support this we're maintaining <strong>FREE</strong> implementation-agnostic abstractions for different AI and GPT Providers to enable
+AI features in .NET Apps under the new <a href="https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack.Interfaces/AI">ServiceStack.AI</a>
+namespace in our dependency-free <strong>ServiceStack.Interfaces</strong> package.</p>
+<p>Where the implementations for these abstractions are maintained across the following NuGet packages according to their
+required dependencies:</p>
+<ul>
+<li><code>ServiceStack.Aws</code> - AI &amp; GPT Providers for Amazon Web Services</li>
+<li><code>ServiceStack.Azure</code> - AI &amp; GPT Providers for Microsoft Azure</li>
+<li><code>ServiceStack.GoogleCloud</code> - AI &amp; GPT Providers for Google Cloud</li>
+<li><code>ServiceStack.AI</code> - AI &amp; GPT Providers for OpenAI APIs and local Whisper and Node TypeChat installs</li>
+</ul>
+<p>These free abstractions and implementations allow .NET project's to decouple their <strong>Speech-to-text</strong> or <strong>ChatGPT</strong>
+requirements from any single implementation where they can be easily substituted.</p>
+<p>You're welcome to submit feature requests for other providers you'd like to see at:</p>
+<h3 class="not-prose text-center pb-8">
+    <a class="text-3xl text-blue-600 hover:underline" href="https://servicestack.net/ideas">https://servicestack.net/ideas</a>
+</h3>
 <h3 id="ispeechtotext">ISpeechToText<a class="header-anchor" href="javascript:;" onclick="location.hash='#ispeechtotext'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>To support this we're maintaining abstractions for different AI and GPT Providers in <strong>ServiceStack.AI</strong> starting with
-<code>ISpeechToText</code> for abstracting Speech-to-text services behind a simple API:</p>
+<p>The <code>ISpeechToText</code> interface abstracts Speech-to-text services behind a simple API:</p>
 <pre><code class="language-csharp">public interface ISpeechToText
 {
-    // Once only task that needs to be run out-of-band prior to usage
+    // Once only task to run out-of-band before using the SpeechToText provider
     Task InitAsync(List&lt;string&gt; phrases, CancellationToken token = default);
     
-    // Transcribe the UserRequest and return a JSON API Result
+    // Transcribe the Audio at recordingPath and return a JSON API Result
     Task&lt;TranscriptResult&gt; TranscribeAsync(string request, CancellationToken token);
 }
 </code></pre>
-<p>As of this of this writing CoffeeShop supports using 3 different Speech-to-text providers, defaulting to using
-Open AI's Whisper API, configurable in <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/appsettings.json">appsettings.json</a>:</p>
+<p>As of this of this writing CoffeeShop supports using 5 different Speech-to-text providers, defaulting to using
+Open AI's Whisper API:</p>
+<ul>
+<li><code>GoogleCloudSpeechToText</code> - to use Google Cloud's <a href="https://cloud.google.com/speech-to-text/v2/">Speech-to-Text v2</a> API</li>
+<li><code>AwsSpeechToText</code> - to use <a href="https://aws.amazon.com/pm/transcribe/">Amazon Transcribe</a> API</li>
+<li><code>AzureSpeechToText</code> - to use <a href="https://azure.microsoft.com/en-us/products/ai-services/speech-to-text">Azure Speech to text</a> API</li>
+<li><code>WhisperApiSpeechToText</code> - to use <a href="https://platform.openai.com/docs/api-reference/audio">OpenAI's Whisper</a> API</li>
+<li><code>WhisperLocalSpeechToText</code> - to use local install of <a href="https://github.com/openai/whisper">OpenAI Whisper</a></li>
+</ul>
+<p>CoffeeShop can use any of these providers by configuring it in <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/appsettings.json">appsettings.json</a>:</p>
 <pre><code class="language-json">{
   &quot;SpeechProvider&quot;: &quot;WhisperApiSpeechToText&quot;
 }
 </code></pre>
-<p>With all available providers configured in
+<p>Where all available providers are configured in
 <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Speech.cs">Configure.Speech.cs</a>:</p>
 <pre><code class="language-csharp">var speechProvider = context.Configuration.GetValue&lt;string&gt;(&quot;SpeechProvider&quot;);
 if (speechProvider == nameof(GoogleCloudSpeechToText))
 {
-    AppHost.AssertGoogleCloudCredentials();
-    services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; new GoogleCloudSpeechToText(
-        c.Resolve&lt;AppConfig&gt;().SpeechConfig(Tags.CoffeeShop), SpeechClient.Create()));
+    services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; {
+        var config = c.Resolve&lt;AppConfig&gt;();
+        var google = config.AssertGcpConfig();
+        return new GoogleCloudSpeechToText(SpeechClient.Create(),
+            new GoogleCloudSpeechConfig {
+                Project = google.Project,
+                Location = google.Location,
+                Bucket = google.Bucket,
+                RecognizerId = config.CoffeeShop.RecognizerId,
+                PhraseSetId = config.CoffeeShop.PhraseSetId,
+            }
+        );
+    });
+}
+else if (speechProvider == nameof(AwsSpeechToText))
+{
+    services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; {
+        var config = c.Resolve&lt;AppConfig&gt;();
+        var a = config.AssertAwsConfig();
+        return new AwsSpeechToText(new AmazonTranscribeServiceClient(
+                a.AccessKey, a.SecretKey, RegionEndpoint.GetBySystemName(a.Region)),
+            new AwsSpeechToTextConfig {
+                Bucket = a.Bucket,
+                VocabularyName = config.CoffeeShop.VocabularyName,
+            });
+    });
+}
+else if (speechProvider == nameof(AzureSpeechToText))
+{
+    services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; {
+        var az = c.Resolve&lt;AppConfig&gt;().AssertAzureConfig();
+        var config = SpeechConfig.FromSubscription(az.SpeechKey, az.SpeechRegion);
+        config.SpeechRecognitionLanguage = &quot;en-US&quot;;
+        return new AzureSpeechToText(config);
+    });
 }
 else if (speechProvider == nameof(WhisperApiSpeechToText))
 {
@@ -295,23 +341,65 @@ else if (speechProvider == nameof(WhisperLocalSpeechToText))
     });
 }
 </code></pre>
-<p>To use <code>GoogleCloudSpeechToText</code> your pc needs to be configured with <a href="https://cloud.google.com/speech-to-text/docs/before-you-begin">GoogleCloud Credentials</a>
-on a project with Speech-to-Text enabled.</p>
-<p>To use <code>WhisperLocalSpeechToText</code> you'll need a <a href="https://github.com/openai/whisper">local install of OpenAI Whisper</a>
-that's either available from your <code>$PATH</code> or <code>WhisperPath</code> is configured in <strong>appsettings.json</strong></p>
+<h3 id="coffeeshop-openai-defaults">CoffeeShop OpenAI Defaults<a class="header-anchor" href="javascript:;" onclick="location.hash='#coffeeshop-openai-defaults'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To support a minimal infrastructure dependency solution the <a href="https://github.com/NetCoreApps/CoffeeShop">CoffeeShop</a> GitHub Repo
+is configured by default to use OpenAI's Whisper API to transcribe recordings that are persisted to local disk.</p>
+<p>Which at a minimum to use CoffeeShop's text or voice activated commands needs the <code>OPENAI_API_KEY</code> Environment Variable
+configured with your <a href="https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety">OpenAI API Key</a>.</p>
+<p>Alternatively use <code>WhisperLocalSpeechToText</code> with a <a href="https://github.com/openai/whisper">local install of OpenAI Whisper</a>
+available from your <code>$PATH</code> or <code>WhisperPath</code> configured in <strong>appsettings.json</strong></p>
+<h3 id="coffeeshop.netcore.io-uses-googlecloud">coffeeshop.netcore.io uses GoogleCloud<a class="header-anchor" href="javascript:;" onclick="location.hash='#coffeeshop.netcore.io-uses-googlecloud'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>As we want to upload and store our Customer voice recordings in managed storage (and be able to later measure their effectiveness)
+we decided to use <strong>Google Cloud</strong> since it offers the best value.</p>
+<p>It also offers the best latency when using managed storage as when configured to use <a href="https://cloud.google.com/storage">GoogleCloud Storage</a>,
+audio recordings only need to upload it once as they can be referenced directly by its Speech-to-text APIs.</p>
+<p>To use any of the Google Cloud providers your pc needs to be configured with <a href="https://cloud.google.com/speech-to-text/docs/before-you-begin">GoogleCloud Credentials</a> on a project
+with Speech-to-Text enabled.</p>
 <h2 id="virtual-file-system">Virtual File System<a class="header-anchor" href="javascript:;" onclick="location.hash='#virtual-file-system'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>By default CoffeeShop is configured to upload its recordings to the local file system, this can be changed to upload
-to Google Cloud Storage in <strong>appsettings.json</strong> with:</p>
+to your preferred <a href="https://docs.servicestack.net/virtual-file-system">Virtual File System</a> provider:</p>
+<ul>
+<li><code>FileSystemVirtualFiles</code> - stores uploads in local file system (default)</li>
+<li><code>GoogleCloudVirtualFiles</code> - stores uploads in Google Cloud Storage</li>
+<li><code>S3VirtualFiles</code> - stores uploads in AWS S3</li>
+<li><code>AzureBlobVirtualFiles</code> - stores uploads in Azure Blob Storage</li>
+<li><code>R2VirtualFiles</code> - stores uploads in Cloudflare R2</li>
+</ul>
+<p>By configuring <strong>VfsProvider</strong> in <strong>appsettings.json</strong>, e.g:</p>
 <pre><code class="language-json">{
   &quot;VfsProvider&quot;: &quot;GoogleCloudVirtualFiles&quot;
 }
 </code></pre>
-<p>Which is configured in <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Vfs.cs">Configure.Vfs.cs</a>:</p>
-<pre><code class="language-csharp">appHost.VirtualFiles = new GoogleCloudVirtualFiles(
-    StorageClient.Create(), appHost.Resolve&lt;AppConfig&gt;().CoffeeShop.Bucket);
+<p>Which are configured in <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Configure.Vfs.cs">Configure.Vfs.cs</a>:</p>
+<pre><code class="language-csharp">var vfsProvider = appHost.AppSettings.Get&lt;string&gt;(&quot;VfsProvider&quot;);
+if (vfsProvider == nameof(GoogleCloudVirtualFiles))
+{
+    appHost.VirtualFiles = new GoogleCloudVirtualFiles(
+      StorageClient.Create(), appHost.Resolve&lt;AppConfig&gt;().AssertGcpConfig().Bucket);
+}
+else if (vfsProvider == nameof(AzureBlobVirtualFiles))
+{
+    var az = appHost.Resolve&lt;AppConfig&gt;().AssertAzureConfig();
+    appHost.VirtualFiles = new AzureBlobVirtualFiles(
+        az.ConnectionString, az.ContainerName);
+}
+else if (vfsProvider == nameof(S3VirtualFiles))
+{
+    var aws = appHost.Resolve&lt;AppConfig&gt;().AssertAwsConfig();
+    appHost.VirtualFiles = new S3VirtualFiles(
+        new AmazonS3Client(aws.AccessKey, aws.SecretKey,
+            RegionEndpoint.GetBySystemName(aws.Region)), aws.Bucket);
+}
+else if (vfsProvider == nameof(R2VirtualFiles))
+{
+    var r2 = appHost.Resolve&lt;AppConfig&gt;().AssertR2Config();
+    appHost.VirtualFiles = new R2VirtualFiles(
+        new AmazonS3Client(r2.AccessKey, r2.SecretKey,
+        new AmazonS3Config {
+            ServiceURL = $&quot;https://{r2.AccountId}.r2.cloudflarestorage.com&quot;,
+        }), r2.Bucket);
+}
 </code></pre>
-<p>Or if preferred, you can configure it to use any of the other supported <a href="https://docs.servicestack.net/virtual-file-system">Virtual File System</a>
-providers including Azure's Blob Storage, AWS S3 or Cloudflare's R2.</p>
 <h3 id="managed-file-uploads">Managed File Uploads<a class="header-anchor" href="javascript:;" onclick="location.hash='#managed-file-uploads'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>The File Uploads themselves are managed by the <a href="https://docs.servicestack.net/locode/files-upload-filesystem">Managed File Uploads</a>
 feature which uses the configuration below to only allows uploading <strong>recordings</strong>:</p>
@@ -322,11 +410,10 @@ feature which uses the configuration below to only allows uploading <strong>reco
 </ul>
 <p>Whose file upload location is derived from when it was uploaded:</p>
 <pre><code class="language-csharp">Plugins.Add(new FilesUploadFeature(
-    new UploadLocation(&quot;recordings&quot;, VirtualFiles, 
-        allowExtensions: FileExt.WebAudios, 
-        writeAccessRole: RoleNames.AllowAnon,
+    new UploadLocation(&quot;recordings&quot;, VirtualFiles, allowExtensions:FileExt.WebAudios, writeAccessRole: RoleNames.AllowAnon,
         maxFileBytes: 1024 * 1024,
-        resolvePath: ctx =&gt; $&quot;/recordings/{ctx.DateSegment}/{DateTime.UtcNow.TimeOfDay.TotalMilliseconds}.{ctx.FileExtension}&quot;)
+        transformFile: ctx =&gt; ConvertAudioToWebM(ctx.File),
+        resolvePath: ctx =&gt; $&quot;/recordings/{ctx.GetDto&lt;IRequireFeature&gt;().Feature}/{ctx.DateSegment}/{DateTime.UtcNow.TimeOfDay.TotalMilliseconds}.{ctx.FileExtension}&quot;)
 ));
 </code></pre>
 <h2 id="transcribe-audio-recording-api">Transcribe Audio Recording API<a class="header-anchor" href="javascript:;" onclick="location.hash='#transcribe-audio-recording-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
@@ -850,7 +937,7 @@ browsers natively, i.e. <code>audio/webm</code>.</p>
 <h3 id="ffmpeg">ffmpeg<a class="header-anchor" href="javascript:;" onclick="location.hash='#ffmpeg'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Our first attempt to do this in .NET with <a href="https://github.com/naudio/NAudio">NAudio</a> failed on macOS since it relied
 on Windows APIs to perform the conversion.</p>
-<p>Luckily this is pretty easy to do with the amazingly versatile <a href="https://ffmpeg.org">ffmpeg</a> - that can be installed with
+<p>Luckily this is pretty easy to do with the amazingly versatile <a href="https://ffmpeg.org">ffmpeg</a> - that can be installed on macOS with
 <a href="https://brew.sh">Homebrew</a>:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
@@ -866,6 +953,11 @@ on Windows APIs to perform the conversion.</p>
                     </div>
                 </div>
             </div>
+<p>Whilst CoffeeShop's Ubuntu 22.04 <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/Dockerfile">Dockerfile</a> it uses
+to deploy to Linux installs it with:</p>
+<pre><code class="language-dockerfile">RUN apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get upgrade -y \
+    &amp;&amp; apt-get install -y --no-install-recommends curl gnupg ffmpeg
+</code></pre>
 <h3 id="converting-uploaded-files">Converting Uploaded Files<a class="header-anchor" href="javascript:;" onclick="location.hash='#converting-uploaded-files'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>We now need to integrate this conversion into our workflow. As we're using
 <a href="https://docs.servicestack.net/locode/files-overview">Managed Files Uploads</a> to handle our uploads, the best place to
@@ -1147,23 +1239,6 @@ voice recording into a Cart order:</p>
     ]
 }
 </code></pre>
-<h2 id="servicestack.ai">ServiceStack.AI<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack.ai'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We'll be maintaining <strong>FREE</strong> abstractions of different AI &amp; GPT Services used to build <strong>AI-powered</strong> features in the new
-<strong>ServiceStack.AI</strong> namespace within the dependency and impl-free <strong>ServiceStack.Interfaces</strong> NuGet Package so they're
-decoupled from any implementation, which are instead maintained across the following NuGet packages according to their
-required dependencies:</p>
-<ul>
-<li><code>ServiceStack.Aws</code> - AI &amp; GPT Providers for Amazon Web Services</li>
-<li><code>ServiceStack.Azure</code> - AI &amp; GPT Providers for Microsoft Azure</li>
-<li><code>ServiceStack.GoogleCloud</code> - AI &amp; GPT Providers for Google Cloud</li>
-<li><code>ServiceStack.AI</code> - AI &amp; GPT Providers for OpenAI APIs and local Whisper and Node TypeChat installs</li>
-</ul>
-<p>These free abstractions and implementations will allow .NET project's to decouple their <strong>Speech-to-text</strong> or <strong>ChatGPT</strong>
-requirements from any single implementation where they can be easily substituted.</p>
-<p>You're welcome to submit feature requests for other providers you'd like to see at:</p>
-<h3 class="not-prose text-center pb-8">
-    <a class="text-4xl text-blue-600 hover:underline" href="https://servicestack.net/ideas">https://servicestack.net/ideas</a>
-</h3>
 <h2 id="new.net-typechat-examples-soon">New .NET TypeChat Examples Soon<a class="header-anchor" href="javascript:;" onclick="location.hash='#new.net-typechat-examples-soon'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Watch this space or <a href="/posts/building-typechat-coffeeshop-gpt#top">join our Newsletter</a> (max 1 email / 2-3 months)
 to find out when new .NET implementations for TypeChat's different GPT examples become available.</p>
