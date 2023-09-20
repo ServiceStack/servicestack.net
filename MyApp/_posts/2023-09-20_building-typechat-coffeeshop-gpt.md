@@ -20,10 +20,14 @@ The result of which produces a functionally equivalent
 [/coffeeshop/schema.ts](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/gpt/coffeeshop/schema.ts) powered
 by the data in CoffeeShop's Database.
 
-## CoffeeShop UI
+## CoffeeShop .NET App
 
 The purpose of which is to implement a CoffeeShop Menu which can fulfil ordering any of the products along with any 
 toppings, customizations and preparation options listed by the App's database and resulting TypeScript Schema.
+
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="OtgrIdkvw-4" style="background-image: url('https://img.youtube.com/vi/OtgrIdkvw-4/maxresdefault.jpg')"></lite-youtube>
+</div>
 
 The resulting App implements a standard Web UI to navigate all categories and products offered in the CoffeeShop Menu,
 that also supports an Audio Input letting customers order from the Menu using their **Voice** - which relies on Open AI's 
