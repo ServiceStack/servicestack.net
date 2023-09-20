@@ -1352,6 +1352,5 @@ get immediate feedback of their efficacy whilst the App was running.
 
 ## Part 2
 
-Check back-in at the end of this week for Part 2 which will cover the different options and challenges for using this 
-schema to create a functional Voice Command Activated Order System for our CoffeeShop comparing the results of using 
-different Transcribing and LLM Providers.
+Check out [Part 2](/posts/building-typechat-coffeeshop-gpt) which covers the different options and challenges for using this 
+schema to create a functional Voice Activated CoffeeShop in .NET that utilizes different Speech-to-Text and GPT Providers.
