@@ -4,7 +4,6 @@ summary: Guide to implementing Voice Transcriptions and TypeChat GPT in .NET
 tags: [autoquery, c#, dev, servicestack]
 image: https://images.unsplash.com/photo-1522542550221-31fd19575a2d?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
-draft: true
 ---
 
 To explore how best to add AI features to .NET Apps we first looked at harnessing the reasoning capabilities of
