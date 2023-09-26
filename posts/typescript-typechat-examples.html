@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Develop using JetBrains Rider - ServiceStack</title>
+    <title>All of TypeScript&#x27;s TypeChat Examples in .NET - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Setting up &amp; exploring development workflow in Rider" />
-    <meta property="og:url" content="https://servicestack.net/posts/rider" />
-    <meta property="og:title" content="Develop using JetBrains Rider" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1472289065668-ce650ac443d2?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Guide to implementing Voice Transcriptions and TypeChat GPT in .NET" />
+    <meta property="og:url" content="https://servicestack.net/posts/typescript-typechat-examples" />
+    <meta property="og:title" content="All of TypeScript&#x27;s TypeChat Examples in .NET" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Develop using JetBrains Rider
+                All of TypeScript&#x27;s TypeChat Examples in .NET
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,20 +166,22 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1472289065668-ce650ac443d2?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Develop using JetBrains Rider Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="All of TypeScript&#x27;s TypeChat Examples in .NET Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
+                            <a href="posts/tagged/autoquery" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">autoquery</a>
+                            <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> c#</a>
                             <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> dev</a>
+                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> servicestack</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-01-11T00:00:00.0000000">January 11, 2023</time>
+                                <time datetime="2023-09-26T00:00:00.0000000">September 26, 2023</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>3 min read</span>
+                                <span>5 min read</span>
                             </div>
                         </div>
                 </div>
@@ -192,49 +194,111 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <a href="https://www.jetbrains.com/rider/">
-<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/rider.svg" 
-     class="sm:float-left mr-8 w-24 h-24" style="margin-top:0"></a>
-<p><a href="https://www.jetbrains.com/rider/">JetBrains Rider</a> is our recommended IDE for any C# + JavaScript development as it
-offers a great development UX for both, including excellent support
-for TypeScript and popular JavaScript Framework SPA assets like <a href="https://v3.vuejs.org/guide/single-file-component.html">Vue SFC's</a>.</p>
-<h4 id="setup-rider-ide">Setup Rider IDE<a class="header-anchor" href="javascript:;" onclick="location.hash='#setup-rider-ide'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>As Rider already understands and provides excellent HTML/JS/TypeScript support you'll be immediately productive out-of-the-box,
-we can further improve the development experience for Vue.js Apps by adding an empty <strong>vue</strong> dependency to <strong>package.json</strong>:</p>
-<pre><code class="language-json">{
-  &quot;devDependencies&quot;: {
-    &quot;vue&quot;: &quot;&quot;
-  }
-}
-</code></pre>
-<p>As this is just a heuristic Rider looks for to enable its Vue support, installing the dependency itself isn't used or required.</p>
-<p>Other than that the only plugin we recommend adding is:</p>
-<a href="https://plugins.jetbrains.com/plugin/15321-tailwind-css" class="text-2xl flex items-center" style="text-decoration:none">
-     <svg class="sm:float-left w-12 h-12" style="margin:0 .5rem 0 0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#44a8b3" d="M9 13.7q1.4-5.6 7-5.6c5.6 0 6.3 4.2 9.1 4.9q2.8.7 4.9-2.1q-1.4 5.6-7 5.6c-5.6 0-6.3-4.2-9.1-4.9q-2.8-.7-4.9 2.1Zm-7 8.4q1.4-5.6 7-5.6c5.6 0 6.3 4.2 9.1 4.9q2.8.7 4.9-2.1q-1.4 5.6-7 5.6c-5.6 0-6.3-4.2-9.1-4.9q-2.8-.7-4.9 2.1Z"/></svg>
-     <span class="">Tailwind CSS Plugin</span>
-</a>
-<p>Which provides provides intelli-sense support for <a href="https://tailwindcss.com">Tailwind CSS</a>.</p>
-<h3 id="start-both-dotnet-and-tailwind">Start both dotnet and Tailwind<a class="header-anchor" href="javascript:;" onclick="location.hash='#start-both-dotnet-and-tailwind'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The only additional development workflow requirement to use tailwind is to start it running in the background
-which can be done from a new Terminal:</p>
-<pre><code class="language-bash">$ npm run ui:dev
-</code></pre>
-<p>We find <code>dotnet watch</code> offers the most productive iterative development workflow for .NET which refreshes on save
-which works great with Tailwind which rewrites your <code>app.css</code> on save.</p>
-<p>How you want to run them is largely a matter of preference, our personal preference is to run the <strong>dev</strong> and <strong>ui:dev</strong>
-npm scripts in your <strong>package.json</strong>:</p>
-<p><img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/dotnet-tailwind.png" alt="" /></p>
-<h3 id="riders-task-runner">Rider's Task Runner<a class="header-anchor" href="javascript:;" onclick="location.hash='#riders-task-runner'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Where they will appear in Rider's useful task runner widget where you'll be able to easily, stop and rerun all project tasks:</p>
-<p><img src="https://github.com/ServiceStack/docs/raw/master/docs/images/spa/rider-run-widget.png" alt="" /></p>
-<h3 id="running-from-the-terminal">Running from the terminal<a class="header-anchor" href="javascript:;" onclick="location.hash='#running-from-the-terminal'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>These GUI tasks are just managing running CLI commands behind-the-scenes, which if you prefer you can use JetBrains
-excellent multi-terminal support to run <code>$ dotnet watch</code> and <code>$ npm run ui:dev</code> from separate or split Terminal windows.</p>
-<h3 id="deploying-to-production">Deploying to Production<a class="header-anchor" href="javascript:;" onclick="location.hash='#deploying-to-production'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This template also includes the necessary GitHub Actions to deploy this Apps production static assets to GitHub Pages CDN,
-for more info, checkout <a href="deploy">GitHub Actions Deployments</a>.</p>
-<h3 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>If you're new to Vue 3 a good place to start is <a href="https://vuejs.org/api/composition-api-setup.html">Vue 3 Composition API</a>.</p>
+                    <p>To explore how best to add AI features to .NET Apps we first looked at harnessing the reasoning capabilities of
+ChatGPT by utilizing the <a href="/posts/chat-gpt-agents">Chain-of-Thought</a> technique by constructing sophisticated prompts to
+guide ChatGPT into desirable actionable responses which we demonstrate in the
+<a href="https://gptmeetings.netcore.io">ChatGPT Meeting Agent</a> demo.</p>
+<h3 id="typescripts-typechat">TypeScript's TypeChat<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescripts-typechat'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The TypeScript team have sought a simpler approach that instead of relying on engineering sophisticated prompts to instead
+use TypeScript type's system to define the machine readable model LLMs should return and then if necessary to use
+TypeScript compiler's Schema validation errors to enable auto correcting prompts to guide ChatGPT into returning
+valid responses that our App's can understand.</p>
+<p>Whilst less ambitious then <strong>Chain-of-Thought</strong> in trying to leverage ChatGPT's reasoning abilities, it's a simpler
+and more reliable approach when wanting to add natural language features to your App.</p>
+<p>TypeScript's TypeChat library and compiler being written in JavaScript presents challenges in being able to utilize
+it within .NET Apps. To showcase how best to add TypeChat AI-Powered features into .NET Apps we've recreated
+TypeChat's CoffeeShop App in .NET which first uses <a href="https://docs.servicestack.net/autoquery/">AutoQuery</a> to quickly
+develop the CoffeeShop Data Models, Typed APIs and Management UI to dynamically generate its TypeScript's schema in:</p>
+<ul>
+<li><a href="/posts/building-typechat-coffeeshop-modelling">Modelling TypeChat's CoffeeShop in .NET</a></li>
+</ul>
+<p>We then show how to utilize the resulting TypeScript Schema with ChatGPT, which initially uses your choice of
+<strong>5 different Speech-to-Text</strong> providers from OpenAI, GoogleCloud, AWS and Azure to transcribe voice activated commands
+into text that's then submitted to ChatGPT using TypeChat's prompt to convert the natural language request into the
+machine readable response defined by the App's TypeScript Schema that is matched against its Database Products to
+create Item Order requests that are added to the Users Cart in:</p>
+<ul>
+<li><a href="/posts/voice-activated-typechat-coffeeshop">Creating a Voice Activated CoffeeShop in .NET</a></li>
+</ul>
+<h3 id="coffeeshop">CoffeeShop<a class="header-anchor" href="javascript:;" onclick="location.hash='#coffeeshop'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This results in an example of a working intelligent voice activated agent for a coffee shop which translates user intent
+into a list of CoffeeShop order items:</p>
+<p><a href="https://typechat.netcore.io/coffeeshop/"><img src="/img/posts/typescript-typechat-examples/coffeeshop.png" alt="" /></a></p>
+<div class="my-8 text-indigo-600 text-center text-xl"><p><a href="https://typechat.netcore.io/coffeeshop">https://typechat.netcore.io/coffeeshop</a></p>
+</div>
+<h2 id="all-typechat-examples">All TypeChat Examples<a class="header-anchor" href="javascript:;" onclick="location.hash='#all-typechat-examples'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To show the versatility of this approach we've implemented the <a href="https://microsoft.github.io/TypeChat/docs/examples/">remaining TypeChat Examples</a>
+in .NET which in addition to supporting 5 different Speech-to-text providers also supports utilizing a pure .NET
+approach of generating TypeChat's prompt in C# and using <a href="https://servicestack.net/posts/semantic-kernel-gptmeetngs">Semantic Kernel</a>
+to connect with your preferred Chat GPT provider or utilizing node's TypeChat library to interface with ChatGPT where it
+benefits from TypeScript schema validation and auto-retry of invalid responses with auto correcting prompts.</p>
+<p>But as we've discovered in <a href="/posts/voice-activated-typechat-coffeeshop#custom-validation-with-c-semantic-kernel">Custom Validation with C# Semantic Kernel</a>
+you can achieve more effective results with manual validation.</p>
+<p>In addition all TypeChat examples supports uploading recordings to your preferred choice of <strong>5 different Storage Providers</strong>:</p>
+<ul>
+<li>Local File System</li>
+<li>Google Cloud Storage</li>
+<li>Azure Blob Storage</li>
+<li>AWS S3</li>
+<li>Cloudflare R2</li>
+</ul>
+<p>Feel free to explore to explore the different TypeChat examples for the implementation which best suits your use-case.</p>
+<p>The source code for all Examples are maintained in a Combined App at:</p>
+<div class="my-8 text-indigo-600 text-center text-xl"><p><a href="https://github.com/NetCoreApps/TypeChatExamples">https://github.com/NetCoreApps/TypeChatExamples</a></p>
+</div>
+<p>With a Live Demo of these examples available at:</p>
+<div class="my-8 text-indigo-600 text-center text-2xl"><p><a href="https://typechat.netcore.io">https://typechat.netcore.io</a></p>
+</div>
+<p><a href="https://typechat.netcore.io/"><img src="/img/posts/typescript-typechat-examples/typechat.png" alt="" /></a></p>
+<h3 id="individual-examples">Individual Examples<a class="header-anchor" href="javascript:;" onclick="location.hash='#individual-examples'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you're only interested in one of the examples for your use-case, simpler examples of each App is available in the
+individual GitHub Repos below:</p>
+<ul>
+<li><a href="https://github.com/NetCoreApps/CoffeeShop">https://github.com/NetCoreApps/CoffeeShop</a></li>
+<li><a href="https://github.com/NetCoreApps/SentimentTypeChat">https://github.com/NetCoreApps/SentimentTypeChat</a></li>
+<li><a href="https://github.com/NetCoreApps/CalendarTypeChat">https://github.com/NetCoreApps/CalendarTypeChat</a></li>
+<li><a href="https://github.com/NetCoreApps/RestaurantTypeChat">https://github.com/NetCoreApps/RestaurantTypeChat</a></li>
+<li><a href="https://github.com/NetCoreApps/MathTypeChat">https://github.com/NetCoreApps/MathTypeChat</a></li>
+<li><a href="https://github.com/NetCoreApps/MusicTypeChat">https://github.com/NetCoreApps/MusicTypeChat</a></li>
+</ul>
+<p>Descriptions, Screenshots and Links for each TypeChat Example is available below:</p>
+<h3 id="sentiment">Sentiment<a class="header-anchor" href="javascript:;" onclick="location.hash='#sentiment'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>A sentiment classifier which categorizes user input as negative, neutral, or positive. This is TypeChat's &quot;hello world!&quot;</p>
+<div class="my-8 text-indigo-600 text-center text-2xl"><p><a href="https://typechat.netcore.io/sentiment">https://typechat.netcore.io/sentiment</a></p>
+</div>
+<p><a href="https://typechat.netcore.io/sentiment"><img src="/img/posts/typescript-typechat-examples/sentiment.png" alt="" /></a>
+<a href="https://typechat.netcore.io/sentiment"><img src="/img/posts/typescript-typechat-examples/sentiment2.png" alt="" /></a></p>
+<h3 id="calendar">Calendar<a class="header-anchor" href="javascript:;" onclick="location.hash='#calendar'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>An intelligent scheduler. This sample translates user intent into a sequence of actions to modify a calendar.</p>
+<div class="my-8 text-indigo-600 text-center text-2xl"><p><a href="https://typechat.netcore.io/calendar">https://typechat.netcore.io/calendar</a></p>
+</div>
+<p><a href="https://typechat.netcore.io/calendar"><img src="/img/posts/typescript-typechat-examples/calendar.png" alt="" /></a>
+<a href="https://typechat.netcore.io/calendar"><img src="/img/posts/typescript-typechat-examples/calendar2.png" alt="" /></a></p>
+<h3 id="restaurant">Restaurant<a class="header-anchor" href="javascript:;" onclick="location.hash='#restaurant'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>An intelligent agent for taking orders at a restaurant. Similar to the coffee shop example, but uses a more complex schema
+to model more complex linguistic input.</p>
+<p>The prose files illustrate the line between simpler and more advanced language models in handling compound sentences,
+distractions, and corrections. This example also shows how we can use TypeScript to provide a user intent summary.</p>
+<div class="my-8 text-indigo-600 text-center text-2xl"><p><a href="https://typechat.netcore.io/restaurant">https://typechat.netcore.io/restaurant</a></p>
+</div>
+<p><a href="https://typechat.netcore.io/restaurant"><img src="/img/posts/typescript-typechat-examples/restaurant.png" alt="" /></a>
+<a href="https://typechat.netcore.io/restaurant"><img src="/img/posts/typescript-typechat-examples/restaurant2.png" alt="" /></a></p>
+<h3 id="math">Math<a class="header-anchor" href="javascript:;" onclick="location.hash='#math'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Translate calculations into simple programs given an API that can perform the 4 basic mathematical operators.
+This example highlights TypeChat's program generation capabilities.</p>
+<div class="my-8 text-indigo-600 text-center text-2xl"><p><a href="https://typechat.netcore.io/math">https://typechat.netcore.io/math</a></p>
+</div>
+<p><a href="https://typechat.netcore.io/math"><img src="/img/posts/typescript-typechat-examples/math.png" alt="" /></a>
+<a href="https://typechat.netcore.io/math"><img src="/img/posts/typescript-typechat-examples/math2.png" alt="" /></a></p>
+<h3 id="music">Music<a class="header-anchor" href="javascript:;" onclick="location.hash='#music'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>An app for playing music, creating playlists, etc. on Spotify through natural language.
+Each user intent is translated into a series of actions in which correspond to a simple dataflow program,
+where each step can consume data produced from previous step.</p>
+<p>If you Sign In with a <strong>premium Spotify Account</strong> you'll also be able to use natural language to control what you're listening to:</p>
+<div class="my-8 text-indigo-600 text-center text-2xl"><p><a href="https://typechat.netcore.io/music">https://typechat.netcore.io/music</a></p>
+</div>
+<p><a href="https://typechat.netcore.io/music"><img src="/img/posts/typescript-typechat-examples/music.png" alt="" /></a>
+<a href="https://typechat.netcore.io/music"><img src="/img/posts/typescript-typechat-examples/music2.png" alt="" /></a></p>
 
                 </div>
             </div>
@@ -293,47 +357,6 @@ for more info, checkout <a href="deploy">GitHub Actions Deployments</a>.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/typescript-typechat-examples">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/typescript-typechat-examples" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="All of TypeScript&#x27;s TypeChat Examples in .NET">
-                                                    All of TypeScript&#x27;s TypeChat Examples in .NET
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Guide to implementing Voice Transcriptions and TypeChat GPT in .NET</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="All of TypeScript&#x27;s TypeChat Examples in .NET background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2023-09-26T00:00:00.0000000">September 26, 2023</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>5 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -450,6 +473,47 @@ for more info, checkout <a href="deploy">GitHub Actions Deployments</a>.</p>
                                                     <time datetime="2023-08-23T00:00:00.0000000">August 23, 2023</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>6 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/bulk-insert-performance">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/bulk-insert-performance" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Which RDBMS has the fastest .NET Bulk Insert implementation?">
+                                                    Which RDBMS has the fastest .NET Bulk Insert implementation?
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Measuring the different performance of RDBMS Bulk Insert implementations</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Which RDBMS has the fastest .NET Bulk Insert implementation? background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-07-31T00:00:00.0000000">July 31, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>31 min read</span>
                                                 </div>
                                             </div>
                                         </div>
