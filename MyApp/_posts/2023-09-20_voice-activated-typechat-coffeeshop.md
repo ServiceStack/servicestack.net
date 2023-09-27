@@ -67,7 +67,7 @@ We have a few options when it comes to real-time **Speech-to-Text** translation 
  - [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text/) - Starts from **$0.016** /minute or **$0.012** 
 if you're ok with Google to use your recordings to improve their AI models
  - [Amazon Transcribe](https://aws.amazon.com/transcribe/) - Starts from **$0.024** /minute
- - [Azure AI Speech](https://aws.amazon.com/transcribe/) - Starts from **$0.0167** /minute
+ - [Azure AI Speech](https://azure.microsoft.com/en-us/products/ai-services/speech-to-text) - Starts from **$0.0167** /minute
  - [OpenAI Whisper API](https://openai.com/research/whisper) - Flat rate of **$0.006** /minute for using their online API
  - [OpenAI Whisper Local](https://github.com/openai/whisper) - Whisper is also available as an OSS project you can run yourself
 if you prefer to manage your own servers and local Whisper install
