@@ -139,15 +139,12 @@ if (speechProvider == nameof(GoogleCloudSpeechToText))
 {
     services.AddSingleton<ISpeechToText>(c => {
         var config = c.Resolve<AppConfig>();
-        var google = config.AssertGcpConfig();
+        var gcp = c.Resolve<GoogleCloudConfig>();
         return new GoogleCloudSpeechToText(SpeechClient.Create(),
-            new GoogleCloudSpeechConfig {
-                Project = google.Project,
-                Location = google.Location,
-                Bucket = google.Bucket,
-                RecognizerId = config.CoffeeShop.RecognizerId,
-                PhraseSetId = config.CoffeeShop.PhraseSetId,
-            }
+            gcp.ToSpeechToTextConfig(x => {
+                x.PhraseSetId = config.CoffeeShop.PhraseSetId;
+                x.RecognizerId = config.CoffeeShop.RecognizerId;
+            })
         );
     });
 }
@@ -155,22 +152,18 @@ else if (speechProvider == nameof(AwsSpeechToText))
 {
     services.AddSingleton<ISpeechToText>(c => {
         var config = c.Resolve<AppConfig>();
-        var a = config.AssertAwsConfig();
+        var aws = c.Resolve<AwsConfig>();
         return new AwsSpeechToText(new AmazonTranscribeServiceClient(
-                a.AccessKey, a.SecretKey, RegionEndpoint.GetBySystemName(a.Region)),
-            new AwsSpeechToTextConfig {
-                Bucket = a.Bucket,
-                VocabularyName = config.CoffeeShop.VocabularyName,
-            });
+                aws.AccessKey, aws.SecretKey, aws.ToRegionEndpoint()),
+            aws.ToSpeechToTextConfig(x => 
+                x.VocabularyName = config.CoffeeShop.VocabularyName));
     });
 }
 else if (speechProvider == nameof(AzureSpeechToText))
 {
     services.AddSingleton<ISpeechToText>(c => {
-        var az = c.Resolve<AppConfig>().AssertAzureConfig();
-        var config = SpeechConfig.FromSubscription(az.SpeechKey, az.SpeechRegion);
-        config.SpeechRecognitionLanguage = "en-US";
-        return new AzureSpeechToText(config);
+        var azure = c.Resolve<AzureConfig>();
+        return new AzureSpeechToText(azure.ToSpeechConfig());
     });
 }
 else if (speechProvider == nameof(WhisperApiSpeechToText))
@@ -233,30 +226,33 @@ Which are configured in [Configure.Vfs.cs](https://github.com/NetCoreApps/Coffee
 var vfsProvider = appHost.AppSettings.Get<string>("VfsProvider");
 if (vfsProvider == nameof(GoogleCloudVirtualFiles))
 {
+    GoogleCloudConfig.AssertValidCredentials();
     appHost.VirtualFiles = new GoogleCloudVirtualFiles(
-      StorageClient.Create(), appHost.Resolve<AppConfig>().AssertGcpConfig().Bucket);
-}
-else if (vfsProvider == nameof(AzureBlobVirtualFiles))
-{
-    var az = appHost.Resolve<AppConfig>().AssertAzureConfig();
-    appHost.VirtualFiles = new AzureBlobVirtualFiles(
-        az.ConnectionString, az.ContainerName);
+        StorageClient.Create(), appHost.Resolve<GoogleCloudConfig>().Bucket!);
 }
 else if (vfsProvider == nameof(S3VirtualFiles))
 {
-    var aws = appHost.Resolve<AppConfig>().AssertAwsConfig();
-    appHost.VirtualFiles = new S3VirtualFiles(
-        new AmazonS3Client(aws.AccessKey, aws.SecretKey,
-            RegionEndpoint.GetBySystemName(aws.Region)), aws.Bucket);
+    var aws = appHost.Resolve<AwsConfig>();
+    appHost.VirtualFiles = new S3VirtualFiles(new AmazonS3Client(
+        aws.AccessKey,
+        aws.SecretKey,
+        aws.ToRegionEndpoint()), aws.Bucket);
 }
 else if (vfsProvider == nameof(R2VirtualFiles))
 {
-    var r2 = appHost.Resolve<AppConfig>().AssertR2Config();
-    appHost.VirtualFiles = new R2VirtualFiles(
-        new AmazonS3Client(r2.AccessKey, r2.SecretKey,
+    var r2 = appHost.Resolve<R2Config>();
+    appHost.VirtualFiles = new R2VirtualFiles(new AmazonS3Client(
+        r2.AccessKey,
+        r2.SecretKey,
         new AmazonS3Config {
-            ServiceURL = $"https://{r2.AccountId}.r2.cloudflarestorage.com",
+            ServiceURL = r2.ToServiceUrl(),
         }), r2.Bucket);
+}
+else if (vfsProvider == nameof(AzureBlobVirtualFiles))
+{
+    var azure = appHost.Resolve<AzureConfig>();
+    appHost.VirtualFiles = new AzureBlobVirtualFiles(
+        azure.ConnectionString, azure.ContainerName);
 }
 ```
 
