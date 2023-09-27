@@ -298,15 +298,12 @@ if (speechProvider == nameof(GoogleCloudSpeechToText))
 {
     services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; {
         var config = c.Resolve&lt;AppConfig&gt;();
-        var google = config.AssertGcpConfig();
+        var gcp = c.Resolve&lt;GoogleCloudConfig&gt;();
         return new GoogleCloudSpeechToText(SpeechClient.Create(),
-            new GoogleCloudSpeechConfig {
-                Project = google.Project,
-                Location = google.Location,
-                Bucket = google.Bucket,
-                RecognizerId = config.CoffeeShop.RecognizerId,
-                PhraseSetId = config.CoffeeShop.PhraseSetId,
-            }
+            gcp.ToSpeechToTextConfig(x =&gt; {
+                x.PhraseSetId = config.CoffeeShop.PhraseSetId;
+                x.RecognizerId = config.CoffeeShop.RecognizerId;
+            })
         );
     });
 }
@@ -314,22 +311,18 @@ else if (speechProvider == nameof(AwsSpeechToText))
 {
     services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; {
         var config = c.Resolve&lt;AppConfig&gt;();
-        var a = config.AssertAwsConfig();
+        var aws = c.Resolve&lt;AwsConfig&gt;();
         return new AwsSpeechToText(new AmazonTranscribeServiceClient(
-                a.AccessKey, a.SecretKey, RegionEndpoint.GetBySystemName(a.Region)),
-            new AwsSpeechToTextConfig {
-                Bucket = a.Bucket,
-                VocabularyName = config.CoffeeShop.VocabularyName,
-            });
+                aws.AccessKey, aws.SecretKey, aws.ToRegionEndpoint()),
+            aws.ToSpeechToTextConfig(x =&gt; 
+                x.VocabularyName = config.CoffeeShop.VocabularyName));
     });
 }
 else if (speechProvider == nameof(AzureSpeechToText))
 {
     services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; {
-        var az = c.Resolve&lt;AppConfig&gt;().AssertAzureConfig();
-        var config = SpeechConfig.FromSubscription(az.SpeechKey, az.SpeechRegion);
-        config.SpeechRecognitionLanguage = &quot;en-US&quot;;
-        return new AzureSpeechToText(config);
+        var azure = c.Resolve&lt;AzureConfig&gt;();
+        return new AzureSpeechToText(azure.ToSpeechConfig());
     });
 }
 else if (speechProvider == nameof(WhisperApiSpeechToText))
@@ -377,30 +370,33 @@ to your preferred <a href="https://docs.servicestack.net/virtual-file-system">Vi
 <pre><code class="language-csharp">var vfsProvider = appHost.AppSettings.Get&lt;string&gt;(&quot;VfsProvider&quot;);
 if (vfsProvider == nameof(GoogleCloudVirtualFiles))
 {
+    GoogleCloudConfig.AssertValidCredentials();
     appHost.VirtualFiles = new GoogleCloudVirtualFiles(
-      StorageClient.Create(), appHost.Resolve&lt;AppConfig&gt;().AssertGcpConfig().Bucket);
-}
-else if (vfsProvider == nameof(AzureBlobVirtualFiles))
-{
-    var az = appHost.Resolve&lt;AppConfig&gt;().AssertAzureConfig();
-    appHost.VirtualFiles = new AzureBlobVirtualFiles(
-        az.ConnectionString, az.ContainerName);
+        StorageClient.Create(), appHost.Resolve&lt;GoogleCloudConfig&gt;().Bucket!);
 }
 else if (vfsProvider == nameof(S3VirtualFiles))
 {
-    var aws = appHost.Resolve&lt;AppConfig&gt;().AssertAwsConfig();
-    appHost.VirtualFiles = new S3VirtualFiles(
-        new AmazonS3Client(aws.AccessKey, aws.SecretKey,
-            RegionEndpoint.GetBySystemName(aws.Region)), aws.Bucket);
+    var aws = appHost.Resolve&lt;AwsConfig&gt;();
+    appHost.VirtualFiles = new S3VirtualFiles(new AmazonS3Client(
+        aws.AccessKey,
+        aws.SecretKey,
+        aws.ToRegionEndpoint()), aws.Bucket);
 }
 else if (vfsProvider == nameof(R2VirtualFiles))
 {
-    var r2 = appHost.Resolve&lt;AppConfig&gt;().AssertR2Config();
-    appHost.VirtualFiles = new R2VirtualFiles(
-        new AmazonS3Client(r2.AccessKey, r2.SecretKey,
+    var r2 = appHost.Resolve&lt;R2Config&gt;();
+    appHost.VirtualFiles = new R2VirtualFiles(new AmazonS3Client(
+        r2.AccessKey,
+        r2.SecretKey,
         new AmazonS3Config {
-            ServiceURL = $&quot;https://{r2.AccountId}.r2.cloudflarestorage.com&quot;,
+            ServiceURL = r2.ToServiceUrl(),
         }), r2.Bucket);
+}
+else if (vfsProvider == nameof(AzureBlobVirtualFiles))
+{
+    var azure = appHost.Resolve&lt;AzureConfig&gt;();
+    appHost.VirtualFiles = new AzureBlobVirtualFiles(
+        azure.ConnectionString, azure.ContainerName);
 }
 </code></pre>
 <h3 id="managed-file-uploads">Managed File Uploads<a class="header-anchor" href="javascript:;" onclick="location.hash='#managed-file-uploads'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
