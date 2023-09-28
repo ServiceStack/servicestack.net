@@ -450,32 +450,38 @@ await speechProvider.InitAsync(new() {
 
 This will re-create the Vocabulary with the `VocabularyName` the `AwsSpeechToText` was configured with:
 
-## Cloudflare R2
+## Cloudflare Solution
 
-[Cloudflare AI](https://ai.cloudflare.com) doesn't yet offer a Speech-to-Text service, but this may change soon with their recent
-[partnership with Meta](https://www.businesswire.com/news/home/20230926754989/en/Cloudflare-and-Meta-Collaborate-to-Make-Llama-2-Available-Globally)
-to offer Llama2 integrations.
+[Cloudflare AI](https://ai.cloudflare.com) newly released [AI Gateway](https://blog.cloudflare.com/announcing-ai-gateway/) offers a
+managed gateway over OpenAI's APIs to cache responses, limit and retry requests, and provide analytics to help you monitor and track usage
+which you can utilize by changing the `OpenAiBaseUrl` used.
 
-In the meantime their [Cloudflare R2](https://developers.cloudflare.com/r2/) product is one of the best value 
-managed storage solution available, it's an attractive option to use to store Web Audio recordings for usage with
-OpenAI or other Speech-to-Text providers.
+You may also soon be able to use Cloudflare's OpenAI's Whisper model independently that's currently on available through their
+[Workers AI](https://blog.cloudflare.com/workers-ai/) solution.
 
-Your App can be configured to use R2 Storage with:
+In the meantime their [Cloudflare R2](https://developers.cloudflare.com/r2/) product is one of the best value
+managed storage solutions available, it's an attractive option to use to store Web Audio recordings for usage with
+other Speech-to-Text providers, which your App can be configured to use with:
 
 ```csharp
-[assembly: HostingStartup(typeof(ConfigureCloudflareR2))]
+[assembly: HostingStartup(typeof(ConfigureCloudflare))]
 
-public class ConfigureCloudflareR2 : IHostingStartup
+public class ConfigureCloudflare : IHostingStartup
 {
     public void Configure(IWebHostBuilder builder) => builder
-        .ConfigureServices((context, services) => {
-
-            services.AddSingleton(context.Configuration.GetSection(nameof(R2Config))
-                .Get<R2Config>());
+        .ConfigureServices((context, services) =>
+        {
+            var config = context.Configuration.GetSection(nameof(CloudflareConfig))
+                .Get<CloudflareConfig>();
+            services.AddSingleton(config);
+            
+            services.AddSingleton<ISpeechToText>(c => new WhisperApiSpeechToText {
+                BaseUri = config.OpenAiBaseUrl!,
+            });
         })
         .ConfigureAppHost(afterConfigure:appHost => {
 
-            var config = appHost.Resolve<R2Config>();
+            var config = appHost.Resolve<CloudflareConfig>();
             appHost.VirtualFiles = new R2VirtualFiles(
                 new AmazonS3Client(config.AccessKey, config.SecretKey,
                 new AmazonS3Config {
