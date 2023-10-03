@@ -384,7 +384,7 @@ else if (vfsProvider == nameof(S3VirtualFiles))
 }
 else if (vfsProvider == nameof(R2VirtualFiles))
 {
-    var r2 = appHost.Resolve&lt;R2Config&gt;();
+    var r2 = appHost.Resolve&lt;CloudflareConfig&gt;();
     appHost.VirtualFiles = new R2VirtualFiles(new AmazonS3Client(
         r2.AccessKey,
         r2.SecretKey,
