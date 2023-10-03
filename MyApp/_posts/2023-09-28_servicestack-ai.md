@@ -879,7 +879,7 @@ against the products and available customizations from the App's database before
 
 ## Feedback and Feature Requests Welcome 
 
-Please submit any feature requests for other GPT or AI providers you'd like to:
+Please submit any feature requests for other GPT or AI providers you'd like to see implemented to:
 
 <h3 class="not-prose text-center pb-8">
     <a class="text-3xl text-blue-600 hover:underline" href="https://servicestack.net/ideas">https://servicestack.net/ideas</a>
