@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>ServiceStack.AI - Chat GPT and Managed Cloud Providers - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:creator" content="@demisbellot" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Guide to implementing Voice Transcriptions and TypeChat GPT in .NET" />
+    <meta property="og:url" content="https://servicestack.net/posts/servicestack-ai" />
+    <meta property="og:title" content="ServiceStack.AI - Chat GPT and Managed Cloud Providers" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://docs.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Docs
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://forums.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Forums
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Free
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Trial
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Pricing
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
+                                    Sign In
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                ServiceStack.AI - Chat GPT and Managed Cloud Providers
+            </h1>
+            <div class="flex justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis-bellot"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.jpg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis-bellot">Demis Bellot</a>
+            <ul role="list" class="flex">
+                    <li>
+                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/demisbellot">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on threads.net" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://threads.net/@demisbellot">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7.5c-1.333-3-3.667-4.5-7-4.5c-5 0-8 2.5-8 9s3.5 9 8 9s7-3 7-5s-1-5-7-5c-2.5 0-3 1.25-3 2.5C9 15 10 16 11.5 16c2.5 0 3.5-1.5 3.5-5s-2-4-3-4s-1.833.333-2.5 1"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/mythz">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Email Demis Bellot" href="mailto:demis@servicestack.com" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500">
+                            <svg class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20q-.825 0-1.413-.588T2 18V6q0-.825.588-1.413T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.588 1.413T20 20H4Zm8-7L4 8v10h16V8l-8 5Zm0-2l8-5H4l8 5ZM4 8V6v12V8Z"/></svg>
+                        </a>
+                    </li>
+            </ul>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="ServiceStack.AI - Chat GPT and Managed Cloud Providers Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                            <a href="posts/tagged/autoquery" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">autoquery</a>
+                            <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> c#</a>
+                            <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> dev</a>
+                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5"> servicestack</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2023-09-28T00:00:00.0000000">September 28, 2023</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>18 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <h2 id="servicestack.ai-providers">ServiceStack.AI Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack.ai-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>As the AI landscape is actively changing we want our Apps to be able to easily switch to different <strong>Speech-to-Text</strong>
+or ChatGPT and TypeChat providers so we're able to easily evaluate and use the best provider for our use-case.</p>
+<p>To support this we're maintaining <strong>FREE</strong> implementation-agnostic abstractions for different AI and GPT Providers to enable
+AI features in .NET Apps under the new <a href="https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack.Interfaces/AI">ServiceStack.AI</a>
+namespace in our dependency-free <strong>ServiceStack.Interfaces</strong> package.</p>
+<p>Where the implementations for these abstractions are maintained across the following NuGet packages according to their
+required dependencies:</p>
+<ul>
+<li><code>ServiceStack.Aws</code> - AI &amp; GPT Providers for <strong>Amazon Web Services</strong></li>
+<li><code>ServiceStack.Azure</code> - AI &amp; GPT Providers for <strong>Microsoft Azure</strong></li>
+<li><code>ServiceStack.GoogleCloud</code> - AI &amp; GPT Providers for <strong>Google Cloud</strong></li>
+<li><code>ServiceStack.AI</code> - AI &amp; GPT Providers for <strong>OpenAI</strong> APIs and local Whisper and Node TypeChat installs</li>
+</ul>
+<p>These abstractions and their implementations enable .NET projects to add AI-powered <strong>natural language features</strong> to their Apps
+whilst decoupling their <strong>Speech-to-text</strong> and <strong>ChatGPT</strong> requirements from any single implementation where they can be
+easily substituted as needed.</p>
+<h3 id="net-typechat-examples">.NET TypeChat Examples<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-typechat-examples'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>An easy way to evaluate these providers is with the <a href="/posts/typescript-typechat-examples">TypeChat .NET Examples Project</a>
+which contains .NET implementations for each TypeChat Example that are already configured to work with all available
+providers whose source code is maintained at:</p>
+<div class="my-8 text-indigo-600 text-center text-xl"><p><a href="https://github.com/NetCoreApps/TypeChatExamples">https://github.com/NetCoreApps/TypeChatExamples</a></p>
+</div>
+<p>Whose Live Demo is hosted at:</p>
+<div class="my-8 text-indigo-600 text-center text-2xl"><p><a href="https://typechat.netcore.io">https://typechat.netcore.io</a></p>
+</div>
+<p><a href="https://typechat.netcore.io"><img src="/img/posts/typescript-typechat-examples/typechat.png" alt="" /></a></p>
+<h2 id="ispeechtotext">ISpeechToText<a class="header-anchor" href="javascript:;" onclick="location.hash='#ispeechtotext'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The <code>ISpeechToText</code> interface abstracts Speech-to-Text providers behind a simple API:</p>
+<pre><code class="language-csharp">public interface ISpeechToText
+{
+    // Once only task to run out-of-band before using the SpeechToText provider
+    Task InitAsync(List&lt;string&gt; phrases, CancellationToken token = default);
+    
+    // Transcribe the Audio at recordingPath and return a JSON API Result
+    Task&lt;TranscriptResult&gt; TranscribeAsync(string request, CancellationToken token);
+}
+</code></pre>
+<p>Which has 5 different Speech-to-Text implementations to choose from:</p>
+<ul>
+<li><code>GoogleCloudSpeechToText</code> - to use Google Cloud's <a href="https://cloud.google.com/speech-to-text/v2/">Speech-to-Text v2</a> API</li>
+<li><code>AwsSpeechToText</code> - to use <a href="https://aws.amazon.com/pm/transcribe/">Amazon Transcribe</a> API</li>
+<li><code>AzureSpeechToText</code> - to use <a href="https://azure.microsoft.com/en-us/products/ai-services/speech-to-text">Azure Speech to text</a> API</li>
+<li><code>WhisperApiSpeechToText</code> - to use <a href="https://platform.openai.com/docs/api-reference/audio">OpenAI's Whisper</a> API</li>
+<li><code>WhisperLocalSpeechToText</code> - to use local install of <a href="https://github.com/openai/whisper">OpenAI Whisper</a></li>
+</ul>
+<h2 id="virtual-file-system-providers">Virtual File System Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#virtual-file-system-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Likewise file storage is also easily substitutable with <a href="https://docs.servicestack.net/virtual-file-system">Virtual File System</a>
+providers allowing Audio Voice Recordings to be uploaded to your preferred provider:</p>
+<ul>
+<li><code>FileSystemVirtualFiles</code> - stores uploads in local file system (default)</li>
+<li><code>GoogleCloudVirtualFiles</code> - stores uploads in <a href="https://cloud.google.com/storage">Google Cloud Storage</a></li>
+<li><code>S3VirtualFiles</code> - stores uploads in <a href="https://aws.amazon.com/s3/">AWS S3</a></li>
+<li><code>AzureBlobVirtualFiles</code> - stores uploads in <a href="https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction">Azure Blob Storage</a></li>
+<li><code>R2VirtualFiles</code> - stores uploads in <a href="https://developers.cloudflare.com/r2/">Cloudflare R2</a></li>
+</ul>
+<h2 id="openai-solution">OpenAI Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#openai-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Since you'll likely be using OpenAI's ChatGPT API for converting natural language requests into a machine readable request
+your App can process, the easiest solution is to also use OpenAI's Whisper API for your App's Speech-to-Text requirements,
+which you can configure your App to use in a <a href="https://docs.servicestack.net/modular-startup">Modular Startup</a> config:</p>
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(ConfigureOpenAi))]
+
+public class ConfigureOpenAi : IHostingStartup
+{
+    const bool UseKernel = true;
+    
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+            services.AddSingleton&lt;ISpeechToText, WhisperApiSpeechToText&gt;();
+            
+            // Call Open AI Chat API through node TypeChat
+            services.AddSingleton&lt;ITypeChat, NodeTypeChat&gt;();
+        })
+        .ConfigureAppHost(afterConfigure:appHost =&gt; {
+            
+            if (appHost.TryResolve&lt;ISpeechToText&gt;() is IRequireVirtualFiles requireVirtualFiles)
+                requireVirtualFiles.VirtualFiles = appHost.VirtualFiles;
+        });
+}
+</code></pre>
+<p>Open AI providers are maintained in the <strong>ServiceStack.AI</strong> NuGet Package:</p>
+<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.AI&quot; Version=&quot;6.*&quot; /&gt;
+</code></pre>
+<h3 id="using-node-typechat">Using Node TypeChat<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-node-typechat'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you prefer to use Microsoft's node <a href="https://github.com/microsoft/TypeChat">TypeChat library</a> to utilize its
+auto schema validation and corrective auto-retry features, your <a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/Dockerfile">Dockerfile</a> will
+will need to have node installed:</p>
+<pre><code class="language-bash"># install node.js and ffmpeg
+RUN apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get install -y --no-install-recommends curl gnupg ffmpeg \
+    &amp;&amp; curl -sL https://deb.nodesource.com/setup_current.x | bash - \
+    &amp;&amp; apt-get install nodejs -yq 
+
+RUN npm install
+</code></pre>
+<h4 id="package.json">package.json<a class="header-anchor" href="javascript:;" onclick="location.hash='#package.json'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Which installs TypeChat by listing it as a dependency in your App's <code>package.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;typechat&quot;: &quot;^0.0.10&quot;
+  }  
+}
+</code></pre>
+<p>You'll also need a copy of
+<a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/typechat.mjs">typechat.mjs</a> wrapper that
+the .NET process calls invoke TypeChat, located in the Content Directory root of your Application.</p>
+<h3 id="using-microsoft-semantic-kernel">Using Microsoft Semantic Kernel<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-microsoft-semantic-kernel'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Alternatively you can avoid using TypeChat and node altogether by invoking ChatGPT through Microsoft's Semantic Kernel
+.NET Library:</p>
+<pre><code class="language-csharp">var kernel = Kernel.Builder.WithOpenAIChatCompletionService(
+        Environment.GetEnvironmentVariable(&quot;OPENAI_MODEL&quot;) ?? &quot;gpt-3.5-turbo&quot;, 
+        Environment.GetEnvironmentVariable(&quot;OPENAI_API_KEY&quot;)!)
+    .Build();
+services.AddSingleton(kernel);
+services.AddSingleton&lt;ITypeChat&gt;(c =&gt; new KernelTypeChat(c.Resolve&lt;IKernel&gt;()));
+</code></pre>
+<p>If you're not using TypeChat you'll likely want to implement your own <a href="/posts/voice-activated-typechat-coffeeshop#custom-validation-with-c-semantic-kernel">Custom Validation and Auto-correcting</a>
+solution which can be more effective that TypeChat's schema validation errors approach.</p>
+<h2 id="supporting-safari-web-audio">Supporting Safari Web Audio<a class="header-anchor" href="javascript:;" onclick="location.hash='#supporting-safari-web-audio'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If you're not using OpenAI's Whisper for transcribing you'll likely need to use <code>ffmpeg</code> to convert
+<a href="/posts/voice-activated-typechat-coffeeshop#converting-uploaded-files">Convert Uploaded Files</a> into a format your
+Speech-to-Text provider accepts.</p>
+<h2 id="google-cloud-solution">Google Cloud Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#google-cloud-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To use any of the Google Cloud providers your pc needs to be configured with <a href="https://cloud.google.com/speech-to-text/docs/before-you-begin">GoogleCloud Credentials</a> on a project
+with <strong>Speech-to-Text</strong> enabled.</p>
+<p>You can then configure your App's <strong>appsettings.json</strong> with your Google Cloud Project and Storage where you would like
+uploads to persist to:</p>
+<pre><code class="language-json">{
+  &quot;GoogleCloudConfig&quot;: {
+    &quot;Project&quot;: &quot;servicestackdemo&quot;,
+    &quot;Location&quot;: &quot;global&quot;,
+    &quot;Bucket&quot;: &quot;servicestack-typechat&quot;
+  }
+}
+</code></pre>
+<p>Which you'll be able to configure your App to use within a <a href="https://docs.servicestack.net/modular-startup">Modular Startup</a> config:</p>
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(ConfigureGoogleCloud))]
+
+public class ConfigureGoogleCloud : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+            GoogleCloudConfig.AssertValidCredentials();
+
+            var gcp = context.Configuration.GetSection(nameof(GoogleCloudConfig))
+                .Get&lt;GoogleCloudConfig&gt;();
+            services.AddSingleton(gcp);
+            
+            services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; {
+                return new GoogleCloudSpeechToText(SpeechClient.Create(),
+                    gcp.ToSpeechToTextConfig(x =&gt; {
+                        // x.PhraseSetId = PhraseSetId;
+                    })
+                ) {
+                    VirtualFiles = HostContext.VirtualFiles
+                };
+            });
+        })
+        .ConfigureAppHost(afterConfigure:appHost =&gt; {
+            appHost.VirtualFiles = new GoogleCloudVirtualFiles(
+                StorageClient.Create(), appHost.Resolve&lt;GoogleCloudConfig&gt;().Bucket!);
+        });
+}
+</code></pre>
+<p>Google Cloud providers are maintained in the <strong>ServiceStack.GoogleCloud</strong> NuGet Package:</p>
+<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.GoogleCloud&quot; Version=&quot;6.*&quot; /&gt;
+</code></pre>
+<h3 id="speech-to-text-factory">Speech-to-Text Factory<a class="header-anchor" href="javascript:;" onclick="location.hash='#speech-to-text-factory'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Google Cloud Speech-to-Text APIs supports the ability to improve transcription results by creating
+<a href="https://cloud.google.com/speech-to-text/docs/adaptation-model">Custom PhraseSets and Recognizers</a> where you can specify
+which phrases are likely to be used so you can boost their probability they'll be recognized correctly, they'll also
+let you configure which optimized model and languages to use.</p>
+<p>If your App uses multiple Phrasesets or Recognizers they'll need return a different configured <code>GoogleCloudSpeechToText</code>
+provider dependent on the feature that's requested, which you can configure with a <code>SpeechToTextFactory</code>:</p>
+<pre><code class="language-csharp">services.AddSingleton&lt;ISpeechToTextFactory&gt;(c =&gt; new SpeechToTextFactory
+{
+    Resolve = feature =&gt;
+    {
+        var config = c.Resolve&lt;AppConfig&gt;();
+        var gcp = c.Resolve&lt;GoogleCloudConfig&gt;();
+        var siteConfig = config.GetSiteConfig(feature);
+
+        return new GoogleCloudSpeechToText(
+            SpeechClient.Create(),
+            gcp.ToSpeechToTextConfig(x =&gt; {
+                x.RecognizerId = siteConfig.RecognizerId;
+                x.PhraseSetId = siteConfig.PhraseSetId;
+            }))
+        {
+            VirtualFiles = HostContext.VirtualFiles
+        };
+    }
+});
+</code></pre>
+<h3 id="creating-custom-recognizers">Creating Custom Recognizers<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-custom-recognizers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The <code>GoogleCloudSpeechToText</code> provider also supports recreating a custom recognizer with a vocabulary of boosted phrases
+using the <code>InitAsync</code> API:</p>
+<pre><code class="language-csharp">ISpeechToTextFactory SpeechToTextFactory { get; set; }
+
+//...
+List&lt;KeyValuePair&lt;string, int&gt;&gt; phraseWeights = ...;
+var speechProvider = SpeechToTextFactory.Get(feature);
+await speechProvider.InitAsync(new() {
+    PhraseWeights = phraseWeights
+});
+</code></pre>
+<p>This will re-create the PhraseSet and Recognizer using the <code>PhraseSetId</code> and <code>RecognizerId</code> identifiers that provider
+was configured with in its <code>GoogleCloudConfig</code>.</p>
+<h3 id="googlecloud-credential-deployments">GoogleCloud Credential Deployments<a class="header-anchor" href="javascript:;" onclick="location.hash='#googlecloud-credential-deployments'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Google Cloud configures their Security credentials differently to other providers where instead of storing
+Bearer Tokens or connection strings in Environment Variables, their <code>GOOGLE_APPLICATION_CREDENTIALS</code> Environment Variable
+is used to instead specify the path where the actual JSON credentials are stored on disk.</p>
+<p>Unfortunately passing the JSON configuration file as-is is incompatible with <a href="https://docs.docker.com/engine/swarm/secrets/">Docker Secrets</a>
+for when you want Production App's credentials maintained outside of the Source Code repository.</p>
+<p>A simple workaround you can do in your GitHub Actions <a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/.github/workflows/release.yml">release.yml</a>
+instead is to <strong>Base64 encode</strong> the credentials which can then be passed as a Docker secret:</p>
+<pre><code class="language-yaml"># Build and push new docker image, skip for manual redeploy other than 'latest'
+- name: Build and push Docker images
+  uses: docker/build-push-action@v3
+  with:
+    file: Dockerfile
+    context: .
+    push: true
+    tags: ghcr.io/${‎{ env.image_repository_name }‎}:${‎{ env.TAG_NAME }‎}
+    secrets: |
+      googlecloud_credentials_base64=${‎{secrets.GOOGLE_APPLICATION_CREDENTIALS}‎}
+</code></pre>
+<p>Which your <a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/Dockerfile">Dockerfile</a> can then decode with
+Unix <code>base64</code> tool before saving the <code>credentials.json</code> inside your Docker Container:</p>
+<pre><code class="language-bash">RUN --mount=type=secret,id=googlecloud_credentials_base64 \
+    cat /run/secrets/googlecloud_credentials_base64 | base64 -d &gt; /out/googlecloud-credentials.json
+</code></pre>
+<h3 id="ide-tooling">IDE Tooling<a class="header-anchor" href="javascript:;" onclick="location.hash='#ide-tooling'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>A nice feature from using Cloud Services is the built-in tooling in IDEs like JetBrains
+<a href="https://plugins.jetbrains.com/plugin/12494-big-data-tools">Big Data Tools</a> where you can inspect new Recordings and ChatGPT
+JSON responses from within your IDE, instead of SSH'ing into remote servers to inspect local volumes:</p>
+<div class="max-w-sm mx-auto"><p><a href="/img/posts/building-typechat-coffeeshop-modelling/googlcloud-plugin.png"><img src="/img/posts/building-typechat-coffeeshop-modelling/googlcloud-plugin.png" alt="" /></a></p>
+</div>
+<h2 id="azure-solution">Azure Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#azure-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>You can configure your App to use <a href="https://azure.microsoft.com/en-us/products/ai-services/speech-to-text">Azure AI Speech</a> API
+to transcribe Web Audio Recordings that are persisted in Azure Blob Storage with the configuration below:</p>
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(ConfigureAzure))]
+
+public class ConfigureAzure : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+
+            var config = context.Configuration.GetSection(nameof(AzureConfig))
+                .Get&lt;AzureConfig&gt;();
+            services.AddSingleton(config);
+            
+            services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; 
+                new AzureSpeechToText(config.ToSpeechConfig()) {
+                    VirtualFiles = HostContext.VirtualFiles
+                });
+        })
+        .ConfigureAppHost(afterConfigure:appHost =&gt; {
+
+            var config = appHost.Resolve&lt;AzureConfig&gt;();
+            appHost.VirtualFiles = new AzureBlobVirtualFiles(
+                config.ConnectionString, config.ContainerName);
+        });
+}
+</code></pre>
+<p>Azure providers are maintained in the <strong>ServiceStack.Azure</strong> NuGet Package:</p>
+<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.Azure&quot; Version=&quot;6.*&quot; /&gt;
+</code></pre>
+<h3 id="enable-web-audio-support">Enable Web Audio Support<a class="header-anchor" href="javascript:;" onclick="location.hash='#enable-web-audio-support'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>As Azure AI Speech only supports limited <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams">Audio formats</a>,
+it's recommended to have <a href="https://gstreamer.freedesktop.org">GStreamer</a> installed along side your App to enable
+support for more popular compressed Web Audio formats.</p>
+<p>Refer to the <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams#gstreamer-configuration">GStreamer configuration</a>
+docs for how install GStreamer in different Operating Systems.</p>
+<h2 id="aws-solution">AWS Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Organizations hosting on AWS can configure their App to use <a href="https://aws.amazon.com/transcribe/">Amazon Transcribe</a> for
+transcribing their Audio recordings to text that they can store in AWS S3 with the configuration below:</p>
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(ConfigureAws))]
+
+namespace GptProviders;
+
+public class ConfigureAws : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+
+            var config = context.Configuration.GetSection(nameof(AwsConfig)).Get&lt;AwsConfig&gt;();
+            services.AddSingleton(config);
+            
+            services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; new AwsSpeechToText(
+                new AmazonTranscribeServiceClient(
+                    config.AccessKey, config.SecretKey, config.ToRegionEndpoint()),
+                new AwsSpeechToTextConfig {
+                    Bucket = config.Bucket,
+                    VocabularyName = config.VocabularyName,
+                }) {
+                VirtualFiles = HostContext.VirtualFiles
+            });
+        })
+        .ConfigureAppHost(afterConfigure:appHost =&gt; {
+
+            var config = appHost.Resolve&lt;AwsConfig&gt;();
+            appHost.VirtualFiles = new S3VirtualFiles(
+                new AmazonS3Client(config.AccessKey, config.SecretKey, config.ToRegionEndpoint()), 
+                config.Bucket);
+        });
+}
+</code></pre>
+<p>Amazon Web Services providers are maintained in the <strong>ServiceStack.Aws</strong> NuGet Package:</p>
+<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.Aws&quot; Version=&quot;6.*&quot; /&gt;
+</code></pre>
+<h3 id="aws-speech-to-text-factory">AWS Speech-to-Text Factory<a class="header-anchor" href="javascript:;" onclick="location.hash='#aws-speech-to-text-factory'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If your App uses custom vocabularies for different features you'll instead want register factory instead so you can
+return the correct configured <code>AwsSpeechToText</code> for the request feature:</p>
+<pre><code class="language-csharp">services.AddSingleton&lt;ISpeechToTextFactory&gt;(c =&gt; new SpeechToTextFactory
+{
+    Resolve = feature =&gt;
+    {
+        var config = c.Resolve&lt;AppConfig&gt;();
+        var aws = c.Resolve&lt;AwsConfig&gt;();
+        var site = config.GetSiteConfig(feature);
+        
+        return new AwsSpeechToText(new AmazonTranscribeServiceClient(
+                aws.AccessKey, aws.SecretKey, aws.ToRegionEndpoint()),
+            aws.ToSpeechToTextConfig(x =&gt; x.VocabularyName = site.VocabularyName))
+        {
+            VirtualFiles = HostContext.VirtualFiles
+        };
+    }
+});
+</code></pre>
+<h3 id="creating-custom-vocabulary">Creating Custom Vocabulary<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-custom-vocabulary'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The <code>AwsSpeechToText</code> provider also supports recreating a custom recognizer with a vocabulary of boosted phrases
+using the <code>InitAsync</code> API:</p>
+<pre><code class="language-csharp">ISpeechToTextFactory SpeechToTextFactory { get; set; }
+
+//...
+List&lt;KeyValuePair&lt;string, int&gt;&gt; phraseWeights = ...;
+var speechProvider = SpeechToTextFactory.Get(feature);
+await speechProvider.InitAsync(new() {
+    PhraseWeights = phraseWeights
+});
+</code></pre>
+<p>This will re-create the Vocabulary with the <code>VocabularyName</code> the <code>AwsSpeechToText</code> was configured with:</p>
+<h2 id="cloudflare-solution">Cloudflare Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#cloudflare-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><a href="https://ai.cloudflare.com">Cloudflare AI</a> newly released <a href="https://blog.cloudflare.com/announcing-ai-gateway/">AI Gateway</a> offers a
+managed gateway over OpenAI's APIs to cache responses, limit and retry requests, and provide analytics to help you monitor and track usage
+which you can utilize by changing the <code>OpenAiBaseUrl</code> used.</p>
+<p>You may also soon be able to use Cloudflare's OpenAI's Whisper model independently that's currently on available through their
+<a href="https://blog.cloudflare.com/workers-ai/">Workers AI</a> solution.</p>
+<p>In the meantime their <a href="https://developers.cloudflare.com/r2/">Cloudflare R2</a> product is one of the best value
+managed storage solutions available, it's an attractive option to use to store Web Audio recordings for usage with
+other Speech-to-Text providers, which your App can be configured to use with:</p>
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(ConfigureCloudflare))]
+
+public class ConfigureCloudflare : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt;
+        {
+            var config = context.Configuration.GetSection(nameof(CloudflareConfig))
+                .Get&lt;CloudflareConfig&gt;();
+            services.AddSingleton(config);
+            
+            services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; new WhisperApiSpeechToText {
+                BaseUri = config.OpenAiBaseUrl!,
+            });
+        })
+        .ConfigureAppHost(afterConfigure:appHost =&gt; {
+
+            var config = appHost.Resolve&lt;CloudflareConfig&gt;();
+            appHost.VirtualFiles = new R2VirtualFiles(
+                new AmazonS3Client(config.AccessKey, config.SecretKey,
+                new AmazonS3Config {
+                    ServiceURL = config.ToServiceUrl(),
+                }), config.Bucket);
+        });
+}
+</code></pre>
+<p>Cloudflare's <code>R2VirtualFiles</code> provider is maintained in the <strong>ServiceStack.Aws</strong> NuGet Package:</p>
+<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.Aws&quot; Version=&quot;6.*&quot; /&gt;
+</code></pre>
+<h2 id="local-openai-whisper">Local OpenAI Whisper<a class="header-anchor" href="javascript:;" onclick="location.hash='#local-openai-whisper'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If your App's requirements and hardware supports it, you can save an infrastructure dependency by using a local install of
+<a href="https://github.com/openai/whisper">OpenAI's Whisper</a>, which after installing <a href="https://ffmpeg.org/download.html">ffmpeg</a>
+and Python, can be installed with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install -U openai-whisper</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>This will enable you to transcribe Audio recordings by simply specifying the recording you want a transcription of:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>whisper recording.webm</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h4 id="usage-notes">Usage Notes<a class="header-anchor" href="javascript:;" onclick="location.hash='#usage-notes'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<ul>
+<li>The <code>--language</code> flag helps speed up transcriptions by avoiding needing to run auto language detection</li>
+<li>By default whisper will generate its transcription results in all supported <code>.txt</code>, <code>.json</code>, <code>.tsv</code>, <code>.srt</code> and <code>.vtt</code> formats
+<ul>
+<li>you can limit to just the format you want it in with <code>--output_format</code>, e.g. use <code>txt</code> if you're just interested in the transcribed text</li>
+</ul>
+</li>
+<li>The default install also had <a href="https://github.com/openai/whisper/discussions/301">FP16</a> and
+<a href="https://github.com/openai/whisper/discussions/1344">Numba Deprecation</a> warnings</li>
+</ul>
+<p>We can resolve these issues by using the modified prompt:</p>
+<pre><code class="language-bash">export PYTHONWARNINGS=&quot;ignore&quot;
+whisper --language=en --fp16 False --output_format txt recording.webm
+</code></pre>
+<p>Which should now generate a clean output containing the recordings transcribed text, that's also written to <code>recording.txt</code>:</p>
+<pre><code>[00:00.000 --&gt; 00:02.000]  A latte, please.
+</code></pre>
+<p>This <strong>2s</strong> recording took <strong>9 seconds</strong> to transcribe on an M2 Macbook Air, a fair bit longer than the <strong>1-2 seconds</strong>
+it takes to upload and transcribe recordings to Google Cloud, but still within acceptable response times for real-time transcriptions.</p>
+<h3 id="switch-to-local-openai-whisper">Switch to local OpenAI Whisper<a class="header-anchor" href="javascript:;" onclick="location.hash='#switch-to-local-openai-whisper'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>You can configure your App to use a local <strong>whisper</strong> install by registering <code>WhisperLocalSpeechToText</code>:</p>
+<pre><code class="language-csharp">services.AddSingleton&lt;ISpeechToText&gt;(c =&gt; new WhisperLocalSpeechToText {
+   WhisperPath = ProcessUtils.FindExePath(&quot;whisper&quot;),
+   TimeoutMs = 120 * 1000,
+});
+</code></pre>
+<h3 id="example-usage">Example Usage<a class="header-anchor" href="javascript:;" onclick="location.hash='#example-usage'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>TypeChat Examples <code>CreateRecording</code> API implementation in
+<a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples.ServiceInterface/GptServices.cs">GptServices.cs</a>
+is used to transcribe the uploaded Web Audio recording for <strong>all its examples</strong> which it first creates an entry in the
+<code>Recording</code> RDBMS Table before invoking the Speech-to-Text API that is then updated after its successful or error response:</p>
+<pre><code class="language-csharp">public IAutoQueryDb AutoQuery { get; set; }
+public ISpeechToTextFactory SpeechToTextFactory { get; set; }
+
+public async Task&lt;Recording&gt; Any(CreateRecording request)
+{
+    var feature = request.Feature.ToLower();
+    var recording = (Recording)await AutoQuery.CreateAsync(request, Request);
+    var speechToText = SpeechToTextFactory.Get(request.Feature);
+
+    var transcribeStart = DateTime.UtcNow;
+    await Db.UpdateOnlyAsync(() =&gt; new Recording { TranscribeStart=transcribeStart },
+        where: x =&gt; x.Id == recording.Id);
+
+    ResponseStatus? responseStatus = null;
+    try
+    {
+        var response = await speechToText.TranscribeAsync(request.Path);
+        var transcribeEnd = DateTime.UtcNow;
+        await Db.UpdateOnlyAsync(() =&gt; new Recording
+        {
+            Feature = feature,
+            Provider = speechToText.GetType().Name,
+            Transcript = response.Transcript,
+            TranscriptConfidence = response.Confidence,
+            TranscriptResponse = response.ApiResponse,
+            TranscribeEnd = transcribeEnd,
+            TranscribeDurationMs = (transcribeEnd-transcribeStart).TotalMilliseconds,
+            Error = response.ResponseStatus.ToJson(),
+        }, where: x =&gt; x.Id == recording.Id);
+        responseStatus = response.ResponseStatus;
+    }
+    catch (Exception e)
+    {
+        await Db.UpdateOnlyAsync(() =&gt; new Recording { Error = e.ToString() },
+            where: x =&gt; x.Id == recording.Id);
+        responseStatus = e.ToResponseStatus();
+    }
+
+    recording = await Db.SingleByIdAsync&lt;Recording&gt;(recording.Id);
+
+    if (responseStatus != null)
+        throw new HttpError(responseStatus, HttpStatusCode.BadRequest);
+
+    return recording;
+}
+</code></pre>
+<h3 id="client-usage-example">Client Usage Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#client-usage-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Now that our Server supports it we can start using this API to upload Audio Recordings by running the pre-configured
+npm script to update our App's <a href="https://docs.servicestack.net/javascript-add-servicestack-reference">Typed JavaScript DTOs</a>:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run dtos</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>To simplify capturing Web Audio recordings we've the encapsulated reusable functionality within the <a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/wwwroot/mjs/AudioRecorder.mjs">AudioRecorder.mjs</a>
+class whose <code>start()</code> method starts recording Audio from the Users microphone:</p>
+<pre><code class="language-js">import { AudioRecorder } from &quot;/mjs/AudioRecorder.mjs&quot;
+
+let audioRecorder = new AudioRecorder()
+await audioRecorder.start()
+</code></pre>
+<p>Where it captures audio chunks until <code>stop()</code> is called that are then stitched together into a <code>Blob</code> and converted into
+a Blob DataURL that's returned within a populated <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement">Audio</a>
+Media element:</p>
+<pre><code class="language-js">const audio = await audioRecorder.stop()
+</code></pre>
+<p>That supports the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#instance_methods">HTMLMediaElement</a> API
+allowing pause and playback of recordings:</p>
+<pre><code class="language-js">audio.play()
+audio.pause()
+</code></pre>
+<p>The <code>AudioRecorder</code> also maintains the <code>Blob</code> of its latest recording in its <code>audioBlob</code> field and the <strong>MimeType</strong> that it was
+captured with in <code>audioExt</code> field, which we can use to upload it to the <code>CreateRecording</code> API, which if
+successful will return a transcription of the Audio recording:</p>
+<pre><code class="language-js">import { JsonApiClient } from &quot;@servicestack/client&quot;
+
+const client = JsonApiClient.create()
+
+const formData = new FormData()
+formData.append('path', audioRecorder.audioBlob, `file.${audioRecorder.audioExt}`)
+const api = await client.apiForm(new CreateRecording({feature:'coffeeshop'}),formData)
+if (api.succeeded) {
+   transcript.value = api.response.transcript
+}
+</code></pre>
+<p>This is used by all TypeChat Examples that's encapsulated in their UI Razor Pages:</p>
+<ul>
+<li><a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Pages/CoffeeShop.cshtml">CoffeeShop.cshtml</a></li>
+<li><a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Pages/Sentiment.cshtml">Sentiment.cshtml</a></li>
+<li><a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Pages/Calendar.cshtml">Calendar.cshtml</a></li>
+<li><a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Pages/Restaurant.cshtml">Restaurant.cshtml</a></li>
+<li><a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Pages/Math.cshtml">Math.cshtml</a></li>
+<li><a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Pages/Music.cshtml">Music.cshtml</a></li>
+</ul>
+<h2 id="prompt-providers">Prompt Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#prompt-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Whilst not required for usage with other providers, the <code>IPromptProvider</code> interface can improve code reuse by
+implementing a standard interface for generating their TypeScript <code>Schema</code> and Chat GPT <code>Prompt</code> texts.</p>
+<pre><code class="language-csharp">// The App Provider to use to generate TypeChat Schema and Prompts
+public interface IPromptProvider
+{
+    // Create a TypeChat TypeScript Schema from a TypeChatRequest
+    Task&lt;string&gt; CreateSchemaAsync(CancellationToken token);
+
+    // Create a TypeChat TypeScript Prompt from a User request
+    Task&lt;string&gt; CreatePromptAsync(string userMessage, CancellationToken token);
+}
+</code></pre>
+<p>Implementations contain the App-specific functionality for creating its <strong>TypeScript Schema</strong> and <strong>GPT Prompt</strong>,
+which each App in TypeChatExamples maintains in its <code>*PromptProvider.cs</code> classes in the
+<a href="https://github.com/NetCoreApps/TypeChatExamples/tree/main/TypeChatExamples.ServiceInterface">TypeChatExamples.ServiceInterface</a> project.</p>
+<h2 id="typechat-api">TypeChat API<a class="header-anchor" href="javascript:;" onclick="location.hash='#typechat-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>After receiving a text transcript of a Customer's natural language request you'll need to enlist the services of Chat GPT
+to convert it into an Order request that your App can understand.</p>
+<h3 id="itypechat">ITypeChat<a class="header-anchor" href="javascript:;" onclick="location.hash='#itypechat'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Just as we've abstracted the substitutable Speech-to-text Services App binds to, we've also created an abstraction for
+the TypeChat provider App uses, which allows easily swap out and evaluate different solutions or Mocking in tests:</p>
+<pre><code class="language-csharp">public interface ITypeChat
+{
+    Task&lt;TypeChatResponse&gt; TranslateMessageAsync(TypeChatRequest request, 
+        CancellationToken token = default);
+}
+</code></pre>
+<p>Whilst a simple API on the surface, different execution and customizations options are available in the
+<code>TypeChatRequest</code> which at a minimum requires the <strong>Schema</strong> &amp; <strong>Prompt</strong> to use and the <strong>UserMessage</strong> to convert:</p>
+<pre><code class="language-csharp">// Request to process a TypeChat Request
+public class TypeChatRequest
+{
+    public TypeChatRequest(string schema, string prompt, string userMessage)
+    {
+        Schema = schema;
+        Prompt = prompt;
+        UserMessage = userMessage;
+    }
+
+    /// TypeScript Schema
+    public string Schema { get; set; }
+    
+    /// TypeChat Prompt
+    public string Prompt { get; set; }
+    
+    /// Chat Request
+    public string UserMessage { get; }
+    
+    /// Path to node exe (default node in $PATH)
+    public string? NodePath { get; set; }
+
+    /// Timeout to wait for node script to complete (default 120s)
+    public int NodeProcessTimeoutMs { get; set; } = 120 * 1000;
+
+    /// Path to node TypeChat script (default typechat.mjs)
+    public string? ScriptPath { get; set; }
+    
+    /// TypeChat Behavior we want to use (Json | Program)
+    public TypeChatTranslator TypeChatTranslator { get; set; }
+
+    /// Path to write TypeScript Schema to (default Temp File)
+    public string? SchemaPath { get; set; }
+    
+    /// Which directory to execute the ScriptPath (default CurrentDirectory) 
+    public string? WorkingDirectory { get; set; }
+}
+</code></pre>
+<p>There are currently 2 different Chat GPT <code>ITypeChat</code> implementations registered in TypeChat Examples
+<a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Configure.Gpt.cs">Configure.Gpt.cs</a>.</p>
+<h3 id="semantic-kernel-typechat-provider">Semantic Kernel TypeChat Provider<a class="header-anchor" href="javascript:;" onclick="location.hash='#semantic-kernel-typechat-provider'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The natural approach for interfacing with OpenAI's ChatGPT API in .NET is to use <a href="https://github.com/microsoft/semantic-kernel">Microsoft's Semantic Kernel</a>
+to call it directly, which can be registered with:</p>
+<pre><code class="language-csharp">var kernel = Kernel.Builder.WithOpenAIChatCompletionService(
+        Environment.GetEnvironmentVariable(&quot;OPENAI_MODEL&quot;) ?? &quot;gpt-3.5-turbo&quot;, 
+        Environment.GetEnvironmentVariable(&quot;OPENAI_API_KEY&quot;)!)
+    .Build();
+services.AddSingleton(kernel);
+services.AddSingleton&lt;ITypeChat&gt;(c =&gt; new KernelTypeChat(c.Resolve&lt;IKernel&gt;()));
+</code></pre>
+<h2 id="node-typechat-provider">Node TypeChat Provider<a class="header-anchor" href="javascript:;" onclick="location.hash='#node-typechat-provider'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>As the <a href="https://github.com/microsoft/TypeChat">TypeChat library</a> uses <strong>typescript</strong> it requires calling out to the
+<strong>node</strong> executable in order to be able to use it from .NET Apps, which can be configured withL</p>
+<pre><code class="language-csharp">services.AddSingleton&lt;ITypeChat&gt;(c =&gt; new NodeTypeChat());
+</code></pre>
+<p>It works by executing an <strong>external process</strong> that invokes a <a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/typechat.mjs">typechat.mjs</a>
+script wrapper around TypeChat's functionality to invoke it and return any error responses in a structured <code>ResponseStatus</code>
+format that our .NET App can understand, which can also be invoked manually from the command line with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>node typechat.mjs json gpt\coffeeshop\schema.ts &quot;i wanna latte macchiato with vanilla&quot;</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>TypeChat uses the OpenAI Environment Variables below to access ChatGPT APIs:</p>
+<ul>
+<li><code>OPENAI_MODEL</code> - The OpenAI model name (e.g. <strong>gpt-3.5-turbo</strong> or <strong>gpt-4</strong>)</li>
+<li><code>OPENAI_API_KEY</code> - Your OpenAI API key</li>
+</ul>
+<h2 id="using-chat-gpt-to-process-natural-language-orders">Using Chat GPT to process Natural Language Orders<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-chat-gpt-to-process-natural-language-orders'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We now have everything we need to start leveraging Chat GPT to convert our Customers <strong>Natural Language</strong> requests
+into Machine readable instructions that our App can understand, guided by the App's TypeChat TypeScript Schema.</p>
+<p>TypeChat Examples does this for all its apps in <a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples.ServiceInterface/GptServices.cs">GptServices.cs</a>
+that just like <code>CreateRecording</code> is a custom AutoQuery CRUD Service that uses AutoQuery to create the
+initial <code>Chat</code> record, that's later updated with the GPT Chat API Response:</p>
+<pre><code class="language-csharp">public class GptServices : Service
+{
+    //...
+    public IAutoQueryDb AutoQuery { get; set; }
+    public IPromptProvider PromptProvider { get; set; }
+    public ITypeChat TypeChatProvider { get; set; }
+    
+    public async Task&lt;object&gt; Any(CreateChat request)
+    {
+        var feature = request.Feature.ToLower();
+        var promptProvider = PromptFactory.Get(feature);
+        var chat = (Chat)await AutoQuery.CreateAsync(request, Request);
+
+        var chatStart = DateTime.UtcNow;
+        await Db.UpdateOnlyAsync(() =&gt; new Chat { ChatStart = chatStart },
+            where: x =&gt; x.Id == chat.Id);
+
+        ResponseStatus? responseStatus = null;
+        try
+        {
+            var schema = await promptProvider.CreateSchemaAsync();
+            var prompt = await promptProvider.CreatePromptAsync(request.UserMessage);
+            var typeChatRequest = CreateTypeChatRequest(feature, schema, prompt, request.UserMessage);
+            
+            var response = await TypeChat.TranslateMessageAsync(typeChatRequest);
+            var chatEnd = DateTime.UtcNow;
+            await Db.UpdateOnlyAsync(() =&gt; new Chat
+            {
+                Request = request.UserMessage,
+                Feature = feature,
+                Provider = TypeChat.GetType().Name,
+                Schema = schema,
+                Prompt = prompt,
+                ChatResponse = response.Result,
+                ChatEnd = chatEnd,
+                ChatDurationMs = (int)(chatEnd - chatStart).TotalMilliseconds,
+                Error = response.ResponseStatus.ToJson(),
+            }, where: x =&gt; x.Id == chat.Id);
+            responseStatus = response.ResponseStatus;
+        }
+        catch (Exception e)
+        {
+            await Db.UpdateOnlyAsync(() =&gt; new Chat { Error = e.ToString() },
+                where: x =&gt; x.Id == chat.Id);
+            responseStatus = e.ToResponseStatus();
+        }
+
+        chat = await Db.SingleByIdAsync&lt;Chat&gt;(chat.Id);
+        
+        WriteJsonFile($&quot;/chat/{feature}/{chat.CreatedDate:yyyy/MM/dd}/{chat.CreatedDate.TimeOfDay.TotalMilliseconds}.json&quot;, chat.ToJson());
+
+        if (responseStatus != null)
+            throw new HttpError(responseStatus, HttpStatusCode.BadRequest);
+        
+        return chat;
+    }
+}
+</code></pre>
+<h3 id="client-usage">Client Usage<a class="header-anchor" href="javascript:;" onclick="location.hash='#client-usage'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Just like the <a href="/posts/servicestack-ai#client-usage-example">CreateRecording client usage</a> example we can invoke the
+APIs using the typed JavaScript DTOs to invoke the <code>CreateChat</code> API to returns Chat GPTs JSON Response directly to the client:</p>
+<pre><code class="language-js">apiChat.value = await client.api(new CreateChat({
+    feature: 'coffeeshop',
+    userMessage: request.toLowerCase()
+}))
+
+if (apiChat.value.response) {
+    processChatItems(JSON.parse(apiChat.value.response.chatResponse).items)
+} else if (apiChat.value.error) {
+    apiProcessed.value = apiChat.value
+}
+</code></pre>
+<p>Which for the CoffeeShop example is in the structure of the TypeScript Schema's array of <code>Cart</code> LineItem's which are matched
+against the products and available customizations from the App's database before being added to the user's cart in the
+<a href="https://github.com/NetCoreApps/TypeChatExamples/blob/main/TypeChatExamples/Pages/CoffeeShop.cshtml#L530">processChatItems(items)</a> function.</p>
+<h2 id="feedback-and-feature-requests-welcome">Feedback and Feature Requests Welcome<a class="header-anchor" href="javascript:;" onclick="location.hash='#feedback-and-feature-requests-welcome'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Please submit any feature requests for other GPT or AI providers you'd like to see implemented to:</p>
+<h3 class="not-prose text-center pb-8">
+    <a class="text-3xl text-blue-600 hover:underline" href="https://servicestack.net/ideas">https://servicestack.net/ideas</a>
+</h3>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis-bellot"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.jpg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis Bellot
+                        </div>
+                        <div class="text-gray-600">
+                            Father of 3 when not deving @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+            <ul role="list" class="flex">
+                    <li>
+                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/demisbellot">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on threads.net" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://threads.net/@demisbellot">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7.5c-1.333-3-3.667-4.5-7-4.5c-5 0-8 2.5-8 9s3.5 9 8 9s7-3 7-5s-1-5-7-5c-2.5 0-3 1.25-3 2.5C9 15 10 16 11.5 16c2.5 0 3.5-1.5 3.5-5s-2-4-3-4s-1.833.333-2.5 1"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/mythz">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Email Demis Bellot" href="mailto:demis@servicestack.com" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500">
+                            <svg class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20q-.825 0-1.413-.588T2 18V6q0-.825.588-1.413T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.588 1.413T20 20H4Zm8-7L4 8v10h16V8l-8 5Zm0-2l8-5H4l8 5ZM4 8V6v12V8Z"/></svg>
+                        </a>
+                    </li>
+            </ul>
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis Bellot
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/typescript-typechat-examples">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/typescript-typechat-examples" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="All of TypeScript&#x27;s TypeChat Examples in .NET">
+                                                    All of TypeScript&#x27;s TypeChat Examples in .NET
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Guide to implementing Voice Transcriptions and TypeChat GPT in .NET</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="All of TypeScript&#x27;s TypeChat Examples in .NET background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-09-26T00:00:00.0000000">September 26, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/voice-activated-typechat-coffeeshop">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1678483789107-0029c61fdcca?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/voice-activated-typechat-coffeeshop" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Creating a Voice Activated CoffeeShop in .NET">
+                                                    Creating a Voice Activated CoffeeShop in .NET
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Guide to implementing Voice Transcriptions and TypeChat GPT in .NET</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Creating a Voice Activated CoffeeShop in .NET background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-09-20T00:00:00.0000000">September 20, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>27 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/building-typechat-coffeeshop-modelling">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1501516069922-a9982bd6f3bd?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/building-typechat-coffeeshop-modelling" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Modelling TypeChat&#x27;s CoffeeShop in .NET">
+                                                    Modelling TypeChat&#x27;s CoffeeShop in .NET
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">We look at Modelling TypeChat&#x27;s CoffeeShop App</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Modelling TypeChat&#x27;s CoffeeShop in .NET background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-09-12T00:00:00.0000000">September 12, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>32 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/razor-ssg-new-blog-features">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/razor-ssg-new-blog-features" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New Blogging features in Razor SSG">
+                                                    New Blogging features in Razor SSG
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Explore the new Blogging Features in Razor SSG</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="New Blogging features in Razor SSG background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-08-23T00:00:00.0000000">August 23, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>6 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
+<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                    <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
