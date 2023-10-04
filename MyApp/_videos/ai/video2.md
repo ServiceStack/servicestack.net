@@ -2,7 +2,7 @@
 title: Creating TypeChat's Voice Activated CoffeeShop in .NET
 url: https://youtu.be/OtgrIdkvw-4
 tags: servicestack,autoquery,ai,gpt
-date: 20-09-2021
+date: 20-09-2023
 ---
 
 Part two in the series where we walk through a recreation of the TypeChat example build in .NET. 

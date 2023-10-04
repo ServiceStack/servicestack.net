@@ -2,7 +2,7 @@
 title: Building TypeScript's TypeChat CoffeeShop in .NET
 url: https://youtu.be/MjNqPAXLH5w
 tags: servicestack,autoquery,ai,gpt
-date: 14-09-2021
+date: 14-09-2023
 ---
 
 In this video, we'll cover how to effectively model your data to capture all customer-orderable products. 
