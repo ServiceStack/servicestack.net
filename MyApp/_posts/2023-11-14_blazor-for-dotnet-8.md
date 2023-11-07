@@ -31,7 +31,7 @@ In terms of security, the template integrates ASP.NET Core Identity, offering a 
 
 ## Structured Project Scaffolding
 
-The command `x new blazor MyProject` creates a new Blazor application with a predefined structure:
+The command `x new blazor MyApp` creates a new Blazor application with a predefined structure:
 
 - **SQLite Database**: Set up as the default database, it allows developers to start immediately without configuring a separate database server.
 - **Entity Framework Core Migrations**: Found in a dedicated directory, easing schema evolution and database versioning.
