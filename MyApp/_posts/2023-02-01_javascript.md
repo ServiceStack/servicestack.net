@@ -137,6 +137,10 @@ const Plugin = {
 }
 ```
 
+```html
+<plugin></plugin>
+```
+
 <div class="text-center">
     <plugin id="plugin" class="text-2xl py-4"></plugin>
 </div>
@@ -254,6 +258,10 @@ export default {
 ```
 
 Which we can also mount below:
+
+```html
+<hello-api value="Vue 3"></hello-api>
+```
 
 <hello-api value="Vue 3" class="w-full font-semibold"></hello-api>
 
