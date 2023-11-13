@@ -1,5 +1,5 @@
 ---
-title: New Blazor for .NET 8 Template
+title: New .NET 8 Blazor Template
 summary: The new Blazor for .NET 8 template streamlines web UI development in C#.
 tags: [dotnet, blazor, templates]
 image: https://images.unsplash.com/photo-1516491575772-bab9f75948c0?crop=entropy&fit=crop&h=1000&w=2000
