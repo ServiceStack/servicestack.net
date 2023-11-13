@@ -34,6 +34,10 @@
     <_ContentIncludedByDefault Remove="_pages\vue\sidebar.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\posts\net8-blazor\" />
+  </ItemGroup>
+
 
   <!--  <ItemGroup>-->
   <!--    <ProjectReference Include="..\..\..\ServiceStack\ServiceStack\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.csproj" />-->

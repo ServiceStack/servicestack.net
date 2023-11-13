@@ -264,9 +264,7 @@ export async function remount() {
 }
 
 document.addEventListener('DOMContentLoaded', () =>
-    Blazor.addEventListener('enhancedload', () => {
-        remount()
-    }))
+    Blazor.addEventListener('enhancedload', remount))
 ```
 
 Which for `EnableAuthenticator.razor` page loads the 
