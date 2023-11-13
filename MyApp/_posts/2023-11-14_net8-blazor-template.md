@@ -39,8 +39,8 @@ including support for email confirmation, two-factor authentication and GDPR com
 
 Integrating ASP.NET Core Identity doesn't complicate securing ServiceStack services which can still be secured with
 [Declarative Validation Attributes](https://docs.servicestack.net/auth/authentication-and-authorization#declarative-validation-attributes)
-for role-based access control, e.g. using `[ValidateHasRole("Employee")]` directly on Request DTOs, bringing your 
-existing knowledge and experience with ServiceStack Authentication to securing your UI and APIs with Identity Auth.
+for role-based access control, e.g. using `[ValidateHasRole("Employee")]` directly on Request DTOs, bringing any 
+existing knowledge and experience with ServiceStack Authentication to securing UIs and APIs with Identity Auth.
 
 The template includes a pre-baked solution for sending general and Identity Auth Emails with your configured SMTP Server
 in managed background workers with [Background MQ](https://docs.servicestack.net/background-mq) and an enhanced version of the default 
