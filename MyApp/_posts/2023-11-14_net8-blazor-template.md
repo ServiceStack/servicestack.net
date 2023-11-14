@@ -48,7 +48,7 @@ ASP.NET Core Blazor Identity UI, with all pages upgraded to use a beautiful Tail
 [qrcode.js](https://davidshimjs.github.io/qrcodejs/) 
 for providing a visual QR Code barcode which mobile phone users can easily scan to setup 2FA Authentication:
 
-![](/img/posts/net8-blazor/blazor-identityauth-qrcode.png)
+![](/img/posts/net8-best-blazor/blazor-identityauth-qrcode.png)
 
 ## Responsive and Interactive UIs with Tailwind CSS
 
