@@ -7,9 +7,13 @@ author: Demis Bellot
 draft: true
 ---
 
-The best way to find out what's new in .NET 8 Blazor is to watch the informative
-[What's New in Blazor for .NET 8](https://www.youtube.com/watch?v=QD2-DwuOfKM) presentation by Daniel Roth, 
+The best way to find out what's new in .NET 8 Blazor is to watch the excellent 
+[Full stack web UI with Blazor in .NET 8](https://www.youtube.com/watch?v=QD2-DwuOfKM) presentation by Daniel Roth and Steve Sanderson, 
 which covers how Blazor has become a Full Stack UI Web Technology for developing any kind of .NET Web App.
+
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="YwZdtLEtROA" style="background-image: url('https://img.youtube.com/vi/YwZdtLEtROA/maxresdefault.jpg')"></lite-youtube>
+</div>
 
 ## Your first .NET 8 Blazor App
 
@@ -21,7 +25,7 @@ This is because the **default rendering mode** for Blazor uses neither of these 
 traditional Web App development where Blazor Pages now return clean, glorious HTML - courtesy of Blazor's 
 [Static render mode](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes).
 
-[![](/img/posts/net8-blazor/blazor-ssr.png)](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes)
+[![](/img/posts/net8-best-blazor/blazor-ssr.png)](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes)
 
 ## Choose your compromise
 
@@ -194,11 +198,11 @@ or from its Live Demo by toggling on/off Dark Mode Component in the top right co
 
 <div class="not-prose mt-8 grid grid-cols-2 gap-4">
     <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="https://blazor.web-templates.io/?light">
-        <img class="p-2" src="/img/posts/net8-blazor/blazor-light.webp">
+        <img class="p-2" src="/img/posts/net8-best-blazor/blazor-light.webp">
         <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor.web-templates.io?light</div>
     </a>
     <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="https://blazor.web-templates.io/?dark">
-        <img class="p-2" src="/img/posts/net8-blazor/blazor-dark.webp">
+        <img class="p-2" src="/img/posts/net8-best-blazor/blazor-dark.webp">
         <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor.web-templates.io?dark</div>
     </a>
 </div>
@@ -285,7 +289,7 @@ export default {
 
 Which now works as expected in both full page reloads and Blazor's Enhanced Navigation:
 
-[![](/img/posts/net8-blazor/blazor-identityauth-qrcode.png)](https://blazor.web-templates.io/Account/Manage/EnableAuthenticator)
+[![](/img/posts/net8-best-blazor/blazor-identityauth-qrcode.png)](https://blazor.web-templates.io/Account/Manage/EnableAuthenticator)
 
 ## Blazor without Blazor Interactivity
 
@@ -395,29 +399,36 @@ export default {
 
 ## The new Blazor Vue Template 
 
-This happens to be how all Interactive features in the new [blazor-vue](https://github.com/NetCoreTemplates/blazor-vue/) template 
-are implemented - ideal for building fast, SEO-friendly statically rendered Blazor Web Apps with all dynamic functionally 
-progressively enhanced with Vue.js:
+This ends up being how the Interactive features in the new [blazor-vue](https://github.com/NetCoreTemplates/blazor-vue/) template 
+are implemented - ideal for building fast, SEO-friendly statically rendered Blazor Web Apps where all its dynamic functionally
+uses Vue.js to progressively enhance its static rendered content - eliminating Blazor's current limitations of being able to 
+use Blazor static SSR to implement an entire App with:
+
+![](/img/posts/net8-best-blazor/blazor-ssr-advantages.webp)
 
 ### Blazor Vue Tailwind Template
+
+The new [blazor-vue](https://github.com/NetCoreTemplates/blazor-vue) template implements all the features of the 
+[blazor](https://github.com/NetCoreTemplates/blazor) template but reimplements all its interactive features with 
+Vue.js to and the [Vue Components](https://docs.servicestack.net/vue/) library.
 
 <div class="not-prose shadow rounded-sm p-4">
     <a href="https://blazor-vue.web-templates.io/">
         <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor-vue.png" alt=""></a>
 </div>
 
-It implements all the features of the [blazor](https://github.com/NetCoreTemplates/blazor/) template but uses Vue.js to
-and [ServiceStack's Vue Components](https://docs.servicestack.net/vue/) for all its interactive features.
+#### Faster iterative development
 
 Other benefits of using Vue for Interactivity is the fast iterative feedback loop during development that even applies 
-tos its [Markdown-powered Blog](https://blazor-vue.web-templates.io/blog) feature which itself can embed rich interactive Vue Components and rich JavaScript UIs 
-like Chart.js in its [Markdown Blog Posts](https://blazor-vue.web-templates.io/posts/razor-ssg-new-blog-features) thanks to its unapologetic complexity-free 
+to its [Markdown-powered Blog](https://blazor-vue.web-templates.io/blog) which itself can embed rich interactive Vue Components and rich JavaScript UIs 
+like Chart.js in its [Markdown Blog Posts](https://blazor-vue.web-templates.io/posts/razor-ssg-new-blog-features) thanks to its unapologetic, complexity-free 
 [#NoBuild](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c) solution.
 
 ### Blazor App Tailwind Template
 
-The Blazor App template is for C# Developers who prefer to use Blazor end-to-end for all its App's functionality, which
-uses Blazor Server and [ServiceStack.Blazor Components](https://blazor-gallery.jamstacks.net/) for its Interactive Pages:
+Alternatively the [blazor](https://github.com/NetCoreTemplates/blazor) project template is for C# Developers who prefer 
+to use Blazor end-to-end for all App functionality, which uses Blazor Server and 
+[ServiceStack.Blazor Components](https://blazor-gallery.jamstacks.net/) on its Pages requiring Interactivity:
 
 <div class="not-prose shadow rounded-sm p-4">
     <a href="https://blazor.web-templates.io/">
@@ -428,15 +439,19 @@ Whilst Blazor Interactivity may remain the predominant solution amongst .NET dev
 for progressively enhanced statically-rendered Blazor Apps which has now become our preferred solution for developing
 most .NET Web Apps.
 
-It overcomes our biggest gripe with Blazor Web Assembly, which we were unsuccessful in
+It overcomes our biggest gripe with Blazor Web Assembly, that we were unsuccessful in
 [prerendering away](https://blazor-tailwind.jamstacks.net/docs/prerender) its poor startup performance and UI jank
 in Internet Apps.
 
 ## Blazor Vue Diffusion
 
 So when we learned about .NET 8's static default rendering mode and enhanced navigation we jumped at the opportunity to
-create the Blazor Vue template which was used to re-implement Vue Blazor Diffusion - a statically rendered Blazor App that
-uses Vue.js for all its functionality.
+create the Blazor Vue template which was used to re-implement Blazor Diffusion with Blazor SSR and Vue.js - a statically 
+rendered Blazor App that uses Vue.js for all its functionality.
+
+<h3 class="not-prose text-center pb-8">
+    <a class="text-4xl text-blue-600 hover:underline" href="https://blazordiffusion.com">https://blazordiffusion.com</a>
+</h3>
 
 [Blazor Diffusion](https://github.com/NetCoreApps/BlazorDiffusion) is our Blazor Demo App we used to showcase how you 
 could use [Universal API Components](https://youtu.be/66DgLHExC9E) to build Blazor Components and entire Blazor Apps
@@ -448,11 +463,11 @@ a [Blazor Web Assembly](https://github.com/NetCoreApps/BlazorDiffusionWasm) proj
 The Blazor Vue version starts from a clean slate, utilizing statically rendered Blazor for faster page loads and generating 
 SEO-friendly content:
 
-[![](/img/posts/net8-blazor/blazordiffusionvue.webp)](https://blazordiffusion.com/)
+[![](/img/posts/net8-best-blazor/blazordiffusionvue.webp)](https://blazordiffusion.com/)
 
-We're very pleased with the results, much faster loading times, no UI jankiness, enhanced navigation, better SEO - essentially a better UX overall.
-All without needing any prerendering solution and a faster iterative development experience since Vue.js component changes
-are visible immediately after save. 
+We're very pleased with the results, much faster loading times, enhanced navigation, no UI jankiness, better SEO - essentially 
+a better UX overall, despite not needing any prerendering solution - all whilst enjoying a faster iterative development experience 
+where all Vue component changes were immediately visible after save.
 
 You can compare the differences of each Blazor Solution from the Live Demos below:
 
