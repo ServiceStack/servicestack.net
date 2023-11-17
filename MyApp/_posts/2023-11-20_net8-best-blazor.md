@@ -56,23 +56,27 @@ Only pages that need Blazor's interactivity features can opt-in to whichever Bla
 the most sense, either on a page-by-page or component basis, or by choosing `RenderMode.InteractiveAuto` which uses
 **InteractiveWebAssembly** if the WASM runtime is loaded or **InteractiveServer** if it isn't.
 
-### Full Stack Web UI
-
-We believe the static rendering default and its opt-in flexibility makes .NET 8 Blazor a game changer as it should become the 
-default choice for developing any kind of .NET Web App, especially as Blazor can also be utilized within existing ASP.NET MVC
-and Razor Pages Apps.
-
 ### Enhanced Navigation FTW
 
 Ultimately I expect Blazor's new **Enhanced Navigation** is likely the feature that will deliver the biggest UX improvement 
 users will experience given it's enabled by default and gives traditional statically rendered Web Apps instant SPA-like 
-navigation responsiveness where new pages are swapped in without needing to load an entire page or any of its resources. 
+navigation responsiveness where new pages are swapped in without needing to perform expensive full page reloads.
 
 It's beauty lies in being able to do this as a mostly transparent detail without the traditional SPA complexity of needing 
-to manage complex state or client-side routing.   
+to manage complex state or client-side routing. It's a smart implementation that's able to perform fine-grained
+DOM updates to only parts of pages that have changed, providing the ultimate UX of preserving page state,
+like populated form fields and scroll position, to deliver a fast and responsive UX that previously wasn't attainable
+from the simplicity of a Server Rendered App.
 
-It's implementation does pose some challenges in implementing certain features, but we'll cover some approaches 
-we've used to overcome them.
+Its implementation does pose some challenges in implementing certain features, but we'll cover some approaches 
+below we've used to overcome them below.
+
+### Full Stack Web UI
+
+Blazor's static rendering with enhanced navigation and its opt-in flexibility makes .NET 8 Blazor a game changer,
+expanding it from a very niche set of use-cases that weren't too adversely affected by its Interactivity mode downsides,
+to becoming a viable solution for developing any kind of .NET Web App, especially as it can also be utilized within
+existing ASP.NET MVC and Razor Pages Apps.
 
 ### Benefits over MVC and Razor Pages
 
