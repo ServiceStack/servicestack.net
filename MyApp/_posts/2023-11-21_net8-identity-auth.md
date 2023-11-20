@@ -51,7 +51,7 @@ To start off, the new .NET 8 Blazor and MVC Project Templates are configured to 
 The configuration and source code for the above projects are a good reference for how to configure ServiceStack with
 Identity Auth in your own projects.
 
-These use the same Individual Identity Auth Pages that Microsoft's MVC and Blazor templates use, except the've been enhanced 
+These use the same Individual Identity Auth Pages that Microsoft's MVC and Blazor templates use, except they've been enhanced 
 to use Tailwind CSS instead of Bootstrap, includes a visual QR Code implementation that was missing and includes an
 `IEmailSender` SMTP solution that's easily enabled via Configuration to use your preferred SMTP Server.
 
@@ -158,7 +158,7 @@ Plugins.Add(new AuthFeature(IdentityAuth.For<ApplicationUser>(options => {
 By default all [well known Claim Names](https://github.com/ServiceStack/ServiceStack/blob/3ab3d23c85cf48435b8cd9386f25afab79fcb542/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityApplicationAuthProvider.cs#L49)
 are used to populate the User Session, but you can also include additional claims in the Identity Auth Cookie
 and use them to populate the User Session by overriding `PopulateFromClaims()` in your
-[CustomUserSession.cs](https://github.com/NetCoreTemplates/blazor/blob/main/MyApp.ServiceInterface/Data/CustomUserSession.cs), e.g:a
+[CustomUserSession.cs](https://github.com/NetCoreTemplates/blazor/blob/main/MyApp.ServiceInterface/Data/CustomUserSession.cs), e.g:
 
 ```csharp
 public class CustomUserSession : AuthUserSession
@@ -266,9 +266,8 @@ public class Secured {}
 
 ## Migrating from ServiceStack Auth
 
-Migrating from ServiceStack Auth to Identity Auth should be relatively straight-forward as ServiceStack used a compatible
-password hashing format with ASP.NET Identity v2, so you should be able to seamlessly migrate users to Identity Auth
-without your Users noticing.
+Migrating from ServiceStack Auth to Identity Auth should be relatively straight-forward as ServiceStack uses a compatible
+Identity v2 password hashing format, which should let you migrate your users to Identity Auth without them noticing.
 
 :::info TIP
 Please ensure your App database is backed up before running any migrations 
@@ -280,7 +279,7 @@ You'll want to use a different name so it doesn't conflict with the new Identity
 would only be needed to query the User data to migrate to Identity Auth, you'll be able to remove it after 
 successfully migrating all your Users.
 
-You don't need to list all the properties of the `UserAuth` base table, just the ones you want to migrate to Identity Auth,
+You don't need to include all the properties of the `UserAuth` base table, just the ones you want to migrate to Identity Auth,
 which for Blazor Diffusion was only:
 
 ```csharp
