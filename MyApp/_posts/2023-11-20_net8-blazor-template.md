@@ -4,7 +4,6 @@ summary: The new Blazor for .NET 8 template streamlines web UI development in C#
 tags: [dotnet, blazor, templates]
 image: https://images.unsplash.com/photo-1516491575772-bab9f75948c0?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
-draft: true
 ---
 
 With the release of **.NET 8**, we're happy to announce ServiceStack's new [Blazor](https://blazor.web-templates.io/)
