@@ -137,6 +137,124 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.0</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">November 20, 2023</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v8_00"><img src="/img/whatsnew/v8.0/net8.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v8_00">Enhanced for .NET 8</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're excited to welcome the next major release of ServiceStack v8, designed to take advantage of many advancements
+for in .NET's latest long-term release: <strong>.NET 8</strong></p>
+<h4 id="all-nuget-packages-include-net8.0-builds">All NuGet Packages include net8.0 builds<a class="header-anchor" href="javascript:;" onclick="location.hash='#all-nuget-packages-include-net8.0-builds'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>All of ServiceStack's active NuGet packages now include <code>.net8.0</code> target framework builds along with their
+dependencies on Microsoft's packages upgraded to use the latest <code>8.0.0</code> that were released with .NET 8.</p>
+<h4 id="all.net-project-templates-upgraded-to.net-8">All .NET Project Templates upgraded to .NET 8<a class="header-anchor" href="javascript:;" onclick="location.hash='#all.net-project-templates-upgraded-to.net-8'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>All Project Templates have been upgraded to use <strong>ServiceStack v8</strong> and <strong>.NET 8</strong>, inc. built-in CI/CD GitHub Actions
+upgraded to use <a href="https://devblogs.microsoft.com/dotnet/securing-containers-with-rootless/">secure rootless Linux Docker containers</a>
+built into .NET 8 which allow you to effortlessly deploy your containerized .NET 8 Apps with Docker and
+GitHub Registry via SSH to any Linux Server.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v8_00" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v8_00#new.net-8-blazor-template"><img src="/img/whatsnew/v8.0/blazor-templates.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v8_00#new.net-8-blazor-template">New .NET 8 Blazor Tailwind Templates</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack's new <a href="/posts/net8-blazor-template">Blazor</a> project template takes advantage of .NET 8 Blazor's new features
+that redefines modern Web Development in C# which sees our new templates adopting Blazor's
+familiar <strong>ASP.NET Core Identity</strong> and <strong>Entity Framework</strong> for its authentication, utilizes the modern
+<a href="https://tailwindcss.com">Tailwind CSS</a> framework for beautiful responsive design and adopts .NET's best-practice
+<a href="https://learn.microsoft.com/en-us/dotnet/core/docker/publish-as-container">Docker Containerization</a> support for its built-in
+<a href="https://blazor.web-templates.io/deploy">GitHub Action Deployments</a> - enabling a simple ready-made CI solution for deployment to any
+Linux Host via SSH and Docker compose.</p>
+<h4 id="new-blazor-vue-template">New Blazor Vue Template<a class="header-anchor" href="javascript:;" onclick="location.hash='#new-blazor-vue-template'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>The new <a href="/posts/net8-best-blazor">Blazor Vue</a> template is ideal for building fast, SEO-friendly 100% statically rendered
+Blazor Web Apps where all its dynamic functionally uses Vue.js to progressively enhance its static rendered content -
+eliminating Blazor's limitations of using static rendering to implement an entire App.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v8_00#new.net-8-blazor-template" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v8_00#asp.net-core-identity-auth-in.net-8-templates"><img src="/img/whatsnew/v8.0/blazor-identityauth-qrcode.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v8_00#asp.net-core-identity-auth-in.net-8-templates">ASP.NET Core Identity Auth &amp; Entity Framework</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>A significant change we've added to our new .NET 8 Project Templates is the adoption of the same ASP.NET Core
+Identity Authentication that's configured in Microsoft's default Projects templates.</p>
+<p>ASP.NET Core Identity Auth now used in new Integrated Auth projects Going forward all new ServiceStack .NET Project Templates
+will adopt ASP.NET Identity Auth, which closely follows the same approach as the Microsoft Project Template it integrates
+ServiceStack with, e.g. the new .NET 8 Blazor and Blazor Vue project templates adopts the exact same Auth configuration
+as Microsoft's default Blazor Project Template configured with Individual Identity Auth, likewise with the Bootstrap
+and Tailwind styled MVC and Razor Pages templates.</p>
+<h4 id="asp.net-core-identity-auth-migration-guide">ASP.NET Core Identity Auth Migration Guide<a class="header-anchor" href="javascript:;" onclick="location.hash='#asp.net-core-identity-auth-migration-guide'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Migrating from ServiceStack Auth to Identity Auth should be relatively straight-forward as ServiceStack uses a compatible
+Identity v2 password hashing format, which should let you migrate your users to Identity Auth without them noticing.</p>
+<p>To help with any migrations we've published an <a href="https://docs.servicestack.net/auth/migrate-to-identity-auth">Identity Auth Migration Guide</a>
+we've used to convert existing ServiceStack Auth Apps to use Identity Auth.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v8_00#asp.net-core-identity-auth-in.net-8-templates" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/php-add-servicestack-reference"><img src="/img/whatsnew/v8.0/php.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/php-add-servicestack-reference">PHP Add ServiceStack Reference</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're happy to announce the next <a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a>
+language to enjoy end-to-end typed support is - <a href="https://www.php.net">PHP</a>!</p>
+<p><strong>PHP</strong> is one of the worlds most popular programming languages thanks to its ease of use,
+flexibility and fast development experience which sees it excels as a popular language for web development and for development
+of popular CMS products like WordPress, Drupal and Joomla.</p>
+<h3 id="first-class-development-experience">First class development experience<a class="header-anchor" href="javascript:;" onclick="location.hash='#first-class-development-experience'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To maximize the experience for calling ServiceStack APIs within these environments ServiceStack now supports PHP as a
+1st class Add ServiceStack Reference supported language which gives PHP developers an end-to-end typed API for consuming
+ServiceStack APIs, complete with IDE integration in <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> as well as
+<a href="/dotnet-tool#addupdate-servicestack-references">built-in support in x dotnet tool</a>
+to generate Typed and annotated PHP DTOs for a remote ServiceStack instance from a single command-line.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/php-add-servicestack-reference" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v6.11</h2>
         <div class="text-center text-lg font-normal text-gray-500 mb-8">October 3, 2023</div>
             <div class="flex flex-wrap my-24">
