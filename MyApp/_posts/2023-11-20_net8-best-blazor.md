@@ -4,7 +4,6 @@ summary: We explore the exciting new potential of Blazor in .NET 8 to develop fa
 tags: [c#, blazor, servicestack]
 image: https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
-draft: true
 ---
 
 The best way to find out what's new in .NET 8 Blazor is to watch the excellent 
