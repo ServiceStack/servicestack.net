@@ -124,7 +124,7 @@ and submitting forms to Logout users:
 
 Effectively adding interactivity to Blazor static rendered pages with client-side JavaScript to avoid paying Blazor's Interactivity tax.
 
-#### Avoiding Interactivity for Chrome elements
+#### Avoid using Interactivity in LayoutsAvoiding Interactivity for Chrome elements
 
 This is especially important for any features you want to add to the Websites Layout or Chrome UI which you'll always want to be
 statically rendered so landing pages can load fast and render SEO-friendly server rendered content. 
@@ -439,7 +439,7 @@ to use Blazor end-to-end for all App functionality, which uses Blazor Server and
         <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor.png" alt=""></a>
 </div>
 
-Whilst Blazor Interactivity may remain the predominant solution amongst .NET developers we believe .NET 8 Blazor opens the doors,
+Whilst Blazor Interactivity may remain the predominant solution amongst .NET developers we believe .NET 8 Blazor opens the doors
 for progressively enhanced statically-rendered Blazor Apps which has now become our preferred solution for developing
 most .NET Web Apps.
 
