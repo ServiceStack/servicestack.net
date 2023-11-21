@@ -201,13 +201,13 @@ With that it's ready for action, try it out in a new [blazor](https://github.com
 or from its Live Demo by toggling on/off Dark Mode Component in the top right corner:
 
 <div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="https://blazor.web-templates.io/?light">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="https://blazor-vue.web-templates.io/?light">
         <img class="p-2" src="/img/posts/net8-best-blazor/blazor-light.webp">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor.web-templates.io?light</div>
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor-vue.web-templates.io?light</div>
     </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="https://blazor.web-templates.io/?dark">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="https://blazor-vue.web-templates.io/?dark">
         <img class="p-2" src="/img/posts/net8-best-blazor/blazor-dark.webp">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor.web-templates.io?dark</div>
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor-vue.web-templates.io?dark</div>
     </a>
 </div>
 
@@ -221,9 +221,8 @@ setup 2FA Authentication.
 Whilst the placeholders are there, that implementation detail is left to us to workout how we best want to implement it 
 within our Apps, perhaps because they don't want to force an Interactivity rendering mode in the default template.
 
-If you're subscribed to the "Don't use Blazor Interactive unless you have to" philosophy you'll naturally want to 
-implement this with JavaScript using the popular [qrcodejs](https://davidshimjs.github.io/qrcodejs/) library
-by following its instructions and adding a simple inline script to the page:
+To avoid a degraded UX with Blazor Interactivity you'll naturally want to implement this with JavaScript using the popular 
+[qrcodejs](https://davidshimjs.github.io/qrcodejs/) library by following its instructions and adding a simple inline script to the page:
 
 ```html
 <div data-permanent id="qrCode"></div>
@@ -401,6 +400,12 @@ export default {
 }
 ```
 
+:::{.text-center}
+#### Blazor Counter in Vue.js
+
+<counter></counter>
+:::
+
 ## The new Blazor Vue Template 
 
 This ends up being how the Interactive features in the new [blazor-vue](https://github.com/NetCoreTemplates/blazor-vue/) template 
@@ -412,13 +417,32 @@ use Blazor static SSR to implement an entire App with:
 
 ### Blazor Vue Tailwind Template
 
-The new [blazor-vue](https://github.com/NetCoreTemplates/blazor-vue) template implements all the features of the 
-[blazor](https://github.com/NetCoreTemplates/blazor) template but reimplements all its interactive features with 
-Vue.js to and the [Vue Components](https://docs.servicestack.net/vue/) library.
+The new [blazor-vue](https://github.com/NetCoreTemplates/blazor-vue) template implements all the features of the
+[blazor](https://github.com/NetCoreTemplates/blazor) template but reimplements all its interactive features with
+Vue.js to and the [Vue Components](/vue/) library.
 
-<div class="not-prose shadow rounded-sm p-4">
-    <a href="https://blazor-vue.web-templates.io/">
-        <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor-vue.png" alt=""></a>
+<div class="not-prose mt-16 flex flex-col items-center">
+   <div class="flex">
+      <svg class="w-28 h-28 text-purple-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1zM8.895 11.628a2.188 2.188 0 1 0 2.188 2.188v-2.042a.158.158 0 0 0-.15-.15Z"></path></svg>
+   </div>
+</div>
+<div class="not-prose mt-4 px-4 sm:px-6">
+<div class="text-center"><h3 id="blazor-vue-template" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
+    Blazor Vue Template
+</h3></div>
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="ujbTGn4IwFs" style="background-image: url('https://img.youtube.com/vi/ujbTGn4IwFs/maxresdefault.jpg')"></lite-youtube>
+</div>
+</div>
+
+<div class="not-prose relative bg-white dark:bg-black py-4">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Create a new Blazor Vue Tailwind App</p>
+        <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500"> 
+            Create a new Blazor Vue Tailwind project with your preferred project name:
+        </p>
+    </div>
+    <blazor-vue-template repo="NetCoreTemplates/blazor-vue" name="Blazor Vue"></blazor-vue-template>
 </div>
 
 #### Faster iterative development
@@ -430,12 +454,12 @@ like Chart.js in its [Markdown Blog Posts](https://blazor-vue.web-templates.io/p
 
 ### Blazor App Tailwind Template
 
-Alternatively the [blazor](https://github.com/NetCoreTemplates/blazor) project template is for C# Developers who prefer 
+Alternatively the [Blazor Project Template](/posts/net8-blazor-template) is for C# Developers who prefer 
 to use Blazor end-to-end for all App functionality, which uses Blazor Server and 
 [ServiceStack.Blazor Components](https://blazor-gallery.jamstacks.net/) on its Pages requiring Interactivity:
 
 <div class="not-prose shadow rounded-sm p-4">
-    <a href="https://blazor.web-templates.io/">
+    <a href="/posts/net8-blazor-template">
         <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor.png" alt=""></a>
 </div>
 
