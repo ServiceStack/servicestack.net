@@ -106,7 +106,7 @@ runs after pages have been rendered, but you still have some options left before
 
 We can see some of these options utilized in the Blazor Template 
 [NavMenu.razor](https://github.com/dotnet/aspnetcore/blob/v8.0.0-rc.2.23480.2/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/NavMenu.razor)
-component which uses Blazor's `@onclick` directive to add client-side behavior to simulate mouse clicks to toggle UI elements:
+component which uses JavaScript `onclick` event handlers to add client-side behavior to simulate mouse clicks to toggle UI elements:
 
 ```html
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
