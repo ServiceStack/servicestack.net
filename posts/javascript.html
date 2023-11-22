@@ -483,8 +483,8 @@ with matching <code>id</code> fields:</p>
 </code></pre>
 <h4 id="implicit-error-handling">Implicit Error Handling<a class="header-anchor" href="javascript:;" onclick="location.hash='#implicit-error-handling'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>More often you'll want to take advantage of the implicit validation support in <code>useClient()</code> which makes its state available to child
-components, alleviating the need to explicitly pass it in each component as seen in razor-tailwind's
-<a href="https://github.com/NetCoreTemplates/razor-tailwind/blob/main/MyApp/wwwroot/Pages/Contacts.mjs">Contacts.mjs</a> <code>Edit</code> component for its
+components, alleviating the need to explicitly pass it in each component as seen in razor's
+<a href="https://github.com/NetCoreTemplates/razor/blob/net6/MyApp/wwwroot/Pages/Contacts.mjs">Contacts.mjs</a> <code>Edit</code> component for its
 <a href="https://vue-mjs.web-templates.io/Contacts">/Contacts</a> page which doesn't do any manual error handling:</p>
 <pre><code class="language-js">const Edit = {
     template:/*html*/`&lt;SlideOver @done=&quot;close&quot; title=&quot;Edit Contact&quot;&gt;
