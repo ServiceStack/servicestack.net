@@ -46,7 +46,7 @@ To start off, the new .NET 8 Blazor and MVC Project Templates are configured to 
 
 - [blazor](https://blazor.web-templates.io) - [source code](https://github.com/NetCoreTemplates/blazor)
 - [blazor-vue](https://blazor-vue.web-templates.io) - [source code](https://github.com/NetCoreTemplates/blazor-vue)
-- [mvc-tailwind](https://mvc-tailwind.web-templates.io) - [source code](https://github.com/NetCoreTemplates/mvc-tailwind)
+- [mvc](https://mvc.web-templates.io) - [source code](https://github.com/NetCoreTemplates/mvc)
 
 The configuration and source code for the above projects are a good reference for how to configure ServiceStack with
 Identity Auth in your own projects.
@@ -386,9 +386,9 @@ services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, AdditionalUserC
 ```
 
 Alternatively if you want to add support for external OAuth logins you can copy from the **MVC Tailwind** Authentication 
-configuration in its [Program.cs](https://github.com/NetCoreTemplates/mvc-tailwind/blob/main/MyApp/Program.cs) which will 
+configuration in its [Program.cs](https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/Program.cs) which will 
 also require adding the NuGet dependencies of the OAuth providers you want to support which you can get from its
-[MyApp.csproj](https://github.com/NetCoreTemplates/mvc-tailwind/blob/main/MyApp/MyApp.csproj)
+[MyApp.csproj](https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/MyApp.csproj)
 
 #### 4. Create and Run EF Migrations
 
@@ -548,7 +548,7 @@ x new blazor ProjectNamespace
 Or create a new MVC App with: 
 
 :::sh
-x new mvc-tailwind ProjectNamespace
+x new mvc ProjectNamespace
 :::
 
 Alternatively you can manually copy the pages from the project template repositories, for Blazor most of the Identity Auth
@@ -557,11 +557,11 @@ UI Pages are in the
 [Pages/Account](https://github.com/NetCoreTemplates/blazor/tree/main/MyApp/Components/Pages/Account) folders.
 
 For MVC, most of the Identity UI are in the 
-[Account](https://github.com/NetCoreTemplates/mvc-tailwind/blob/main/MyApp/Controllers/AccountController.cs)
-and [Manage](https://github.com/NetCoreTemplates/mvc-tailwind/blob/main/MyApp/Controllers/ManageController.cs) controllers
+[Account](https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/Controllers/AccountController.cs)
+and [Manage](https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/Controllers/ManageController.cs) controllers
 as well as their
-[Views/Account](https://github.com/NetCoreTemplates/mvc-tailwind/tree/main/MyApp/Views/Account) and
-[Views/Manage](https://github.com/NetCoreTemplates/mvc-tailwind/tree/main/MyApp/Views/Manage) folders.
+[Views/Account](https://github.com/NetCoreTemplates/mvc/tree/main/MyApp/Views/Account) and
+[Views/Manage](https://github.com/NetCoreTemplates/mvc/tree/main/MyApp/Views/Manage) folders.
 
 ### SMTP IEmailSender
 

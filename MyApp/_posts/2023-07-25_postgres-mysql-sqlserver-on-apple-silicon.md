@@ -153,8 +153,8 @@ browse and query an App's configured databases:
     <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="NZkeyuc_prg" style="background-image: url('https://img.youtube.com/vi/NZkeyuc_prg/maxresdefault.jpg')"></lite-youtube>
 </div>
 
-You can easily try this out from the database-enabled [vue-mjs](https://vue-mjs.web-templates.io) project template which 
-adopts our [Simple, Modern JavaScript](https://vue-mjs.web-templates.io/posts/javascript) approach that uses the native 
+You can easily try this out from the database-enabled [razor](https://razor.web-templates.io) project template which 
+adopts our [Simple, Modern JavaScript](/posts/javascript) approach that uses the native 
 JavaScript Modules support in modern Web Browsers to avoid any complex npm build tooling. 
 
 We can create an App to test against your databases by installing the [.NET SDK](https://dotnet.microsoft.com/en-us/download) and
@@ -167,7 +167,7 @@ dotnet tool install --global x
 This will let you create any [ServiceStack Project Template](/start) with your preferred Project Name from the command-line, e.g:
 
 :::sh
-x new vue-mjs DatabaseTest
+x new razor DatabaseTest
 :::
 
 Which creates a new .NET App that you can open with your preferred .NET IDE or text editor, e.g:
@@ -180,10 +180,10 @@ By default the App is configured to use a local SQLite database, we can extend i
 by adding the necessary RDBMS and `AdminDatabaseFeature` NuGet packages in `DatabaseTest.csproj`:
 
 ```xml
-<PackageReference Include="ServiceStack.OrmLite.MySql" Version="6.*" />
-<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="6.*" />
-<PackageReference Include="ServiceStack.OrmLite.SqlServer.Data" Version="6.*" />
-<PackageReference Include="ServiceStack.Server" Version="6.*" />
+<PackageReference Include="ServiceStack.OrmLite.MySql" Version="8.*" />
+<PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="8.*" />
+<PackageReference Include="ServiceStack.OrmLite.SqlServer.Data" Version="8.*" />
+<PackageReference Include="ServiceStack.Server" Version="8.*" />
 ```
 
 New dependencies can be installed with VS Code's **Restore** popup or by explicitly running `dotnet restore`.

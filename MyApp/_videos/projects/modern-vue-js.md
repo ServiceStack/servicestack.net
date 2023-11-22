@@ -12,8 +12,7 @@ These templates come with Tailwind, JS Modules, and Vue components already built
 making it easy to build hybrid apps containing both Server-Side Rendering (SSR) and static resources
 
 ### Live Demos
-- https://razor-tailwind.web-templates.io
+- https://blazor-vue.web-templates.io
+- https://razor.web-templates.io
+- https://mvc.web-templates.io
 - https://web-tailwind.web-templates.io
-- https://mvc-tailwind.web-templates.io
-- https://vue-mjs.web-templates.io
-- https://razor-pages.web-templates.io

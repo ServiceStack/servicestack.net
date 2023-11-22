@@ -49,7 +49,7 @@ to convert a natural language order into a `Cart` order our App can understand, 
 </h3>
 
 
-The Web UI adopts the same build-free [Simple, Modern JavaScript](/posts/javascript) approach used to create vue-mjs's [Client Admin UI](/posts/admin-uis),
+The Web UI adopts the same build-free [Simple, Modern JavaScript](/posts/javascript) approach used to create blazor-vue's [Client Admin UI](/posts/admin-uis),
 to create the CoffeeShop's reactive frontend UI utilizing progressive Vue.mjs, which is maintained in the
 [Index.cshtml](https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/Pages/Index.cshtml) Home page.
 

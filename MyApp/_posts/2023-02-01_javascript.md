@@ -26,7 +26,7 @@ sophisticated development workflow without the need for any npm build tools.
 
 ### Bringing Simplicity Back
 
-The [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs) template focuses on simplicity and eschews many aspects that has 
+The [razor](https://github.com/NetCoreTemplates/razor) template focuses on simplicity and eschews many aspects that has 
 complicated modern JavaScript development,
 specifically:
 
@@ -183,7 +183,7 @@ on-demand by the Browser when needed.
 ### @servicestack/vue
 [@servicestack/vue](https://github.com/ServiceStack/servicestack-vue) is our growing Vue 3 Tailwind component library with a number of rich Tailwind components useful 
 in .NET Web Apps, including Input Components with auto form validation binding which is used by all HTML forms in
-the [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs) template. 
+the [razor](https://github.com/NetCoreTemplates/razor) template. 
 
 <vue-component-gallery></vue-component-gallery>
 
@@ -225,7 +225,7 @@ client.api(new Hello({ name }))
 ```
 
 You'll typically use all these libraries in your **API-enabled** components as seen in the 
-[HelloApi.mjs](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/mjs/components/HelloApi.mjs)
+[HelloApi.mjs](https://github.com/NetCoreTemplates/razor/blob/main/MyApp/wwwroot/mjs/components/HelloApi.mjs)
 component on the home page which calls the [Hello](/ui/Hello) API on each key press:
 
 ```js
@@ -383,7 +383,7 @@ let store = {
 More often you'll want to take advantage of the implicit validation support in `useClient()` which makes its state available to child
 components, alleviating the need to explicitly pass it in each component as seen in razor's
 [Contacts.mjs](https://github.com/NetCoreTemplates/razor/blob/net6/MyApp/wwwroot/Pages/Contacts.mjs) `Edit` component for its
-[/Contacts](https://vue-mjs.web-templates.io/Contacts) page which doesn't do any manual error handling:
+Contacts page which doesn't do any manual error handling:
 
 ```js
 const Edit = {
@@ -507,7 +507,7 @@ const {
 } = useAuth()
 ```
 
-This is used in [Bookings.mjs](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/Pages/Bookings.mjs)
+This is used in [Bookings.mjs](https://github.com/NetCoreTemplates/razor/blob/main/MyApp/wwwroot/pages/Bookings.mjs)
 to control whether the `<AutoEditForm>` component should enable its delete functionality:
 
 ```js
@@ -545,7 +545,7 @@ function validateSafeName(e) {
 
 Whilst the code-base doesn't use TypeScript syntax in its code base directly, it still benefits from TypeScript's language services 
 in IDEs for the included libraries from the TypeScript definitions included in `/lib/typings`, downloaded in
-[postinstall.js](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/postinstall.js) after **npm install**.
+[postinstall.js](https://github.com/NetCoreTemplates/razor/blob/main/MyApp/postinstall.js) after **npm install**.
 
 ### Import Maps
 
@@ -640,7 +640,7 @@ We can get SPA-like page loading performance using htmx's [Boosting](https://htm
 by converting all anchor tags to use Ajax to load page content into the page body, improving perceived performance from needing to reload 
 scripts and CSS in `<head>`.
 
-This is used in [Header.cshtml](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Shared/Header.cshtml) to **boost** all
+This is used in [Header.cshtml](https://github.com/NetCoreTemplates/razor/blob/main/MyApp/Pages/Shared/Header.cshtml) to **boost** all
 main navigation links:
 
 ```html

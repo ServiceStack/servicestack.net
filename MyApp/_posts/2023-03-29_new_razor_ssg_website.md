@@ -19,9 +19,9 @@ Which comes just after a year from **100M downloads** in [v6 Release](https://do
 
 We're celebrating this new milestone with a **brand new website**, rewritten from Ruby's Jekyll with an exciting new 
 [Razor SSG](https://razor-ssg.web-templates.io) project template which takes advantage of the advances we've made in the last few releases 
-with our npm dependency-free approach to [Simple, Modern JavaScript](https://vue-mjs.web-templates.io/posts/javascript), 
+with our npm dependency-free approach to [Simple, Modern JavaScript](/posts/javascript), 
 the built-in support for
-[Prerendering Razor Pages](https://vue-mjs.web-templates.io/posts/prerendering) and the rich Tailwind 
+[Prerendering Razor Pages](/posts/prerendering) and the rich Tailwind 
 [Vue Component Library](https://docs.servicestack.net/vue/)
 to create an enjoyable experience for creating Fast, FREE, beautiful, CDN-hostable static generated websites & blogs!
 
@@ -55,7 +55,7 @@ account or billing issues, etc.
 
 Deterred by the growing complexity of current SSG solutions, we decided to create a new solution using C# & Razor Pages
 with a clean implementation that allowed full control with an **npm dependency-free** solution letting us adopt our preferred approach to
-[Simple, Modern JavaScript](https://vue-mjs.web-templates.io/posts/javascript) without any build-tooling or SPA complexity.
+[Simple, Modern JavaScript](/posts/javascript) without any build-tooling or SPA complexity.
 
 We're happy with the results of [https://servicestack.net](https://servicestack.net) new Razor SSG website -
 a clean, crisp code-base utilizing simple JS Module Vue 3 components, the source code of which is publicly maintained at:

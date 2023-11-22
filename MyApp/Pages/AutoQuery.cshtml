@@ -167,7 +167,7 @@
                   of the RDBMS you want to use. SQLite is a great option to evaluate AutoQuery without any external dependencies:
               </p>
               
-              <div data-component="CopyLine" data-props="{ text:'<PackageReference Include=&quot;ServiceStack.OrmLite.Sqlite.Data&quot; Version=&quot;6.*&quot; />' }"></div>
+              <div data-component="CopyLine" data-props="{ text:'<PackageReference Include=&quot;ServiceStack.OrmLite.Sqlite.Data&quot; Version=&quot;8.*&quot; />' }"></div>
 
               <p class="my-4">
                   Configure your App to use your database. We recommend using a
@@ -306,19 +306,19 @@ public class QueryTodos : QueryDb&lt;Todo&gt; {}
                   The easiest way of which is to start from a 
                   <a class="text-indigo-600 hover:text-indigo-800" href="start">new project template</a>
                   with all this configured, like the  
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://vue-mjs.web-templates.io">vue-mjs.web-templates.io</a>
+                  <a class="text-indigo-600 hover:text-indigo-800" href="https://razor.web-templates.io">razor.web-templates.io</a>
                   Razor Pages template:
               </p>
               
               <div class="flex">
-                  <a class="archive-url" href="@Html.ApiUrl("/archive/NetCoreTemplates/vue-mjs")">
+                  <a class="archive-url" href="@Html.ApiUrl("/archive/NetCoreTemplates/razor")">
                       <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
                           <div class="text-center font-extrabold flex items-center justify-center mb-2">
                               <div class="text-4xl text-blue-400 my-3">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="#60a5fa" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
                               </div>
                           </div>
-                          <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">vue-mjs</div>
+                          <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor</div>
                           <div class="flex justify-center h-8">
                               <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span></div>
                           </div>
@@ -423,14 +423,14 @@ public class QueryTodos : QueryDb&lt;Todo&gt; {}
                 <div>
                     <h3 class="my-8 text-2xl font-bold tracking-tight text-gray-900">New App with AutoQuery or AutoGen</h3>
                     <div class="flex justify-center">
-                      <a class="archive-url" href="@Html.ApiUrl("/archive/NetCoreTemplates/vue-mjs")">
+                      <a class="archive-url" href="@Html.ApiUrl("/archive/NetCoreTemplates/razor")">
                           <div class="bg-white dark:bg-black px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
                               <div class="text-center font-extrabold flex items-center justify-center mb-2">
                                   <div class="text-blue-400 my-2">
                                       <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="#60a5fa" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
                                   </div>
                               </div>
-                              <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor pages</div>
+                              <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor</div>
                               <div class="flex justify-center h-8">
                                   <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span></div>
                               </div>

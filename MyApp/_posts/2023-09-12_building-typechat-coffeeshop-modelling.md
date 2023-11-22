@@ -627,9 +627,9 @@ components to quickly build Custom Admin UIs:
     <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="wlRA4_owEsc" style="background-image: url('https://img.youtube.com/vi/wlRA4_owEsc/maxresdefault.jpg')"></lite-youtube>
 </div>
 
-To get started quickly the [vue-mjs](https://vue-mjs.web-templates.io) template includes a Client Admin example at:
+To get started quickly the [blazor-vue](https://blazor-vue.web-templates.io) template includes a Client Admin example at:
 
-- [/portal/](https://vue-mjs.web-templates.io/portal/) - [/portal/index.html](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/portal/index.html)
+- [/admin/](https://blazor-vue.web-templates.io/admin/) - [/portal/index.html](https://github.com/NetCoreTemplates/blazor-vue/blob/main/MyApp/wwwroot/admin/index.html)
 
 Whose sections of Vue Components can be replaced with our Models to create the CoffeeShop Admin UI:  
 
