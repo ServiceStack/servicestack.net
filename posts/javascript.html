@@ -208,7 +208,7 @@ development can be considered optional as we can now utilize modern browser feat
 and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">modern language features</a> for a
 sophisticated development workflow without the need for any npm build tools.</p>
 <h3 id="bringing-simplicity-back">Bringing Simplicity Back<a class="header-anchor" href="javascript:;" onclick="location.hash='#bringing-simplicity-back'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The <a href="https://github.com/NetCoreTemplates/vue-mjs">vue-mjs</a> template focuses on simplicity and eschews many aspects that has
+<p>The <a href="https://github.com/NetCoreTemplates/razor">razor</a> template focuses on simplicity and eschews many aspects that has
 complicated modern JavaScript development,
 specifically:</p>
 <ul>
@@ -326,7 +326,7 @@ on-demand by the Browser when needed.</p>
 <h3 id="servicestackvue">@servicestack/vue<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestackvue'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p><a href="https://github.com/ServiceStack/servicestack-vue">@servicestack/vue</a> is our growing Vue 3 Tailwind component library with a number of rich Tailwind components useful
 in .NET Web Apps, including Input Components with auto form validation binding which is used by all HTML forms in
-the <a href="https://github.com/NetCoreTemplates/vue-mjs">vue-mjs</a> template.</p>
+the <a href="https://github.com/NetCoreTemplates/razor">razor</a> template.</p>
 <p><vue-component-gallery></vue-component-gallery></p>
 <h3 id="servicestackclient">@servicestack/client<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestackclient'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p><a href="https://docs.servicestack.net/javascript-client">@servicestack/client</a> is our generic JS/TypeScript client library
@@ -369,7 +369,7 @@ on('#txtName', {
 client.api(new Hello({ name }))
 </code></pre>
 <p>You'll typically use all these libraries in your <strong>API-enabled</strong> components as seen in the
-<a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/mjs/components/HelloApi.mjs">HelloApi.mjs</a>
+<a href="https://github.com/NetCoreTemplates/razor/blob/main/MyApp/wwwroot/mjs/components/HelloApi.mjs">HelloApi.mjs</a>
 component on the home page which calls the <a href="/ui/Hello">Hello</a> API on each key press:</p>
 <pre><code class="language-js">import { ref } from &quot;vue&quot;
 import { useClient } from &quot;@servicestack/vue&quot;
@@ -485,7 +485,7 @@ with matching <code>id</code> fields:</p>
 <p>More often you'll want to take advantage of the implicit validation support in <code>useClient()</code> which makes its state available to child
 components, alleviating the need to explicitly pass it in each component as seen in razor's
 <a href="https://github.com/NetCoreTemplates/razor/blob/net6/MyApp/wwwroot/Pages/Contacts.mjs">Contacts.mjs</a> <code>Edit</code> component for its
-<a href="https://vue-mjs.web-templates.io/Contacts">/Contacts</a> page which doesn't do any manual error handling:</p>
+Contacts page which doesn't do any manual error handling:</p>
 <pre><code class="language-js">const Edit = {
     template:/*html*/`&lt;SlideOver @done=&quot;close&quot; title=&quot;Edit Contact&quot;&gt;
     &lt;form @submit.prevent=&quot;submit&quot;&gt;
@@ -591,7 +591,7 @@ current authenticated user:</p>
     isAdmin           // Check if the Authenticated User has the Admin role
 } = useAuth()
 </code></pre>
-<p>This is used in <a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/Pages/Bookings.mjs">Bookings.mjs</a>
+<p>This is used in <a href="https://github.com/NetCoreTemplates/razor/blob/main/MyApp/wwwroot/pages/Bookings.mjs">Bookings.mjs</a>
 to control whether the <code>&lt;AutoEditForm&gt;</code> component should enable its delete functionality:</p>
 <pre><code class="language-js">export default {
     template/*html*/:`
@@ -620,7 +620,7 @@ function validateSafeName(e) {
 <h4 id="typescript-language-service">TypeScript Language Service<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescript-language-service'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Whilst the code-base doesn't use TypeScript syntax in its code base directly, it still benefits from TypeScript's language services
 in IDEs for the included libraries from the TypeScript definitions included in <code>/lib/typings</code>, downloaded in
-<a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/postinstall.js">postinstall.js</a> after <strong>npm install</strong>.</p>
+<a href="https://github.com/NetCoreTemplates/razor/blob/main/MyApp/postinstall.js">postinstall.js</a> after <strong>npm install</strong>.</p>
 <h3 id="import-maps">Import Maps<a class="header-anchor" href="javascript:;" onclick="location.hash='#import-maps'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">Import Maps</a> is a useful browser feature that allows
 specifying optimal names for modules, that can be used to map package names to the implementation it should use, e.g:</p>
@@ -685,7 +685,7 @@ after the component is loaded.</p>
 <p>We can get SPA-like page loading performance using htmx's <a href="https://htmx.org/docs/#boosting">Boosting</a> feature which avoids full page reloads
 by converting all anchor tags to use Ajax to load page content into the page body, improving perceived performance from needing to reload
 scripts and CSS in <code>&lt;head&gt;</code>.</p>
-<p>This is used in <a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Shared/Header.cshtml">Header.cshtml</a> to <strong>boost</strong> all
+<p>This is used in <a href="https://github.com/NetCoreTemplates/razor/blob/main/MyApp/Pages/Shared/Header.cshtml">Header.cshtml</a> to <strong>boost</strong> all
 main navigation links:</p>
 <pre><code class="language-html">&lt;nav hx-boost=&quot;true&quot;&gt;
     &lt;ul&gt;

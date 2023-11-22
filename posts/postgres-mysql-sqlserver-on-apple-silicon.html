@@ -341,8 +341,8 @@ browse and query an App's configured databases:</p>
 <div class="flex justify-center">
     <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="NZkeyuc_prg" style="background-image: url('https://img.youtube.com/vi/NZkeyuc_prg/maxresdefault.jpg')"></lite-youtube>
 </div>
-<p>You can easily try this out from the database-enabled <a href="https://vue-mjs.web-templates.io">vue-mjs</a> project template which
-adopts our <a href="https://vue-mjs.web-templates.io/posts/javascript">Simple, Modern JavaScript</a> approach that uses the native
+<p>You can easily try this out from the database-enabled <a href="https://razor.web-templates.io">razor</a> project template which
+adopts our <a href="/posts/javascript">Simple, Modern JavaScript</a> approach that uses the native
 JavaScript Modules support in modern Web Browsers to avoid any complex npm build tooling.</p>
 <p>We can create an App to test against your databases by installing the <a href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a> and
 <code>x</code> <a href="https://docs.servicestack.net/dotnet-tool">dotnet tool</a>:</p>
@@ -363,7 +363,7 @@ JavaScript Modules support in modern Web Browsers to avoid any complex npm build
 <p>This will let you create any <a href="/start">ServiceStack Project Template</a> with your preferred Project Name from the command-line, e.g:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new vue-mjs DatabaseTest</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new razor DatabaseTest</p>
 </div>
                     </div>
                 <div class="flex">
@@ -392,10 +392,10 @@ JavaScript Modules support in modern Web Browsers to avoid any complex npm build
             </div>
 <p>By default the App is configured to use a local SQLite database, we can extend it to connect to different RDBMS's
 by adding the necessary RDBMS and <code>AdminDatabaseFeature</code> NuGet packages in <code>DatabaseTest.csproj</code>:</p>
-<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.OrmLite.MySql&quot; Version=&quot;6.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.PostgreSQL&quot; Version=&quot;6.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.SqlServer.Data&quot; Version=&quot;6.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.Server&quot; Version=&quot;6.*&quot; /&gt;
+<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.OrmLite.MySql&quot; Version=&quot;8.*&quot; /&gt;
+&lt;PackageReference Include=&quot;ServiceStack.OrmLite.PostgreSQL&quot; Version=&quot;8.*&quot; /&gt;
+&lt;PackageReference Include=&quot;ServiceStack.OrmLite.SqlServer.Data&quot; Version=&quot;8.*&quot; /&gt;
+&lt;PackageReference Include=&quot;ServiceStack.Server&quot; Version=&quot;8.*&quot; /&gt;
 </code></pre>
 <p>New dependencies can be installed with VS Code's <strong>Restore</strong> popup or by explicitly running <code>dotnet restore</code>.</p>
 <p>We can then register named connections for each of our databases by replacing the existing <code>Configure.Db.cs</code> with:</p>

@@ -193,7 +193,7 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>Built into the latest <a href="https://vue-mjs.web-templates.io">vue-mjs</a> project template include examples of both Server
+                    <p>Built into the latest <a href="https://blazor-vue.web-templates.io">blazor-vue</a> project template include examples of both Server
 Multi Razor Page and Client rendered Admin UI Pages demonstrating how to use the new <code>&lt;sidebar-layout&gt;</code> and
 <code>&lt;auto-query-grid&gt;</code> Vue Tailwind components to build beautiful Admin UI Pages in minutes.</p>
 <div class="flex justify-center">
@@ -235,20 +235,20 @@ in no time!</p>
 <p>So much so that we believe this is a great progressive option for others needing to move beyond Locode or
 looking to create their own customizable Admin UI. To minimize the effort we've encapsulated Tailwind's Responsive
 <a href="https://tailwindui.com/components/application-ui/navigation/sidebar-navigation">Sidebar Navigation</a> into a reusable
-<code>&lt;SidebarLayout /&gt;</code> Vue 3 component and upgraded the <a href="https://vue-mjs.web-templates.io">Vue .mjs</a> project template
-to include both a Razor Pages <a href="https://vue-mjs.web-templates.io/admin">server rendered Admin UI</a>:</p>
+<code>&lt;SidebarLayout /&gt;</code> Vue 3 component and upgraded the <a href="https://blazor-vue.web-templates.io">Blazor Vue</a> project template
+to include both a Razor Pages <a href="https://blazor-vue.web-templates.io/admin/">server rendered Admin UI</a>:</p>
 <div class="not-prose my-8">
-   <a href="https://vue-mjs.web-templates.io/admin" class="max-w-4xl">
+   <a href="https://blazor.web-templates.io/admin/" class="max-w-4xl">
       <div class="block flex justify-center shadow hover:shadow-lg rounded overflow-hidden">
          <img src="/img/posts/admin-ui/server-admin-ui.png">
       </div>
    </a>
 </div>
 <p>As well as a
-<a href="https://vue-mjs.web-templates.io/portal/">client rendered Admin UI</a> created from a single static
-<a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/portal/index.html">index.html</a></p>
+<a href="https://blazor-vue.web-templates.io/admin/">client rendered Admin UI</a> created from a single static
+<a href="https://github.com/NetCoreTemplates/blazor-vue/blob/main/MyApp/wwwroot/admin/index.html">index.html</a></p>
 <div class="not-prose my-8">
-   <a href="https://vue-mjs.web-templates.io/portal/" class="max-w-4xl">
+   <a href="https://blazor-vue.web-templates.io/admin/" class="max-w-4xl">
       <div class="block flex justify-center shadow hover:shadow-lg rounded overflow-hidden">
          <img src="/img/posts/admin-ui/client-admin-ui.png">
       </div>
@@ -317,13 +317,13 @@ body to display when selected:</p>
 </ul>
 <p>Most of the time you'll just need to use the default AutoQueryGrid to enable a CRUD UI to manage your RDBMS tables.</p>
 <div class="not-prose my-8">
-   <a href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/portal/index.html" class="max-w-4xl">
+   <a href="https://github.com/NetCoreApps/BlazorDiffusionVue/blob/main/BlazorDiffusion/wwwroot/admin/index.html" class="max-w-4xl">
       <div class="block flex justify-center shadow hover:shadow-lg rounded overflow-hidden">
          <img src="/img/posts/admin-ui/vuediffusion-admin-ui.png">
       </div>
    </a>
 </div>
-<p>Which was all that was needed to render <a href="https://diffusion.works">Vue Diffusion's</a> Admin UI:</p>
+<p>Which was all that was needed to render <a href="https://blazordiffusion.com">Blazor Diffusion's</a> Admin UI:</p>
 <pre><code class="language-ts">const sections = {
      Dashboard: {
          icon: `&lt;svg&gt;...&lt;/svg&gt;`,
@@ -415,18 +415,20 @@ body to display when selected:</p>
  }
 </code></pre>
 <h3 id="server-admin-ui">Server Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#server-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>For developers preferring to develop Server rendered Web Apps the <strong>vue-mjs</strong> project template also includes a
+<p>For developers preferring to develop Server rendered Web Apps the <strong>blazor</strong> project template also includes a
 Multi Page App (MPA) Razor Pages &amp; Vue App which defines the Admin Sections in the custom C#
-<a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/_Layout.cshtml">Admin/_Layout.cshtml</a></p>
-<pre><code class="language-csharp"> (string label, string href, string icon)[] sections = 
- {
-     (&quot;Dashboard&quot;, &quot;/admin/&quot;,         Icons.Dashboard),
-     (&quot;Bookings&quot;,  &quot;/admin/bookings&quot;, Icons.Booking),
-     (&quot;Coupons&quot;,   &quot;/admin/coupons&quot;,  Icons.Coupon),
- };
+<a href="https://github.com/NetCoreTemplates/blazor/tree/main/MyApp/Components/Pages/Admin">Admin/</a></p>
+<pre><code class="language-html">&lt;NavList Title=&quot;Admin&quot;&gt;
+    &lt;NavListItem Title=&quot;Bookings&quot; href=&quot;/admin/bookings&quot; Icon=@typeof(Booking).GetIcon()&gt;
+        Create and Manage Bookings
+    &lt;/NavListItem&gt;
+    &lt;NavListItem Title=&quot;Coupons&quot; href=&quot;/admin/coupons&quot; Icon=@typeof(Coupon).GetIcon()&gt;
+        Create and Manage Coupons
+    &lt;/NavListItem&gt;
+&lt;/NavList&gt;
 </code></pre>
 <p>Where each section links to the different Admin UI Razor Pages:</p>
-<h4 id="adminindex.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Index.cshtml">Admin/Index.cshtml</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#adminindex.cshtml'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<h4 id="adminindex.razor"><a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Components/Pages/Admin/Index.razor">Admin/Index.razor</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#adminindex.razor'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Generates the Admin UI Dashboard which retrieves the data for the page from the <code>AdminData</code> API invoked
 with the internal <a href="https://docs.servicestack.net/service-gateway">Service Gateway</a>:</p>
 <pre><code class="language-csharp">@page
@@ -447,31 +449,18 @@ with the internal <a href="https://docs.servicestack.net/service-gateway">Servic
     &lt;/dl&gt;
 &lt;/div&gt;
 </code></pre>
-<h4 id="adminbookings.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Bookings.cshtml">Admin/Bookings.cshtml</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#adminbookings.cshtml'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<h4 id="adminbookings.razor"><a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Components/Pages/Admin/Bookings.razor">Admin/Bookings.razor</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#adminbookings.razor'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Defines the same responsive AutoQueryGrid to manage the Bookings RDBMS Table:</p>
-<pre><code class="language-csharp">@page
-@{
-    ViewData[&quot;Title&quot;] = &quot;Bookings&quot;;
-}
-
-&lt;auto-query-grid type=&quot;Booking&quot;
-    selected-columns=&quot;id,name,roomType,roomNumber,bookingEndDate,cost,couponId,discount&quot;
-    :header-titles=&quot;{ roomNumber:'Room No', bookingStartDate:'Start Date', couponId:'Coupon' }&quot;
-    :visible-from=&quot;{ roomNumber:'lg', cost:'md', couponId:'xl', discount:'never' }&quot; &gt;&lt;/auto-query-grid&gt;
+<pre><code class="language-html">&lt;AutoQueryGrid Model=&quot;Booking&quot; Apis=&quot;Apis.AutoQuery&lt;QueryBookings,CreateBooking,UpdateBooking,DeleteBooking&gt;()&quot; /&gt;
 </code></pre>
-<h4 id="admincoupons.cshtml"><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Coupons.cshtml">Admin/Coupons.cshtml</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#admincoupons.cshtml'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<h4 id="admincoupons.razor"><a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Components/Pages/Admin/Coupons.razor">Admin/Coupons.razor</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#admincoupons.razor'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>Utilizes the default AutoQueryGrid component to manage the Coupons RDBMS Table:</p>
-<pre><code class="language-csharp">@page
-@{
-    ViewData[&quot;Title&quot;] = &quot;Coupons&quot;;
-}
-
-&lt;auto-query-grid type=&quot;Coupon&quot;&gt;&lt;/auto-query-grid&gt;
+<pre><code class="language-html">&lt;AutoQueryGrid Model=&quot;Coupon&quot; Apis=&quot;Apis.AutoQuery&lt;QueryCoupons&gt;()&quot; /&gt;
 </code></pre>
 <h2 id="creating-custom-admin-uis">Creating Custom Admin UIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-custom-admin-uis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Easiest way to start creating Custom Admin UIs is to start with a new <strong>vue-mjs</strong> Razor Pages template containing both
+<p>Easiest way to start creating Custom Admin UIs is to start with a new <strong>blazor-vue</strong> Razor Pages template containing both
 client and server rendered Admin UIs:</p>
-<div class="not-prose flex justify-center"><a class="hover:no-underline" href="https://account.servicestack.net/archive/NetCoreTemplates/vue-mjs?Name=MyApp">
+<div class="not-prose flex justify-center"><a class="hover:no-underline" href="https://account.servicestack.net/archive/NetCoreTemplates/blazor-vue?Name=MyApp">
     <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600"
          style="min-width: 150px;">
         <div class="text-center font-extrabold flex items-center justify-center mb-2">
@@ -492,14 +481,13 @@ client and server rendered Admin UIs:</p>
 <p>Alternatively you can download their pages to incorporate them into your existing Tailwind Projects:</p>
 <p><strong>Client Admin UI</strong></p>
 <ul>
-<li><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/portal/index.html">/portal/index.html</a></li>
+<li><a href="https://github.com/NetCoreTemplates/blazor-vue/blob/main/MyApp/wwwroot/admin/index.html">/admin/index.html</a></li>
 </ul>
 <p><strong>Server Admin UI</strong></p>
 <ul>
-<li><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/_Layout.cshtml">_Layout.cshtml</a></li>
-<li><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Index.cshtml">Index.cshtml</a></li>
-<li><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Bookings.cshtml">Bookings.cshtml</a></li>
-<li><a href="https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/Pages/Admin/Coupons.cshtml">Coupons.cshtml</a></li>
+<li><a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Components/Pages/Admin/Index.razor">Index.razor</a></li>
+<li><a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Components/Pages/Admin/Bookings.razor">Bookings.razor</a></li>
+<li><a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Components/Pages/Admin/Coupons.razor">Coupons.razor</a></li>
 </ul>
 <h3 id="conclusion">Conclusion<a class="header-anchor" href="javascript:;" onclick="location.hash='#conclusion'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>In summary, the <code>&lt;SidebarLayout&gt;</code> and <code>&lt;AutoQueryGrid&gt;</code>
