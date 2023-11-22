@@ -1,8 +1,9 @@
 ---
 title: Call typed .NET APIs from Python
 url: https://youtu.be/WjbhfH45i5k
-tags: python,vscode,jupyter
+tags: [python, vscode, jupyter]
 date: 17-08-2021
+order: 1
 ---
 
 The video tutorial walks through how to leverage Add ServiceStack Reference for Python in different Python IDEs 
