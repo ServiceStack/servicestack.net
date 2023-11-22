@@ -123,7 +123,7 @@ and submitting forms to Logout users:
 
 Effectively adding interactivity to Blazor static rendered pages with client-side JavaScript to avoid paying Blazor's Interactivity tax.
 
-#### Avoid using Interactivity in LayoutsAvoiding Interactivity for Chrome elements
+#### Avoid using Interactivity in Layouts
 
 This is especially important for any features you want to add to the Websites Layout or Chrome UI which you'll always want to be
 statically rendered so landing pages can load fast and render SEO-friendly server rendered content. 
