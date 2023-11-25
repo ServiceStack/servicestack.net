@@ -12,10 +12,18 @@ export const Index = [
     template('razor', 'Razor Pages', 'Razor',['tailwind']),
     template('mvc-bootstrap', 'MVC', 'Windows',['bootstrap']),
     template('razor-bootstrap', 'Razor Pages', 'Razor',['bootstrap']),
+    template('vue-mjs', 'Razor Pages', 'Razor',['tailwind','autoquery']),
+    template('nextjs', 'Next.js', 'Nextjs',['tailwind','autoquery']),
+    template('vue-vite', 'Vue Vite', 'Vue',['tailwind','autoquery']),
+    template('vue-ssg', 'Vue SSG', 'Vue',['tailwind','autoquery']),
     template('razor-pages', 'Razor Pages', 'Razor',['bootstrap']),
+    template('mvcauth', 'MVC', 'Windows',['bootstrap']),
+    template('script', 'MVC', 'Windows',['bootstrap']),
+    template('vue-spa', 'Vue SPA', 'Vue',['bootstrap']),
+    template('react-spa', 'React SPA', 'React',['bootstrap']),
+    template('angular-spa', 'Angular SPA', 'Angular',['bootstrap']),
+    template('svelte-spa', 'Svelte SPA', 'Angular',['bootstrap']),
 ].reduce((acc, template) => { acc[template.repo] = template; return acc}, {})
-
-console.log('Index', Index)
 
 export default {
     template:`<div>
@@ -30,7 +38,11 @@ export default {
       </div>
    </div>
 </section>
-<section :class="['w-full flex grid gap-4 text-center', templates.length === 1 ? 'grid-cols-1' : templates.length === 2 ? 'grid-cols-2' : 'grid-cols-3']">
+<section :class="['w-full flex grid gap-4 text-center', templates.length === 1 
+    ? 'grid-cols-1' 
+    : templates.length === 2 
+        ? 'grid-cols-2 max-w-md mx-auto' 
+        : 'grid-cols-3']">
    <div v-for="template in templates" class="mb-2">
       <div class="flex justify-center text-center">
          <a class="archive-url hover:no-underline" :href="zipUrl('NetCoreTemplates/' + template.repo)">
@@ -59,7 +71,7 @@ export default {
 
         const project = ref('MyApp')
         const projectZip = computed(() => (project.value || 'MyApp') + '.zip')
-        
+
         /** @param {string} template */
         const zipUrl = (template) =>
             `https://account.servicestack.net/archive/${template}?Name=${project.value || 'MyApp'}`
@@ -71,9 +83,9 @@ export default {
                 return;
             e.preventDefault()
         }
-        
+
         const svgIcon = (icon) => Icons[icon] ?? Icons.ServiceStack
-        
+
         return { project, projectZip, zipUrl, isAlphaNumeric, svgIcon, }
     }
 }
