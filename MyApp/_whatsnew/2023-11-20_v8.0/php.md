@@ -5,8 +5,8 @@ image: /img/whatsnew/v8.0/php.webp
 order: 4
 ---
 
-We're happy to announce the next [Add ServiceStack Reference](https://docs.servicestack.net/add-servicestack-reference) 
-language to enjoy end-to-end typed support is - [PHP](https://www.php.net)!
+We're happy to announce the **11th** [Add ServiceStack Reference](https://docs.servicestack.net/add-servicestack-reference) 
+language to enjoy end-to-end typed support for calling .NET APIs - [PHP](https://www.php.net)!
 
 **PHP** is one of the worlds most popular programming languages thanks to its ease of use, 
 flexibility and fast development experience which sees it excels as a popular language for web development and for development 
