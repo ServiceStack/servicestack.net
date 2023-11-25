@@ -1,5 +1,5 @@
 ---
-title: New .NET 8 Blazor Template
+title: New .NET 8 Blazor Tailwind Template
 summary: The new Blazor for .NET 8 template streamlines web UI development in C#.
 tags: [dotnet, blazor, templates]
 image: https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?crop=entropy&fit=crop&h=1000&w=2000
@@ -7,7 +7,7 @@ author: Darren Reid
 ---
 
 With the release of **.NET 8**, we're happy to announce ServiceStack's new [Blazor](https://blazor.web-templates.io/)
-project template that takes advantage of .NET 8 Blazor's new features that redefines modern Web Development in C#.
+Tailwind project template that takes advantage of .NET 8 Blazor's new features that redefines modern Web Development in C#.
 
 In this video overview we'll explore how the template, adopts Blazor's familiar **ASP.NET Core Identity** 
 for its authentication, utilizes the modern [Tailwind CSS](https://tailwindcss.com) framework for beautiful responsive design
