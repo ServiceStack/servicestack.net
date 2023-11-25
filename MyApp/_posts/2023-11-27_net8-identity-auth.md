@@ -110,11 +110,11 @@ Identity v2 password hashing format, which should let you migrate your users to 
 
 ## ServiceStack's Identity Auth Integration
 
-ServiceStack's Identity Auth integration is focused on high compatibility so existing ServiceStack Customers 
-require minimal effort to migrate existing code bases to use the new Identity Auth integration, despite Identity Auth 
+ServiceStack's Identity Auth integration is focused on high compatibility so existing ServiceStack Customers
+require minimal effort to migrate existing code bases to use the new Identity Auth integration, despite Identity Auth
 being an entirely different Auth Provider model and implementation.
 
-It does this by retaining a lot of the existing user-facing Authentication and Session abstractions that ServiceStack APIs 
+It does this by retaining a lot of the existing user-facing Authentication and Session abstractions that ServiceStack APIs
 use for Authorization as well as existing endpoints and Request/Response DTOs that ServiceStack Clients use to Authenticate,
 but replace their internal implementation to use ASP.NET Identity Auth instead.
 
@@ -131,29 +131,29 @@ plugin with the Application's custom EF `ApplicationUser` Data Model:
 Plugins.Add(new AuthFeature(IdentityAuth.For<ApplicationUser>()));
 ```
 
-It requires minimal configuration as all Authorization is configured using ASP.NET Core's 
+It requires minimal configuration as all Authorization is configured using ASP.NET Core's
 standard APIs, any configuration in this plugin is then just used to customize Identity Auth's integration with ServiceStack.
 
 There's also no new concepts to learn as all ASP .NET Core endpoints, pages and controllers continue to Authenticate against
-the populated `ClaimsPrincipal` whilst all ServiceStack APIs continue to Authenticate against the populated typed 
+the populated `ClaimsPrincipal` whilst all ServiceStack APIs continue to Authenticate against the populated typed
 [User Session](https://docs.servicestack.net/auth/sessions).
 
 The `AuthFeature` works by registering the following Identity Auth Providers:
 
 ### Identity Auth Providers
 
- - [IdentityApplicationAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityApplicationAuthProvider.cs) - Handles converting from Application Cookie ClaimsPrincipal into an Authenticated ServiceStack Session
- - [IdentityCredentialsAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityCredentialsAuthProvider.cs) - Implements ServiceStack's `Authenticate` API that authenticates using Identity Auth
- - [IdentityJwtAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityJwtAuthProvider.cs) - Converts an Identity Auth JWT into an Authenticated ServiceStack Session
+- [IdentityApplicationAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityApplicationAuthProvider.cs) - Converts an Identity Auth `ClaimsPrincipal` into a ServiceStack Session
+- [IdentityCredentialsAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityCredentialsAuthProvider.cs) - Implements ServiceStack's `Authenticate` API using Identity Auth
+- [IdentityJwtAuthProvider](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityJwtAuthProvider.cs) - Converts an Identity Auth JWT into an Authenticated ServiceStack Session
 
-Only the `IdentityApplicationAuthProvider` is registered by default which is required to convert Identity Auth's ClaimPrincipal
-into an Authenticated ServiceStack Session. The other Auth Providers are required if you want to enable authentication with
+Only the `IdentityApplicationAuthProvider` is registered by default which is required to convert Identity Auth's `ClaimPrincipal`
+into an Authenticated ServiceStack [Session](https://docs.servicestack.net/auth/sessions). The other Auth Providers are required if you want to enable authentication with
 ServiceStack's endpoints. E.g. ServiceStack's [Built-in UIs](https://servicestack.net/auto-ui) would require the Credentials Auth
 to be enabled to authenticate via the built-in Sign In dialogs.
 
 ### Configuring Auth Providers
 
-Which is what all the Blazor and MVC Identity Auth templates enable by default in 
+Which is what all the Blazor and MVC Identity Auth templates enable by default in
 [Configure.Auth.cs](https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Configure.Auth.cs):
 
 ```csharp
@@ -193,7 +193,7 @@ Plugins.Add(new AuthFeature(IdentityAuth.For<ApplicationUser>(options => {
 ));
 ```
 
-Typically you'll want to use the included Identity UI Pages and dependencies to register new users and assign roles, 
+Typically you'll want to use the included Identity UI Pages and dependencies to register new users and assign roles,
 but if you have any existing client integrations that use ServiceStack APIs they can also be enabled with:
 
 ```csharp
