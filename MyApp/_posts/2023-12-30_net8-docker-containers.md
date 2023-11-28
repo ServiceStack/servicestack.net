@@ -1,7 +1,7 @@
 ---
 title: Docker Containerization in .NET 8
-summary: Announcing 1st class end-to-end typed support for calling .NET APIs with PHP
-tags: [servicestack, php, docker, dotnet, .net8]
+summary: .NET 8 Docker Containers and GitHub Actions Deployments in new Project Templates
+tags: [dotnet, github-actions, hosting, devops]
 image: https://images.unsplash.com/photo-1609884557151-1e356d32900c?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
 ---
