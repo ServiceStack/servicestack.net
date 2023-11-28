@@ -539,9 +539,9 @@ configuration class:</p>
 </code></pre>
 <h4 id="add-authentication-configuration">3. Add Authentication Configuration<a class="header-anchor" href="javascript:;" onclick="location.hash='#add-authentication-configuration'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>You'll need to configure Entity Framework and add your desired ASP.NET Identity Auth configuration to your App's <code>Program.cs</code>.</p>
-<p>We'd recommend copying from a new Microsoft or ServiceStack .NET 8 Project which closely matches the Authentication
-options you want to enable, e.g. you can start with the recommended Authentication for a new Blazor Project from
-its <a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Program.cs">Program.cs</a>:</p>
+<p>We'd recommend copying from a new Microsoft or <a href="https://docs.servicestack.net/auth/identity-auth">ServiceStack .NET 8 Project</a>
+which closely matches the Authentication options you want to enable, e.g. you can start with the recommended Authentication
+for a new Blazor Project from its <a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Program.cs">Program.cs</a>:</p>
 <pre><code class="language-csharp">services.AddAuthentication(IdentityConstants.ApplicationScheme)
     .AddIdentityCookies();
 services.AddDataProtection()
