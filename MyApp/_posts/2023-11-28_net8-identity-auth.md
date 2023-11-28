@@ -4,7 +4,6 @@ summary: We explore the exciting new potential of Blazor in .NET 8 to develop fa
 tags: [c#, servicestack, identity-auth]
 image: https://images.unsplash.com/photo-1635602739175-bab409a6e94c?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
-draft: true
 ---
 
 ### ASP.NET Core Identity Auth now the default

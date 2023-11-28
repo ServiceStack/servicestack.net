@@ -4,7 +4,6 @@ summary: Announcing 1st class end-to-end typed support for calling .NET APIs wit
 tags: [php, servicestack, service-reference]
 image: https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
-draft: true
 ---
 
 We're happy to announce the **11th** [Add ServiceStack Reference](https://docs.servicestack.net/add-servicestack-reference)
