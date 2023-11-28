@@ -410,9 +410,9 @@ public class ConfigureAuth : IHostingStartup
 
 You'll need to configure Entity Framework and add your desired ASP.NET Identity Auth configuration to your App's `Program.cs`. 
 
-We'd recommend copying from a new Microsoft or ServiceStack .NET 8 Project which closely matches the Authentication 
-options you want to enable, e.g. you can start with the recommended Authentication for a new Blazor Project from
-its [Program.cs](https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Program.cs):
+We'd recommend copying from a new Microsoft or [ServiceStack .NET 8 Project](https://docs.servicestack.net/auth/identity-auth) 
+which closely matches the Authentication options you want to enable, e.g. you can start with the recommended Authentication 
+for a new Blazor Project from its [Program.cs](https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Program.cs):
 
 ```csharp
 services.AddAuthentication(IdentityConstants.ApplicationScheme)
