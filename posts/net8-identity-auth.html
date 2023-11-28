@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>ASP.NET Core Identity Auth in .NET 8 - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:creator" content="@demisbellot" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise" />
+    <meta property="og:url" content="https://servicestack.net/posts/net8-identity-auth" />
+    <meta property="og:title" content="ASP.NET Core Identity Auth in .NET 8" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1635602739175-bab409a6e94c?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://docs.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Docs
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://forums.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Forums
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Free
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Trial
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Pricing
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
+                                    Sign In
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                ASP.NET Core Identity Auth in .NET 8
+            </h1>
+            <div class="flex justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis-bellot"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.jpg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis-bellot">Demis Bellot</a>
+            <ul role="list" class="flex">
+                    <li>
+                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/demisbellot">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on threads.net" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://threads.net/@demisbellot">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7.5c-1.333-3-3.667-4.5-7-4.5c-5 0-8 2.5-8 9s3.5 9 8 9s7-3 7-5s-1-5-7-5c-2.5 0-3 1.25-3 2.5C9 15 10 16 11.5 16c2.5 0 3.5-1.5 3.5-5s-2-4-3-4s-1.833.333-2.5 1"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/mythz">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Email Demis Bellot" href="mailto:demis@servicestack.com" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500">
+                            <svg class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20q-.825 0-1.413-.588T2 18V6q0-.825.588-1.413T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.588 1.413T20 20H4Zm8-7L4 8v10h16V8l-8 5Zm0-2l8-5H4l8 5ZM4 8V6v12V8Z"/></svg>
+                        </a>
+                    </li>
+            </ul>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="https://images.unsplash.com/photo-1635602739175-bab409a6e94c?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="ASP.NET Core Identity Auth in .NET 8 Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                            <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
+                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                            <a href="posts/tagged/identity-auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">identity-auth</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2023-11-28T00:00:00.0000000">November 28, 2023</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>17 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <h3 id="asp.net-core-identity-auth-now-the-default">ASP.NET Core Identity Auth now the default<a class="header-anchor" href="javascript:;" onclick="location.hash='#asp.net-core-identity-auth-now-the-default'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>A significant change from <strong>ServiceStack v8</strong> is the adoption of the same ASP.NET Core Identity Authentication
+that's configured in Microsoft's default Projects templates in ServiceStack's new Project Templates.</p>
+<h2 id="history-of-servicestack-authentication">History of ServiceStack Authentication<a class="header-anchor" href="javascript:;" onclick="location.hash='#history-of-servicestack-authentication'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack has always maintained its own <a href="https://docs.servicestack.net/auth/authentication-and-authorization">Authentication and Authorization</a> provider model,
+primarily as it was the only way to provide an integrated and unified Authentication model that worked across all our
+supported hosting platforms, inc. .NET Framework, ASP.NET Core on .NET Framework, HttpListener and .NET (fka .NET Core).</p>
+<p>Whilst the Authentication story in ASP.NET has undergone several cycles of changes over the years, the ServiceStack
+Auth Model has  remained relatively consistent and stable, with no schema changes required since release whilst still
+providing flexible options for <a href="https://docs.servicestack.net/auth/auth-repository#extending-userauth-tables">extending UserAuth tables</a> and typed <a href="https://docs.servicestack.net/auth/sessions#using-typed-sessions-in-servicestack">User Sessions</a>.</p>
+<h3 id="net-framework-considered-legacy">.NET Framework considered legacy<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-framework-considered-legacy'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Although the multi-platform support of the unified Authentication model has been vital for Organizations migrating their systems
+to .NET (Core) where ServiceStack Customers have been able to enjoy <a href="https://docs.servicestack.net/netcore#exceptional-code-reuse">Exceptional Code reuse</a>,
+it's become clear that the .NET platform (e.g. .NET 8) is the only platform that should be considered for new projects and
+that .NET Framework should only be considered a stable legacy platform for running existing systems on.</p>
+<p>Given Microsoft has committed to <a href="https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/">Authentication Improvements in .NET 8</a>
+it's become more important to easily integrate ServiceStack with new and existing .NET projects to access these new features
+than to continue recommending ServiceStack's unified Auth Providers as the default option for new projects.</p>
+<h3 id="servicestack-will-use-identity-auth-in-new-projects">ServiceStack will use Identity Auth in new projects<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-will-use-identity-auth-in-new-projects'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>ASP.NET Core Identity Auth is the default Auth Model adopted in new ServiceStack projects which closely follows the same
+approach as the Microsoft Project Template it integrates ServiceStack with, e.g. the .NET 8
+<strong>Blazor</strong> and <strong>Blazor Vue</strong> project templates adopts the exact same Auth configuration as Microsoft's default Blazor Project
+Template configured with <strong>Individual</strong> Identity Auth, likewise with the <strong>Bootstrap</strong> and <strong>Tailwind</strong> styled <strong>MVC</strong> and
+<strong>Razor Pages</strong> templates.</p>
+<p>You can find ServiceStack Integrated Identity Auth Templates for each of ASP.NET Core's major Blazor, Razor Pages and MVC
+Project Templates:</p>
+<div class="not-prose mx-auto">
+  <h3 id="identityauth-template" class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
+      Create a Project with ASP.NET Identity Auth
+  </h3>
+  <identity-auth-templates></identity-auth-templates>
+</div>
+<h3 id="identity-auth-template-live-demos">Identity Auth Template Live Demos<a class="header-anchor" href="javascript:;" onclick="location.hash='#identity-auth-template-live-demos'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>For a quick preview of what these look like, checkout out their Internet Hosted Live Demos:</p>
+<div class="not-prose mt-8 grid grid-cols-2 gap-4">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="https://blazor.web-templates.io">
+        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor.png">
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor.web-templates.io</div>
+    </a>
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://blazor-vue.web-templates.io">
+        <div style="max-height:350px;overflow:hidden">
+        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor-vue.png"></div>
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor-vue.web-templates.io</div>
+    </a>
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://razor.web-templates.io">
+        <div style="max-height:350px;overflow:hidden">
+        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/razor.png"></div>
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">razor.web-templates.io</div>
+    </a>
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://mvc.web-templates.io">
+        <div style="max-height:350px;overflow:hidden">
+        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvc.png"></div>
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">mvc.web-templates.io</div>
+    </a>
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://razor-bootstrap.web-templates.io">
+        <div style="max-height:350px;overflow:hidden">
+        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/razor-bootstrap.png"></div>
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">razor-bootstrap.web-templates.io</div>
+    </a>
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://mvc-bootstrap.web-templates.io">
+        <div style="max-height:350px;overflow:hidden">
+        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvc-bootstrap.png"></div>
+        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">mvc-bootstrap.web-templates.io</div>
+    </a>
+</div>
+<p>The configuration and source code for the above projects are a good reference for how to configure ServiceStack with
+Identity Auth in your own projects:</p>
+<ul>
+<li><a href="https://github.com/NetCoreTemplates/blazor">blazor</a></li>
+<li><a href="https://github.com/NetCoreTemplates/blazor-vue">blazor-vue</a></li>
+<li><a href="https://github.com/NetCoreTemplates/razor">razor</a></li>
+<li><a href="https://github.com/NetCoreTemplates/mvc">mvc</a></li>
+<li><a href="https://github.com/NetCoreTemplates/razor-bootstrap">razor-bootstrap</a></li>
+<li><a href="https://github.com/NetCoreTemplates/mvc-bootstrap">mvc-bootstrap</a></li>
+</ul>
+<p>The <strong>Bootstrap</strong> versions use same Individual Identity Auth Pages that Microsoft's <strong>Razor Pages</strong> and <strong>MVC</strong> templates use,
+whilst the <strong>Tailwind</strong> versions have been enhanced to use <strong>Tailwind CSS</strong> instead of Bootstrap,
+includes a <strong>visual QR Code</strong> implementation that was missing and includes an
+<code>IEmailSender</code> SMTP solution that's easily enabled via Configuration to use your preferred <strong>SMTP Server</strong>.</p>
+<h2 id="migrating-to-asp.net-core-identity-auth">Migrating to ASP.NET Core Identity Auth<a class="header-anchor" href="javascript:;" onclick="location.hash='#migrating-to-asp.net-core-identity-auth'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Migrating from ServiceStack Auth to Identity Auth should be relatively straight-forward as ServiceStack uses a compatible
+Identity v2 password hashing format, which should let you migrate your users to Identity Auth without them noticing.</p>
+<h2 id="servicestacks-identity-auth-integration">ServiceStack's Identity Auth Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestacks-identity-auth-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack's Identity Auth integration is focused on high compatibility so existing ServiceStack Customers
+require minimal effort to migrate existing code bases to use the new Identity Auth integration, despite Identity Auth
+being an entirely different Auth Provider model and implementation.</p>
+<p>It does this by retaining a lot of the existing user-facing Authentication and Session abstractions that ServiceStack APIs
+use for Authorization as well as existing endpoints and Request/Response DTOs that ServiceStack Clients use to Authenticate,
+but replace their internal implementation to use ASP.NET Identity Auth instead.</p>
+<p>The new Identity Auth integration is contained in the .NET 6+ <strong>ServiceStack.Extensions</strong> NuGet package:</p>
+<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.Extensions&quot; Version=&quot;8.*&quot; /&gt;
+</code></pre>
+<p>Which at a minimum lets you configure ServiceStack to use Identity Auth by simply registering the existing <code>AuthFeature</code>
+plugin with the Application's custom EF <code>ApplicationUser</code> Data Model:</p>
+<pre><code class="language-csharp">Plugins.Add(new AuthFeature(IdentityAuth.For&lt;ApplicationUser&gt;()));
+</code></pre>
+<p>It requires minimal configuration as all Authorization is configured using ASP.NET Core's
+standard APIs, any configuration in this plugin is then just used to customize Identity Auth's integration with ServiceStack.</p>
+<p>There's also no new concepts to learn as all ASP .NET Core endpoints, pages and controllers continue to Authenticate against
+the populated <code>ClaimsPrincipal</code> whilst all ServiceStack APIs continue to Authenticate against the populated typed
+<a href="https://docs.servicestack.net/auth/sessions">User Session</a>.</p>
+<p>The <code>AuthFeature</code> works by registering the following Identity Auth Providers:</p>
+<h3 id="identity-auth-providers">Identity Auth Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#identity-auth-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityApplicationAuthProvider.cs">IdentityApplicationAuthProvider</a> - Converts an Identity Auth <code>ClaimsPrincipal</code> into a ServiceStack Session</li>
+<li><a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityCredentialsAuthProvider.cs">IdentityCredentialsAuthProvider</a> - Implements ServiceStack's <code>Authenticate</code> API using Identity Auth</li>
+<li><a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityJwtAuthProvider.cs">IdentityJwtAuthProvider</a> - Converts an Identity Auth JWT into an Authenticated ServiceStack Session</li>
+</ul>
+<p>Only the <code>IdentityApplicationAuthProvider</code> is registered by default which is required to convert Identity Auth's <code>ClaimPrincipal</code>
+into an Authenticated ServiceStack <a href="https://docs.servicestack.net/auth/sessions">Session</a>. The other Auth Providers are required if you want to enable authentication with
+ServiceStack's endpoints. E.g. ServiceStack's <a href="https://servicestack.net/auto-ui">Built-in UIs</a> would require the Credentials Auth
+to be enabled to authenticate via the built-in Sign In dialogs.</p>
+<h3 id="configuring-auth-providers">Configuring Auth Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#configuring-auth-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Which is what all the Blazor and MVC Identity Auth templates enable by default in
+<a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Configure.Auth.cs">Configure.Auth.cs</a>:</p>
+<pre><code class="language-csharp">public class ConfigureAuth : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureAppHost(appHost =&gt; 
+        {
+            appHost.Plugins.Add(new AuthFeature(IdentityAuth.For&lt;ApplicationUser&gt;(
+                // Configure ServiceStack's Integration with Identity Auth
+                options =&gt; {
+                    options.EnableCredentialsAuth = true;
+                    options.SessionFactory = () =&gt; new CustomUserSession();
+                })
+            ));
+        });
+}
+</code></pre>
+<p>If you're using a <code>CustomUserSession</code> you'll also need to register it with the <code>SessionFactory</code> for it to be used.</p>
+<p>Each of the Identity Auth Providers can also be customized individually:</p>
+<pre><code class="language-csharp">Plugins.Add(new AuthFeature(IdentityAuth.For&lt;ApplicationUser&gt;(options =&gt; {
+        // Configure IdentityApplicationAuthProvider
+        options.AuthApplication...
+
+        // Configure IdentityCredentialsAuthProvider
+        options.EnableCredentialsAuth = true;
+        options.AuthCredentials...
+
+        // Configure IdentityJwtAuthProvider
+        options.EnableJwtAuth = true;
+        options.AuthJwt...
+    })
+));
+</code></pre>
+<p>Typically you'll want to use the included Identity UI Pages and dependencies to register new users and assign roles,
+but if you have any existing client integrations that use ServiceStack APIs they can also be enabled with:</p>
+<pre><code class="language-csharp">Plugins.Add(new AuthFeature(IdentityAuth.For&lt;ApplicationUser&gt;(options =&gt; {
+    // Include ServiceStack's Register API
+    options.IncludeRegisterService = true;
+    
+    // Include ServiceStack's AssignRoles and UnAssignRoles APIs
+    options.IncludeAssignRoleServices = true;
+));
+</code></pre>
+<h3 id="extending-identity-auth-cookies-and-user-sessions">Extending Identity Auth Cookies and User Sessions<a class="header-anchor" href="javascript:;" onclick="location.hash='#extending-identity-auth-cookies-and-user-sessions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>By default all <a href="https://github.com/ServiceStack/ServiceStack/blob/3ab3d23c85cf48435b8cd9386f25afab79fcb542/ServiceStack/src/ServiceStack.Extensions/Auth/IdentityApplicationAuthProvider.cs#L49">well known Claim Names</a>
+are used to populate the User Session, but you can also include additional claims in the Identity Auth Cookie
+and use them to populate the User Session by overriding <code>PopulateFromClaims()</code> in your
+<a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp.ServiceInterface/Data/CustomUserSession.cs">CustomUserSession.cs</a>, e.g:</p>
+<pre><code class="language-csharp">public class CustomUserSession : AuthUserSession
+{
+    public override void PopulateFromClaims(IRequest httpReq, ClaimsPrincipal principal)
+    {
+        // Populate Session with data from Identity Auth Claims
+        ProfileUrl = principal.FindFirstValue(JwtClaimTypes.Picture);
+    }
+}
+
+// Add additional claims to the Identity Auth Cookie
+public class AdditionalUserClaimsPrincipalFactory(UserManager&lt;ApplicationUser&gt; userManager, RoleManager&lt;IdentityRole&gt; roleManager, IOptions&lt;IdentityOptions&gt; optionsAccessor)
+    : UserClaimsPrincipalFactory&lt;ApplicationUser,IdentityRole&gt;(userManager, roleManager, optionsAccessor)
+{
+    public override async Task&lt;ClaimsPrincipal&gt; CreateAsync(ApplicationUser user)
+    {
+        var principal = await base.CreateAsync(user);
+        var identity = (ClaimsIdentity)principal.Identity!;
+
+        var claims = new List&lt;Claim&gt;();
+        // Add additional claims here
+        if (user.ProfileUrl != null)
+        {
+            claims.Add(new Claim(JwtClaimTypes.Picture, user.ProfileUrl));
+        }
+
+        identity.AddClaims(claims);
+        return principal;
+    }
+}
+</code></pre>
+<h3 id="custom-application-user-primary-key">Custom Application User Primary Key<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-application-user-primary-key'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The default <code>IdentityUser</code> uses a <code>string</code> as the primary key populated with a Guid, but you could also change it to use an
+<code>int</code> by having your EF IdentityUser Data Model inherit from <code>IdentityUser&lt;int&gt;</code> instead:</p>
+<pre><code class="language-csharp">public class AppUser : IdentityUser&lt;int&gt;
+{
+    //...
+}
+</code></pre>
+<p>You'll also need to specify the Key Type when registering the <code>AuthFeature</code> plugin:</p>
+<pre><code class="language-csharp">public class ConfigureAuth : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureAppHost(appHost =&gt; {
+            appHost.Plugins.Add(new AuthFeature(IdentityAuth.For&lt;AppUser,int&gt;(
+                options =&gt; {
+                    options.EnableCredentialsAuth = true;
+                    options.SessionFactory = () =&gt; new CustomUserSession();
+                })
+            ));
+        });
+}
+</code></pre>
+<p>Which the new .NET 8 BlazorDiffusion App does in <a href="https://github.com/NetCoreApps/BlazorDiffusionVue/blob/main/BlazorDiffusion/Configure.Auth.cs">Configure.Auth.cs</a>
+to be compatible with its existing ServiceStack <code>UserAuth</code> tables which used an <code>int</code> primary key.</p>
+<h2 id="using-identity-auth-in-servicestack-apps">Using Identity Auth in ServiceStack Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-identity-auth-in-servicestack-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>One of the primary benefits of adopting Identity Auth is the wealth of documentation and resources available for it,
+which also applies to how you would use Identity Auth to secure your own Apps.</p>
+<p>If you're new to Identity Auth we recommend starting with the official introduction from Microsoft:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity">Introduction to Identity on ASP.NET Core</a></li>
+</ul>
+<p>To learn about securing Blazor Apps, go to:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/security/">ASP.NET Core Blazor authentication and authorization</a></li>
+</ul>
+<h3 id="declarative-validation-attributes">Declarative Validation Attributes<a class="header-anchor" href="javascript:;" onclick="location.hash='#declarative-validation-attributes'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The recommended way to protect your ServiceStack APIs is to continue to use the <a href="https://docs.servicestack.net/declarative-validation">Declarative Validation</a>
+attributes which are decoupled from any implementation so be safely annotated on Request DTOs without adding
+any implementation dependencies, where they're also accessible to Clients and UIs using the Request DTOs to invoke your APIs.</p>
+<p>The available Typed Authorization Attributes include:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[ValidateIsAuthenticated]</code></td>
+<td>Restrict access toAuthenticated Users only</td>
+</tr>
+<tr>
+<td><code>[ValidateIsAdmin]</code></td>
+<td>Restrict access to Admin Users only</td>
+</tr>
+<tr>
+<td><code>[ValidateHasRole]</code></td>
+<td>Restrict access to only Users assigned with this Role</td>
+</tr>
+<tr>
+<td><code>[ValidateHasClaim]</code></td>
+<td>Restrict access to only Users assigned with this Claim</td>
+</tr>
+<tr>
+<td><code>[ValidateHasScope]</code></td>
+<td>Restrict access to only Users assigned with this Scope</td>
+</tr>
+</tbody>
+</table>
+<p>That can be annotated on <strong>Request DTOs</strong> to protect APIs:</p>
+<pre><code class="language-csharp">[ValidateIsAuthenticated]
+[ValidateIsAdmin]
+[ValidateHasRole(role)]
+[ValidateHasClaim(type,value)]
+[ValidateHasScope(scope)]
+public class Secured {}
+</code></pre>
+<h2 id="migrating-from-servicestack-auth">Migrating from ServiceStack Auth<a class="header-anchor" href="javascript:;" onclick="location.hash='#migrating-from-servicestack-auth'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Migrating from ServiceStack Auth to Identity Auth should be relatively straight-forward as ServiceStack uses a compatible
+Identity v2 password hashing format, which should let you migrate your users to Identity Auth without them noticing.</p>
+<div class="info custom-block">
+                <p class="custom-block-title">TIP</p><p>Please ensure your App database is backed up before running any migrations</p>
+</div>
+<h4 id="rename-old-appuser-table">1. Rename old AppUser table<a class="header-anchor" href="javascript:;" onclick="location.hash='#rename-old-appuser-table'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>You'll want to use a different name so it doesn't conflict with the new Identity Auth <code>AppUser</code> Data Model. This
+would only be needed to query the User data to migrate to Identity Auth, you'll be able to remove it after
+successfully migrating all your Users.</p>
+<p>You don't need to include all the properties of the <code>UserAuth</code> base table, just the ones you want to migrate to Identity Auth,
+which for Blazor Diffusion was only:</p>
+<pre><code class="language-csharp">// Used by OrmLite to fetch User data to migrate from old ServiceStack `AppUser` table
+[Alias(&quot;AppUser&quot;)]
+public class OldAppUser
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string UserName { get; set; }
+    public string DisplayName { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string? Handle { get; set; }
+    public string Email { get; set; }
+    public string PasswordHash { get; set; }
+    public string? ProfileUrl { get; set; }
+    public string? Avatar { get; set; } //overrides ProfileUrl
+    public string? LastLoginIp { get; set; }
+    public DateTime? LastLoginDate { get; set; }
+    public string RefIdStr { get; set; }
+    public DateTime? LockedDate { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime ModifiedDate { get; set; }
+}
+</code></pre>
+<h4 id="create-identity-auth-data-model">2. Create Identity Auth Data Model<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-identity-auth-data-model'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>If you have a lot of existing references to the <code>AppUser</code> name you'll want to retain the same name so the existing references
+wont need to be updated. Essentially your custom EF IdentityUser will want a copy of all the properties you want to migrate
+other than <code>Id</code>, <code>Email</code>, and <code>PasswordHash</code> that's already defined in the base <code>IdentityUser</code> class:</p>
+<pre><code class="language-csharp">[Alias(&quot;AspNetUsers&quot;)] // Tell OrmLite which table this EF Data Model maps to
+public class AppUser : IdentityUser&lt;int&gt;
+{
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? DisplayName { get; set; }
+    public string? ProfileUrl { get; set; }
+    [Input(Type = &quot;file&quot;), UploadTo(&quot;avatars&quot;)]
+    public string? Avatar { get; set; } //overrides ProfileUrl
+    public string? Handle { get; set; }
+    public int? RefId { get; set; }
+    public string RefIdStr { get; set; } = Guid.NewGuid().ToString();
+    public bool IsArchived { get; set; }
+    public DateTime? ArchivedDate { get; set; }
+    public string? LastLoginIp { get; set; }
+    public DateTime? LastLoginDate { get; set; }
+    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+    public DateTime ModifiedDate { get; set; } = DateTime.UtcNow;
+}
+</code></pre>
+<p>The <code>AppUser</code> Data Model and <code>int</code> primary key would also need to be registered in your
+<a href="https://github.com/NetCoreApps/BlazorDiffusionVue/blob/main/BlazorDiffusion/Configure.Auth.cs">Configure.Auth.cs</a>
+configuration class:</p>
+<pre><code class="language-csharp">public class ConfigureAuth : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureAppHost(appHost =&gt; {
+            appHost.Plugins.Add(new AuthFeature(IdentityAuth.For&lt;AppUser,int&gt;(
+                options =&gt; {
+                    options.EnableCredentialsAuth = true;
+                    options.SessionFactory = () =&gt; new CustomUserSession();
+                })
+            ));
+        });
+}
+</code></pre>
+<h4 id="add-authentication-configuration">3. Add Authentication Configuration<a class="header-anchor" href="javascript:;" onclick="location.hash='#add-authentication-configuration'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>You'll need to configure Entity Framework and add your desired ASP.NET Identity Auth configuration to your App's <code>Program.cs</code>.</p>
+<p>We'd recommend copying from a new Microsoft or ServiceStack .NET 8 Project which closely matches the Authentication
+options you want to enable, e.g. you can start with the recommended Authentication for a new Blazor Project from
+its <a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Program.cs">Program.cs</a>:</p>
+<pre><code class="language-csharp">services.AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddIdentityCookies();
+services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(&quot;App_Data&quot;));
+
+// $ dotnet ef migrations add CreateIdentitySchema
+// $ dotnet ef database update
+var connectionString = config.GetConnectionString(&quot;DefaultConnection&quot;) ?? throw new InvalidOperationException(&quot;Connection string 'DefaultConnection' not found.&quot;);
+services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+    options.UseSqlite(connectionString, b =&gt; b.MigrationsAssembly(nameof(MyApp))));
+services.AddDatabaseDeveloperPageExceptionFilter();
+
+services.AddIdentityCore&lt;ApplicationUser&gt;(options =&gt; options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles&lt;IdentityRole&gt;()
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+    .AddSignInManager()
+    .AddDefaultTokenProviders();
+
+services.AddSingleton&lt;IEmailSender, NoOpEmailSender&gt;();
+services.AddScoped&lt;IUserClaimsPrincipalFactory&lt;ApplicationUser&gt;, AdditionalUserClaimsPrincipalFactory&gt;();
+</code></pre>
+<p>Alternatively if you want to add support for external OAuth logins you can copy from the <strong>MVC Tailwind</strong> Authentication
+configuration in its <a href="https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/Program.cs">Program.cs</a> which will
+also require adding the NuGet dependencies of the OAuth providers you want to support which you can get from its
+<a href="https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/MyApp.csproj">MyApp.csproj</a></p>
+<h4 id="create-and-run-ef-migrations">4. Create and Run EF Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-and-run-ef-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>After your App is properly configured you'll want to create the EF Migrations for your the Identity Auth User tables
+by installing the <a href="https://learn.microsoft.com/en-us/ef/core/cli/dotnet">dotnet-ef tool</a> and running:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet ef migrations add CreateIdentitySchema</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Which should create the EF Migrations in the <code>/Migrations</code> folder, you can then run the migrations to create the
+Identity Auth tables in your App's configured database:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet ef database update</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h4 id="implement-the-migrate-users-task">5. Implement the Migrate Users Task<a class="header-anchor" href="javascript:;" onclick="location.hash='#implement-the-migrate-users-task'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>This could be implemented in a separate Application or Unit Test although we've found the easiest way to migrate existing users
+is to implement a custom <a href="https://docs.servicestack.net/app-tasks">App Task</a> as it's able to make use of your App's configured Authentication, EF and OrmLite dependencies
+that can then be run from the command-line.</p>
+<p>The implementation should be fairly straight-forward, you'll basically just need to create a new Identity Auth User
+using the <code>UserManager&lt;AppUser&gt;</code> dependency for each of your existing users:</p>
+<pre><code class="language-csharp">public class ConfigureDbMigrations : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureAppHost(appHost =&gt; {
+            AppTasks.Register(&quot;migrate.users&quot;, _ =&gt; {
+                var log = appHost.GetApplicationServices().GetRequiredService&lt;ILogger&lt;ConfigureDbMigrations&gt;&gt;();
+
+                log.LogInformation(&quot;Running migrate.users...&quot;);
+                var scopeFactory = appHost.GetApplicationServices().GetRequiredService&lt;IServiceScopeFactory&gt;();
+                using var scope = scopeFactory.CreateScope();
+                using var dbContext = scope.ServiceProvider.GetRequiredService&lt;ApplicationDbContext&gt;();
+                using var db = scope.ServiceProvider.GetRequiredService&lt;IDbConnectionFactory&gt;().Open();
+                var migrateUsers = db.Select(db.From&lt;OldAppUser&gt;().OrderBy(x =&gt; x.Id));
+
+                log.LogInformation(&quot;Migrating {Count} Existing ServiceStack Users to Identity Auth Users...&quot;, migrateUsers.Count);
+                MigrateExistingUsers(dbContext, scope.ServiceProvider, migrateUsers).Wait();
+            });
+            AppTasks.Run();
+        });
+
+    private async Task MigrateExistingUsers(ApplicationDbContext dbContext, IServiceProvider services, 
+        List&lt;OldAppUser&gt; migrateUsers, string tempPassword=&quot;p@55wOrd&quot;)
+    {
+        var userManager = services.GetRequiredService&lt;UserManager&lt;AppUser&gt;&gt;();
+        var now = DateTime.UtcNow;
+
+        foreach (var user in migrateUsers)
+        {
+            var appUser = new AppUser
+            {
+                Id = user.Id,
+                UserName = user.Email,
+                Email = user.Email,
+                DisplayName = user.DisplayName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Handle = user.Handle,
+                ProfileUrl = user.ProfileUrl,
+                Avatar = user.Avatar,
+                RefIdStr = user.RefIdStr ?? Guid.NewGuid().ToString(),
+                LockoutEnabled = true,
+                LockoutEnd = user.LockedDate != null ? now.AddYears(10) : now,
+                LastLoginDate = user.LastLoginDate,
+                LastLoginIp = user.LastLoginIp,
+                CreatedDate = user.CreatedDate,
+                ModifiedDate = user.ModifiedDate,
+                // Verify you want existing Users emails to be confirmed
+                EmailConfirmed = true,
+            };
+            await userManager.CreateAsync(appUser, tempPassword);
+
+            // Update raw Password Hash using EF
+            if (user.PasswordHash != null)
+            {
+                dbContext.Users
+                    .Where(x =&gt; x.Id == user.Id)
+                    .ExecuteUpdate(setters =&gt; setters.SetProperty(x =&gt; x.PasswordHash, user.PasswordHash));
+            }
+        }
+    }
+}    
+</code></pre>
+<p>As there's no official API for updating the raw <code>PasswordHash</code> you'll need to use EF's <code>ExecuteUpdate()</code> API to update it
+on the <code>AspNetUsers</code> table directly.</p>
+<p>It should be noted that ServiceStack Auth still uses ASP.NET Cor's previous Identity v2 format for hashing its passwords,
+this will be automatically re-hashed using the latest ASP.NET Identity v3 format after users successfully sign in.</p>
+<h4 id="optimizing-the-passwordhash-update">Optimizing the PasswordHash Update<a class="header-anchor" href="javascript:;" onclick="location.hash='#optimizing-the-passwordhash-update'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Whilst migrating users should be a once-off task, if you have a lot of users you may want to optimize the <code>PasswordHash</code> update
+from a <strong>N+1</strong> query per user to a single query that updates all users in a single command.</p>
+<p>You'll need to use the <strong>UPDATE FROM</strong> syntax that's supported by your RDBMS's, here's an example of how to do it in SQLite:</p>
+<pre><code class="language-sql">UPDATE AspNetUsers
+SET PasswordHash = u.PasswordHash
+FROM (SELECT Email, PasswordHash FROM AppUser WHERE PasswordHash is NOT NULL) AS u
+WHERE u.Email = AspNetUsers.Email;
+</code></pre>
+<h4 id="migrating-roles">Migrating Roles<a class="header-anchor" href="javascript:;" onclick="location.hash='#migrating-roles'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Migrating Roles will depend how their stored in your App, you'll first need to ensure each role is created in the <code>AspNetRoles</code>
+table with:</p>
+<pre><code class="language-csharp">string[] allRoles = [...]; // All Roles in your App
+var roleManager = services.GetRequiredService&lt;RoleManager&lt;IdentityRole&gt;&gt;();
+foreach (var roleName in allRoles)
+{
+    var roleExist = await roleManager.RoleExistsAsync(roleName);
+    if (!roleExist)
+    {
+        await roleManager.CreateAsync(new IdentityRole(roleName));
+    }
+}
+</code></pre>
+<p>You can then assign Roles to Users using the <code>UserManager&lt;AppUser&gt;</code>, e.g:</p>
+<pre><code class="language-csharp">string[] roles = [...]; // Roles to assign to User 
+var newUser = await userManager.FindByEmailAsync(user.Email!);
+await userManager.AddToRolesAsync(user, roles);
+</code></pre>
+<h4 id="run-the-migrate.users-task">6. Run the migrate.users Task<a class="header-anchor" href="javascript:;" onclick="location.hash='#run-the-migrate.users-task'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>With everything in place, all that's left is to run the <code>migrate.users</code> App Task from the command-line:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet run --AppTasks=migrate.users</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h4 id="verify-users-can-sign-in">7. Verify Users can Sign In<a class="header-anchor" href="javascript:;" onclick="location.hash='#verify-users-can-sign-in'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>After successfully migrating all your users you should check the new <code>IdentityUser</code> table to verify all the User data
+you want has been migrated as well as verifying they can sign in with their existing credentials.</p>
+<p>The easiest way to include the Identity Auth UI Pages to your App is to copy your Application into a new .NET 8 Project
+that already includes them, you can create a new Blazor App with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new blazor ProjectNamespace</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Or create a new MVC App with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new mvc ProjectNamespace</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Alternatively you can manually copy the pages from the project template repositories, for Blazor most of the Identity Auth
+UI Pages are in the
+<a href="https://github.com/NetCoreTemplates/blazor/tree/main/MyApp/Components/Identity">Components/Identity</a> and
+<a href="https://github.com/NetCoreTemplates/blazor/tree/main/MyApp/Components/Pages/Account">Pages/Account</a> folders.</p>
+<p>For MVC, most of the Identity UI are in the
+<a href="https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/Controllers/AccountController.cs">Account</a>
+and <a href="https://github.com/NetCoreTemplates/mvc/blob/main/MyApp/Controllers/ManageController.cs">Manage</a> controllers
+as well as their
+<a href="https://github.com/NetCoreTemplates/mvc/tree/main/MyApp/Views/Account">Views/Account</a> and
+<a href="https://github.com/NetCoreTemplates/mvc/tree/main/MyApp/Views/Manage">Views/Manage</a> folders.</p>
+<h3 id="smtp-iemailsender">SMTP IEmailSender<a class="header-anchor" href="javascript:;" onclick="location.hash='#smtp-iemailsender'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The .NET 8 Templates also include a nice solution for sending Identity Auth emails through the <code>IEmailSender</code> interface
+which drops the Email Request in the registered Background MQ in
+<a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp/Configure.Mq.cs">Configure.Mq.cs</a>
+which uses it to invoke the <code>SendEmail</code> API in
+<a href="https://github.com/NetCoreTemplates/blazor/blob/main/MyApp.ServiceInterface/EmailServices.cs">EmailServices</a> in a
+managed background worker:</p>
+<pre><code class="language-csharp">public class EmailSender(IMessageService messageService) : IEmailSender
+{
+    public Task SendEmailAsync(string email, string subject, string htmlMessage)
+    {
+        using var mqClient = messageService.CreateMessageProducer();
+        mqClient.Publish(new SendEmail
+        {
+            To = email,
+            Subject = subject,
+            BodyHtml = htmlMessage,
+        });
+
+        return Task.CompletedTask;
+    }
+}
+</code></pre>
+<p>To enable it you'll need to register your preferred SMTP Server in your App's <code>appsettings.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;SmtpConfig&quot;: {
+    &quot;Username&quot;: &quot;username&quot;,
+    &quot;Password&quot;: &quot;password&quot;,
+    &quot;Host&quot;: &quot;smtp.mailtrap.io&quot;,
+    &quot;Port&quot;: 587,
+    &quot;FromEmail&quot;: &quot;mail@example.org&quot;
+  }
+}
+</code></pre>
+<p>Then uncomment the <code>EmailSender</code> registration in your <code>Program.cs</code></p>
+<pre><code class="language-csharp">services.AddSingleton&lt;IEmailSender, EmailSender&gt;();
+</code></pre>
+<h3 id="send-any-app-email">Send any App Email<a class="header-anchor" href="javascript:;" onclick="location.hash='#send-any-app-email'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The nice part about this solution is that it's not limited to just sending Identity Auth emails, you can also use it to send
+any App Email, either by publishing a message to the registered MQ with <code>PublishMessage</code> or by using the
+<a href="https://docs.servicestack.net/service-gateway">Service Gateway</a> to invoke the API directly, e.g:</p>
+<pre><code class="language-csharp">public class MyServices : Service
+{
+    public object Any(MyRequest request)
+    {
+        // Send Email in managed Background MQ Worker
+        PublishMessage(new SendEmail {
+            To = email,
+            Subject = subject,
+            BodyHtml = body,
+        });
+
+        // Block until Email is sent to SMTP Server
+        Gateway.Send(new SendEmail {
+            To = email,
+            Subject = subject,
+            BodyHtml = body,
+        });
+    }
+}
+</code></pre>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis-bellot"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.jpg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis Bellot
+                        </div>
+                        <div class="text-gray-600">
+                            Father of 3 when not deving @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+            <ul role="list" class="flex">
+                    <li>
+                        <a title="Follow on Twitter" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://twitter.com/demisbellot">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on threads.net" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://threads.net/@demisbellot">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7.5c-1.333-3-3.667-4.5-7-4.5c-5 0-8 2.5-8 9s3.5 9 8 9s7-3 7-5s-1-5-7-5c-2.5 0-3 1.25-3 2.5C9 15 10 16 11.5 16c2.5 0 3.5-1.5 3.5-5s-2-4-3-4s-1.833.333-2.5 1"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Follow on GitHub" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500" href="https://github.com/mythz">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Email Demis Bellot" href="mailto:demis@servicestack.com" class="mr-1 group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500">
+                            <svg class="h-6 w-6 flex-none text-zinc-500 fill-zinc-500 transition group-hover:fill-indigo-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20q-.825 0-1.413-.588T2 18V6q0-.825.588-1.413T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.588 1.413T20 20H4Zm8-7L4 8v10h16V8l-8 5Zm0-2l8-5H4l8 5ZM4 8V6v12V8Z"/></svg>
+                        </a>
+                    </li>
+            </ul>
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis Bellot
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/net8-best-blazor">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/net8-best-blazor" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title=".NET 8&#x27;s Best Blazor is not Blazor as we know it">
+                                                    .NET 8&#x27;s Best Blazor is not Blazor as we know it
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt=".NET 8&#x27;s Best Blazor is not Blazor as we know it background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-11-22T00:00:00.0000000">November 22, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>17 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/servicestack-ai">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/servicestack-ai" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="ServiceStack.AI - Chat GPT and Managed Cloud Providers">
+                                                    ServiceStack.AI - Chat GPT and Managed Cloud Providers
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Guide to implementing Voice Transcriptions and TypeChat GPT in .NET</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="ServiceStack.AI - Chat GPT and Managed Cloud Providers background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-09-28T00:00:00.0000000">September 28, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>18 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/typescript-typechat-examples">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/typescript-typechat-examples" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="All of TypeScript&#x27;s TypeChat Examples in .NET">
+                                                    All of TypeScript&#x27;s TypeChat Examples in .NET
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Guide to implementing Voice Transcriptions and TypeChat GPT in .NET</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="All of TypeScript&#x27;s TypeChat Examples in .NET background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-09-26T00:00:00.0000000">September 26, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/voice-activated-typechat-coffeeshop">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1678483789107-0029c61fdcca?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/voice-activated-typechat-coffeeshop" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Creating a Voice Activated CoffeeShop in .NET">
+                                                    Creating a Voice Activated CoffeeShop in .NET
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Guide to implementing Voice Transcriptions and TypeChat GPT in .NET</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Creating a Voice Activated CoffeeShop in .NET background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-09-20T00:00:00.0000000">September 20, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>27 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css">
+<script src="//unpkg.com/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/net8-identity-auth.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                    <a href="https://www.locode.dev" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2023</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
