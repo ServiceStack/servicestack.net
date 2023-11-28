@@ -590,6 +590,8 @@ dotnet run --AppTasks=migrate.users
 After successfully migrating all your users you should check the new `IdentityUser` table to verify all the User data 
 you want has been migrated as well as verifying they can sign in with their existing credentials.
 
+#### Create a new ASP.NET Identity Auth Project to copy from
+
 The easiest way to include the Identity Auth UI Pages to your App is to copy your Application into a new .NET 8 Project
 that already includes them, you can create a new Blazor App with:
 
@@ -597,16 +599,24 @@ that already includes them, you can create a new Blazor App with:
 x new blazor ProjectName
 :::
 
-Or create a new Razor Pages:
+Or create a new Razor Pages Tailwind or Bootstrap App:
 
 :::sh
 x new razor ProjectName
 :::
 
-Or new MVC App with:
+:::sh
+x new razor-bootstrap ProjectName
+:::
+
+Or new MVC Tailwind or Bootstrap App with:
 
 :::sh
 x new mvc ProjectName
+:::
+
+:::sh
+x new mvc-bootstrap ProjectName
 :::
 
 Alternatively you can manually copy the pages from the project template repositories, for Blazor most of the Identity Auth
