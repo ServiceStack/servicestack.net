@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Identity Auth in .NET 8  
-summary: We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise    
-tags: [c#, servicestack, identity-auth]
+summary: ServiceStack has switched to ASP.NET Core Identity Auth in new .NET 8 Blazor, Razor and MVC Project Templates  
+tags: [c#, identity-auth, templates]
 image: https://images.unsplash.com/photo-1635602739175-bab409a6e94c?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
 ---
