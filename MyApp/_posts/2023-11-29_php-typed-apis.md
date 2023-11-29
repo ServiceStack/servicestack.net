@@ -18,15 +18,15 @@ to access to your ServiceStack APIs.
    </div>
 </div>
 <div class="not-prose">
-<div class="text-center"><h3 id="php" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-    End-to-end typed PHP
-</h3></div>
-<p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
-    Learn about the rich JsonServiceClient & end-to-end typed API support for PHP 
-</p>
-<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="ZLVdaJ38vwc" style="background-image: url('https://img.youtube.com/vi/ZLVdaJ38vwc/maxresdefault.jpg')"></lite-youtube>
-</div>
+    <div class="text-center"><h3 id="php" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
+        End-to-end typed PHP
+    </h3></div>
+    <p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
+        Learn about the rich JsonServiceClient & end-to-end typed API support for PHP 
+    </p>
+    <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+        <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="ZLVdaJ38vwc" style="background-image: url('https://img.youtube.com/vi/ZLVdaJ38vwc/maxresdefault.jpg')"></lite-youtube>
+    </div>
 </div>
 
 ### PhpStorm ServiceStack Plugin
