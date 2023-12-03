@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Install PostgreSQL, MySql and SQL Server on Apple Silicon - ServiceStack</title>
+    <title>Docker Containerization in .NET 8 - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Easiest way to install PostgreSQL, MySql and SQL Server on macOS running Apple Silicon&#x27;s M2" />
-    <meta property="og:url" content="https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon" />
-    <meta property="og:title" content="Install PostgreSQL, MySql and SQL Server on Apple Silicon" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1517663404855-6f96c7aa20e2?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content=".NET 8 Docker Containers and GitHub Actions Deployments in new Project Templates" />
+    <meta property="og:url" content="https://servicestack.net/posts/net8-docker-containers" />
+    <meta property="og:title" content="Docker Containerization in .NET 8" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1609884557151-1e356d32900c?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Install PostgreSQL, MySql and SQL Server on Apple Silicon
+                Docker Containerization in .NET 8
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,20 +166,22 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1517663404855-6f96c7aa20e2?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Install PostgreSQL, MySql and SQL Server on Apple Silicon Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1609884557151-1e356d32900c?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Docker Containerization in .NET 8 Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
-                            <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
+                            <a href="posts/tagged/dotnet" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dotnet</a>
+                            <a href="posts/tagged/github-actions" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
+                            <a href="posts/tagged/hosting" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">hosting</a>
+                            <a href="posts/tagged/devops" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">devops</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-07-25T00:00:00.0000000">July 25, 2023</time>
+                                <time datetime="2023-11-30T00:00:00.0000000">November 30, 2023</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>8 min read</span>
+                                <span>12 min read</span>
                             </div>
                         </div>
                 </div>
@@ -192,163 +194,85 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>Becoming a <a href="https://twitter.com/demisbellot/status/1678256650753552384">recent owner</a> of Apple's shiny new 15&quot; Macbook Air
-was my first foray into Apple's exciting new ARM chips where they've somehow managed to package all day battery life
-with performance exceeding my primary Intel iMac 5K Desktop into the the thinnest of form factors.</p>
-<p><a href="https://www.apple.com/macbook-air/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/macbookair_2x.jpg" alt="" /></a></p>
-<p>As a .NET developer that primarily develops on Windows/WSL and deploys to Linux x86 servers I've been hesitant to
-move to Apple's new ARM hardware architecture with the potential friction and incompatibilities that might entail,
-however with more ServiceStack Customers moving to Apple's new computers it's become increasingly important to
-also ensure we can deliver a great development experience of ServiceStack on Apple Silicon.</p>
-<h3 id="everything-just-works">Everything just works<a class="header-anchor" href="javascript:;" onclick="location.hash='#everything-just-works'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>What I wasn't expecting is for all the development tools I use daily would not only work flawlessly, but to do so natively
-with all running native ARM builds:</p>
+                    <h3 id="all.net-project-templates-upgraded-to.net-8">All .NET Project Templates upgraded to .NET 8<a class="header-anchor" href="javascript:;" onclick="location.hash='#all.net-project-templates-upgraded-to.net-8'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Included in the release of <a href="https://docs.servicestack.net/releases/v8_00">ServiceStack v8</a> all of ServiceStack's
+<a href="https://github.com/NetCoreTemplates/">.NET project templates</a> have been upgraded to use <strong>ServiceStack v8</strong> and <strong>.NET 8</strong> target framework, in addition
+the built-in CI/CD deployment GitHub Actions have been upgraded to use the <a href="https://devblogs.microsoft.com/dotnet/securing-containers-with-rootless/">secure rootless Linux Docker containers</a>
+that's now built into .NET 8 which allow you to effortlessly deploy your containerized .NET 8 Apps with Docker and
+GitHub Registry via SSH to any Linux Server.</p>
+<div class="not-prose mt-16 flex flex-col items-center">
+   <div class="flex">
+      <svg class="w-28 h-28" xmlns="http://www.w3.org/2000/svg" width="256" height="185" viewBox="0 0 256 185"><path fill="#2396ED" d="M250.716 70.497c-5.765-4-18.976-5.5-29.304-3.5c-1.2-10-6.725-18.749-16.333-26.499l-5.524-4l-3.844 5.75c-4.803 7.5-7.205 18-6.485 28c.24 3.499 1.441 9.749 5.044 15.249c-3.362 2-10.328 4.5-19.455 4.5H1.155l-.48 2c-1.682 9.999-1.682 41.248 18.014 65.247c14.892 18.249 36.99 27.499 66.053 27.499c62.93 0 109.528-30.25 131.386-84.997c8.647.25 27.142 0 36.51-18.75c.24-.5.72-1.5 2.401-5.249l.961-2l-5.284-3.25ZM139.986 0h-26.42v24.999h26.42V0Zm0 29.999h-26.42v24.999h26.42v-25Zm-31.225 0h-26.42v24.999h26.42v-25Zm-31.225 0H51.115v24.999h26.421v-25ZM46.311 59.998H19.89v24.999h26.42v-25Zm31.225 0H51.115v24.999h26.421v-25Zm31.225 0h-26.42v24.999h26.42v-25Zm31.226 0h-26.422v24.999h26.422v-25Zm31.225 0H144.79v24.999h26.422v-25Z"/></svg>
+   </div>
+</div>
+<div class="not-prose mt-4 px-4 sm:px-6">
+<div class="text-center"><h3 id="docker-containers" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
+    .NET 8 Docker Containers
+</h3></div>
+<p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
+    Learn about the latest streamlined containerization support built into .NET 8
+</p>
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="y57c-9jeIww" style="background-image: url('https://img.youtube.com/vi/y57c-9jeIww/maxresdefault.jpg')"></lite-youtube>
+</div>
+</div>
+<h3 id="net-8-docker-containerization">.NET 8 Docker Containerization<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-8-docker-containerization'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>.NET 8 simplifies Docker integration using functionality built into the .NET SDK tooling where it's able to use <code>dotnet publish</code>
+to publish your .NET 8 App to a container image without a Dockerfile, adhering to the latest Least privilege and hardened security
+best practices of running App's as non-root by default.</p>
+<p>This <strong>publish to container</strong> feature also supports creating Docker images for different architectures like ARM64 which
+sees <a href="https://devblogs.microsoft.com/dotnet/this-arm64-performance-in-dotnet-8/">significant improvements in .NET 8</a>
+making deploying your .NET Apps to ARM64 an <a href="https://servicestack.net/posts/cloud-value-between-architectures">even better value proposition</a>.</p>
+<h3 id="github-action-deployments">GitHub Action Deployments<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-action-deployments'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>In today's DevOps ecosystem, <a href="https://github.com/features/actions">GitHub Actions</a> stand out as an invaluable asset for
+automating CI/CD workflows directly within your GitHub repository. The introduction of .NET 8 takes this a step further,
+offering a streamlined approach to generating Docker images through the <code>&lt;PublishProfile&gt;DefaultContainer&lt;/PublishProfile&gt;</code>
+setting in your <code>.csproj</code>. This ensures consistent application packaging, making it deployment-ready by just using <code>dotnet publish</code>.</p>
+<p>ServiceStack's project templates bring additional flexibility, by utilizing foundational tools like
+<a href="https://www.docker.com">Docker</a> for containerization and <a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH</a> for secure deployments,
+it's able to deploy your Dockerized .NET applications to any Linux server, whether self-hosted or on any cloud provider.</p>
+<h4 id="live-demos-use-their-github-actions-to-deploy-themselves">Live Demos use their GitHub Actions to deploy themselves<a class="header-anchor" href="javascript:;" onclick="location.hash='#live-demos-use-their-github-actions-to-deploy-themselves'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Each template's Live demo are themselves utilizing their included GitHub Actions to deploy itself to a Linux server running
+on a <strong>€13.60 /month</strong> shared 8BG RAM <a href="https://www.hetzner.com/cloud">Hetzner Cloud VM</a> that's currently running 50+ Docker Containers.</p>
+<p>This guide aims to walk you through the hosting setup and the GitHub Actions release process as introduced in the
+ServiceStack's latest .NET 8 project templates.</p>
+<h2 id="deployment-files">Deployment Files<a class="header-anchor" href="javascript:;" onclick="location.hash='#deployment-files'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Deployment files that are included in project templates to facilitate GitHub Actions deployments:</p>
+<h4 id="deploy">.deploy/<a class="header-anchor" href="javascript:;" onclick="location.hash='#deploy'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <ul>
-<li>Oh My Zsh</li>
-<li>.NET SDK</li>
-<li>Rider</li>
-<li>Node.js</li>
-<li>VS Code</li>
-<li>Docker</li>
-<li>GitHub Desktop</li>
-<li>Discord</li>
-<li>DataGrip</li>
+<li><a href="https://github.com/NetCoreTemplates/blazor/blob/master/.deploy/nginx-proxy-compose.yml">nginx-proxy-compose.yml</a> - Manage nginx reverse proxy and Lets Encrypt companion container (one-time setup per server)</li>
+<li><a href="https://github.com/NetCoreTemplates/blazor/blob/main/.deploy/docker-compose.yml">docker-compose.yml</a> - Manage .NET App Docker Container</li>
 </ul>
-<p>This has got to be the smoothest transition to a new general purpose CPU architecture in the history of computing of
-which credit should go to all involved, Apple for making new hardware so appealing to encourage mass adoption and
-all developers of these products for releasing native macOS ARM builds to support their Users on Apple Silicon.</p>
-<h3 id="installing-all-popular-rdbmss">Installing all popular RDBMS's<a class="header-anchor" href="javascript:;" onclick="location.hash='#installing-all-popular-rdbmss'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Our <a href="https://account.servicestack.net/ormlite/">OrmLite</a> multi &amp; cross-platform ORM is the first product we want to profile
-and benchmark to ensure it also has great performance on Apple Silicon. For this I wanted to have local installations
-of each supported Sqlite, PostgreSQL, MySql and SQL Server RDBMS to load test against, which as it was easier than it should be,
-I wanted to document here so that it's hopeful useful for others needing to do the same thing.</p>
-<p>Installing developer tools has not only become frictionless, but in today's world of ubiquitous Docker adoption, it's
-become much easier to run complex RDBMS software on macOS ARM, even SQL Server - the unlikeliest of combinations!</p>
-<p>First thing you'll need to install is <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> for macOS
-by clicking on their <a href="https://desktop.docker.com/mac/main/arm64/Docker.dmg">Apple Chip</a> download which will let you
-run each RDBMS in a containerized Docker App.</p>
-<p>After Docker is running, installing and running PostgreSQL and MySql can be done with a single command:</p>
-<h3 id="install-and-run-postgresql">Install and run PostgreSQL<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-postgresql'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --name postgres -e POSTGRES_PASSWORD=p@55wOrd -p 127.0.0.1:5432:5432 -d postgres</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h3 id="install-and-run-mysql">Install and run MySql<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-mysql'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=p@55wOrd -d mysql:latest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<blockquote>
-<p>Feel free to update commands to use your preferred strong password instead</p>
-</blockquote>
-<h3 id="install-and-run-sql-server">Install and run SQL Server<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-sql-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>SQL Server requires more resources than the popular RDBMS's and as it doesn't have a native ARM Docker Image requires
-a bit more configuration.</p>
-<p>First you'll want to ensure you have at least <strong>4GB RAM</strong> available to containers from
-the <strong>Resources</strong> Tab in Docker Settings you can open with <code>⌘,</code></p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-resources.png" alt="" /></p>
-<p>My MacBook Air's <strong>24GB RAM</strong> configuration defaulted to <strong>7.9 GB</strong>, if you have a lower configuration you'll want to ensure
-<strong>4GB</strong> is available to SQL Server.</p>
-<p>Next in the <strong>General</strong> tab you'll want to ensure <strong>Use Virtualization Framework</strong> and <strong>VirtioFS</strong> is checked which will
-allow SQL Server <strong>AMD64</strong> Image will run on Apple's new
-<a href="https://developer.apple.com/documentation/virtualization">Virtualization framework</a>:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-general.png" alt="" /></p>
-<p>After which you'll be able to install and run SQL Server with:</p>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --platform=linux/amd64 --name mssql -e ACCEPT_EULA=1 -e MSSQL_SA_PASSWORD=p@55wOrd -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>You'll be able to check if all Docker containers are now running by clicking on the <strong>Containers</strong> tab in Docker Desktop:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-containers.png" alt="" /></p>
-<h3 id="lazydocker">lazydocker<a class="header-anchor" href="javascript:;" onclick="location.hash='#lazydocker'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>That's pretty sweet, although I'm even more excited about
-<a href="https://github.com/jesseduffield/lazydocker">lazydocker</a> as an alternative to Docker Desktop for managing
-Docker containers which can be installed with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>brew install lazydocker</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>As it's a Terminal UI it can be run everywhere where there's a Terminal, in local and remote terminals as well as
-Rider and VS Code's built-in Terminal UIs where you can quickly perform Docker tasks without breaking your development
-workflow:</p>
-<p><a href="https://github.com/jesseduffield/lazydocker"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/lazydocker.png" alt="" /></a></p>
-<h2 id="datagrip">DataGrip<a class="header-anchor" href="javascript:;" onclick="location.hash='#datagrip'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Now we can see they're all running, lets connect to them. You could use the command line tools specific to each database
-but my preference is to use <a href="https://www.jetbrains.com/datagrip/">JetBrains DataGrip</a> which lets you connect and manage
-any RDBMS from a single Desktop App, including many of the most popular NoSQL data stores.</p>
-<h3 id="connect-to-all-database-connections">Connect to all Database connections<a class="header-anchor" href="javascript:;" onclick="location.hash='#connect-to-all-database-connections'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>In <strong>Database Explorer</strong>, click on the <code>+</code> New Icon to add a new Data Source to <strong>Microsoft SQL Server</strong>, <strong>MySql</strong>
-and <strong>PostgreSQL</strong> using the passwords used to run the Docker commands (e.g.<code>p@55wOrd</code>) and the default user names
-for each RDBMS:</p>
+<h4 id="githubworkflows">.github/workflows/<a class="header-anchor" href="javascript:;" onclick="location.hash='#githubworkflows'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <ul>
-<li>SQL Server: <code>sa</code></li>
-<li>MySQL: <code>root</code></li>
-<li>PostgreSQL: <code>postgres</code></li>
+<li><a href="https://github.com/NetCoreTemplates/blazor/blob/master/.github/workflows/build.yml">build.yml</a> - Build .NET Project and Run Tests</li>
+<li><a href="https://github.com/NetCoreTemplates/blazor/blob/master/.github/workflows/release.yml">release.yml</a> - Build container, Push to GitHub Packages Registry, SSH deploy to Linux server, Run DB Migrations and start new Docker Container if successful otherwise revert Migration</li>
 </ul>
-<p>After connecting to all databases you should end up with active connections to all empty databases:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-databases.png" alt="" /></a></p>
-<p>Which you can open a <strong>New &gt; Query Console</strong> or <code>⇧⌘L</code> to start executing generic queries against like <code>SELECT @@VERSION</code>
-in SQL Server to display the version of SQL Server that's running:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-mssql-version.png" alt="" /></a></p>
-<h3 id="create-test-databases">Create Test Databases<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-test-databases'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>But to do anything interesting lets create <code>test</code> database which you can create with <code>New &gt; Database</code> for SQL Server and
-PostgreSQL or <code>New &gt; Schema</code> in MySQL:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-test.png" alt="" /></a></p>
-<h3 id="net-database-admin-ui">.NET Database Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-database-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Next thing to try is accessing them from the same Application, which ServiceStack .NET Apps have great
-support for with its built-in <a href="https://docs.servicestack.net/admin-ui-database">Database Admin UI</a> which lets you
-browse and query an App's configured databases:</p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="NZkeyuc_prg" style="background-image: url('https://img.youtube.com/vi/NZkeyuc_prg/maxresdefault.jpg')"></lite-youtube>
+<h2 id="prerequisites">Prerequisites<a class="header-anchor" href="javascript:;" onclick="location.hash='#prerequisites'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Before your Linux server can accept GitHub Actions deployments, we need to setup your Linux deployment server.
+For a step-by-step walk through of these steps and more information about this solution, checkout our video guide below:</p>
+<div class="not-prose mt-16 flex flex-col items-center">
+   <div class="flex">
+      <svg class="w-28 h-28" xmlns="http://www.w3.org/2000/svg" width="256" height="185" viewBox="0 0 256 185"><path fill="#2396ED" d="M250.716 70.497c-5.765-4-18.976-5.5-29.304-3.5c-1.2-10-6.725-18.749-16.333-26.499l-5.524-4l-3.844 5.75c-4.803 7.5-7.205 18-6.485 28c.24 3.499 1.441 9.749 5.044 15.249c-3.362 2-10.328 4.5-19.455 4.5H1.155l-.48 2c-1.682 9.999-1.682 41.248 18.014 65.247c14.892 18.249 36.99 27.499 66.053 27.499c62.93 0 109.528-30.25 131.386-84.997c8.647.25 27.142 0 36.51-18.75c.24-.5.72-1.5 2.401-5.249l.961-2l-5.284-3.25ZM139.986 0h-26.42v24.999h26.42V0Zm0 29.999h-26.42v24.999h26.42v-25Zm-31.225 0h-26.42v24.999h26.42v-25Zm-31.225 0H51.115v24.999h26.421v-25ZM46.311 59.998H19.89v24.999h26.42v-25Zm31.225 0H51.115v24.999h26.421v-25Zm31.225 0h-26.42v24.999h26.42v-25Zm31.226 0h-26.422v24.999h26.422v-25Zm31.225 0H144.79v24.999h26.422v-25Z"/></svg>
+   </div>
 </div>
-<p>You can easily try this out from the database-enabled <a href="https://razor.web-templates.io">razor</a> project template which
-adopts our <a href="/posts/javascript">Simple, Modern JavaScript</a> approach that uses the native
-JavaScript Modules support in modern Web Browsers to avoid any complex npm build tooling.</p>
-<p>We can create an App to test against your databases by installing the <a href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a> and
-<code>x</code> <a href="https://docs.servicestack.net/dotnet-tool">dotnet tool</a>:</p>
+<div class="not-prose mt-4 px-4 sm:px-6">
+<div class="text-center"><h3 id="docker-containers" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
+    Use GitHub Actions for Auto Deployments
+</h3></div>
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7dardvqBFbE" style="background-image: url('https://img.youtube.com/vi/7dardvqBFbE/maxresdefault.jpg')"></lite-youtube>
+</div>
+</div>
+<h3 id="setup-deployment-server">Setup Deployment Server<a class="header-anchor" href="javascript:;" onclick="location.hash='#setup-deployment-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<h4 id="install-docker-and-docker-compose">1. Install Docker and Docker-Compose<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-docker-and-docker-compose'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Follow <a href="https://docs.docker.com/engine/install/ubuntu/">Docker's installation instructions</a>
+to install the latest version of Docker.</p>
+<h4 id="configure-ssh-for-github-actions">2. Configure SSH for GitHub Actions<a class="header-anchor" href="javascript:;" onclick="location.hash='#configure-ssh-for-github-actions'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Generate a dedicated SSH key pair to be used by GitHub Actions:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet tool install --global x</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>ssh-keygen -t rsa -b 4096 -f ~/.ssh/github_actions</p>
 </div>
                     </div>
                 <div class="flex">
@@ -360,10 +284,10 @@ JavaScript Modules support in modern Web Browsers to avoid any complex npm build
                     </div>
                 </div>
             </div>
-<p>This will let you create any <a href="/start">ServiceStack Project Template</a> with your preferred Project Name from the command-line, e.g:</p>
+<p>Add the <strong>public key</strong> to your server's SSH <strong>authorized_keys</strong>:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new razor DatabaseTest</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>cat ~/.ssh/github_actions.pub &gt;&gt; ~/.ssh/authorized_keys</p>
 </div>
                     </div>
                 <div class="flex">
@@ -375,10 +299,13 @@ JavaScript Modules support in modern Web Browsers to avoid any complex npm build
                     </div>
                 </div>
             </div>
-<p>Which creates a new .NET App that you can open with your preferred .NET IDE or text editor, e.g:</p>
+<p>Add the <strong>private key</strong> to your repo's <code>DEPLOY_KEY</code> GitHub Action Secret which GitHub Actions will use to
+securely SSH into the server.</p>
+<h4 id="set-up-nginx-reverse-proxy">3. Set Up nginx-reverse-proxy<a class="header-anchor" href="javascript:;" onclick="location.hash='#set-up-nginx-reverse-proxy'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>You should have a <code>docker-compose</code> file similar to the <code>nginx-proxy-compose.yml</code> in your repository. Upload this file to your server:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>code DatabaseTest/DatabaseTest</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>scp nginx-proxy-compose.yml user@your_server:~/</p>
 </div>
                     </div>
                 <div class="flex">
@@ -390,52 +317,10 @@ JavaScript Modules support in modern Web Browsers to avoid any complex npm build
                     </div>
                 </div>
             </div>
-<p>By default the App is configured to use a local SQLite database, we can extend it to connect to different RDBMS's
-by adding the necessary RDBMS and <code>AdminDatabaseFeature</code> NuGet packages in <code>DatabaseTest.csproj</code>:</p>
-<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.OrmLite.MySql&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.PostgreSQL&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.SqlServer.Data&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.Server&quot; Version=&quot;8.*&quot; /&gt;
-</code></pre>
-<p>New dependencies can be installed with VS Code's <strong>Restore</strong> popup or by explicitly running <code>dotnet restore</code>.</p>
-<p>We can then register named connections for each of our databases by replacing the existing <code>Configure.Db.cs</code> with:</p>
-<pre><code class="language-csharp">public class ConfigureDb : IHostingStartup
-{
-    public void Configure(IWebHostBuilder builder) =&gt; builder
-        .ConfigureServices((context,services) =&gt; {
-            var dbFactory = new OrmLiteConnectionFactory(
-                context.Configuration.GetConnectionString(&quot;DefaultConnection&quot;) ?? &quot;App_Data/db.sqlite&quot;,
-                SqliteDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;postgres&quot;, 
-                &quot;Server=localhost;User Id=postgres;Password=p@55wOrd;Database=test;Pooling=true;MinPoolSize=0;MaxPoolSize=200&quot;,
-                PostgreSqlDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;mysql&quot;, 
-                &quot;Server=localhost;User Id=root;Password=p@55wOrd;Database=test;Pooling=true;MinPoolSize=0;MaxPoolSize=200&quot;,
-                MySqlDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;mssql&quot;, 
-                &quot;Server=localhost;User Id=sa;Password=p@55wOrd;Database=test;MultipleActiveResultSets=True;Encrypt=False;&quot;,
-                SqlServer2012Dialect.Provider);
-
-            services.AddSingleton&lt;IDbConnectionFactory&gt;(dbFactory);
-        })
-        .ConfigureAppHost(appHost =&gt; {
-            // Enable built-in Database Admin UI at /admin-ui/database
-            appHost.Plugins.Add(new AdminDatabaseFeature());
-        });
-}
-</code></pre>
-<p>This will now let us access the <a href="https://docs.servicestack.net/ormlite/getting-started#multiple-database-connections">registered databases</a>
-in our APIs, but first lets populate the databases with some data.</p>
-<h3 id="multi-database-migrations">Multi Database Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#multi-database-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>When a new project is created it populates its default configured SQLite database with some test data, we can do the same
-for the other registered database by duplicating the App's initial <a href="https://docs.servicestack.net/ormlite/db-migrations">DB migration</a>
-to a new DB <code>Migration1001.cs</code> with:</p>
+<p>To bring up the nginx reverse proxy and its companion container for handling TLS certificates, run:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>sed &quot;s/1000/1001/&quot; ./Migrations/Migration1000.cs &gt; ./Migrations/Migration1001.cs</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>docker compose -f ~/nginx-proxy-compose.yml up -d</p>
 </div>
                     </div>
                 <div class="flex">
@@ -447,19 +332,18 @@ to a new DB <code>Migration1001.cs</code> with:</p>
                     </div>
                 </div>
             </div>
-<p>Then annotating it with a <code>[NamedConnection]</code> attribute for each registered database:</p>
-<pre><code class="language-csharp">[NamedConnection(&quot;mssql&quot;)]
-[NamedConnection(&quot;mysql&quot;)]
-[NamedConnection(&quot;postgres&quot;)]
-public class Migration1001 : MigrationBase
-{
-    //...
-}
-</code></pre>
-<p>That can then be executed with:</p>
+<p>This will start an nginx reverse proxy along with a companion LetsEncrypt container that will automatically watch for
+additional Docker containers on the same network and initialize them with valid TLS certificates.</p>
+<h3 id="ready-to-host-containerized.net-apps">Ready to host containerized .NET Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#ready-to-host-containerized.net-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Your Linux server is now ready to accept multiple .NET App deployments from GitHub Actions. The guide below walks through
+the process of setting up your GitHub repository to deploy new ServiceStack .NET Apps to your Linux server.</p>
+<h2 id="step-by-step-guide">Step-by-Step Guide<a class="header-anchor" href="javascript:;" onclick="location.hash='#step-by-step-guide'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="create-your-servicestack-application">1. Create Your ServiceStack Application<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-your-servicestack-application'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Start by creating your ServiceStack application, either from <a href="https://servicestack.net/start">ServiceStack's Start Page</a>
+or by using the <a href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a>:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run migrate</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new blazor ProjectName</p>
 </div>
                     </div>
                 <div class="flex">
@@ -471,80 +355,176 @@ public class Migration1001 : MigrationBase
                     </div>
                 </div>
             </div>
-<p>Where it will execute all new DB Migrations, in this case apply the same Migration to each configured database.</p>
-<p>Now that our App's databases are all populated and ready to go, we can run it with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run dev</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Then view the built-in Admin Database UI at:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>https://localhost:5001/admin-ui/database</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>and signing in with the Admin user created in <code>Configure.AuthRepository.cs</code>:</p>
+<p>Replace <code>ProjectName</code> with your desired project name to generate a new ServiceStack application pre-configured
+with the necessary Docker compose files and GitHub Action workflows as above.</p>
+<h3 id="configure-dns-for-your-application">2. Configure DNS for Your Application<a class="header-anchor" href="javascript:;" onclick="location.hash='#configure-dns-for-your-application'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>You need a domain to point to your Linux server. Create an A Record in your DNS settings that points to the IP address
+of your Linux server:</p>
 <ul>
-<li><code>admin@email.com</code></li>
-<li><code>p@55wOrd</code></li>
+<li><strong>Subdomain</strong>: <code>app.example.org</code></li>
+<li><strong>Record Type</strong>: A</li>
+<li><strong>Value/Address</strong>: IP address of your Linux server</li>
 </ul>
-<p>Where it displays all the App's configured database tables on its home page:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-home.png" alt="" /></p>
-<p>Whose contents can be viewed by drilling down and clicking on each table:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-mssql-bookings.png" alt="" /></p>
-<p>Which displays its rows using the <a href="https://docs.servicestack.net/vue/autoquerygrid">AutoQuery Grid Vue Component</a> that
-can be sorted and filtered as needed:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-postgres-coupons.png" alt="" /></p>
-<h2 id="vue.mjs-project-template-features">Vue .mjs project template features<a class="header-anchor" href="javascript:;" onclick="location.hash='#vue.mjs-project-template-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Whilst you have the App running, check out its other high-productivity features:</p>
-<h3 id="create-a-multi-user-booking-system-with-autoquery">Create a multi-user Booking system with AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-a-multi-user-booking-system-with-autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The App's Bookings APIs are built using <a href="https://docs.servicestack.net/autoquery-crud">AutoQuery CRUD</a>, allowing for
-rapid development of typed CRUD Services using only declarative POCO DTOs:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/bookings-auto">https://localhost:5001/bookings-auto</a>
+<p>This ensures that any requests to <code>app.example.org</code> are directed to your server.</p>
+<h3 id="setting-up-github-secrets">3. Setting Up GitHub Secrets<a class="header-anchor" href="javascript:;" onclick="location.hash='#setting-up-github-secrets'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Navigate to your GitHub repository's settings, find the &quot;Secrets and variables&quot; section, and add the following secrets:</p>
+<ul>
+<li><code>DEPLOY_HOST</code>: IP address or hostname of your Linux server</li>
+<li><code>DEPLOY_USERNAME</code>: SSH Username to use for deployments</li>
+<li><code>DEPLOY_KEY</code>: Private key generated for GitHub Actions to SSH into your server</li>
+<li><code>LETSENCRYPT_EMAIL</code>: Your email address for Let's Encrypt notifications</li>
+</ul>
+<h4 id="using-github-cli-for-secret-management">Using GitHub CLI for Secret Management<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-github-cli-for-secret-management'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>You can use the <a href="https://cli.github.com/manual/gh_secret_set">GitHub CLI</a> for a quicker setup of these GitHub Action Secrets, e.g:</p>
+<pre><code class="language-bash">gh secret set DEPLOY_HOST --body=&quot;linux-server-host&quot;
+gh secret set DEPLOY_USERNAME --body=&quot;linux-server-username&quot;
+gh secret set DEPLOY_KEY --bodyFile=&quot;path/to/ssh-private-key&quot;
+gh secret set LETSENCRYPT_EMAIL --body=&quot;your-email@example.org&quot;
+</code></pre>
+<p>These secrets will populate environment variables within your GitHub Actions workflow and other configuration files,
+enabling secure and automated deployment of your ServiceStack applications.</p>
+<h3 id="push-to-main-branch-to-trigger-deployment">4. Push to Main Branch to Trigger Deployment<a class="header-anchor" href="javascript:;" onclick="location.hash='#push-to-main-branch-to-trigger-deployment'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>With everything set up, pushing code to the main branch of your repository will trigger the GitHub Action workflow, initiating the deployment process:</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;Initial commit&quot;
+git push origin main
+</code></pre>
+<h3 id="verifying-the-deployment">5. Verifying the Deployment<a class="header-anchor" href="javascript:;" onclick="location.hash='#verifying-the-deployment'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>After the GitHub Actions workflow completes, you can verify the deployment by:</p>
+<ul>
+<li>Checking the workflow's logs in your GitHub repository to ensure it completed successfully</li>
+<li>Navigating to your application's URL (e.g., <code>https://app.example.org</code>) in a web browser. You should see your ServiceStack application up and running with a secure HTTPS connection</li>
+</ul>
+<h2 id="features">Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="db-migrations">DB Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#db-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The GitHub Actions workflow includes a step to run database migrations on the remote server in the <strong>Run remote db migrations</strong> step
+which automatically runs the <code>migrate</code> AppTask in the <code>app-migration</code> companion Docker container on the Linux Host Server
+to validate migration was successful before completing deployment of the new App. A failed migration will cause deployment to fail
+and the previous App version to continue to run.</p>
+<h3 id="patch-appsettings.json-with-production-secrets">Patch appsettings.json with production secrets<a class="header-anchor" href="javascript:;" onclick="location.hash='#patch-appsettings.json-with-production-secrets'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>One way to maintain sensitive information like API keys and connection strings for your Production App outside of its
+source code GitHub repository is to patch the <code>appsettings.json</code> file with a <a href="https://jsonpatch.com">JSON Patch</a> that's
+stored in your repo's <code>APPSETTINGS_PATCH</code> GitHub Action Secret which will be applied with the deployed App's <code>appsettings.json</code> file.</p>
+<p>For example this JSON Patch below will replace values and objects in your App's <strong>appsettings.json</strong>:</p>
+<pre><code class="language-json">[
+    { &quot;op&quot;:&quot;add&quot;, &quot;path&quot;:&quot;/oauth.facebook.AppSecret&quot;,  &quot;value&quot;:&quot;xxxx&quot; },
+    { &quot;op&quot;:&quot;add&quot;, &quot;path&quot;:&quot;/oauth.microsoft.AppSecret&quot;, &quot;value&quot;:&quot;xxxx&quot; },
+    { &quot;op&quot;:&quot;add&quot;, &quot;path&quot;:&quot;/smtp&quot;, &quot;value&quot;:{
+        &quot;UserName&quot;: &quot;xxxx&quot;,
+        &quot;Password&quot;: &quot;xxxx&quot;,
+        &quot;Host&quot;: &quot;smtp-server.example.org&quot;,
+        &quot;Port&quot;: 587,
+        &quot;From&quot;: &quot;noreply@example.org&quot;,
+        &quot;FromName&quot;: &quot;No Reply&quot;
+      } 
+    }
+]
+</code></pre>
+<p>You can test your JSON Patch by saving it to <code>appsettings.json.patch</code> and applying it with the
+<a href="https://docs.servicestack.net/dotnet-tool#patch-json-files">patch feature</a> of the <code>x</code> dotnet tool:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x patch appsettings.json.patch</p>
 </div>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="rSFiikDjGos" style="background-image: url('https://img.youtube.com/vi/rSFiikDjGos/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>In addition, all AutoQuery APIs benefit from the built-in <a href="https://docs.servicestack.net/locode/">Locode's</a> Auto Management UI:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/locode">https://localhost:5001/locode</a>
-</div>
-<p><a href="https://docs.servicestack.net/locode/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/db-test-locode.png" alt="" /></a></p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="hkuO_DMFXmc" style="background-image: url('https://img.youtube.com/vi/hkuO_DMFXmc/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>As well as end-to-end typed integrations with the most <a href="/service-reference">popular programming languages</a> accessible
-from the <a href="https://docs.servicestack.net/api-explorer#code-tab">code tab</a> of the built-in
-<a href="https://docs.servicestack.net/api-explorer">API Explorer</a>:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/ui/QueryBookings?tab=code">https://localhost:5001/ui/QueryBookings?tab=code</a>
-</div>
-<p><a href="https://docs.servicestack.net/api-explorer"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/db-test-ui-code.png" alt="" /></a></p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="lUDlTMq9DHU" style="background-image: url('https://img.youtube.com/vi/lUDlTMq9DHU/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>I hope this has been an informative post and highlighted some cool products and features, any questions or feedback
-is welcome by commenting below.</p>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h2 id="anatomy-of-github-actions-workflow">Anatomy of GitHub Actions Workflow<a class="header-anchor" href="javascript:;" onclick="location.hash='#anatomy-of-github-actions-workflow'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>GitHub Actions workflows are defined in YAML files, and they provide a powerful way to automate your development process.
+This guide will take you through the key sections of the workflow to give you a comprehensive understanding of how it functions.</p>
+<h2 id="permissions">Permissions<a class="header-anchor" href="javascript:;" onclick="location.hash='#permissions'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In this workflow, two permissions are specified:</p>
+<ul>
+<li><code>packages: write</code>: Allows the workflow to upload Docker images to GitHub Packages</li>
+<li><code>contents: write</code>: Required to access the repository content</li>
+</ul>
+<p>Specifying permissions ensures that the GitHub Actions runner has just enough access to perform the tasks in the workflow.</p>
+<h2 id="jobs">Jobs<a class="header-anchor" href="javascript:;" onclick="location.hash='#jobs'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This workflow consists of two jobs: <code>push_to_registry</code> and <code>deploy_via_ssh</code>.</p>
+<h3 id="push_to_registry">push_to_registry<a class="header-anchor" href="javascript:;" onclick="location.hash='#push_to_registry'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This job runs on an Ubuntu 22.04 runner and is responsible for pushing the Docker image to the GitHub Container Registry. It proceeds only if the previous workflow did not fail. The job includes the following steps:</p>
+<ol>
+<li><strong>Checkout</strong>: Retrieves the latest or specific tag of the repository's code</li>
+<li><strong>Env variable assignment</strong>: Assigns necessary environment variables for subsequent steps</li>
+<li><strong>Login to GitHub Container Registry</strong>: Authenticates to the GitHub Container Registry</li>
+<li><strong>Setup .NET Core</strong>: Prepares the environment for .NET 8</li>
+<li><strong>Build and push Docker image</strong>: Creates and uploads the Docker image to GitHub Container Registry (ghcr.io)</li>
+</ol>
+<h3 id="deploy_via_ssh">deploy_via_ssh<a class="header-anchor" href="javascript:;" onclick="location.hash='#deploy_via_ssh'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This job also runs on an Ubuntu 22.04 runner and depends on the successful completion of the <code>push_to_registry</code> job. Its role is to deploy the application via SSH. The steps involved are:</p>
+<ol>
+<li><strong>Checkout</strong>: Retrieves the latest or specific tag of the repository's code</li>
+<li><strong>Repository name fix and env</strong>: Sets up necessary environment variables</li>
+<li><strong>Create .env file</strong>: Generates a .env file required for deployment</li>
+<li><strong>Copy files to target server via scp</strong>: Securely copies files to the remote server</li>
+<li><strong>Run remote db migrations</strong>: Executes database migrations on the remote server</li>
+<li><strong>Remote docker-compose up via ssh</strong>: Deploys the Docker image with the application</li>
+</ol>
+<h2 id="triggers-on">Triggers (on)<a class="header-anchor" href="javascript:;" onclick="location.hash='#triggers-on'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The workflow is designed to be triggered by:</p>
+<ol>
+<li><strong>New GitHub Release</strong>: Activates when a new release is published</li>
+<li><strong>Successful Build action</strong>: Runs whenever the specified Build action completes successfully on the main or master branches</li>
+<li><strong>Manual trigger</strong>: Allows for rollback to a specific release or redeployment of the latest release, with an input for specifying the version tag</li>
+</ol>
+<p>Understanding these sections will help you navigate and modify the workflow as per your needs, ensuring a smooth and automated deployment process.</p>
+<h2 id="deployment-server-setup-expanded">Deployment Server Setup Expanded<a class="header-anchor" href="javascript:;" onclick="location.hash='#deployment-server-setup-expanded'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="ubuntu-as-the-reference-point">Ubuntu as the Reference Point<a class="header-anchor" href="javascript:;" onclick="location.hash='#ubuntu-as-the-reference-point'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Though our example leverages Ubuntu, it's important to emphasize that the primary requirements for this deployment architecture are a Linux operating system, Docker, and SSH. Many popular Linux distributions like CentOS, Fedora, or Debian will work just as efficiently, provided they support Docker and SSH.</p>
+<h3 id="the-crucial-role-of-ssh-in-github-actions">The Crucial Role of SSH in GitHub Actions<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-crucial-role-of-ssh-in-github-actions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><strong>SSH</strong> (Secure SHell) is not just a protocol to remotely access your server's terminal. In the context of GitHub Actions:</p>
+<ul>
+<li>SSH offers a <strong>secure channel</strong> between GitHub Actions and your Linux server</li>
+<li>Enables GitHub to <strong>execute commands directly</strong> on your server</li>
+<li>Provides a mechanism to <strong>transfer files</strong> (like Docker-compose configurations or environment files) from the GitHub repository to the server</li>
+</ul>
+<p>By generating a dedicated SSH key pair specifically for GitHub Actions (as above), we ensure a secure and isolated access mechanism.
+Only the entities possessing the private key (in this case, only GitHub Actions) can initiate an authenticated connection.</p>
+<h3 id="docker-docker-compose-powering-the-architecture">Docker &amp; Docker-Compose: Powering the Architecture<a class="header-anchor" href="javascript:;" onclick="location.hash='#docker-docker-compose-powering-the-architecture'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><strong>Docker</strong> encapsulates your ServiceStack application into containers, ensuring consistency across different environments. Some of its advantages include:</p>
+<ul>
+<li><strong>Isolation</strong>: Your application runs in a consistent environment, irrespective of where Docker runs.</li>
+<li><strong>Scalability</strong>: Easily replicate containers to handle more requests.</li>
+<li><strong>Version Control for Environments</strong>: Create, maintain, and switch between different container images.</li>
+</ul>
+<p><strong>Docker-Compose</strong> extends Docker's benefits by orchestrating the deployment of multi-container applications:</p>
+<ul>
+<li><strong>Ease of Configuration</strong>: Describe your application's entire stack, including the application, database, cache, etc., in a single YAML file.</li>
+<li><strong>Consistency Across Multiple Containers</strong>: Ensures that containers are spun up in the right order and with the correct configurations.</li>
+<li><strong>Simplifies Commands</strong>: Instead of a long string of Docker CLI commands, a single <code>docker-compose up</code> brings your whole stack online.</li>
+</ul>
+<h3 id="nginx-reverse-proxy-the-silent-workhorse">NGINX Reverse Proxy: The Silent Workhorse<a class="header-anchor" href="javascript:;" onclick="location.hash='#nginx-reverse-proxy-the-silent-workhorse'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Using an <strong>nginx reverse proxy</strong> in this deployment design offers several powerful advantages:</p>
+<ul>
+<li><strong>Load Balancing</strong>: Distributes incoming requests across multiple ServiceStack applications, ensuring optimal resource utilization.</li>
+<li><strong>TLS Management</strong>: Together with its companion container, nginx reverse proxy automates the process of obtaining and renewing TLS certificates. This ensures your applications are always securely accessible over HTTPS.</li>
+<li><strong>Routing</strong>: Directs incoming traffic to the correct application based on the domain or subdomain.</li>
+<li><strong>Performance</strong>: Caches content to reduce load times and reduce the load on your ServiceStack applications.</li>
+</ul>
+<p>With an nginx reverse proxy, you can host multiple ServiceStack (or non-ServiceStack) applications on a single server while providing each with its domain or subdomain.</p>
+<h2 id="additional-resources">Additional Resources<a class="header-anchor" href="javascript:;" onclick="location.hash='#additional-resources'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="docker-docker-compose">Docker &amp; Docker-Compose<a class="header-anchor" href="javascript:;" onclick="location.hash='#docker-docker-compose'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong><a href="https://docs.docker.com/">Docker Documentation</a></strong>: Core concepts, CLI usage, and practical applications</li>
+<li><strong><a href="https://docs.docker.com/compose/">Docker-Compose Documentation</a></strong>: Define and manage multi-container applications</li>
+</ul>
+<h3 id="github-actions">GitHub Actions<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-actions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong><a href="https://docs.github.com/en/actions">GitHub Actions Documentation</a></strong>: Creating workflows, managing secrets, and automation tips</li>
+<li><strong><a href="https://github.com/actions/starter-workflows">Starter Workflows</a></strong>: Templates for various languages and tools</li>
+</ul>
+<h3 id="ssh-security">SSH &amp; Security<a class="header-anchor" href="javascript:;" onclick="location.hash='#ssh-security'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong><a href="https://www.ssh.com/academy/ssh/keygen">SSH Key Management</a></strong>: Guidelines on generating and managing SSH keys</li>
+<li><strong><a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub Actions Secrets</a></strong>: Securely store and use sensitive information</li>
+</ul>
 
                 </div>
             </div>
@@ -603,47 +583,6 @@ is welcome by commenting below.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/net8-docker-containers">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1609884557151-1e356d32900c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/net8-docker-containers" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Docker Containerization in .NET 8">
-                                                    Docker Containerization in .NET 8
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">.NET 8 Docker Containers and GitHub Actions Deployments in new Project Templates</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Docker Containerization in .NET 8 background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2023-11-30T00:00:00.0000000">November 30, 2023</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>12 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -760,6 +699,47 @@ is welcome by commenting below.</p>
                                                     <time datetime="2023-11-22T00:00:00.0000000">November 22, 2023</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>17 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/servicestack-ai">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/servicestack-ai" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="ServiceStack.AI - Chat GPT and Managed Cloud Providers">
+                                                    ServiceStack.AI - Chat GPT and Managed Cloud Providers
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Guide to implementing Voice Transcriptions and TypeChat GPT in .NET</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="ServiceStack.AI - Chat GPT and Managed Cloud Providers background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-09-28T00:00:00.0000000">September 28, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>18 min read</span>
                                                 </div>
                                             </div>
                                         </div>
