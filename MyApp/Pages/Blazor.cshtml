@@ -48,7 +48,7 @@
    TitleTop = "Optimal Developer Workflow",
    TitleBottom = "for Blazor WASM Apps",
    Subtitle = "Learn how to easily create feature-rich Blazor WASM Web Apps with ServiceStack",
-   YoutubeId = "BcQqCzm4tK0",
+   YoutubeId = "LxoE6LNCKhA",
 })
 
 <a name="create"></a>
@@ -134,11 +134,16 @@ mount('#projects', App)
 <a id="features"></a>
 @await Html.PartialAsync("Blazor/Features")
 
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "Blazor Project Templates",
+  Summary = "Beautiful, Modern, Productive Blazor Tailwind Templates",
+  Group = "blazor",
+  LearnMore = "https://servicestack.net/blazor",
+  Background = "bg-slate-100 dark:bg-slate-800",
+})
+
 <a id="tailwind"></a>
 @await Html.PartialAsync("Blazor/Tailwind")
-
-<a id="bootstrap"></a>
-@await Html.PartialAsync("Blazor/Bootstrap")
 
 
 <a name="locode"></a>
