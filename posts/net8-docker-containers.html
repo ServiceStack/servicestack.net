@@ -223,6 +223,7 @@ best practices of running App's as non-root by default.</p>
 <p>This <strong>publish to container</strong> feature also supports creating Docker images for different architectures like ARM64 which
 sees <a href="https://devblogs.microsoft.com/dotnet/this-arm64-performance-in-dotnet-8/">significant improvements in .NET 8</a>
 making deploying your .NET Apps to ARM64 an <a href="https://servicestack.net/posts/cloud-value-between-architectures">even better value proposition</a>.</p>
+<p>If you need more control over your Docker image, you can still use a Dockerfile to customize your image, and there are <a href="https://github.com/tmds/build-image">even tools to generate Dockerfiles for you from your project</a>.</p>
 <h3 id="github-action-deployments">GitHub Action Deployments<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-action-deployments'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>In today's DevOps ecosystem, <a href="https://github.com/features/actions">GitHub Actions</a> stand out as an invaluable asset for
 automating CI/CD workflows directly within your GitHub repository. The introduction of .NET 8 takes this a step further,
