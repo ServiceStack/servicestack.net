@@ -248,7 +248,7 @@ const App = {
             <h3 class="text-gray-400 text-xl mb-2">SPA Templates</h3>
             <div class="flex flex-wrap justify-center">
                 <div>
-                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-tailwind" :mix="tagsFor('blazor-tailwind')" :tags="['autoquery','auth']">
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-tailwind" :mix="tagsFor('blazor-wasm')" :tags="['autoquery','auth']">
                         <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor WASM</div>
                         <template #icon>
                             <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.31.74 1.91 1.35c.98 1 2.09 2.15 4.59 2.15c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C15.61 7.15 14.5 6 12 6m-5 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.3.74 1.91 1.35C8.39 16.85 9.5 18 12 18c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C10.61 13.15 9.5 12 7 12Z"/></svg>
@@ -264,8 +264,8 @@ const App = {
                     </ProjectTemplate>
                 </div>
                 <div>
-                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-server" :mix="tagsFor('blazor-server')" :tags="['autoquery','auth']">
-                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Server</div>
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-server" :mix="tagsFor('blazor-vue')" :tags="['autoquery','auth']">
+                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Vue</div>
                         <template #icon>
                             <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.31.74 1.91 1.35c.98 1 2.09 2.15 4.59 2.15c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C15.61 7.15 14.5 6 12 6m-5 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.3.74 1.91 1.35C8.39 16.85 9.5 18 12 18c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C10.61 13.15 9.5 12 7 12Z"/></svg>
                         </template>
@@ -280,8 +280,8 @@ const App = {
           <h3 class="text-gray-400 text-xl mb-2">SSR Templates</h3>
           <div class="flex flex-wrap justify-center">
             <div>
-                <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-server" :mix="tagsFor('web')" :tags="['autoquery','auth']">
-                    <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Server</div>
+                <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor" :mix="tagsFor('web')" :tags="['autoquery','auth']">
+                    <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor</div>
                     <template #icon>
                         <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.31.74 1.91 1.35c.98 1 2.09 2.15 4.59 2.15c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C15.61 7.15 14.5 6 12 6m-5 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.3.74 1.91 1.35C8.39 16.85 9.5 18 12 18c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C10.61 13.15 9.5 12 7 12Z"/></svg>
                     </template>
@@ -328,9 +328,9 @@ const App = {
             "nextjs":          "jamstack-litestream",
             "vue-ssg":         "jamstack-litestream",
             "vue-vite":        "jamstack-litestream",
+            "blazor":          "blazor-litestream",
             "blazor-wasm":     "blazor-litestream",
-            "blazor-tailwind": "blazor-litestream",
-            "blazor-server":   "blazor-litestream",
+            "blazor-vue":      "blazor-litestream",
         }
         
         function tagsFor(template) {
@@ -384,67 +384,3 @@ let defaultValue = location.hash.indexOf('azure') >= 0
 let anchor = location.hash && location.hash.indexOf('=') <= 0 && document.querySelector(location.hash)
 if (!anchor && location.hash) anchor = document.querySelector('#create')
 </script>
-
-
-<!--  script>
-updateTemplates()
-if (anchor) {
-    anchor.scrollIntoView()
-}
-
-let inputs = $('#litestream-options input[type=radio]')
-
-// overrides getMix + templateUrlFilter in start.js
-function getMix() {
-    let chk = $('#litestream-options input:checked')[0]
-    return 'x-litestream-' + (chk && chk.value) || defaultValue
-}
-function templateUrlFilter(url) {
-    let mixPrefixes = {
-        "web":             "litestream",
-        "nextjs":          "jamstack-litestream",
-        "vue-ssg":         "jamstack-litestream",
-        "vue-vite":        "jamstack-litestream",
-        "blazor-wasm":     "blazor-litestream",
-        "blazor-tailwind": "blazor-litestream",
-        "blazor-server":   "blazor-litestream",
-    }
-
-    let tplUrl = url.split('?')[0]
-    let tpl = tplUrl.substring(tplUrl.lastIndexOf('/') + 1)
-    return url.replace('x-litestream', mixPrefixes[tpl])
-}
-
-function updateStorage(e) {
-    //let input = e.target
-    inputs.each((i,input) => {
-        let label = $(input.parentElement)
-        let svg = label.find('svg')
-        let border = label.find('.-inset-px')
-        
-        let isChecked = input.checked
-        let isActive = label === document.activeElement
-        if (isChecked) {
-            label.addClass('border-transparent').removeClass('border-gray-300')
-            border.addClass('border-indigo-500').removeClass('border-transparent')
-            svg.attr('class', svg.attr('class').replace(/ invisible/g,''))
-        } else {
-            label.addClass('border-gray-300').removeClass('border-transparent')
-            border.addClass('border-transparent').removeClass('border-indigo-500')
-            svg.attr('class', svg.attr('class') + ' invisible')
-        }
-        if (isActive) {
-            label.addClass('border-indigo-500 ring-2 ring-indigo-500')
-            border.addClass('border').removeClass('border-2')
-        } else {
-            label.removeClass('border-indigo-500 ring-2 ring-indigo-500')
-            border.addClass('border-2').removeClass('border')
-        }
-    })
-    updateTemplates()
-}
-
-$(`#litestream-options input[value=${defaultValue}]`).attr('checked', true)
-$('#litestream-options input[type=radio]').on('change', updateStorage)
-updateStorage()
-<--script-->
