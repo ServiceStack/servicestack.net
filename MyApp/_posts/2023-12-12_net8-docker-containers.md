@@ -41,6 +41,8 @@ This **publish to container** feature also supports creating Docker images for d
 sees [significant improvements in .NET 8](https://devblogs.microsoft.com/dotnet/this-arm64-performance-in-dotnet-8/)
 making deploying your .NET Apps to ARM64 an [even better value proposition](https://servicestack.net/posts/cloud-value-between-architectures).
 
+If you need more control over your Docker image, you can still use a Dockerfile to customize your image, and there are [even tools to generate Dockerfiles for you from your project](https://github.com/tmds/build-image).
+
 ### GitHub Action Deployments
 
 In today's DevOps ecosystem, [GitHub Actions](https://github.com/features/actions) stand out as an invaluable asset for
