@@ -10,7 +10,7 @@ In the rapidly evolving landscape of AI, a constant challenge that developers fa
 
 ## The Journey So Far
 
-Our [initial demonstration of the GPT Meeting Agent](https://gptmeetings.netcore.io) offered an exciting glimpse into how developers could leverage the reasoning capability of Large Language Models such as `gpt-3.5-turbo` with the ServiceStack framework. We [showcased an application](https://github.com/NetCoreApps/GPTMeetingAgent) that could use In Context Learning, Chain Of Thought Prompting, and the defining of your own ServiceStack services using TypeScript definition format.
+Our [initial demonstration of the GPT Meeting Agent](https://github.com/NetCoreApps/GPTMeetingAgent/tree/42e18e9c6e7f9809760e3fecf40208d5759b18a3) offered an exciting glimpse into how developers could leverage the reasoning capability of Large Language Models such as `gpt-3.5-turbo` with the ServiceStack framework. We [showcased an application](https://github.com/NetCoreApps/GPTMeetingAgent) that could use In Context Learning, Chain Of Thought Prompting, and the defining of your own ServiceStack services using TypeScript definition format.
 
 <div class="flex justify-center">
     <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7vChIGHWPuI" style="background-image: url('https://img.youtube.com/vi/7vChIGHWPuI/maxresdefault.jpg')"></lite-youtube>
