@@ -14,7 +14,7 @@ We're happy to report that ServiceStack has eclipsed **150M total downloads!**
    <a href="https://www.nuget.org/profiles/servicestack"><img class="w-96" src="/img/posts/razor-ssg/150M-downloads.png"></a>
 </div>
 
-Which comes just after a year from **100M downloads** in [v6 Release](https://docs.servicestack.net/releases/v6_0) when we announced 
+Which comes just after a year from **100M downloads** in [v6 Release](https://docs.servicestack.net/releases/v6_00) when we announced 
 [ServiceStack is now FREE for Individuals & OSS!](https://servicestack.net/free)
 
 We're celebrating this new milestone with a **brand new website**, rewritten from Ruby's Jekyll with an exciting new 
