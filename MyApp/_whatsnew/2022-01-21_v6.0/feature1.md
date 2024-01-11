@@ -1,6 +1,6 @@
 ---
 title: FREE Individual & OSS Licenses
-url: https://docs.servicestack.net/releases/v6
+url: https://docs.servicestack.net/releases/v6_00
 image: /img/whatsnew/v6/servicestack-100m-976w.png
 ---
 
