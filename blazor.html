@@ -241,149 +241,9 @@ const MobileNav = {
 mount('#mobile-nav', MobileNav)
 </script>
 
-
-<!-- video -->
-<div>
-    <div class="relative overflow-hidden">
-        <div class="absolute inset-y-0 h-full w-full -z-20" aria-hidden="true">
-            <div class="relative h-full">
-                <svg class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full"
-                     width="404" height="784" fill="none" viewBox="0 0 404 784">
-                    <defs>
-                        <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20"
-                                 patternUnits="userSpaceOnUse">
-                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor"/>
-                        </pattern>
-                    </defs>
-                    <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)"/>
-                </svg>
-                <svg class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4"
-                     width="404" height="784" fill="none" viewBox="0 0 404 784">
-                    <defs>
-                        <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20"
-                                 patternUnits="userSpaceOnUse">
-                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor"/>
-                        </pattern>
-                    </defs>
-                    <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)"/>
-                </svg>
-            </div>
-        </div>
-
-        <div class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6">
-            <div class="text-center">
-                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-                    <div>Optimal Developer Workflow</div>
-                    <div>for Blazor WASM Apps</div>
-                </h1>
-                <p class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                    Learn how to easily create feature-rich Blazor WASM Web Apps with ServiceStack
-                </p>
-            </div>
-        </div>
-
-        <div class="relative">
-            <div class="absolute inset-0 flex flex-col" aria-hidden="true">
-                <div class="flex-1"></div>
-                <div class="flex-1 w-full bg-gray-900"></div>
-            </div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bbxrLLpAGJE"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<a name="create"></a>
-<div class="relative py-8 overflow-hidden sm:py-12 lg:py-16">
-    <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-        <div class="mt-8">
-            <h3 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-                Create a new Blazor App
-            </h3>
-            <div
-                class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                Customize and Download a new Blazor project with your preferred name:
-            </div>
-        </div>
-
-        <div id="projects"></div>
-    </div>
-</div>
-
-<script type="module">
-import { ref } from "vue"
-import { mount } from "app.mjs"
-
-const App = {
-    template:`
-    <section class="w-full flex flex-col justify-center text-center">
-        <div id="empty" class="mt-4 mb-2">
-            <div class="flex justify-center mb-8 pb-8">
-                <div class="w-70">
-                    <input v-model="name" type="text" placeholder="Project Name" autocorrect="off" spellcheck="false" v-on:keypress="isAlphaNumeric"
-                           class="mt-1 text-lg block w-full px-3 py-2 bg-white dark:bg-black border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
-                </div>
-            </div>
-        </div>
-        
-        <div class="mb-2">
-            <div class="flex flex-wrap justify-center gap-x-4">
-                <div>
-                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor" :tags="['ssr','server']">
-                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor</div>
-                        <template #icon>
-                            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
-                        </template>
-                    </ProjectTemplate>
-                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor.web-templates.io">blazor.web-templates.io</a>
-                </div>
-                <div>
-                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-vue" :tags="['ssr','vue']">
-                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Vue</div>
-                        <template #icon>
-                            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
-                        </template>
-                    </ProjectTemplate>
-                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-vue.web-templates.io">blazor-vue.web-templates.io</a>
-                </div>
-                <div>
-                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-wasm" :tags="['ssr','auto']">
-                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor WASM</div>
-                        <template #icon>
-                            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
-                        </template>
-                    </ProjectTemplate>
-                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-wasm.web-templates.io">blazor-wasm.web-templates.io</a>
-                </div>
-            </div>
-        </div>
-    </section>`,
-    setup(props) {
-        const name = ref('MyApp')
-
-        const isAlphaNumeric = (e) => {
-            const c = e.charCode;
-            if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 48 && c <= 57 || c === 95) //A-Za-z0-9_
-            return;
-            e.preventDefault()
-        }
-        return { name, isAlphaNumeric }
-    }
-}
-mount('#projects', App)
-</script>
-
 <a id="features"></a>
 
-<div class="relative bg-white dark:bg-black mb-8 py-8 sm:py-12 lg:py-16">
+<div class="relative bg-white dark:bg-black mb-8 mt-8 sm:mt-16 lg:mt-32">
     <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="text-base font-semibold uppercase tracking-wider text-indigo-600">Develop faster</h2>
         <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Everything you need to develop
@@ -544,6 +404,86 @@ mount('#projects', App)
     </div>
 </div>
 
+<a name="create"></a>
+<div class="relative py-8 overflow-hidden sm:py-12 lg:py-16">
+    <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+        <div class="mt-8">
+            <h3 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                Create a new Blazor App
+            </h3>
+            <div
+                class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Customize and Download a new Blazor project with your preferred name:
+            </div>
+        </div>
+
+        <div id="projects"></div>
+    </div>
+</div>
+
+<script type="module">
+import { ref } from "vue"
+import { mount } from "app.mjs"
+
+const App = {
+    template:`
+    <section class="w-full flex flex-col justify-center text-center">
+        <div id="empty" class="mt-4 mb-2">
+            <div class="flex justify-center mb-8 pb-8">
+                <div class="w-70">
+                    <input v-model="name" type="text" placeholder="Project Name" autocorrect="off" spellcheck="false" v-on:keypress="isAlphaNumeric"
+                           class="mt-1 text-lg block w-full px-3 py-2 bg-white dark:bg-black border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-2">
+            <div class="flex flex-wrap justify-center gap-x-4">
+                <div>
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor" :tags="['ssr','server']">
+                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor</div>
+                        <template #icon>
+                            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
+                        </template>
+                    </ProjectTemplate>
+                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor.web-templates.io">blazor.web-templates.io</a>
+                </div>
+                <div>
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-vue" :tags="['ssr','vue']">
+                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Vue</div>
+                        <template #icon>
+                            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
+                        </template>
+                    </ProjectTemplate>
+                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-vue.web-templates.io">blazor-vue.web-templates.io</a>
+                </div>
+                <div>
+                    <ProjectTemplate :name="name" repo="NetCoreTemplates/blazor-wasm" :tags="['ssr','auto']">
+                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor WASM</div>
+                        <template #icon>
+                            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
+                        </template>
+                    </ProjectTemplate>
+                    <a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block text-sm" href="https://blazor-wasm.web-templates.io">blazor-wasm.web-templates.io</a>
+                </div>
+            </div>
+        </div>
+    </section>`,
+    setup(props) {
+        const name = ref('MyApp')
+
+        const isAlphaNumeric = (e) => {
+            const c = e.charCode;
+            if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 48 && c <= 57 || c === 95) //A-Za-z0-9_
+            return;
+            e.preventDefault()
+        }
+        return { name, isAlphaNumeric }
+    }
+}
+mount('#projects', App)
+</script>
+
 
 
 <!-- BSD License: https://docs.servicestack.net/BSD-LICENSE.txt -->
@@ -660,9 +600,6 @@ Blazor .NET 8 with <strong>Tailwind CSS</strong> styling for creating beautiful 
     </div>
 </section>
 
-<a id="tailwind"></a>
-
-<a id="tailwind"></a>
 
 <!-- video -->
 <div>
@@ -695,11 +632,11 @@ Blazor .NET 8 with <strong>Tailwind CSS</strong> styling for creating beautiful 
         <div class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6">
             <div class="text-center">
                 <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-                    <div>Beautiful <span class='text-purple-600'>Blazor WASM Apps</span></div>
-                    <div><span style='color:#44A8B3'>with Tailwind</span></div>
+                    <div>Optimal Developer Workflow</div>
+                    <div>for Blazor WASM Apps</div>
                 </h1>
                 <p class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                    Preview the highly productive development model of the new Blazor Tailwind template showing how easy it is to utilize beautifully designed components
+                    Learn how to easily create feature-rich Blazor WASM Web Apps with ServiceStack
                 </p>
             </div>
         </div>
@@ -711,7 +648,7 @@ Blazor .NET 8 with <strong>Tailwind CSS</strong> styling for creating beautiful 
             </div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
                 <div class="aspect-w-16 aspect-h-9">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/U_LflAxz1z0"
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bbxrLLpAGJE"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -722,6 +659,10 @@ Blazor .NET 8 with <strong>Tailwind CSS</strong> styling for creating beautiful 
     </div>
 </div>
 
+
+<a id="tailwind"></a>
+
+<a id="tailwind"></a>
 
 <div class="bg-white dark:bg-black pb-8 pb-12">
     <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
@@ -800,6 +741,97 @@ Blazor .NET 8 with <strong>Tailwind CSS</strong> styling for creating beautiful 
     </div>
 </div>
 
+
+<!-- video -->
+<div>
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-y-0 h-full w-full -z-20" aria-hidden="true">
+            <div class="relative h-full">
+                <svg class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full"
+                     width="404" height="784" fill="none" viewBox="0 0 404 784">
+                    <defs>
+                        <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20"
+                                 patternUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor"/>
+                        </pattern>
+                    </defs>
+                    <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)"/>
+                </svg>
+                <svg class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4"
+                     width="404" height="784" fill="none" viewBox="0 0 404 784">
+                    <defs>
+                        <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20"
+                                 patternUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor"/>
+                        </pattern>
+                    </defs>
+                    <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                    <div>Beautiful <span class='text-purple-600'>Blazor WASM Apps</span></div>
+                    <div><span style='color:#44A8B3'>with Tailwind</span></div>
+                </h1>
+                <p class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Preview the highly productive development model of the new Blazor Tailwind template showing how easy it is to utilize beautifully designed components
+                </p>
+            </div>
+        </div>
+
+        <div class="relative">
+            <div class="absolute inset-0 flex flex-col" aria-hidden="true">
+                <div class="flex-1"></div>
+                <div class="flex-1 w-full bg-gray-900"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
+                <div class="aspect-w-16 aspect-h-9">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/U_LflAxz1z0"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="relative bg-white dark:bg-black py-8 sm:py-16 lg:py-32">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+
+        <h3 id="tailwind-components" tabindex="-1"
+            class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
+            Tailwind Components
+        </h3>
+
+        <p class="mb-8 mx-auto mt-5 text-xl text-gray-500">
+            <a class="font-semibold hover:underline" href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind</a>
+            has quickly become the best modern CSS framework for creating scalable,
+            <a class="font-semibold hover:underline" href="https://tailwindcss.com/#mobile-first" target="_blank" rel="noopener noreferrer">mobile-first
+                responsive</a>
+            websites built upon a beautiful expert-crafted constraint-based
+            <a class="font-semibold hover:underline" href="https://tailwindcss.com/#constraint-based" target="_blank" rel="noopener noreferrer">Design
+                System</a>
+            that enables effortless reuse of a growing suite of
+            <a class="font-semibold hover:underline" href="https://tailwindcomponents.com" target="_blank" rel="noopener noreferrer">Free Community</a>
+            and professionally-designed
+            <a class="font-semibold hover:underline" href="https://tailwindui.com" target="_blank" rel="noopener noreferrer">Tailwind UI Component
+                Libraries</a>,
+            invaluable for quickly creating beautiful websites.
+        </p>
+
+        <p>
+            <a href="https://tailwindui.com" target="_blank" rel="noopener noreferrer"><img
+                    src="/img/pages/blazor/tailwindui.png" alt=""></a>
+        </p>
+    </div>
+</div>
+
 <div class="relative bg-white dark:bg-black py-8 sm:py-12 lg:py-16">
     <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <div id="blazor-component-gallery" class="mt-16 relative bg-white dark:bg-black py-4">
@@ -868,113 +900,10 @@ Blazor .NET 8 with <strong>Tailwind CSS</strong> styling for creating beautiful 
                 </a>
             </div>
         </div>
-
-        <p class="text-xl text-gray-800 dark:text-gray-100">
-            For a closer look at ServiceStack.Blazor Components in action, download & run them to see how good they'll
-            run in your Environment:
-        </p>
-
-        <div class="mt-4 flex justify-center">
-            <div>
-                <a href="https://github.com/NetCoreApps/BlazorGallery" class="flex text-xl text-gray-800 dark:text-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        aria-hidden="true" role="img" class="w-6 h-6 mr-2 align-text-bottom" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
-                        </path>
-                    </svg>
-                    <span>NetCoreApps/BlazorGallery</span>
-                </a>
-                <a href="https://github.com/NetCoreApps/BlazorGalleryWasm" class="flex mt-2 text-xl text-gray-800 dark:text-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        aria-hidden="true" role="img" class="w-6 h-6 mr-2 align-text-bottom" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
-                        </path>
-                    </svg>
-                    <span>NetCoreApps/BlazorGalleryWasm</span>
-                </a>
-            </div>
-        </div>
     </div>
 </div>
 
-<div class="relative bg-white dark:bg-black py-8 sm:py-12 lg:py-16">
-    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-
-        <h3 id="tailwind-components" tabindex="-1"
-            class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
-            Tailwind Components
-        </h3>
-
-        <p class="mb-8 mx-auto mt-5 text-xl text-gray-500">
-            <a class="font-semibold hover:underline" href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind</a>
-            has quickly become the best modern CSS framework for creating scalable,
-            <a class="font-semibold hover:underline" href="https://tailwindcss.com/#mobile-first" target="_blank" rel="noopener noreferrer">mobile-first
-                responsive</a>
-            websites built upon a beautiful expert-crafted constraint-based
-            <a class="font-semibold hover:underline" href="https://tailwindcss.com/#constraint-based" target="_blank" rel="noopener noreferrer">Design
-                System</a>
-            that enables effortless reuse of a growing suite of
-            <a class="font-semibold hover:underline" href="https://tailwindcomponents.com" target="_blank" rel="noopener noreferrer">Free Community</a>
-            and professionally-designed
-            <a class="font-semibold hover:underline" href="https://tailwindui.com" target="_blank" rel="noopener noreferrer">Tailwind UI Component
-                Libraries</a>,
-            invaluable for quickly creating beautiful websites.
-        </p>
-
-        <p>
-            <a href="https://tailwindui.com" target="_blank" rel="noopener noreferrer"><img
-                    src="/img/pages/blazor/tailwindui.png" alt=""></a>
-        </p>
-    </div>
-</div>
-
-<div>
-    <div class="relative overflow-hidden">
-        <div class="absolute inset-y-0 h-full w-full -z-20" aria-hidden="true">
-            <div class="relative h-full">
-                <svg class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full"
-                    width="404" height="784" fill="none" viewBox="0 0 404 784">
-                    <defs>
-                        <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20"
-                            patternUnits="userSpaceOnUse">
-                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor" />
-                        </pattern>
-                    </defs>
-                    <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)" />
-                </svg>
-                <svg class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4"
-                    width="404" height="784" fill="none" viewBox="0 0 404 784">
-                    <defs>
-                        <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20"
-                            patternUnits="userSpaceOnUse">
-                            <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-700" fill="currentColor" />
-                        </pattern>
-                    </defs>
-                    <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)" />
-                </svg>
-            </div>
-        </div>
-
-        <div class="mt-16 relative">
-            <div class="absolute inset-0 flex flex-col" aria-hidden="true">
-                <div class="flex-1"></div>
-                <div class="flex-1 w-full bg-gray-900"></div>
-            </div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Nf5GpfRafo8"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="darkmode" class="relative bg-white dark:bg-black py-8 sm:py-12 lg:py-16">
+<div id="darkmode" class="relative bg-white dark:bg-black py-8">
     <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
 
         <div class="pt-8 my-8 ml-20 flex flex-col items-center">
@@ -1416,7 +1345,6 @@ Blazor .NET 8 with <strong>Tailwind CSS</strong> styling for creating beautiful 
         </div>
     </div>
 </div>
-
 
 
 
