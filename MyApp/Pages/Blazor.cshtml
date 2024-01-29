@@ -44,12 +44,8 @@
 
 @await Html.PartialAsync("PrimaryNav", "blazor")
 
-@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
-   TitleTop = "Optimal Developer Workflow",
-   TitleBottom = "for Blazor WASM Apps",
-   Subtitle = "Learn how to easily create feature-rich Blazor WASM Web Apps with ServiceStack",
-   YoutubeId = "bbxrLLpAGJE",
-})
+<a id="features"></a>
+@await Html.PartialAsync("Blazor/Features")
 
 <a name="create"></a>
 <div class="relative py-8 overflow-hidden sm:py-12 lg:py-16">
@@ -131,9 +127,6 @@ const App = {
 mount('#projects', App)
 </script>
 
-<a id="features"></a>
-@await Html.PartialAsync("Blazor/Features")
-
 @await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
   Title = "Blazor Project Templates",
   Summary = "Beautiful, Modern, Productive Blazor Tailwind Templates",
@@ -142,9 +135,15 @@ mount('#projects', App)
   Background = "bg-slate-100 dark:bg-slate-800",
 })
 
+@await Html.PartialAsync("VideoFeature", new Shared.VideoFeature {
+   TitleTop = "Optimal Developer Workflow",
+   TitleBottom = "for Blazor WASM Apps",
+   Subtitle = "Learn how to easily create feature-rich Blazor WASM Web Apps with ServiceStack",
+   YoutubeId = "bbxrLLpAGJE",
+})
+
 <a id="tailwind"></a>
 @await Html.PartialAsync("Blazor/Tailwind")
-
 
 <a name="locode"></a>
 <div class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
