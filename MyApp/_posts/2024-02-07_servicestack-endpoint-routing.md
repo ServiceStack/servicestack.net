@@ -31,10 +31,12 @@ The major areas we've identified that could benefit from tighter integration wit
  - [ServiceStack Routing](https://docs.servicestack.net/routing) and [Request Pipeline](https://docs.servicestack.net/order-of-operations)
  - [ServiceStack.Text JSON Serializer](https://docs.servicestack.net/json-format)
 
-We're happy to announce the latest release of ServiceStack v8.1 now supports utilizing ASP.NET Core's features to reimplement
-all these key areas with external ASP .NET Core App features - fostering seamless integration and greater reuse.
+### ServiceStack v8.1 is fully integrated!
 
-Better yet, this is the new behavior enabled in all of ServiceStack's ASP .NET Identity Auth .NET 8 templates.
+We're happy to announce the latest release of ServiceStack v8.1 now supports utilizing the optimal ASP.NET Core's features 
+to reimplement all these key areas - fostering seamless integration and greater reuse.
+
+Better yet, this is the new behavior enabled in all of ServiceStack's new ASP .NET Identity Auth .NET 8 templates.
 
 ### ASP .NET Core IOC
 
@@ -247,11 +249,31 @@ This feature can be useful for Services wanting to access optional dependencies 
 This is only supported in ServiceStack Services and not other dependencies
 :::
 
-### AddServiceStack Configuration
+### Built-in ServiceStack Dependencies
 
+This integration now makes it effortless to inject and utilize optional ServiceStack features like
+[AutoQuery](https://docs.servicestack.net/autoquery/) and [Server Events](https://docs.servicestack.net/server-events)
+in other parts of ASP.NET Core inc. Blazor Components, Razor Pages, MVC Controllers, Minimal APIs, etc.
 
+Whilst Built-in ServiceStack features that are registered by default and are immediately available to be injected into any IOC dependency include:
+ - `IVirtualFiles` - Read/Write [Virtual File System](https://docs.servicestack.net/virtual-file-system), defaults to `FileSystemVirtualFiles` at `ContentRootPath`
+ - `IVirtualPathProvider` - Multi Virtual File System configured to scan multiple read only sources, inc `WebRootPath`, In Memory and Embedded Resource files  
+ - `ICacheClient` and `ICacheClientAsync` - In Memory Cache, or distributed Redis cache if [ServiceStack.Redis](https://docs.servicestack.net/redis/) is configured
+ - `IAppSettings` - Multiple [AppSettings](https://docs.servicestack.net/appsettings) configuration sources
+
+With ASP.NET Core's IOC now deeply integrated we cast our eyes on the next area of integration: API Integration and Routing.
 
 ## Endpoint Routing
+
+Whilst ASP.NET Core's middleware is a flexible way to compose and execute different middleware in a HTTP Request pipeline,
+each middleware is effectively their own island of functionality that's able to handle HTTP Requests in which ever way
+they see fit.
+
+In particular ServiceStack's middleware would execute its own [Request Pipeline](https://docs.servicestack.net/order-of-operations) 
+which would execute ServiceStack API's registered at user-defined routes with its own [ServiceStack Routing](https://docs.servicestack.net/routing).
+
+
+
 
 This release continues that trend by adding support for 
 [ASP.NET Core Endpoint Routing](https://docs.servicestack.net/releases/v5.10#aspnet-core-endpoint-routing)
