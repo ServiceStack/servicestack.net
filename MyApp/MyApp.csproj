@@ -30,10 +30,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="_pages\vue\sidebar.json" />
-  </ItemGroup>
-
   <!--  <ItemGroup>-->
   <!--    <ProjectReference Include="..\..\..\ServiceStack\ServiceStack\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.csproj" />-->
   <!--    <ProjectReference Include="..\..\..\ServiceStack\ServiceStack\ServiceStack\src\ServiceStack.Client\ServiceStack.Client.csproj" />-->
