@@ -37,8 +37,9 @@ We're happy to announce the latest release of ServiceStack v8.1 now supports uti
 standardized features to reimplement all these key areas - fostering seamless integration and greater reuse which
 you can learn about below:
 
-- [ASP.NET Core IOC](#asp.net-core-ioc)
-- [Endpoint Routing](#endpoint-routing)
+- [ASP.NET Core Identity Auth](/posts/net8-identity-auth)
+- [ASP.NET Core IOC](/posts/servicestack-endpoint-routing#asp.net-core-ioc)
+- [Endpoint Routing](/posts/servicestack-endpoint-routing#endpoint-routing)
 - [Open API v3 and Swagger UI support](/posts/openapi-v3-support)
 - [System.Text.Json APIs](/posts/system-text-json-apis)
 
@@ -418,7 +419,7 @@ app.UseServiceStack(new AppHost(), options => {
 });
 ```
 
-### Hide ServiceStack Endpoints
+### Hidden ServiceStack Endpoints
 
 Whilst ServiceStack Requests are registered and executed as endpoints, most of them are marked with
 `builder.ExcludeFromDescription()` to hide them from polluting metadata and API Explorers like Swagger UI and 
@@ -432,6 +433,24 @@ or use `[Exclude(Feature.ApiExplorer)]` to just hide them API Explorer UIs:
 [Exclude(Feature.ApiExplorer)]
 public class HiddenRequest {}
 ```
+
+### Content Negotiation
+
+An example of these hidden routes is the support for invoking and returning ServiceStack APIs in different Content Types
+via hidden Endpoint Routes mapped with the format `/api/{Request}.{format}`, e.g:
+
+- [/api/QueryBookings](https://blazor-vue.web-templates.io/api/QueryBookings)
+- [/api/QueryBookings.jsonl](https://blazor-vue.web-templates.io/api/QueryBookings.jsonl)
+- [/api/QueryBookings.csv](https://blazor-vue.web-templates.io/api/QueryBookings.csv)
+- [/api/QueryBookings.xml](https://blazor-vue.web-templates.io/api/QueryBookings.xml)
+- [/api/QueryBookings.html](https://blazor-vue.web-templates.io/api/QueryBookings.html)
+
+#### Query String Format
+
+That continues to support specifying the Mime Type via the `?format` query string, e.g:
+ 
+- [/api/QueryBookings?format=jsonl](https://blazor-vue.web-templates.io/api/QueryBookings?format=jsonl)
+- [/api/QueryBookings?format=csv](https://blazor-vue.web-templates.io/api/QueryBookings?format=csv)
 
 ### Predefined Routes
 
