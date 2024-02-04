@@ -27,14 +27,15 @@ The `Interactive Server` mode was faster to load, but the `Interactive WASM` mod
 
 The initial load times for `Interactive WASM` could be quite slow, as the entire application and all its dependencies needed to be downloaded before the page could render most of the content.
 
-![](/img/posts/blazor-8-admin/blazor-wasm-6-slow.gif)
+<img class="border-gray-800 border-t border-r" src="/img/posts/blazor-8-admin/blazor-wasm-6-slow.gif">
+
 > The initial load time for the `Interactive WASM` mode can be quite slow even for a minimal app
 
 Our templates previously worked around this limitation with a custom Pre-Rendering solution, as the wait times were too long for a good user experience.
 
 With .NET 8, the new `Interactive Auto` mode provides the best of both worlds as pre-rendering is now enabled by default.
 
-![](/img/posts/blazor-8-admin/blazor-wasm-8-fast.gif)
+<img class="border-gray-800 border-r" src="/img/posts/blazor-8-admin/blazor-wasm-8-fast.gif">
 
 When the page is first loaded, it uses the `Interactive Server` mode, which is faster than `Interactive WASM` as it doesn't need to download WASM resources.
 So the user can start interacting with the page straight away, but with a slight delay for each of their interactions due to having to perform round-trips to the server for each interaction.

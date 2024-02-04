@@ -533,12 +533,3 @@ It also provides features like two-factor authentication, external authenticatio
 So while you don't have to migrate to ASP.NET Core Identity, it is a great option if you are already familiar with it, or if you are looking to use some of the additional features it provides.
 
 If you are looking to migrate to ASP.NET Core Identity, we hope this guide helps you with your migration. If you have any questions, feel free to reach out on our [forums](https://forums.servicestack.net).
-
-
-
-
-
-
-
-
-
