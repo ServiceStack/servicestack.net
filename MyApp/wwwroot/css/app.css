@@ -2552,6 +2552,11 @@ select{
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
 .border-green-400 {
   --tw-border-opacity: 1;
   border-color: rgb(74 222 128 / var(--tw-border-opacity));
@@ -2609,16 +2614,6 @@ select{
 .border-zinc-100 {
   --tw-border-opacity: 1;
   border-color: rgb(244 244 245 / var(--tw-border-opacity));
-}
-
-.border-gray-800 {
-  --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity));
-}
-
-.border-t-gray-800 {
-  --tw-border-opacity: 1;
-  border-top-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
 
 .bg-black {
