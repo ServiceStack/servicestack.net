@@ -256,7 +256,7 @@ app.MapAdditionalIdentityEndpoints();
 
 ### Implement the Migrate Users Task
 
-So far we have have prepared the application to use ASP.NET Core Identity, but we still need to migrate our existing users to the new ASP.NET Core Identity tables.
+So far we have prepared the application to use ASP.NET Core Identity, but we still need to migrate our existing users to the new ASP.NET Core Identity tables.
 
 This will require:
 
