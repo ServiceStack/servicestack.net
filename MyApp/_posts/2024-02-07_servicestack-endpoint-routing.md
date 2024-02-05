@@ -13,21 +13,21 @@ all its newest .NET 8 templates to adopt [ASP.NET Core Identity Auth](https://do
 
 This is a departure from building upon our own platform-agnostic abstractions which allowed the same ServiceStack code-base
 to run on both .NET Core and .NET Framework. Our focus going forward will be to instead adopt De facto standards and conventions
-of the latest .NET platform which does mean ServiceStack's new value-added features are only available in the latest .NET 8+ LTS release.
+of the latest .NET platform which also means ServiceStack's new value-added features are only available in the latest **.NET 8+** release.
 
 ### ServiceStack Middleware
 
 Whilst ServiceStack integrates into ASP.NET Core Apps as custom middleware into ASP.NET Core's HTTP Request Pipeline,
-it invokes its own black-box of functionality from there, implemented using its own suite of disconnected features.
+it invokes its own black-box of functionality from there, implemented using its own suite of overlapping features.
 
-Whilst this allows ServiceStack to have full control over how to implement its own features, it's not as
-integrated as it could be, where there are limits on what ServiceStack Features could be used within external ASP .NET Core
-MVC Controllers, Razor Pages, Minimal APIs, etc. The ability to apply application-wide authorization policies across
-an Application entire surface area, using and configuring different JSON Serialization implementations.
+Whilst this allows ServiceStack to have full control over how to implement its features, it's not as integrated as it could be,
+with there being limits on what ServiceStack Functionality could be reused within external ASP .NET Core MVC Controllers, Razor Pages, etc.
+and inhibited the ability to apply application-wide authorization policies across an Application entire surface area,
+using and configuring different JSON Serialization implementations.
 
 ### Areas for tighter integration
 
-The major areas we've identified that could benefit from tighter integration with ASP.NET Core include:
+The major areas we've identified that would benefit from tighter integration with ASP.NET Core include:
 
  - [Funq IOC Container](https://docs.servicestack.net/ioc)
  - [ServiceStack Routing](https://docs.servicestack.net/routing) and [Request Pipeline](https://docs.servicestack.net/order-of-operations)
@@ -42,7 +42,7 @@ you can learn about below:
 - [ASP.NET Core Identity Auth](/posts/net8-identity-auth)
 - [ASP.NET Core IOC](/posts/servicestack-endpoint-routing#asp.net-core-ioc)
 - [Endpoint Routing](/posts/servicestack-endpoint-routing#endpoint-routing)
-- [Open API v3 and Swagger UI support](/posts/openapi-v3-support)
+- [Open API v3 and Swagger UI support](/posts/openapi-v3)
 - [System.Text.Json APIs](/posts/system-text-json-apis)
 
 Better yet, this new behavior is enabled by default in all of ServiceStack's new ASP .NET Identity Auth .NET 8 templates!
@@ -50,9 +50,9 @@ Better yet, this new behavior is enabled by default in all of ServiceStack's new
 ### ASP .NET Core IOC
 
 The primary limitation of ServiceStack using its own Funq IOC is that any dependencies registered in Funq are not injected
-into Razor Pages/Blazor Components/MVC Controllers etc. registered in ASP .NET Core's IOC. 
+into Razor Pages, Blazor Components, MVC Controllers, etc. 
 
-That's why our [Modular Startup](https://docs.servicestack.net/modular-startup) configurations have recommended utilizing
+That's why our [Modular Startup](https://docs.servicestack.net/modular-startup) configurations recommend utilizing
 custom `IHostingStartup` configurations to register application dependencies in ASP .NET Core's IOC where they can be 
 injected into both ServiceStack Services and ASP.NET Core's external components, e.g:
 
@@ -254,8 +254,8 @@ public class TechStackServices : Service
 
 This feature can be useful for Services wanting to access optional dependencies that may or may not be registered. 
 
-::: info NOTE
-This is only supported in ServiceStack Services (i.e. not other dependencies)
+:::info NOTE
+`[FromServices]` is only supported in ServiceStack Services (i.e. not other dependencies)
 :::
 
 ### Built-in ServiceStack Dependencies
@@ -264,13 +264,13 @@ This integration now makes it effortless to inject and utilize optional ServiceS
 [AutoQuery](https://docs.servicestack.net/autoquery/) and [Server Events](https://docs.servicestack.net/server-events)
 in other parts of ASP.NET Core inc. Blazor Components, Razor Pages, MVC Controllers, Minimal APIs, etc.
 
-Whilst Built-in ServiceStack features that are registered by default and are immediately available to be injected into any IOC dependency include:
+Whilst the Built-in ServiceStack features that are registered by default and immediately available to be injected, include:
  - `IVirtualFiles` - Read/Write [Virtual File System](https://docs.servicestack.net/virtual-file-system), defaults to `FileSystemVirtualFiles` at `ContentRootPath`
  - `IVirtualPathProvider` - Multi Virtual File System configured to scan multiple read only sources, inc `WebRootPath`, In Memory and Embedded Resource files  
  - `ICacheClient` and `ICacheClientAsync` - In Memory Cache, or distributed Redis cache if [ServiceStack.Redis](https://docs.servicestack.net/redis/) is configured
  - `IAppSettings` - Multiple [AppSettings](https://docs.servicestack.net/appsettings) configuration sources
 
-With ASP.NET Core's IOC now deeply integrated we cast our eyes on the next area of integration: API Integration and Endpoint Routing.
+With ASP.NET Core's IOC now deeply integrated we moved onto the next area of integration: API Integration and Endpoint Routing.
 
 ## Endpoint Routing
 
@@ -299,7 +299,7 @@ and Web API Controllers, etc, utilizing the same routing, metadata and execution
 
 Amongst other benefits, this integration is evident in endpoint metadata explorers like the `Swashbuckle` library 
 which can now show ServiceStack APIs in its Swagger UI along-side other ASP.NET Core APIs in ServiceStack's new
-[Open API v3](/posts/openapi-v3-support) support.
+[Open API v3](/posts/openapi-v3) support.
 
 ### Routing
 
@@ -365,8 +365,8 @@ public class GetFile : IGet, IReturn<byte[]>
 
 ### Primary HTTP Method
 
-Another difference is that an API will only register its Endpoint Route for its [primary HTTP Method](https://docs.servicestack.net/api-design#all-apis-have-a-preferred-default-method), 
-if you want it to be registered for multiple HTTP Methods you can specify them in the `Route` attribute, e.g:
+Another difference is that an API will only register its Endpoint Route for its [primary HTTP Method](https://docs.servicestack.net/api-design#all-apis-have-a-preferred-default-method),
+if you want an API to be registered for multiple HTTP Methods you can specify them in the `Route` attribute, e.g:
 
 ```csharp
 [Route("/users/{Id:int}", "GET,POST")]
@@ -380,7 +380,7 @@ As such we recommend using the IVerb `IGet`, `IPost`, `IPut`, `IPatch`, `IDelete
 for an API. This isn't needed for [AutoQuery Services](https://docs.servicestack.net/autoquery/) which are implicitly configured
 to use their optimal HTTP Method.
 
-If no HTTP Method is specified, it defaults to HTTP **POST**.
+If no HTTP Method is specified, the Primary HTTP Method defaults to HTTP **POST**.
 
 ### Authorization
 
@@ -428,7 +428,7 @@ Whilst ServiceStack Requests are registered and executed as endpoints, most of t
 [API Explorer](https://docs.servicestack.net/api-explorer).
 
 To also hide your ServiceStack APIs you can use `[ExcludeMetadata]` attribute to hide them from all metadata services
-or use `[Exclude(Feature.ApiExplorer)]` to just hide them API Explorer UIs:
+or use `[Exclude(Feature.ApiExplorer)]` to just hide them from API Explorer UIs:
 
 ```csharp
 [ExcludeMetadata]
@@ -481,8 +481,8 @@ var client = new JsonHttpClient(baseUri) {
 };
 ```
 
-To further solidify that `/api` is the preferred pre-defined route we've also updated all generic service clients of 
-other languages to use it by default:
+To further solidify that `/api` as the preferred pre-defined route we've also **updated all generic service clients** of
+other languages to use `/api` base path by default:
 
 #### JavaScript/TypeScript
 
@@ -551,7 +551,7 @@ $client->setBasePath();
 ### Customize Endpoint Mapping
 
 You can register a RouteHandlerBuilders to customize how ServiceStack APIs endpoints are registered which is also
-what ServiceStack uses to annotate its API endpoints to enable its new [Open API v3](/posts/openapi-v3-support) support:
+what ServiceStack uses to annotate its API endpoints to enable its new [Open API v3](/posts/openapi-v3) support:
 
 ```csharp
 options.RouteHandlerBuilders.Add((builder, operation, method, route) =>
@@ -578,7 +578,7 @@ app.UseServiceStack(new AppHost(), options => {
 - `useSystemJson` - Whether to use System.Text.Json for JSON API Serialization
 
 So you could for instance register endpoints and not `use` them, where they'll be visible in endpoint API explorers like
-[Swagger UI](/posts/openapi-v3-support) but continue to execute in ServiceStack's Request Pipeline.
+[Swagger UI](/posts/openapi-v3) but continue to execute in ServiceStack's Request Pipeline.
 
 `force` disables fallback execution of ServiceStack Requests through ServiceStack's Request Pipeline for requests that
 don't match registered endpoints. You may need to disable this if you have clients calling ServiceStack APIs through
