@@ -166,9 +166,16 @@ options.JwtAuth(x => {
 ## Convert Session to Token Service
 
 Another useful Service that's available is being able to Convert your current Authenticated Session into a Token
-with the `ConvertSessionToToken` Service. This can be useful for when you want to Authenticate via an external
-OAuth Provider that you then want to convert into a stateless JWT Token by calling the `ConvertSessionToToken`
-on the client, e.g:
+with the `ConvertSessionToToken` Service which can be enabled with:
+
+```csharp
+options.JwtAuth(x => {
+    x.IncludeConvertSessionToTokenService = true;
+});
+```
+
+This can be useful for when you want to Authenticate via an external OAuth Provider that you then want to convert into a stateless
+JWT Token by calling the `ConvertSessionToToken` on the client, e.g:
 
 #### .NET Clients
 
@@ -189,14 +196,6 @@ you can indicate this with:
 ```csharp
 await client.SendAsync(new ConvertSessionToToken { 
     PreserveSession = true 
-});
-```
-
-The `ConvertSessionToToken` Service can be enabled with:
-
-```csharp
-options.JwtAuth(x => {
-    x.IncludeConvertSessionToTokenService = true;
 });
 ```
 
