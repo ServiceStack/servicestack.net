@@ -7,8 +7,14 @@ author: Darren Reid
 draft: true
 ---
 
-Since the release of .NET 8, we have have been upgrading our [templates](https://github.com/NetCoreTemplates) and example applications to take advantage of some of the new features, especially for Blazor.
-Our templates now make use of static Server Side Rendering (SSR) for Blazor, which allows for faster initial page loads and better SEO, and our `blazor-wasm` template uses `InteractiveAuto` by default to provide a more responsive UI.
+Since the release of .NET 8, we have been upgrading our [templates](https://github.com/NetCoreTemplates) and example applications to take advantage 
+of some of the new features, especially for Blazor.
+Our templates now make use of static Server Side Rendering (SSR) for Blazor, which allows for faster initial page loads 
+and better SEO, and our `blazor-wasm` template uses `InteractiveAuto` by default to provide a more responsive UI.
+
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="BXjcKkaK-nM" style="background-image: url('https://img.youtube.com/vi/BXjcKkaK-nM/maxresdefault.jpg')"></lite-youtube>
+</div>
 
 ## What is InteractiveAuto?
 
@@ -192,7 +198,9 @@ Avoid sharing sensitive information via dependency injection, as this will be av
 
 ## Source code and live demo
 
-The source code for the upgraded [`BlazorDiffusionAuto` application is available on GitHub](https://github.com/NetCoreApps/BlazorDiffusionAuto) and you can view a live demo of the application at [blazordiffusionauto.web-templates.io](https://auto.blazordiffusion.com).
+The source code for the upgraded `BlazorDiffusionAuto` application is 
+[available on GitHub](https://github.com/NetCoreApps/BlazorDiffusionAuto) and you can view a live demo of the application at 
+[auto.blazordiffusion.com](https://auto.blazordiffusion.com).
 
 ## Conclusion
 
