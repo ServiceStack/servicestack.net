@@ -11,14 +11,16 @@ In an effort to reduce friction and improve integration with ASP.NET Core Apps, 
 for embracing ASP.NET Core's built-in features and conventions which saw the latest ServiceStack v8 release converting 
 all its newest .NET 8 templates to adopt [ASP.NET Core Identity Auth](https://docs.servicestack.net/auth/identity-auth).
 
-This is a departure from building upon our own multi-platform abstractions which allows the same ServiceStack code-base
-to run on both .NET Core and .NET Framework. Our new focus is to instead the adopt De facto standards and conventions 
-of the latest .NET platform for ServiceStack's new value-added features.
+This is a departure from building upon our own platform-agnostic abstractions which allowed the same ServiceStack code-base
+to run on both .NET Core and .NET Framework. Our focus going forward will be to instead adopt De facto standards and conventions
+of the latest .NET platform which does mean ServiceStack's new value-added features are only available in the latest .NET 8+ LTS release.
 
-Whilst ServiceStack integrates into ASP.NET Core Apps as custom middleware into ASP.NET Core's HTTP Request Pipeline, 
+### ServiceStack Middleware
+
+Whilst ServiceStack integrates into ASP.NET Core Apps as custom middleware into ASP.NET Core's HTTP Request Pipeline,
 it invokes its own black-box of functionality from there, implemented using its own suite of disconnected features.
 
-Whilst this works well with ServiceStack having full control over how to implement its own features, it's not as
+Whilst this allows ServiceStack to have full control over how to implement its own features, it's not as
 integrated as it could be, where there are limits on what ServiceStack Features could be used within external ASP .NET Core
 MVC Controllers, Razor Pages, Minimal APIs, etc. The ability to apply application-wide authorization policies across
 an Application entire surface area, using and configuring different JSON Serialization implementations.
@@ -558,7 +560,7 @@ options.RouteHandlerBuilders.Add((builder, operation, method, route) =>
 });
 ```
 
-### Layered Endpoint Mapping Behavior
+### Endpoint Routing Compatibility Levels
 
 The default behavior of `MapEndpoints()` is the strictest and recommended configuration that we want future ServiceStack Apps to use,
 however if you're migrating existing App's you may want to relax these defaults to improve compatibility with existing behavior.
@@ -588,3 +590,21 @@ When enabled `force` ensures the only ServiceStack Requests that are not execute
 `useSystemJson` is a new feature that lets you specify when to use `System.Text.Json` for JSON API Serialization, which
 is our next exciting feature we'll be covering in our [next post](/posts/system-text-json-apis) which enables your 
 App to standardize on using ASP.NET Core's fast async UTF8 JSON Serializer.
+
+## Endpoint Routing Everywhere
+
+Whilst the compatibility levels of Endpoint Routing can be relaxed, we recommend new projects use the strictest and most
+integrated defaults that's now configured on all [ASP.NET Core Identity Auth .NET 8 Projects](/start).
+
+For additional testing we've also upgraded many of our existing .NET Example Applications, which are now all running with 
+our latest recommended Endpoint Routing configuration:
+
+ - [BlazorDiffusionVue](https://github.com/NetCoreApps/BlazorDiffusionVue)
+ - [BlazorDiffusionAuto](https://github.com/NetCoreApps/BlazorDiffusionAuto)
+ - [TalentBlazor](https://github.com/NetCoreApps/TalentBlazor)
+ - [TechStacks](https://github.com/NetCoreApps/TechStacks)
+ - [Validation](https://github.com/NetCoreApps/Validation)
+ - [NorthwindAuto](https://github.com/NetCoreApps/NorthwindAuto)
+ - [FileBlazor](https://github.com/NetCoreApps/FileBlazor)
+ - [Chinook](https://github.com/NetCoreApps/Chinook)
+ - [Chat](https://github.com/NetCoreApps/Chat)
