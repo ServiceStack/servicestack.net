@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>New .NET 8 Blazor Tailwind Template - ServiceStack</title>
+    <title>Migrating to ASP.NET Core Identity for Authentication - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@layoric" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="The new Blazor for .NET 8 template streamlines web UI development in C#." />
-    <meta property="og:url" content="https://servicestack.net/posts/net8-blazor-template" />
-    <meta property="og:title" content="New .NET 8 Blazor Tailwind Template" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication" />
+    <meta property="og:url" content="https://servicestack.net/posts/identity-migration" />
+    <meta property="og:title" content="Migrating to ASP.NET Core Identity for Authentication" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1596563910641-86f6aebaab9a?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                New .NET 8 Blazor Tailwind Template
+                Migrating to ASP.NET Core Identity for Authentication
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,21 +166,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="New .NET 8 Blazor Tailwind Template Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1596563910641-86f6aebaab9a?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Migrating to ASP.NET Core Identity for Authentication Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/dotnet" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dotnet</a>
-                            <a href="posts/tagged/blazor" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">blazor</a>
-                            <a href="posts/tagged/templates" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">templates</a>
+                            <a href="posts/tagged/identity" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">identity</a>
+                            <a href="posts/tagged/auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">auth</a>
+                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-11-20T00:00:00.0000000">November 20, 2023</time>
+                                <time datetime="2024-02-06T00:00:00.0000000">February 6, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>6 min read</span>
+                                <span>16 min read</span>
                             </div>
                         </div>
                 </div>
@@ -193,79 +193,411 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>With the release of <strong>.NET 8</strong>, we're happy to announce ServiceStack's new <a href="https://blazor.web-templates.io/">Blazor</a>
-Tailwind project template that takes advantage of .NET 8 Blazor's new features that redefines modern Web Development in C#.</p>
-<p>In this video overview we'll explore how the template, adopts Blazor's familiar <strong>ASP.NET Core Identity</strong>
-for its authentication, utilizes the modern <a href="https://tailwindcss.com">Tailwind CSS</a> framework for beautiful responsive design
-and adopts .NET's best-practice
-<a href="https://learn.microsoft.com/en-us/dotnet/core/docker/publish-as-container">Docker Containerization</a> support for its built-in
-<a href="https://blazor.web-templates.io/deploy">GitHub Action Deployments</a> which enables a simple ready-made CI solution for deployment to any
-Linux Host via SSH and Docker compose.</p>
-<p>We’ll also discuss the project's structure, usage of <strong>ASP.NET Core Identity</strong> for Authorization and utilizing
-<strong>ServiceStack Blazor Components</strong> for data handling, all integrated to maximize developer efficiency in building Web Applications.</p>
-<div class="not-prose mt-16 flex flex-col items-center">
-   <div class="flex">
-      <svg class="w-28 h-28 text-purple-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1zM8.895 11.628a2.188 2.188 0 1 0 2.188 2.188v-2.042a.158.158 0 0 0-.15-.15Z"></path></svg>
-   </div>
-</div>
-<div class="not-prose mt-4 px-4 sm:px-6">
-<div class="text-center"><h3 id="blazor-template" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-    Blazor Tailwind Template
-</h3></div>
-<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="hqyozHSL0Nk" style="background-image: url('https://img.youtube.com/vi/hqyozHSL0Nk/maxresdefault.jpg')"></lite-youtube>
-</div>
-</div>
-<div class="not-prose relative bg-white dark:bg-black py-4">
-    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-        <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Create a new Blazor Tailwind App</p>
-        <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500"> 
-            Create a new Blazor Tailwind project with your preferred project name:
-        </p>
-    </div>
-    <blazor-template repo="NetCoreTemplates/blazor" name="Blazor"></blazor-template>
-</div>
-<h2 id="asp.net-core-identity-integration">ASP.NET Core Identity Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#asp.net-core-identity-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>In terms of security, the template integrates ASP.NET Core Identity, offering a structured approach to authentication,
-including support for email confirmation, two-factor authentication and GDPR compliance features.</p>
-<p>Integrating ASP.NET Core Identity doesn't complicate securing ServiceStack services which can still be secured with
-<a href="https://docs.servicestack.net/auth/authentication-and-authorization#declarative-validation-attributes">Declarative Validation Attributes</a>
-for role-based access control, e.g. using <code>[ValidateHasRole(&quot;Employee&quot;)]</code> directly on Request DTOs, bringing any
-existing knowledge and experience with ServiceStack Authentication to securing UIs and APIs with Identity Auth.</p>
-<p>The template includes a pre-baked solution for sending general and Identity Auth Emails with your configured SMTP Server
-in managed background workers with <a href="https://docs.servicestack.net/background-mq">Background MQ</a> and an enhanced version of the default
-ASP.NET Core Blazor Identity UI, with all pages upgraded to use a beautiful Tailwind CSS theme as well as integration with
-<a href="https://davidshimjs.github.io/qrcodejs/">qrcode.js</a>
-for providing a visual QR Code barcode which mobile phone users can easily scan to setup 2FA Authentication:</p>
-<p><img src="/img/posts/net8-best-blazor/blazor-identityauth-qrcode.png" alt="" /></p>
-<h2 id="responsive-and-interactive-uis-with-tailwind-css">Responsive and Interactive UIs with Tailwind CSS<a class="header-anchor" href="javascript:;" onclick="location.hash='#responsive-and-interactive-uis-with-tailwind-css'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>With responsive UI out-of-the-box, thanks to Tailwind CSS, Developers can style their Blazor Apps with the modern
-popular utility-first CSS framework for creating beautiful, maintainable <strong>Responsive UIs</strong> with <strong>DarkMode</strong> support</p>
-<p>It also takes full advantage of Blazor’s static rendering for its Website layout for optimal performance and SEO,
-so only Pages and Components that require interactivity need to opt-in for Blazor Server Interactive rendering modes.</p>
-<h2 id="servicestack.blazor-tailwind-components">ServiceStack.Blazor Tailwind Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack.blazor-tailwind-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The <a href="https://blazor-gallery.jamstacks.net">ServiceStack.Blazor Components</a>, updated for .NET 8 enables you to rapidly
-develop beautiful Blazor Apps integrated with Rich high-productivity UI Tailwind Components like
-<a href="https://blazor-gallery.servicestack.net/gallery/autoquerygrid">AutoQueryGrid</a> and
-<a href="https://blazor-gallery.servicestack.net/gallery/autoform">AutoForms</a> which interface with
-<a href="https://docs.servicestack.net/autoquery/">AutoQuery services</a> to provide a full CRUD data management UI with minimal effort.</p>
-<h2 id="enhanced-containerization">Enhanced Containerization<a class="header-anchor" href="javascript:;" onclick="location.hash='#enhanced-containerization'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>.NET 8 simplifies Docker integration. Using <code>dotnet publish</code>, developers can now automate the creation of Docker images
-that adhere to best security practices, such as running as a non-root user in containers that can utilize the built-in
-GitHub Actions to effortlessly deploy their containerized Blazor Apps with Docker and GitHub Registry via SSH to any Linux Server.</p>
-<h2 id="other-template-features">Other Template Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#other-template-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Other features that enhances the default ASP.NET Blazor App templates with several modern, high-productivity features, include:</p>
+                    <h2 id="asp.net-core-identity">ASP.NET Core Identity<a class="header-anchor" href="javascript:;" onclick="location.hash='#asp.net-core-identity'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Since the release of ServiceStack v8 we have started to include the use of <a href="https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&amp;tabs=visual-studio">ASP.NET Core Identity for authentication</a> in <a href="https://github.com/NetCoreTemplates">our templates</a>. This gives developers the option to use the built-in ASP.NET Core Identity authentication system or ServiceStack's own authentication system when building their next system.</p>
+<p>This provides a closer alignment with the ASP.NET Core ecosystem and allows developers to use the built-in ASP.NET Core Identity authentication system if they are already familiar with it.</p>
+<p>If you are already using ServiceStack's authentication system, you can continue to do so, but if you are looking to migrate to ASP.NET Core Identity, this guide will walk you through the process with a concrete example of migrating our <a href="https://github.com/NetCoreApps/BlazorDiffusion">BlazorDiffusion</a> example application.</p>
+<h2 id="overview-of-the-migration-process">Overview of the migration process<a class="header-anchor" href="javascript:;" onclick="location.hash='#overview-of-the-migration-process'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The migration process can be broken down into the following steps:</p>
 <ul>
-<li><a href="https://learn.microsoft.com/ef/">Entity Framework</a> &amp; <a href="https://docs.servicestack.net/ormlite/">OrmLite</a> - Choose the best ORM for each App feature, with a unified solution that sees <a href="https://docs.servicestack.net/ormlite/db-migrations">OrmLite's DB Migrations</a> run both EF and OrmLite migrations, inc. Seed Data with a single command at Development or Deployment</li>
-<li><a href="https://www.sqlite.org">SQLite Database</a> - Set up as the default database, it allows developers to start immediately without configuring a separate database server</li>
-<li><a href="https://docs.servicestack.net/autoquery/">AutoQuery</a> - Rapidly developing data-driven APIs, UIs and CRUD Apps</li>
-<li><a href="https://www.youtube.com/watch?v=BXjcKkaK-nM">Auto Admin Pages</a> - Quickly develop your back-office CRUD Admin UIs to manage your App's Database tables at <a href="https://blazor.web-templates.io/admin">/admin</a></li>
-<li><a href="https://docs.servicestack.net/razor-press/syntax">Markdown</a> - Maintain SEO-friendly documentation and content-rich pages like this one with just Markdown, beautifully styled with <a href="https://tailwindcss.com/docs/typography-plugin">@tailwindcss/typography</a></li>
-<li><a href="https://servicestack.net/auto-ui">Built-in UIs</a> - Use ServiceStack's Auto UIs to <a href="https://docs.servicestack.net/api-explorer">Explore your APIs</a> at <a href="https://blazor.web-templates.io/ui/">/ui</a>
-or Query your <a href="https://docs.servicestack.net/admin-ui-database">App's Database Tables</a> at <a href="https://blazor.web-templates.io/admin-ui/database">/admin-ui/database</a></li>
-<li><a href="https://youtu.be/66DgLHExC9E">Universal API Components</a> - Effortlessly create reusable, maximally performant universal Blazor API Components that works in Blazor Server and Web Assembly Interactivity modes</li>
-<li><a href="https://docs.servicestack.net/physical-project-structure">Organized Project Structure</a> - Divided into AppHost, Service Interface, Service Model, and Tests projects to promote separation of concerns and maintainability.</li>
+<li>Add NuGet dependencies</li>
+<li>Create ASP.NET Core Identity <code>AspNetUsers</code> class based on your existing custom <code>UserAuth</code> class</li>
+<li>Create ASP.NET Core Identity <code>AspNetRoles</code>, ensure matching primary key type to <code>AspNetUsers</code></li>
+<li>Create ASP.NET Core Identity <code>ApplicationDbContext</code> class, again matching primary key type to <code>AspNetUsers</code></li>
+<li>Create EntityFrameworkCore migration to initialize ASP.NET Core Identity tables</li>
+<li>Update <code>AuthFeature</code> registration to use ASP.NET Core Identity</li>
+<li>Update <code>Program.cs</code> to use ASP.NET Core Identity</li>
+<li>Implement the Migrate Users Task</li>
+<li>Migrating Roles</li>
+<li>Migrate Foreign Keys from UserAuth to AspNetUsers</li>
 </ul>
+<p>In this guide we will walk through each of these steps in detail and show how we migrated our BlazorDiffusion example application over to ASP.NET Core Identity to help you with your own migration.</p>
+<h3 id="add-asp.net-core-identity-entityframeworkcore-nuget-package">Add ASP.NET Core Identity EntityFrameworkCore NuGet package<a class="header-anchor" href="javascript:;" onclick="location.hash='#add-asp.net-core-identity-entityframeworkcore-nuget-package'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The first step is to add the required ASP.NET Core Identity NuGet packages to your project. This can be done using the dotnet CLI or via Visual Studio's NuGet package manager.</p>
+<div class="shell"><p>dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Tools</p>
+</div>
+<p>Since BlazorDiffusion was an existing Blazor project, <a href="https://github.com/NetCoreTemplates/blazor-wasm">we created a new <code>blazor-wasm</code> project</a> using <code>x new blazor-wasm BlazorDiffusion</code> and migrated the Services and Components over to the new project.
+We can do this because the <code>blazor-wasm</code> template and others have been <a href="https://docs.servicestack.net/auth/identity-auth">updated to use ASP.NET Core Identity by default</a>. So if your project previously used a ServiceStack template, first check if there is an updated version of the template available with ASP.NET Core Identity support.</p>
+<h3 id="create-asp.net-core-identity-aspnetusers-class">Create ASP.NET Core Identity <code>AspNetUsers</code> class<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-asp.net-core-identity-aspnetusers-class'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Next you will need to create a class that inherits from <code>IdentityUser</code> to represent our users. <a href="https://learn.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-8.0">This class will be used by ASP.NET Core Identity to store user information in the database</a>.
+You will want to mirror customizations from your own <code>UserAuth</code> class to this new class which will have the name in the database of <code>AspNetUsers</code>.</p>
+<p>To minimize changes, you can rename your existing <code>AppUser</code> class to something like <code>OldUserAuth</code> and then create a new <code>AppUser</code> class that inherits from <code>IdentityUser</code> and copy over any customizations from <code>OldUserAuth</code>.</p>
+<div class="info custom-block">
+                <p class="custom-block-title">INFO</p><p>In this case <code>AppUser</code> is the name of our custom <code>UserAuth</code> class.</p>
+</div>
+<p>You will still need to reference your <code>OldAppUser</code> class for migrating users, so you will want to point it to the <code>AppUser</code> table by using the <code>[Alias(&quot;AppUser&quot;)]</code> attribute.</p>
+<pre><code class="language-csharp">    [Alias(&quot;AppUser&quot;)]
+    public class OldAppUser
+    {
+        [AutoIncrement]
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string DisplayName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string? Handle { get; set; }
+        public string Email { get; set; }
+        public string PasswordHash { get; set; }
+        public string? ProfileUrl { get; set; }
+        public string? Avatar { get; set; } //overrides ProfileUrl
+        public string? LastLoginIp { get; set; }
+        public DateTime? LastLoginDate { get; set; }
+        public string RefIdStr { get; set; }
+        public DateTime? LockedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
+    }
+</code></pre>
+<p>When creating your new <code>AppUser</code> class, you will want to copy over any customizations from your <code>OldAppUser</code> class. In this case we have added a <code>Handle</code> property to our <code>OldAppUser</code> class, so this will need to be included in the new <code>AppUser</code> class as well.</p>
+<p>Essentially your custom EF IdentityUser will want a copy of all the properties you want to migrate other than Id, Email, and PasswordHash that's already defined in the base IdentityUser class.</p>
+<pre><code class="language-csharp">// Add profile data for application users by adding properties to the AppUser class
+[Alias(&quot;AspNetUsers&quot;)]
+public class AppUser : IdentityUser&lt;int&gt;
+{
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? DisplayName { get; set; }
+    public string? ProfileUrl { get; set; }
+    [Input(Type = &quot;file&quot;), UploadTo(&quot;avatars&quot;)]
+    public string? Avatar { get; set; } //overrides ProfileUrl
+    public string? Handle { get; set; }
+    public int? RefId { get; set; }
+    public string RefIdStr { get; set; } = Guid.NewGuid().ToString();
+    public bool IsArchived { get; set; }
+    public DateTime? ArchivedDate { get; set; }
+    public string? LastLoginIp { get; set; }
+    public DateTime? LastLoginDate { get; set; }
+    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+    public DateTime ModifiedDate { get; set; } = DateTime.UtcNow;
+}
+</code></pre>
+<h3 id="create-asp.net-core-identity-aspnetroles">Create ASP.NET Core Identity <code>AspNetRoles</code><a class="header-anchor" href="javascript:;" onclick="location.hash='#create-asp.net-core-identity-aspnetroles'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Next you will need to create a class that inherits from <code>IdentityRole</code> to represent your user roles. This class will be used by ASP.NET Core Identity to store role information in the database.</p>
+<pre><code class="language-csharp">[Alias(&quot;AspNetRoles&quot;)]
+public class AppRole : IdentityRole&lt;int&gt;
+{
+    public AppRole() {}
+    public AppRole(string roleName) : base(roleName) {}
+}
+</code></pre>
+<p>Again, because our <code>AppUser</code> class is using a different primary key type than the default <code>string</code> type, you will need to specify a matching primary key type for your <code>AppRole</code> class.</p>
+<h3 id="create-asp.net-core-identity-applicationdbcontext-class">Create ASP.NET Core Identity <code>ApplicationDbContext</code> class<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-asp.net-core-identity-applicationdbcontext-class'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Now to use our <code>AppUser</code> and <code>AppRole</code> classes, you will need to create a class that inherits from <code>IdentityDbContext</code> to represent our database context. Just like with any EntityFrameworkCore database context, this class will be used to query and save data to the database.</p>
+<pre><code class="language-csharp">public class ApplicationDbContext(DbContextOptions&lt;ApplicationDbContext&gt; options) 
+    : IdentityDbContext&lt;AppUser, AppRole, int&gt;(options)
+{
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        builder.Entity&lt;AppUser&gt;()
+            .HasIndex(x =&gt; x.Handle)
+            .IsUnique();
+    }
+}
+</code></pre>
+<p>Above uses the <code>Handle</code> property on the <code>AppUser</code> class to create a unique index on the <code>Handle</code> column in the <code>AspNetUsers</code> table. You can add other custom restrictions to your schema here as well as needed.</p>
+<h3 id="create-entityframeworkcore-migration-to-initialize-asp.net-core-identity-tables">Create EntityFrameworkCore migration to initialize ASP.NET Core Identity tables<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-entityframeworkcore-migration-to-initialize-asp.net-core-identity-tables'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Now that you have your <code>AppUser</code> and <code>AppRole</code> classes, and can access them via your newly created <code>ApplicationDbContext</code> class, you can create an EntityFrameworkCore migration to initialize the ASP.NET Core Identity tables.</p>
+<p><a href="https://learn.microsoft.com/en-us/ef/core/cli/dotnet">You can generate your initial migration using the dotnet CLI or via Visual Studio's Package Manager Console</a>.</p>
+<div class="shell"><p>dotnet ef migrations add CreateIdentitySchema</p>
+</div>
+<p>You should run this command from the AppHost project directory, which in our case is <code>BlazorDiffusion</code>. This will generate your new EntityFrameworkCore migration in the <code>Migrations</code> directory of your AppHost project, along side your ServiceStack migrations.</p>
+<p>With your new migration created, you can now update your database schema to include the ASP.NET Core Identity tables.</p>
+<div class="shell"><p>dotnet ef database update</p>
+</div>
+<p>Using the <a href="https://learn.microsoft.com/en-us/ef/core/cli/dotnet">dotnet EntityFramework CLI is great for local development</a>, but for production deployments you will need to run the migrations on your server.
+You can do this using ServiceStack's AppTasks feature prior to the standard ServiceStack migrations.</p>
+<pre><code class="language-csharp">public class ConfigureDbMigrations : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureAppHost(appHost =&gt; {
+            var migrator = new Migrator(appHost.Resolve&lt;IDbConnectionFactory&gt;(), typeof(Migration1000).Assembly);
+            AppTasks.Register(&quot;migrate&quot;, _ =&gt;
+            {
+                var log = appHost.GetApplicationServices().GetRequiredService&lt;ILogger&lt;ConfigureDbMigrations&gt;&gt;();
+
+                log.LogInformation(&quot;Running EF Migrations...&quot;);
+                var scopeFactory = appHost.GetApplicationServices().GetRequiredService&lt;IServiceScopeFactory&gt;();
+                using (var scope = scopeFactory.CreateScope())
+                {
+                    using var dbContext = scope.ServiceProvider.GetRequiredService&lt;ApplicationDbContext&gt;();
+                    dbContext.Database.EnsureCreated();
+                    dbContext.Database.Migrate();
+                }
+            });
+</code></pre>
+<p>In the above example we are ensuring the database is created which creates the required schema, and then running the migrations to update the schema to the latest version.</p>
+<h3 id="update-authfeature-registration-to-use-asp.net-core-identity">Update <code>AuthFeature</code> registration to use ASP.NET Core Identity<a class="header-anchor" href="javascript:;" onclick="location.hash='#update-authfeature-registration-to-use-asp.net-core-identity'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>With your ASP.NET Core Identity tables created, you can now update your <a href="https://docs.servicestack.net/auth/authentication-and-authorization"><code>AuthFeature</code> registration</a> to use ASP.NET Core Identity.</p>
+<pre><code class="language-csharp">public class ConfigureAuth : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureAppHost(appHost =&gt; {
+            appHost.Plugins.Add(new AuthFeature(IdentityAuth.For&lt;AppUser,int&gt;(options =&gt; {
+                options.EnableCredentialsAuth = true;
+                options.SessionFactory = () =&gt; new CustomUserSession();
+            })));
+        });
+}
+</code></pre>
+<p>In the above example we are using the <code>IdentityAuth</code> class to register ASP.NET Core Identity with ServiceStack. This class is a wrapper around the standard ASP.NET Core Identity registration process and allows you to configure ASP.NET Core Identity options.</p>
+<p><a href="https://docs.servicestack.net/auth/migrate-to-identity-auth">ServiceStack uses a compatible Identity v2 password hashing format</a>, which should let you migrate your users to Identity Auth without the need to reset their passwords.</p>
+<h3 id="update-program.cs-to-use-asp.net-core-identity">Update <code>Program.cs</code> to use ASP.NET Core Identity<a class="header-anchor" href="javascript:;" onclick="location.hash='#update-program.cs-to-use-asp.net-core-identity'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Now you will need to configure IdentityCore middleware in your <code>Program.cs</code> file.</p>
+<pre><code class="language-csharp">services.AddAuthentication(options =&gt;
+    {
+        options.DefaultScheme = IdentityConstants.ApplicationScheme;
+        options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+    })
+    .AddIdentityCookies();
+services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(&quot;App_Data&quot;));
+
+// $ dotnet ef migrations add CreateIdentitySchema
+// $ dotnet ef database update
+var connectionString = config.GetConnectionString(&quot;DefaultConnection&quot;) ?? throw new InvalidOperationException(&quot;Connection string 'DefaultConnection' not found.&quot;);
+services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+    options.UseSqlite(connectionString, b =&gt; b.MigrationsAssembly(nameof(BlazorDiffusion))));
+services.AddDatabaseDeveloperPageExceptionFilter();
+
+services.AddIdentityCore&lt;AppUser&gt;(options =&gt; options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles&lt;AppRole&gt;()
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+    .AddSignInManager()
+    .AddDefaultTokenProviders();
+</code></pre>
+<p>Since BlazorDiffusion is a .NET 8 Blazor WASM application, we also needed some additional dependencies setup.</p>
+<pre><code class="language-csharp">services.AddCascadingAuthenticationState();
+services.AddScoped&lt;IdentityUserAccessor&gt;();
+services.AddScoped&lt;IdentityRedirectManager&gt;();
+services.AddScoped&lt;AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider&gt;();
+</code></pre>
+<p>If you are migrating to Identity from an existing Blazor application, our templates have <a href="https://github.com/NetCoreTemplates/blazor-wasm/tree/main/MyApp/Components/Account">tailwind-css styled login and register pages that you can use to get started</a>.</p>
+<p>For these, you will also need the additional IdentityEndpoints mapped.</p>
+<pre><code class="language-csharp">// Add additional endpoints required by the Identity /Account Razor components.
+app.MapAdditionalIdentityEndpoints();
+</code></pre>
+<h3 id="implement-the-migrate-users-task">Implement the Migrate Users Task<a class="header-anchor" href="javascript:;" onclick="location.hash='#implement-the-migrate-users-task'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>So far we have prepared the application to use ASP.NET Core Identity, but we still need to migrate our existing users to the new ASP.NET Core Identity tables.</p>
+<p>This will require:</p>
+<ul>
+<li>Migrating users from the <code>AppUser</code> table to the <code>AspNetUsers</code> table</li>
+<li>Migrating custom roles table to the <code>AspNetRoles</code> table</li>
+<li>Migrating foreign keys from the <code>UserAuth</code> table to the <code>AspNetUsers</code> table</li>
+<li>Migrating foreign keys from the <code>UserAuthRole</code> table to the <code>AspNetUserRoles</code> table (if any)</li>
+</ul>
+<p>To do this we will create a new AppTask that will migrate our users to the new ASP.NET Core Identity tables.</p>
+<pre><code class="language-csharp">AppTasks.Register(&quot;migrate.users&quot;, _ =&gt; {
+    var log = appHost.GetApplicationServices().GetRequiredService&lt;ILogger&lt;ConfigureDbMigrations&gt;&gt;();
+
+    log.LogInformation(&quot;Running migrate.users...&quot;);
+    var scopeFactory = appHost.GetApplicationServices().GetRequiredService&lt;IServiceScopeFactory&gt;();
+    using var scope = scopeFactory.CreateScope();
+    using var dbContext = scope.ServiceProvider.GetRequiredService&lt;ApplicationDbContext&gt;();
+    using var db = scope.ServiceProvider.GetRequiredService&lt;IDbConnectionFactory&gt;().Open();
+    var migrateUsers = db.Select(db.From&lt;OldAppUser&gt;().OrderBy(x =&gt; x.Id));
+
+    log.LogInformation(&quot;Migrating {Count} Existing ServiceStack Users to Identity Auth Users...&quot;, migrateUsers.Count);
+    MigrateExistingUsers(dbContext, scope.ServiceProvider, migrateUsers).Wait();
+});
+</code></pre>
+<p>In the above example we are using the <code>IDbConnectionFactory</code> to open a connection to our database and select all of our existing users from the <code>AppUser</code> table.</p>
+<p>The <code>MigrationExistingUsers</code> method will then migrate our existing users to the new ASP.NET Core Identity tables.</p>
+<pre><code class="language-csharp">private async Task MigrateExistingUsers(ApplicationDbContext dbContext, IServiceProvider services, 
+    List&lt;OldAppUser&gt; migrateUsers, string tempPassword=&quot;p@55wOrd&quot;)
+{
+    var userManager = services.GetRequiredService&lt;UserManager&lt;AppUser&gt;&gt;();
+    var now = DateTime.UtcNow;
+
+    foreach (var user in migrateUsers)
+    {
+        var appUser = new AppUser
+        {
+            Id = user.Id,
+            UserName = user.Email,
+            Email = user.Email,
+            DisplayName = user.DisplayName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Handle = user.Handle,
+            ProfileUrl = user.ProfileUrl,
+            Avatar = user.Avatar,
+            RefIdStr = user.RefIdStr ?? Guid.NewGuid().ToString(),
+            LockoutEnabled = true,
+            LockoutEnd = user.LockedDate != null ? now.AddYears(10) : now,
+            LastLoginDate = user.LastLoginDate,
+            LastLoginIp = user.LastLoginIp,
+            CreatedDate = user.CreatedDate,
+            ModifiedDate = user.ModifiedDate,
+            EmailConfirmed = true,
+        };
+        await userManager.CreateAsync(appUser, tempPassword);
+        if (user.PasswordHash != null)
+        {
+            // Update raw PasswordHash (which uses older ASP.NET Identity v2 format), after users successfully signs in
+            // the password will be re-hashed using the latest ASP.NET Identity v3 implementation
+            dbContext.Users
+                .Where(x =&gt; x.Id == user.Id)
+                .ExecuteUpdate(setters =&gt; setters.SetProperty(x =&gt; x.PasswordHash, user.PasswordHash));
+        }
+    }
+}
+</code></pre>
+<p>In the above example we are using <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1?view=aspnetcore-8.0">the <code>UserManager</code></a> to create a new <code>AppUser</code> for each of our existing users and then updating the <code>PasswordHash</code> property from the <code>OldAppUser</code> table.</p>
+<h3 id="migrating-roles">Migrating Roles<a class="header-anchor" href="javascript:;" onclick="location.hash='#migrating-roles'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you are using custom roles, you will also need to migrate these to the new ASP.NET Core Identity tables, and then assign them to your users based on their existing roles in your previous setup.</p>
+<p>Your ServiceStack Authentication roles will be stored in the <code>UserAuthRole</code> table separately or in the <code>Roles</code> property of your <code>UserAuth</code> class. You will need to migrate these roles to the new ASP.NET Core Identity tables and then assign them to your users.</p>
+<pre><code class="language-csharp">foreach (var roleName in allRoles)
+{
+    var roleExist = await roleManager.RoleExistsAsync(roleName);
+    if (!roleExist)
+    {
+        //create the roles and seed them to the database
+        assertResult(await roleManager.CreateAsync(new AppRole(roleName)));
+    }
+}
+</code></pre>
+<p>If your use of roles is static, you can create the list of all your roles from your applications code. If your use of roles is dynamic, you will need to query your database for all the roles that exist in your <code>UserAuthRole</code> table.</p>
+<p>One difference between ServiceStack Authentication and ASP.NET Core Identity is the use of the <code>Admin</code> role. In ServiceStack Authentication, the <code>Admin</code> role is a special role that gives the user access to all protected resources. In ASP.NET Core Identity, the <code>Admin</code> role is just a regular role that can be assigned to users.</p>
+<p>This means for users with the <code>Admin</code> role in your existing application, additional roles will need to be assigned to them in ASP.NET Core Identity to give them access to the same protected resources.</p>
+<p>In BlazorDiffusion we used the Admin role as well as others, but to preserve the existing behavior, we assigned all roles to users with the <code>Admin</code> role.</p>
+<pre><code class="language-csharp">foreach (var user in Users.All)
+{
+    var appUser = new AppUser
+    {
+        Id = user.Id,
+        Email = user.Email,
+        DisplayName = user.DisplayName,
+        UserName = user.Email,
+        Handle = user.Handle,
+        Avatar = user.Avatar,
+        EmailConfirmed = true,
+    };
+    if(appUser.Email == &quot;admin@email.com&quot;)
+        await EnsureUserAsync(appUser, &quot;p@55wOrd&quot;, AppRoles.All);
+    else
+        await EnsureUserAsync(appUser, &quot;p@55wOrd&quot;, user.Roles);
+}
+</code></pre>
+<p>The <code>EnsureUserAsync</code> method will assign the roles to the user.</p>
+<pre><code class="language-csharp">async Task EnsureUserAsync(AppUser user, string password, string[]? roles = null)
+{
+    var existingUser = await userManager.FindByEmailAsync(user.Email!);
+    if (existingUser != null) return;
+
+    await userManager!.CreateAsync(user, password);
+    if (roles?.Length &gt; 0)
+    {
+        var newUser = await userManager.FindByEmailAsync(user.Email!);
+        assertResult(await userManager.AddToRolesAsync(user, roles));
+    }
+}
+</code></pre>
+<h3 id="migrate-foreign-keys-from-userauth-to-aspnetusers">Migrate Foreign Keys from UserAuth to AspNetUsers<a class="header-anchor" href="javascript:;" onclick="location.hash='#migrate-foreign-keys-from-userauth-to-aspnetusers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you are using foreign keys in your existing application, you will need to migrate these to the new ASP.NET Core Identity tables.</p>
+<p>For databases like PostgreSQL, you can use the <code>ALTER TABLE</code> command to add a foreign key constraint to the <code>AspNetUsers</code> table, and we will want to remove the foreign key constraint from the <code>UserAuth</code> or <code>AppUser</code> table.</p>
+<p>In BlazorDiffusion for example, the <code>Creative</code> table was using a foreign key to the <code>AppUser</code> table, so we needed to replace this with a foreign key to the <code>AspNetUsers</code> table.</p>
+<pre><code class="language-sql">ALTER TABLE &quot;Creative&quot; DROP CONSTRAINT &quot;FK_Creative_AppUser_UserId&quot;;
+ALTER TABLE &quot;Creative&quot; ADD CONSTRAINT &quot;FK_Creative_AspNetUsers_UserId&quot; FOREIGN KEY (&quot;UserId&quot;) REFERENCES &quot;AspNetUsers&quot; (&quot;Id&quot;) ;
+</code></pre>
+<p>For databases like SQLite, you will need to create a new table with the foreign key constraint and then copy the data over from the old table.</p>
+<p>We use SQLite for BlazorDiffusion since it makes it easy deploy the application, and SQLite is a great option for small applications that don't need to scale.</p>
+<p>Since we have to migrate several tables, we can create a <code>ReplaceForeignKeyConstraint</code> method to handle this for us.</p>
+<pre><code class="language-csharp">private void ReplaceForeignKeyConstraint&lt;TModel&gt;()
+{
+    var modelDef = typeof(TModel).GetModelMetadata();
+    
+    var createTable = SqliteDialect.Provider.ToCreateTableStatement(typeof(TModel));
+
+    var sql = $@&quot;PRAGMA foreign_keys = OFF;
+ALTER TABLE {modelDef.ModelName} RENAME TO {modelDef.ModelName}_old;
+{createTable}
+INSERT INTO {modelDef.ModelName} SELECT * FROM {modelDef.ModelName}_old;
+-- DROP TABLE {modelDef.ModelName}_old;
+PRAGMA foreign_keys = ON;&quot;;
+    Db.ExecuteSql(sql);
+}
+</code></pre>
+<p>When replacing the tables like this, you will need to be aware of the order in which you replace the tables. For example, if you have a foreign key from the <code>Creative</code> table to the <code>AppUser</code> table, and a foreign key from the <code>Artifact</code> table to the <code>Creative</code> table, you will need to replace the <code>Creative</code> table first, and then the <code>Artifact</code> table.</p>
+<p>This is because the <code>Artifact</code> table has a foreign key to the <code>Creative</code> table, and if you replace the <code>Artifact</code> table first, the foreign key will still be pointing to the old <code>Creative</code> table.</p>
+<h4 id="incorrect-migration-order-result">Incorrect migration order result<a class="header-anchor" href="javascript:;" onclick="location.hash='#incorrect-migration-order-result'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<div class="my-8 ml-20 flex justify-center">
+    <img style="max-height:450px" src="/img/posts/identity-migration/incorrect-mapping-diagram.png" alt="Incorrect DB mapping after migration.">
+</div>
+<h4 id="correct-migration-order-result">Correct migration order result<a class="header-anchor" href="javascript:;" onclick="location.hash='#correct-migration-order-result'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<div class="my-8 ml-20 flex justify-center">
+    <img style="max-height:450px" src="/img/posts/identity-migration/correct-mapping-diagram.png" alt="Correct DB mapping after migration.">
+</div>
+<p>The rule of thumb is you will want to replace the tables from most depended on to least depended on.</p>
+<p>Another limitation of the SQL above is that the order of the columns in the new table must match the order of the columns in the old table. <code>INSERT INTO</code> will insert the data into the new table based on the order of the columns in the new table, so if the order of the columns is different, the data will be inserted into the wrong columns.</p>
+<p>During the migration of BlazorDiffusion, we hit this issue with the <code>Artifact</code> table. The <code>Artifact</code> C# class uses the <code>AuditBase</code> base class which has the <code>CreatedDate</code> and <code>ModifiedDate</code> properties. In a previous migration we added some additional columns as features were added. So when creating a copy of the <code>Artifact</code> class in the ServiceStack migration to handle fixing the foreign key, the order of the columns was different.</p>
+<p>Thankfully, since internal classes used in migrations are completely separate for repeatable migrations, we can just create the <code>Artfact</code> class to be specific for this migration. So instead of inheriting from <code>AuditBase</code>, we can just copy the properties from <code>AuditBase</code> into the <code>Artifact</code> class in the order required.</p>
+<p>Putting it all together, we have a migration <code>Up</code> method that looks like:</p>
+<pre><code class="language-csharp">public override void Up()
+{
+    var appHost = HostContext.AppHost;
+    var log = appHost.GetApplicationServices().GetRequiredService&lt;ILogger&lt;ConfigureDbMigrations&gt;&gt;();
+    
+    log.LogInformation(&quot;Migrating FKs from AppUser to AspNetUsers...&quot;);
+    ReplaceForeignKeyConstraint&lt;Creative&gt;();
+    ReplaceForeignKeyConstraint&lt;Artifact&gt;();
+    ReplaceForeignKeyConstraint&lt;Album&gt;();
+    
+    ReplaceForeignKeyConstraint&lt;ArtifactLike&gt;();
+    ReplaceForeignKeyConstraint&lt;ArtifactComment&gt;();
+    ReplaceForeignKeyConstraint&lt;ArtifactCommentReport&gt;();
+    
+    ReplaceForeignKeyConstraint&lt;AlbumArtifact&gt;();
+    ReplaceForeignKeyConstraint&lt;AlbumLike&gt;();
+    
+    ReplaceForeignKeyConstraint&lt;CreativeModifier&gt;();
+    ReplaceForeignKeyConstraint&lt;CreativeArtist&gt;();
+    
+    ReplaceForeignKeyConstraint&lt;ArtifactCommentVote&gt;();
+    
+    ReplaceForeignKeyConstraint&lt;ArtifactReport&gt;();
+}
+</code></pre>
+<p>In a separate migration, we can then drop the old tables after confirming the migration was successful, and the previous data has been migrated to the new tables.</p>
+<pre><code class="language-csharp">public class Migration1007 : MigrationBase
+{
+    public override void Up()
+    {
+        DropOldTable&lt;Migration1006.AlbumLike&gt;();
+        DropOldTable&lt;Migration1006.AlbumArtifact&gt;();
+        DropOldTable&lt;Migration1006.Album&gt;();
+        
+        DropOldTable&lt;Migration1006.ArtifactLike&gt;();
+        DropOldTable&lt;Migration1006.ArtifactCommentReport&gt;();
+        DropOldTable&lt;Migration1006.ArtifactCommentVote&gt;();
+        DropOldTable&lt;Migration1006.ArtifactComment&gt;();
+        DropOldTable&lt;Migration1006.ArtifactReport&gt;();
+        DropOldTable&lt;Migration1006.Artifact&gt;();
+        
+        DropOldTable&lt;Migration1006.CreativeArtist&gt;();
+        DropOldTable&lt;Migration1006.CreativeModifier&gt;();
+        DropOldTable&lt;Migration1006.Creative&gt;();
+    }
+    
+    private void DropOldTable&lt;TModel&gt;()
+    {
+        var modelDef = typeof(TModel).GetModelMetadata();
+        Db.ExecuteSql($@&quot;PRAGMA foreign_keys = OFF;
+DROP TABLE IF EXISTS {modelDef.ModelName}_old;
+PRAGMA foreign_keys = ON;&quot;);
+    }
+}
+</code></pre>
+<h3 id="migrate-foreign-keys-from-userauthrole-to-aspnetuserroles">Migrate Foreign Keys from UserAuthRole to AspNetUserRoles<a class="header-anchor" href="javascript:;" onclick="location.hash='#migrate-foreign-keys-from-userauthrole-to-aspnetuserroles'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you have any tables that use a foreign key to your custom <code>UserAuthRole</code> table, you will need to do the same as above and migrate these to the new ASP.NET Core Identity tables.</p>
+<h2 id="why-migrate-to-asp.net-core-identity">Why Migrate to ASP.NET Core Identity?<a class="header-anchor" href="javascript:;" onclick="location.hash='#why-migrate-to-asp.net-core-identity'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack's built-in authentication system is a great option for many applications. It provides a simple and easy to use authentication system that works out of the box with ServiceStack's built-in features like Sessions, Caching, and OrmLite.</p>
+<p>However, as a part of making ServiceStack more compatible with the ASP.NET Core ecosystem, we have started to include the use of ASP.NET Core Identity since a lot of ASP.NET developers are already familiar with it.</p>
+<p>It also provides features like two-factor authentication, external authentication providers, and more that are not available in ServiceStack's built-in authentication system.</p>
+<p><img src="/img/posts/identity-migration/two-factor-auth-example.png" alt="" /></p>
+<p>So while you don't have to migrate to ASP.NET Core Identity, it is a great option if you are already familiar with it, or if you are looking to use some of the additional features it provides.</p>
+<p>If you are looking to migrate to ASP.NET Core Identity, we hope this guide helps you with your migration. If you have any questions, feel free to reach out on our <a href="https://forums.servicestack.net">forums</a>.</p>
 
                 </div>
             </div>
@@ -327,8 +659,8 @@ or Query your <a href="https://docs.servicestack.net/admin-ui-database">App's Da
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
-                                        <a href="posts/identity-migration">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1596563910641-86f6aebaab9a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        <a href="posts/net8-blazor-template">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
                                         </a>
                                     </div>
                                     <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
@@ -336,18 +668,18 @@ or Query your <a href="https://docs.servicestack.net/admin-ui-database">App's Da
                                             <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
                                                 Article
                                             </p>
-                                            <a href="posts/identity-migration" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Migrating to ASP.NET Core Identity for Authentication">
-                                                    Migrating to ASP.NET Core Identity for Authentication
+                                            <a href="posts/net8-blazor-template" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New .NET 8 Blazor Tailwind Template">
+                                                    New .NET 8 Blazor Tailwind Template
                                                 </p>
-                                                <p class="mt-3 text-base text-gray-500">A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication</p>
+                                                <p class="mt-3 text-base text-gray-500">The new Blazor for .NET 8 template streamlines web UI development in C#.</p>
                                             </a>
                                         </div>
                                         <div class="mt-6 flex items-center">
                                             <div class="flex-shrink-0">
                                                 <a href="">
                                                     <span class="sr-only">Darren Reid</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Migrating to ASP.NET Core Identity for Authentication background">
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="New .NET 8 Blazor Tailwind Template background">
                                                 </a>
                                             </div>
                                             <div class="ml-3">
@@ -355,9 +687,9 @@ or Query your <a href="https://docs.servicestack.net/admin-ui-database">App's Da
                                                         <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
                                                 </p>
                                                 <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-02-06T00:00:00.0000000">February 6, 2024</time>
+                                                    <time datetime="2023-11-20T00:00:00.0000000">November 20, 2023</time>
                                                     <span aria-hidden="true">&middot;</span>
-                                                    <span>16 min read</span>
+                                                    <span>6 min read</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -507,7 +839,14 @@ init()
 <script type="module">
 import { mount } from "app.mjs"
 
-        import App from "./posts/net8-blazor-template.mjs" 
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
     mount('#post', App)
 </script>
 
