@@ -33,7 +33,7 @@ The `Interactive Server` mode was faster to load, but the `Interactive WASM` mod
 
 The initial load times for `Interactive WASM` could be quite slow, as the entire application and all its dependencies needed to be downloaded before the page could render most of the content.
 
-<img class="border-gray-800 border-t border-r" src="/img/posts/blazor-8-admin/blazor-wasm-6-slow.gif">
+<img class="border-gray-800 border-b border-r" src="/img/posts/blazor-8-admin/blazor-wasm-6-slow.gif">
 
 > The initial load time for the `Interactive WASM` mode can be quite slow even for a minimal app
 
@@ -41,7 +41,7 @@ Our templates previously worked around this limitation with a custom Pre-Renderi
 
 With .NET 8, the new `Interactive Auto` mode provides the best of both worlds as pre-rendering is now enabled by default.
 
-<img class="border-gray-800 border-r" src="/img/posts/blazor-8-admin/blazor-wasm-8-fast.gif">
+<img class="border-gray-800 border-b border-r" src="/img/posts/blazor-8-admin/blazor-wasm-8-fast.gif">
 
 When the page is first loaded, it uses the `Interactive Server` mode, which is faster than `Interactive WASM` as it doesn't need to download WASM resources.
 So the user can start interacting with the page straight away, but with a slight delay for each of their interactions due to having to perform round-trips to the server for each interaction.
@@ -83,7 +83,7 @@ By integrating your admin screens into your application, you can optimize the us
 
 For BlazorDiffusion, our StableDiffusion example application, we used the AutoQueryGrid to create a custom admin page for managing the modifiers in the application.
 
-![](/img/posts/blazor-8-admin/stablediffusion-modifiers.png)
+![](/img/posts/blazor-8-admin/blazordiffusion-modifiers.png)
 
 This is the simplest and fastest use of the AutoQueryGrid component, but it can also be heavily customized for lots of different use cases.
 
