@@ -9,10 +9,7 @@ if (builder.Environment.IsDevelopment())
     mvcBuilder.AddRazorRuntimeCompilation();
 }
 
-services.AddHttpContextAccessor();
-
-services.AddServiceStack(typeof(MyServices).Assembly, c => {
-});
+services.AddServiceStack(typeof(MyServices).Assembly);
 
 var app = builder.Build();
 
