@@ -137,6 +137,130 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.1</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">February 6, 2024</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v8_00#new.net-8-blazor-template"><img src="/img/whatsnew/v8.1/aspnet-8.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v8_00#new.net-8-blazor-template">Full Integration with ASP.NET Core 8</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're happy to announce the latest ServiceStack v8.1 release supports deep integration with ASP.NET Core's
+standardized features for execution of its APIs.</p>
+<p>This reduces friction for integrating ServiceStack into existing .NET 8 Apps, encourages greater knowledge and reuse and
+simplifies .NET development as developers have fewer concepts to learn and technology implementations
+to configure and maintain that are now applied across their entire .NET App.</p>
+<p>Better yet, this is enabled by default in all of ServiceStack's new
+<a href="https://servicestack.net/start">Identity Auth .NET 8 templates</a> which now embraces all these standard
+ASP.NET Core features:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/auth/identity-auth">ASP.NET Core Identity Auth</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#asp.net-core-ioc">ASP.NET Core IOC</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#endpoint-routing">Endpoint Routing</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#system.text.json">System.Text.Json APIs</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#openapi-v3">Open API v3 and Swagger UI</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#jwt-identity-auth">JWT Identity Auth</a></li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v8_00#new.net-8-blazor-template" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v8_00#asp.net-core-identity-auth-in.net-8-templates"><img src="/img/whatsnew/v8.1/system-text-json.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v8_00#asp.net-core-identity-auth-in.net-8-templates">System.Text.Json APIs</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack Endpoint Routing APIs now utilize <strong>System.Text.Json</strong> - the default high-performance async
+JSON serializer used in .NET Apps for serializing its JSON APIs.</p>
+<h3 id="enhanced-system.text.json">Enhanced System.Text.Json<a class="header-anchor" href="javascript:;" onclick="location.hash='#enhanced-system.text.json'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>ServiceStack uses a custom <code>JsonSerializerOptions</code> to improve compatibility with existing ServiceStack DTOs and
+ServiceStack's rich ecosystem of generic
+<a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference Service Clients</a>, which is configured to:</p>
+<ul>
+<li>Uses <code>CamelCaseNamingPolicy</code> for property names</li>
+<li>Supports Case Insensitive Properties</li>
+<li>Not serialize <code>null</code> properties</li>
+<li>Serializes <code>TimeSpan</code> and <code>TimeOnly</code> Data Types with XML Schema Time format</li>
+<li>Supports <code>[DataContract]</code> annotations</li>
+<li>Supports Custom Enum Serialization</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v8_00#asp.net-core-identity-auth-in.net-8-templates" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v8_00"><img src="/img/whatsnew/v8.1/openapiv3-logo.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v8_00">Swashbuckle OpenAPI v3 and Swagger UI</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Utilizing the same <strong>ASP.NET Core Endpoints</strong> that the rest of the ASP.NET Core App uses enables your ServiceStack APIs
+to integrate with your wider ASP.NET Core application, opening up more opportunities for reuse of your ServiceStack APIs.</p>
+<p>This opens up the ability to use common third party tooling like the popular <code>Swashbuckle</code> package used to to
+enable OpenAPI v3 specification generation of ASP .NET Core APIs which now includes ServiceStack APIs,
+displayed along-side Minimal and Web APIs.</p>
+<p>We've created the <strong>ServiceStack.AspNetCore.OpenApi</strong> package to make this integration as easy as possible, which
+incorporates additional information from your ServiceStack APIs into Swagger metadata.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v8_00" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/php-add-servicestack-reference"><img src="/img/whatsnew/v8.1/admin-ui-users-edit-custom.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/php-add-servicestack-reference">Identity Auth Admin Useres UI</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new Identity Auth Admin UI is an example of value-added features that can benefit all .NET Core App, that
+enables a built-in Admin UI that's only accessible to <strong>Admin</strong> Users for managing Identity Auth
+users at <code>/admin-ui/users</code>.</p>
+<p>It's a highly customizable UI feature that includes standard features to lockout users, change user passwords and manage their roles
+as well as being flexible enough to support Custom <code>ApplicationUser</code> Identity Models including:</p>
+<ul>
+<li>Custom Search Results</li>
+<li>Custom Search Behavior</li>
+<li>Custom Sort Order</li>
+<li>Custom Editable Fields</li>
+<li>Custom User Creation and Validation</li>
+<li>Admin User Events to run custom logic</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/php-add-servicestack-reference" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.0</h2>
         <div class="text-center text-lg font-normal text-gray-500 mb-8">November 20, 2023</div>
             <div class="flex flex-wrap my-24">
