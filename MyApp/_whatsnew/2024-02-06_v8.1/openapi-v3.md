@@ -1,6 +1,6 @@
 ---
 title: Swashbuckle OpenAPI v3 and Swagger UI
-url: https://docs.servicestack.net/releases/v8_00
+url: https://docs.servicestack.net/releases/v8_01#openapi-v3
 image: /img/whatsnew/v8.1/openapiv3-logo.png
 order: 3
 ---

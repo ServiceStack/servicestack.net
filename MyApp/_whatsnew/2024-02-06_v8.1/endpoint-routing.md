@@ -1,6 +1,6 @@
 ---
 title: Full Integration with ASP.NET Core 8
-url: https://docs.servicestack.net/releases/v8_00#new.net-8-blazor-template
+url: https://docs.servicestack.net/releases/v8_01
 image: /img/whatsnew/v8.1/aspnet-8.webp
 order: 1
 ---

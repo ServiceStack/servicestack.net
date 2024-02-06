@@ -1,6 +1,6 @@
 ---
 title: System.Text.Json APIs
-url: https://docs.servicestack.net/releases/v8_00#asp.net-core-identity-auth-in.net-8-templates
+url: https://docs.servicestack.net/releases/v8_01#system.text.json
 image: /img/whatsnew/v8.1/system-text-json.png
 order: 2
 ---

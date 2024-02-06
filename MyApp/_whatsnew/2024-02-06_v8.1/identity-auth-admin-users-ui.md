@@ -1,6 +1,6 @@
 ---
 title: Identity Auth Admin Useres UI
-url: https://docs.servicestack.net/php-add-servicestack-reference
+url: https://docs.servicestack.net/releases/v8_01#asp.net-core-identity-auth-admin-ui
 image: /img/whatsnew/v8.1/admin-ui-users-edit-custom.png
 order: 4
 ---
