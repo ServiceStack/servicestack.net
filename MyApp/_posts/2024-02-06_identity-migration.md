@@ -4,7 +4,6 @@ summary: A walkthrough of migrating our BlazorDiffusion example application over
 tags: [identity,auth, servicestack]
 image: https://images.unsplash.com/photo-1596563910641-86f6aebaab9a?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
-draft: true
 ---
 
 ## ASP.NET Core Identity
