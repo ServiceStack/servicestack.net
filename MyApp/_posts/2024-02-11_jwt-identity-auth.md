@@ -67,18 +67,33 @@ Once configured we can enable JWT Auth in Swagger UI by installing **Swashbuckle
 Then enable Open API, Swagger UI, ServiceStack's support for Swagger UI and the JWT Bearer Auth option:
 
 ```csharp
-services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+public class ConfigureOpenApi : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices((context, services) => {
+            if (context.HostingEnvironment.IsDevelopment())
+            {
+                services.AddEndpointsApiExplorer();
+                services.AddSwaggerGen();
+                services.AddServiceStackSwagger();
+                services.AddJwtAuth();
+                //services.AddBasicAuth<Data.ApplicationUser>();
+            
+                services.AddTransient<IStartupFilter,StartupFilter>();
+            }
+        });
 
-services.AddServiceStack(typeof(MyServices).Assembly, c => {
-    c.AddSwagger(o => {
-        o.AddJwtBearer();
-    });
-});
-
-var app = builder.Build();
-app.UseSwagger();
-app.UseSwaggerUI();
+    public class StartupFilter : IStartupFilter
+    {
+        public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
+            => app => {
+                // Provided by Swashbuckle library
+                app.UseSwagger();
+                app.UseSwaggerUI();
+                next(app);
+            };
+    }
+}
 ```
 
 This will enable the **Authorize** button in Swagger UI where you can authenticate with a JWT Token:
