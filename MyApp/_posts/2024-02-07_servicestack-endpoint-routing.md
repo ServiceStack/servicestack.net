@@ -4,7 +4,6 @@ summary: ServiceStack .NET 8 is now more integrated then ever with support for A
 tags: [servicestack,.net 8,apis]
 image: https://images.unsplash.com/photo-1510022151265-1bb84d406531?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
-draft: true
 ---
 
 In an effort to reduce friction and improve integration with ASP.NET Core Apps, we've continued the trend from last year
@@ -39,11 +38,13 @@ We're happy to announce the latest release of ServiceStack v8.1 now supports uti
 standardized features to reimplement all these key areas - fostering seamless integration and greater reuse which
 you can learn about below:
 
-- [ASP.NET Core Identity Auth](/posts/net8-identity-auth)
-- [ASP.NET Core IOC](/posts/servicestack-endpoint-routing#asp.net-core-ioc)
-- [Endpoint Routing](/posts/servicestack-endpoint-routing#endpoint-routing)
-- [Open API v3 and Swagger UI support](/posts/openapi-v3)
-- [System.Text.Json APIs](/posts/system-text-json-apis)
+- [ASP.NET Core Identity Auth](https://docs.servicestack.net/auth/identity-auth)
+- [ASP.NET Core IOC](https://docs.servicestack.net/releases/v8_01#asp.net-core-ioc)
+- [Endpoint Routing](https://docs.servicestack.net/releases/v8_01#endpoint-routing)
+- [System.Text.Json APIs](https://docs.servicestack.net/releases/v8_01#system.text.json)
+- [Open API v3 and Swagger UI](https://docs.servicestack.net/releases/v8_01#openapi-v3)
+- [ASP.NET Core Identity Auth Admin UI](https://docs.servicestack.net/releases/v8_01#asp.net-core-identity-auth-admin-ui)
+- [JWT Identity Auth](https://docs.servicestack.net/releases/v8_01#jwt-identity-auth)
 
 Better yet, this new behavior is enabled by default in all of ServiceStack's new ASP .NET Identity Auth .NET 8 templates!
 
@@ -578,7 +579,7 @@ app.UseServiceStack(new AppHost(), options => {
 - `useSystemJson` - Whether to use System.Text.Json for JSON API Serialization
 
 So you could for instance register endpoints and not `use` them, where they'll be visible in endpoint API explorers like
-[Swagger UI](/posts/openapi-v3) but continue to execute in ServiceStack's Request Pipeline.
+[Swagger UI](https://docs.servicestack.net/releases/v8_01#openapi-v3) but continue to execute in ServiceStack's Request Pipeline.
 
 `force` disables fallback execution of ServiceStack Requests through ServiceStack's Request Pipeline for requests that
 don't match registered endpoints. You may need to disable this if you have clients calling ServiceStack APIs through
@@ -588,8 +589,8 @@ When enabled `force` ensures the only ServiceStack Requests that are not execute
 `IAppHost.CatchAllHandlers` and `IAppHost.FallbackHandler` handlers.
 
 `useSystemJson` is a new feature that lets you specify when to use `System.Text.Json` for JSON API Serialization, which
-is our next exciting feature we'll be covering in our [next post](/posts/system-text-json-apis) which enables your 
-App to standardize on using ASP.NET Core's fast async UTF8 JSON Serializer.
+is our next exciting feature to standardize on using  
+[ASP.NET Core's fast async System.Text.Json](https://docs.servicestack.net/releases/v8_01#system.text.json) Serializer.
 
 ## Endpoint Routing Everywhere
 
