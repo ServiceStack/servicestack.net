@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>PHP typed client DTOs for .NET APIs - ServiceStack</title>
+    <title>ServiceStack Endpoint Routing - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Announcing 1st class end-to-end typed support for calling .NET APIs with PHP" />
-    <meta property="og:url" content="https://servicestack.net/posts/php-typed-apis" />
-    <meta property="og:title" content="PHP typed client DTOs for .NET APIs" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="ServiceStack .NET 8 is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IOC" />
+    <meta property="og:url" content="https://servicestack.net/posts/servicestack-endpoint-routing" />
+    <meta property="og:title" content="ServiceStack Endpoint Routing" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1510022151265-1bb84d406531?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                PHP typed client DTOs for .NET APIs
+                ServiceStack Endpoint Routing
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,21 +166,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="PHP typed client DTOs for .NET APIs Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1510022151265-1bb84d406531?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="ServiceStack Endpoint Routing Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/php" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">php</a>
                             <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
-                            <a href="posts/tagged/service-reference" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">service-reference</a>
+                            <a href="posts/tagged/net-8" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">.net 8</a>
+                            <a href="posts/tagged/apis" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">apis</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-11-29T00:00:00.0000000">November 29, 2023</time>
+                                <time datetime="2024-02-07T00:00:00.0000000">February 7, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>7 min read</span>
+                                <span>14 min read</span>
                             </div>
                         </div>
                 </div>
@@ -193,205 +193,454 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>We're happy to announce the <strong>11th</strong> <a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a>
-language to enjoy end-to-end typed support for calling .NET APIs - <a href="https://www.php.net">PHP</a>!</p>
-<p>The <strong>Add ServiceStack Reference</strong> feature enables a simple way for PHP clients and Applications to generate native PHP DTO classes
-to access to your ServiceStack APIs.</p>
-<div class="not-prose mt-16 flex flex-col items-center">
-   <div class="flex">
-      <svg class="w-60 h-60" xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><path fill="#4F5B93" d="M64 30.332C28.654 30.332 0 45.407 0 64s28.654 33.668 64 33.668c35.345 0 64-15.075 64-33.668S99.346 30.332 64 30.332zm-5.982 9.81h7.293v.003l-1.745 8.968h6.496c4.087 0 6.908.714 8.458 2.139c1.553 1.427 2.017 3.737 1.398 6.93l-3.053 15.7h-7.408l2.902-14.929c.33-1.698.208-2.855-.365-3.473c-.573-.617-1.793-.925-3.658-.925h-5.828L58.752 73.88h-7.291l6.557-33.738zM26.73 49.114h14.133c4.252 0 7.355 1.116 9.305 3.348c1.95 2.232 2.536 5.346 1.758 9.346c-.32 1.649-.863 3.154-1.625 4.52c-.763 1.364-1.76 2.613-2.99 3.745c-1.468 1.373-3.098 2.353-4.891 2.936c-1.794.585-4.08.875-6.858.875h-6.294l-1.745 8.97h-7.35l6.557-33.74zm57.366 0h14.13c4.252 0 7.353 1.116 9.303 3.348h.002c1.95 2.232 2.538 5.346 1.76 9.346c-.32 1.649-.861 3.154-1.623 4.52c-.763 1.364-1.76 2.613-2.992 3.745c-1.467 1.373-3.098 2.353-4.893 2.936c-1.794.585-4.077.875-6.855.875h-6.295l-1.744 8.97h-7.35l6.557-33.74zm-51.051 5.325l-2.742 14.12h4.468c2.963 0 5.172-.556 6.622-1.673c1.45-1.116 2.428-2.981 2.937-5.592c.485-2.507.264-4.279-.666-5.309c-.93-1.032-2.79-1.547-5.584-1.547h-5.035zm57.363 0l-2.744 14.12h4.47c2.965 0 5.17-.556 6.622-1.673c1.449-1.116 2.427-2.981 2.935-5.592c.487-2.507.266-4.279-.664-5.309c-.93-1.032-2.792-1.547-5.584-1.547h-5.035z"/></svg>
-   </div>
-</div>
-<div class="not-prose">
-    <div class="text-center"><h3 id="php" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-        End-to-end typed PHP
-    </h3></div>
-    <p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
-        Learn about the rich JsonServiceClient & end-to-end typed API support for PHP 
-    </p>
-    <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-        <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="ZLVdaJ38vwc" style="background-image: url('https://img.youtube.com/vi/ZLVdaJ38vwc/maxresdefault.jpg')"></lite-youtube>
-    </div>
-</div>
-<h3 id="phpstorm-servicestack-plugin">PhpStorm ServiceStack Plugin<a class="header-anchor" href="javascript:;" onclick="location.hash='#phpstorm-servicestack-plugin'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>PHP developers of <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> can get a simplified development experience for consuming
-ServiceStack Services by installing the <a href="https://plugins.jetbrains.com/plugin/7749-servicestack">ServiceStack Plugin</a>
-from the JetBrains Marketplace:</p>
-<p><a href="https://plugins.jetbrains.com/plugin/7749-servicestack"><img src="/img/posts/php-typed-apis/phpstorm-servicestack-plugin.webp" alt="" /></a></p>
-<p>Where you'll be able to right-click on a directory and click on <strong>ServiceStack Reference</strong> on the context menu:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-add-servicestack-reference.webp" alt="" /></p>
-<p>To launch the <strong>Add PHP ServiceStack Reference</strong> dialog where you can enter the remote URL of the ServiceStack endpoint you wish to call to generate the Typed PHP DTOs for all APIs which by default will saved to <code>dtos.php</code>:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-add-servicestack-reference-dialog.webp" alt="" /></p>
-<p>Then just import the DTOs and <code>JsonServiceClient</code> to be able to consume any of the remote ServiceStack APIs:</p>
-<pre><code class="language-php">&lt;?php
+                    <p>In an effort to reduce friction and improve integration with ASP.NET Core Apps, we've continued the trend from last year
+for embracing ASP.NET Core's built-in features and conventions which saw the latest ServiceStack v8 release converting
+all its newest .NET 8 templates to adopt <a href="https://docs.servicestack.net/auth/identity-auth">ASP.NET Core Identity Auth</a>.</p>
+<p>This is a departure from building upon our own platform-agnostic abstractions which allowed the same ServiceStack code-base
+to run on both .NET Core and .NET Framework. Our focus going forward will be to instead adopt De facto standards and conventions
+of the latest .NET platform which also means ServiceStack's new value-added features are only available in the latest <strong>.NET 8+</strong> release.</p>
+<h3 id="servicestack-middleware">ServiceStack Middleware<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-middleware'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst ServiceStack integrates into ASP.NET Core Apps as custom middleware into ASP.NET Core's HTTP Request Pipeline,
+it invokes its own black-box of functionality from there, implemented using its own suite of overlapping features.</p>
+<p>Whilst this allows ServiceStack to have full control over how to implement its features, it's not as integrated as it could be,
+with there being limits on what ServiceStack Functionality could be reused within external ASP .NET Core MVC Controllers, Razor Pages, etc.
+and inhibited the ability to apply application-wide authorization policies across an Application entire surface area,
+using and configuring different JSON Serialization implementations.</p>
+<h3 id="areas-for-tighter-integration">Areas for tighter integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#areas-for-tighter-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The major areas we've identified that would benefit from tighter integration with ASP.NET Core include:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/ioc">Funq IOC Container</a></li>
+<li><a href="https://docs.servicestack.net/routing">ServiceStack Routing</a> and <a href="https://docs.servicestack.net/order-of-operations">Request Pipeline</a></li>
+<li><a href="https://docs.servicestack.net/json-format">ServiceStack.Text JSON Serializer</a></li>
+</ul>
+<h3 id="servicestack-v8.1-is-fully-integrated">ServiceStack v8.1 is fully integrated!<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-v8.1-is-fully-integrated'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>We're happy to announce the latest release of ServiceStack v8.1 now supports utilizing the optimal ASP.NET Core's
+standardized features to reimplement all these key areas - fostering seamless integration and greater reuse which
+you can learn about below:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/auth/identity-auth">ASP.NET Core Identity Auth</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#asp.net-core-ioc">ASP.NET Core IOC</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#endpoint-routing">Endpoint Routing</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#system.text.json">System.Text.Json APIs</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#openapi-v3">Open API v3 and Swagger UI</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#asp.net-core-identity-auth-admin-ui">ASP.NET Core Identity Auth Admin UI</a></li>
+<li><a href="https://docs.servicestack.net/releases/v8_01#jwt-identity-auth">JWT Identity Auth</a></li>
+</ul>
+<p>Better yet, this new behavior is enabled by default in all of ServiceStack's new ASP .NET Identity Auth .NET 8 templates!</p>
+<h3 id="asp.net-core-ioc">ASP .NET Core IOC<a class="header-anchor" href="javascript:;" onclick="location.hash='#asp.net-core-ioc'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The primary limitation of ServiceStack using its own Funq IOC is that any dependencies registered in Funq are not injected
+into Razor Pages, Blazor Components, MVC Controllers, etc.</p>
+<p>That's why our <a href="https://docs.servicestack.net/modular-startup">Modular Startup</a> configurations recommend utilizing
+custom <code>IHostingStartup</code> configurations to register application dependencies in ASP .NET Core's IOC where they can be
+injected into both ServiceStack Services and ASP.NET Core's external components, e.g:</p>
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureDb))]
 
-require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
-require_once 'dtos.php';
+namespace MyApp;
 
-use dtos\FindTechnologies;
-use Servicestack\JsonServiceClient;
-
-$client = JsonServiceClient::create(&quot;https://techstacks.io&quot;);
-
-$response = $client-&gt;send(new FindTechnologies(
-    ids: [1,2,4,6],
-    vendorName: &quot;Google&quot;));
-
-print_r($response);
-</code></pre>
-<p>If any of the the remote APIs change their DTOs can be updated by right-clicking on <code>dtos.php</code> and clicking <strong>Update ServiceStack Reference</strong>:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-update-servicestack-reference.webp" alt="" /></p>
-<h3 id="install-php-servicestack-client">Install PHP ServiceStack Client<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-php-servicestack-client'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The only requirements for PHP apps to perform typed API Requests are the generated PHP DTOs and the generic <code>JsonServiceClient</code>
-which can be installed in Composer projects with:</p>
-<pre><code class="language-bash">$ composer require servicestack/client
-</code></pre>
-<p>Or by adding the package to your <code>composer.json</code> then installing the dependencies:</p>
-<pre><code class="language-json">{
-  &quot;require&quot;: {
-    &quot;servicestack/client&quot;: &quot;^1.0&quot;
-  }
+public class ConfigureDb : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+            services.AddSingleton&lt;IDbConnectionFactory&gt;(new OrmLiteConnectionFactory(
+                context.Configuration.GetConnectionString(&quot;DefaultConnection&quot;),
+                SqliteDialect.Provider));
+        });
 }
 </code></pre>
-<h2 id="first-class-development-experience">First class development experience<a class="header-anchor" href="javascript:;" onclick="location.hash='#first-class-development-experience'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><a href="https://www.php.net">PHP</a> is one of the worlds most popular programming languages thanks to its ease of use,
-platform independence, large standard library, flexibility and fast development experience which sees it excels as
-a popular language for web development and for development of popular CMS products like WordPress, Drupal and Joomla
-thanks to its flexibility, embeddability and ease of customization.</p>
-<p>To maximize the experience for calling ServiceStack APIs within these environments ServiceStack now supports PHP as a
-1st class Add ServiceStack Reference supported language which gives PHP developers an end-to-end typed API for consuming
-ServiceStack APIs, complete with IDE integration in <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> as well as
-<a href="https://docs.servicestack.net/dotnet-tool#addupdate-servicestack-references">built-in support in x dotnet tool</a>
-to generate Typed and annotated PHP DTOs for a remote ServiceStack instance from a single command-line.</p>
-<h3 id="ideal-idiomatic-typed-message-based-api">Ideal idiomatic Typed Message-based API<a class="header-anchor" href="javascript:;" onclick="location.hash='#ideal-idiomatic-typed-message-based-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>To maximize the utility of PHP DTOs and enable richer tooling support and greater development experience, PHP DTOs are generated as
-Typed <a href="https://www.php.net/manual/en/class.jsonserializable.php">JsonSerializable</a> classes with
-<a href="https://www.php.net/manual/en/language.oop5.decon.php#language.oop5.decon.constructor.promotion">promoted constructors</a>
-and annotated with <a href="https://phpstan.org/writing-php-code/phpdoc-types">PHPDoc Types</a> - that's invaluable when scaling
-large PHP code-bases and greatly improves discoverability of a remote API. DTOs are also enriched with interface markers
-and Annotations which enables its optimal end-to-end typed API:</p>
-<p>The PHP DTOs and <code>JsonServiceClient</code> library follow
-<a href="https://infinum.com/handbook/wordpress/coding-standards/php-coding-standards/naming">PHP naming conventions</a>
-so they'll naturally fit into existing PHP code bases. Here's a sample of <a href="https://techstacks.io">techstacks.io</a>
-generated PHP DTOs containing string and int Enums, an example AutoQuery and a standard Request &amp; Response DTO showcasing
-the rich typing annotations and naming conventions used:</p>
-<pre><code class="language-php">enum TechnologyTier : string
-{
-    case ProgrammingLanguage = 'ProgrammingLanguage';
-    case Client = 'Client';
-    case Http = 'Http';
-    case Server = 'Server';
-    case Data = 'Data';
-    case SoftwareInfrastructure = 'SoftwareInfrastructure';
-    case OperatingSystem = 'OperatingSystem';
-    case HardwareInfrastructure = 'HardwareInfrastructure';
-    case ThirdPartyServices = 'ThirdPartyServices';
-}
+<p>But there were fundamental restrictions on what could be registered in ASP .NET Core's IOC as everything needed to be
+registered before AspNetCore's <code>WebApplication</code> was built and before ServiceStack's AppHost could be initialized,
+which prohibited being able to register any dependencies created by the AppHost including Services, AutoGen Services,
+Validators and internal functionality like App Settings, Virtual File System and Caching providers, etc.</p>
+<h2 id="switch-to-use-asp.net-core-ioc">Switch to use ASP .NET Core IOC<a class="header-anchor" href="javascript:;" onclick="location.hash='#switch-to-use-asp.net-core-ioc'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To enable ServiceStack to switch to using ASP .NET Core's IOC you'll need to move registration of all dependencies and
+Services to before the WebApplication is built by calling the <code>AddServiceStack()</code> extension method with the Assemblies
+where your ServiceStack Services are located, e.g:</p>
+<pre><code class="language-csharp">builder.Services.AddServiceStack(typeof(MyServices).Assembly);
 
-enum Frequency : int
-{
-    case Daily = 1;
-    case Weekly = 7;
-    case Monthly = 30;
-    case Quarterly = 90;
-}
+var app = builder.Build();
 
-// @Route(&quot;/technology/search&quot;)
-#[Returns('QueryResponse')]
-/**
- * @template QueryDb of Technology
- * @template QueryDb1 of TechnologyView
- */
-class FindTechnologies extends QueryDb implements IReturn, IGet, JsonSerializable
+//...
+app.UseServiceStack(new AppHost());
+</code></pre>
+<p>Which now registers all ServiceStack dependencies in ASP .NET Core's IOC, including all ServiceStack Services prior to
+the AppHost being initialized which no longer needs to specify the Assemblies where ServiceStack Services are created
+and no longer needs to use Funq as all dependencies should now be registered in ASP .NET Core's IOC.</p>
+<h3 id="registering-dependencies-and-plugins">Registering Dependencies and Plugins<a class="header-anchor" href="javascript:;" onclick="location.hash='#registering-dependencies-and-plugins'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Additionally ASP.NET Core's IOC requirement for all dependencies needing to be registered before the WebApplication is
+built means you'll no longer be able to register any dependencies or plugins in ServiceStack's <code>AppHost.Configure()</code> method.</p>
+<pre><code class="language-csharp">public class AppHost() : AppHostBase(&quot;MyApp&quot;), IHostingStartup
 {
-    public function __construct(
-        /** @var array&lt;int&gt;|null */
-        public ?array $ids=null,
-        /** @var string|null */
-        public ?string $name=null,
-        /** @var string|null */
-        public ?string $vendorName=null,
-        /** @var string|null */
-        public ?string $nameContains=null,
-        /** @var string|null */
-        public ?string $vendorNameContains=null,
-        /** @var string|null */
-        public ?string $descriptionContains=null
-    ) {
-    }
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices(services =&gt; {
+            // Register IOC Dependencies and ServiceStack Plugins
+        });
 
-    /** @throws Exception */
-    public function fromMap($o): void {
-        parent::fromMap($o);
-        if (isset($o['ids'])) $this-&gt;ids = JsonConverters::fromArray('int', $o['ids']);
-        if (isset($o['name'])) $this-&gt;name = $o['name'];
-        if (isset($o['vendorName'])) $this-&gt;vendorName = $o['vendorName'];
-        if (isset($o['nameContains'])) $this-&gt;nameContains = $o['nameContains'];
-        if (isset($o['vendorNameContains'])) $this-&gt;vendorNameContains = $o['vendorNameContains'];
-        if (isset($o['descriptionContains'])) $this-&gt;descriptionContains = $o['descriptionContains'];
-    }
-    
-    /** @throws Exception */
-    public function jsonSerialize(): mixed
+    public override void Configure()
     {
-        $o = parent::jsonSerialize();
-        if (isset($this-&gt;ids)) $o['ids'] = JsonConverters::toArray('int', $this-&gt;ids);
-        if (isset($this-&gt;name)) $o['name'] = $this-&gt;name;
-        if (isset($this-&gt;vendorName)) $o['vendorName'] = $this-&gt;vendorName;
-        if (isset($this-&gt;nameContains)) $o['nameContains'] = $this-&gt;nameContains;
-        if (isset($this-&gt;vendorNameContains)) $o['vendorNameContains'] = $this-&gt;vendorNameContains;
-        if (isset($this-&gt;descriptionContains)) $o['descriptionContains'] = $this-&gt;descriptionContains;
-        return empty($o) ? new class(){} : $o;
+        // DO NOT REGISTER ANY PLUGNIS OR DEPENDENCIES HERE
     }
-    public function getTypeName(): string { return 'FindTechnologies'; }
-    public function getMethod(): string { return 'GET'; }
-    public function createResponse(): mixed { return QueryResponse::create(genericArgs:['TechnologyView']); }
 }
-
-// @Route(&quot;/orgs/{Id}&quot;, &quot;DELETE&quot;)
-class DeleteOrganization implements IReturnVoid, IDelete, JsonSerializable
+</code></pre>
+<p>Instead anything that needs to register dependencies in ASP.NET Core IOC should now use the <code>IServiceCollection</code> extension methods:</p>
+<ul>
+<li>Use <code>IServiceCollection.Add*</code> APIs to register dependencies</li>
+<li>Use <code>IServiceCollection.AddPlugin</code> API to register ServiceStack Plugins</li>
+<li>Use <code>IServiceCollection.RegisterService*</code> APIs to dynamically register ServiceStack Services in external Assemblies</li>
+</ul>
+<p>This can be done whenever you have access to <code>IServiceCollection</code>, either in <code>Program.cs</code>:</p>
+<pre><code class="language-csharp">builder.Services.AddPlugin(new AdminDatabaseFeature());
+</code></pre>
+<p>Or in any Modular Startup <code>IHostingStartup</code> configuration class, e.g:</p>
+<pre><code class="language-csharp">public class ConfigureDb : IHostingStartup
 {
-    public function __construct(
-        /** @var int */
-        public int $id=0
-    ) {
-    }
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+            services.AddSingleton&lt;IDbConnectionFactory&gt;(new OrmLiteConnectionFactory(
+                context.Configuration.GetConnectionString(&quot;DefaultConnection&quot;),
+                SqliteDialect.Provider));
+            
+            // Enable Audit History
+            services.AddSingleton&lt;ICrudEvents&gt;(c =&gt;
+                new OrmLiteCrudEvents(c.GetRequiredService&lt;IDbConnectionFactory&gt;()));
+            
+            // Enable AutoQuery RDBMS APIs
+            services.AddPlugin(new AutoQueryFeature {
+                 MaxLimit = 1000,
+            });
 
-    /** @throws Exception */
-    public function fromMap($o): void {
-        if (isset($o['id'])) $this-&gt;id = $o['id'];
-    }
-    
-    /** @throws Exception */
-    public function jsonSerialize(): mixed
-    {
-        $o = [];
-        if (isset($this-&gt;id)) $o['id'] = $this-&gt;id;
-        return empty($o) ? new class(){} : $o;
-    }
-    public function getTypeName(): string { return 'DeleteOrganization'; }
-    public function getMethod(): string { return 'DELETE'; }
-    public function createResponse(): void {}
+            // Enable AutoQuery Data APIs
+            services.AddPlugin(new AutoQueryDataFeature());
+            
+            // Enable built-in Database Admin UI at /admin-ui/database
+            services.AddPlugin(new AdminDatabaseFeature());
+        })
+        .ConfigureAppHost(appHost =&gt; {
+            appHost.Resolve&lt;ICrudEvents&gt;().InitSchema();
+        });
 }
 </code></pre>
-<p>The smart PHP <code>JsonServiceClient</code> available in the <a href="https://packagist.org/packages/servicestack/client">servicestack/client</a>
-packagist package enables the same productive, typed API development experience available in our other 1st-class supported
-client platforms.</p>
-<p>Using promoted constructors enables DTOs to be populated using a single constructor expression utilizing named parameters
-which together with the generic <code>JsonServiceClient</code> enables end-to-end typed API Requests in a single LOC:</p>
-<pre><code class="language-php">use Servicestack\JsonServiceClient;
-use dtos\Hello;
+<p>The <code>ConfigureAppHost()</code> extension method can continue to be used to execute any startup logic that requires access to
+registered dependencies.</p>
+<h3 id="authoring-servicestack-plugins">Authoring ServiceStack Plugins<a class="header-anchor" href="javascript:;" onclick="location.hash='#authoring-servicestack-plugins'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To enable ServiceStack Plugins to support both Funq and ASP .NET Core IOC, any dependencies and Services a plugin needs
+should be registered in the <code>IConfigureServices.Configure(IServiceCollection)</code> method as seen in the refactored
+<a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack/ServerEventsFeature.cs">ServerEventsFeature.cs</a>
+plugin, e.g:</p>
+<pre><code class="language-csharp">public class ServerEventsFeature : IPlugin, IConfigureServices
+{
+    //...
+    public void Configure(IServiceCollection services)
+    {
+        if (!services.Exists&lt;IServerEvents&gt;())
+        {
+            services.AddSingleton&lt;IServerEvents&gt;(new MemoryServerEvents
+            {
+                IdleTimeout = IdleTimeout,
+                HouseKeepingInterval = HouseKeepingInterval,
+                OnSubscribeAsync = OnSubscribeAsync,
+                OnUnsubscribeAsync = OnUnsubscribeAsync,
+                OnUpdateAsync = OnUpdateAsync,
+                NotifyChannelOfSubscriptions = NotifyChannelOfSubscriptions,
+                Serialize = Serialize,
+                OnError = OnError,
+            });
+        }
+        
+        if (UnRegisterPath != null)
+            services.RegisterService&lt;ServerEventsUnRegisterService&gt;(UnRegisterPath);
 
-$client = new JsonServiceClient(&quot;https://test.servicestack.net&quot;);
+        if (SubscribersPath != null)
+            services.RegisterService&lt;ServerEventsSubscribersService&gt;(SubscribersPath);
+    }
 
-/** @var HelloResponse $response */
-$response = client-&gt;get(new Hello(name:&quot;World&quot;));
+    public void Register(IAppHost appHost)
+    {
+        //...
+    }
+}
 </code></pre>
-<blockquote>
-<p>The <code>HelloResponse</code> optional type hint doesn't change runtime behavior but enables static analysis tools and IDEs like PyCharm to provide rich intelli-sense and development time feedback.</p>
-</blockquote>
-<p>For more usage examples and information about ServiceStack's PHP support checkout the
-<a href="https://docs.servicestack.net/php-add-servicestack-reference">PHP Add ServiceStack Reference</a> docs.</p>
+<h4 id="all-plugins-refactored-to-support-asp.net-core-ioc">All Plugins refactored to support ASP .NET Core IOC<a class="header-anchor" href="javascript:;" onclick="location.hash='#all-plugins-refactored-to-support-asp.net-core-ioc'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>All of ServiceStack's Plugins have been refactored to make use of <code>IConfigureServices</code> which supports registering in both
+Funq and ASP.NET Core's IOC when enabled.</p>
+<h4 id="funq-ioc-implements-iservicecollection-and-iserviceprovider-interfaces">Funq IOC implements IServiceCollection and IServiceProvider interfaces<a class="header-anchor" href="javascript:;" onclick="location.hash='#funq-ioc-implements-iservicecollection-and-iserviceprovider-interfaces'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>To enable this Funq now implements both <code>IServiceCollection</code> and<code>IServiceProvider</code> interfaces to enable 100% source-code
+compatibility for registering and resolving dependencies with either IOC, which we now recommend using over Funq's
+native Registration and Resolution APIs to simplify migration efforts to ASP.NET Core's IOC in future.</p>
+<h2 id="dependency-injection">Dependency Injection<a class="header-anchor" href="javascript:;" onclick="location.hash='#dependency-injection'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The primary difference between the IOC's is that ASP.NET Core's IOC does not support property injection by default,
+which will require you to refactor your ServiceStack Services to use constructor injection of dependencies, although
+this has become a lot more pleasant with C# 12's <a href="https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors">Primary Constructors</a>
+which now requires a lot less boilerplate to define, assign and access dependencies, e.g:</p>
+<pre><code class="language-csharp">public class TechStackServices(IAutoQueryDb autoQuery) : Service
+{
+    public async Task&lt;object&gt; Any(QueryTechStacks request)
+    {
+        using var db = autoQuery.GetDb(request, base.Request);
+        var q = autoQuery.CreateQuery(request, Request, db);
+        return await autoQuery.ExecuteAsync(request, q, db);
+    }
+}
+</code></pre>
+<p>This has become our preferred approach for injecting dependencies in ServiceStack Services which have all been refactored
+to use constructor injection utilizing primary constructors in order to support both IOC's.</p>
+<p>To make migrations easier we've also added support for property injection convention in <strong>ServiceStack Services</strong> using
+ASP.NET Core's IOC where you can add the <code>[FromServices]</code> attribute to any public properties you want to be injected, e.g:</p>
+<pre><code class="language-csharp">public class TechStackServices : Service
+{
+    [FromServices]
+    public required IAutoQueryDb AutoQuery { get; set; }
+
+    [FromServices]
+    public MyDependency? OptionalDependency { get; set; }
+}
+</code></pre>
+<p>This feature can be useful for Services wanting to access optional dependencies that may or may not be registered.</p>
+<div class="info custom-block">
+                <p class="custom-block-title">NOTE</p><p><code>[FromServices]</code> is only supported in ServiceStack Services (i.e. not other dependencies)</p>
+</div>
+<h3 id="built-in-servicestack-dependencies">Built-in ServiceStack Dependencies<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-in-servicestack-dependencies'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This integration now makes it effortless to inject and utilize optional ServiceStack features like
+<a href="https://docs.servicestack.net/autoquery/">AutoQuery</a> and <a href="https://docs.servicestack.net/server-events">Server Events</a>
+in other parts of ASP.NET Core inc. Blazor Components, Razor Pages, MVC Controllers, Minimal APIs, etc.</p>
+<p>Whilst the Built-in ServiceStack features that are registered by default and immediately available to be injected, include:</p>
+<ul>
+<li><code>IVirtualFiles</code> - Read/Write <a href="https://docs.servicestack.net/virtual-file-system">Virtual File System</a>, defaults to <code>FileSystemVirtualFiles</code> at <code>ContentRootPath</code></li>
+<li><code>IVirtualPathProvider</code> - Multi Virtual File System configured to scan multiple read only sources, inc <code>WebRootPath</code>, In Memory and Embedded Resource files</li>
+<li><code>ICacheClient</code> and <code>ICacheClientAsync</code> - In Memory Cache, or distributed Redis cache if <a href="https://docs.servicestack.net/redis/">ServiceStack.Redis</a> is configured</li>
+<li><code>IAppSettings</code> - Multiple <a href="https://docs.servicestack.net/appsettings">AppSettings</a> configuration sources</li>
+</ul>
+<p>With ASP.NET Core's IOC now deeply integrated we moved onto the next area of integration: API Integration and Endpoint Routing.</p>
+<h2 id="endpoint-routing">Endpoint Routing<a class="header-anchor" href="javascript:;" onclick="location.hash='#endpoint-routing'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Whilst ASP.NET Core's middleware is a flexible way to compose and execute different middleware in a HTTP Request pipeline,
+each middleware is effectively their own island of functionality that's able to handle HTTP Requests in which ever way
+they see fit.</p>
+<p>In particular ServiceStack's middleware would execute its own <a href="https://docs.servicestack.net/order-of-operations">Request Pipeline</a>
+which would execute ServiceStack API's registered at user-defined routes with its own <a href="https://docs.servicestack.net/routing">ServiceStack Routing</a>.</p>
+<p>We're happy to announce that ServiceStack <strong>.NET 8</strong> Apps support an entirely new and integrated way to run all of ServiceStack
+requests including all APIs, metadata and built-in UIs with support for
+<a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing">ASP.NET Core Endpoint Routing</a> -
+enabled by calling the <code>MapEndpoints()</code> extension method when configuring ServiceStack, e.g:</p>
+<pre><code class="language-csharp">app.UseServiceStack(new AppHost(), options =&gt; {
+    options.MapEndpoints();
+});
+</code></pre>
+<p>Which configures ServiceStack APIs to be registered and executed along-side Minimal APIs, Razor Pages, SignalR, MVC
+and Web API Controllers, etc, utilizing the same routing, metadata and execution pipeline.</p>
+<h4 id="view-servicestack-apis-along-side-asp.net-core-apis">View ServiceStack APIs along-side ASP.NET Core APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#view-servicestack-apis-along-side-asp.net-core-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Amongst other benefits, this integration is evident in endpoint metadata explorers like the <code>Swashbuckle</code> library
+which can now show ServiceStack APIs in its Swagger UI along-side other ASP.NET Core APIs in ServiceStack's new
+<a href="/posts/openapi-v3">Open API v3</a> support.</p>
+<h3 id="routing">Routing<a class="header-anchor" href="javascript:;" onclick="location.hash='#routing'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Using Endpoint Routing also means using ASP.NET Core's Routing System which now lets you use ASP.NET Core's
+<a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing#route-constraints">Route constraints</a>
+for defining user-defined routes for your ServiceStack APIs, e.g:</p>
+<pre><code class="language-csharp">[Route(&quot;/users/{Id:int}&quot;)]
+[Route(&quot;/users/{UserName:string}&quot;)]
+public class GetUser : IGet, IReturn&lt;User&gt;
+{
+    public int? Id { get; set; }
+    public int? UserName { get; set; }
+}
+</code></pre>
+<p>For the most part ServiceStack Routing implements a subset of ASP.NET Core's Routing features so your existing user-defined
+routes should continue to work as expected.</p>
+<h3 id="wildcard-routes">Wildcard Routes<a class="header-anchor" href="javascript:;" onclick="location.hash='#wildcard-routes'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The only incompatibility we found was when using wildcard paths which in ServiceStack Routing would use an '*' suffix, e.g:
+<code>[Route(&quot;/wildcard/{Path*}&quot;)]</code> which will need to change to use a ASP.NET Core's Routing prefix, e.g:</p>
+<pre><code class="language-csharp">[Route(&quot;/wildcard/{*Path}&quot;)]
+[Route(&quot;/wildcard/{**Path}&quot;)]
+public class GetFile : IGet, IReturn&lt;byte[]&gt;
+{
+    public string Path { get; set; }
+}
+</code></pre>
+<h4 id="servicestack-routing-compatibility">ServiceStack Routing Compatibility<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-routing-compatibility'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>To improve compatibility with ASP.NET Core's Routing, ServiceStack's Routing (when not using Endpoint Routing) now
+supports parsing ASP.NET Core's Route Constraints but as they're inert you would need to continue to use
+<a href="https://docs.servicestack.net/routing#custom-rules">Custom Route Rules</a> to distinguish between different routes matching
+the same path at different specificity:</p>
+<pre><code class="language-csharp">[Route(&quot;/users/{Id:int}&quot;, Matches = &quot;**/{int}&quot;)]
+[Route(&quot;/users/{UserName:string}&quot;)]
+public class GetUser : IGet, IReturn&lt;User&gt;
+{
+    public int? Id { get; set; }
+    public int? UserName { get; set; }
+}
+</code></pre>
+<p>It also supports defining Wildcard Routes using ASP.NET Core's syntax which we now recommend using instead
+for compatibility when switching to use Endpoint Routing:</p>
+<pre><code class="language-csharp">[Route(&quot;/wildcard/{*Path}&quot;)]
+[Route(&quot;/wildcard/{**Path}&quot;)]
+public class GetFile : IGet, IReturn&lt;byte[]&gt;
+{
+    public string Path { get; set; }
+}
+</code></pre>
+<h3 id="primary-http-method">Primary HTTP Method<a class="header-anchor" href="javascript:;" onclick="location.hash='#primary-http-method'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Another difference is that an API will only register its Endpoint Route for its <a href="https://docs.servicestack.net/api-design#all-apis-have-a-preferred-default-method">primary HTTP Method</a>,
+if you want an API to be registered for multiple HTTP Methods you can specify them in the <code>Route</code> attribute, e.g:</p>
+<pre><code class="language-csharp">[Route(&quot;/users/{Id:int}&quot;, &quot;GET,POST&quot;)]
+public class GetUser : IGet, IReturn&lt;User&gt;
+{
+    public required int Id { get; set; }
+}
+</code></pre>
+<p>As such we recommend using the IVerb <code>IGet</code>, <code>IPost</code>, <code>IPut</code>, <code>IPatch</code>, <code>IDelete</code> interface markers to specify the primary HTTP Method
+for an API. This isn't needed for <a href="https://docs.servicestack.net/autoquery/">AutoQuery Services</a> which are implicitly configured
+to use their optimal HTTP Method.</p>
+<p>If no HTTP Method is specified, the Primary HTTP Method defaults to HTTP <strong>POST</strong>.</p>
+<h3 id="authorization">Authorization<a class="header-anchor" href="javascript:;" onclick="location.hash='#authorization'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Using Endpoint Routing also means ServiceStack's APIs are authorized the same way, where ServiceStack's
+<a href="https://docs.servicestack.net/auth/#declarative-validation-attributes">Declarative Validation attributes</a> are converted
+into ASP.NET Core's <code>[Authorize]</code> attribute to secure the endpoint:</p>
+<pre><code class="language-csharp">[ValidateIsAuthenticated]
+[ValidateIsAdmin]
+[ValidateHasRole(role)]
+[ValidateHasClaim(type,value)]
+[ValidateHasScope(scope)]
+public class Secured {}
+</code></pre>
+<h4 id="authorize-attribute-on-servicestack-apis">Authorize Attribute on ServiceStack APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#authorize-attribute-on-servicestack-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Alternatively you can now use ASP.NET Core's <code>[Authorize]</code> attribute directly to secure ServiceStack APIs should
+you need more fine-grained Authorization:</p>
+<pre><code class="language-csharp">[Authorize(Roles = &quot;RequiredRole&quot;)]
+[Authorize(Policy = &quot;RequiredPolicy&quot;)]
+[Authorize(AuthenticationSchemes = &quot;Identity.Application,Bearer&quot;)]
+public class Secured {}
+</code></pre>
+<h4 id="configuring-authentication-schemes">Configuring Authentication Schemes<a class="header-anchor" href="javascript:;" onclick="location.hash='#configuring-authentication-schemes'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>ServiceStack will default to using the major Authentication Schemes configured for your App to secure the APIs endpoint with,
+this can be overridden to specify which Authentication Schemes to use to restrict ServiceStack APIs by default, e.g:</p>
+<pre><code class="language-csharp">app.UseServiceStack(new AppHost(), options =&gt; {
+    options.AuthenticationSchemes = &quot;Identity.Application,Bearer&quot;;
+    options.MapEndpoints();
+});
+</code></pre>
+<h3 id="hidden-servicestack-endpoints">Hidden ServiceStack Endpoints<a class="header-anchor" href="javascript:;" onclick="location.hash='#hidden-servicestack-endpoints'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst ServiceStack Requests are registered and executed as endpoints, most of them are marked with
+<code>builder.ExcludeFromDescription()</code> to hide them from polluting metadata and API Explorers like Swagger UI and
+<a href="https://docs.servicestack.net/api-explorer">API Explorer</a>.</p>
+<p>To also hide your ServiceStack APIs you can use <code>[ExcludeMetadata]</code> attribute to hide them from all metadata services
+or use <code>[Exclude(Feature.ApiExplorer)]</code> to just hide them from API Explorer UIs:</p>
+<pre><code class="language-csharp">[ExcludeMetadata]
+[Exclude(Feature.ApiExplorer)]
+public class HiddenRequest {}
+</code></pre>
+<h3 id="content-negotiation">Content Negotiation<a class="header-anchor" href="javascript:;" onclick="location.hash='#content-negotiation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>An example of these hidden routes is the support for invoking and returning ServiceStack APIs in different Content Types
+via hidden Endpoint Routes mapped with the format <code>/api/{Request}.{format}</code>, e.g:</p>
+<ul>
+<li><a href="https://blazor-vue.web-templates.io/api/QueryBookings">/api/QueryBookings</a></li>
+<li><a href="https://blazor-vue.web-templates.io/api/QueryBookings.jsonl">/api/QueryBookings.jsonl</a></li>
+<li><a href="https://blazor-vue.web-templates.io/api/QueryBookings.csv">/api/QueryBookings.csv</a></li>
+<li><a href="https://blazor-vue.web-templates.io/api/QueryBookings.xml">/api/QueryBookings.xml</a></li>
+<li><a href="https://blazor-vue.web-templates.io/api/QueryBookings.html">/api/QueryBookings.html</a></li>
+</ul>
+<h4 id="query-string-format">Query String Format<a class="header-anchor" href="javascript:;" onclick="location.hash='#query-string-format'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>That continues to support specifying the Mime Type via the <code>?format</code> query string, e.g:</p>
+<ul>
+<li><a href="https://blazor-vue.web-templates.io/api/QueryBookings?format=jsonl">/api/QueryBookings?format=jsonl</a></li>
+<li><a href="https://blazor-vue.web-templates.io/api/QueryBookings?format=csv">/api/QueryBookings?format=csv</a></li>
+</ul>
+<h3 id="predefined-routes">Predefined Routes<a class="header-anchor" href="javascript:;" onclick="location.hash='#predefined-routes'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Endpoints are only created for the newer <code>/api/{Request}</code> <a href="https://docs.servicestack.net/routing#pre-defined-routes">pre-defined routes</a>,
+which should be easier to use with less conflicts now that ServiceStack APIs are executed along-side other endpoint routes
+APIs which can share the same <code>/api</code> base path with non-conflicting routes, e.g: <code>app.MapGet(&quot;/api/minimal-api&quot;)</code>.</p>
+<p>As a result clients configured to use the older <code>/json/reply/{Request}</code> pre-defined route will need to be configured
+to use the newer <code>/api</code> base path.</p>
+<p>No change is required for C#/.NET clients using the recommended <code>JsonApiClient</code> JSON Service Client which is already
+configured to use the newer <code>/api</code> base path.</p>
+<pre><code class="language-csharp">var client = new JsonApiClient(baseUri);
+</code></pre>
+<p>Older .NET clients can be configured to use the newer <code>/api</code> pre-defined routes with:</p>
+<pre><code class="language-csharp">var client = new JsonServiceClient(baseUri) {
+    UseBasePath = &quot;/api&quot;
+};
+var client = new JsonHttpClient(baseUri) {
+    UseBasePath = &quot;/api&quot;
+};
+</code></pre>
+<p>To further solidify that <code>/api</code> as the preferred pre-defined route we've also <strong>updated all generic service clients</strong> of
+other languages to use <code>/api</code> base path by default:</p>
+<h4 id="javascripttypescript">JavaScript/TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#javascripttypescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-ts">const client = new JsonServiceClient(baseUrl)
+</code></pre>
+<h4 id="dart">Dart<a class="header-anchor" href="javascript:;" onclick="location.hash='#dart'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-dart">var client = ClientFactory.api(baseUrl);
+</code></pre>
+<h4 id="javakotlin">Java/Kotlin<a class="header-anchor" href="javascript:;" onclick="location.hash='#javakotlin'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-java">JsonServiceClient client = new JsonServiceClient(baseUrl);
+</code></pre>
+<h4 id="python">Python<a class="header-anchor" href="javascript:;" onclick="location.hash='#python'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-python">client = JsonServiceClient(baseUrl)
+</code></pre>
+<h4 id="php">PHP<a class="header-anchor" href="javascript:;" onclick="location.hash='#php'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-php">$client = new JsonServiceClient(baseUrl);
+</code></pre>
+<h3 id="revert-to-legacy-predefined-routes">Revert to Legacy Predefined Routes<a class="header-anchor" href="javascript:;" onclick="location.hash='#revert-to-legacy-predefined-routes'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>You can unset the base path to revert back to using the older <code>/json/reply/{Request}</code> pre-defined route, e.g:</p>
+<h4 id="javascripttypescript-1">JavaScript/TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#javascripttypescript-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-ts">client.basePath = null;
+</code></pre>
+<h4 id="dart-1">Dart<a class="header-anchor" href="javascript:;" onclick="location.hash='#dart-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-dart">var client = ClientFactory.create(baseUrl);
+</code></pre>
+<h4 id="javakotlin-1">Java/Kotlin<a class="header-anchor" href="javascript:;" onclick="location.hash='#javakotlin-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-java">client.setBasePath();
+</code></pre>
+<h4 id="python-1">Python<a class="header-anchor" href="javascript:;" onclick="location.hash='#python-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-python">client.set_base_path()
+</code></pre>
+<h4 id="php-1">PHP<a class="header-anchor" href="javascript:;" onclick="location.hash='#php-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-php">$client-&gt;setBasePath();
+</code></pre>
+<h3 id="customize-endpoint-mapping">Customize Endpoint Mapping<a class="header-anchor" href="javascript:;" onclick="location.hash='#customize-endpoint-mapping'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>You can register a RouteHandlerBuilders to customize how ServiceStack APIs endpoints are registered which is also
+what ServiceStack uses to annotate its API endpoints to enable its new <a href="/posts/openapi-v3">Open API v3</a> support:</p>
+<pre><code class="language-csharp">options.RouteHandlerBuilders.Add((builder, operation, method, route) =&gt;
+{
+    builder.WithOpenApi(op =&gt; { ... });
+});
+</code></pre>
+<h3 id="endpoint-routing-compatibility-levels">Endpoint Routing Compatibility Levels<a class="header-anchor" href="javascript:;" onclick="location.hash='#endpoint-routing-compatibility-levels'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The default behavior of <code>MapEndpoints()</code> is the strictest and recommended configuration that we want future ServiceStack Apps to use,
+however if you're migrating existing App's you may want to relax these defaults to improve compatibility with existing behavior.</p>
+<p>The configurable defaults for mapping endpoints are:</p>
+<pre><code class="language-csharp">app.UseServiceStack(new AppHost(), options =&gt; {
+    options.MapEndpoints(use:true, force:true, useSystemJson:UseSystemJson.Always);
+});
+</code></pre>
+<ul>
+<li><code>use</code> - Whether to use registered endpoints for executing ServiceStack APIs</li>
+<li><code>force</code> - Whether to only allow APIs to be executed through endpoints</li>
+<li><code>useSystemJson</code> - Whether to use System.Text.Json for JSON API Serialization</li>
+</ul>
+<p>So you could for instance register endpoints and not <code>use</code> them, where they'll be visible in endpoint API explorers like
+<a href="https://docs.servicestack.net/releases/v8_01#openapi-v3">Swagger UI</a> but continue to execute in ServiceStack's Request Pipeline.</p>
+<p><code>force</code> disables fallback execution of ServiceStack Requests through ServiceStack's Request Pipeline for requests that
+don't match registered endpoints. You may need to disable this if you have clients calling ServiceStack APIs through
+multiple HTTP Methods, as only the primary HTTP Method is registered as an endpoint.</p>
+<p>When enabled <code>force</code> ensures the only ServiceStack Requests that are not executed through registered endpoints are
+<code>IAppHost.CatchAllHandlers</code> and <code>IAppHost.FallbackHandler</code> handlers.</p>
+<p><code>useSystemJson</code> is a new feature that lets you specify when to use <code>System.Text.Json</code> for JSON API Serialization, which
+is our next exciting feature to standardize on using<br />
+<a href="https://docs.servicestack.net/releases/v8_01#system.text.json">ASP.NET Core's fast async System.Text.Json</a> Serializer.</p>
+<h2 id="endpoint-routing-everywhere">Endpoint Routing Everywhere<a class="header-anchor" href="javascript:;" onclick="location.hash='#endpoint-routing-everywhere'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Whilst the compatibility levels of Endpoint Routing can be relaxed, we recommend new projects use the strictest and most
+integrated defaults that's now configured on all <a href="/start">ASP.NET Core Identity Auth .NET 8 Projects</a>.</p>
+<p>For additional testing we've also upgraded many of our existing .NET Example Applications, which are now all running with
+our latest recommended Endpoint Routing configuration:</p>
+<ul>
+<li><a href="https://github.com/NetCoreApps/BlazorDiffusionVue">BlazorDiffusionVue</a></li>
+<li><a href="https://github.com/NetCoreApps/BlazorDiffusionAuto">BlazorDiffusionAuto</a></li>
+<li><a href="https://github.com/NetCoreApps/TalentBlazor">TalentBlazor</a></li>
+<li><a href="https://github.com/NetCoreApps/TechStacks">TechStacks</a></li>
+<li><a href="https://github.com/NetCoreApps/Validation">Validation</a></li>
+<li><a href="https://github.com/NetCoreApps/NorthwindAuto">NorthwindAuto</a></li>
+<li><a href="https://github.com/NetCoreApps/FileBlazor">FileBlazor</a></li>
+<li><a href="https://github.com/NetCoreApps/Chinook">Chinook</a></li>
+<li><a href="https://github.com/NetCoreApps/Chat">Chat</a></li>
+</ul>
 
                 </div>
             </div>
@@ -453,47 +702,6 @@ $response = client-&gt;get(new Hello(name:&quot;World&quot;));
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
-                                        <a href="posts/servicestack-endpoint-routing">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1510022151265-1bb84d406531?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/servicestack-endpoint-routing" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="ServiceStack Endpoint Routing">
-                                                    ServiceStack Endpoint Routing
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">ServiceStack .NET 8 is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IOC</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="ServiceStack Endpoint Routing background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-02-07T00:00:00.0000000">February 7, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>14 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
                                         <a href="posts/net8-docker-containers">
                                             <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1609884557151-1e356d32900c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
                                         </a>
@@ -525,6 +733,47 @@ $response = client-&gt;get(new Hello(name:&quot;World&quot;));
                                                     <time datetime="2023-12-12T00:00:00.0000000">December 12, 2023</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>12 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/php-typed-apis">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1599507593548-0187ac4043c6?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/php-typed-apis" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="PHP typed client DTOs for .NET APIs">
+                                                    PHP typed client DTOs for .NET APIs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Announcing 1st class end-to-end typed support for calling .NET APIs with PHP</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="PHP typed client DTOs for .NET APIs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-11-29T00:00:00.0000000">November 29, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
                                                 </div>
                                             </div>
                                         </div>
