@@ -1,5 +1,5 @@
 ---
-title: Identity Auth Admin Useres UI
+title: Identity Auth Admin Users UI
 url: https://docs.servicestack.net/releases/v8_01#asp.net-core-identity-auth-admin-ui
 image: /img/whatsnew/v8.1/admin-ui-users-edit-custom.png
 order: 4
