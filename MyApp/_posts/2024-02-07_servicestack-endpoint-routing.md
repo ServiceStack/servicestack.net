@@ -48,6 +48,13 @@ you can learn about below:
 
 Better yet, this new behavior is enabled by default in all of ServiceStack's new ASP .NET Identity Auth .NET 8 templates!
 
+### Migrating to ASP.NET Core Endpoints
+
+To assist ServiceStack users in upgrading their existing projects we've created a migration guide walking through 
+the steps required to adopt these new defaults:
+
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="RaDHkk4tfdU" style="background-image: url('https://img.youtube.com/vi/RaDHkk4tfdU/maxresdefault.jpg')"></lite-youtube>
+
 ### ASP .NET Core IOC
 
 The primary limitation of ServiceStack using its own Funq IOC is that any dependencies registered in Funq are not injected
