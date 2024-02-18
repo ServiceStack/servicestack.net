@@ -427,13 +427,13 @@ Part of what makes LazyDocker such an awesome tool is that you can use it anywhe
 
 To run it as a docker container itself, you can use the following command.
 
-::: sh
+:::sh
 docker run --name lazydocker --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.lazydocker:/.config/jessedufffield/lazydocker lazyteam/lazydocker
 :::
 
 Or better yet, use it as an alias in your `.bashrc` or `.zshrc` file.
 
-::: sh
+:::sh
 alias lazydocker="docker run --name lazydocker --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.lazydocker:/.config/jessedufffield/lazydocker lazyteam/lazydocker"
 :::
 

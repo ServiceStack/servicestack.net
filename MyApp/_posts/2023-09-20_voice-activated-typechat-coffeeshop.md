@@ -1135,7 +1135,7 @@ curl --get --data-urlencode "userMessage=i'd like a latte that's it" \
 https://coffeeshop.netcore.io/coffeeshop/prompt | llm -m l2c
 ```
 
-::: info tip
+:::info tip
 Or use `https://localhost:5001/coffeeshop/prompt` to use a local App prompt
 :::
 

@@ -17,7 +17,7 @@ In the ever-competitive landscape of cloud computing, choices abound for softwar
 - **HTTP RPS Benchmark:** A simple .NET load test was executed, performing approximately 100,000 requests as quickly as possible to measure the Requests Per Second (RPS).
 - **Geekbench Scores:** Geekbench 6.0 for x86 and 6.1-Preview for ARM were used to generate scores. Some scores were gathered from public community results, while others were manually retested.
 
-::: info
+:::info
 All tests were conducted on Ubuntu 22.04, providing a uniform testing environment.
 :::
 

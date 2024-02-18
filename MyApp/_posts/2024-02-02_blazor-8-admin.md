@@ -192,7 +192,7 @@ By placing your shared pages and components in a shared project like the `.Clien
 
 Look for any of your pages or components that use the `@injects` directive, as these will need to be registered in both projects.
 
-::: info
+:::info
 Avoid sharing sensitive information via dependency injection, as this will be available to the client at runtime which will be able to be decompiled and inspected.
 :::
 

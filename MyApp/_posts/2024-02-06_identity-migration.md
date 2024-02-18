@@ -35,7 +35,7 @@ In this guide we will walk through each of these steps in detail and show how we
 
 The first step is to add the required ASP.NET Core Identity NuGet packages to your project. This can be done using the dotnet CLI or via Visual Studio's NuGet package manager.
 
-::: shell
+:::shell
 dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 :::
@@ -50,7 +50,7 @@ You will want to mirror customizations from your own `UserAuth` class to this ne
 
 To minimize changes, you can rename your existing `AppUser` class to something like `OldUserAuth` and then create a new `AppUser` class that inherits from `IdentityUser` and copy over any customizations from `OldUserAuth`.
 
-::: info
+:::info
 In this case `AppUser` is the name of our custom `UserAuth` class.
 :::
 
@@ -148,7 +148,7 @@ Now that you have your `AppUser` and `AppRole` classes, and can access them via 
 
 [You can generate your initial migration using the dotnet CLI or via Visual Studio's Package Manager Console](https://learn.microsoft.com/en-us/ef/core/cli/dotnet).
 
-::: shell
+:::shell
 dotnet ef migrations add CreateIdentitySchema
 :::
 
@@ -156,7 +156,7 @@ You should run this command from the AppHost project directory, which in our cas
 
 With your new migration created, you can now update your database schema to include the ASP.NET Core Identity tables.
 
-::: shell
+:::shell
 dotnet ef database update
 :::
 
