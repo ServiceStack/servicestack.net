@@ -424,7 +424,7 @@ More explanation here.
 <h2 id="replacing-raw-and-endraw">Replacing <code>raw</code> and <code>endraw</code><a class="header-anchor" href="javascript:;" onclick="location.hash='#replacing-raw-and-endraw'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Since some of our documentation used handlebar syntax in example code, we needed a way for Jekyll to ignore these statements and just present our code.
 <code>raw</code> and <code>endraw</code> were used which were usually wrapping code blocks. VitePress doesn't have a problem with this syntax which means the <code>{% raw %}</code> statements were included in our page which we didn't want.</p>
-<p>This was a matter of finding where these were used in all our documents and replace them with <code>::: v-pre</code> blocks as needed.</p>
+<p>This was a matter of finding where these were used in all our documents and replace them with <code>:::v-pre</code> blocks as needed.</p>
 <h2 id="sidebar">Sidebar<a class="header-anchor" href="javascript:;" onclick="location.hash='#sidebar'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This was a different situation. In Jekyll, we had created a <code>SideBar.md</code> file to help us render a left hand side menu of contents for the docs site.
 In VitePress's default theme, we could provide a JSON representation and the client would then dynamically populate it further using different levels of headings.</p>
