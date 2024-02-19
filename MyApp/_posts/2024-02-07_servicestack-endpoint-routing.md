@@ -609,6 +609,7 @@ our latest recommended Endpoint Routing configuration:
 
  - [BlazorDiffusionVue](https://github.com/NetCoreApps/BlazorDiffusionVue)
  - [BlazorDiffusionAuto](https://github.com/NetCoreApps/BlazorDiffusionAuto)
+ - [TypeChatExamples](https://github.com/NetCoreApps/TypeChatExamples)
  - [TalentBlazor](https://github.com/NetCoreApps/TalentBlazor)
  - [TechStacks](https://github.com/NetCoreApps/TechStacks)
  - [Validation](https://github.com/NetCoreApps/Validation)
