@@ -27,7 +27,6 @@ This integrates ServiceStack APIs more than ever where just like Minimal APIs an
 uses **ASP.NET Core's IOC** to resolve dependencies, uses **Endpoint Routing** to Execute APIs that's secured with
 **ASP.NET Core Identity Auth** then uses **System.Text.Json** to deserialize and serialize its JSON payloads.
 
-
 ### Enabled by Default when using Endpoint Routing
 
 ```csharp
@@ -48,6 +47,11 @@ Service Clients, which is configured to:
 - Serializes `TimeSpan` and `TimeOnly` Data Types with [XML Schema Time format](https://www.w3.org/TR/xmlschema-2/#isoformats)
 - Supports `[DataContract]` annotations
 - Supports Custom Enum Serialization
+
+### Benefits all Add ServiceStack Reference Languages
+
+This compatibility immediately benefits all of ServiceStack's [Add ServiceStack Reference](https://docs.servicestack.net/add-servicestack-reference) 
+native typed integrations for **11 programming languages** which all utilize ServiceStack's JSON API endpoints - now serialized with System.Text.Json 
 
 ### Support for DataContract Annotations
 
