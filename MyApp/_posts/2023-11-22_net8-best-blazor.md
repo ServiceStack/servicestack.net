@@ -481,7 +481,7 @@ rendered Blazor App that uses Vue.js for all its functionality.
 </h3>
 
 [Blazor Diffusion](https://github.com/NetCoreApps/BlazorDiffusion) is our Blazor Demo App we used to showcase how you 
-could use [Universal API Components](https://youtu.be/66DgLHExC9E) to build Blazor Components and entire Blazor Apps
+could use [Universal API Components](https://youtu.be/Nf5GpfRafo8) to build Blazor Components and entire Blazor Apps
 whose source code runs in both Blazor Server and Blazor Web Assembly Interactive modes, which was first 
 developed with [Blazor Server](https://github.com/NetCoreApps/BlazorDiffusion) then used a 
 [sync.bat](https://github.com/NetCoreApps/BlazorDiffusionWasm/blob/main/sync.bat) script to export its source code into 
