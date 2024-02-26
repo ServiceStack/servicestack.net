@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Exploring the new streamable JSON Lines Format - ServiceStack</title>
+    <title>Custom Blazor Admin with InteractiveAuto rendering - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@layoric" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="A dive into the JSON Lines format and how to use it in ServiceStack" />
-    <meta property="og:url" content="https://servicestack.net/posts/jsonl-format" />
-    <meta property="og:title" content="Exploring the new streamable JSON Lines Format" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1687042268541-5cc60ad9d3de?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Discover how to use ServiceStack.Blazor components to quickly create customizable and professional-looking admin pages in a Blazor application" />
+    <meta property="og:url" content="https://servicestack.net/posts/blazor-8-admin" />
+    <meta property="og:title" content="Custom Blazor Admin with InteractiveAuto rendering" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1598919849713-215ca088c5ce?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Exploring the new streamable JSON Lines Format
+                Custom Blazor Admin with InteractiveAuto rendering
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,21 +166,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1687042268541-5cc60ad9d3de?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Exploring the new streamable JSON Lines Format Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1598919849713-215ca088c5ce?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Custom Blazor Admin with InteractiveAuto rendering Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/serialization" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">serialization</a>
-                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
-                            <a href="posts/tagged/jsonl" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">jsonl</a>
+                            <a href="posts/tagged/blazor" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">blazor</a>
+                            <a href="posts/tagged/net8" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">.net8</a>
+                            <a href="posts/tagged/admin" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-08-15T00:00:00.0000000">August 15, 2023</time>
+                                <time datetime="2024-02-02T00:00:00.0000000">February 2, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>8 min read</span>
+                                <span>7 min read</span>
                             </div>
                         </div>
                 </div>
@@ -193,152 +193,153 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>ServiceStack already supports a range of serializers out of the box like CSV,JSON,JSV and XML, but today we will explore the new support for the
-<a href="https://jsonlines.org">JSON Lines</a> (JSONL) format. JSON Lines is an efficient JSON data format that is parseable by streaming parsers and
-text processing tools. It is a popular data format for maintaining large datasets, such as the AI datasets maintained on <a href="https://huggingface.co">Huggingface</a>.</p>
-<h2 id="introducing-the-json-lines-format">Introducing the JSON Lines Format<a class="header-anchor" href="javascript:;" onclick="location.hash='#introducing-the-json-lines-format'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="m0tAfjvJaZg" style="background-image: url('https://img.youtube.com/vi/m0tAfjvJaZg/maxresdefault.jpg')"></lite-youtube>
+                    <p>Since the release of .NET 8, we have been upgrading our <a href="https://github.com/NetCoreTemplates">templates</a> and example applications to take advantage
+of some of the new features, especially for Blazor.
+Our templates now make use of static Server Side Rendering (SSR) for Blazor, which allows for faster initial page loads
+and better SEO, and our <code>blazor-wasm</code> template uses <code>InteractiveAuto</code> by default to provide a more responsive UI.</p>
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="BXjcKkaK-nM" style="background-image: url('https://img.youtube.com/vi/BXjcKkaK-nM/maxresdefault.jpg')"></lite-youtube>
 </div>
-<p>Before we dive into the details of using the new feature, let's take a moment to understand what JSON Lines is and why it is beneficial. JSON Lines is similar to the CSV format in the way it behaves, where each line in the file represents a separate JSON object. This makes it easy to process large datasets incrementally, without having to load the entire file into memory.</p>
-<pre><code class="language-json">{&quot;id&quot;: 1, &quot;name&quot;: &quot;John Doe&quot;}
-{&quot;id&quot;: 2, &quot;name&quot;: &quot;Jane Doe&quot;}
-{&quot;id&quot;: 3, &quot;name&quot;: &quot;John Smith&quot;}
-</code></pre>
-<p>The JSON Lines format has become popular because of its streamable properties. It can be processed by streaming parsers and integrated with even Unix shell pipelines, making it an ideal format for handling large datasets efficiently, or hacking together a data pipeline quickly for large scale experimentation.</p>
-<p>For example, you can pull out the <code>title</code> property from a JSON Lines file using the following command line using just <code>curl</code> and <code>jq</code>:</p>
-<pre><code class="language-shell">curl https://blazor-gallery.servicestack.net/albums.jsonl -s | jq '.title'
-</code></pre>
-<h2 id="setting-up-an-endpoint-to-support-jsonl-in-servicestack">Setting up an Endpoint to Support JSONL in ServiceStack<a class="header-anchor" href="javascript:;" onclick="location.hash='#setting-up-an-endpoint-to-support-jsonl-in-servicestack'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>To enable the JSON Lines (JSONL) format for your ServiceStack endpoint, there are several ways to configure your Request DTO and Response DTO. JSONL behaves similarly to the CSV format, where the first <code>IEnumerable</code> property is automatically serialized in the streamable JSONL format. In this section, we will explore different ways to configure your DTOs for JSONL serialization.</p>
-<h3 id="automatic-jsonl-serialization-with-autoquery">Automatic JSONL Serialization with AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#automatic-jsonl-serialization-with-autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>If you're using AutoQuery services in ServiceStack, JSONL serialization is already supported by default. The first <code>IEnumerable</code> property in your Request DTO will be automatically serialized in the JSONL format. This means that all AutoQuery APIs will return their <code>IEnumerable</code> datasets in the streamable JSONL format without any additional configuration.</p>
-<h3 id="configuring-the-request-dto-and-response-dto">Configuring the Request DTO and Response DTO<a class="header-anchor" href="javascript:;" onclick="location.hash='#configuring-the-request-dto-and-response-dto'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>To configure your own Request DTO and Response DTO for JSONL serialization, you can use either the <code>[DataContract]</code> and <code>[DataMember]</code> annotations or the <code>[Csv(CsvBehavior.FirstEnumerable)]</code> attribute.</p>
-<h3 id="using-the-datacontract-and-datamember-annotations">Using the <code>[DataContract]</code> and <code>[DataMember]</code> Annotations<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-the-datacontract-and-datamember-annotations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>By applying the <code>[DataContract]</code> annotation to your Response DTO and the <code>[DataMember]</code> annotation to the <code>IEnumerable</code> property, you can specify that the first <code>IEnumerable</code> property should be serialized in the JSONL format. Here's an example:</p>
-<pre><code class="language-csharp">[Route(&quot;/albums&quot;)]
-public class QueryAlbums : IReturn&lt;QueryAlbumsResponse&gt;
-{
-}
-
-[DataContract]
-public class QueryAlbumsResponse
-{
-    [DataMember]
-    public List&lt;Album&gt; Albums { get; set; }
-}
-</code></pre>
-<p>In this example, the <code>QueryAlbumsResponse</code> class is annotated with <code>[DataContract]</code>, and the <code>Albums</code> property is annotated with <code>[DataMember]</code>. This signifies that the <code>Albums</code> property should be serialized in the JSONL format when returned as a response.</p>
-<h3 id="using-the-csvcsvbehavior.firstenumerable-attribute">Using the <code>[Csv(CsvBehavior.FirstEnumerable)]</code> Attribute<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-the-csvcsvbehavior.firstenumerable-attribute'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Alternatively, you can use the <code>[Csv(CsvBehavior.FirstEnumerable)]</code> attribute on your Response DTO to indicate that the first <code>IEnumerable</code> property should be serialized in the JSONL format. Here's an example:</p>
-<pre><code class="language-csharp">[Route(&quot;/users&quot;)]
-public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
-{
-    public string Name { get; set; }
-}
-
-[Csv(CsvBehavior.FirstEnumerable)]
-public class SearchUsersResponse
-{
-    public List&lt;User&gt; Users { get; set; }
-}
-</code></pre>
-<h2 id="async-streaming-parsing-example">Async Streaming Parsing Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#async-streaming-parsing-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>To process each row of a JSON Lines file one at a time and avoid large allocations, ServiceStack provides convenient extension methods in the <a href="https://docs.servicestack.net/http-utils">HTTP Utils</a> package. These methods allow you to implement async streaming parsing effortlessly.</p>
-<p>Let's take a look at an example that demonstrates how to use async streaming parsing to process each row of a JSON Lines file:</p>
-<pre><code class="language-csharp">const string BaseUrl = &quot;https://api.example.com&quot;;
-var url = BaseUrl.CombineWith(&quot;data.jsonl&quot;);
-await using var stream = await url.GetStreamFromUrlAsync();
-await foreach (var line in stream.ReadLinesAsync())
-{
-    var row = line.FromJson&lt;DataType&gt;();
-    // Process each row as needed
-}
-</code></pre>
-<p>In this example, we start by obtaining a stream from the URL of the JSON Lines file using the <code>url.GetStreamFromUrlAsync()</code> method provided by the ServiceStack HTTP Utils package. Then, we iterate over each line of the stream using the <code>stream.ReadLinesAsync()</code> method. Finally, we deserialize each line into the desired data type and process it accordingly.</p>
-<p>Using async streaming parsing ensures that you can process large JSON Lines files efficiently, without consuming excessive memory.</p>
-<p>You can access JSON Lines data using the following methods:</p>
+<h2 id="what-is-interactiveauto">What is InteractiveAuto?<a class="header-anchor" href="javascript:;" onclick="location.hash='#what-is-interactiveauto'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Blazor for .NET 8 has <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes?view=aspnetcore-8.0#render-modes">four different rendering modes</a> you can take advantage of:</p>
 <ul>
-<li>A <code>.jsonl</code> suffix on the URL</li>
-<li>An <code>Accepts: text/jsonl</code> header</li>
-<li>A <code>?format=jsonl</code> query string parameter</li>
+<li>Static Server (static SSR)</li>
+<li>Interactive Server</li>
+<li>Interactive WebAssembly (WASM)</li>
+<li>Interactive Auto</li>
 </ul>
-<h2 id="using-the-jsonlserializer">Using the JsonlSerializer<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-the-jsonlserializer'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>If streaming the results is not necessary, ServiceStack also provides the <code>JsonlSerializer</code> class to directly serialize and deserialize JSON Lines data. The <code>JsonlSerializer</code> can be used in scenarios where you want to work with the JSON Lines format as a whole, rather than streaming it line by line.</p>
-<p>Here's an example of how to use the <code>JsonlSerializer</code> to deserialize a JSON Lines string into a list of objects:</p>
-<pre><code class="language-csharp">var jsonl = await url.GetStringFromUrlAsync();
-var objects = JsonlSerializer.DeserializeFromString&lt;List&lt;DataType&gt;&gt;(jsonl);
-</code></pre>
-<p>In this example, we start by fetching the JSON Lines data as a string using the <code>url.GetStringFromUrlAsync()</code> method. Then, we use the <code>JsonlSerializer</code> to deserialize the string into a list of objects of the desired data type.</p>
-<p>The <code>JsonlSerializer</code> can also be used to serialize objects to the JSON Lines format:</p>
-<pre><code class="language-csharp">var jsonl = JsonlSerializer.SerializeToString(objects);
-JsonlSerializer.SerializeToStream(objects, stream);
-JsonlSerializer.SerializeToWriter(objects, textWriter);
-</code></pre>
-<h2 id="indexing-ai-generated-art-albums-with-jsonl">Indexing AI-Generated Art Albums with JSONL<a class="header-anchor" href="javascript:;" onclick="location.hash='#indexing-ai-generated-art-albums-with-jsonl'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>In this part, we will walk you through a practical demonstration of using JSON Lines to index AI-generated art albums. We will fetch data from the Blazor Diffusion API, which provides &quot;Creatives&quot; generated based on user-provided text prompts. Our goal is to index the text and image URLs of these Creatives into a Typesense search server.</p>
-<p>Here is the code snippet with a practical implementation of interacting with <code>creatives.jsonl</code> endpoint:</p>
-<pre><code class="language-csharp">const string ApiUrl = &quot;https://localhost:5001/creatives.jsonl&quot;;
+<p>For non-interactive pages, the static SSR mode is the fastest, as it renders the page on the server and sends the HTML to the client.
+However, when your page needs to be interactive, you need to use one of the interactive modes.</p>
+<p>Prior to .NET 8, there was a trade-off between the two available render modes (static server rendering wasn't yet available).
+The <code>Interactive Server</code> mode was faster to load, but the <code>Interactive WASM</code> mode was more responsive.</p>
+<p>The initial load times for <code>Interactive WASM</code> could be quite slow, as the entire application and all its dependencies needed to be downloaded before the page could render most of the content.</p>
+<img class="border-gray-800 border-b border-r" src="/img/posts/blazor-8-admin/blazor-wasm-6-slow.gif">
+<blockquote>
+<p>The initial load time for the <code>Interactive WASM</code> mode can be quite slow even for a minimal app</p>
+</blockquote>
+<p>Our templates previously worked around this limitation with a custom Pre-Rendering solution, as the wait times were too long for a good user experience.</p>
+<p>With .NET 8, the new <code>Interactive Auto</code> mode provides the best of both worlds as pre-rendering is now enabled by default.</p>
+<img class="border-gray-800 border-b border-r" src="/img/posts/blazor-8-admin/blazor-wasm-8-fast.gif">
+<p>When the page is first loaded, it uses the <code>Interactive Server</code> mode, which is faster than <code>Interactive WASM</code> as it doesn't need to download WASM resources.
+So the user can start interacting with the page straight away, but with a slight delay for each of their interactions due to having to perform round-trips to the server for each interaction.</p>
+<p>In the background, the WASM resources are downloaded which can then be used to render the site on the client for subsequent visits.</p>
+<h2 id="using-interactiveauto-in-your-blazor-application">Using InteractiveAuto in your Blazor application<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-interactiveauto-in-your-blazor-application'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In Blazor for .NET 8, render modes can be set on both a per-page and per-component basis.</p>
+<pre><code class="language-html">@page &quot;/counter&quot;
+@rendermode InteractiveAuto
 
-var provider = TypesenseUtils.InitProvider();
-var typesenseClient = provider.GetRequiredService&lt;ITypesenseClient&gt;();
-await typesenseClient.InitCollection();
-var sw = new Stopwatch();
-sw.Start();
-
-var lastIndexedCreative = 0;
-
-while (true)
-{
-    await using var stream = await ApiUrl.AddQueryParams(new() {
-            [&quot;IdGreaterThan&quot;] = lastIndexedCreative,
-            [&quot;OrderBy&quot;] = &quot;Id&quot;,
-        })
-        .GetStreamFromUrlAsync();
-    await foreach (var line in stream.ReadLinesAsync())
-    {
-        var creative = line.FromJson&lt;Creative&gt;();
-        lastIndexedCreative = creative.Id;
-        // processing
-        if (creative.Artifacts.Count == 0)
-            return;
-        var imageId = creative.PrimaryArtifactId 
-            ?? creative.CuratedArtifactId 
-            ?? creative.Artifacts.First().Id;
-        var artifact = creative.Artifacts.First(x =&gt; x.Id == imageId);
-        var indexedCreative = new IndexedCreative
-        {
-            Text = creative.Prompt,
-            Url = $&quot;https://cdn.diffusion.works{artifact.FilePath}&quot;
-        };
-        // Process and index the creative data
-        await typesenseClient.CreateDocument(&quot;Creatives&quot;, indexedCreative);
-    } 
-    
-    // sleep if no new data ..
-}
+&lt;Counter /&gt;
 </code></pre>
-<p>Here we have the service client initialization with the <code>TypesenseUtils.InitProvider()</code>. Then, inside an infinite loop, we fetch data using <code>GetStreamFromUrlAsync()</code> and stream it line by line using the <code>ReadLinesAsync()</code> method. After processing each line, we index the creative item into typesense.</p>
-<h2 id="indexing-creative-data-into-typesense">Indexing Creative Data into Typesense<a class="header-anchor" href="javascript:;" onclick="location.hash='#indexing-creative-data-into-typesense'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>With Typesense, implementation of full-text search for our data can be achieved efficiently. Once we have fetched the Creative data from Blazor Diffusion's API, we can proceed to index it into Typesense for easy searching and analysis of the indexed documents. To index the Creative data, we're using <a href="https://github.com/DAXGRID/typesense-dotnet">a C# client library built by the community</a>.</p>
-<p>Processed data are saved into IndexedCreative instances and are added into the Typesense server. Under the hood, the C# client library interacts with Typesense's API and handles all HTTP requests and responses for us.</p>
-<h3 id="memory-foot-print">Memory Foot Print<a class="header-anchor" href="javascript:;" onclick="location.hash='#memory-foot-print'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Our application logs the memory usage over time, and we see it’s constant relative to the size of our process. Streamed JSONL parsing and async indexing allows us processing infinite datasets size without hitting the memory bounds.</p>
-<h2 id="skipping-already-indexed-data-example">Skipping Already Indexed Data Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#skipping-already-indexed-data-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>For increased efficiency, instead of re-indexing all the data each time our program runs, we will only fetch and index data that hasn't been indexed already. We use <code>lastIndexedCreative</code> integer variable to keep track of the last creative indexed. On subsequent runs of our program, we fetch only new data by modifying the API URL to fetch Creative objects starting from the ID greater than <code>lastIndexedCreative</code>.</p>
-<p>This is done by appending the <code>IdGreaterThan</code> query parameter to our AutoQuery endpoint.</p>
-<pre><code class="language-csharp">await using var stream = await ApiUrl.AddQueryParams(new() {
-        [&quot;IdGreaterThan&quot;] = lastIndexedCreative,
-        [&quot;OrderBy&quot;] = &quot;Id&quot;,
-    }).GetStreamFromUrlAsync();
+<pre><code class="language-html">&lt;Counter @rendermode=&quot;RenderMode.InteractiveAuto&quot; /&gt;
 </code></pre>
-<h2 id="visualizing-indexed-documents-with-typesense-dashboard">Visualizing Indexed Documents with Typesense Dashboard<a class="header-anchor" href="javascript:;" onclick="location.hash='#visualizing-indexed-documents-with-typesense-dashboard'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Another great community feature is the <a href="https://github.com/bfritscher/typesense-dashboard">Typesense dashboard project</a>, providing a user-friendly interface to manage and browse collections in a Typesense search server. The dashboard, which can be accessed via the browser or as a downloadable desktop app, provides real-time statistics and overview over the indexed collections.</p>
-<p>The indexed creative data can now be explored and analyzed using the dashboard's intuitive interface. You can apply filters, perform searches, and manipulate the stored data through the user interface.</p>
+<h2 id="servicestack.blazor-components">ServiceStack.Blazor Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack.blazor-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The <a href="https://blazor-gallery.jamstacks.net">ServiceStack.Blazor Components</a> have been updated for .NET 8 and work with the new <code>InteractiveAuto</code> render mode.</p>
+<p>This means you can focus more on your application logic and less on the UI, as the components provide a high-productivity UI for common tasks such as CRUD operations.</p>
+<h3 id="autoquerygrid">AutoQueryGrid<a class="header-anchor" href="javascript:;" onclick="location.hash='#autoquerygrid'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The <a href="https://blazor-gallery.servicestack.net/gallery/autoquerygrid">AutoQueryGrid</a> component provides a full-featured data grid that can be used to display and edit data from an AutoQuery service.
+This is ideal for creating custom admin pages for your application.
+By integrating your admin screens into your application, you can optimize the user experience for specific workflows and get a huge amount of reuse of your existing AutoQuery services.</p>
+<pre><code class="language-html">&lt;AutoQueryGrid Model=&quot;Modifier&quot; Apis=&quot;Apis.AutoQuery&lt;QueryModifiers,CreateModifier,UpdateModifier,DeleteModifier&gt;()&quot; /&gt;
+</code></pre>
+<p><img src="/img/posts/blazor-8-admin/autoquerygrid.png" alt="" /></p>
+<p>For BlazorDiffusion, our StableDiffusion example application, we used the AutoQueryGrid to create a custom admin page for managing the modifiers in the application.</p>
+<p><img src="/img/posts/blazor-8-admin/blazordiffusion-modifiers.png" alt="" /></p>
+<p>This is the simplest and fastest use of the AutoQueryGrid component, but it can also be heavily customized for lots of different use cases.</p>
+<p>In BlazorDiffusion we customize the grid to enable easy navigation contextually between separate customized admin screens for each Creative, linking to related table data.</p>
+<p><img src="/img/posts/blazor-8-admin/blazordiffusion-creatives.png" alt="" /></p>
+<pre><code class="language-html">&lt;AutoQueryGrid @ref=@grid Model=&quot;Creative&quot; Apis=&quot;Apis.AutoQuery&lt;QueryCreatives,UpdateCreative,HardDeleteCreative&gt;()&quot;
+               ConfigureQuery=&quot;ConfigureQuery&quot;&gt;
+    &lt;EditForm&gt;
+        &lt;div class=&quot;relative z-10&quot; aria-labelledby=&quot;slide-over-title&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot;&gt;
+            &lt;div class=&quot;pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16&quot;&gt;
+                &lt;CreativeEdit Creative=&quot;context&quot; OnClose=&quot;grid.OnEditDone&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/EditForm&gt;
+    &lt;Columns&gt;
+        &lt;Column Title=&quot;User&quot; Field=&quot;(Creative x) =&gt; x.OwnerId&quot; /&gt;
+        &lt;Column Title=&quot;Id&quot; Field=&quot;(Creative x) =&gt; x.Id&quot; /&gt;
+        &lt;Column Field=&quot;(Creative x) =&gt; x.Modifiers&quot;&gt;
+            &lt;Template&gt;
+                @if (context.Modifiers?.Count &gt; 0)
+                {
+                &lt;TextLink class=&quot;flex&quot; href=@($&quot;/admin/modifiers?Ids={string.Join(&quot;,&quot;, context.Modifiers.Select(x =&gt; x.ModifierId))}&quot;)&gt;
+                    &lt;Icon class=&quot;w-6 h-6 mr-1&quot; Image=@typeof(Modifier).GetIcon() /&gt;
+                    @TextUtils.Pluralize(&quot;Modifier&quot;, context.Modifiers)
+                &lt;/TextLink&gt;
+                }
+            &lt;/Template&gt;
+        &lt;/Column&gt;
+        &lt;Column Field=&quot;(Creative x) =&gt; x.Artists&quot;&gt;
+            &lt;Template&gt;
+                @if (context.Artists?.Count &gt; 0)
+                {
+                &lt;TextLink class=&quot;flex&quot; href=@($&quot;/admin/artists?Ids={string.Join(&quot;,&quot;, context.Artists.Select(x =&gt; x.ArtistId))}&quot;)&gt;
+                    &lt;Icon class=&quot;w-6 h-6 mr-1&quot; Image=@typeof(Artist).GetIcon() /&gt;
+                    @TextUtils.Pluralize(&quot;Artist&quot;, context.Artists)
+                &lt;/TextLink&gt;
+                }
+            &lt;/Template&gt;
+        &lt;/Column&gt;
+        &lt;Column Field=&quot;(Creative x) =&gt; x.Artifacts&quot;&gt;
+            &lt;Template&gt;
+                @if (context.Artifacts?.Count &gt; 0)
+                {
+                &lt;TextLink class=&quot;flex&quot; href=@($&quot;/admin/artifacts?CreativeId={context.Id}&quot;)&gt;
+                    &lt;Icon class=&quot;w-6 h-6 mr-1&quot; Image=@typeof(Artifact).GetIcon() /&gt;
+                    @TextUtils.Pluralize(&quot;Artifact&quot;, context.Artifacts)
+                &lt;/TextLink&gt;
+                }
+            &lt;/Template&gt;
+        &lt;/Column&gt;
+        &lt;Column Field=&quot;(Creative x) =&gt; x.Key&quot; /&gt;
+        &lt;Column Field=&quot;(Creative x) =&gt; x.CreatedDate&quot; Format=&quot;s&quot; /&gt;
+        &lt;Column Field=&quot;(Creative x) =&gt; x.UserPrompt&quot; /&gt;
+    &lt;/Columns&gt;
+&lt;/AutoQueryGrid&gt;
+</code></pre>
+<p>In the above example, we use the <code>ConfigureQuery</code> parameter to customize the query used by the AutoQueryGrid when displaying values.
+This is ideal if you want to filter the data for specific workflows, for example, only showing the data that is relevant to the current user.</p>
+<p>We combine this with a <code>Tabs</code> component to provide a navigation bar for the user to switch between the different filters on the same AutoQueryGrid.</p>
+<pre><code class="language-html">&lt;Tabs TabOptions=&quot;TabOptions&quot; TabChanged=&quot;TabChangedAsync&quot; /&gt;
+</code></pre>
+<p><img src="/img/posts/blazor-8-admin/blazordiffusion-tab.png" alt="" /></p>
+<p><img src="/img/posts/blazor-8-admin/blazordiffusion-tab1.png" alt="" /></p>
+<p>We also use the <code>EditForm</code> parameter to customize the edit form for the AutoQueryGrid, so the workflow for editing a Creative is optimized using your own completely custom UI.</p>
+<pre><code class="language-html">&lt;AutoQueryGrid @ref=@grid Model=&quot;Creative&quot; Apis=&quot;Apis.AutoQuery&lt;QueryCreatives,UpdateCreative,HardDeleteCreative&gt;()&quot;
+               ConfigureQuery=&quot;ConfigureQuery&quot;&gt;
+    &lt;EditForm&gt;
+        &lt;div class=&quot;relative z-10&quot; aria-labelledby=&quot;slide-over-title&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot;&gt;
+            &lt;div class=&quot;pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16&quot;&gt;
+                &lt;CreativeEdit Creative=&quot;context&quot; OnClose=&quot;grid.OnEditDone&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/EditForm&gt;
+</code></pre>
+<h2 id="upgrading-to.net-8">Upgrading to .NET 8<a class="header-anchor" href="javascript:;" onclick="location.hash='#upgrading-to.net-8'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>BlazorDiffusion was an example application we originally developed for .NET 6.
+We upgraded the production release of this application to use our <code>blazor-vue</code> template, which can be perfect for public-facing web applications and teams that don't mind including a JavaScript framework in their application.</p>
+<p>However, to show the flexibility of Blazor for .NET 8, we also upgraded the whole application from our updated <code>blazor-wasm</code> template to take advantage of the new <code>InteractiveAuto</code> mode.</p>
+<h3 id="component-compatibility">Component Compatibility<a class="header-anchor" href="javascript:;" onclick="location.hash='#component-compatibility'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Since the ServiceStack.Blazor library has been updated for .NET 8, we just needed to bring over the shared components from the original application and update the references to the new library.</p>
+<p>When upgrading your application pages and components, you will need to avoid any JavaScript interop that runs during the <code>InitializeAsync</code> lifecycle method, as this is not supported in the <code>InteractiveAuto</code> mode.</p>
+<h3 id="running-on-both-server-vs-client">Running on both Server vs Client<a class="header-anchor" href="javascript:;" onclick="location.hash='#running-on-both-server-vs-client'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>When using the <code>InteractiveAuto</code> mode, first visits will be running on the server, so your pages and components need to be available to both projects, as well as have any required dependencies registered in both projects <code>Program.cs</code> files.</p>
+<p>By placing your shared pages and components in a shared project like the <code>.Client</code> project in the <code>blazor-wasm</code> template, you can easily share them between the two projects.</p>
+<p>Look for any of your pages or components that use the <code>@injects</code> directive, as these will need to be registered in both projects.</p>
+<div class="info custom-block">
+                <p class="custom-block-title">INFO</p><p>Avoid sharing sensitive information via dependency injection, as this will be available to the client at runtime which will be able to be decompiled and inspected.</p>
+</div>
+<h2 id="source-code-and-live-demo">Source code and live demo<a class="header-anchor" href="javascript:;" onclick="location.hash='#source-code-and-live-demo'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The source code for the upgraded <code>BlazorDiffusionAuto</code> application is
+<a href="https://github.com/NetCoreApps/BlazorDiffusionAuto">available on GitHub</a> and you can view a live demo of the application at
+<a href="https://auto.blazordiffusion.com">auto.blazordiffusion.com</a>.</p>
 <h2 id="conclusion">Conclusion<a class="header-anchor" href="javascript:;" onclick="location.hash='#conclusion'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The JSON lines format is a versatile and efficient standard for working with large datasets. Its streamable properties make it particularly useful for handling big data and its ease of use makes it an ideal choice for developers working in any client language.</p>
-<p>Streaming data directly to and from HTTP APIs — a major power of the JSON lines format — can dramatically improve the performance of data-intensive applications. Furthermore, ServiceStack's new JSON Lines support makes it straight forward serve and consume these streams.</p>
+<p>The new <code>InteractiveAuto</code> mode in Blazor for .NET 8 provides the best of both worlds for Blazor applications.
+A built in pre-rendering solution means that you can have a fast initial load time, but still have a responsive UI for subsequent visits.</p>
+<p>And since the ServiceStack.Blazor components have been updated for .NET 8, you can take advantage of the high-productivity UI components to quickly create customizable and professional-looking admin pages in a Blazor application.</p>
+<h2 id="feedback">Feedback<a class="header-anchor" href="javascript:;" onclick="location.hash='#feedback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If you have any questions or feedback, please feel free to reach out to us on <a href="https://forums.servicestack.net">our forums</a> or <a href="https://servicestack.net/ask">GitHub Discussions</a>.</p>
 
                 </div>
             </div>
@@ -482,47 +483,6 @@ while (true)
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
-                                        <a href="posts/blazor-8-admin">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1598919849713-215ca088c5ce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/blazor-8-admin" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Custom Blazor Admin with InteractiveAuto rendering">
-                                                    Custom Blazor Admin with InteractiveAuto rendering
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Discover how to use ServiceStack.Blazor components to quickly create customizable and professional-looking admin pages in a Blazor application</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Darren Reid</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Custom Blazor Admin with InteractiveAuto rendering background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-02-02T00:00:00.0000000">February 2, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>7 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
                                         <a href="posts/net8-blazor-template">
                                             <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
                                         </a>
@@ -554,6 +514,47 @@ while (true)
                                                     <time datetime="2023-11-20T00:00:00.0000000">November 20, 2023</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>6 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/cloud-value-between-architectures">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1587845323226-bad89242c735?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/cloud-value-between-architectures" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Should .NET Apps switch to ARM?">
+                                                    Should .NET Apps switch to ARM?
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Evaluating the cost and performance of ARM vs x86 in AWS, Azure, and Hetzner</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Darren Reid</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Should .NET Apps switch to ARM? background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-08-28T00:00:00.0000000">August 28, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>15 min read</span>
                                                 </div>
                                             </div>
                                         </div>
