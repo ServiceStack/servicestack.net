@@ -69,6 +69,10 @@ The [ServiceStack.Blazor Components](https://blazor-gallery.jamstacks.net) have 
 
 This means you can focus more on your application logic and less on the UI, as the components provide a high-productivity UI for common tasks such as CRUD operations.
 
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="JW88KHwt_5I" style="background-image: url('https://img.youtube.com/vi/BXjcKkaK-nM/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 ### AutoQueryGrid
 
 The [AutoQueryGrid](https://blazor-gallery.servicestack.net/gallery/autoquerygrid) component provides a full-featured data grid that can be used to display and edit data from an AutoQuery service.
