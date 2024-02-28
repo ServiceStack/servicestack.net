@@ -198,6 +198,14 @@ feedback when APIs are changed, that's easily updated with a single command:
 npm run dtos
 :::
 
+### Integrated Identity Auth
+
+The template is also pre-configured with ASP.NET Core Identity Auth, including Sign In and Custom Registration APIs and
+UI Pages which can be customized as needed, examples of Role-based security as well as a turn key solution for
+Integrating Identity Auth Registration workflow with your [SMTP Provider](https://docs.servicestack.net/auth/identity-auth#smtp-iemailsender)
+with all emails sent from a managed non-blocking [Background MQ](https://docs.servicestack.net/background-mq)
+for optimal responsiveness and execution.
+
 ### High Productivity Vue Components
 
 With access to the [ServiceStack Vue Components](https://docs.servicestack.net/vue/) library there's also less code to 
