@@ -198,14 +198,6 @@ feedback when APIs are changed, that's easily updated with a single command:
 npm run dtos
 :::
 
-### Integrated Identity Auth
-
-The template is also pre-configured with ASP.NET Core Identity Auth, including Sign In and Custom Registration APIs and
-UI Pages which can be customized as needed, examples of Role-based security as well as a turn key solution for
-Integrating Identity Auth Registration workflow with your [SMTP Provider](https://docs.servicestack.net/auth/identity-auth#smtp-iemailsender)
-with all emails sent from a managed non-blocking [Background MQ](https://docs.servicestack.net/background-mq)
-for optimal responsiveness and execution.
-
 ### High Productivity Vue Components
 
 With access to the [ServiceStack Vue Components](https://docs.servicestack.net/vue/) library there's also less code to 
@@ -219,6 +211,14 @@ maintain in the UI, where you can render a beautiful tailwind styled DataGrid wi
 
 This just scratches the surface of the high-productivity features available in the ServiceStack Vue SPA template, it's
 configured with a rich set of best-in-class hand-picked features for developing modern Vue Apps, including:
+
+### Integrated Identity Auth
+
+Pre-configured with ASP.NET Core Identity Auth, including Sign In and Custom Registration APIs and
+UI Pages which can be customized as needed, examples of Role-based security as well as a turn key solution for
+Integrating Identity Auth Registration workflow with your [SMTP Provider](https://docs.servicestack.net/auth/identity-auth#smtp-iemailsender)
+with all emails sent from a managed non-blocking [Background MQ](https://docs.servicestack.net/background-mq)
+for optimal responsiveness and execution.
 
 ### tailwindcss
 
@@ -241,6 +241,10 @@ In addition to revolutionizing how we style mobile-first responsive Apps, Tailwi
 a feature supported throughout all of ServiceStack's [Vue Component Library](https://docs.servicestack.net/vue/).
 
 ![](/img/whatsnew/v6.5/dark-and-light-mode.png)
+
+### Built for Productivity
+
+So that you're immediately productive out-of-the-box, the template includes a rich set of high-productivity features, including:
 
 |                                                                            |                                                              |
 |----------------------------------------------------------------------------|--------------------------------------------------------------|
