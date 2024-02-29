@@ -466,7 +466,7 @@ public class Secured {}
 <p>Migrating from ServiceStack Auth to Identity Auth should be relatively straight-forward as ServiceStack uses a compatible
 Identity v2 password hashing format, which should let you migrate your users to Identity Auth without them noticing.</p>
 <div class="info custom-block">
-                <p class="custom-block-title">TIP</p><p>Please ensure your App database is backed up before running any migrations</p>
+            <p class="custom-block-title">TIP</p><p>Please ensure your App database is backed up before running any migrations</p>
 </div>
 <h4 id="rename-old-appuser-table">1. Rename old AppUser table<a class="header-anchor" href="javascript:;" onclick="location.hash='#rename-old-appuser-table'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>You'll want to use a different name so it doesn't conflict with the new Identity Auth <code>AppUser</code> Data Model. This

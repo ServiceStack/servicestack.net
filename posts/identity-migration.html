@@ -224,7 +224,7 @@ We can do this because the <code>blazor-wasm</code> template and others have bee
 You will want to mirror customizations from your own <code>UserAuth</code> class to this new class which will have the name in the database of <code>AspNetUsers</code>.</p>
 <p>To minimize changes, you can rename your existing <code>AppUser</code> class to something like <code>OldUserAuth</code> and then create a new <code>AppUser</code> class that inherits from <code>IdentityUser</code> and copy over any customizations from <code>OldUserAuth</code>.</p>
 <div class="info custom-block">
-                <p class="custom-block-title">INFO</p><p>In this case <code>AppUser</code> is the name of our custom <code>UserAuth</code> class.</p>
+            <p class="custom-block-title">INFO</p><p>In this case <code>AppUser</code> is the name of our custom <code>UserAuth</code> class.</p>
 </div>
 <p>You will still need to reference your <code>OldAppUser</code> class for migrating users, so you will want to point it to the <code>AppUser</code> table by using the <code>[Alias(&quot;AppUser&quot;)]</code> attribute.</p>
 <pre><code class="language-csharp">    [Alias(&quot;AppUser&quot;)]
