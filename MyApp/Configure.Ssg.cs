@@ -41,7 +41,6 @@ public class ConfigureSsg : IHostingStartup
                 var blogPosts = appHost.Resolve<MarkdownBlog>();
                 var meta = appHost.Resolve<MarkdownMeta>();
 
-                //blogPosts.Authors = BlogConfig.Instance.Authors;
                 meta.Features = [pages, whatsNew, videos, blogPosts];
                 
                 includes.LoadFrom("_includes");
