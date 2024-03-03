@@ -221,8 +221,7 @@ Input components which can be used to create beautiful validation-bound forms wh
 
 ## ServiceStack React SPA Features
 
-This just scratches the surface of the high-productivity features available in the ServiceStack React SPA template, it's
-configured with a rich set of best-in-class hand-picked features for developing modern React Apps, including:
+Other high-productivity features available in the ServiceStack React SPA template include:
 
 ### Integrated Identity Auth
 

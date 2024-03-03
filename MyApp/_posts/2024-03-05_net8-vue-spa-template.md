@@ -209,8 +209,7 @@ maintain in the UI, where you can render a beautiful tailwind styled DataGrid wi
 
 ## ServiceStack Vue SPA Features
 
-This just scratches the surface of the high-productivity features available in the ServiceStack Vue SPA template, it's
-configured with a rich set of best-in-class hand-picked features for developing modern Vue Apps, including:
+Other high-productivity features available in the ServiceStack Vue SPA template include:
 
 ### Integrated Identity Auth
 
