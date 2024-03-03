@@ -1,5 +1,5 @@
 ---
-title: Kotlin Compose Multiplatform with end-to-end typed APIs
+title: Kotlin Compose Multiplatform with end-to-end typed Kotlin & C# APIs
 summary: Explore the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps
 tags: [kotlin,ios,android]
 image: /img/posts/kotlin-compose-multiplatform/compose-multiplatform.webp
