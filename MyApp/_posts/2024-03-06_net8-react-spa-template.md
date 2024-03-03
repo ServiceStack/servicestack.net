@@ -27,7 +27,7 @@ with many new value-added and high-productivity features.
     Explore the high productivity features in the new ServiceStack React SPA template
 </p>
 <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="JlUjWlVslRg" style="background-image: url('https://img.youtube.com/vi/JlUjWlVslRg/maxresdefault.jpg')"></lite-youtube>
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="WXLF0piz6G0" style="background-image: url('https://img.youtube.com/vi/WXLF0piz6G0/maxresdefault.jpg')"></lite-youtube>
 </div>
 </div>
 
