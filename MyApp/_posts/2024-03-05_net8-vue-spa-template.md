@@ -4,7 +4,6 @@ summary: Introducing the enhanced Vite TypeScript Vue SPA template for .NET 8
 tags: [vue,.net8,autoquery,admin]
 image: https://images.unsplash.com/photo-1590212151175-e58edd96185b?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
-draft: true
 ---
 
 With ServiceStack [now fully integrated with .NET 8](/posts/servicestack-endpoint-routing), our focus has shifted 
