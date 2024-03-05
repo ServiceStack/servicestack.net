@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>PHP typed client DTOs for .NET APIs - ServiceStack</title>
+    <title>New Vue SPA Template - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Announcing 1st class end-to-end typed support for calling .NET APIs with PHP" />
-    <meta property="og:url" content="https://servicestack.net/posts/php-typed-apis" />
-    <meta property="og:title" content="PHP typed client DTOs for .NET APIs" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Introducing the enhanced Vite TypeScript Vue SPA template for .NET 8" />
+    <meta property="og:url" content="https://servicestack.net/posts/net8-vue-spa-template" />
+    <meta property="og:title" content="New Vue SPA Template" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1590212151175-e58edd96185b?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                PHP typed client DTOs for .NET APIs
+                New Vue SPA Template
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,21 +166,22 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="PHP typed client DTOs for .NET APIs Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="New Vue SPA Template Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/php" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">php</a>
-                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
-                            <a href="posts/tagged/service-reference" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">service-reference</a>
+                            <a href="posts/tagged/vue" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue</a>
+                            <a href="posts/tagged/net8" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">.net8</a>
+                            <a href="posts/tagged/autoquery" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">autoquery</a>
+                            <a href="posts/tagged/admin" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-11-29T00:00:00.0000000">November 29, 2023</time>
+                                <time datetime="2024-03-05T00:00:00.0000000">March 5, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>7 min read</span>
+                                <span>9 min read</span>
                             </div>
                         </div>
                 </div>
@@ -193,205 +194,317 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>We're happy to announce the <strong>11th</strong> <a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a>
-language to enjoy end-to-end typed support for calling .NET APIs - <a href="https://www.php.net">PHP</a>!</p>
-<p>The <strong>Add ServiceStack Reference</strong> feature enables a simple way for PHP clients and Applications to generate native PHP DTO classes
-to access to your ServiceStack APIs.</p>
+                    <p>With ServiceStack <a href="/posts/servicestack-endpoint-routing">now fully integrated with .NET 8</a>, our focus has shifted
+from providing platform-agnostic solutions that supports all ServiceStack's .NET Framework and .NET hosts to building
+on the new capabilities of .NET 8 by enhancing ASP .NET Core's built-in features and templates with
+ServiceStack's high-productivity features.</p>
+<h2 id="servicestack-vue-spa-template">ServiceStack Vue SPA Template<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-vue-spa-template'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The latest <a href="https://vue-spa.web-templates.io">Vue SPA</a> template is a good example of this, building on and enhancing
+the built-in ASP.NET Core Vue SPA template with many high-productivity features.</p>
 <div class="not-prose mt-16 flex flex-col items-center">
    <div class="flex">
-      <svg class="w-60 h-60" xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><path fill="#4F5B93" d="M64 30.332C28.654 30.332 0 45.407 0 64s28.654 33.668 64 33.668c35.345 0 64-15.075 64-33.668S99.346 30.332 64 30.332zm-5.982 9.81h7.293v.003l-1.745 8.968h6.496c4.087 0 6.908.714 8.458 2.139c1.553 1.427 2.017 3.737 1.398 6.93l-3.053 15.7h-7.408l2.902-14.929c.33-1.698.208-2.855-.365-3.473c-.573-.617-1.793-.925-3.658-.925h-5.828L58.752 73.88h-7.291l6.557-33.738zM26.73 49.114h14.133c4.252 0 7.355 1.116 9.305 3.348c1.95 2.232 2.536 5.346 1.758 9.346c-.32 1.649-.863 3.154-1.625 4.52c-.763 1.364-1.76 2.613-2.99 3.745c-1.468 1.373-3.098 2.353-4.891 2.936c-1.794.585-4.08.875-6.858.875h-6.294l-1.745 8.97h-7.35l6.557-33.74zm57.366 0h14.13c4.252 0 7.353 1.116 9.303 3.348h.002c1.95 2.232 2.538 5.346 1.76 9.346c-.32 1.649-.861 3.154-1.623 4.52c-.763 1.364-1.76 2.613-2.992 3.745c-1.467 1.373-3.098 2.353-4.893 2.936c-1.794.585-4.077.875-6.855.875h-6.295l-1.744 8.97h-7.35l6.557-33.74zm-51.051 5.325l-2.742 14.12h4.468c2.963 0 5.172-.556 6.622-1.673c1.45-1.116 2.428-2.981 2.937-5.592c.485-2.507.264-4.279-.666-5.309c-.93-1.032-2.79-1.547-5.584-1.547h-5.035zm57.363 0l-2.744 14.12h4.47c2.965 0 5.17-.556 6.622-1.673c1.449-1.116 2.427-2.981 2.935-5.592c.487-2.507.266-4.279-.664-5.309c-.93-1.032-2.792-1.547-5.584-1.547h-5.035z"/></svg>
+        <svg class="-mt-3 w-32 h-32" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><g fill="none"><path fill="url(#vscodeIconsFileTypeVite0)" d="m29.884 6.146l-13.142 23.5a.714.714 0 0 1-1.244.005L2.096 6.148a.714.714 0 0 1 .746-1.057l13.156 2.352a.714.714 0 0 0 .253 0l12.881-2.348a.714.714 0 0 1 .752 1.05z"/><path fill="url(#vscodeIconsFileTypeVite1)" d="M22.264 2.007L12.54 3.912a.357.357 0 0 0-.288.33l-.598 10.104a.357.357 0 0 0 .437.369l2.707-.625a.357.357 0 0 1 .43.42l-.804 3.939a.357.357 0 0 0 .454.413l1.672-.508a.357.357 0 0 1 .454.414l-1.279 6.187c-.08.387.435.598.65.267l.143-.222l7.925-15.815a.357.357 0 0 0-.387-.51l-2.787.537a.357.357 0 0 1-.41-.45l1.818-6.306a.357.357 0 0 0-.412-.45"/><defs><linearGradient id="vscodeIconsFileTypeVite0" x1="6" x2="235" y1="33" y2="344" gradientTransform="translate(1.34 1.894)scale(.07142)" gradientUnits="userSpaceOnUse"><stop stop-color="#41d1ff"/><stop offset="1" stop-color="#bd34fe"/></linearGradient><linearGradient id="vscodeIconsFileTypeVite1" x1="194.651" x2="236.076" y1="8.818" y2="292.989" gradientTransform="translate(1.34 1.894)scale(.07142)" gradientUnits="userSpaceOnUse"><stop stop-color="#ffea83"/><stop offset=".083" stop-color="#ffdd35"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs></g></svg>
+        <svg class="w-28 h-28" xmlns="http://www.w3.org/2000/svg" width="1.16em" height="1em" viewBox="0 0 256 221"><path fill="#41b883" d="M204.8 0H256L128 220.8L0 0h97.92L128 51.2L157.44 0z"/><path fill="#41b883" d="m0 0l128 220.8L256 0h-51.2L128 132.48L50.56 0z"/><path fill="#35495e" d="M50.56 0L128 133.12L204.8 0h-47.36L128 51.2L97.92 0z"/></svg>
    </div>
 </div>
-<div class="not-prose">
-    <div class="text-center"><h3 id="php" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-        End-to-end typed PHP
-    </h3></div>
-    <p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
-        Learn about the rich JsonServiceClient & end-to-end typed API support for PHP 
-    </p>
-    <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-        <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="ZLVdaJ38vwc" style="background-image: url('https://img.youtube.com/vi/ZLVdaJ38vwc/maxresdefault.jpg')"></lite-youtube>
-    </div>
+<div class="not-prose mt-4 px-4 sm:px-6">
+<div class="text-center"><h3 id="docker-containers" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
+    Vite Vue SPA Template
+</h3></div>
+<p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
+    Explore the high productivity features in the new ServiceStack Vue SPA template
+</p>
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="JlUjWlVslRg" style="background-image: url('https://img.youtube.com/vi/JlUjWlVslRg/maxresdefault.jpg')"></lite-youtube>
 </div>
-<h3 id="phpstorm-servicestack-plugin">PhpStorm ServiceStack Plugin<a class="header-anchor" href="javascript:;" onclick="location.hash='#phpstorm-servicestack-plugin'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>PHP developers of <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> can get a simplified development experience for consuming
-ServiceStack Services by installing the <a href="https://plugins.jetbrains.com/plugin/7749-servicestack">ServiceStack Plugin</a>
-from the JetBrains Marketplace:</p>
-<p><a href="https://plugins.jetbrains.com/plugin/7749-servicestack"><img src="/img/posts/php-typed-apis/phpstorm-servicestack-plugin.webp" alt="" /></a></p>
-<p>Where you'll be able to right-click on a directory and click on <strong>ServiceStack Reference</strong> on the context menu:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-add-servicestack-reference.webp" alt="" /></p>
-<p>To launch the <strong>Add PHP ServiceStack Reference</strong> dialog where you can enter the remote URL of the ServiceStack endpoint you wish to call to generate the Typed PHP DTOs for all APIs which by default will saved to <code>dtos.php</code>:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-add-servicestack-reference-dialog.webp" alt="" /></p>
-<p>Then just import the DTOs and <code>JsonServiceClient</code> to be able to consume any of the remote ServiceStack APIs:</p>
-<pre><code class="language-php">&lt;?php
-
-require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
-require_once 'dtos.php';
-
-use dtos\FindTechnologies;
-use Servicestack\JsonServiceClient;
-
-$client = JsonServiceClient::create(&quot;https://techstacks.io&quot;);
-
-$response = $client-&gt;send(new FindTechnologies(
-    ids: [1,2,4,6],
-    vendorName: &quot;Google&quot;));
-
-print_r($response);
+</div>
+<div class="text-center"><h2 id="live-demo">Live Demo<a class="header-anchor" href="javascript:;" onclick="location.hash='#live-demo'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+</div>
+<div class="shadow pb-1"><p><a href="https://vue-spa.web-templates.io"><img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-spa.png" alt="" /></a></p>
+</div>
+<h2 id="asp.net-core-vue-spa-template">ASP.NET Core Vue SPA Template<a class="header-anchor" href="javascript:;" onclick="location.hash='#asp.net-core-vue-spa-template'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The <a href="https://learn.microsoft.com/en-us/visualstudio/javascript/tutorial-asp-net-core-with-vue">Vue and ASP.NET Core</a>
+template provides a seamless starting solution which runs both the .NET API backend and Vite Vue frontend during development.</p>
+<p>It's a modern template capturing the best Vue has to offer, configured with Vite's fast HMR (Hot Module Reload) and TypeScript support -
+it allows App's to be developed with Vue's typed <a href="https://vuejs.org/guide/scaling-up/sfc.html">Single File Components</a> enabling
+both a productive development experience and an optimal high-performance production build at runtime.</p>
+<h3 id="minimal-api-integration">Minimal API integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#minimal-api-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst a great starting point, it's still only a basic template configured with a bare-bones Vue Vite App that's modified
+to show an example of calling a Minimal API.</p>
+<h3 id="built-in-api-integration">Built-in API Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-in-api-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Although the approach used isn't very scalable, with a proxy rule needed for every user-defined API route:</p>
+<pre><code class="language-ts">export default defineConfig({
+    //...
+    server: {
+        proxy: {
+            '^/weatherforecast': {
+                target,
+                secure: false
+            }
+        },
+    }
+})
 </code></pre>
-<p>If any of the the remote APIs change their DTOs can be updated by right-clicking on <code>dtos.php</code> and clicking <strong>Update ServiceStack Reference</strong>:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-update-servicestack-reference.webp" alt="" /></p>
-<h3 id="install-php-servicestack-client">Install PHP ServiceStack Client<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-php-servicestack-client'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The only requirements for PHP apps to perform typed API Requests are the generated PHP DTOs and the generic <code>JsonServiceClient</code>
-which can be installed in Composer projects with:</p>
-<pre><code class="language-bash">$ composer require servicestack/client
-</code></pre>
-<p>Or by adding the package to your <code>composer.json</code> then installing the dependencies:</p>
-<pre><code class="language-json">{
-  &quot;require&quot;: {
-    &quot;servicestack/client&quot;: &quot;^1.0&quot;
-  }
-}
-</code></pre>
-<h2 id="first-class-development-experience">First class development experience<a class="header-anchor" href="javascript:;" onclick="location.hash='#first-class-development-experience'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><a href="https://www.php.net">PHP</a> is one of the worlds most popular programming languages thanks to its ease of use,
-platform independence, large standard library, flexibility and fast development experience which sees it excels as
-a popular language for web development and for development of popular CMS products like WordPress, Drupal and Joomla
-thanks to its flexibility, embeddability and ease of customization.</p>
-<p>To maximize the experience for calling ServiceStack APIs within these environments ServiceStack now supports PHP as a
-1st class Add ServiceStack Reference supported language which gives PHP developers an end-to-end typed API for consuming
-ServiceStack APIs, complete with IDE integration in <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> as well as
-<a href="https://docs.servicestack.net/dotnet-tool#addupdate-servicestack-references">built-in support in x dotnet tool</a>
-to generate Typed and annotated PHP DTOs for a remote ServiceStack instance from a single command-line.</p>
-<h3 id="ideal-idiomatic-typed-message-based-api">Ideal idiomatic Typed Message-based API<a class="header-anchor" href="javascript:;" onclick="location.hash='#ideal-idiomatic-typed-message-based-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>To maximize the utility of PHP DTOs and enable richer tooling support and greater development experience, PHP DTOs are generated as
-Typed <a href="https://www.php.net/manual/en/class.jsonserializable.php">JsonSerializable</a> classes with
-<a href="https://www.php.net/manual/en/language.oop5.decon.php#language.oop5.decon.constructor.promotion">promoted constructors</a>
-and annotated with <a href="https://phpstan.org/writing-php-code/phpdoc-types">PHPDoc Types</a> - that's invaluable when scaling
-large PHP code-bases and greatly improves discoverability of a remote API. DTOs are also enriched with interface markers
-and Annotations which enables its optimal end-to-end typed API:</p>
-<p>The PHP DTOs and <code>JsonServiceClient</code> library follow
-<a href="https://infinum.com/handbook/wordpress/coding-standards/php-coding-standards/naming">PHP naming conventions</a>
-so they'll naturally fit into existing PHP code bases. Here's a sample of <a href="https://techstacks.io">techstacks.io</a>
-generated PHP DTOs containing string and int Enums, an example AutoQuery and a standard Request &amp; Response DTO showcasing
-the rich typing annotations and naming conventions used:</p>
-<pre><code class="language-php">enum TechnologyTier : string
-{
-    case ProgrammingLanguage = 'ProgrammingLanguage';
-    case Client = 'Client';
-    case Http = 'Http';
-    case Server = 'Server';
-    case Data = 'Data';
-    case SoftwareInfrastructure = 'SoftwareInfrastructure';
-    case OperatingSystem = 'OperatingSystem';
-    case HardwareInfrastructure = 'HardwareInfrastructure';
-    case ThirdPartyServices = 'ThirdPartyServices';
+<p>And the need for hand maintained Types to describe the shape of the API responses with <a href="https://wiki.c2.com/?StringlyTyped">Stringly Typed</a>
+fetch API calls referencing <strong>string</strong> routes:</p>
+<pre><code class="language-ts">import { defineComponent } from 'vue';
+
+type Forecasts = {
+    date: string,
+    temperatureC: string,
+    temperatureF: string,
+    summary: string
+}[];
+
+interface Data {
+    loading: boolean,
+    post: null | Forecasts
 }
 
-enum Frequency : int
-{
-    case Daily = 1;
-    case Weekly = 7;
-    case Monthly = 30;
-    case Quarterly = 90;
-}
+export default defineComponent({
+    data(): Data {
+        return {
+            loading: false,
+            post: null
+        };
+    },
+    created() {
+        // fetch the data when the view is created and the data is
+        // already being observed
+        this.fetchData();
+    },
+    watch: {
+        // call again the method if the route changes
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData(): void {
+            this.post = null;
+            this.loading = true;
 
-// @Route(&quot;/technology/search&quot;)
-#[Returns('QueryResponse')]
-/**
- * @template QueryDb of Technology
- * @template QueryDb1 of TechnologyView
- */
-class FindTechnologies extends QueryDb implements IReturn, IGet, JsonSerializable
-{
-    public function __construct(
-        /** @var array&lt;int&gt;|null */
-        public ?array $ids=null,
-        /** @var string|null */
-        public ?string $name=null,
-        /** @var string|null */
-        public ?string $vendorName=null,
-        /** @var string|null */
-        public ?string $nameContains=null,
-        /** @var string|null */
-        public ?string $vendorNameContains=null,
-        /** @var string|null */
-        public ?string $descriptionContains=null
-    ) {
-    }
-
-    /** @throws Exception */
-    public function fromMap($o): void {
-        parent::fromMap($o);
-        if (isset($o['ids'])) $this-&gt;ids = JsonConverters::fromArray('int', $o['ids']);
-        if (isset($o['name'])) $this-&gt;name = $o['name'];
-        if (isset($o['vendorName'])) $this-&gt;vendorName = $o['vendorName'];
-        if (isset($o['nameContains'])) $this-&gt;nameContains = $o['nameContains'];
-        if (isset($o['vendorNameContains'])) $this-&gt;vendorNameContains = $o['vendorNameContains'];
-        if (isset($o['descriptionContains'])) $this-&gt;descriptionContains = $o['descriptionContains'];
-    }
-    
-    /** @throws Exception */
-    public function jsonSerialize(): mixed
-    {
-        $o = parent::jsonSerialize();
-        if (isset($this-&gt;ids)) $o['ids'] = JsonConverters::toArray('int', $this-&gt;ids);
-        if (isset($this-&gt;name)) $o['name'] = $this-&gt;name;
-        if (isset($this-&gt;vendorName)) $o['vendorName'] = $this-&gt;vendorName;
-        if (isset($this-&gt;nameContains)) $o['nameContains'] = $this-&gt;nameContains;
-        if (isset($this-&gt;vendorNameContains)) $o['vendorNameContains'] = $this-&gt;vendorNameContains;
-        if (isset($this-&gt;descriptionContains)) $o['descriptionContains'] = $this-&gt;descriptionContains;
-        return empty($o) ? new class(){} : $o;
-    }
-    public function getTypeName(): string { return 'FindTechnologies'; }
-    public function getMethod(): string { return 'GET'; }
-    public function createResponse(): mixed { return QueryResponse::create(genericArgs:['TechnologyView']); }
-}
-
-// @Route(&quot;/orgs/{Id}&quot;, &quot;DELETE&quot;)
-class DeleteOrganization implements IReturnVoid, IDelete, JsonSerializable
-{
-    public function __construct(
-        /** @var int */
-        public int $id=0
-    ) {
-    }
-
-    /** @throws Exception */
-    public function fromMap($o): void {
-        if (isset($o['id'])) $this-&gt;id = $o['id'];
-    }
-    
-    /** @throws Exception */
-    public function jsonSerialize(): mixed
-    {
-        $o = [];
-        if (isset($this-&gt;id)) $o['id'] = $this-&gt;id;
-        return empty($o) ? new class(){} : $o;
-    }
-    public function getTypeName(): string { return 'DeleteOrganization'; }
-    public function getMethod(): string { return 'DELETE'; }
-    public function createResponse(): void {}
-}
+            fetch('weatherforecast')
+                .then(r =&gt; r.json())
+                .then(json =&gt; {
+                    this.post = json as Forecasts;
+                    this.loading = false;
+                    return;
+                });
+        }
+    },
+});
 </code></pre>
-<p>The smart PHP <code>JsonServiceClient</code> available in the <a href="https://packagist.org/packages/servicestack/client">servicestack/client</a>
-packagist package enables the same productive, typed API development experience available in our other 1st-class supported
-client platforms.</p>
-<p>Using promoted constructors enables DTOs to be populated using a single constructor expression utilizing named parameters
-which together with the generic <code>JsonServiceClient</code> enables end-to-end typed API Requests in a single LOC:</p>
-<pre><code class="language-php">use Servicestack\JsonServiceClient;
-use dtos\Hello;
-
-$client = new JsonServiceClient(&quot;https://test.servicestack.net&quot;);
-
-/** @var HelloResponse $response */
-$response = client-&gt;get(new Hello(name:&quot;World&quot;));
+<p>Which is used to render the API response in a hand rolled table:</p>
+<pre><code class="language-html">&lt;div v-if=&quot;post&quot; class=&quot;content&quot;&gt;
+    &lt;table&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Date&lt;/th&gt;
+                &lt;th&gt;Temp. (C)&lt;/th&gt;
+                &lt;th&gt;Temp. (F)&lt;/th&gt;
+                &lt;th&gt;Summary&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr v-for=&quot;forecast in post&quot; :key=&quot;forecast.date&quot;&gt;
+                &lt;td&gt;{‎{ forecast.date }‎}&lt;/td&gt;
+                &lt;td&gt;{‎{ forecast.temperatureC }‎}&lt;/td&gt;
+                &lt;td&gt;{‎{ forecast.temperatureF }‎}&lt;/td&gt;
+                &lt;td&gt;{‎{ forecast.summary }‎}&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
 </code></pre>
-<blockquote>
-<p>The <code>HelloResponse</code> optional type hint doesn't change runtime behavior but enables static analysis tools and IDEs like PyCharm to provide rich intelli-sense and development time feedback.</p>
-</blockquote>
-<p>For more usage examples and information about ServiceStack's PHP support checkout the
-<a href="https://docs.servicestack.net/php-add-servicestack-reference">PHP Add ServiceStack Reference</a> docs.</p>
+<h3 id="servicestack-api-integration">ServiceStack API Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-api-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Fortunately ServiceStack can significantly improve this development experience with the
+<a href="https://docs.servicestack.net/endpoint-routing#api-pre-defined-route">/api pre-defined route</a> where only a single
+proxy rule is needed to proxy all APIs:</p>
+<pre><code class="language-ts">export default defineConfig({
+    //...
+    server: {
+        proxy: {
+            '^/api': {
+                target,
+                secure: false
+            }
+        },
+    }
+})
+</code></pre>
+<h3 id="end-to-end-typed-apis">End-to-end Typed APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#end-to-end-typed-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Instead of hand-rolled types and Stringly Typed API calls, it utilizes server
+<a href="https://docs.servicestack.net/typescript-add-servicestack-reference">generated TypeScript DTOs</a>
+with a generic JsonServiceClient to enable end-to-end Typed APIs:</p>
+<pre><code class="language-ts">import { ref, onMounted } from 'vue'
+import { ApiResult } from &quot;@servicestack/client&quot;
+import { useClient } from &quot;@servicestack/vue&quot;
+import { GetWeatherForecast } from &quot;@/dtos&quot;
+
+const client = useClient()
+const api = ref(new ApiResult())
+
+onMounted(async () =&gt; {
+    api.value = await client.api(new GetWeatherForecast())
+})
+</code></pre>
+<p>This benefits in less code to maintain, immediate static typing analysis to ensure correct usage of APIs and valuable
+feedback when APIs are changed, that's easily updated with a single command:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run dtos</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="high-productivity-vue-components">High Productivity Vue Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#high-productivity-vue-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>With access to the <a href="https://docs.servicestack.net/vue/">ServiceStack Vue Components</a> library there's also less code to
+maintain in the UI, where you can render a beautiful tailwind styled DataGrid with just:</p>
+<pre><code class="language-html">&lt;DataGrid :items=&quot;api.response&quot; /&gt;
+</code></pre>
+<h2 id="servicestack-vue-spa-features">ServiceStack Vue SPA Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-vue-spa-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Other high-productivity features available in the ServiceStack Vue SPA template include:</p>
+<h3 id="integrated-identity-auth">Integrated Identity Auth<a class="header-anchor" href="javascript:;" onclick="location.hash='#integrated-identity-auth'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Pre-configured with ASP.NET Core Identity Auth, including Sign In and Custom Registration APIs and
+UI Pages which can be customized as needed, examples of Role-based security as well as a turn key solution for
+Integrating Identity Auth Registration workflow with your <a href="https://docs.servicestack.net/auth/identity-auth#smtp-iemailsender">SMTP Provider</a>
+with all emails sent from a managed non-blocking <a href="https://docs.servicestack.net/background-mq">Background MQ</a>
+for optimal responsiveness and execution.</p>
+<h3 id="tailwindcss">tailwindcss<a class="header-anchor" href="javascript:;" onclick="location.hash='#tailwindcss'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><a href="https://tailwindcss.com">Tailwind</a> has quickly become the best modern CSS framework for creating scalable,
+<a href="https://tailwindcss.com/#mobile-first">mobile-first</a> responsive websites built
+upon a beautiful expert-crafted constraint-based <a href="https://tailwindcss.com/#constraint-based">Design System</a>
+that enables effortless reuse of a growing suite of <a href="https://tailwindcomponents.com">Free Community</a> and
+professionally-designed <a href="https://tailwindui.com">Tailwind UI Component</a> Libraries, invaluable for quickly creating beautiful websites.</p>
+<p><a href="https://tailwindcss.com"><img src="/img/pages/blazor/tailwindui.png" alt="" /></a></p>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="mx-auto w-40 h-40 text-gray-800" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M9.37 5.51A7.35 7.35 0 0 0 9.1 7.5c0 4.08 3.32 7.4 7.4 7.4c.68 0 1.35-.09 1.99-.27A7.014 7.014 0 0 1 12 19c-3.86 0-7-3.14-7-7c0-2.93 1.81-5.45 4.37-6.49zM12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26a5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"></path>
+</svg>
+<h3 id="dark-mode">Dark Mode<a class="header-anchor" href="javascript:;" onclick="location.hash='#dark-mode'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>In addition to revolutionizing how we style mobile-first responsive Apps, Tailwind's
+<a href="https://tailwindcss.com/#dark-mode">Dark Mode</a> does the same for enabling Dark Mode
+a feature supported throughout all of ServiceStack's <a href="https://docs.servicestack.net/vue/">Vue Component Library</a>.</p>
+<p><img src="/img/whatsnew/v6.5/dark-and-light-mode.png" alt="" /></p>
+<h3 id="built-for-productivity">Built for Productivity<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-for-productivity'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>So that you're immediately productive out-of-the-box, the template includes a rich set of high-productivity features, including:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://tailwindcss-typography.vercel.app">tailwind/typography</a></td>
+<td>Beautiful css typography for markdown articles &amp; blog posts</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tailwindlabs/tailwindcss-forms">tailwind/forms</a></td>
+<td>Beautiful css form &amp; input styles that's easily overridable</td>
+</tr>
+<tr>
+<td><a href="https://github.com/markdown-it/markdown-it">Markdown</a></td>
+<td>Native Markdown integration</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ServiceStack/vite-plugin-press">plugin/press</a></td>
+<td>Static markdown for creating blogs, videos and other content</td>
+</tr>
+<tr>
+<td><a href="https://github.com/posva/unplugin-vue-router">plugin/vue-router</a></td>
+<td>Conventional file system based routing for Vue 3 on Vite</td>
+</tr>
+<tr>
+<td><a href="https://github.com/JohnCampionJr/vite-plugin-vue-layouts">plugin/layouts</a></td>
+<td>Support for multiple page layouts</td>
+</tr>
+<tr>
+<td><a href="https://github.com/antfu/unplugin-vue-components">plugin/components</a></td>
+<td>Auto importing &amp; registering of components on-demand</td>
+</tr>
+<tr>
+<td><a href="https://github.com/jpkleemans/vite-svg-loader">plugin/svg</a></td>
+<td>Load SVG files as Vue components</td>
+</tr>
+<tr>
+<td><a href="https://iconify.design">Iconify</a></td>
+<td>Unified registry to access 100k+ high quality SVG icons</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bookings-crud-pages">Bookings CRUD Pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#bookings-crud-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Bookings CRUD example shows how you can rapidly develop beautiful responsive, customized CRUD UIs with minimal effort using
+<a href="https://docs.servicestack.net/autoquery/">AutoQuery APIs</a>, <a href="https://docs.servicestack.net/autoform">AutoForms</a> &amp;
+<a href="https://blazor-gallery.servicestack.net/gallery/autoquerygrid">AutoQueryGrid</a> Vue Components.</p>
+<h3 id="admin-pages">Admin Pages<a class="header-anchor" href="javascript:;" onclick="location.hash='#admin-pages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst Bookings CRUD is a good example of creating custom UI for end users, you may also want to quickly develop a set
+of back-office CRUD Admin UIs to manage your App's Database tables, which is easily achievable AutoQueryGrid's default
+behavior:</p>
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="wlRA4_owEsc" style="background-image: url('https://img.youtube.com/vi/wlRA4_owEsc/maxresdefault.jpg')"></lite-youtube>
+</div>
+<p>The development UX of Admin Pages is further improved in Vue Vite which is able to use SFC Pages and conventional file system
+routing to quickly add Admin Pages to manage an App's back-end tables, e.g:</p>
+<h4 id="admincoupons.vue"><a href="https://github.com/NetCoreTemplates/vue-spa/blob/main/MyApp.Client/src/pages/admin/coupons.vue">/admin/coupons.vue</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#admincoupons.vue'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-html">&lt;AutoQueryGrid type=&quot;Coupon&quot; /&gt;
+</code></pre>
+<h4 id="adminbookings.vue"><a href="https://github.com/NetCoreTemplates/vue-spa/blob/main/MyApp.Client/src/pages/admin/bookings.vue">/admin/bookings.vue</a><a class="header-anchor" href="javascript:;" onclick="location.hash='#adminbookings.vue'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<pre><code class="language-html">&lt;AutoQueryGrid type=&quot;Booking&quot;
+selected-columns=&quot;id,name,roomType,roomNumber,bookingStartDate,cost,couponId,discount&quot;
+  :header-titles=&quot;{ roomNumber:'Room No', bookingStartDate:'Start Date' }&quot;
+   :visible-from=&quot;{ roomNumber:'lg', cost:'md', couponId:'xl', discount:'never' }&quot; /&gt;
+</code></pre>
+<h2 id="vite-press-plugin">Vite Press Plugin<a class="header-anchor" href="javascript:;" onclick="location.hash='#vite-press-plugin'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><a href="https://vue-spa.web-templates.io/posts/vite-press-plugin"><img src="https://images.unsplash.com/photo-1524668951403-d44b28200ce0?crop=entropy&amp;fit=crop&amp;h=384&amp;w=768" alt="" /></a></p>
+<p>Most Apps typically have a mix of dynamic functionality and static content which in our experience is best maintained
+in Markdown, which is why excited about the new <a href="https://vue-spa.web-templates.io/posts/vite-press-plugin">Vite Press Plugin</a>
+which brings the same Markdown features in our
+<a href="https://razor-ssg.web-templates.io">razor-ssg</a>, <a href="https://razor-press.web-templates.io">razor-press</a> and our
+<a href="https://blazor-vue.web-templates.io">blazor-vue</a> templates, and re-implements them in Vite where they can be used
+to add the same rich content features to Vite Vue and Vite React Apps.</p>
+<p>A goal for vite-press-plugin is to implement a suite of universal markdown-powered features that can be reused across all
+our Vue, React and .NET Razor and Blazor project templates, allowing you to freely copy and incorporate same set of
+markdown feature folders to power markdown content features across a range of websites built with different technologies.</p>
+<p>All of Razor SSG's features are available in Vite Press Plugin, including:</p>
+<ul>
+<li><a href="https://vue-spa.web-templates.io/blog">Blog</a> - Full Featured, beautiful Tailwind Blog with multiple discoverable views</li>
+<li><a href="https://vue-spa.web-templates.io/whatsnew">What's New</a> - Build Product and Feature Release pages</li>
+<li><a href="https://vue-spa.web-templates.io/videos">Videos</a> - Maintain Video Libraries and Playlists</li>
+<li><a href="https://vue-spa.web-templates.io/posts/vite-press-plugin#metadata-apis-feature">Metadata APIs</a> - Generate queryable static .json metadata APIs for all content</li>
+<li><a href="https://vue-spa.web-templates.io/posts/vite-press-plugin#includes-feature">Includes</a> - Create and reuse Markdown fragments</li>
+</ul>
+<p>It also supports an enhanced version of markdown for embedding richer UI markup in markdown content where most of
+<a href="https://vitepress.dev/guide/markdown#custom-containers">VitePress Containers</a> are supported, including:</p>
+<ul>
+<li><a href="https://vue-spa.web-templates.io/posts/vite-press-plugin#markdown-containers">Custom Markdown Containers</a>
+<ul>
+<li><strong>Alerts</strong>
+<ul>
+<li><code>info</code></li>
+<li><code>tip</code></li>
+<li><code>warning</code></li>
+<li><code>danger</code></li>
+</ul>
+</li>
+<li><code>copy</code></li>
+<li><code>sh</code></li>
+<li><code>youtube</code></li>
+</ul>
+</li>
+<li><a href="https://vue-spa.web-templates.io/posts/vite-press-plugin#markdown-fenced-code-blocks">Markdown Fenced Code Blocks</a> - Convert fenced code blocks into Richer UIs</li>
+</ul>
+<h3 id="vue-components-in-markdown">Vue Components In Markdown<a class="header-anchor" href="javascript:;" onclick="location.hash='#vue-components-in-markdown'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>At the cost of reduced portability, you’re also able to embed richer Interactive Vue components directly in markdown:</p>
+<ul>
+<li><a href="https://vue-spa.web-templates.io/posts/markdown-components-in-vue">Vue Components in Markdown</a></li>
+</ul>
 
                 </div>
             </div>
@@ -450,47 +563,6 @@ $response = client-&gt;get(new Hello(name:&quot;World&quot;));
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/net8-vue-spa-template">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/net8-vue-spa-template" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New Vue SPA Template">
-                                                    New Vue SPA Template
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Introducing the enhanced Vite TypeScript Vue SPA template for .NET 8</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="New Vue SPA Template background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-03-05T00:00:00.0000000">March 5, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>9 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -607,6 +679,47 @@ $response = client-&gt;get(new Hello(name:&quot;World&quot;));
                                                     <time datetime="2024-02-20T00:00:00.0000000">February 20, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/servicestack-endpoint-routing">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1510022151265-1bb84d406531?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/servicestack-endpoint-routing" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="ServiceStack Endpoint Routing">
+                                                    ServiceStack Endpoint Routing
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack .NET 8 is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IOC</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="ServiceStack Endpoint Routing background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-02-07T00:00:00.0000000">February 7, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>15 min read</span>
                                                 </div>
                                             </div>
                                         </div>
