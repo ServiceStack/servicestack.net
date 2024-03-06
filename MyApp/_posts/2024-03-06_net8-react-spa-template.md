@@ -4,7 +4,6 @@ summary: Explore the new enhanced Vite TypeScript React SPA template for .NET 8
 tags: [react,.net8,autoquery,admin]
 image: https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot
-draft: true
 ---
 
 ## ServiceStack React SPA Template
