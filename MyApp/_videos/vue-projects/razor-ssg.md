@@ -3,7 +3,7 @@ title: Using Razor SSG to Create Websites in GitHub Codespaces
 url: https://youtu.be/MRQMBrXi5Sc
 tags: razor-pages,ssg,markdown,codespaces
 date: 29-03-2023
-order: 4
+order: 5
 ---
 
 This video takes an in-depth look at the [razor-ssg](https://razor-ssg.web-templates.io) ServiceStack template, a powerful tool that 

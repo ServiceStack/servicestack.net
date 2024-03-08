@@ -3,7 +3,7 @@ title: Rapidly develop C# .NET Next.js JamStack Apps with Rider
 url: https://youtu.be/3pPLRyPsO5A
 tags: nextjs,react,jamstack
 date: 08-02-2022
-order: 6
+order: 5
 ---
 
 In this comprehensive walkthrough, we will guide you through the ServiceStack Next.js template, which offers an 

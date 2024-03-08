@@ -3,7 +3,7 @@ title: Fast, SEO-friendly, Blazor Static Rendered Apps with Vue
 url: https://youtu.be/ujbTGn4IwFs
 tags: [blazor, tailwind, vue]
 date: 22-11-2023
-order: 1
+order: 2
 ---
 
 The new **Blazor Vue** template is ideal for building Fast, SEO-friendly, 100% statically rendered Blazor Web Apps where 
