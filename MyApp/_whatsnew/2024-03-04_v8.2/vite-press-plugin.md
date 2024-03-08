@@ -1,6 +1,6 @@
 ---
 title: Vite Press Plugin
-url: /posts/vite-press-plugin
+url: https://docs.servicestack.net/releases/v8_02#vite-press-plugin
 image: https://images.unsplash.com/photo-1524668951403-d44b28200ce0?crop=entropy&fit=crop&h=1000&w=1000
 order: 4
 ---
