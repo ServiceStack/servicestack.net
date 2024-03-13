@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>PHP typed client DTOs for .NET APIs - ServiceStack</title>
+    <title>Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Announcing 1st class end-to-end typed support for calling .NET APIs with PHP" />
-    <meta property="og:url" content="https://servicestack.net/posts/php-typed-apis" />
-    <meta property="og:title" content="PHP typed client DTOs for .NET APIs" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Explore the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps" />
+    <meta property="og:url" content="https://servicestack.net/posts/kotlin-compose-multiplatform" />
+    <meta property="og:title" content="Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs" />
+    <meta property="og:image" content="/img/posts/kotlin-compose-multiplatform/compose-multiplatform.webp" />
 
 
 </head>
@@ -125,7 +125,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                PHP typed client DTOs for .NET APIs
+                Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -166,21 +166,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="PHP typed client DTOs for .NET APIs Background" class="shadow-small">
+                    <img src="/img/posts/kotlin-compose-multiplatform/compose-multiplatform.webp" alt="Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/php" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">php</a>
-                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
-                            <a href="posts/tagged/service-reference" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">service-reference</a>
+                            <a href="posts/tagged/kotlin" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">kotlin</a>
+                            <a href="posts/tagged/ios" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ios</a>
+                            <a href="posts/tagged/android" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">android</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-11-29T00:00:00.0000000">November 29, 2023</time>
+                                <time datetime="2024-03-13T00:00:00.0000000">March 13, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>7 min read</span>
+                                <span>5 min read</span>
                             </div>
                         </div>
                 </div>
@@ -193,205 +193,196 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>We're happy to announce the <strong>11th</strong> <a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a>
-language to enjoy end-to-end typed support for calling .NET APIs - <a href="https://www.php.net">PHP</a>!</p>
-<p>The <strong>Add ServiceStack Reference</strong> feature enables a simple way for PHP clients and Applications to generate native PHP DTO classes
-to access to your ServiceStack APIs.</p>
-<div class="not-prose mt-16 flex flex-col items-center">
-   <div class="flex">
-      <svg class="w-60 h-60" xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><path fill="#4F5B93" d="M64 30.332C28.654 30.332 0 45.407 0 64s28.654 33.668 64 33.668c35.345 0 64-15.075 64-33.668S99.346 30.332 64 30.332zm-5.982 9.81h7.293v.003l-1.745 8.968h6.496c4.087 0 6.908.714 8.458 2.139c1.553 1.427 2.017 3.737 1.398 6.93l-3.053 15.7h-7.408l2.902-14.929c.33-1.698.208-2.855-.365-3.473c-.573-.617-1.793-.925-3.658-.925h-5.828L58.752 73.88h-7.291l6.557-33.738zM26.73 49.114h14.133c4.252 0 7.355 1.116 9.305 3.348c1.95 2.232 2.536 5.346 1.758 9.346c-.32 1.649-.863 3.154-1.625 4.52c-.763 1.364-1.76 2.613-2.99 3.745c-1.468 1.373-3.098 2.353-4.891 2.936c-1.794.585-4.08.875-6.858.875h-6.294l-1.745 8.97h-7.35l6.557-33.74zm57.366 0h14.13c4.252 0 7.353 1.116 9.303 3.348h.002c1.95 2.232 2.538 5.346 1.76 9.346c-.32 1.649-.861 3.154-1.623 4.52c-.763 1.364-1.76 2.613-2.992 3.745c-1.467 1.373-3.098 2.353-4.893 2.936c-1.794.585-4.077.875-6.855.875h-6.295l-1.744 8.97h-7.35l6.557-33.74zm-51.051 5.325l-2.742 14.12h4.468c2.963 0 5.172-.556 6.622-1.673c1.45-1.116 2.428-2.981 2.937-5.592c.485-2.507.264-4.279-.666-5.309c-.93-1.032-2.79-1.547-5.584-1.547h-5.035zm57.363 0l-2.744 14.12h4.47c2.965 0 5.17-.556 6.622-1.673c1.449-1.116 2.427-2.981 2.935-5.592c.487-2.507.266-4.279-.664-5.309c-.93-1.032-2.792-1.547-5.584-1.547h-5.035z"/></svg>
-   </div>
-</div>
-<div class="not-prose">
-    <div class="text-center"><h3 id="php" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-        End-to-end typed PHP
-    </h3></div>
-    <p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
-        Learn about the rich JsonServiceClient & end-to-end typed API support for PHP 
-    </p>
-    <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-        <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="ZLVdaJ38vwc" style="background-image: url('https://img.youtube.com/vi/ZLVdaJ38vwc/maxresdefault.jpg')"></lite-youtube>
+                    <p>The last few years of neglect of Xamarin has slid it into irrelevance, removing itself from consideration in the already
+shortlist of viable development options for creating native multi-platform iOS, Android and Desktop Apps, which leaves
+us just Flutter and React Native as the only viable options.</p>
+<p>Thanks to the vast language ecosystem covered by <a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a>,
+which ever technology you end up choosing to develop native Mobile and Desktop Apps with,
+you'll always be able to develop with the productivity and type safety benefits of end-to-end typed APIs in your preferred language,
+whether it's <a href="https://docs.servicestack.net/typescript-add-servicestack-reference">TypeScript</a> or
+<a href="https://docs.servicestack.net/javascript-add-servicestack-reference">JavaScript</a> for React Native,
+<a href="https://docs.servicestack.net/dart-add-servicestack-reference">Dart</a> for Flutter,
+<a href="https://docs.servicestack.net/java-add-servicestack-reference">Java</a> or <a href="https://docs.servicestack.net/kotlin-add-servicestack-reference">Kotlin</a> for Android,
+or <a href="https://docs.servicestack.net/swift-add-servicestack-reference">Swift</a> for iOS.</p>
+<p>Fortunately JetBrains has stepped in to fill the void with Compose Multiplatform offering a
+modern alternative for creating native Mobile, Desktop &amp; Web Apps which can also leverage
+<a href="https://docs.servicestack.net/kotlin-add-servicestack-reference">Kotlin ServiceStack Reference</a> for end-to-end typed APIs.</p>
+<p><a href="https://www.jetbrains.com/lp/compose-multiplatform/">Compose Multiplatform</a> builds on
+<a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> - Google's modern toolkit for building
+native Android UIs bringing it to more platforms, including Windows, macOS and Linux Desktops,
+Web UIs with <a href="https://kotlinlang.org/docs/wasm-overview.html">Kotlin Wasm</a>
+and on iOS with <a href="https://kotlinlang.org/docs/native-overview.html">Kotlin/Native</a>.</p>
+<p>We'll look at the latest <a href="https://blog.jetbrains.com/kotlin/2024/02/compose-multiplatform-1-6-0-release/">Compose Multiplatform v1.6 Release</a>
+and use it to build a cross-platform Desktop App integrated with a .NET API backend utilizing
+<a href="https://docs.servicestack.net/kotlin-add-servicestack-reference">Kotlin ServiceStack Reference</a> to generate Kotlin DTOs
+that can be used with the generic ServiceStack Java <code>JsonServiceClient</code> to enable its end-to-end typed API
+integration.</p>
+<h3 id="jvm-platform-required">JVM Platform Required<a class="header-anchor" href="javascript:;" onclick="location.hash='#jvm-platform-required'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst Compose Multiplatform supports both JVM and non-JVM platforms, targeting a non JVM platform is very limited
+as you won't be able to reference and use any Java packages like ServiceStack's Java Client library in <code>net.servicestack:client</code>
+which is required for this example utilizing <a href="https://docs.servicestack.net/kotlin-add-servicestack-reference">Kotlin ServiceStack Reference</a>
+typed Kotlin DTOs.</p>
+<h2 id="compose-multiplatform-ios-android-apps">Compose Multiplatform iOS &amp; Android Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#compose-multiplatform-ios-android-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="r6T3B7o1GYE" playlabel="JetBrains Compose Multiplatform iOS & Android Apps" style="background-image:url('https://img.youtube.com/vi/r6T3B7o1GYE/maxresdefault.jpg')"></lite-youtube>
+<p>The quickest way to a working Compose Multiplatform App integrated with a .NET API backend is to create a new project
+from the Compose Desktop template:</p>
+<div class="not-prose relative bg-white dark:bg-black py-4">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Create a new Compose Desktop App</p>
+        <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500"> 
+            Create a new Kotlin Multiplatform App with your preferred project name:
+        </p>
     </div>
+    <compose-template repo="NetCoreTemplates/kmp-desktop" hide="demo"></compose-template>
 </div>
-<h3 id="phpstorm-servicestack-plugin">PhpStorm ServiceStack Plugin<a class="header-anchor" href="javascript:;" onclick="location.hash='#phpstorm-servicestack-plugin'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>PHP developers of <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> can get a simplified development experience for consuming
-ServiceStack Services by installing the <a href="https://plugins.jetbrains.com/plugin/7749-servicestack">ServiceStack Plugin</a>
-from the JetBrains Marketplace:</p>
-<p><a href="https://plugins.jetbrains.com/plugin/7749-servicestack"><img src="/img/posts/php-typed-apis/phpstorm-servicestack-plugin.webp" alt="" /></a></p>
-<p>Where you'll be able to right-click on a directory and click on <strong>ServiceStack Reference</strong> on the context menu:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-add-servicestack-reference.webp" alt="" /></p>
-<p>To launch the <strong>Add PHP ServiceStack Reference</strong> dialog where you can enter the remote URL of the ServiceStack endpoint you wish to call to generate the Typed PHP DTOs for all APIs which by default will saved to <code>dtos.php</code>:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-add-servicestack-reference-dialog.webp" alt="" /></p>
-<p>Then just import the DTOs and <code>JsonServiceClient</code> to be able to consume any of the remote ServiceStack APIs:</p>
-<pre><code class="language-php">&lt;?php
-
-require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
-require_once 'dtos.php';
-
-use dtos\FindTechnologies;
-use Servicestack\JsonServiceClient;
-
-$client = JsonServiceClient::create(&quot;https://techstacks.io&quot;);
-
-$response = $client-&gt;send(new FindTechnologies(
-    ids: [1,2,4,6],
-    vendorName: &quot;Google&quot;));
-
-print_r($response);
-</code></pre>
-<p>If any of the the remote APIs change their DTOs can be updated by right-clicking on <code>dtos.php</code> and clicking <strong>Update ServiceStack Reference</strong>:</p>
-<p><img src="/img/posts/php-typed-apis/phpstorm-update-servicestack-reference.webp" alt="" /></p>
-<h3 id="install-php-servicestack-client">Install PHP ServiceStack Client<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-php-servicestack-client'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The only requirements for PHP apps to perform typed API Requests are the generated PHP DTOs and the generic <code>JsonServiceClient</code>
-which can be installed in Composer projects with:</p>
-<pre><code class="language-bash">$ composer require servicestack/client
-</code></pre>
-<p>Or by adding the package to your <code>composer.json</code> then installing the dependencies:</p>
-<pre><code class="language-json">{
-  &quot;require&quot;: {
-    &quot;servicestack/client&quot;: &quot;^1.0&quot;
-  }
-}
-</code></pre>
-<h2 id="first-class-development-experience">First class development experience<a class="header-anchor" href="javascript:;" onclick="location.hash='#first-class-development-experience'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><a href="https://www.php.net">PHP</a> is one of the worlds most popular programming languages thanks to its ease of use,
-platform independence, large standard library, flexibility and fast development experience which sees it excels as
-a popular language for web development and for development of popular CMS products like WordPress, Drupal and Joomla
-thanks to its flexibility, embeddability and ease of customization.</p>
-<p>To maximize the experience for calling ServiceStack APIs within these environments ServiceStack now supports PHP as a
-1st class Add ServiceStack Reference supported language which gives PHP developers an end-to-end typed API for consuming
-ServiceStack APIs, complete with IDE integration in <a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a> as well as
-<a href="https://docs.servicestack.net/dotnet-tool#addupdate-servicestack-references">built-in support in x dotnet tool</a>
-to generate Typed and annotated PHP DTOs for a remote ServiceStack instance from a single command-line.</p>
-<h3 id="ideal-idiomatic-typed-message-based-api">Ideal idiomatic Typed Message-based API<a class="header-anchor" href="javascript:;" onclick="location.hash='#ideal-idiomatic-typed-message-based-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>To maximize the utility of PHP DTOs and enable richer tooling support and greater development experience, PHP DTOs are generated as
-Typed <a href="https://www.php.net/manual/en/class.jsonserializable.php">JsonSerializable</a> classes with
-<a href="https://www.php.net/manual/en/language.oop5.decon.php#language.oop5.decon.constructor.promotion">promoted constructors</a>
-and annotated with <a href="https://phpstan.org/writing-php-code/phpdoc-types">PHPDoc Types</a> - that's invaluable when scaling
-large PHP code-bases and greatly improves discoverability of a remote API. DTOs are also enriched with interface markers
-and Annotations which enables its optimal end-to-end typed API:</p>
-<p>The PHP DTOs and <code>JsonServiceClient</code> library follow
-<a href="https://infinum.com/handbook/wordpress/coding-standards/php-coding-standards/naming">PHP naming conventions</a>
-so they'll naturally fit into existing PHP code bases. Here's a sample of <a href="https://techstacks.io">techstacks.io</a>
-generated PHP DTOs containing string and int Enums, an example AutoQuery and a standard Request &amp; Response DTO showcasing
-the rich typing annotations and naming conventions used:</p>
-<pre><code class="language-php">enum TechnologyTier : string
-{
-    case ProgrammingLanguage = 'ProgrammingLanguage';
-    case Client = 'Client';
-    case Http = 'Http';
-    case Server = 'Server';
-    case Data = 'Data';
-    case SoftwareInfrastructure = 'SoftwareInfrastructure';
-    case OperatingSystem = 'OperatingSystem';
-    case HardwareInfrastructure = 'HardwareInfrastructure';
-    case ThirdPartyServices = 'ThirdPartyServices';
-}
-
-enum Frequency : int
-{
-    case Daily = 1;
-    case Weekly = 7;
-    case Monthly = 30;
-    case Quarterly = 90;
-}
-
-// @Route(&quot;/technology/search&quot;)
-#[Returns('QueryResponse')]
-/**
- * @template QueryDb of Technology
- * @template QueryDb1 of TechnologyView
- */
-class FindTechnologies extends QueryDb implements IReturn, IGet, JsonSerializable
-{
-    public function __construct(
-        /** @var array&lt;int&gt;|null */
-        public ?array $ids=null,
-        /** @var string|null */
-        public ?string $name=null,
-        /** @var string|null */
-        public ?string $vendorName=null,
-        /** @var string|null */
-        public ?string $nameContains=null,
-        /** @var string|null */
-        public ?string $vendorNameContains=null,
-        /** @var string|null */
-        public ?string $descriptionContains=null
-    ) {
-    }
-
-    /** @throws Exception */
-    public function fromMap($o): void {
-        parent::fromMap($o);
-        if (isset($o['ids'])) $this-&gt;ids = JsonConverters::fromArray('int', $o['ids']);
-        if (isset($o['name'])) $this-&gt;name = $o['name'];
-        if (isset($o['vendorName'])) $this-&gt;vendorName = $o['vendorName'];
-        if (isset($o['nameContains'])) $this-&gt;nameContains = $o['nameContains'];
-        if (isset($o['vendorNameContains'])) $this-&gt;vendorNameContains = $o['vendorNameContains'];
-        if (isset($o['descriptionContains'])) $this-&gt;descriptionContains = $o['descriptionContains'];
-    }
-    
-    /** @throws Exception */
-    public function jsonSerialize(): mixed
-    {
-        $o = parent::jsonSerialize();
-        if (isset($this-&gt;ids)) $o['ids'] = JsonConverters::toArray('int', $this-&gt;ids);
-        if (isset($this-&gt;name)) $o['name'] = $this-&gt;name;
-        if (isset($this-&gt;vendorName)) $o['vendorName'] = $this-&gt;vendorName;
-        if (isset($this-&gt;nameContains)) $o['nameContains'] = $this-&gt;nameContains;
-        if (isset($this-&gt;vendorNameContains)) $o['vendorNameContains'] = $this-&gt;vendorNameContains;
-        if (isset($this-&gt;descriptionContains)) $o['descriptionContains'] = $this-&gt;descriptionContains;
-        return empty($o) ? new class(){} : $o;
-    }
-    public function getTypeName(): string { return 'FindTechnologies'; }
-    public function getMethod(): string { return 'GET'; }
-    public function createResponse(): mixed { return QueryResponse::create(genericArgs:['TechnologyView']); }
-}
-
-// @Route(&quot;/orgs/{Id}&quot;, &quot;DELETE&quot;)
-class DeleteOrganization implements IReturnVoid, IDelete, JsonSerializable
-{
-    public function __construct(
-        /** @var int */
-        public int $id=0
-    ) {
-    }
-
-    /** @throws Exception */
-    public function fromMap($o): void {
-        if (isset($o['id'])) $this-&gt;id = $o['id'];
-    }
-    
-    /** @throws Exception */
-    public function jsonSerialize(): mixed
-    {
-        $o = [];
-        if (isset($this-&gt;id)) $o['id'] = $this-&gt;id;
-        return empty($o) ? new class(){} : $o;
-    }
-    public function getTypeName(): string { return 'DeleteOrganization'; }
-    public function getMethod(): string { return 'DELETE'; }
-    public function createResponse(): void {}
-}
-</code></pre>
-<p>The smart PHP <code>JsonServiceClient</code> available in the <a href="https://packagist.org/packages/servicestack/client">servicestack/client</a>
-packagist package enables the same productive, typed API development experience available in our other 1st-class supported
-client platforms.</p>
-<p>Using promoted constructors enables DTOs to be populated using a single constructor expression utilizing named parameters
-which together with the generic <code>JsonServiceClient</code> enables end-to-end typed API Requests in a single LOC:</p>
-<pre><code class="language-php">use Servicestack\JsonServiceClient;
-use dtos\Hello;
-
-$client = new JsonServiceClient(&quot;https://test.servicestack.net&quot;);
-
-/** @var HelloResponse $response */
-$response = client-&gt;get(new Hello(name:&quot;World&quot;));
-</code></pre>
-<blockquote>
-<p>The <code>HelloResponse</code> optional type hint doesn't change runtime behavior but enables static analysis tools and IDEs like PyCharm to provide rich intelli-sense and development time feedback.</p>
-</blockquote>
-<p>For more usage examples and information about ServiceStack's PHP support checkout the
-<a href="https://docs.servicestack.net/php-add-servicestack-reference">PHP Add ServiceStack Reference</a> docs.</p>
+<p>Or install from the command-line with the <a href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a>:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new kmp-desktop MyApp</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="install-jetbrains-ide">Install JetBrains IDE<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-jetbrains-ide'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>As a JetBrains technology, you're spoilt for choice for which IDE to use.</p>
+<h4 id="android-studio">Android Studio<a class="header-anchor" href="javascript:;" onclick="location.hash='#android-studio'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>If you're primarily developing for Android, Android Studio is likely the the best option, which you can setup by following their
+<a href="https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-setup.html">Getting Started with Android Studio</a> guide.</p>
+<h4 id="jetbrains-fleet">JetBrains Fleet<a class="header-anchor" href="javascript:;" onclick="location.hash='#jetbrains-fleet'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Otherwise if you're primarily developing a Desktop App it's recommended to use <a href="https://www.jetbrains.com/fleet/">Fleet</a> - JetBrains
+alternative to VS Code as a lightweight IDE for Kotlin Multiplatform Development.
+It's the preferred IDE when developing against a .NET API as you can develop both Kotlin front-end UI and backend .NET APIs from a single IDE.</p>
+<p>To get setup with Fleet, follow the <a href="https://www.jetbrains.com/help/kotlin-multiplatform-dev/fleet.html">Getting Started with JetBrains Fleet</a>.</p>
+<h3 id="open-project-with-fleet">Open Project with Fleet<a class="header-anchor" href="javascript:;" onclick="location.hash='#open-project-with-fleet'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Once you've installed Fleet, you can open your Desktop App project by opening the Folder in the Fleet IDE, or like VS Code
+you can launch it to open your Project's folder from the command-line with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>fleet MyApp</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="setup-fleet">Setup Fleet<a class="header-anchor" href="javascript:;" onclick="location.hash='#setup-fleet'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>When first opening fleet you'll start with an empty canvas. I'd recommend adding the <strong>Files</strong> tool window on the left panel
+to manage the Kotlin UI and the <strong>Solution</strong> tool window on the bottom left panel to manage the .NET API backend.</p>
+<h3 id="run.net-api-and-kotlin-desktop-app">Run .NET API and Kotlin Desktop App<a class="header-anchor" href="javascript:;" onclick="location.hash='#run.net-api-and-kotlin-desktop-app'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Once setup, you can run both the Desktop App and the .NET API backend with from the Run Dialog with the <code>Ctrl+R</code> keyboard shortcut,
+or by clicking on the play button icon in the top menu bar:</p>
+<p><img src="/img/posts/kotlin-compose-multiplatform/fleet-run.webp" alt="" /></p>
+<p>You'll want to run the .NET API backend first by selecting your Project Name which should launch your browser at <code>https://localhost:5001</code>,
+then launch the Desktop App by selecting the <strong>composeApp [Desktop]</strong> configuration which should launch a working Desktop App
+that calls your .NET API on each keystroke to search for matching files in your project:</p>
+<p><img src="/img/posts/kotlin-compose-multiplatform/search-files-app.webp" alt="" /></p>
+<p>The majority of the UI is maintained in
+<a href="https://github.com/NetCoreTemplates/kmp-desktop/blob/main/kmp/composeApp/src/commonMain/kotlin/App.kt">/commonMain/kotlin/App.kt</a>
+created using Jetpack Compose's declarative Kotlin UI.</p>
+<h3 id="update-kotlin-dtos">Update Kotlin DTOs<a class="header-anchor" href="javascript:;" onclick="location.hash='#update-kotlin-dtos'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The typed Kotlin DTOs for your .NET APIs is generated in <a href="https://github.com/NetCoreTemplates/kmp-desktop/blob/main/kmp/composeApp/src/commonMain/kotlin/dtos.kt">dtos.kt</a>.
+Which can be regenerated by running <strong>Update DTOs</strong> in the Run Dialog.</p>
+<p>Alternatively they can also be regenerated by running the <code>dtos</code> npm script from the command-line in your .NET Host project:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run dtos</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h4 id="android-studio-1">Android Studio<a class="header-anchor" href="javascript:;" onclick="location.hash='#android-studio-1'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>If you're using Android Studio, you can also install the <a href="https://plugins.jetbrains.com/plugin/7749-servicestack">ServiceStack Plugin</a> from
+the JetBrains Marketplace:</p>
+<p><img src="/img/posts/kotlin-compose-multiplatform/android-studio-plugins.webp" alt="" /></p>
+<p>Which provides a <strong>Add ServiceStack Reference</strong> UI on the Context Menu, by right-clicking the folder where you want the DTOs generated:</p>
+<p><img src="/img/posts/kotlin-compose-multiplatform/add-servicestack-reference-dialog.webp" alt="" /></p>
+<p>Then to update just right-click the <code>dtos.kt</code> and click <strong>Update ServiceStack Reference</strong> on the context menu:</p>
+<p><img src="/img/posts/kotlin-compose-multiplatform/update-servicestack-reference-dialog.webp" alt="" /></p>
+<h3 id="command-line">Command Line<a class="header-anchor" href="javascript:;" onclick="location.hash='#command-line'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>For any other Text Editors or IDEs a Kotlin ServiceStack Reference can also be added from the command-line using the
+<a href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a> by specifying the BaseUrl where the ServiceStack APIs are hosted, e.g:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x kotlin https://localhost:5001</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>To update and regenerate all Kotlin DTOs within a folder, run:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x kotlin</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h2 id="create-a-new-kotlin-multiplatform-app-from-scratch">Create a new Kotlin Multiplatform App from Scratch<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-a-new-kotlin-multiplatform-app-from-scratch'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>For a customized Compose Multiplatform App, you can create a new App with <a href="https://kmp.jetbrains.com">Kotlin Multiplatform Wizard</a>
+with just the options you need:</p>
+<p><a href="https://kmp.jetbrains.com"><img src="/img/posts/kotlin-compose-multiplatform/kmp-wizard.webp" alt="" /></a></p>
+<p>Which you can download in an empty Web Project:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new web MyApp</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Then open the folder with both the Kotlin Multiplatform and .NET Web App in fleet:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>fleet MyApp</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
                 </div>
             </div>
@@ -450,47 +441,6 @@ $response = client-&gt;get(new Hello(name:&quot;World&quot;));
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/kotlin-compose-multiplatform">
-                                            <img class="h-48 w-full object-cover" src="/img/posts/kotlin-compose-multiplatform/compose-multiplatform.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/kotlin-compose-multiplatform" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs">
-                                                    Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Explore the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-03-13T00:00:00.0000000">March 13, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>5 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -614,6 +564,47 @@ $response = client-&gt;get(new Hello(name:&quot;World&quot;));
                                 </div>
 
                             </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/identity-auth-admin-ui">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1563920443079-783e5c786b83?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/identity-auth-admin-ui" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Built-In Identity Auth Admin UI">
+                                                    Built-In Identity Auth Admin UI
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Explore the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Built-In Identity Auth Admin UI background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-02-21T00:00:00.0000000">February 21, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>3 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -633,14 +624,7 @@ init()
 <script type="module">
 import { mount } from "app.mjs"
 
-    const App = {
-        setup() {
-            function nav(url) {
-                window.open(url)
-            }
-            return { nav }
-        }
-    }
+        import App from "./posts/kotlin-compose-multiplatform.mjs" 
     mount('#post', App)
 </script>
 
