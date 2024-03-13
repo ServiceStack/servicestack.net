@@ -4,7 +4,6 @@ summary: Explore the exciting new JetBrains Technology for creating native Mobil
 tags: [kotlin,ios,android]
 image: /img/posts/kotlin-compose-multiplatform/compose-multiplatform.webp
 author: Demis Bellot
-draft: true
 ---
 
 The last few years of neglect of Xamarin has slid it into irrelevance, removing itself from consideration in the already 
