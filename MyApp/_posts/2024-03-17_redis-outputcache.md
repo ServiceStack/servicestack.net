@@ -90,8 +90,6 @@ app.UseServiceStack(new AppHost(), options => {
 });
 ```
 
-This will apply a 30 second cache duration to all ServiceStack Endpoints and cache each result uniquely based on all parameters. Here is where you could also filter and control which endpoints use output cache by checking `operation`, `verb` and `route` details that match your specific endpoints, optionally
-
 You can also vary the cache by specific properties, e.g:
 
 ```csharp
