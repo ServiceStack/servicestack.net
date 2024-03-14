@@ -118,13 +118,11 @@ For more granular control, you can apply the `[OutputCache]` attribute directly 
 ```csharp
 app.UseServiceStack(new AppHost(), options => {
     options.MapEndpoints();
-    ServiceStackHost? appHost = null;
-    HashSet<Type>? allServiceTypes = null;
     options.RouteHandlerBuilders.Add((routeHandlerBuilder, operation, verb, route) =>
     {
-        // Initialize appHost and allServiceTypes
-        appHost = appHost ?? HostContext.AppHost;
-        allServiceTypes = allServiceTypes ?? appHost.Metadata.ServiceTypes;
+        // Initialized appHost and allServiceTypes
+        var appHost = HostContext.AppHost;
+        var allServiceTypes = appHost.Metadata.ServiceTypes;
 
         // Find the service matching the RequestType of the operation
         var operationType = operation.RequestType;
