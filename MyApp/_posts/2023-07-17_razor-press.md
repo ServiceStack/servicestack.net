@@ -6,7 +6,7 @@ image: https://images.unsplash.com/photo-1681301968680-fe46a0cd51be?crop=entropy
 author: Demis Bellot
 ---
 
-In a nutshell the new Razor Press template is a Simple, Powerful, Fast, Flexible & FREE! Use Razor Pages to generate 
+In a nutshell the new [Razor Press template](https://razor-press.web-templates.io) is a Simple, Powerful, Fast, Flexible & FREE! Use Razor Pages to generate 
 beautiful Tailwind static websites powered by Markdown & enhanced with Vue Auto deploys to GitHub Pages to Host 
 for FREE on GitHub CDN
 
@@ -21,6 +21,8 @@ with the [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
 :::sh
 x new razor-press ProjectName
 :::
+
+Live Demo: [razor-press.web-templates.io](https://razor-press.web-templates.io)
 
 ## What is Razor Press?
 
