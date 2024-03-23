@@ -21,7 +21,6 @@
     </script>
     <link rel="stylesheet" href="css/app.css">
 
-    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
     <script type="importmap">
 {
     "imports": {
@@ -151,19 +150,20 @@ mountAll()
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureRedis))]
+
+namespace MyApp;
+
+public class ConfigureRedis : IHostingStartup
 {
-   public AppHost() : base("Web", 
-       typeof(MyServices).Assembly) { }
-
-   public override void Configure(Container container)
-   {
-       container.Register&lt;IRedisClientsManager&gt;(c =&gt; 
-           new RedisManagerPool("localhost:6379"));
-
-       container.Register(c =&gt;
-           c.Resolve&lt;IRedisClientsManager&gt;().GetCacheClient());
-   }
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => {
+            services.AddSingleton&lt;IRedisClientsManager&gt;(
+                new RedisManagerPool("localhost:6379"));
+        })
+       .ConfigureAppHost(appHost => {
+            // ...
+       });
 }
 </code></pre>
             
@@ -207,32 +207,30 @@ mountAll()
         <div class="pt-4">
 
 <b>Redis</b>
-<pre><code class="language-csharp">container.Register&lt;IRedisClientsManager&gt;(c =&gt; 
+<pre><code class="language-csharp">services.AddSingleton&lt;IRedisClientsManager&gt;(c =&gt; 
   new RedisManagerPool("localhost:6379"));
-
-container.Register(c =&gt;
-  c.Resolve&lt;IRedisClientsManager&gt;().GetCacheClient());
 </code></pre>
 
 <b>OrmLite</b>
 <pre><code class="language-csharp">// Register OrmLite Db Factory if not already
-container.Register&lt;IDbConnectionFactory&gt;(c =&gt; 
+services.AddSingleton&lt;IDbConnectionFactory&gt;(c =&gt; 
    new OrmLiteConnectionFactory(connString,
        SqlServerDialect.Provider));
 
-container.RegisterAs&lt;OrmLiteCacheClient,ICacheClient&gt;();
+// Alternatively, MS SQL Server Optimized cache for improved performance
+services.AddSingleton&lt;ICacheClient&gt;(c =&gt; 
+   new OrmLiteCacheClient&lt;SqlServerMemoryOptimizedCacheEntry&gt;());
+
+// Register DB Cache Client
+services.AddSingleton&lt;ICacheClient,OrmLiteCacheClient&gt;();
 
 // Create 'CacheEntry' RDBMS table if doesn't exist
-container.Resolve&lt;ICacheClient&gt;().InitSchema();
+appHost.Resolve&lt;ICacheClient&gt;().InitSchema();
 
-// Alternatively, MS SQL Server Optimized cache can
-// be used for improved performance
-container.Register&lt;ICacheClient&gt;(c =&gt; 
-   new OrmLiteCacheClient&lt;SqlServerMemoryOptimizedCacheEntry&gt;());
 </code></pre>
 
 <b>Azure</b>
-<pre><code class="language-csharp">container.Register&lt;ICacheClient&gt;(
+<pre><code class="language-csharp">services.AddSingleton&lt;ICacheClient&gt;(
    new AzureTableCacheClient(cacheConnStr));
 </code></pre>
 
@@ -242,12 +240,12 @@ container.Register&lt;ICacheClient&gt;(c =&gt;
    Secrets.AWS_SECRET_KEY, 
    RegionEndpoint.USEast1);
 
-container.Register&lt;IPocoDynamo&gt;(new PocoDynamo(awsDb));
-container.Register&lt;ICacheClient&gt;(c =&gt; 
+services.AddSingleton&lt;IPocoDynamo&gt;(new PocoDynamo(awsDb));
+services.AddSingleton&lt;ICacheClient&gt;(c =&gt; 
    new DynamoDbCacheClient(c.Resolve&lt;IPocoDynamo&gt;()));
 
 // Create 'CacheEntry' DynamoDB table if doesn't exist
-container.Resolve&lt;ICacheClient&gt;().InitSchema();
+appHost.Resolve&lt;ICacheClient&gt;().InitSchema();
 </code></pre>
             
         </div>

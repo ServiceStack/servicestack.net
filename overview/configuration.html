@@ -21,7 +21,6 @@
     </script>
     <link rel="stylesheet" href="css/app.css">
 
-    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
     <script type="importmap">
 {
     "imports": {
@@ -140,17 +139,22 @@ mountAll()
             </div>
             <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
                 <p class="text-left clearfix">
-                    In your application's <code class="font-semibold">AppHost</code>, you will see a <code class="font-semibold">Configure(Container container)</code> method which is fired during your application startup and is the location that should contain all your configuration, including registering resources you want easy access to in your Services.
+                    In your application's <code class="font-semibold">AppHost</code>, you will see a 
+                    <code class="font-semibold">ConfigureServices()</code> method which is fired during your application startup and is 
+                    the location that should contain all your configuration, including registering resources you want easy access to in your Services.
                 </p>
                 <p class="text-left clearfix">
-                    ServiceStack uses a modified version of Funq as the default Inversion of Control (IoC) container. This the primary way to share code across services as well as configuration your might need.
+                    ServiceStack uses the same ASP.NET Core IOC as the rest of your ASP.NET Web Application. This the primary way to share 
+                    code across services as well as configuration your might need.
                 </p>
                 <p class="text-left clearfix">
-                    ServiceStack defaults to public property injection of registered IoC dependencies. This means for if you want a service class to take a dependency on one of your registered IoC instances, you just need to declare a <code class="font-semibold">public property with the matching type</code> and the AppHost will wire up the dependency.
+                    Use constructor injection to inject required dependencies into your services. Using C# 12's Primary Constructors is the
+                    easiest way to do this that requires the least boilerplate. Any optional dependencies that may or may not be registered
+                    can use public properties with the <code class="font-semibold">[FromServices]</code> attribute.
                 </p>
             </div>
             <div class="buttons text-center sm:text-left my-8">
-                <a href="https://docs.servicestack.net/ioc"
+                <a href="https://docs.servicestack.net/net-ioc"
                    class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
                     Learn more
                 </a>
@@ -158,33 +162,40 @@ mountAll()
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
+        <pre><code class="language-csharp">[assembly: HostingStartup(typeof(AppHost))]
+
+namespace MyApp;
+
+public class AppHost() : AppHostBase("MyApp"), IHostingStartup
 {
-   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => {
+            // Configure ASP.NET Core IOC Dependencies
+           services.AddSingleton&lt;IBar&gt;(new Bar {
+                Name = "Registered as interface"
+            });
+     
+            services.AddSingleton(new Bar {
+                Name = "Registered as Concrete type"
+            });
+        });
 
-   // Configure your AppHost with the necessary configuration
-   // and dependencies your App needs
-   public override void Configure(Container container)
-   {
-       container.Register&lt;IBar&gt;(new Bar {
-           Name = "Registered as interface"
-       });
-
-       container.Register(new Bar {
-           Name = "Registered as Concrete type"
-       });
-   }
+    public override void Configure()
+    {
+        // Configure ServiceStack, Run custom logic after ASP.NET Core Startup
+    }
 }
 
-public class MyServices
+public class MyServices(IBar bar) : Service
 {
-    public IBar Bar { get; set; }
-    
+    [FromServices] // Inject optional dependencies from ASP.NET Core IOC
+    public Bar? ConcreteBar { get; set; }
+
     public object Any(Hello request)
     {
         return new HelloResponse {
-            Result = $"Hello, {Bar.Name}";
-        }
+            Result = $"Hello, {bar.Name}"
+        };
     }
 }
 </code></pre>
@@ -202,7 +213,9 @@ public class MyServices
             </div>
             <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
                 <p class="text-left clearfix">
-                    ServiceStack has an easy way to add packaged up functionality into your application with the use of the <code>Plugin API</code>. Within your <code>AppHost.Configure</code> method, Plugins can be added using the function <code>Plugins.Add</code> which takes an instance of an IPlugin.
+                    ServiceStack has an easy way to add packaged up functionality into your application with the use of the 
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/plugins">Plugin API</a>. 
+                    Plugins can be added using the function <code>services.AddPlugin</code> which takes an instance of an IPlugin.
                 </p>
                 <p class="text-left clearfix">
                     ServiceStack automatically registers several plugins by default including <code>CSV Format</code>, <code>HTML Format</code>, and <code>Predefined Routes</code> but also has a range of other Plugins available to add functionality to configure and add to your application with minimal fuss.
@@ -220,22 +233,31 @@ public class MyServices
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureAutoQuery))]
+
+namespace MyApp;
+
+public class ConfigureAutoQuery : IHostingStartup
 {
-   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+   public void Configure(IWebHostBuilder builder) => builder
+       .ConfigureServices(services => {
+           // Enable Audit History https://docs.servicestack.net/autoquery/audit-log
+           services.AddSingleton&lt;ICrudEvents&gt;(c =>
+               new OrmLiteCrudEvents(c.GetRequiredService&lt;IDbConnectionFactory&gt;()));
 
-   public override void Configure(Container container)
-   {
-       // Feature Plugin with default configuration
-       Plugins.Add(new ValidationFeature());
-
-       // Feature Plugin with custom configuration
-       Plugins.Add(new AuthFeature(
-           () => new CustomUserSession(),
-           new IAuthProvider[] {
-               new CredentialsAuthProvider(),
-           }));
-   }
+           // Enable AutoQuery Data https://docs.servicestack.net/autoquery/data
+           services.AddPlugin(new AutoQueryDataFeature());
+           
+           // Enable AutoQuery Services https://docs.servicestack.net/autoquery/
+           services.AddPlugin(new AutoQueryFeature {
+               MaxLimit = 1000,
+               //IncludeTotal = true,
+           });
+       })
+       .ConfigureAppHost(appHost => {
+           // Run Custom Logic on App Startup, e.g. Create Audit Schema table
+           appHost.Resolve&lt;ICrudEvents&gt;().InitSchema();
+       });
 }
 </code></pre>
             
@@ -252,13 +274,20 @@ public class MyServices
             </div>
             <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
                 <p class="text-left clearfix">
-                    ServiceStack has several ways to make it easy to populate application configuration from various data sources into a flexible <code>IAppSettings</code> instance including <code>Web.config</code>, <code>database</code>, <code>environment variables</code>, <code>text files</code> and more.
+                    ServiceStack has several ways to make it easy to populate application configuration from 
+                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/appsettings">various data sources </a> into a flexible 
+                    <code>IAppSettings</code> instance including <code>Web.config</code>, <code>database</code>, <code>environment variables</code>, 
+                    <code>text files</code> and more.
                 </p>
                 <p class="text-left clearfix">
-                    A <code>MultiAppSettings</code> builder is also provided which creates a cascading configuration that checks various sources in priority order. AppSettings provides a good base for your own custom strongly typed class of settings that can be initialized from AppSettings and then shared in your application as your own custom settings class.
+                    A <code>MultiAppSettings</code> builder is also provided which creates a cascading configuration that checks various sources in 
+                    priority order. AppSettings provides a good base for your own custom strongly typed class of settings that can be initialized 
+                    from AppSettings and then shared in your application as your own custom settings class.
                 </p>
                 <p class="text-left clearfix">
-                    AppSettings can be registered and used like any other auto wired dependency in your IoC container to make it easy to share runtime configuration among your services. This creates an easy to manage a central place for your application settings that can be used anywhere in your application.
+                    AppSettings can be registered and used like any other auto wired dependency in your IoC container to make it easy to share 
+                    runtime configuration among your services. This creates an easy to manage a central place for your application settings that 
+                    can be used anywhere in your application.
                 </p>
             </div>
             <div class="buttons text-center sm:text-left my-8">
@@ -270,41 +299,45 @@ public class MyServices
         </div>
         <div class="pt-4">
 
-            <pre><code class="language-csharp">public class AppHost : AppHostBase
+            <pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureServerEvents))]
+
+namespace MyApp;
+
+public class ConfigureServerEvents : IHostingStartup
 {
-   public AppHost() : base("Web",typeof(MyServices).Assembly)
-   {
-       var customSettings = new FileInfo("appsettings.txt");
-       if (customSettings.Exists)
-       {
-           AppSettings = new TextFileSettings(customSettings.FullName);
-       }
-   }
+   public void Configure(IWebHostBuilder builder) => builder
+       .ConfigureServices((context,services) => {
+           services.AddPlugin(new ServerEventsFeature());
 
-   public override void Configure(Container container)
-   {
-       var redisHost = AppSettings.GetString("RedisHost");
-       if (redisHost != null)
+           var customSettings = new FileInfo("appsettings.txt");
+           if (customSettings.Exists)
+           {
+               var appSettings = new TextFileSettings(customSettings.FullName);
+               services.AddSingleton&lt;IAppSettings&gt;(appSettings);
+               
+               var redisHost = appSettings.GetString("RedisHost");
+               if (redisHost != null)
+               {
+                   services.AddSingleton&lt;IServerEvents&gt;(
+                       new RedisServerEvents(new PooledRedisClientManager(redisHost)));
+               }
+           }
+       })
+       .ConfigureAppHost(appHost =>
        {
-           container.Register&lt;IServerEvents&gt;(c => 
-               new RedisServerEvents(new PooledRedisClientManager(redisHost)));
-
-           container.Resolve&lt;IServerEvents&gt;().Start();
-       }
-   }
+           appHost.TryResolve&lt;IServerEvents&gt;()?.Start();
+       });
 }
 
-public class ServerEventsServices : Service
+public class ServerEventsServices(IAppSettings settings) : Service
 {
-    public IAppSettings AppSettings { get; set; }
-
-    public void Any(PostRawToChannel request)
-    {
-        if (!IsAuthenticated && AppSettings.Get("LimitRemoteControlToAuthenticatedUsers", false))
-            throw new HttpError(HttpStatusCode.Forbidden, 
-                "You must be authenticated to use remote control.");
-        //...
-    }   
+   public void Any(PostRawToChannel request)
+   {
+       if (!IsAuthenticated && settings.Get("LimitRemoteControlToAuthenticatedUsers",false))
+           throw new HttpError(HttpStatusCode.Forbidden, 
+               "You must be authenticated to use remote control.");
+       //...
+   }   
 }
 </code></pre>
  
@@ -406,43 +439,44 @@ public class ConfigureDb : IHostingStartup
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
-{
-   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureDb))]
 
-   public override void Configure(Container container)
-   {
-       var connectionString =
-           "Server=127.0.0.1;Port=5432;" +
-           "Database=myDataBase;User Id=myUsername;" +
-           "Password=myPassword;";
-           
-       container.Register&lt;IDbConnectionFactory&gt;(
-           new OrmLiteConnectionFactory(
-               connectionString,
+namespace MyApp;
+
+public class ConfigureDb : IHostingStartup
+{
+   public void Configure(IWebHostBuilder builder) => builder
+       .ConfigureServices((context, services) => {
+
+           services.AddSingleton&lt;IDbConnectionFactory&gt;(new OrmLiteConnectionFactory(
+               context.Configuration.GetConnectionString("DefaultConnection"),
                PostgreSqlDialect.Provider));
-       
-       using var db = container
-           .Resolve&lt;IDbConnectionFactory&gt;().Open();
-       if (db.CreateTableIfNotExists&lt;MyTable&gt;())
+           
+           // Enable built-in Database Admin UI at /admin-ui/database
+           services.AddPlugin(new AdminDatabaseFeature());
+       })
+       .ConfigureAppHost(appHost =>
        {
-           db.Insert(new MyTable {
-               Name = "Seed Data for new MyTable"
-           });
-       }
-   }
+           using var db = appHost.Resolve&lt;IDbConnectionFactory&gt;().Open();
+           if (db.CreateTableIfNotExists&lt;MyTable&gt;())
+           {
+               db.Insert(new MyTable {
+                   Name = "Seed Data for new MyTable"
+               });
+           }
+       });
 }
 
 public class MyServices : Service
 {
-    public object Any(Hello request)
-    {
-        // Db property opens a new connection per request
-        var user = Db.Single&lt;User&gt;(x => x.Id == request.Id);
-        return new HelloResponse {
-            Result = $"Hello, {user.Name}!"
-        };
-    }
+   public object Any(Hello request)
+   {
+       // Db property opens a new connection per request
+       var user = Db.Single&lt;User&gt;(x => x.Id == request.Id);
+       return new HelloResponse {
+           Result = $"Hello, {user.Name}!"
+       };
+   }
 }
 </code></pre>
             
@@ -475,22 +509,21 @@ public class MyServices : Service
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
-{
-   public AppHost() : base("Web", 
-       typeof(MyServices).Assembly) { }
-   
-   public override void Configure(Container container)
-   {
-       var connectionString = "redis://localhost:6379";
-       // Register client manager.
-       container.Register&lt;IRedisClientsManager&gt;(
-           new RedisManagerPool(connectionString)); 
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureRedis))]
 
-       // Register client factory
-       container.Register(c =&gt; 
-           c.Resolve&lt;IRedisClientsManager&gt;().GetCacheClient());
-   }
+namespace MyApp;
+
+public class ConfigureRedis : IHostingStartup
+{
+   public void Configure(IWebHostBuilder builder) => builder
+       .ConfigureServices((context, services) => {
+           services.AddSingleton&lt;IRedisClientsManager&gt;(new RedisManagerPool(
+               context.Configuration.GetConnectionString("Redis") ?? "localhost:6379"));
+       })
+       .ConfigureAppHost(appHost => {
+           // Enable built-in Redis Admin UI at /admin-ui/redis
+           // appHost.Plugins.Add(new AdminRedisFeature());
+       });
 }
 
 public class MyServices : Service

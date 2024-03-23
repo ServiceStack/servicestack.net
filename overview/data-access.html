@@ -21,7 +21,6 @@
     </script>
     <link rel="stylesheet" href="css/app.css">
 
-    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
     <script type="importmap">
 {
     "imports": {
@@ -189,22 +188,22 @@ mountAll()
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
-{
-   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+        <pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureDb))]
 
-   public override void Configure(Container container)
-   {
-       var connectionString =
-           "Server=127.0.0.1;Port=5432;" +
-           "Database=host;User Id=user;" +
-           "Password=myPassword;";
-           
-       container.Register&lt;IDbConnectionFactory&gt;(
-           new OrmLiteConnectionFactory(
-               connectionString,
-               PostgreSqlDialect.Provider));
-   }
+namespace MyApp;
+
+public class ConfigureDb : IHostingStartup
+{
+  public void Configure(IWebHostBuilder builder) => builder
+      .ConfigureServices((context, services) => {
+
+          services.AddSingleton&lt;IDbConnectionFactory&gt;(new OrmLiteConnectionFactory(
+              context.Configuration.GetConnectionString("DefaultConnection"),
+              PostgreSqlDialect.Provider));
+          
+          // Enable built-in Database Admin UI at /admin-ui/database
+          services.AddPlugin(new AdminDatabaseFeature());
+      });
 }
 </code></pre>
             
