@@ -72,22 +72,22 @@
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
-{
-   public AppHost() : base("Web",typeof(MyServices).Assembly){}
+        <pre><code class="language-csharp">[assembly: HostingStartup(typeof(MyApp.ConfigureDb))]
 
-   public override void Configure(Container container)
-   {
-       var connectionString =
-           "Server=127.0.0.1;Port=5432;" +
-           "Database=host;User Id=user;" +
-           "Password=myPassword;";
-           
-       container.Register&lt;IDbConnectionFactory&gt;(
-           new OrmLiteConnectionFactory(
-               connectionString,
-               PostgreSqlDialect.Provider));
-   }
+namespace MyApp;
+
+public class ConfigureDb : IHostingStartup
+{
+  public void Configure(IWebHostBuilder builder) => builder
+      .ConfigureServices((context, services) => {
+
+          services.AddSingleton&lt;IDbConnectionFactory&gt;(new OrmLiteConnectionFactory(
+              context.Configuration.GetConnectionString("DefaultConnection"),
+              PostgreSqlDialect.Provider));
+          
+          // Enable built-in Database Admin UI at /admin-ui/database
+          services.AddPlugin(new AdminDatabaseFeature());
+      });
 }
 </code></pre>
             

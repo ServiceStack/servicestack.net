@@ -86,7 +86,7 @@ List&lt;Contact&gt; response = client.Get(new GetContacts());
                 </p>
             </div>
             <div class="buttons text-center sm:text-left my-8">
-                <a href="https://docs.servicestack.net/routing"
+                <a href="https://docs.servicestack.net/endpoint-routing"
                    class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-5 py-2 inline-block text-blue-100 rounded">
                     Learn more
                 </a>
@@ -96,7 +96,7 @@ List&lt;Contact&gt; response = client.Get(new GetContacts());
 
 <pre><code class="language-csharp">[Route("/hello")]
 [Route("/hello/{Name}")]
-public class Hello : IReturn&lt;HelloResponse&gt;
+public class Hello : IGet, IReturn&lt;HelloResponse&gt;
 {
    public string Name { get; set; }
 }
@@ -167,21 +167,21 @@ public class MyServices : Service
 </code></pre>
 
 <b>Contacts.cs</b>
-<pre><code class="language-csharp">[Route("/contacts", "GET")]
-[Route("/contacts/{Id}", "GET")]
-public class GetContacts : IReturn&lt;List&lt;Contact&gt;&gt;
+<pre><code class="language-csharp">[Route("/contacts")]
+[Route("/contacts/{Id}")]
+public class GetContacts : IGet, IReturn&lt;List&lt;Contact&gt;&gt;
 { 
    public int? Id { get; set; }
 }
 
 [Route("/contacts/{Id}", "PATCH PUT")]
-public class UpdateContact : IReturn&lt;Contact&gt;
+public class UpdateContact : IPut, IReturn&lt;Contact&gt;
 {
    public int Id { get; set; }
 }
 
-[Route("/contacts/{Id}", "DELETE")]
-public class DeleteContact : IReturnVoid
+[Route("/contacts/{Id}")]
+public class DeleteContact : IDelete, IReturnVoid
 {
    public int Id { get; set; }
 }
@@ -292,16 +292,12 @@ public class NoNumbersInPathAttribute : RequestFilterAttribute
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
+<pre><code class="language-csharp">public class AppHost() : AppHostBase("MyApp"), IHostingStartup
 {
-   public AppHost() : base("Web",typeof(MyServices).Assembly){}
-
-   public override void Configure(Container container)
-   {
-       // Register custom validator
-       container.Register&lt;IAddressValidator&gt;(
-           new AddressValidator());
-   }
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => {
+            services.AddSingleton&lt;IAddressValidator&gt;(c => new AddressValidator());
+        });
 }
 
 // ServiceInterface
@@ -330,18 +326,16 @@ public class AddressValidator : IAddressValidator
    }
 }
 
-public class UserValidator : AbstractValidator&lt;CreateUser&gt;
+public class UserValidator(IAddressValidator addressValidator) 
+    : AbstractValidator&lt;CreateUser&gt;
 {
-   // Resolved from IoC
-   public IAddressValidator AddressValidator { get; set; }
-
    public UserValidator()
    {
        //Validation rules for all requests
        RuleFor(r =&gt; r.Name).NotEmpty();
        RuleFor(r =&gt; r.Age).GreaterThan(0);
        RuleFor(x =&gt; x.Address).Must(x =&gt; 
-           AddressValidator.ValidAddress(x));
+           addressValidator.ValidAddress(x));
    }
 }
 
@@ -400,15 +394,14 @@ public class User
         </div>
         <div class="pt-4">
 
-<pre><code class="language-csharp">public class AppHost : AppHostBase
+<pre><code class="language-csharp">public class AppHost() : AppHostBase("MyApp"), IHostingStartup
 {
-   public AppHost() : base("Web",typeof(MyServices).Assembly){}
-
-   public override void Configure(Container container)
-   {
-       // Add additional format support by using Plugins
-       Plugins.Add(new MsgPackFormat());
-   }
+   public void Configure(IWebHostBuilder builder) => builder
+       .ConfigureServices(services => {
+           services.AddSingleton&lt;IAddressValidator&gt;(c => new AddressValidator());
+           // Add additional format support by using Plugins
+           services.AddPlugin(new MsgPackFormat());
+       });
 }
 
 public class MyServices : Service
