@@ -4,6 +4,7 @@ url: https://youtu.be/JlUjWlVslRg
 tags: [vue,autoquery,identity-auth]
 date: 05-03-2024
 order: 1
+draft: true
 ---
 
 In this video we explore the newly updated `vue-spa` template which has incorporated changes from Microsoft's own 
