@@ -190,9 +190,9 @@ List&lt;Contact&gt; response = client.Get(new GetContacts());
             </div>
             <div class="max-w-xl leading-7 text-gray-700 lg:max-w-lg prose lg:prose-lg">
                 <p class="text-left clearfix">
-                    Without any configuration required, ServiceStack already includes <a href="https://docs.servicestack.net/routing#pre-defined-routes">pre-defined routes</a> for all services in the format:
-                    <pre>/api?/[xml|json|html|jsv|csv]/[reply|oneway]/[servicename]</pre>
-                    Where <code>servicename</code> is the name of the Request DTO. For example, the pre-defined URL to call a JSON <code>Hello</code> Service is <code style="white-space: nowrap">/json/reply/hello</code>
+                    Without any configuration required, ServiceStack already includes <a href="https://docs.servicestack.net/endpoint-routing#api-pre-defined-route">pre-defined routes</a> for all services in the format:
+                    <pre>/api/[RequestDto]</pre>
+                    For example, the pre-defined URL to call a JSON <code>Hello</code> Service is <code style="white-space: nowrap">/api/Hello</code>
                 </p>
                 <p class="text-left clearfix">
                     Friendly custom routes are defined using the <code>RouteAttribute</code> applied to the Request DTO. Variable place holders bind by property name and can be used in the path. For example, the path <code>/hello/world</code> will bind "world" to the <code>Name</code>  property of the Request DTO.
