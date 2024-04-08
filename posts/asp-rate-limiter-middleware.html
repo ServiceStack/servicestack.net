@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Migrating from Jekyll to VitePress - ServiceStack</title>
+    <title>Using ASP.NET Core Rate Limiter Middleware - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -36,10 +36,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@layoric" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Since Jekyll support has been officially sunset, we decided to migrate our docs site to VitePress" />
-    <meta property="og:url" content="https://servicestack.net/posts/jekyll-to-vitepress" />
-    <meta property="og:title" content="Migrating from Jekyll to VitePress" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1524668951403-d44b28200ce0?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Learn how to use the new Rate Limiter Middleware in ServiceStack to protect your APIs from abuse." />
+    <meta property="og:url" content="https://servicestack.net/posts/asp-rate-limiter-middleware" />
+    <meta property="og:title" content="Using ASP.NET Core Rate Limiter Middleware" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1527710200112-665192dc1c22?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -124,7 +124,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Migrating from Jekyll to VitePress
+                Using ASP.NET Core Rate Limiter Middleware
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -165,20 +165,22 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1524668951403-d44b28200ce0?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Migrating from Jekyll to VitePress Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1527710200112-665192dc1c22?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Using ASP.NET Core Rate Limiter Middleware Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/docs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docs</a>
-                            <a href="posts/tagged/markdown" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">markdown</a>
+                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                            <a href="posts/tagged/net8" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">.net8</a>
+                            <a href="posts/tagged/auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">auth</a>
+                            <a href="posts/tagged/middleware" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">middleware</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2021-11-01T00:00:00.0000000">November 1, 2021</time>
+                                <time datetime="2024-04-08T00:00:00.0000000">April 8, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>12 min read</span>
+                                <span>6 min read</span>
                             </div>
                         </div>
                 </div>
@@ -191,325 +193,190 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <style>
-table {
-    margin-bottom: 2em;
-}
-th, td {
-    padding: 1em 1.5em;
-}
-tbody tr:nth-child(odd) {
-    --tw-bg-opacity: 1;
-    background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-}
-</style>
-<p>Since Jekyll support has been officially sunset, we decided to migrate our docs site to VitePress. VitePress is a new static site generator based on Vite and Vue 3. It is a cut down version of VuePress but using the blisteringly fast Vite build tool.</p>
-<p>This has given us the ability to update our docs locally with instant on save update to view the final result quickly while we edit/create docs.</p>
-<div class="my-8 ml-20 flex justify-center">
-    <img style="max-height:150px" src="/img/posts/jekyll-to-vitepress/vite.svg" alt="Vite logo">
-    <img style="max-height:150px" src="/img/posts/jekyll-to-vitepress/vuepress.png" alt="VitePress logo">
-</div>
-<p>We wanted to share our experience with this process in the hope it might help others that are performing the same migration, document common errors and help other developer to get an idea about what is involved before you might undertake such a task.</p>
-<h2 id="jekyll-vs-vitepress">Jekyll vs VitePress<a class="header-anchor" href="javascript:;" onclick="location.hash='#jekyll-vs-vitepress'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Below is not an exhaustive list of features but more focusing on pros and cons when it comes to comparing these two options for use as the static site generator for a documentation site.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Features</th>
-<th style="text-align: left;">Jekyll</th>
-<th style="text-align: left;">VitePress</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Native Language</td>
-<td style="text-align: left;">Ruby</td>
-<td style="text-align: left;">JavaScript</td>
-</tr>
-<tr>
-<td style="text-align: left;">Template Syntax</td>
-<td style="text-align: left;">Liquid</td>
-<td style="text-align: left;">Vue</td>
-</tr>
-<tr>
-<td style="text-align: left;">Update Time</td>
-<td style="text-align: left;">6-30 seconds</td>
-<td style="text-align: left;">30-500 ms</td>
-</tr>
-<tr>
-<td style="text-align: left;">Themes</td>
-<td style="text-align: left;">✅ - mature market</td>
-<td style="text-align: left;">✅ - limited</td>
-</tr>
-<tr>
-<td style="text-align: left;">Extensible</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">✅ (only themes + vite plugins)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Client framework</td>
-<td style="text-align: left;">None</td>
-<td style="text-align: left;">Vue 3</td>
-</tr>
-<tr>
-<td style="text-align: left;">Maintained</td>
-<td style="text-align: left;">No longer</td>
-<td style="text-align: left;">New project</td>
-</tr>
-<tr>
-<td style="text-align: left;">1.0+ release</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-<tr>
-<td style="text-align: left;">Permalink</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖ (depends on filename)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Markdown support</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">✅</td>
-</tr>
-<tr>
-<td style="text-align: left;">HTML support</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">✅ (must use Vue component)</td>
-</tr>
-<tr>
-<td style="text-align: left;">Sitemap generation</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-<tr>
-<td style="text-align: left;">Tags</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-<tr>
-<td style="text-align: left;">Clean URLs</td>
-<td style="text-align: left;">✅</td>
-<td style="text-align: left;">➖</td>
-</tr>
-</tbody>
-</table>
-<p>This list might look bad for VitePress, but it comes down to a young library that is still in active development. The default theme for VitePress is also centered around technical documentation making it quick to get up and running looking good for this use case.</p>
-<h2 id="killer-feature-performance">Killer feature - Performance<a class="header-anchor" href="javascript:;" onclick="location.hash='#killer-feature-performance'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The stand out feature and one of the most compelling reason for us to undertake this migration was not the default theme (although that helped) but the user experience when editing documentation locally.</p>
-<p><img src="/img/posts/jekyll-to-vitepress/vitepress-update-large.gif" alt="" /></p>
-<p>In contrast, editing this blog post for our main site which is still currently using Jekyll, it takes between 6-8 seconds for a small single page change. Previously our docs page with over 300 pages could take over a minute depending on the type of change.</p>
-<pre><code>Regenerating: 1 file(s) changed at 2021-10-29 16:17:00
-                    _blog/posts/2021-10-29-jekyll-migration.md
-                    ...done in 6.3882767 seconds.
-</code></pre>
-<p>Having a statically generated site that is hard to preview or has a slow iteration cycle can be extremely frustrating to work with so we were looking for something that a pleasure to work with and well suited to documentation.</p>
-<h2 id="common-migration-problems">Common Migration Problems<a class="header-anchor" href="javascript:;" onclick="location.hash='#common-migration-problems'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>When we started this task to migrate, we want to first have a proof of concept of migrating all the content to the same URLs.
-This required us to achieve a few things before we could get stuck into fixing content/syntax related changes.</p>
-<ul>
-<li>Page URLs must be the same.</li>
-<li>Project must be able to run locally and deploy.</li>
-<li>Side menu links must be present.</li>
-</ul>
-<p>These were our minimum requirements before we wanted to commit to making all the changes required to migrate.</p>
-<h2 id="file-name-vs-slug">File name vs <code>slug</code><a class="header-anchor" href="javascript:;" onclick="location.hash='#file-name-vs-slug'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The first one surfaced a design difference straight away. While Jekyll created HTML output based on frontmatter <code>slug</code> property, VitePress only works off the MarkDown file name.</p>
-<p>We would commonly create a MarkDown file called one thing but change our mind on the URL and change the frontmatter <code>permalink</code> to something else. This broke all our existing paths, so we needed a way to parse the markdown files, and produce copies with the updated name using the <code>slug</code> value in the frontmatter.</p>
-<p>Since we were still evaluating this process, we created a quick C# script that would take in a file, extract the <code>slug</code> value and copy a file with that name back out into a separate directory.</p>
-<pre><code class="language-csharp">static void Main(string[] args)
+                    <p>Introduction Rate limiting is an important technique for protecting web APIs and applications from excessive traffic and abuse. By throttling the number of requests a client can make in a given time period, rate limiting helps ensure fair usage, maintains performance and availability, and defends against denial-of-service attacks.</p>
+<p>ASP.NET Core provides built-in middleware for rate limiting based on client IP address or client ID. And now with the latest release, ServiceStack has added support for ASP.NET Core endpoints, making it possible to leverage the same rate limiting middleware across all ASP.NET Core endpoints, including ServiceStack APIs.</p>
+<p>In this post, we'll look at how to enable rate limiting in an ASP.NET Core app using the standard middleware. Then we'll explore some more advanced options to fine-tune the rate limiting behavior. Finally, we'll see how to implement per-user rate limiting for multi-tenant SaaS applications using ASP.NET Core Identity and ServiceStack Mapped Endpoints.</p>
+<p>Setting Up Rate Limiting To get started, let's enable the basic rate limiting middleware in an ASP.NET Core application:</p>
+<ol>
+<li>Install the <code>Microsoft.AspNetCore.RateLimiting</code> NuGet package</li>
+<li>In the <code>Program.cs</code>, add <code>AddRateLimiter</code> to register the rate limiting services:</li>
+</ol>
+<pre><code class="language-csharp">builder.Services.AddRateLimiter(options =&gt;
 {
-    var filename = args[0];
-    var fileLines = File.ReadAllLines(filename).ToList();
-    if (!Directory.Exists(&quot;updated&quot;))
+    options.GlobalLimiter = PartitionedRateLimiter.Create&lt;HttpContext, string&gt;(httpContext =&gt;
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(), 
+            factory: partition =&gt; new FixedWindowRateLimiterOptions
+            {
+                AutoReplenishment = true,
+                PermitLimit = 100,
+                QueueLimit = 0,
+                Window = TimeSpan.FromMinutes(1)
+            }));
+    
+    options.OnRejected = (context, cancellationToken) =&gt;
     {
-        Directory.CreateDirectory(&quot;updated&quot;);
-    }
-    foreach (var line in fileLines)
-    {
-        if (line.StartsWith(&quot;slug:&quot;))
+        if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
         {
-            var newName = line.Split(&quot;:&quot;)[1].Trim();
-            File.WriteAllLines(&quot;./updated/&quot; + newName + &quot;.md&quot;, fileLines);
+            context.HttpContext.Response.Headers.RetryAfter = retryAfter.TotalSeconds.ToString();
         }
-    }
-}
-</code></pre>
-<p>Not very elegant, but it did the job. This was published as a <code>single file</code> executable targeting linux so it could be easily used with tools like <code>find</code> with <code>--exec</code>.</p>
-<pre><code class="language-shell">find *.md -maxdepth 1 -type f -exec ./RenameMd {} \;
-</code></pre>
-<p>All round pretty hacky, but this was also while we were still evaluating VitePress, so it was considered a throw away script.</p>
-<blockquote>
-<p>This was run in each directory as needed, if <code>slug</code> or <code>permalink</code> is controlling your nested pathing, this problem will be more complex to handle.</p>
-</blockquote>
-<p>This was run for our main folder of docs as well as our <code>releases</code> folder and we have successfully renamed files.</p>
-<h2 id="broken-links-are-build-failures">Broken links are build failures<a class="header-anchor" href="javascript:;" onclick="location.hash='#broken-links-are-build-failures'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>VitePress is more strict with issues than Jekyll. This is actually a good thing, especially as your site content grows. VitePress will fail building your site if in your markdown to link to a relative link that it can't see is a file.</p>
-<p>This comes from the above design decision of not aliasing files to output paths. Markdown links like <code>[My link](/my-cool-page)</code> needs to be able to see <code>my-cool-page.md</code>. This means if you move or rename a file, it will break if something else links to it. Jekyll got around this by allowing the use of <code>permalink</code> and <code>slug</code> which is great for flexibility, but means at build time it can't be sure (without a lot more work) if the relative path won't be valid.</p>
-<p>There are drawbacks to this though. If you host multiple resources under the same root path as your VitePress site and you want to reference this, I'm not sure you will be able to. You might have to resort to absolute URLs to link out to resources like this. And since VitePress doesn't alias any paths, it means your hosting environment will need to do this.</p>
-<h2 id="syntax-issues">Syntax issues<a class="header-anchor" href="javascript:;" onclick="location.hash='#syntax-issues'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Jekyll is very forgiving when it comes to content that is passed around as straight html and put in various places using Liquid. For example if you have the following HTML in an <code>include</code> for Jekyll.</p>
-<pre><code class="language-html">&lt;p&gt;This solution is &lt;50 lines of code&lt;/p&gt;
-</code></pre>
-<p>Jekyll will just copy it and not bother you about the invalid HTML issues of having a <code>less-than (&lt;)</code> in the middle of a <code>&lt;p&gt;</code> element. VitePress won't however, and you'll need to correctly use <code>&amp;lt;</code> and <code>&amp;gt;</code> encoded symbols appropriately.</p>
-<h2 id="include-html">Include HTML<a class="header-anchor" href="javascript:;" onclick="location.hash='#include-html'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Another issue is the difference of how to reuse content. In Jekyll, you would use <code>{% include my/path/to/file.html %}</code>. This will likely show up in errors like <code>[vite:vue] Duplicate attribute</code>.</p>
-<p>Instead in VitePress, an include of straight HTML will require migrating that content to a Vue component.</p>
-<p>For example, if we have content file <code>catchphrase.html</code> like the following.</p>
-<pre><code class="language-html">&lt;div&gt;
-    &lt;h4&gt;Catchphrase&lt;/h4&gt;
-    &lt;p&gt;It's.. what I do..&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>We would need to wrap this in a Vue component like <code>catchphrase.vue</code>:</p>
-<pre><code class="language-html">&lt;template&gt;
-    &lt;div&gt;
-        &lt;h4&gt;Catchphrase&lt;/h4&gt;
-        &lt;p&gt;It's.. what I do..&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-    export default {
-        name: &quot;catchphrase&quot;
-    }
-&lt;/script&gt;
 
-&lt;style scoped&gt;
+        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+        context.HttpContext.Response.WriteAsync(&quot;Too many requests. Please try again later.&quot;);
 
-&lt;/style&gt;
-</code></pre>
-<p>Then it would need to be imported. This can be declared globally in the vitepress theme config or adhoc in the consuming Markdown file itself.</p>
-<pre><code class="language-markdown">&lt;script setup&gt;
-import catchphrase from './catchphrase.vue';
-&lt;/script&gt;
-
-&lt;catchphrase /&gt;
-</code></pre>
-<p>The <code>&lt;catchphrase /&gt;</code> is where it is injected into the output. For HTML so simple, this could be instead converted to Markdown and used the same way.</p>
-<pre><code class="language-markdown">## Catchphrase
-it's.. what I do..
-</code></pre>
-<p>And then used:</p>
-<pre><code class="language-markdown">&lt;script setup&gt;
-import catchphrase from './catchphrase.md';
-&lt;/script&gt;
-
-&lt;catchphrase /&gt;
-</code></pre>
-<h2 id="jekyll-markdownify-redundant">Jekyll markdownify redundant<a class="header-anchor" href="javascript:;" onclick="location.hash='#jekyll-markdownify-redundant'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Something similar is done in Jekyll, but with the use of Liquid filters.</p>
-<pre><code class="language-markdown">{% capture projects %}
-{% include web-new-netfx.md %}
-{% endcapture %} 
-{‎{ projects | markdownify }‎}
-</code></pre>
-<p>This use of <code>capture</code> and passing the content to be converted is done by default when importing.</p>
-<pre><code class="language-markdown">&lt;script setup&gt;
-import netfxtable from './.vitepress/includes/web-new-netfx.md';
-&lt;/script&gt;
-
-&lt;netfxtable /&gt;
-</code></pre>
-<p>If the module is declared global, then only the <code>&lt;netfxtable /&gt;</code> is needed anywhere in your site to embed the content.</p>
-<h2 id="templating-syntax-the-same-but-different">Templating syntax the same but different<a class="header-anchor" href="javascript:;" onclick="location.hash='#templating-syntax-the-same-but-different'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>When moving from Jekyll to VitePress, I came across errors like <code>Cannot read property 'X' of undefined</code>. It was referring to some example code in a page we had that looked something like this.</p>
-<pre><code class="language-markdown">Content text here with templating code example below.
-
-    Value: {‎{X.prop}‎}
-
-More explanation here.
-</code></pre>
-<p>This error came about because we didn't religiously fence our code examples. Jekyll let us get away with this and actually produced the visuals we wanted without trying to render value in the handlebars <code>{‎{ }‎}</code> syntax.</p>
-<p>VitePress only ignores these if they are in a code fence using the triple tilda syntax OR if the content is within a <code>:::v-pre</code> block.</p>
-<h2 id="replacing-raw-and-endraw">Replacing <code>raw</code> and <code>endraw</code><a class="header-anchor" href="javascript:;" onclick="location.hash='#replacing-raw-and-endraw'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Since some of our documentation used handlebar syntax in example code, we needed a way for Jekyll to ignore these statements and just present our code.
-<code>raw</code> and <code>endraw</code> were used which were usually wrapping code blocks. VitePress doesn't have a problem with this syntax which means the <code>{% raw %}</code> statements were included in our page which we didn't want.</p>
-<p>This was a matter of finding where these were used in all our documents and replace them with <code>:::v-pre</code> blocks as needed.</p>
-<h2 id="sidebar">Sidebar<a class="header-anchor" href="javascript:;" onclick="location.hash='#sidebar'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This was a different situation. In Jekyll, we had created a <code>SideBar.md</code> file to help us render a left hand side menu of contents for the docs site.
-In VitePress's default theme, we could provide a JSON representation and the client would then dynamically populate it further using different levels of headings.</p>
-<p>To do this, we used a simple NodeJs script that used the <code>markdown-it</code> library to parse the MarkDown itself and produce the expected JSON.</p>
-<p>Loading the file and extracting the elements we needed was quite straight forward.</p>
-<pre><code class="language-js">let fs = require('fs')
-let MarkdownIt = require('markdown-it');
-let md = new MarkdownIt();
-
-let content = fs.readFileSync('SideBar.md','utf8')
-let res = md.parse(content).filter((element, index) =&gt; {
-    return (element.level == '3' || element.level == '5') &amp;&amp; element.type == 'inline';
+        return new ValueTask();
+    };
 });
 </code></pre>
-<p>Now we had <code>res</code> that contained all the information we would need, we can iterate the array, transforming the data as we go.</p>
-<pre><code class="language-js">let sidebarObjs = {
-    '/': []
-};
-var lastHeading = null;
-var lastHeadingIndex = -1;
-for(let i = 0; i &lt; res.length; i++) {
-    let item = res[i];
-    if(item.level == '3') {
-        lastHeading = item.content;
-        sidebarObjs['/'].push({
-            text: lastHeading,
-            children: []
-        })
-        lastHeadingIndex++;
-        continue;
-    }
-    let text = item.children[1].content;
-    let link = item.children[0].attrs[0][1];
-    sidebarObjs['/'][lastHeadingIndex].children.push({
-        text: text,
-        link: link
-    })
-}
-
-fs.writeFileSync('SideBar_format.json',JSON.stringify(sidebarObjs),'utf-8')
+<p>This sets up a fixed window rate limiter with a limit of 100 requests per minute, partitioned by either authenticated username or client host name.</p>
+<ol>
+<li>Add the <code>UseRateLimiter</code> middleware to the pipeline:</li>
+</ol>
+<pre><code class="language-csharp">app.UseRateLimiter();
 </code></pre>
-<p>Once working, we later split this into multiple menus and condensed what we already had to make the menu more manageable.</p>
-<h2 id="problems-we-worked-around">Problems we worked around<a class="header-anchor" href="javascript:;" onclick="location.hash='#problems-we-worked-around'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>That covers the bulk of the changes we made that prevented us from running, building and deploying our application, however there were some short comings that we had to work around outside of VitePress itself.
-There were 2 main sticking points for which we had to come up with a creative work around.</p>
+<p>With this basic setup, the API is now protected from excessive requests from individual clients. If a client exceeds the limit of 100 requests/minute, subsequent requests will receive a <code>HTTP 429 Too Many Requests</code> response.</p>
+<p>Advanced Options The rate limiting middleware provides several options to customize the behavior:</p>
 <ul>
-<li>Client router always appending <code>.html</code> (breaking clean URLs)</li>
-<li>Failing to route to paths with addition dots (<code>.</code>) in the URL</li>
+<li><code>PermitLimit</code> - The maximum number of requests allowed in the time window</li>
+<li><code>QueueLimit</code> - The maximum number of requests that can be queued when the limit is exceeded. Set to 0 to disable queueing.</li>
+<li><code>Window</code> - The time window for the limit, e.g. 1 minute, 1 hour, etc.</li>
+<li><code>AutoReplenishment</code> - Whether the rate limit should reset automatically at the end of each window</li>
 </ul>
-<p>Hosting clean URLs can be done from the server side, so we used AWS CloudWatch functions to rewrite the request to append the <code>.html</code> in the backend if it was not provided.
-However, VitePress still generated all page links with <code>.html</code>, creating multiple paths for the single document which can cause problems with other processes such as search indexing.</p>
-<p>Since our documentation is something we edit quite frequently, we didn't want to be stuck in limbo due to these two problems while we workout and propose how VitePress itself might allow for such a setup.
-Our solution <strong>is NOT recommended</strong> since it will be quite brittle which we have accepted. We found the 2 locations in the VitePress source that were causing this problem during static site generation.
-Thankfully, the logic is simple and we can remove 2 lines of code during the <code>npm install</code> phase out of our <code>node_modules</code> directory so that our CI builds would be consistent.</p>
-<pre><code class="language-js">const fs = require('fs');
-const glob = require('glob');
-let js = 'node_modules/vitepress/dist/client/app/router.js';
-fs.writeFileSync(js, fs.readFileSync(js, 'utf8').replace(&quot;url.pathname += '.html';&quot;, ''))
+<p>For example, to allow short bursts but constrain average rate, we could implement a sliding window algorithm:</p>
+<pre><code class="language-csharp">options.GlobalLimiter = PartitionedRateLimiter.Create&lt;HttpContext, string&gt;(httpContext =&gt;
+    RateLimitPartition.GetSlidingWindowLimiter(
+        partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
+        factory: partition =&gt; new SlidingWindowRateLimiterOptions
+        {
+            AutoReplenishment = true,
+            PermitLimit = 100,
+            QueueLimit = 25,
+            Window = TimeSpan.FromMinutes(1),
+            SegmentsPerWindow = 4
+        }));
 
-glob('node_modules/vitepress/dist/node/serve-*.js',{},(err,files) =&gt;{
-    let file = files[0];
-    fs.writeFileSync(file,fs.readFileSync(file,'utf8').replace(&quot;cleanUrl += \&quot;.html\&quot;;&quot;,''))
-})
+options.OnRejected = (context, cancellationToken) =&gt;
+{
+    if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
+    {
+        context.HttpContext.Response.Headers.RetryAfter = retryAfter.TotalSeconds.ToString();
+    }
 
-console.log('Completed post install process...')
+    context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+    context.HttpContext.Response.WriteAsync(&quot;Too many requests. Please try again later.&quot;);
+
+    return new ValueTask();
+};
 </code></pre>
-<blockquote>
-<p>NOT RECOMMENDED</p>
-</blockquote>
-<p>If you have standard <code>.html</code> paths on your existing site, you won't need the above. It is just a temporary workaround for getting clean URLs, which is again, <em>not recommended</em>.</p>
-<h2 id="verdict">Verdict<a class="header-anchor" href="javascript:;" onclick="location.hash='#verdict'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>While we have made the jump to VitePress, it is still young and under heavy development.
-There is a good chance that some of the behaviour and lacking features will make this not a viable option for migrating off Jekyll.</p>
-<p>And we knew this going in as it is very clearly outlined on the front page of their docs:</p>
-<p><img src="/img/posts/jekyll-to-vitepress/vitepress-warning.png" alt="" /></p>
-<p>However, while there are still outstanding issues, the developer experience of Vue 3 combined with Vite and an SSG theme
-aimed at producing documentation is extremely compelling.
-The work Even You and the VitePress community are doing is something to look out for as currently we believe it offers
-one of the best content heavy site development experiences currently possible.</p>
-<h2 id="servicestack-a-sponsor-of-vues-evan-you">ServiceStack a Sponsor of Vue's Evan You<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-a-sponsor-of-vues-evan-you'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>As maintainers of several <a href="https://docs.servicestack.net/templates-vue">Vue &amp; .NET Project Templates</a>, we're big fans of
-Evan's work creating Vue, Vite and his overall stewardship of their surrounding ecosystems which greatly benefits from his
-master design skills and fine attention to detail in both library and UI design who has a talent in creating inherently
-simple technologies that progressively scales up to handle the complexest of Apps.</p>
-<p>We believe in and are excited for the future of Vue and Vite that to show our support ServiceStack is now a sponsor of
-<a href="https://github.com/sponsors/yyx990803">Evan You on GitHub sponsors</a> 🎉 🎉</p>
+<p>This allows up to 100 requests per minute on average, with the ability to burst up to 25 additional requests which are queued.</p>
+<h2 id="per-user-rate-limiting-for-saas-applications">Per-User Rate Limiting for SaaS Applications<a class="header-anchor" href="javascript:;" onclick="location.hash='#per-user-rate-limiting-for-saas-applications'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In a typical SaaS application, each user or tenant may have a different subscription plan that entitles them to a certain level of API usage. We can implement this per-user rate limiting by leveraging ASP.NET Core Identity to authenticate users and retrieve their plan details, and then configuring the rate limiter accordingly.</p>
+<p>First, ensure you have ASP.NET Core Identity set up in your application to handle user authentication. Then, add a property to your user class to store the rate limit for each user based on their plan:</p>
+<pre><code class="language-csharp">public class ApplicationUser : IdentityUser
+{
+    public int RateLimit { get; set; }
+}
+</code></pre>
+<p>Next, update the rate limiter configuration to partition by user and read the rate limit from the user's plan:</p>
+<pre><code class="language-csharp">builder.Services.AddRateLimiter(options =&gt;
+{
+    options.AddPolicy(&quot;per-user&quot;, context =&gt;
+    {
+        var user = context.User.Identity?.Name;
+        if (string.IsNullOrEmpty(user))
+        {
+            // Fallback to host name for unauthenticated requests
+            return RateLimitPartition.GetFixedWindowLimiter(
+                partitionKey: context.Request.Headers.Host.ToString(),
+                factory: partition =&gt; new FixedWindowRateLimiterOptions
+                {
+                    AutoReplenishment = true,
+                    PermitLimit = 100,
+                    QueueLimit = 0,
+                    Window = TimeSpan.FromMinutes(1)
+                });
+        }
+        // User exists
+        // Get the user's rate limit from their plan
+        var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var userManager = context.RequestServices.GetService&lt;UserManager&lt;ApplicationUser&gt;&gt;();
+        var appUser = userManager.FindByIdAsync(userId).Result;
+        var rateLimit = appUser?.RateLimit ?? 0;
+
+        // Create a user-specific rate limiter
+        return RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: user,
+            factory: partition =&gt; new FixedWindowRateLimiterOptions
+            {
+                AutoReplenishment = true,
+                PermitLimit = rateLimit,
+                QueueLimit = 0,
+                Window = TimeSpan.FromMinutes(1)
+            });
+    });
+});
+</code></pre>
+<p>This configuration first checks if the request is authenticated. If not, it falls back to the default host-based rate limiting.</p>
+<p>For authenticated requests, it retrieves the user ID from the authentication claims and looks up the user in the ASP.NET Core Identity <code>UserManager</code>. It then reads the <code>RateLimit</code> property from the user object, which should be set based on the user's subscription plan.</p>
+<p>Finally, it creates a user-specific rate limiter using the <code>PartitionedRateLimiter</code> with the user's ID as the partition key and their personal rate limit as the <code>PermitLimit</code>.</p>
+<p>With this setup, each user will be rate limited independently based on their plan allowance. If a user exceeds their personal limit, they will receive a <code>429 Too Many Requests</code> response, while other users can continue making requests up to their own limits.</p>
+<p>Not only that, our rate handling is consistent across ASP.NET Core Endpoints regardless of how they are implemented, be it ServiceStack APIs, MVC Controllers, Minimal APIs etc. If you do need to target ServiceStack APIs with a specific policy name, you can create one with a policy name and use it when calling <code>UseServiceStack</code>.</p>
+<pre><code class="language-csharp">services.AddRateLimiter(options =&gt;
+{
+    // Policy name &quot;per-user&quot; is used by ServiceStack Mapped Endpoints
+    options.AddPolicy(&quot;per-user&quot;, context =&gt;
+    {
+        var user = context.User.Identity?.Name;
+        if (string.IsNullOrEmpty(user))
+        {
+            // Fallback to host name for unauthenticated requests
+            return RateLimitPartition.GetFixedWindowLimiter(
+                partitionKey: context.Request.Headers.Host.ToString(),
+                factory: partition =&gt; new FixedWindowRateLimiterOptions
+                {
+                    AutoReplenishment = true,
+                    PermitLimit = 100,
+                    QueueLimit = 0,
+                    Window = TimeSpan.FromMinutes(1)
+                });
+        }
+        // User exists
+        // Get the user's rate limit from their plan
+        var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var userManager = context.RequestServices.GetService&lt;UserManager&lt;ApplicationUser&gt;&gt;();
+        var appUser = userManager.FindByIdAsync(userId).Result;
+        var rateLimit = appUser?.RateLimit ?? 0;
+
+        // Create a user-specific rate limiter
+        return RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: user,
+            factory: partition =&gt; new FixedWindowRateLimiterOptions
+            {
+                AutoReplenishment = true,
+                PermitLimit = rateLimit,
+                QueueLimit = 0,
+                Window = TimeSpan.FromMinutes(1)
+            });
+    });
+    
+    // ...
+});
+
+//...
+
+// Make sure to call UseRateLimiter
+app.UseRateLimiter();
+
+// Specify which policy is used by ServiceStack Mapped Endpoints
+app.UseServiceStack(new AppHost(), options =&gt; {
+    options.MapEndpoints();
+    options.RouteHandlerBuilders.Add((routeBuilder, operation, method, route) =&gt;
+    {
+        routeBuilder.RequireRateLimiting(policyName: &quot;per-user&quot;);
+    });
+});
+</code></pre>
+<p>By combining ASP.NET Core rate limiting with ASP.NET Core Identity in this way, you can implement flexible, per-user rate limiting suitable for multi-tenant SaaS applications. The same approach can be extended to handle different rate limits for different API endpoints or user roles as needed. By upgrading ServiceStack to use ASP.NET Core Endpoints, you can now leverage the same rate limiting middleware across all ASP.NET Core Endpoints, including ServiceStack APIs.</p>
 
                 </div>
             </div>
@@ -568,47 +435,6 @@ simple technologies that progressively scales up to handle the complexest of App
                         More from Darren Reid
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/asp-rate-limiter-middleware">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1527710200112-665192dc1c22?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/asp-rate-limiter-middleware" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Using ASP.NET Core Rate Limiter Middleware">
-                                                    Using ASP.NET Core Rate Limiter Middleware
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Learn how to use the new Rate Limiter Middleware in ServiceStack to protect your APIs from abuse.</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Darren Reid</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Using ASP.NET Core Rate Limiter Middleware background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-04-08T00:00:00.0000000">April 8, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>6 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -725,6 +551,47 @@ simple technologies that progressively scales up to handle the complexest of App
                                                     <time datetime="2024-02-06T00:00:00.0000000">February 6, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>16 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/net8-blazor-template">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/net8-blazor-template" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New .NET 8 Blazor Tailwind Template">
+                                                    New .NET 8 Blazor Tailwind Template
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">The new Blazor for .NET 8 template streamlines web UI development in C#.</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Darren Reid</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="New .NET 8 Blazor Tailwind Template background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2023-11-20T00:00:00.0000000">November 20, 2023</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>6 min read</span>
                                                 </div>
                                             </div>
                                         </div>

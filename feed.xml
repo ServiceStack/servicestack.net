@@ -10,10 +10,23 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Thu, 28 Mar 2024 02:30:39 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2024 13:44:52 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Using ASP.NET Core Rate Limiter Middleware</title>
+        <link>https://servicestack.net/posts/asp-rate-limiter-middleware</link>
+        <author>darren@servicestack.com (Darren Reid)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/asp-rate-limiter-middleware</guid>
+        <pubDate>Mon, 08 Apr 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-04-08T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>middleware</category>
+        <description>Learn how to use the new Rate Limiter Middleware in ServiceStack to protect your APIs from abuse.</description>
+    </item>
     <item>
         <title>Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs</title>
         <link>https://servicestack.net/posts/kotlin-compose-multiplatform</link>
@@ -122,18 +135,6 @@
         <category>openapi</category>
         <category>.net8</category>
         <description>A walkthrough of the new OpenAPI v3 support in ServiceStack 8.1</description>
-    </item>
-    <item>
-        <title>ServiceStack Endpoint Routing</title>
-        <link>https://servicestack.net/posts/servicestack-endpoint-routing</link>
-        <author>demis@servicestack.com (Demis Bellot)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/servicestack-endpoint-routing</guid>
-        <pubDate>Wed, 07 Feb 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-02-07T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>.net8</category>
-        <category>apis</category>
-        <description>ServiceStack .NET 8 is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IOC</description>
     </item>
 </channel>
 </rss>
