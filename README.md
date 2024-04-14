@@ -1,6 +1,6 @@
 # servicestack.net
 
-.NET 6.0 razor-ssg Static Generated Razor Pages Project Template
+.NET 8.0 razor-ssg Static Generated Razor Pages Project Template
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/ssg/servicestack.net-home-1440.png)](https://servicestack.net)
 
