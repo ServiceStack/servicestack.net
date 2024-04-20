@@ -33,7 +33,7 @@ export const NuGetPackage = {
     template:`<CopyLine :text="text" />`,
     props:['name','version'],
     setup(props) {
-        const text = computed(() => `<PackageReference Include="${props.name}" Version="${props.version || '6.*'}" />`)
+        const text = computed(() => `<PackageReference Include="${props.name}" Version="${props.version || '8.*'}" />`)
         return { text }
     }
 }
