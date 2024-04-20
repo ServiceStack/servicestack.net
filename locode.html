@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title> - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://docs.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Docs
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://forums.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Forums
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Free
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Trial
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Pricing
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
+                                    Sign In
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+<div class="relative overflow-hidden">
+<main>
+    <div class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
+        <div class="mx-auto max-w-7xl lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8" style="padding:7.3em 0">
+                <div
+                    class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
+                    <div class="lg:py-24">
+                        <!--a href="#" class="inline-flex items-center text-white bg-black rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200">
+                        <span class="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-indigo-500 rounded-full">We're hiring</span>
+                        <span class="ml-4 text-sm">Visit our careers page</span>
+                        <svg class="ml-2 w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        </a-->
+                        <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                            <span class="block">Rapidly develop</span>
+                            <span class="block text-indigo-400">rich web apps</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                            <b>Locode</b> lets you rapidly develop beautiful database-powered Web Apps,
+                            from an Instant UI around existing database-first RDBMS tables for rapid prototyping,
+                            export into declarative code-first development model with unprecedented customizability,
+                            on top of industrial strength APIs offering a superior end-to-end typed development model for
+                            Web, Mobile &amp; Desktop Apps.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+                    <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                        <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
+                        <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                             src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- video -->
+    <div>
+
+        <div class="relative overflow-hidden">
+            <div class="absolute inset-y-0 h-full w-full" aria-hidden="true">
+                <div class="relative h-full">
+                    <svg class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full" width="404" height="784" fill="none" viewBox="0 0 404 784">
+                        <defs>
+                            <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)"/>
+                    </svg>
+                    <svg class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4" width="404" height="784" fill="none" viewBox="0 0 404 784">
+                        <defs>
+                            <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6">
+                <div class="text-center">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                        <span class="block">Creating Beautiful CRUD Apps</span>
+                        <span class="block text-indigo-600 dark:text-indigo-300">with Locode</span>
+                    </h1>
+                    <p class="my-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                        Learn how to easily create customizable feature-rich UX-friendly RDBMS Web Apps
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-0 flex flex-col" aria-hidden="true">
+                    <div class="flex-1"></div>
+                    <div class="flex-1 w-full bg-gray-900"></div>
+                </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/hkuO_DMFXmc" title="YouTube video player"
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- Features -->
+<div class="relative bg-white py-16 sm:py-24 lg:py-32">
+    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 class="text-base font-semibold uppercase tracking-wider text-indigo-600">Develop faster</h2>
+        <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Everything you need to develop RDBMS Web Apps</p>
+        <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+            Locode enables creation of intelligent, highly customizable, beautiful UX Friendly UIs, powered by rich metadata
+            &amp; capabilities of typed AutoQuery APIs
+        </p>
+        <div class="mt-12">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.75 1.75h12.5v1.5l-5 5.5v4l-2.5 1.5v-5.5l-5-5.5z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Powerful Filtering</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                Multiple flexible query filters can be applied to any searchable column
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                        <circle cx="16" cy="19" r="2" fill="currentColor"/><path fill="currentColor" d="M23.777 18.479A8.64 8.64 0 0 0 16 13a8.64 8.64 0 0 0-7.777 5.479L8 19l.223.521A8.64 8.64 0 0 0 16 25a8.64 8.64 0 0 0 7.777-5.479L24 19ZM16 23a4 4 0 1 1 4-4a4.005 4.005 0 0 1-4 4Z"/>
+                                        <path fill="currentColor" d="M27 3H5a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM5 5h22v4H5Zm0 22V11h22v16Z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Custom Views</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                Users can maintain their own persistent query preferences for each table &amp; lookup view
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                                        <path fill="currentColor" d="M200 24H72a16 16 0 0 0-16 16v24H40a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h16v24a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V40a16 16 0 0 0-16-16Zm-40 80h40v48h-40Zm40-16h-40v-8a16 16 0 0 0-16-16V40h56ZM72 40h56v24H72ZM40 80h104v96H40Zm32 112h56v24H72Zm72 24v-24a16 16 0 0 0 16-16v-8h40v48Zm-76.4-68.8L82 128l-14.4-19.2a8 8 0 1 1 12.8-9.6L92 114.7l11.6-15.5a8 8 0 0 1 12.8 9.6L102 128l14.4 19.2a8 8 0 0 1-1.6 11.2a7.7 7.7 0 0 1-4.8 1.6a8 8 0 0 1-6.4-3.2L92 141.3l-11.6 15.5A8 8 0 0 1 74 160a7.7 7.7 0 0 1-4.8-1.6a8 8 0 0 1-1.6-11.2Z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Export to Excel</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                Users can export their current filtered table view to CSV and open in Excel
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
+                                    <!-- Heroicon name: outline/server -->
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Managed File Uploads</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                Support for single &amp; multi file uploads with built-in integration in AutoQuery CRUD APIs
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
+                                    <!-- Heroicon name: outline/shield-check -->
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Declarative Auth &amp; Validation</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                Flexible declarative Auth &amp; Validation Rules inc. model binding in a capability driven UI
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div class="-mt-6">
+                            <div>
+                                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
+                                    <!-- Heroicon name: outline/cog -->
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Highly Extensible</h3>
+                            <p class="mt-5 text-base text-gray-500">
+                                Unprecedented flexible declarative dev model, support for custom APIs, UI Forms, formatters...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Northwind -->
+<div id="database-first" class="relative bg-gray-50 pt-16 overflow-hidden sm:pt-24 lg:pt-32">
+
+    <div>
+        <div class="relative overflow-hidden">
+            <div class="absolute inset-y-0 h-full w-full" aria-hidden="true">
+                <div class="relative h-full">
+                    <svg class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full" width="404" height="784" fill="none" viewBox="0 0 404 784">
+                        <defs>
+                            <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)"/>
+                    </svg>
+                    <svg class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4" width="404" height="784" fill="none" viewBox="0 0 404 784">
+                        <defs>
+                            <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+                <div>
+                    <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Database-first Example Locode App</p>
+                    <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                        To demonstrate a database-first development workflow we've enabled
+                        <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-autogen">AutoGen</a> on the
+                        <b>Northwind</b> sample database to generate
+                        <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery</a>
+                        &amp;
+                        <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-crud">CRUD</a>
+                        APIs whose capabilities are used to power the custom Northwind Locode App
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative mt-8">
+                <div class="absolute inset-0 flex flex-col" aria-hidden="true">
+                    <div class="flex-1"></div>
+                    <div class="flex-1 w-full bg-gray-900"></div>
+                </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/NiTp5Z_5U2Y" title="YouTube video player"
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="bg-white pb-8 pb-12">
+    <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
+        <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
+            <div>
+                <div>
+                    <img class="h-11 w-auto" src="/img/pages/locode/northwind/logo.svg" alt="Northwind Logo">
+                </div>
+                <div class="mt-20">
+                    <div>
+                        <a href="https://northwind.locode.dev/locode" class="inline-flex space-x-4">
+                            <span class="rounded bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-600 tracking-wide uppercase"> What's new </span>
+                            <span class="inline-flex items-center text-sm font-medium text-indigo-600 space-x-1">
+                                <span>Open Northwind in Locode</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="mt-6 sm:max-w-xl">
+                        <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+                            Northwind Auto APIs &amp; Locode App
+                        </h1>
+                        <p class="mt-6 text-xl text-gray-500">
+                            Northwind Auto is a customized database-first Northwind App using
+                            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-autogen">AutoGen</a> to generate
+                            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery</a> &amp;
+                            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-crud">CRUD</a> APIs
+                            in less than <span class="font-semibold text-gray-900">120 Lines of Code</span> in
+                            <a class="text-indigo-600" href="https://github.com/NetCoreApps/NorthwindAuto/blob/master/Configure.AppHost.cs">Configure.AppHost.cs</a>
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-2xl font-medium text-gray-900 mb-3">
+                            Explore Features
+                        </p>
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <g fill="none">
+                                    <path d="M4 5c0-1.007.875-1.755 1.904-2.223C6.978 2.289 8.427 2 10 2s3.022.289 4.096.777C15.125 3.245 16 3.993 16 5v4.758a4.485 4.485 0 0 0-1-.502V6.698a4.92 4.92 0 0 1-.904.525C13.022 7.711 11.573 8 10 8s-3.022-.289-4.096-.777A4.92 4.92 0 0 1 5 6.698V15c0 .374.356.875 1.318 1.313c.916.416 2.218.687 3.682.687c.22 0 .437-.006.65-.018c.447.367.966.65 1.534.822c-.68.127-1.417.196-2.184.196c-1.573 0-3.022-.289-4.096-.777C4.875 16.755 4 16.007 4 15V5zm1 0c0 .374.356.875 1.318 1.313C7.234 6.729 8.536 7 10 7s2.766-.27 3.682-.687C14.644 5.875 15 5.373 15 5c0-.374-.356-.875-1.318-1.313C12.766 3.271 11.464 3 10 3s-2.766.27-3.682.687C5.356 4.125 5 4.627 5 5zm8.5 12c.786 0 1.512-.26 2.096-.697l2.55 2.55a.5.5 0 1 0 .708-.707l-2.55-2.55A3.5 3.5 0 1 0 13.5 17zm0-1a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5z" fill="currentColor"></path>
+                                </g>
+                            </svg>
+                            <a class="text-xl text-indigo-600" href="https://northwind.locode.dev/locode">Manage database with Locode</a>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 32">
+                                <g fill="currentColor">
+                                    <path d="M27.464 2.314a.501.501 0 0 0-.698-.257L14.86 8.339a.499.499 0 0 0-.233.621l.245.641l-6.873 3.769a.5.5 0 0 0-.222.63l.228.549l-7.299 3.488a.5.5 0 0 0-.246.643l1.498 3.61a.5.5 0 0 0 .629.28l7.625-2.701l.228.549a.5.5 0 0 0 .601.289l7.276-2.097l.218.569a.497.497 0 0 0 .612.299l13-4a.498.498 0 0 0 .317-.663l-5-12.501zM2.7 21.469l-1.134-2.734l6.823-3.261l1.439 3.47L2.7 21.469zm8.491-1.846l-.238-.574l-1.843-4.445l-.238-.573l6.336-3.475l2.374 6.134l.375.981l-6.766 1.952zm8.109-1.238l-.203-.531c-.003-.011-.001-.024-.006-.035l-.618-1.597l-2.754-7.206l11.023-5.815l4.592 11.48L19.3 18.385z"></path><path d="M28.964.314a.5.5 0 0 0-.929.371l6 15a.502.502 0 0 0 .651.279a.501.501 0 0 0 .279-.65l-6.001-15z"></path><path d="M18 21h-3c-1.14 0-2 .86-2 2v1.315l-5.879 6.859a.5.5 0 1 0 .758.651L13.73 25H16v6.5a.5.5 0 0 0 1 0V25h2.27l5.85 6.825a.497.497 0 0 0 .705.054a.5.5 0 0 0 .054-.705L20 24.315v-1.24C20 21.912 19.122 21 18 21zm1 3h-5v-1c0-.589.411-1 1-1h3c.57 0 1 .462 1 1.075V24z"></path>
+                                </g>
+                            </svg>
+                            <a class="text-xl text-indigo-600" href="https://northwind.locode.dev/ui">Explore APIs in API Explorer</a>
+                        </div>
+
+                        <div class="mt-6 flex">
+                            <div class="rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
+                                <a href="https://github.com/NetCoreApps/NorthwindAuto/archive/refs/heads/master.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                                    Download Northwind.zip
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+            <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                <div class="hidden sm:block">
+                    <div class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full"></div>
+                    <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392" fill="none" viewBox="0 0 404 392">
+                        <defs>
+                            <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"/>
+                    </svg>
+                </div>
+                <div class="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+                    <a href="https://northwind.locode.dev/locode">
+                        <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
+                             src="/img/pages/locode/northwind/screenshot.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chinook -->
+<div id="code-first" class="relative bg-gray-50 pt-16 overflow-hidden sm:pt-24 lg:pt-32">
+
+  <div>
+    <div class="relative overflow-hidden">
+      <div class="absolute inset-y-0 h-full w-full" aria-hidden="true">
+        <div class="relative h-full">
+          <svg class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full" width="404" height="784" fill="none" viewBox="0 0 404 784">
+            <defs>
+              <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)" />
+          </svg>
+          <svg class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4" width="404" height="784" fill="none" viewBox="0 0 404 784">
+            <defs>
+              <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+        <div>
+          <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Code-first Example Locode App</p>
+          <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+            For greater customizability we've exported AutoGen APIs of the <b>Chinook</b> sample database
+            into typed AutoQuery APIs &amp; Data Models to unlock more
+            flexible code-first declarative &amp; programmatic dev models
+            that includes Custom UI components to showcase potential enhancements in Locode Apps
+          </p>
+        </div>
+      </div>
+
+      <div class="relative mt-8">
+        <div class="absolute inset-0 flex flex-col" aria-hidden="true">
+          <div class="flex-1"></div>
+          <div class="flex-1 w-full bg-gray-900"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
+          <div class="aspect-w-16 aspect-h-9">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/mFyMgg7c3vg" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="bg-white pb-8 pb-12">
+  <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
+    <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
+      <div>
+        <div>
+          <img class="h-11 w-auto" src="/img/pages/locode/chinook/logo.svg" alt="Chinook Logo">
+        </div>
+        <div class="mt-20">
+          <div>
+            <a href="https://chinook.locode.dev/locode" class="inline-flex space-x-4">
+              <span class="rounded bg-rose-50 px-2.5 py-1 text-xs font-semibold text-rose-500 tracking-wide uppercase"> What's new </span>
+              <span class="inline-flex items-center text-sm font-medium text-rose-500 space-x-1">
+              <span>Open Chinook in Locode</span>
+                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="mt-6 sm:max-w-xl">
+            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+              Chinook Locode App
+            </h1>
+            <p class="mt-6 text-xl text-gray-500">
+              Chinook is a customized <a href="https://docs.servicestack.net/locode/code-first">Code-First</a> App using
+              <a class="text-rose-500" href="https://docs.servicestack.net/autoquery-autogen">AutoGen</a> to
+              <a class="text-rose-500" href="https://docs.servicestack.net/autoquery-autogen#export-code-first-dtos">export</a>
+              Chinook's RDBMS Tables into
+              <a class="text-rose-500" href="https://github.com/NetCoreApps/Chinook/blob/main/Chinook.ServiceModel/Types/Models.cs">Models.cs</a>
+              generating code-first
+              <a class="text-rose-500" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery</a> APIs
+              &amp; Data Models that's further annotated to create a customized Locode App
+            </p>
+          </div>
+          <div class="mt-6">
+            <p class="text-2xl font-medium text-gray-900 mb-3">
+              Explore Features
+            </p>
+            <div class="flex items-center mb-2">
+              <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g fill="none"><path d="M4 5c0-1.007.875-1.755 1.904-2.223C6.978 2.289 8.427 2 10 2s3.022.289 4.096.777C15.125 3.245 16 3.993 16 5v4.758a4.485 4.485 0 0 0-1-.502V6.698a4.92 4.92 0 0 1-.904.525C13.022 7.711 11.573 8 10 8s-3.022-.289-4.096-.777A4.92 4.92 0 0 1 5 6.698V15c0 .374.356.875 1.318 1.313c.916.416 2.218.687 3.682.687c.22 0 .437-.006.65-.018c.447.367.966.65 1.534.822c-.68.127-1.417.196-2.184.196c-1.573 0-3.022-.289-4.096-.777C4.875 16.755 4 16.007 4 15V5zm1 0c0 .374.356.875 1.318 1.313C7.234 6.729 8.536 7 10 7s2.766-.27 3.682-.687C14.644 5.875 15 5.373 15 5c0-.374-.356-.875-1.318-1.313C12.766 3.271 11.464 3 10 3s-2.766.27-3.682.687C5.356 4.125 5 4.627 5 5zm8.5 12c.786 0 1.512-.26 2.096-.697l2.55 2.55a.5.5 0 1 0 .708-.707l-2.55-2.55A3.5 3.5 0 1 0 13.5 17zm0-1a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5z" fill="currentColor"></path></g></svg>
+              <a class="text-xl text-rose-500" href="https://chinook.locode.dev/locode">Manage database with Locode</a>
+            </div>
+            <div class="flex items-center mb-2">
+              <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 32"><g fill="currentColor"><path d="M27.464 2.314a.501.501 0 0 0-.698-.257L14.86 8.339a.499.499 0 0 0-.233.621l.245.641l-6.873 3.769a.5.5 0 0 0-.222.63l.228.549l-7.299 3.488a.5.5 0 0 0-.246.643l1.498 3.61a.5.5 0 0 0 .629.28l7.625-2.701l.228.549a.5.5 0 0 0 .601.289l7.276-2.097l.218.569a.497.497 0 0 0 .612.299l13-4a.498.498 0 0 0 .317-.663l-5-12.501zM2.7 21.469l-1.134-2.734l6.823-3.261l1.439 3.47L2.7 21.469zm8.491-1.846l-.238-.574l-1.843-4.445l-.238-.573l6.336-3.475l2.374 6.134l.375.981l-6.766 1.952zm8.109-1.238l-.203-.531c-.003-.011-.001-.024-.006-.035l-.618-1.597l-2.754-7.206l11.023-5.815l4.592 11.48L19.3 18.385z"></path><path d="M28.964.314a.5.5 0 0 0-.929.371l6 15a.502.502 0 0 0 .651.279a.501.501 0 0 0 .279-.65l-6.001-15z"></path><path d="M18 21h-3c-1.14 0-2 .86-2 2v1.315l-5.879 6.859a.5.5 0 1 0 .758.651L13.73 25H16v6.5a.5.5 0 0 0 1 0V25h2.27l5.85 6.825a.497.497 0 0 0 .705.054a.5.5 0 0 0 .054-.705L20 24.315v-1.24C20 21.912 19.122 21 18 21zm1 3h-5v-1c0-.589.411-1 1-1h3c.57 0 1 .462 1 1.075V24z"></path></g></svg>
+              <a class="text-xl text-rose-500" href="https://chinook.locode.dev/ui">Explore APIs in API Explorer</a>
+            </div>
+
+
+            <div class="mt-6 flex">
+              <div class="rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
+                <a href="https://github.com/NetCoreApps/Chinook/archive/refs/heads/main.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                  Download Chinook.zip
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+      <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+        <div class="hidden sm:block">
+          <div class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full"></div>
+          <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392" fill="none" viewBox="0 0 404 392">
+            <defs>
+              <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)" />
+          </svg>
+        </div>
+        <div class="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+          <a href="https://chinook.locode.dev/locode">
+            <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
+                 src="/img/pages/locode/chinook/screenshot.png" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Talent -->
+<div id="reuse" class="relative bg-gray-50 py-16 overflow-hidden sm:pt-24 lg:pt-32">
+  <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+    <div>
+      <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Reuse typed APIs in Optimized UIs</p>
+      <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+        Locode's declarative dev model lets you focus on your new App's business requirements where its data model, API capabilities,
+        input validation &amp; multi-user Auth restrictions can be defined simply using annotated C# POCOs.<br>
+        This provides immense value at the start of the development cycle where functional prototypes
+        can be quickly iterated to gather business requirements
+        <br><br>
+        Once requirements have been solidified, the typed AutoQuery APIs can easily be reused to develop custom UIs
+        to optimize important workflows.
+        <br><br>
+        <a class="text-indigo-600" href="https://github.com/NetCoreApps/TalentBlazor">Talent Blazor</a> is a new App showcasing an example of this
+        where its entire back-office functionality can be managed through Locode whilst an optimized <b>Blazor WASM</b> App is created to optimize
+        its unique workflow requirements which also benefits from the superior productive dev model of its Typed APIs
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="hybrid" class="bg-white pb-8 pb-12">
+  <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
+    <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
+      <div>
+        <div>
+          <img class="h-11 w-auto" src="/img/pages/locode/talent/logo.svg" alt="Northwind Logo">
+        </div>
+        <div class="mt-20">
+          <div>
+            <a href="https://talent.locode.dev/locode" class="inline-flex space-x-4">
+              <span class="rounded bg-purple-50 px-2.5 py-1 text-xs font-semibold text-purple-600 tracking-wide uppercase"> What's new </span>
+              <span class="inline-flex items-center text-sm font-medium text-purple-600 space-x-1">
+              <span>Open Talent Blazor in Locode</span>
+                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="mt-6 sm:max-w-xl">
+            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+              Talent Blazor WASM &amp; Locode App
+            </h1>
+            <p class="mt-6 text-xl text-gray-500">
+              Talent Blazor is a Blazor WASM App built around a HR's unique workflow for processing Job Applications
+              from initial Application, through to Phone Screening and Interviews by multiple employees, capturing
+              relevant feedback at each application event, with successful Applicants awarded the Job
+              <br>
+              <br>
+              It's co-developed &amp; deployed with a customized Locode App that manages all other CRUD Database Access
+            </p>
+          </div>
+          <div class="mt-6">
+            <p class="text-2xl font-medium text-gray-900 mb-3">
+              Explore Features
+            </p>
+            <div class="flex items-center mb-2">
+              <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g fill="none"><path d="M4 5c0-1.007.875-1.755 1.904-2.223C6.978 2.289 8.427 2 10 2s3.022.289 4.096.777C15.125 3.245 16 3.993 16 5v4.758a4.485 4.485 0 0 0-1-.502V6.698a4.92 4.92 0 0 1-.904.525C13.022 7.711 11.573 8 10 8s-3.022-.289-4.096-.777A4.92 4.92 0 0 1 5 6.698V15c0 .374.356.875 1.318 1.313c.916.416 2.218.687 3.682.687c.22 0 .437-.006.65-.018c.447.367.966.65 1.534.822c-.68.127-1.417.196-2.184.196c-1.573 0-3.022-.289-4.096-.777C4.875 16.755 4 16.007 4 15V5zm1 0c0 .374.356.875 1.318 1.313C7.234 6.729 8.536 7 10 7s2.766-.27 3.682-.687C14.644 5.875 15 5.373 15 5c0-.374-.356-.875-1.318-1.313C12.766 3.271 11.464 3 10 3s-2.766.27-3.682.687C5.356 4.125 5 4.627 5 5zm8.5 12c.786 0 1.512-.26 2.096-.697l2.55 2.55a.5.5 0 1 0 .708-.707l-2.55-2.55A3.5 3.5 0 1 0 13.5 17zm0-1a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5z" fill="currentColor"></path></g></svg>
+              <a class="text-xl text-purple-600" href="https://talent.locode.dev/locode">Manage database with Locode</a>
+            </div>
+            <div class="flex items-center mb-2">
+              <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 32"><g fill="currentColor"><path d="M27.464 2.314a.501.501 0 0 0-.698-.257L14.86 8.339a.499.499 0 0 0-.233.621l.245.641l-6.873 3.769a.5.5 0 0 0-.222.63l.228.549l-7.299 3.488a.5.5 0 0 0-.246.643l1.498 3.61a.5.5 0 0 0 .629.28l7.625-2.701l.228.549a.5.5 0 0 0 .601.289l7.276-2.097l.218.569a.497.497 0 0 0 .612.299l13-4a.498.498 0 0 0 .317-.663l-5-12.501zM2.7 21.469l-1.134-2.734l6.823-3.261l1.439 3.47L2.7 21.469zm8.491-1.846l-.238-.574l-1.843-4.445l-.238-.573l6.336-3.475l2.374 6.134l.375.981l-6.766 1.952zm8.109-1.238l-.203-.531c-.003-.011-.001-.024-.006-.035l-.618-1.597l-2.754-7.206l11.023-5.815l4.592 11.48L19.3 18.385z"></path><path d="M28.964.314a.5.5 0 0 0-.929.371l6 15a.502.502 0 0 0 .651.279a.501.501 0 0 0 .279-.65l-6.001-15z"></path><path d="M18 21h-3c-1.14 0-2 .86-2 2v1.315l-5.879 6.859a.5.5 0 1 0 .758.651L13.73 25H16v6.5a.5.5 0 0 0 1 0V25h2.27l5.85 6.825a.497.497 0 0 0 .705.054a.5.5 0 0 0 .054-.705L20 24.315v-1.24C20 21.912 19.122 21 18 21zm1 3h-5v-1c0-.589.411-1 1-1h3c.57 0 1 .462 1 1.075V24z"></path></g></svg>
+              <a class="text-xl text-purple-600" href="https://talent.locode.dev/ui">Explore APIs in API Explorer</a>
+            </div>
+            <div class="flex items-center text-xl mb-2">
+              <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M16 22.027v-2.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.75a5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.91 1.48a13.38 13.38 0 0 0-7 0c-2.73-1.83-3.91-1.48-3.91-1.48A5.07 5.07 0 0 0 5 5.797a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.58v2.87"/><path d="M9 20.027c-3 .973-5.5 0-7-3"/></g></svg>
+              Browse
+              <a class="px-1 text-purple-600" href="https://github.com/NetCoreApps/TalentBlazor/tree/main/TalentBlazor.Client">Client</a>
+              and
+              <a class="px-1 text-purple-600" href="https://github.com/NetCoreApps/TalentBlazor/blob/main/TalentBlazor.ServiceInterface/TalentServices.cs">Server</a>
+              source code
+            </div>
+
+            <div class="mt-6 flex">
+              <div class="rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
+                <a href="https://github.com/NetCoreApps/TalentBlazor/archive/refs/heads/main.zip" class="flex hover:no-underline items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                  Download TalentBlazor.zip
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+      <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+        <div class="hidden sm:block">
+          <div class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full"></div>
+          <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392" fill="none" viewBox="0 0 404 392">
+            <defs>
+              <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)" />
+          </svg>
+        </div>
+        <div class="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+          <a href="https://talent.locode.dev">
+            <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
+                 src="/img/pages/locode/talent/screenshot.png" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div class="my-20 pb-20 flex justify-center">
+    <div class="flex items-center">
+        <span class="text-2xl mr-4 text-gray-400">Next</span>
+        <a href="https://docs.servicestack.net/locode/">
+            <div class="rounded-md py-2 pl-6 pr-2 shadow-lg bg-blue-500 text-white hover:bg-blue-600 text-2xl font-normal flex items-center">
+                Locode Documentation
+                <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.4 18L8 16.6l4.6-4.6L8 7.4L9.4 6l6 6Z"/></svg>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="buttons my-8 flex text-center justify-center">
+    <a href="https://servicestack.net/free" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
+        Free for Individuals & OSS
+    </a>
+    <span class="mx-1"></span>
+    <a href="https://servicestack.net/trial" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
+        30 Day Free Trial
+    </a>
+</div>
+
+<div class="text-center mb-8 pb-8 text-2xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-100">
+    <a href="https://servicestack.net/pricing">See Pricing</a>
+</div>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://pvq.app">pvq</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2024</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
