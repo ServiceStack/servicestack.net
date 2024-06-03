@@ -348,6 +348,10 @@ const App = {
                             <input id="chkOpenApi" v-model="mixModel.openapi3" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="openapi">
                             <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkOpenApi">Open API</label>
                         </div>
+                        <div v-if="vnext">
+                            <input id="chkApiKeys" v-model="mixModel.apikeys" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="apikeys">
+                            <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkApiKeys">API Keys</label>
+                        </div>
                     </div>
                     <div class="p-2 mr-2">
                         <h4 class="block uppercase text-slate-500 font-semibold mb-4">RDBMS</h4>
@@ -634,6 +638,7 @@ const App = {
     setup(props) {
         const name = ref('')
         const mixModel = ref({})
+        const vnext = ref(location.search.includes('vnext'))
 
         function isAlphaNumeric(e) {
             const c = e.charCode;
@@ -686,7 +691,7 @@ const App = {
             })
         })
         
-        return { name, mixModel, mixTags, isAlphaNumeric, mixTool, reset, count }
+        return { name, mixModel, mixTags, isAlphaNumeric, mixTool, reset, count, vnext }
     }
 }
 mount('#projects', App)
