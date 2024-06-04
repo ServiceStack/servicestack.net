@@ -4,7 +4,6 @@ summary: How to use ASP.NET Core Output Caching to cache the response of a Servi
 tags: [caching, aspnetcore,redis]
 author: Darren Reid
 image: https://images.unsplash.com/photo-1590247813693-5541d1c609fd?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 With the release of ServiceStack 8.1, we've embraced tighter integration with ASP.NET Core, including support for registering ServiceStack services with ASP.NET Core's Endpoint Routing system. This opens up exciting opportunities to leverage more of ASP.NET Core's rich feature set in your ServiceStack applications.
