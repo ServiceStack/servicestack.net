@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Creating ChatGPT Agents to call System APIs - ServiceStack</title>
+    <title>Using ASP.NET Core Output Caching - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -36,10 +36,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@layoric" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="A walkthrough of how to enable Large Language Model &#x27;Agents&#x27; with access to your own ServiceStack APIs" />
-    <meta property="og:url" content="https://servicestack.net/posts/chat-gpt-agents" />
-    <meta property="og:title" content="Creating ChatGPT Agents to call System APIs" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1675271591211-126ad94e495d?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="How to use ASP.NET Core Output Caching to cache the response of a ServiceStack Service using ServiceStack.Redis" />
+    <meta property="og:url" content="https://servicestack.net/posts/redis-outputcache" />
+    <meta property="og:title" content="Using ASP.NET Core Output Caching" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1590247813693-5541d1c609fd?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -124,7 +124,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Creating ChatGPT Agents to call System APIs
+                Using ASP.NET Core Output Caching
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -165,22 +165,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1675271591211-126ad94e495d?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Creating ChatGPT Agents to call System APIs Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1590247813693-5541d1c609fd?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Using ASP.NET Core Output Caching Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
-                            <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
-                            <a href="posts/tagged/chatbot" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">chatbot</a>
-                            <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                            <a href="posts/tagged/caching" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">caching</a>
+                            <a href="posts/tagged/aspnetcore" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">aspnetcore</a>
+                            <a href="posts/tagged/redis" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">redis</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-05-12T00:00:00.0000000">May 12, 2023</time>
+                                <time datetime="2024-04-15T00:00:00.0000000">April 15, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>9 min read</span>
+                                <span>5 min read</span>
                             </div>
                         </div>
                 </div>
@@ -193,186 +192,187 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7vChIGHWPuI" style="background-image: url('https://img.youtube.com/vi/7vChIGHWPuI/maxresdefault.jpg')"></lite-youtube>
-</div>
-<h2 id="introduction">Introduction<a class="header-anchor" href="javascript:;" onclick="location.hash='#introduction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We've been working on different patterns and proof of concepts to enable <a href="https://openai.com">ChatGPT</a> to leverage an App's ServiceStack APIs to solve given tasks.
-This is done through various prompting techniques which allows the Agent to reason about the context of the conversation and make decisions to reach for different 'tools' (your APIs) when trying to achieve a specific goal.</p>
-<p>Those tools are your own ServiceStack APIs which can be configured through a plugin in the GptMeetingAgent project.</p>
-<pre><code class="language-csharp">var gptAgentFeature = new GptAgentFeature();
+                    <p>With the release of ServiceStack 8.1, we've embraced tighter integration with ASP.NET Core, including support for registering ServiceStack services with ASP.NET Core's Endpoint Routing system. This opens up exciting opportunities to leverage more of ASP.NET Core's rich feature set in your ServiceStack applications.</p>
+<p>One such feature is ASP.NET Core's built-in support for Output Caching (also known as Response Caching). Output Caching allows you to dramatically improve the performance of your APIs by caching the output and serving it directly from the cache for subsequent requests. This can significantly reduce the load on your server and database for frequently accessed, cacheable responses.</p>
+<h2 id="enabling-output-caching">Enabling Output Caching<a class="header-anchor" href="javascript:;" onclick="location.hash='#enabling-output-caching'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To utilize Output Caching with your ServiceStack Endpoints, you first need to add the Output Caching middleware to your ASP.NET Core request pipeline in the <code>Configure</code> method of your <code>Program.cs</code>:</p>
+<pre><code class="language-csharp">// Program.cs
+var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+app.UseOutputCache();
+// ...
+app.UseServiceStack(new AppHost(), options =&gt; options.MapEndpoints());
+</code></pre>
+<p>Then in <code>ConfigureServices</code> you need to add the Output Caching services:</p>
+<pre><code class="language-csharp">services.AddOutputCache();
+</code></pre>
+<p>The order of adding OutputCache to your request pipeline can be very sensitive to change, so this will depend largely on your application and dependencies you are already using. For example, below is an example of using it in a Blazor application.</p>
+<pre><code class="language-csharp">var app = builder.Build();
 
-gptAgentFeature.RegisterAgent(new GptAgentData
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler(&quot;/Error&quot;, createScopeForErrors: true);
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+app.UseAntiforgery();
+// Add OutputCache after Antiforgery and before Auth related middleware
+app.UseOutputCache();
+
+// Required for OutputCache
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorComponents&lt;App&gt;()
+    .AddInteractiveServerRenderMode();
+
+// Add additional endpoints required by the Identity /Account Razor components.
+app.MapAdditionalIdentityEndpoints();
+
+app.UseServiceStack(new AppHost(), options =&gt; {
+    options.MapEndpoints();
+});
+</code></pre>
+<h2 id="configuring-caching-behavior">Configuring Caching Behavior<a class="header-anchor" href="javascript:;" onclick="location.hash='#configuring-caching-behavior'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>With the middleware in place, you can now configure caching behaviors for your ServiceStack Endpoints by registering against the Route Handlers within the ServiceStack <code>options</code>.</p>
+<pre><code class="language-csharp">app.UseServiceStack(new AppHost(), options =&gt; {
+    options.MapEndpoints();
+    options.RouteHandlerBuilders.Add((routeHandlerBuilder, operation, verb, route) =&gt;
     {
-        Name = &quot;BookingAgent&quot;,
-        PromptBase = File.ReadAllText(
-            $&quot;{Path.Combine(&quot;Prompts&quot;, &quot;BasePromptExample.txt&quot;)}&quot;
-        ),
-        Role = &quot;An AI that makes meeting bookings between staff.&quot;
-    },
-    agentFactory: data =&gt; new OpenAiChatGptAgent(chatGptApiKey,data),
-    includeApis: new List&lt;string&gt;
-    {
-        Tags.Teams,
-        Tags.Calendar,
+        routeHandlerBuilder.CacheOutput(c =&gt;
+        {
+            // Use Cache Profiles
+            c.UseProfile(&quot;Default30&quot;);
+
+            // Or configure caching per-request
+            c.Expire(TimeSpan.FromSeconds(30));
+            c.VaryByAll();
+        });
     });
+});
 </code></pre>
-<p>The above configuration registers a new Agent with the name <code>BookingAgent</code> and a description of what it does as the <code>Role</code>.</p>
-<p>It also is configured to include the APIs with the <code>Tags.Teams</code> and <code>Tags.Calendar</code> tags, which are the APIs that the Agent will use to achieve its goals.
-Only these APIs will be exposed to the Agent, and the Agent will only be able to use them in the context of the prompt that is provided to it.</p>
-<p>The Agent will also use the <code>Description</code> of the API to assist the Agent in understanding how and when to use the API.</p>
-<pre><code class="language-csharp">[Tag(&quot;Teams&quot;), Description(&quot;Search for users by name&quot;)]
-public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
+<p>You can also vary the cache by specific properties, e.g:</p>
+<pre><code class="language-csharp">builder.CacheOutput(c =&gt; c.VaryBy(&quot;userRole&quot;,&quot;region&quot;));
+</code></pre>
+<p>Or use Cache Profiles for reusable caching strategies:</p>
+<pre><code class="language-csharp">builder.Services.AddOutputCache(options =&gt;
 {
-    public string Name { get; set; }
-}
+    options.AddPolicy(&quot;Default30&quot;, p =&gt; p.Expire(TimeSpan.FromSeconds(30)));
+});
 </code></pre>
-<h2 id="so-how-does-this-work">So How Does This Work?<a class="header-anchor" href="javascript:;" onclick="location.hash='#so-how-does-this-work'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This proof of concept uses several different technologies and techniques to achieve this functionality. A lot of which are quite new, and not nearly as well known as common web development techniques.
-As such, we will go through each of the technologies and techniques used to achieve this functionality as an introduction to using AI Agents in your own projects.</p>
-<h3 id="openai-chatgpt-and-large-language-models">OpenAI ChatGPT and Large Language Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#openai-chatgpt-and-large-language-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>ChatGPT by OpenAI is a chat product that uses large language models that are trained on a large corpus of text from the internet.
-The <code>GPT</code> in ChatGPT stands for <code>Generative Pre-trained Transformer</code> which is a type of neural network architecture that is used to train the model.</p>
-<p><a href="https://arxiv.org/abs/1706.03762"><img src="/img/posts/chat-gpt-agents/Slide10_1080p.png" alt="" /></a></p>
-<p>These Large Language Models are designed to predict the next 'token' or part of a word in a sentence, given the previous tokens.</p>
-<p><a href="https://learn.microsoft.com/en-us/semantic-kernel/concepts-ai/tokens"><img src="/img/posts/chat-gpt-agents/Slide11_1080p.png" alt="" /></a></p>
-<p>This text is called the <code>prompt</code> and is used to 'prime' the model with some context to generate the next token.</p>
-<p>The use of the Transformer architecture has shown to be very effective at learning the structure of language as well as the semantic meaning of words and sentences.</p>
-<p>As these models are scaled up, they are able to learn more and more complex patterns in language, and are able to generate more and more complex sentences.
-Some state of the art models have been able to show emergent capabilities of reasoning and problem solving, which is what we are leveraging in this proof of concept.</p>
-<h3 id="chain-of-thought">Chain-of-Thought<a class="header-anchor" href="javascript:;" onclick="location.hash='#chain-of-thought'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>One technique that has been discovered when using these Large Language Models is the ability to prompt in a way that improves the ability of the model to perform complex reasoning.
-This is called <a href="https://arxiv.org/abs/2201.11903">Chain-of-Thought</a> and is a technique asks the model to output its 'thoughts' about a task that it is trying to achieve, and then feeding those thoughts back into the model in the next prompt.</p>
-<p><img src="/img/posts/chat-gpt-agents/Slide13_1080p.png" alt="" /></p>
-<p>We can get the model to do this with a surprisingly simple prompt.</p>
-<pre><code class="language-text">Ensure to reason about the tasks in a step by step manner, 
-and provide details about your plan, reasoning, criticism, 
-and reflection about your steps in the thoughts output.
+<p>Then apply the named profile to your endpoints:</p>
+<pre><code class="language-csharp">builder.CacheOutput(c =&gt; c.UseProfile(&quot;Default30&quot;));
 </code></pre>
-<p>We specifically ask the model to output details about its <code>plan</code>, <code>reasoning</code>, and <code>criticism</code> as they are a part of the final output that we want to generate.</p>
-<p><img src="/img/posts/chat-gpt-agents/Slide12_1080p.png" alt="" /></p>
-<p>This enables the model to break down tasks into smaller steps, and then reason about how to achieve those steps by giving it context of the previous thoughts that it has generated.
-This reinforces why previous decisions were made, which in turn, influences future decisions.</p>
-<h3 id="agents">Agents<a class="header-anchor" href="javascript:;" onclick="location.hash='#agents'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>We can then combine the reasoning capabilities of the model with the ability to take action using 'tools' to achieve a goal.</p>
-<p>Giving the model agency to use external tools and APIs creates the concept of an <code>Agent</code> that can be used to solve a variety of tasks.</p>
-<p>We give the Agent access to these tools by describing them in the prompt. Using the type information about your Request DTOs, and the <code>[Description]</code> attribute, we can describe the tools that the Agent has access to.
-In the prompt, we call these <code>Service Commands</code>.</p>
-<pre><code class="language-csharp">[Tag(Tags.Teams)]
-[Description(&quot;Search for users by first or last name and get back their IDs and emails&quot;)]
-public class SearchUsers : IReturn&lt;SearchUsersResponse&gt;
-{
-    public string Name { get; set; }
-}
-</code></pre>
-<p>This turns into a Service Command with the following text in the prompt.</p>
-<pre><code class="language-text">1. Search for users by first or last name and get 
-back their IDs and emails: &quot;SearchUsers&quot;, definition: 
-type SearchUsers = { name: string }
-</code></pre>
-<p>The Service Commands each have the Request DTO name as well as the description to help the Agent understand what the tool does and when to use it.
-It also includes a TypeScript definition of the Request DTO so that the Agent can generate the correct request structure when it needs to use the tool, and populate with data from its own context.</p>
-<h3 id="in-context-learning">In Context Learning<a class="header-anchor" href="javascript:;" onclick="location.hash='#in-context-learning'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>So now our Agents have access to tools, can reason about problems, and provide feedback about its reasoning, but we still need it to use our own data.</p>
-<p>The prompt technique of <code>In Context Learning</code> allows us to provide the Agent with data returned from the tools that it uses, and then use that data in the next prompt.</p>
-<p>For example, if we want to book a meeting with a colleague, the model can use the <code>SearchUsers</code> tool to find the email address of the person we want to book a meeting with.</p>
-<pre><code class="language-json">{
-  &quot;commandName&quot;: &quot;SearchUsers&quot;,
-  &quot;commandResponse&quot;: [{
-      &quot;displayName&quot;: &quot;Lynne Schoen&quot;,
-      &quot;email&quot;: &quot;Lynne_Schoen9@gmail.com&quot;,
-      &quot;id&quot;: 6
-    }
-  ]
-}
-</code></pre>
-<p>We can then feed back the command and the response into the next prompt, which will allow the model to use the email address of the person we want to book a meeting with.</p>
-<p>Another API that is available to the Agent is the <code>GetUserSchedule</code> API to check the availability of the person we want to book a meeting with.
-This API requires a <code>userId</code>, which the Agent now has from the <code>SearchUsers</code> API.</p>
-<pre><code>2. Get a user's schedule: &quot;GetUserSchedule&quot;, 
-definition: type GetUserSchedule = { userId: number, schedules: string[], 
-startTime: string, endTime: string, availabilityViewInterval: number }
-</code></pre>
-<h3 id="output-format">Output Format<a class="header-anchor" href="javascript:;" onclick="location.hash='#output-format'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Each time we prompt the Agent, we get back a consistent JSON structure with a <code>command</code> and <code>thoughts</code> object.</p>
-<pre><code class="language-json">{
-    &quot;command&quot;: {
-        &quot;name&quot;: &quot;GetUserSchedule&quot;,
-        &quot;body&quot;: {
-            &quot;userId&quot;: 6,
-            &quot;schedules&quot;: [&quot;primary&quot;],
-            &quot;startTime&quot;: &quot;2023-05-09T00:00&quot;,
-            &quot;endTime&quot;: &quot;2023-05-16T00:00&quot;,
-            &quot;availabilityViewInterval&quot;: 60
+<h2 id="finer-grained-control">Finer-grained Control<a class="header-anchor" href="javascript:;" onclick="location.hash='#finer-grained-control'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>For more granular control, you can apply the <code>[OutputCache]</code> attribute directly on your Service class, and use the ServiceStack AppHost metadata in your <code>RouteHandlerBuilder</code>s <code>Add</code> method to detect and cache only the routes that are attributed with <code>OutputCache</code>.</p>
+<pre><code class="language-csharp">app.UseServiceStack(new AppHost(), options =&gt; {
+    options.MapEndpoints();
+    options.RouteHandlerBuilders.Add((routeHandlerBuilder, operation, verb, route) =&gt;
+    {
+        // Initialized appHost and allServiceTypes
+        var appHost = HostContext.AppHost;
+        var allServiceTypes = appHost.Metadata.ServiceTypes;
+
+        // Find the service matching the RequestType of the operation
+        var operationType = operation.RequestType;
+        // Match with operation, verb and route
+        appHost.Metadata.OperationsMap.TryGetValue(operationType, out var operationMap);
+        var serviceType = operationMap?.ServiceType;
+        if (serviceType == null)
+            return;
+        if (serviceType.HasAttributeOf&lt;OutputCacheAttribute&gt;())
+        {
+            // Handle duration from OutputCacheAttribute
+            var outputCacheAttribute = serviceType.FirstAttribute&lt;OutputCacheAttribute&gt;();
+            routeHandlerBuilder.CacheOutput(policyBuilder =&gt;
+            {
+                policyBuilder.Cache().Expire(TimeSpan.FromSeconds(outputCacheAttribute.Duration));
+            });
         }
-    },
-    &quot;thoughts&quot;: {
-        &quot;text&quot;: &quot;Checking Lynne's schedule for availability on Tuesday ...&quot;,
-        &quot;reasoning&quot;: &quot;Before creating a meeting, it is important to check ...&quot;,
-        &quot;plan&quot;: &quot;- Use the GetUserSchedule command to retrieve Lynne's calendar ...&quot;,
-        &quot;criticism&quot;: &quot;I may need to account for time zone differences ...&quot;,
-        &quot;speak&quot;: &quot;I am now checking Lynne's schedule for availability...&quot;
+    });
+});
+</code></pre>
+<pre><code class="language-csharp">[OutputCache(Duration = 60)]
+public class MyServices : Service
+{
+    public object Any(Hello request)
+    {
+        return new HelloResponse { Result = $&quot;Hello, {request.Name}!&quot; };
     }
 }
 </code></pre>
-<p>Near the end of each interaction with the model, we specify the response format using the following prompt.</p>
-<p><img src="/img/posts/chat-gpt-agents/Slide17.PNG" alt="" /></p>
-<p>The <code>command</code> object contains the name of the command that was used, as well as the body of the command that was generated from the Agent's context.
-The <code>thoughts</code> object contains the text that was generated by the model, as well as the <code>reasoning</code>, <code>plan</code>, and <code>criticism</code> that was generated by the model.</p>
-<p>The <code>body</code> of the command is a TypeScript definition of the Request DTO that was used, and can be used to generate the correct structure of the command when it is used again.</p>
-<h3 id="putting-it-all-together">Putting it all together<a class="header-anchor" href="javascript:;" onclick="location.hash='#putting-it-all-together'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>We can now combine all of these concepts to create an Agent that can book a meeting with a colleague.</p>
-<p><img src="/img/posts/chat-gpt-agents/AgentFlow.drawio.svg" alt="" /></p>
-<p>In the GptMeetingAgent proof of concept, the browser client is the one taking action on behalf of our agent, making requests to your APIs and returning the response to the Agent.</p>
-<p>We can use the <code>[ConfirmationRequired]</code> attribute to put in additional guard rails to prevent the Agent from taking action on sensitive APIs.</p>
-<p>In the GptMeetingAgent project, this is used to prevent the Agent from booking a meeting without confirmation from the user.
-Instead, we use the <code>Submit</code> of an <code>AutoForm</code> to confirm the booking.</p>
-<h2 id="the-gptmeetingagent-project">The GptMeetingAgent Project<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-gptmeetingagent-project'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The example we have built is a simple API that can search for users, list their schedules, and book meetings between users.</p>
-<p>A lot of this example is actually generic and being driven by the Agent and the specific APIs in the example.</p>
-<p>This can be demonstrated by introducing a new <code>ListMeetingRooms</code> API that we add to the APIs the Agent can use.</p>
-<pre><code class="language-csharp">[Tag(Tags.Teams), Description(&quot;Get a list of meeting rooms and their resources.&quot;)]
-public class ListMeetingRooms : QueryDb&lt;MeetingRoom&gt; { }
-</code></pre>
-<p>This AutoQuery service lists meeting rooms along with their related resources like <code>Projector</code>,<code>SmartBoard</code>, and <code>Whiteboard</code>.</p>
-<pre><code class="language-csharp">public enum MeetingRoomResource
+<p>This enables for fine grained control of the built in <code>OutputCache</code> functionality compatible with using the same attribute with your MVC Controllers, and you can extend your use by updating the code above within the ServiceStack options.</p>
+<h2 id="servicestack-redis-distributed-cache">ServiceStack Redis Distributed Cache<a class="header-anchor" href="javascript:;" onclick="location.hash='#servicestack-redis-distributed-cache'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The above examples so far have been using a cache store that comes with the OutputCache package. This is just an in memory store, so isn't suitable for a distributed application. Thankfully, you can override the IOutputCacheStore interface in your IoC to change out the implementation that uses a centralized system like a Redis server.</p>
+<pre><code class="language-csharp">public class RedisOutputCacheStore(IRedisClientsManager redisManager) : IOutputCacheStore
 {
-    SmartBoard,
-    Projector,
-    Whiteboard,
-    VideoConference,
-    SpeakerPhone
+    public async ValueTask&lt;byte[]?&gt; GetAsync(string key, CancellationToken cancellationToken)
+    {
+        await using var redis =  await redisManager.GetClientAsync(token: cancellationToken);
+        var value = await redis.GetAsync&lt;byte[]&gt;(key, cancellationToken);
+        return value;
+    }
+
+    public async ValueTask SetAsync(string key, byte[] value, string[]? tags, TimeSpan validFor, CancellationToken cancellationToken)
+    {
+        await using var redis = await redisManager.GetClientAsync(token: cancellationToken);
+        
+        // First persist in normal cache hashset
+        await redis.SetAsync(key, value, validFor, cancellationToken);
+
+        if (tags == null)
+            return;
+        foreach (var tag in tags)
+        {
+            await redis.AddItemToSetAsync($&quot;tag:{tag}&quot;, key, cancellationToken);
+        }
+    }
+
+    public async ValueTask EvictByTagAsync(string tag, CancellationToken cancellationToken)
+    {
+        await using var redis = await redisManager.GetClientAsync(token: cancellationToken);
+        
+        var keys = await redis.GetAllItemsFromListAsync($&quot;tag:{tag}&quot;, cancellationToken);
+        
+        foreach (var key in keys)
+        {
+            await redis.RemoveEntryAsync(key);
+            await redis.RemoveItemFromSetAsync($&quot;tag:{tag}&quot;, key, cancellationToken);
+        }
+    }
 }
 </code></pre>
-<p>We can then extend the <code>CreateCalendarEvent</code> API that books the meeting to reference a meeting room by ID.</p>
-<pre><code class="language-csharp">[Tag(Tags.Calendar), Description(&quot;Create a meeting&quot;)]
-[ConfirmationRequired(&quot;Are you sure you want to create a meeting?&quot;)]
-public class CreateCalendarEvent : IReturn&lt;CreateCalendarEventResponse&gt;
+<p>The above is a simple implementation of the IOutputCacheStore using the ServiceStack.Redis client to handle a centralized distributed cache. Using the class above, we can create a <code>Configure.OutputCache.cs</code> file that registers our IoC dependencies.</p>
+<pre><code class="language-csharp">[assembly: HostingStartup(typeof(BlazorOutputCaching.ConfigureOutputCache))]
+
+namespace BlazorOutputCaching;
+
+public class ConfigureOutputCache : IHostingStartup
 {
-    public string Subject { get; set; }
-    public string Body { get; set; }
-    [Input(Type = &quot;datetime-local&quot;)]
-    public DateTime Start { get; set; }
-    [Input(Type = &quot;datetime-local&quot;)]
-    public DateTime End { get; set; }
-    public string AttendeeEmail { get; set; }
-    // Newly Added
-    public int? MeetingRoomId { get; set; }
+    public void Configure(IWebHostBuilder builder)
+    {
+        builder.ConfigureServices(services =&gt;
+        {
+            services.AddSingleton&lt;IRedisClientsManager&gt;(c =&gt;
+                new BasicRedisClientManager(&quot;localhost:6379&quot;));
+            services.AddSingleton&lt;IOutputCacheStore, RedisOutputCacheStore&gt;();
+        });
+    }
 }
 </code></pre>
-<p>Restarting the application, our injected Service Commands now reflect both the new <code>ListMeetingRooms</code> API and the updated <code>CreateCalendarEvent</code> API in the Agent prompt.</p>
-<p>Asking the Agent to &quot;Ensure the meeting room has a projector&quot; will now result in the behavior of our Agent using our new API, finding the request resource, and passing the correct <code>MeetingRoomId</code> when booking a meeting.</p>
-<p>Both the Agent and the UI reflect this change in behavior. Our <code>AutoForms</code> for both APIs are displayed, and we didn't need to make any other changes other than modifying our APIs to support the new behavior.</p>
-<p>You can checkout our <a href="https://gptmeetings.netcore.io/">live demo of this example here</a>.</p>
-<p><img src="/img/posts/chat-gpt-agents/Slide16.PNG" alt="" /></p>
-<h2 id="request-for-feedback">Request for Feedback<a class="header-anchor" href="javascript:;" onclick="location.hash='#request-for-feedback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We are <a href="https://github.com/NetCoreApps/GPTMeetingAgent">releasing this project</a> as a proof of concept to get feedback from the community on how they would like to use this technology in their own projects.
-We plan on continuing to develop examples and documentation for a generic pattern to make this type of development easier to integrate by building a plugin similar to that in the GptMeetingAgent project.</p>
-<p>We would love to hear your feedback on this project, and how you would like to use it in your own projects.
-This will help us to prioritize and focus on the important features of the plugin and the documentation.</p>
-<style>
-.video-hd { width: 640px; height: 360px }
-</style>
+<p>We register out Redis client manager for our RedisOutputCacheStore, and then the store itself.</p>
+<h2 id="summary">Summary<a class="header-anchor" href="javascript:;" onclick="location.hash='#summary'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ASP.NET Core Output Caching is a powerful tool for improving the performance of your ServiceStack endpoints. With ServiceStack 8.1's tight integration with ASP.NET Core Endpoint Routing, utilizing this feature is now straightforward.</p>
+<p>As always, caching is a balancing act. Apply it judiciously to frequently accessed, cacheable data. And be sure to implement appropriate invalidation strategies to keep your application's data fresh.</p>
+<p>By leveraging Output Caching effectively, you can dramatically improve the scalability and responsiveness of your ServiceStack powered applications. Try it out in your ServiceStack 8.1+ projects and let us know how it goes!</p>
 
                 </div>
             </div>
@@ -431,47 +431,6 @@ This will help us to prioritize and focus on the important features of the plugi
                         More from Darren Reid
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/redis-outputcache">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1590247813693-5541d1c609fd?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/redis-outputcache" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Using ASP.NET Core Output Caching">
-                                                    Using ASP.NET Core Output Caching
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">How to use ASP.NET Core Output Caching to cache the response of a ServiceStack Service using ServiceStack.Redis</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Darren Reid</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Using ASP.NET Core Output Caching background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-04-15T00:00:00.0000000">April 15, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>5 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -588,6 +547,47 @@ This will help us to prioritize and focus on the important features of the plugi
                                                     <time datetime="2024-02-19T00:00:00.0000000">February 19, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>6 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/identity-migration">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1596563910641-86f6aebaab9a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/identity-migration" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Migrating to ASP.NET Core Identity for Authentication">
+                                                    Migrating to ASP.NET Core Identity for Authentication
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Darren Reid</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="Migrating to ASP.NET Core Identity for Authentication background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-02-06T00:00:00.0000000">February 6, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>16 min read</span>
                                                 </div>
                                             </div>
                                         </div>

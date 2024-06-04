@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Mon, 03 Jun 2024 06:07:37 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jun 2024 12:28:56 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Using ASP.NET Core Output Caching</title>
+        <link>https://servicestack.net/posts/redis-outputcache</link>
+        <author>darren@servicestack.com (Darren Reid)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/redis-outputcache</guid>
+        <pubDate>Mon, 15 Apr 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-04-15T00:00:00Z</atom:updated>
+        <category>caching</category>
+        <category>aspnetcore</category>
+        <category>redis</category>
+        <description>How to use ASP.NET Core Output Caching to cache the response of a ServiceStack Service using ServiceStack.Redis</description>
+    </item>
     <item>
         <title>Using ASP.NET Core Rate Limiter Middleware</title>
         <link>https://servicestack.net/posts/asp-rate-limiter-middleware</link>
@@ -124,17 +136,6 @@
         <category>json</category>
         <category>apis</category>
         <description>ServiceStack .NET 8&#x2B; APIs can now be configured to use high-performance async System.Text.Json serialization</description>
-    </item>
-    <item>
-        <title>OpenAPI v3 and Swagger UI</title>
-        <link>https://servicestack.net/posts/openapi-v3</link>
-        <author>darren@servicestack.com (Darren Reid)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/openapi-v3</guid>
-        <pubDate>Mon, 19 Feb 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-02-19T00:00:00Z</atom:updated>
-        <category>openapi</category>
-        <category>.net8</category>
-        <description>A walkthrough of the new OpenAPI v3 support in ServiceStack 8.1</description>
     </item>
 </channel>
 </rss>
