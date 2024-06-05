@@ -1,7 +1,7 @@
 ---
 title: Using ASP.NET Core Output Caching
 summary: How to use ASP.NET Core Output Caching to cache the response of a ServiceStack Service using ServiceStack.Redis
-tags: [caching, aspnetcore,redis]
+tags: [caching,.net8,redis]
 author: Darren Reid
 image: https://images.unsplash.com/photo-1590247813693-5541d1c609fd?crop=entropy&fit=crop&h=1000&w=2000
 ---
