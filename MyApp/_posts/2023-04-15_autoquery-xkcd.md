@@ -2,7 +2,7 @@
 layout: _LayoutContent
 title: Bringing xkcd static dataset to life with AutoQuery 
 summary: Unsiloing data quickly with AutoQuery to make your datasets available from queryable Web APIs
-tags: [autoquery, db, dev, huggingface, vue]
+tags: [autoquery, db, dev, vue]
 image: ./img/posts/autoquery-xkcd/drawing-xkcd-upscaled.jpg
 author: Darren Reid
 ---
