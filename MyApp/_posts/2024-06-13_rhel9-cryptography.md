@@ -25,7 +25,9 @@ which allows for maximum compatibility with existing software.
 
 ### Road to Solution
 
-But as more customers upgraded to RHEL 9 and started experiencing the same issue, we've decided to invest time to 
+![](/img/posts/rhel9-cryptography/bg-redhat.webp)
+
+As more customers upgraded to RHEL 9 and started experiencing the same issue, we've decided to invest time to 
 try and address this issue starting with adding support for a configurable Hashing algorithm when creating and validating
 License Keys. We still have the issue of not being able to generate a new License Key that would be compatible with both
 default RHEL 9 and all previous versions of ServiceStack.
