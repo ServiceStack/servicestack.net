@@ -23,7 +23,7 @@ and other extensive [Declarative Features](https://docs.servicestack.net/locode/
 Little attention has been given to internal implementations of APIs since it can use anything that fulfils its 
 service contract by returning the APIs populated Response DTO. 
 
-Given how code-bases are structured is largely a matter of developer preference, however we believe we've also been able 
+How code-bases are structured is largely a matter of developer preference, however we believe we've also been able 
 to add value in this area by introducing an appealing option with our new managed **Commands** Feature.
 
 :::youtube SXPdBHbncPc
@@ -32,8 +32,8 @@ Use Commands to build robust and observable systems with Admin UI
 
 ## Code Architecture 
 
-Ultimately nothing beats the simplicity of "No Architecture" by having all API logic contained within your Service 
-Implementation where it just needs to call a few App dependentices to implement its functionality and return a populated Response DTO:
+Ultimately nothing beats the simplicity of "No Architecture" by maintaining all logic within a Service Implementation 
+which just needs to call a few App dependentices to implement its functionality and return a populated Response DTO:
 
 ```csharp
 public object Any(MyRequest request) => new MyResponse { ... };
@@ -109,7 +109,7 @@ public class MyService(ILogger<MyService> log, ICacheClient cache, IDbConnection
 ### Refactoring Logic into separate classes
 
 The solution to this is to refactor the logic into a separate class and leverage the IOC to inject the dependencies it needs,
-fortunately with Primary Constructor this now requires minimal boilerplate code, e.g:
+fortunately with Primary Constructors this now requires minimal boilerplate code, e.g:
 
 ```csharp
 class MyLogic(ILogger<MyService> log, ICacheClient cache, IDbConnection db)
@@ -378,7 +378,7 @@ public class AddTodoCommand() : IAsyncCommand<CreatTodo> {}
 ## MQ Integration
 
 Although `CommandsFeature` is a standalone feature we're registering it in the new Identity Auth Templates `Configure.Mq.cs`
-which already uses the Background MQ to execute messages in managed background threads like sending Identity Auth emails:
+which already uses the Background MQ to execute messages in managed background threads where it's used to send Identity Auth emails:
 
 ```csharp
 public class ConfigureMq : IHostingStartup
@@ -401,9 +401,9 @@ public class ConfigureMq : IHostingStartup
 Despite being 2 independent features, they work well together as the Background MQ can be used to execute Commands in
 managed background threads of which a single thread is used to execute each Request Type by default (configurable per request).
 
-You'd typically want to use MQs to improve scalability by reducing locking and concurrency contention of heavy resources
-by having requests queued and executed in a managed background thread. Queues are also a great solution for working 
-around single thread limitations of resources like writes to SQLite databases.
+You'd typically want to use queues to improve scalability by reducing locking and concurrency contention of heavy resources
+by having requests queued and executed in a managed background thread where it's able to execute requests as fast as it can without contention.
+Queues are also a great solution for working around single thread limitations of resources like writes to SQLite databases.
 
 ## Use Case - SQLite Writes
 
@@ -415,7 +415,7 @@ this limitation somewhat by maintaining different subsystems in separate databas
 
 [![](/img/posts/commands-feature/pvq-databases.png)](/img/posts/commands-feature/pvq-databases.png)
 
-But each database can only be written to by a single thread at a time, which we can now easily fascilitate with 
+But each database can only be written to by a single thread at a time, which we can now easily facilitate with
 **Background MQ** and **MQ Command DTOs**.
 
 ### MQ Command DTOs
