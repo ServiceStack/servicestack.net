@@ -1,5 +1,5 @@
 ---
-title: Utilize commands to build more robust and observable systems
+title: Utilize Commands to build more robust and observable systems
 summary: Learn how to build testable, robust observable systems with the new Commands Feature
 tags: [commands,.net8]
 author: Demis Bellot
