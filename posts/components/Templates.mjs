@@ -1,11 +1,13 @@
 import { ref, computed } from 'vue'
 import Icons from './Icons.mjs'
+import { appendQueryString } from "@servicestack/client";
 
-export function template(repo, name, icon, tags, demo) {
-    return { repo, name, icon, tags: tags ?? [], demo: demo ?? `${repo}.web-templates.io` }
+export function template(repo, name, icon, tags, demo, mix) {
+    return { repo, name, icon, tags: tags ?? [], demo: demo ?? `${repo}.web-templates.io`, mix:mix ?? []}
 }
 
 export const Index = [
+    template('web', 'Web', 'ServiceStack', ['empty']),
     template('blazor', 'Blazor', 'Blazor', ['tailwind']),
     template('blazor-vue', 'Blazor Vue', 'Blazor',['tailwind']),
     template('mvc', 'MVC', 'Windows',['tailwind']),
@@ -46,7 +48,7 @@ export default {
         : 'grid-cols-3']">
    <div v-for="template in templates" class="mb-2">
       <div class="flex justify-center text-center">
-         <a class="archive-url hover:no-underline" :href="zipUrl('NetCoreTemplates/' + template.repo)">
+         <a class="archive-url hover:no-underline" :href="zipUrl('NetCoreTemplates/' + template.repo, template.mix)">
             <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width:150px">
                <div class="text-center font-extrabold flex items-center justify-center mb-2">
                   <div class="text-4xl text-blue-400 my-3" v-html="svgIcon(template.icon)">
@@ -74,8 +76,8 @@ export default {
         const projectZip = computed(() => (project.value || 'MyApp') + '.zip')
 
         /** @param {string} template */
-        const zipUrl = (template) =>
-            `https://account.servicestack.net/archive/${template}?Name=${project.value || 'MyApp'}`
+        const zipUrl = (template, mix) =>
+            appendQueryString(`https://account.servicestack.net/archive/${template}?Name=${project.value || 'MyApp'}`, mix?.length ? { mix: mix.join(',') } : {})
 
         /** @param {KeyboardEvent} e */
         const isAlphaNumeric = (e) => {
