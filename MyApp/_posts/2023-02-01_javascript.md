@@ -109,7 +109,7 @@ attributes:
 <div data-component="Hello" data-props="{ name: 'Vue 3' }"></div>
 ```
 
-Alternatively they can be programatically added using the custom `mount` method in `api.mjs`:
+Alternatively they can be programmatically added using the custom `mount` method in `api.mjs`:
 
 ```js
 import { mount } from "/mjs/api.mjs"

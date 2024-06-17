@@ -11,7 +11,7 @@ Much of ServiceStack has been focused on providing a productive [API First Devel
 experience and adding value-added features around your System's external APIs, including:
 
  - [Native end-to-end typed API integrations](https://docs.servicestack.net/add-servicestack-reference) to **11 popular languages**
- - Built-in [API Explorer](https://docs.servicestack.net/api-explorer) to dicover, browse and invoke APIs
+ - Built-in [API Explorer](https://docs.servicestack.net/api-explorer) to discover, browse and invoke APIs
  - Instant CRUD UIs with [Auto Query](https://docs.servicestack.net/autoquery/) and [Locode](https://docs.servicestack.net/locode/)
  - Custom CRUD UIs with [Blazor components](https://blazor-gallery.jamstacks.net) and [Vue Components](https://docs.servicestack.net/vue/)
  
@@ -285,11 +285,11 @@ other niceties like executing any Fluent or Declarative Validation on Command Re
 
 ### Retry Failed Commands
 
-We can make commands more reslient by adding the `[Retry]` attribute to opt into auto retrying failed commands:
+We can make commands more resilient by adding the `[Retry]` attribute to opt into auto retrying failed commands:
 
 ```csharp
 [Retry]
-public class AddTodoCommand() : IAsyncCommand<CreatTodo> {}
+public class AddTodoCommand() : IAsyncCommand<CreateTodo> {}
 ```
 
 Which will automatically retry the command as per the default Retry Policy:
@@ -311,7 +311,7 @@ That can be overridden on a per-command basis with the `[Retry]` attribute, e.g:
 
 ```csharp
 [Retry(Times=4, MaxDelayMs=300_000, Behavior=RetryBehavior.LinearBackoff)]
-public class AddTodoCommand() : IAsyncCommand<CreatTodo> {}
+public class AddTodoCommand() : IAsyncCommand<CreateTodo> {}
 ```
 
 The different Retry Behaviors available include:
@@ -372,7 +372,7 @@ Just like ServiceStack Services they can be grouped by **Tag** which can be used
 
 ```csharp
 [Tag("Todos")]
-public class AddTodoCommand() : IAsyncCommand<CreatTodo> {}
+public class AddTodoCommand() : IAsyncCommand<CreateTodo> {}
 ```
 
 ## MQ Integration

@@ -21,7 +21,7 @@ With the [introduction of API Keys](/posts/apikeys) we're able to provide a simp
 .NET 8 Microservices that's easy for **Admin** Users to manage and control which trusted clients and B2B Integrations
 can access their functionality.
 
-:::youtube EuwatAglol0
+:::youtube 0ceU91ZBhTQ
 Simple Auth Story with API Keys ideal for .NET 8 Microservices
 :::
 
