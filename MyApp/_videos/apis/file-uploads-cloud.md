@@ -1,8 +1,9 @@
 ---
 title: Managed File Uploads
 url: https://youtu.be/5sd00MzHpaU
-tags: files,blazor
+tags: [files,blazor]
 date: 07-06-2022
+order: 5
 ---
 
 In this walkthrough, we explore the `FilesUploadFeature` plugin and a demo FileBlazor App's 

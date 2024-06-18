@@ -1,8 +1,9 @@
 ---
 title: Create API validation rules from the Validation Admin UI
 url: https://youtu.be/W5OJAlOxH98
-tags: db,validation,admin,ui
+tags: [db,validation,admin,ui]
 date: 25-07-2022
+order: 6
 ---
 
 With very little code, we walk through the steps required to setup AutoQuery APIs with dynamic validation in .NET. 

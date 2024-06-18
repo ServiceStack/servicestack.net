@@ -1,9 +1,11 @@
 ---
 title: Post Command line HTTP API tools
 url: https://youtu.be/FcXG4RnlVQk
-tags: inspect,tool
+tags: [inspect,tool]
 date: 23-08-2021
+order: 7
 ---
+
 [Post Command](https://docs.servicestack.net/post-command) is a collection of command line utils that lets you easily discover,
 inspect and invoke ServiceStack endpoints from a single command.
 

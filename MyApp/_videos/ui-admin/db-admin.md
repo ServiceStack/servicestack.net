@@ -1,8 +1,9 @@
 ---
 title: Using Database Admin UI to browse your App's databases
 url: https://youtu.be/NZkeyuc_prg
-tags: db,admin,ui
+tags: [db,admin,ui]
 date: 02-09-2022
+order: 3
 ---
 
 Database Admin UI lets Admin Users quickly browse and navigate your App's configured RDBMS schemas and tables,
