@@ -1,7 +1,7 @@
 ---
 title: Simple Auth Story for .NET 8 Microservices
 url: https://docs.servicestack.net/auth/admin-apikeys
-image: https://img.youtube.com/vi/EuwatAglol0/maxresdefault.jpg
+image: https://img.youtube.com/vi/0ceU91ZBhTQ/maxresdefault.jpg
 order: 3
 ---
 
