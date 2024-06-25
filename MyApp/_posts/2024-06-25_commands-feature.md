@@ -33,7 +33,7 @@ Use Commands to build robust and observable systems with Admin UI
 ## Code Architecture 
 
 Ultimately nothing beats the simplicity of "No Architecture" by maintaining all logic within a Service Implementation 
-which just needs to call a few App dependentices to implement its functionality and return a populated Response DTO:
+which just needs to call a few App dependencies to implement its functionality and return a populated Response DTO:
 
 ```csharp
 public object Any(MyRequest request) => new MyResponse { ... };
