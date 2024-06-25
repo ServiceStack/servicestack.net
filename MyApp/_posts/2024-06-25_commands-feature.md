@@ -4,7 +4,6 @@ summary: Learn how to build testable, robust observable systems with the new Com
 tags: [commands,.net8]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1524741978410-350ba91a70d7?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 Much of ServiceStack has been focused on providing a productive [API First Development](https://docs.servicestack.net/api-first-development) 
