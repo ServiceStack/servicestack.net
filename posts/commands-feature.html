@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>ASP.NET Core JWT Identity Auth - ServiceStack</title>
+    <title>Utilize Commands to build more robust and observable systems - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -36,10 +36,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Learn about integration and value added features of ASP.NET Core JWT Identity Auth" />
-    <meta property="og:url" content="https://servicestack.net/posts/jwt-identity-auth" />
-    <meta property="og:title" content="ASP.NET Core JWT Identity Auth" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1618482914248-29272d021005?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Learn how to build testable, robust observable systems with the new Commands Feature" />
+    <meta property="og:url" content="https://servicestack.net/posts/commands-feature" />
+    <meta property="og:title" content="Utilize Commands to build more robust and observable systems" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1524741978410-350ba91a70d7?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -124,7 +124,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                ASP.NET Core JWT Identity Auth
+                Utilize Commands to build more robust and observable systems
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -165,21 +165,20 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1618482914248-29272d021005?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="ASP.NET Core JWT Identity Auth Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1524741978410-350ba91a70d7?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Utilize Commands to build more robust and observable systems Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                            <a href="posts/tagged/commands" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">commands</a>
                             <a href="posts/tagged/net8" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">.net8</a>
-                            <a href="posts/tagged/auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">auth</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2024-02-22T00:00:00.0000000">February 22, 2024</time>
+                                <time datetime="2024-06-25T00:00:00.0000000">June 25, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>11 min read</span>
                             </div>
                         </div>
                 </div>
@@ -192,188 +191,371 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>JWTs enable stateless authentication of clients without servers needing to maintain any Auth state in server infrastructure
-or perform any I/O to validate a token. As such,
-<a href="https://docs.servicestack.net/auth/jwt-authprovider#stateless-auth-microservices">JWTs are a popular choice for Microservices</a>
-as they only need to configured with confidential keys to validate access.</p>
-<h3 id="asp.net-core-jwt-authentication">ASP.NET Core JWT Authentication<a class="header-anchor" href="javascript:;" onclick="location.hash='#asp.net-core-jwt-authentication'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>ServiceStack's JWT Identity Auth reimplements many of the existing <a href="https://docs.servicestack.net/auth/jwt-authprovider">ServiceStack JWT AuthProvider</a>
-features but instead of its own implementation, integrates with and utilizes ASP.NET Core's built-in JWT Authentication that's
-configurable in .NET Apps with the <code>.AddJwtBearer()</code> extension method, e.g:</p>
-<h4 id="program.cs">Program.cs<a class="header-anchor" href="javascript:;" onclick="location.hash='#program.cs'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<pre><code class="language-csharp">services.AddAuthentication()
-    .AddJwtBearer(options =&gt; {
-        options.TokenValidationParameters = new()
-        {
-            ValidIssuer = config[&quot;JwtBearer:ValidIssuer&quot;],
-            ValidAudience = config[&quot;JwtBearer:ValidAudience&quot;],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(config[&quot;JwtBearer:IssuerSigningKey&quot;]!)),
-            ValidateIssuerSigningKey = true,
-        };
-    })
-    .AddIdentityCookies(options =&gt; options.DisableRedirectsForApis());
+                    <p>Much of ServiceStack has been focused on providing a productive <a href="https://docs.servicestack.net/api-first-development">API First Development</a>
+experience and adding value-added features around your System's external APIs, including:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/add-servicestack-reference">Native end-to-end typed API integrations</a> to <strong>11 popular languages</strong></li>
+<li>Built-in <a href="https://docs.servicestack.net/api-explorer">API Explorer</a> to discover, browse and invoke APIs</li>
+<li>Instant CRUD UIs with <a href="https://docs.servicestack.net/autoquery/">Auto Query</a> and <a href="https://docs.servicestack.net/locode/">Locode</a></li>
+<li>Custom CRUD UIs with <a href="https://blazor-gallery.jamstacks.net">Blazor components</a> and <a href="https://docs.servicestack.net/vue/">Vue Components</a></li>
+</ul>
+<p>As well as <a href="https://docs.servicestack.net/declarative-validation">Declarative Validation</a>, multiple <a href="https://docs.servicestack.net/auth/">Auth Integrations</a>
+and other extensive <a href="https://docs.servicestack.net/locode/declarative">Declarative Features</a> to enhance your external facing APIs.</p>
+<h3 id="internal-api-implementation">Internal API Implementation<a class="header-anchor" href="javascript:;" onclick="location.hash='#internal-api-implementation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Little attention has been given to internal implementations of APIs since it can use anything that fulfils its
+service contract by returning the APIs populated Response DTO.</p>
+<p>How code-bases are structured is largely a matter of developer preference, however we believe we've also been able
+to add value in this area by introducing an appealing option with our new managed <strong>Commands</strong> Feature.</p>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="SXPdBHbncPc" playlabel="Use Commands to build robust and observable systems with Admin UI" style="background-image:url('https://img.youtube.com/vi/SXPdBHbncPc/maxresdefault.jpg')"></lite-youtube>
+<h2 id="code-architecture">Code Architecture<a class="header-anchor" href="javascript:;" onclick="location.hash='#code-architecture'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Ultimately nothing beats the simplicity of &quot;No Architecture&quot; by maintaining all logic within a Service Implementation
+which just needs to call a few App dependencies to implement its functionality and return a populated Response DTO:</p>
+<pre><code class="language-csharp">public object Any(MyRequest request) =&gt; new MyResponse { ... };
 </code></pre>
-<p>Then use the <code>JwtAuth()</code> method to enable and configure ServiceStack's support for ASP.NET Core JWT Identity Auth:</p>
-<h4 id="configure.auth.cs">Configure.Auth.cs<a class="header-anchor" href="javascript:;" onclick="location.hash='#configure.auth.cs'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<pre><code class="language-csharp">public class ConfigureAuth : IHostingStartup
-{
-    public void Configure(IWebHostBuilder builder) =&gt; builder
-        .ConfigureServices(services =&gt; {
-            services.AddPlugin(new AuthFeature(IdentityAuth.For&lt;ApplicationUser&gt;(
-                options =&gt; {
-                    options.SessionFactory = () =&gt; new CustomUserSession();
-                    options.CredentialsAuth();
-                    options.JwtAuth(x =&gt; {
-                        // Enable JWT Auth Features...
-                    });
-                })));
-        });
+<p>This is still the best option for small implementations where the Service is the only consumer of the logic that should
+be run on the HTTP Worker Request Thread.</p>
+<h4 id="when-to-restructure">When to restructure<a class="header-anchor" href="javascript:;" onclick="location.hash='#when-to-restructure'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>The times when you may want to consider moving logic out of your Service into separate classes include:</p>
+<ul>
+<li><strong>Code Reuse</strong>: Make it easier to reuse your Service logic in other Services</li>
+<li><strong>Complexity</strong>: Break down complex logic into smaller more manageable pieces</li>
+<li><strong>Testability</strong>: Make it easier to test your Logic in isolation</li>
+<li><strong>Observability</strong>: Make it easier to log and monitor</li>
+<li><strong>Robustness</strong>: Make it easier to handle, retry and recover from errors</li>
+<li><strong>Flexibility</strong>: Make it easier to run in parallel or in a different managed thread</li>
+</ul>
+<p>We'll look at how the new <strong>Commands Feature</strong> can help with these concerns.</p>
+<h3 id="code-reuse">Code Reuse<a class="header-anchor" href="javascript:;" onclick="location.hash='#code-reuse'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Following principles of YAGNI in doing the simplest thing that could possibly work, whenever we want to reuse logic
+across Services we'd first start by moving it to an extension method on the dependency that it uses, e.g.</p>
+<pre><code class="language-csharp">public static async Task&lt;List&lt;Contact&gt;&gt; GetActiveSubscribersAsync(
+    this IDbConnection db, MailingList mailingList)
+{        
+    return await db.SelectAsync(db.From&lt;Contact&gt;(db.TableAlias(&quot;c&quot;))
+        .Where(x =&gt; x.DeletedDate == null &amp;&amp; x.UnsubscribedDate == null &amp;&amp; 
+            x.VerifiedDate != null &amp;&amp; (mailingList &amp; x.MailingLists) == mailingList)
+        .WhereNotExists(db.From&lt;InvalidEmail&gt;()
+            .Where&lt;Contact,InvalidEmail&gt;((c,e) =&gt; 
+                e.EmailLower == Sql.TableAlias(c.EmailLower, &quot;c&quot;))
+            .Select(x =&gt; x.Id))
+    );
 }
 </code></pre>
-<h3 id="enable-in-swagger-ui">Enable in Swagger UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#enable-in-swagger-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Once configured we can enable JWT Auth in Swagger UI by installing <strong>Swashbuckle.AspNetCore</strong>:</p>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>&lt;PackageReference Include=&quot;Swashbuckle.AspNetCore&quot; Version=&quot;6.*&quot; /&gt;</code></p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Then enable Open API, Swagger UI, ServiceStack's support for Swagger UI and the JWT Bearer Auth option:</p>
-<pre><code class="language-csharp">public class ConfigureOpenApi : IHostingStartup
+<p>Which does a great job at encapsulating logic and making it reusable and readable:</p>
+<pre><code class="language-csharp">foreach (var sub in await Db.GetActiveSubscribersAsync(MailingList.Newsletter)) {
+    //...
+}
+</code></pre>
+<p>Where it can be reused without referencing any external classes whilst also being easily discoverable via intellisense.</p>
+<p>This works great for 1 or 2 dependencies, but becomes more cumbersome as the number of dependencies grows, e.g:</p>
+<pre><code class="language-csharp">public static async Task&lt;List&lt;Contact&gt;&gt; GetActiveSubscribersAsync(
+    this IDbConnection db, ILogger log, ICacheClient cache, MailingList mailingList)
+</code></pre>
+<p>In which the complexity of the extension method dependencies leaks and impacts all calling classes that need to include
+them and also starts to impact its readability, e.g:</p>
+<pre><code class="language-csharp">public class MyService(ILogger&lt;MyService&gt; log, ICacheClient cache, IDbConnection db) 
+    : Service
 {
-    public void Configure(IWebHostBuilder builder) =&gt; builder
-        .ConfigureServices((context, services) =&gt; {
-            if (context.HostingEnvironment.IsDevelopment())
-            {
-                services.AddEndpointsApiExplorer();
-                services.AddSwaggerGen();
-                services.AddServiceStackSwagger();
-                services.AddJwtAuth();
-                //services.AddBasicAuth&lt;Data.ApplicationUser&gt;();
-            
-                services.AddTransient&lt;IStartupFilter,StartupFilter&gt;();
-            }
-        });
-
-    public class StartupFilter : IStartupFilter
+    public object Any(MyRequest request)
     {
-        public Action&lt;IApplicationBuilder&gt; Configure(Action&lt;IApplicationBuilder&gt; next)
-            =&gt; app =&gt; {
-                // Provided by Swashbuckle library
-                app.UseSwagger();
-                app.UseSwaggerUI();
-                next(app);
-            };
+        var subs = await Db.GetActiveSubscribersAsync(log, cache, request.MailList);
     }
 }
 </code></pre>
-<p>This will enable the <strong>Authorize</strong> button in Swagger UI where you can authenticate with a JWT Token:</p>
-<p><img src="/img/posts/jwt-identity-auth/jwt-swagger-ui.png" alt="" /></p>
-<h3 id="jwt-auth-in-built-in-uis">JWT Auth in Built-in UIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#jwt-auth-in-built-in-uis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This also enables the <strong>JWT</strong> Auth Option in ServiceStack's built-in
-<a href="https://docs.servicestack.net/api-explorer">API Explorer</a>,
-<a href="https://docs.servicestack.net/locode/">Locode</a> and
-<a href="https://docs.servicestack.net/admin-ui">Admin UIs</a>:</p>
-<img class="shadow p-1" src="/img/posts/jwt-identity-auth/jwt-api-explorer.png">
-<h3 id="authenticating-with-jwt">Authenticating with JWT<a class="header-anchor" href="javascript:;" onclick="location.hash='#authenticating-with-jwt'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>JWT Identity Auth is a drop-in replacement for ServiceStack's JWT AuthProvider where Authenticating via Credentials
-will convert the Authenticated User into a JWT Bearer Token returned in the <strong>HttpOnly</strong>, <strong>Secure</strong> <code>ss-tok</code> Cookie
-that will be used to Authenticate the client:</p>
-<pre><code class="language-csharp">var client = new JsonApiClient(BaseUrl);
-await client.SendAsync(new Authenticate {
-    provider = &quot;credentials&quot;,
-    UserName = Username,
-    Password = Password,
-});
-
-var bearerToken = client.GetTokenCookie(); // ss-tok Cookie
-</code></pre>
-<h2 id="jwt-refresh-tokens">JWT Refresh Tokens<a class="header-anchor" href="javascript:;" onclick="location.hash='#jwt-refresh-tokens'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Refresh Tokens can be used to allow users to request a new JWT Access Token when the current one expires.</p>
-<p>To enable support for JWT Refresh Tokens your <code>IdentityUser</code> model should implement the <code>IRequireRefreshToken</code> interface
-which will be used to store the 64 byte Base64 URL-safe <code>RefreshToken</code> and its <code>RefreshTokenExpiry</code> in its persisted properties:</p>
-<pre><code class="language-csharp">public class ApplicationUser : IdentityUser, IRequireRefreshToken
+<h3 id="refactoring-logic-into-separate-classes">Refactoring Logic into separate classes<a class="header-anchor" href="javascript:;" onclick="location.hash='#refactoring-logic-into-separate-classes'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The solution to this is to refactor the logic into a separate class and leverage the IOC to inject the dependencies it needs,
+fortunately with Primary Constructors this now requires minimal boilerplate code, e.g:</p>
+<pre><code class="language-csharp">class MyLogic(ILogger&lt;MyService&gt; log, ICacheClient cache, IDbConnection db)
 {
-    public string? RefreshToken { get; set; }
-    public DateTime? RefreshTokenExpiry { get; set; }
+    //...
 }
 </code></pre>
-<p>Now after successful authentication, the <code>RefreshToken</code> will also be returned in the <code>ss-reftok</code> Cookie:</p>
-<pre><code class="language-csharp">var refreshToken = client.GetRefreshTokenCookie(); // ss-reftok Cookie
+<p>But it still requires manual registration adding additional complexity to
+your Host project <code>Program.cs</code> or <a href="https://docs.servicestack.net/modular-startup">Modular Configurations</a> which needs to
+manage registration for all these new logic classes, e.g:</p>
+<pre><code class="language-csharp">builder.Services.AddTransient&lt;MyLogic&gt;();
 </code></pre>
-<h3 id="transparent-server-auto-refresh-of-jwt-tokens">Transparent Server Auto Refresh of JWT Tokens<a class="header-anchor" href="javascript:;" onclick="location.hash='#transparent-server-auto-refresh-of-jwt-tokens'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>To be able to terminate a users access, Users need to revalidate their eligibility to verify they're still allowed access
-(e.g. deny Locked out users). This JWT revalidation pattern is implemented using Refresh Tokens which are used to request
-revalidation of their access and reissuing a new JWT Access Token which can be used to make authenticated requests until it expires.</p>
-<p>As Cookies are used to return Bearer and Refresh Tokens ServiceStack is able to implement the revalidation logic on the
-server where it transparently validates Refresh Tokens, and if a User is eligible will reissue a new JWT Token Cookie that
-replaces the expired Access Token Cookie.</p>
-<p>Thanks to this behavior HTTP Clients will be able to Authenticate with just the Refresh Token, which will transparently
-reissue a new JWT Access Token Cookie and then continue to perform the Authenticated Request:</p>
-<pre><code class="language-csharp">var client = new JsonApiClient(BaseUrl);
-client.SetRefreshTokenCookie(RefreshToken);
+<h2 id="commands-feature">Commands Feature<a class="header-anchor" href="javascript:;" onclick="location.hash='#commands-feature'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Which touches on the first benefit of the <strong>Commands Feature</strong> which like ServiceStack Services auto registers
+all classes implementing the intentionally simple and impl-free <code>IAsyncCommand</code> interface, e.g:</p>
+<pre><code class="language-csharp">public interface IAsyncCommand&lt;in T&gt;
+{
+    Task ExecuteAsync(T request);
+}
+</code></pre>
+<p>Allowing for maximum flexibility in how to implement your logic classes, which are essentially encapsulated
+units of logic with a single method to execute it, e.g:</p>
+<pre><code class="language-csharp">public class AddTodoCommand(ILogger&lt;AddTodoCommand&gt; log, IDbConnection db) 
+    : IAsyncCommand&lt;CreateTodo&gt;
+{
+    public async Task ExecuteAsync(CreateTodo request)
+    {
+        var newTodo = request.ConvertTo&lt;Todo&gt;();
+        newTodo.Id = await db.InsertAsync(newTodo, selectIdentity:true);
+        log.LogDebug(&quot;Created Todo {Id}: {Text}&quot;, newTodo.Id, newTodo.Text);
+    }
+}
+</code></pre>
+<p>Where we immediately get the benefits of code reuse, encapsulation, and readability without needing to manually
+register and pollute your App's configuration with them.</p>
+<p>By default Commands are registered as transient dependencies, but you can also register them with a different lifetime
+scope using the <code>[Lifetime]</code> attribute, e.g:</p>
+<pre><code class="language-csharp">[Lifetime(Lifetime.Scoped)]
+public class AddTodoCommand(ILogger&lt;AddTodoCommand&gt; log, IDbConnection db)
+    : IAsyncCommand&lt;CreateTodo&gt; {}
+</code></pre>
+<p>Or by manually registering them, if you need a custom registration:</p>
+<pre><code class="language-csharp">services.AddTransient&lt;AddTodoCommand&gt;(c =&gt; CreateAddTodoCommand(c));
+</code></pre>
+<h3 id="commands-with-results">Commands with Results<a class="header-anchor" href="javascript:;" onclick="location.hash='#commands-with-results'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>For maximum flexibility, we want to encourage temporal decoupling by separating initiating a command from its execution,
+so instead of adding a different method to execute commands with results, we're instead recommending the convention of
+storing the result of a command in a <code>Result</code> property, e.g:</p>
+<pre><code class="language-csharp">public interface IAsyncCommand&lt;in TRequest, out TResult&gt; 
+    : IAsyncCommand&lt;TRequest&gt;, IHasResult&lt;TResult&gt; { }
 
-var response = await client.SendAsync(new Secured { ... });
+public interface IHasResult&lt;out T&gt;
+{
+    T Result { get; }
+}
 </code></pre>
-<p>There's also opt-in sliding support for extending a User's RefreshToken after usage which allows Users to treat
-their Refresh Token like an API Key where it will continue extending whilst they're continuously using it to make API requests,
-otherwise expires if they stop. How long to extend the expiry of Refresh Tokens after usage can be configured with:</p>
-<pre><code class="language-csharp">options.JwtAuth(x =&gt; {
-    // How long to extend the expiry of Refresh Tokens after usage (default None)
-    x.ExtendRefreshTokenExpiryAfterUsage = TimeSpan.FromDays(90);
+<p>So we could implement a command with a result like:</p>
+<pre><code class="language-csharp">public class AddTodoCommand(ILogger&lt;AddTodoCommand&gt; log, IDbConnection db) 
+    : IAsyncCommand&lt;CreateTodo, Todo&gt;
+{
+    public Todo Result { get; private set; }
+    
+    public async Task ExecuteAsync(CreateTodo request)
+    {
+        Result = request.ConvertTo&lt;Todo&gt;();
+        Result.Id = await db.InsertAsync(newTodo, selectIdentity:true);
+        log.LogDebug(&quot;Created Todo {Id}: {Text}&quot;, Result.Id, Result.Text);
+    }
+}
+</code></pre>
+<h3 id="messaging">Messaging<a class="header-anchor" href="javascript:;" onclick="location.hash='#messaging'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Although for better resilience and scalability we recommend utilizing a messaging pattern to notify the outputs of a
+command by publishing messages to invoke dependent logic instead of returning a result, e.g:</p>
+<pre><code class="language-csharp">public class AddTodoCommand(IDbConnection db, IMessageProducer mq) 
+    : IAsyncCommand&lt;CreateTodo&gt;
+{
+    public async Task ExecuteAsync(CreateTodo request)
+    {
+        var newTodo = request.ConvertTo&lt;Todo&gt;();
+        newTodo.Id = await db.InsertAsync(newTodo, selectIdentity:true);
+        mq.Publish(new SendNotification { TodoCreated = newTodo });
+    }    
+}
+</code></pre>
+<p>Which decouples the sender and receiver of the message, allowing it to finish without needing to wait and concern itself
+on how subsequent logic is processed, e.g. how to handle errors, whether to execute it in a different managed thread, in parallel, etc.</p>
+<p>Messaging encourages adopting a more reliable asynchronous one-way workflow instead of implementing logic serially where
+the sender is timely coupled to the successful execution of all subsequent logic before being able to complete, e.g:</p>
+<pre><code class="language-csharp">await cmd.ExecuteAsync(createTodo);
+var newTodo = cmd.Result;
+await SendNewTodoNotificationAsync(newTodo);
+</code></pre>
+<p>It allows for more reliable and observable workflows that removes the temporal coupling between components where each
+execution step can be executed on different threads, independently monitored and retried if needed.</p>
+<pre><code class="language-txt">[A] -&gt; [B] -&gt; [C]
+</code></pre>
+<h3 id="commands-as-application-building-blocks">Commands as Application Building Blocks<a class="header-anchor" href="javascript:;" onclick="location.hash='#commands-as-application-building-blocks'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>As they're not dependent on any framework and can support multiple execution patterns, we believe Commands make great
+building blocks for insulating units of logic as they're simple and testable and allow for managed execution which can
+easily add logging, monitoring, and resilience around your logic.</p>
+<h3 id="background-mq">Background MQ<a class="header-anchor" href="javascript:;" onclick="location.hash='#background-mq'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>It should be noted adopting a messaging pattern doesn't require additional infrastructure complexity of an external MQ Server
+as you can use the <a href="https://docs.servicestack.net/background-mq">Background MQ</a> to execute messages in configurable managed background threads.</p>
+<h3 id="executing-commands">Executing Commands<a class="header-anchor" href="javascript:;" onclick="location.hash='#executing-commands'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Commands are effectively a pattern to structure your logic that doesn't depend on any implementation assembly or
+framework, so they can just be executed directly, e.g:</p>
+<pre><code class="language-csharp">using var db = dbFactory.Open();
+var cmd = new AddTodoCommand(new NullLogger&lt;AddTodoCommand&gt;(), db);
+await cmd.ExecuteAsync(new CreateTodo { Text = &quot;New Todo&quot; });
+</code></pre>
+<h3 id="command-executor">Command Executor<a class="header-anchor" href="javascript:;" onclick="location.hash='#command-executor'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>They also allow for a managed execution which the <strong>CommandsFeature</strong> provides with its <code>ICommandExecutor</code> which
+can be executed like:</p>
+<pre><code class="language-csharp">public class MyService(ICommandExecutor executor) : Service
+{
+    public object Any(MyRequest request)
+    {
+        var cmd = executor.Command&lt;AddTodoCommand&gt;(); 
+        await cmd.ExecuteAsync(new AddTodoCommand { Text = &quot;New Todo&quot; });
+    }
+}
+</code></pre>
+<p>This still results in the same behavior where exceptions are bubbled but also adds observability and resilience and
+other niceties like executing any Fluent or Declarative Validation on Command Requests.</p>
+<h3 id="retry-failed-commands">Retry Failed Commands<a class="header-anchor" href="javascript:;" onclick="location.hash='#retry-failed-commands'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>We can make commands more resilient by adding the <code>[Retry]</code> attribute to opt into auto retrying failed commands:</p>
+<pre><code class="language-csharp">[Retry]
+public class AddTodoCommand() : IAsyncCommand&lt;CreateTodo&gt; {}
+</code></pre>
+<p>Which will automatically retry the command as per the default Retry Policy:</p>
+<pre><code class="language-csharp">services.AddPlugin(new CommandsFeature
+{
+    DefaultRetryPolicy = new(
+        Times: 3,
+        Behavior: RetryBehavior.FullJitterBackoff,
+        DelayMs: 100,
+        MaxDelayMs: 60_000,
+        DelayFirst: false
+    )
 });
 </code></pre>
-<h2 id="convert-session-to-token-service">Convert Session to Token Service<a class="header-anchor" href="javascript:;" onclick="location.hash='#convert-session-to-token-service'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Another useful Service that's available is being able to Convert your current Authenticated Session into a Token
-with the <code>ConvertSessionToToken</code> Service which can be enabled with:</p>
-<pre><code class="language-csharp">options.JwtAuth(x =&gt; {
-    x.IncludeConvertSessionToTokenService = true;
-});
+<p>That can be overridden on a per-command basis with the <code>[Retry]</code> attribute, e.g:</p>
+<pre><code class="language-csharp">[Retry(Times=4, MaxDelayMs=300_000, Behavior=RetryBehavior.LinearBackoff)]
+public class AddTodoCommand() : IAsyncCommand&lt;CreateTodo&gt; {}
 </code></pre>
-<p>This can be useful for when you want to Authenticate via an external OAuth Provider that you then want to convert into a stateless
-JWT Token by calling the <code>ConvertSessionToToken</code> on the client, e.g:</p>
-<h4 id="net-clients">.NET Clients<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-clients'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<pre><code class="language-csharp">await client.SendAsync(new ConvertSessionToToken());
-</code></pre>
-<h4 id="typescriptjavascript">TypeScript/JavaScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescriptjavascript'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<pre><code class="language-ts">fetch('/session-to-token', { method:'POST', credentials:'include' })
-</code></pre>
-<p>The default behavior of <code>ConvertSessionToToken</code> is to remove the Current Session from the Auth Server which will prevent
-access to protected Services using our previously Authenticated Session. If you still want to preserve your existing Session
-you can indicate this with:</p>
-<pre><code class="language-csharp">await client.SendAsync(new ConvertSessionToToken { 
-    PreserveSession = true 
-});
-</code></pre>
-<h3 id="jwt-options">JWT Options<a class="header-anchor" href="javascript:;" onclick="location.hash='#jwt-options'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Other configuration options available for Identity JWT Auth include:</p>
-<pre><code class="language-csharp">options.JwtAuth(x =&gt; {
-    // How long should JWT Tokens be valid for. (default 14 days)
-    x.ExpireTokensIn = TimeSpan.FromDays(14);
+<p>The different Retry Behaviors available include:</p>
+<pre><code class="language-csharp">public enum RetryBehavior
+{
+    // Use the default retry behavior
+    Default,
     
-    // How long should JWT Refresh Tokens be valid for. (default 90 days)
-    x.ExpireRefreshTokensIn = TimeSpan.FromDays(90);
+    // Always retry the operation after the same delay
+    Standard,
     
-    x.OnTokenCreated = (req, user, claims) =&gt; {
-        // Customize which claims are included in the JWT Token
-    };
-    
-    // Whether to invalidate Refresh Tokens on Logout (default true)
-    x.InvalidateRefreshTokenOnLogout = true;
-    
-    // How long to extend the expiry of Refresh Tokens after usage (default None)
-    x.ExtendRefreshTokenExpiryAfterUsage = null;
-});
+    // Should be retried with a linear backoff delay strategy
+    LinearBackoff,
+
+    // Should be retried with an exponential backoff strategy
+    ExponentialBackoff,
+
+    // Should be retried with a full jittered exponential backoff strategy
+    FullJitterBackoff,
+}
 </code></pre>
+<h2 id="command-admin-ui">Command Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#command-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Which can be inspected in the new <strong>Command Admin UI</strong> where you can view summary stats of all executed Commands and <strong>APIs</strong>
+in the <strong>Summary</strong> tab, e.g:</p>
+<p><a href="/img/posts/commands-feature/AddTodoCommand-summary.png"><img src="/img/posts/commands-feature/AddTodoCommand-summary.png" alt="" /></a></p>
+<h3 id="latest-command-executions">Latest Command Executions<a class="header-anchor" href="javascript:;" onclick="location.hash='#latest-command-executions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>It also maintains a rolling log of the latest executed commands in the <strong>Latest</strong> tab:</p>
+<p><a href="/img/posts/commands-feature/AddTodoCommand-latest.png"><img src="/img/posts/commands-feature/AddTodoCommand-latest.png" alt="" /></a></p>
+<h3 id="failed-command-executions">Failed Command Executions<a class="header-anchor" href="javascript:;" onclick="location.hash='#failed-command-executions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst the <strong>Errors</strong> tab shows a list of all failed <strong>Command</strong> and <strong>API</strong> executions:</p>
+<p><a href="/img/posts/commands-feature/AddTodoCommand-errors.png"><img src="/img/posts/commands-feature/AddTodoCommand-errors.png" alt="" /></a></p>
+<h3 id="execute-internal-commands">Execute Internal Commands<a class="header-anchor" href="javascript:;" onclick="location.hash='#execute-internal-commands'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>A benefit of using Commands as the building block for your internal logic is that they enjoy many of the same benefits
+of ServiceStack's message-based Services where they can be invoked using just the Command <strong>Name</strong> and a <strong>Request</strong> Body
+which allows them to be discovered and executed from the <strong>Explore</strong> Tab:</p>
+<p><a href="/img/posts/commands-feature/AddTodoCommand-execute.png"><img src="/img/posts/commands-feature/AddTodoCommand-execute.png" alt="" /></a></p>
+<p>In this way they can be treated like <strong>Internal APIs</strong> for being able to invoke internal functionality that's only accessible
+by <strong>Admin</strong> Users.</p>
+<h3 id="group-commands-by-tag">Group Commands by Tag<a class="header-anchor" href="javascript:;" onclick="location.hash='#group-commands-by-tag'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Just like ServiceStack Services they can be grouped by <strong>Tag</strong> which can be used to group related commands:</p>
+<pre><code class="language-csharp">[Tag(&quot;Todos&quot;)]
+public class AddTodoCommand() : IAsyncCommand&lt;CreateTodo&gt; {}
+</code></pre>
+<h2 id="mq-integration">MQ Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#mq-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Although <code>CommandsFeature</code> is a standalone feature we're registering it in the new Identity Auth Templates <code>Configure.Mq.cs</code>
+which already uses the Background MQ to execute messages in managed background threads where it's used to send Identity Auth emails:</p>
+<pre><code class="language-csharp">public class ConfigureMq : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+            services.AddSingleton&lt;IMessageService&gt;(c =&gt; new BackgroundMqService());
+            services.AddPlugin(new CommandsFeature());
+        })
+        .ConfigureAppHost(afterAppHostInit: appHost =&gt; {
+            var mqService = appHost.Resolve&lt;IMessageService&gt;();
+
+            //Register ServiceStack APIs you want to be able to invoke via MQ
+            mqService.RegisterHandler&lt;SendEmail&gt;(appHost.ExecuteMessage);
+            mqService.Start();
+        });
+}
+</code></pre>
+<p>Despite being 2 independent features, they work well together as the Background MQ can be used to execute Commands in
+managed background threads of which a single thread is used to execute each Request Type by default (configurable per request).</p>
+<p>You'd typically want to use queues to improve scalability by reducing locking and concurrency contention of heavy resources
+by having requests queued and executed in a managed background thread where it's able to execute requests as fast as it can without contention.
+Queues are also a great solution for working around single thread limitations of resources like writes to SQLite databases.</p>
+<h2 id="use-case-sqlite-writes">Use Case - SQLite Writes<a class="header-anchor" href="javascript:;" onclick="location.hash='#use-case-sqlite-writes'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>As we've started to use server-side SQLite databases for our new Apps given its <a href="https://docs.servicestack.net/ormlite/litestream">many benefits</a>
+we needed a solution to workaround its limitation of not being able to handle multiple writes concurrently.</p>
+<p>One of the benefits of using SQLite is creating and managing multiple databases is relatively cheap, so we can mitigate
+this limitation somewhat by maintaining different subsystems in separate databases, e.g:</p>
+<p><a href="/img/posts/commands-feature/pvq-databases.png"><img src="/img/posts/commands-feature/pvq-databases.png" alt="" /></a></p>
+<p>But each database can only be written to by a single thread at a time, which we can now easily facilitate with
+<strong>Background MQ</strong> and <strong>MQ Command DTOs</strong>.</p>
+<h3 id="mq-command-dtos">MQ Command DTOs<a class="header-anchor" href="javascript:;" onclick="location.hash='#mq-command-dtos'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>We can use the new <code>[Command]</code> attribute to be able to execute multiple commands on a single Request DTO Properties, e.g:</p>
+<pre><code class="language-csharp">[Tag(Tag.Tasks)]
+[Restrict(RequestAttributes.MessageQueue), ExcludeMetadata]
+public class DbWrites : IGet, IReturn&lt;EmptyResponse&gt;
+{
+    [Command&lt;CreatePostVoteCommand&gt;]
+    public Vote? CreatePostVote { get; set; }
+    
+    [Command&lt;CreateCommentVoteCommand&gt;]
+    public Vote? CreateCommentVote { get; set; }
+    
+    [Command&lt;CreatePostCommand&gt;]
+    public Post? CreatePost { get; set; }
+    
+    [Command&lt;UpdatePostCommand&gt;]
+    public Post? UpdatePost { get; set; }
+    
+    [Command&lt;DeletePostsCommand&gt;]
+    public DeletePosts? DeletePosts { get; set; }
+    
+    [Command&lt;DeleteAnswersCommand&gt;]
+    public DeleteAnswers? DeleteAnswers { get; set; }
+    
+    [Command&lt;CreateAnswerCommand&gt;]
+    public Post? CreateAnswer { get; set; }
+    
+    [Command&lt;PostSubscriptionsCommand&gt;]
+    public PostSubscriptions? PostSubscriptions { get; set; }
+    
+    [Command&lt;TagSubscriptionsCommand&gt;]
+    public TagSubscriptions? TagSubscriptions { get; set; }    
+    //...
+}
+</code></pre>
+<p>Then to execute the commands we can use the <code>Request.ExecuteCommandsAsync</code> extension method for its
+Background MQ API implementation:</p>
+<pre><code class="language-csharp">public class BackgroundMqServices : Service
+{
+    public Task Any(DbWrites request) =&gt; Request.ExecuteCommandsAsync(request);
+}
+</code></pre>
+<p>Which goes through all Request DTO properties to execute all populated properties with their associated
+command, using it as the request for the command.</p>
+<p>So after registering the <code>DbWrites</code> Command DTO with the MQ Service:</p>
+<pre><code class="language-csharp">mqService.RegisterHandler&lt;DbWrites&gt;(appHost.ExecuteMessage);
+</code></pre>
+<p>We can now publish a single <code>DbWrites</code> message to execute multiple commands in a single managed background thread, e.g:</p>
+<pre><code class="language-csharp">public class NotificationServices(MessageProducer mq) : Service
+{
+    public object Any(Watch request)
+    {
+        var userName = Request.GetClaimsPrincipal().GetUserName();
+
+        mq.Publish(new DbWrites
+        {
+            PostSubscriptions = request.PostId == null ? null : new()
+            {
+                UserName = userName,
+                Subscriptions = [request.PostId.Value],
+            },
+            TagSubscriptions = request.Tag == null ? null : new()
+            {
+                UserName = userName,
+                Subscriptions = [request.Tag],
+            },
+        });
+        
+        mq.Publish(new AnalyticsTasks {
+            WatchRequest = request,
+        });
+    }
+}
+</code></pre>
+<p>We also benefit from its natural parallelism where write requests to different Databases are executed in parallel.</p>
 
                 </div>
             </div>
@@ -432,47 +614,6 @@ you can indicate this with:</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/commands-feature">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1524741978410-350ba91a70d7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/commands-feature" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Utilize Commands to build more robust and observable systems">
-                                                    Utilize Commands to build more robust and observable systems
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Learn how to build testable, robust observable systems with the new Commands Feature</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Utilize Commands to build more robust and observable systems background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-06-25T00:00:00.0000000">June 25, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>11 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -589,6 +730,47 @@ you can indicate this with:</p>
                                                     <time datetime="2024-03-06T00:00:00.0000000">March 6, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>11 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/net8-vue-spa-template">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/net8-vue-spa-template" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New Vue SPA Template">
+                                                    New Vue SPA Template
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Introducing the enhanced Vite TypeScript Vue SPA template for .NET 8</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="New Vue SPA Template background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-03-05T00:00:00.0000000">March 5, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>9 min read</span>
                                                 </div>
                                             </div>
                                         </div>
