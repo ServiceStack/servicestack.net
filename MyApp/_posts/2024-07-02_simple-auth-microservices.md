@@ -4,7 +4,6 @@ summary: A Simple Auth configuration using API Keys and Admin UI that's ideal fo
 tags: [auth,.net8,servicestack]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1529265895721-65945a176cff?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 With ServiceStack now [fully integrated with ASP.NET Core Identity Auth](https://docs.servicestack.net/auth/identity-auth)
