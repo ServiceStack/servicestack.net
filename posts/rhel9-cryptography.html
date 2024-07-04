@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>New Razor SSG generated docs.servicestack.net - ServiceStack</title>
+    <title>Support for RHEL 9&#x27;s hardened cryptography policy - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -36,10 +36,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="The new docs.servicestack.net website is now generated with Razor SSG - now with Dark Mode!" />
-    <meta property="og:url" content="https://servicestack.net/posts/new-razor-ssg-docs" />
-    <meta property="og:title" content="New Razor SSG generated docs.servicestack.net" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1526243741027-444d633d7365?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Regenerate your License Key to support RedHat Enterprise Linux 9 Default Cryptography Policy" />
+    <meta property="og:url" content="https://servicestack.net/posts/rhel9-cryptography" />
+    <meta property="og:title" content="Support for RHEL 9&#x27;s hardened cryptography policy" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1564296787121-726de5b37bf1?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -124,7 +124,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                New Razor SSG generated docs.servicestack.net
+                Support for RHEL 9&#x27;s hardened cryptography policy
             </h1>
             <div class="flex justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -165,21 +165,21 @@ mountAll()
             </div>
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="New Razor SSG generated docs.servicestack.net Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1564296787121-726de5b37bf1?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Support for RHEL 9&#x27;s hardened cryptography policy Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                            <a href="posts/tagged/razor" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
-                            <a href="posts/tagged/ssg" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ssg</a>
-                            <a href="posts/tagged/docs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docs</a>
+                            <a href="posts/tagged/net8" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">.net8</a>
+                            <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                            <a href="posts/tagged/licensing" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">licensing</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-07-10T00:00:00.0000000">July 10, 2023</time>
+                                <time datetime="2024-07-01T00:00:00.0000000">July 1, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>3 min read</span>
                             </div>
                         </div>
                 </div>
@@ -192,101 +192,45 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>Following in the footsteps of <a href="/posts/new_razor_ssg_website">porting servicestack.net</a> website
-<a href="https://github.com/mythz/site">from Jekyll</a> to
-<a href="https://github.com/ServiceStack/servicestack.net">Razor SSG</a>, we've decided to
-also take control over our last active VitePress website and port our <a href="https://docs.servicestack.net">docs.servicestack.net</a> to
-<a href="https://razor-ssg.web-templates.io/">Razor SSG</a>, giving us complete control over its implementation allowing us to
-resolve any issues and add any features ourselves as needed, at the same time freeing us from the complexity and brittleness
-of the npm ecosystem with a more robust C# and Razor Pages SSG based implementation.</p>
-<h2 id="vitepress-issues">VitePress Issues<a class="header-anchor" href="javascript:;" onclick="location.hash='#vitepress-issues'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Our 500 page <a href="https://docs.servicestack.net">docs.servicestack.net</a> started experiencing growing pains under <a href="https://vitepress.dev">VitePress</a>
-which started experiencing rendering issues that we believe stems from VitePress's SSR/SPA hydration model that for
-maximum performance would convert the initial downloaded SSR content into an SPA to speed up navigation between pages.</p>
-<p>However several pages began to randomly show duplicate content and sometimes not display the bottom section of pages at all.
-For a while we worked around these issues by running custom JavaScript to detect and remove duplicate content from the DOM
-after the page loaded as well as moving bottom fragments of pages into separate includes and external Vue components
-for the pages with missing content.</p>
-<p>However as the time to detect and workaround these issues across all our documentation started becoming too time consuming,
-it was time to consider a more permanent and effective solution.</p>
-<h2 id="porting-to-razor-ssg">Porting to Razor SSG<a class="header-anchor" href="javascript:;" onclick="location.hash='#porting-to-razor-ssg'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Given we've already spent time &amp; effort porting docs.servicestack.net
-<a href="/posts/jekyll-to-vitepress">from Jekyll to VitePress</a> less than 2 years ago and after the success
-we had of rapidly <a href="/posts/new_razor_ssg_website">porting servicestack.net</a> to Razor SSG and rapidly creating
-<a href="https://servicestack.net/posts/vue-stable-diffusion">Vue Stable Diffusion</a> with Razor SSG in a fraction of the time it
-took to develop the equivalent <a href="https://docs.servicestack.net/blazor-diffusion">Blazor Diffusion</a>, it was clear we
-should also do the same for the new documentation website.</p>
-<p>Porting <strong>docs.servicestack.net</strong> ended up being fairly straightforward process that was completed in just a few days,
-with most of the time spent on implementing existing VitePress features we used in C# and Markdig Extensions,
-a new Responsive Tailwind Layout and adding support for Dark Mode which was previously never supported.</p>
-<p>Fortunately none of VitePress's SSR/SPA hydration issues manifested in the Razor SSG port which adopted the
-cleaner traditional architecture of generating clean HTML from Markdown and Razor Pages and enhanced on the client-side with Vue.</p>
-<p>We're extremely happy with the result, a much lighter and cleaner HTML generated site that now finally supports Dark Mode!</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net?light">
-        <img class="p-2" src="/img/posts/razor-ssg/docs.servicestack.net.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net?dark">
-        <img class="p-2" src="/img/posts/razor-ssg/docs.servicestack.net-dark.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
+                    <p>A consequence of RedHat Enterprise Linux 9's hardened
+<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening">system-wide cryptographic policies</a>
+is that it's incompatible with ServiceStack's current licensing mechanism which uses RSA encryption and SHA1 hashing algorithm
+to protect and validate license keys.</p>
+<p>Unfortunately this makes it no longer possible to use License Keys to run unrestricted ServiceStack Apps on default
+installs of RHEL 9. The difficulty being we can't both support RHEL 9's hardened cryptography policy and
+maintain compatibility with being able to use newer License Keys on all previous versions of ServiceStack - vital
+for enabling frictionless rotation of License Keys.</p>
+<p>As a system-wide policy we're unable to work around this restriction in the library to allow usage of RSA+SHA1 to just
+validate License Keys which is the only place it's used. As it only affected a small number of users initially we recommend
+that they just switch to use
+<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening">RHEL's Legacy Cryptography Policy</a>
+which allows for maximum compatibility with existing software.</p>
+<h3 id="road-to-solution">Road to Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#road-to-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><img src="/img/posts/rhel9-cryptography/bg-redhat.webp" alt="" /></p>
+<p>As more customers upgraded to RHEL 9 and started experiencing the same issue, we've decided to invest time to
+try and address this issue starting with adding support for a configurable Hashing algorithm when creating and validating
+License Keys. We still have the issue of not being able to generate a new License Key that would be compatible with both
+default RHEL 9 and all previous versions of ServiceStack.</p>
+<p>The solutions under consideration were:</p>
+<ul>
+<li>Generate a new License Key that's compatible with RHEL 9's hardened cryptography policy, but inform customers that
+they'll be unable to use the new License Key on their existing versions of ServiceStack and to continue to use their
+existing License Key for existing versions</li>
+<li>Generate 2 License Keys, and explain to Customers which key to use for previous versions of ServiceStack and which key
+to use for RHEL 9</li>
+<li>Provide a way for customers to regenerate their License Key to support RHEL 9's hardened cryptography policy</li>
+</ul>
+<p>Since this issue only affected a minority of our Customers we decided to go with the last option to avoid inflicting any
+additional complexity on the majority of our Customers who are unaffected by this issue.</p>
+<h3 id="generate-license-key-for-rhel-9">Generate License Key for RHEL 9+<a class="header-anchor" href="javascript:;" onclick="location.hash='#generate-license-key-for-rhel-9'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Starting from ServiceStack v8.3+ Customers can regenerate a new License Key with a stronger <strong>SHA512</strong> Hash Algorithm
+that's compatible with RHEL 9's default hardened cryptography policy by visiting:</p>
+<div class="text-3xl text-indigo-600"><p><a href="https://account.servicestack.net/regenerate-license">https://account.servicestack.net/regenerate-license</a></p>
 </div>
-<div class="my-8 flex justify-center">
-    <a class="text-3xl text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStack/docs.servicestack.net">https://github.com/ServiceStack/docs.servicestack.net</a>
-</div>
-<h2 id="razor-pages-benefits">Razor Pages Benefits<a class="header-anchor" href="javascript:;" onclick="location.hash='#razor-pages-benefits'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The new Razor SSG implementation now benefits from Razor Pages flexible layouts and partials where pages can be optionally
-implemented in just markdown, Razor or a hybrid mix of both. The <a href="https://docs.servicestack.net/vue/?light">Vue</a> splash page is an example of this implemented in a custom
-<a href="https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/Pages/Vue/Index.cshtml">/Vue/Index.cshtml</a> Razor Page:</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/vue/?light">
-        <img class="p-2" src="/img/posts/razor-ssg/razor-pages-vue.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-</div>
-<p>Other benefits include a new Documentation Map feature with live scroll updating, displayed on the right side of each documentation page.</p>
-<h2 id="razor-press-docs-website-template">Razor Press Docs Website Template<a class="header-anchor" href="javascript:;" onclick="location.hash='#razor-press-docs-website-template'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We've extracted the new Documentation features into a new Razor SSG based project template optimized for creating
-documentation and content-centric websites which we'll release within the next few days after we've finished documenting it.</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://razor-press.web-templates.io">
-        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/razor-press.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">razor-press.web-templates.io</div>
-    </a>
-</div>
-<p>In a nutshell the new <a href="https://razor-press.web-templates.io">Razor Press template</a> is a Simple, Powerful, Fast, Flexible &amp; FREE! Use Razor Pages to generate
-beautiful Tailwind static websites powered by Markdown &amp; enhanced with Vue Auto deploys to GitHub Pages to Host
-for FREE on GitHub CDN</p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="uqEa_DfFFDQ" style="background-image: url('https://img.youtube.com/vi/uqEa_DfFFDQ/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>Just like <a href="/posts/razor-ssg">our release of Razor SSG</a> it will be a free project template you can use to create beautiful
-static Tailwind websites with Razor Pages with built-in GitHub Action workflows that deploys to GitHub Pages CDN
-where it can be hosted for FREE under your own custom domain name.</p>
-<h2 id="example">Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Currently the largest website generated with Razor Press is the ServiceStack's documentation at <a href="https://docs.servicestack.net">docs.servicestack.net</a>:</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/?light">
-        <img class="p-2" src="https://servicestack.net/img/posts/razor-ssg/docs.servicestack.net.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/?dark">
-        <img class="p-2" src="https://servicestack.net/img/posts/razor-ssg/docs.servicestack.net-dark.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-</div>
-<p>A <strong>500+</strong> pages documentation website ported from VitePress, which prompted the creation of Razor Press after
-experiencing issues with VitePress's SSR/SPA model whose workaround became too time consuming to maintain.</p>
-<p>The new Razor SSG implementation now benefits from Razor Pages flexible layouts and partials where pages can be optionally
-implemented in just markdown, Razor or a hybrid mix of both. The <a href="https://docs.servicestack.net/vue/">Vue</a> splash page is an example of this implemented in a custom
-<a href="https://github.com/NetCoreTemplates/razor-press/blob/main/MyApp/Pages/Vue/Index.cshtml">/Vue/Index.cshtml</a> Razor Page.</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/vue/">
-        <img class="p-2" src="https://docs.servicestack.net/img/pages/ssg/razor-pages-vue.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-</div>
+<h3 id="future">Future<a class="header-anchor" href="javascript:;" onclick="location.hash='#future'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>We'll need to wait at least 1-2 years before we can make the stronger Hash Algorithm the default in order to reduce the
+impact of not being able to use new License Keys on versions of ServiceStack prior to <strong>v8.2</strong>.</p>
+<p>After the switch is made regenerating license keys will no longer be necessary.</p>
 
                 </div>
             </div>
@@ -430,47 +374,6 @@ implemented in just markdown, Razor or a hybrid mix of both. The <a href="https:
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
-                                        <a href="posts/rhel9-cryptography">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1564296787121-726de5b37bf1?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/rhel9-cryptography" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Support for RHEL 9&#x27;s hardened cryptography policy">
-                                                    Support for RHEL 9&#x27;s hardened cryptography policy
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Regenerate your License Key to support RedHat Enterprise Linux 9 Default Cryptography Policy</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Support for RHEL 9&#x27;s hardened cryptography policy background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-07-01T00:00:00.0000000">July 1, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>3 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
                                         <a href="posts/apikeys">
                                             <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1693251952958-0f0f40882fe7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
                                         </a>
@@ -502,6 +405,47 @@ implemented in just markdown, Razor or a hybrid mix of both. The <a href="https:
                                                     <time datetime="2024-06-18T00:00:00.0000000">June 18, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>9 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/kotlin-compose-multiplatform">
+                                            <img class="h-48 w-full object-cover" src="/img/posts/kotlin-compose-multiplatform/compose-multiplatform.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/kotlin-compose-multiplatform" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs">
+                                                    Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Explore the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-03-13T00:00:00.0000000">March 13, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>5 min read</span>
                                                 </div>
                                             </div>
                                         </div>

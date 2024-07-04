@@ -10,10 +10,21 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Wed, 03 Jul 2024 23:32:35 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2024 12:18:28 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Utilize Commands to build more robust and observable systems</title>
+        <link>https://servicestack.net/posts/commands-feature</link>
+        <author>demis@servicestack.com (Demis Bellot)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/commands-feature</guid>
+        <pubDate>Wed, 03 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-03T00:00:00Z</atom:updated>
+        <category>commands</category>
+        <category>.net8</category>
+        <description>Learn how to build testable, robust observable systems with the new Commands Feature</description>
+    </item>
     <item>
         <title>Simple Auth Story for .NET 8 Microservices</title>
         <link>https://servicestack.net/posts/simple-auth-microservices</link>
@@ -27,15 +38,16 @@
         <description>A Simple Auth configuration using API Keys and Admin UI that&#x27;s ideal for .NET 8 Microservices</description>
     </item>
     <item>
-        <title>Utilize Commands to build more robust and observable systems</title>
-        <link>https://servicestack.net/posts/commands-feature</link>
+        <title>Support for RHEL 9&#x27;s hardened cryptography policy</title>
+        <link>https://servicestack.net/posts/rhel9-cryptography</link>
         <author>demis@servicestack.com (Demis Bellot)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/commands-feature</guid>
-        <pubDate>Tue, 25 Jun 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-06-25T00:00:00Z</atom:updated>
-        <category>commands</category>
+        <guid isPermaLink="false">https://servicestack.net/posts/rhel9-cryptography</guid>
+        <pubDate>Mon, 01 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-01T00:00:00Z</atom:updated>
         <category>.net8</category>
-        <description>Learn how to build testable, robust observable systems with the new Commands Feature</description>
+        <category>servicestack</category>
+        <category>licensing</category>
+        <description>Regenerate your License Key to support RedHat Enterprise Linux 9 Default Cryptography Policy</description>
     </item>
     <item>
         <title>Using API Keys to secure .NET 8 APIs</title>
@@ -123,18 +135,6 @@
         <category>docs</category>
         <category>markdown</category>
         <description>Introducing the Vite Press Plugin for Vite Vue &amp; React Apps</description>
-    </item>
-    <item>
-        <title>New Blazor Interactive Auto Template with Custom Admin UIs</title>
-        <link>https://servicestack.net/posts/blazor-8-admin</link>
-        <author>darren@servicestack.com (Darren Reid)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/blazor-8-admin</guid>
-        <pubDate>Mon, 26 Feb 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-02-26T00:00:00Z</atom:updated>
-        <category>blazor</category>
-        <category>.net8</category>
-        <category>admin</category>
-        <description>Discover how to use ServiceStack.Blazor components to quickly create customizable and professional-looking admin pages in a Blazor application</description>
     </item>
 </channel>
 </rss>
