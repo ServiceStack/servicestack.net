@@ -4,7 +4,6 @@ summary: Regenerate your License Key to support RedHat Enterprise Linux 9 Defaul
 tags: [.net8,servicestack,licensing]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1564296787121-726de5b37bf1?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 A consequence of RedHat Enterprise Linux 9's hardened 
