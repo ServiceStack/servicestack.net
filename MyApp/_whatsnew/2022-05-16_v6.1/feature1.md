@@ -4,7 +4,7 @@ url: https://docs.servicestack.net/releases/v6_01
 image: /img/whatsnew/v6.1/locode-splash.png
 ---
 
-We're excited to announce [locode.dev](https://locode.dev), our **Rapid Application Development** solution to quickly develop
+We're excited to announce [Locode](/locode), our **Rapid Application Development** solution to quickly develop
 beautiful Full Stack CRUD Apps around **AutoQuery APIs**, suitable for a wide number of use-cases including:
 
 - Rapid prototyping by creating an instant UI around existing **Database-First** RDBMS tables
