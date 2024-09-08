@@ -38,6 +38,30 @@ as a background job in addition to [Commands](https://docs.servicestack.net/comm
 [last v8.3 release](https://docs.servicestack.net/releases/v8_03) used for encapsulating units of logic
 that can be used as internal invokable, inspectable and auto-retryable building blocks.
 
+### Real Time Admin UI
+
+Dashboard Summary of Executed, Failed and Cancelled Jobs and Worker Stats
+
+![](/img/posts/background-jobs/jobs-dashboard.png)
+
+View Real-time progress of queued Jobs
+
+![](/img/posts/background-jobs/jobs-queue.png)
+
+View real-time progress logs of executing Jobs
+
+![](/img/posts/background-jobs/jobs-logs.png)
+
+View Job Summary and Monthly Databases of Completed and Failed Jobs
+
+![](/img/posts/background-jobs/jobs-completed.png)
+
+View full state and execution history of each Job
+
+![](/img/posts/background-jobs/jobs-failed.png)
+
+Cancel Running jobs and Requeue failed jobs
+
 ### Feature Overview
 
 Despite being a v1 release it packs all the features we wanted to use in a Background Jobs solution including:
@@ -60,14 +84,6 @@ Despite being a v1 release it packs all the features we wanted to use in a Backg
  - Maintain Status, Logs and Progress of Executing Jobs
  - Execute transitive (i.e. non-durable) jobs using named workers
  - Attach optional `Tag`, `BatchId`, `CreatedBy`, `ReplyTo` and `Args` with Jobs
-
-### Real Time Admin UI
-
- - Dashboard Summary of Executed, Failed and Cancelled Jobs and Worker Stats
- - View Real-time progress and logs of executing Jobs
- - View Summary Metadata of all Jobs
- - View Monthly Databases of Completed and Failed Jobs
- - View Scheduled Tasks and their Last Job Runs
 
 Please [let us know](https://servicestack.net/ideas) if there are any other missing features
 you would love to see implemented.
