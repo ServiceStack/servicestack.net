@@ -12,6 +12,10 @@ background jobs and scheduled tasks in any .NET 8 App, implemented in true Servi
 where it seamlessly integrates into existing ServiceStack Apps with a [built-in](/auto-ui) Management UI
 to provide real-time monitoring, inspection and management of background jobs.
 
+:::youtube 2Cza_a_rrjA
+Durable Background Jobs and Scheduled Tasks for .NET
+:::
+
 ### Durable and Infrastructure-Free
 
 Prior to Jobs we've been using [Background MQ](https://docs.servicestack.net/background-mq) for executing
@@ -211,7 +215,11 @@ var result = await jobs.RunCommandAsync<SendEmailCommand>(new SendEmail {...},
     });
 ```
 
-  ### Schedule Recurring Tasks
+### Schedule Recurring Tasks
+
+:::youtube DtB8KaXXMCM
+Schedule your Reoccurring Tasks with Background Jobs!
+:::
 
 APIs and Commands can be scheduled to run at either a `TimeSpan` or 
 [CRON Expression](https://github.com/HangfireIO/Cronos?tab=readme-ov-file#cron-format) interval, e.g:
@@ -814,5 +822,3 @@ public class MyAsyncCommandWithArgsAndResult(ILogger<MyCommandNoArgs> log)
     }
 }
 ```
-
-
