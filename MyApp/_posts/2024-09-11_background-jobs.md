@@ -4,7 +4,6 @@ summary: Introducing ServiceStack Jobs for managing background and scheduled tas
 tags: [workers,commands,.net8]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 We're happy to announce **ServiceStack.Jobs** our effortless solution for queueing and managing 
