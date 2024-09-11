@@ -235,9 +235,9 @@ For further info on using high performance SQLite in production web apps check o
 [highperformancesqlite.com](https://highperformancesqlite.com) - 
 which contains a lot of great content accessible for free.
 
-## Example Apps
+## Example SQLite Apps
 
-Our confidence in SQLite being the best choice for many web applications is why we've adopted
+Our confidence in SQLite being the best choice for many web applications has led us to adopt
 it to power our latest web applications which are all 
 [deployed to a shared Hetzner VM](/posts/kubernetes_not_required) 
 whose [inexpensive hosting costs](/posts/jamstacks_hosting) allows us to host 
@@ -304,17 +304,17 @@ will need to run on GPU-equipped servers.
 
 #### Native end-to-end Typed Integrations to most popular languages
 
-As it's built with ServiceStack it will utilize its 
-[Add ServiceStack Reference](https://docs.servicestack.net/add-servicestack-reference) feature
-to provide native typed integrations to C#, TypeScript, JavaScript, Python, PHP, Swift, Java, 
+ServiceStack's [Add ServiceStack Reference](https://docs.servicestack.net/add-servicestack-reference)
+feature is used to provide native typed integrations to C#, TypeScript, JavaScript, Python, PHP, Swift, Java, 
 Kotlin, Dart, F# and VB.NET projects which organizations can drop into their heterogeneous
 environments to manage their private AI Services used across their different Apps.
 
 #### Protected Access with API Keys
 
 AI Server utilizes [Simple Auth with API Keys](https://docs.servicestack.net/auth/admin-apikeys)
-letting you create and distribute API Keys to clients you want to be able to access your 
-AI Server's APIs, which can optionally be further restricted to specific APIs.
+letting Admins create and distribute API Keys to only allow authorized clients to access their 
+AI Server's APIs, which can be optionally further restricted to only
+[allow access to specific APIs](https://docs.servicestack.net/auth/apikeys#creating-user-api-keys).
 
 ## Active Development
 
