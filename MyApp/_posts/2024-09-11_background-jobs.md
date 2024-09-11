@@ -46,23 +46,23 @@ that can be used as internal invokable, inspectable and auto-retryable building 
 
 Dashboard Summary of Executed, Failed and Cancelled Jobs and Worker Stats
 
-![](/img/posts/background-jobs/jobs-dashboard.png)
+![](/img/posts/background-jobs/jobs-dashboard.webp)
 
 View Real-time progress of queued Jobs
 
-![](/img/posts/background-jobs/jobs-queue.png)
+![](/img/posts/background-jobs/jobs-queue.webp)
 
 View real-time progress logs of executing Jobs
 
-![](/img/posts/background-jobs/jobs-logs.png)
+![](/img/posts/background-jobs/jobs-logs.webp)
 
 View Job Summary and Monthly Databases of Completed and Failed Jobs
 
-![](/img/posts/background-jobs/jobs-completed.png)
+![](/img/posts/background-jobs/jobs-completed.webp)
 
 View full state and execution history of each Job
 
-![](/img/posts/background-jobs/jobs-failed.png)
+![](/img/posts/background-jobs/jobs-failed.webp)
 
 Cancel Running jobs and Requeue failed jobs
 
@@ -253,7 +253,7 @@ Scheduled Tasks are idempotent where the same registration with the same name wi
 either create or update the scheduled task registration without losing track of the
 last time the Recurring Task was run which is also viewable in the Jobs Admin UI:
 
-![](/img/posts/background-jobs/jobs-scheduled-tasks-last-job.png)
+![](/img/posts/background-jobs/jobs-scheduled-tasks-last-job.webp)
 
 ### Serially Execute Jobs with named Workers
 

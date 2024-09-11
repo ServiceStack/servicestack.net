@@ -92,7 +92,7 @@ The benefit of using SQLite is that databases can be created on-the-fly where Re
 into isolated **requests** Monthly databases which can be easily archived into managed file storage instead 
 of a singular growing database, visible in the [Database Admin UI](https://docs.servicestack.net/admin-ui-database):
 
-![](/img/posts/sqlite-request-logs/sqlite-databases.png)
+![](/img/posts/sqlite-request-logs/sqlite-databases.webp)
 
 SQLite logs will also make it easier to generate monthly aggregate reports to provide key insights
 into the usage of your App.
@@ -102,4 +102,4 @@ into the usage of your App.
 As SQLite Requests Logs also makes it efficiently possible to sort and filter through logs, the
 Logging UI will switch to using a fully queryable AutoQueryGrid when using `SqliteRequestLogger`:
 
-![](/img/posts/sqlite-request-logs/sqlite-request-logs.png)
+![](/img/posts/sqlite-request-logs/sqlite-request-logs.webp)

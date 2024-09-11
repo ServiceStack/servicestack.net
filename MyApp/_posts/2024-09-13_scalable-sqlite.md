@@ -217,11 +217,11 @@ with hardware getting cheaper and faster and cheap hosting providers like [hetzn
 where you can get bare metal 48 Core/96 vCore EPYC Servers with fast NVMe SSDs for **€236** per month - 
 a fraction of the cost of comparable performance with any cloud managed solution
 
-[![](/img/posts/scalable-sqlite/hetzner-epyc-48.png)](https://www.hetzner.com/dedicated-rootserver/)
+[![](/img/posts/scalable-sqlite/hetzner-epyc-48.webp)](https://www.hetzner.com/dedicated-rootserver/)
 
 Which is a fraction of what it would cost for comparable performance using cloud managed databases:
 
-[![](/img/posts/scalable-sqlite/azure-sql-database.png)](https://azure.microsoft.com/en-us/pricing/details/azure-sql-database/single/)
+[![](/img/posts/scalable-sqlite/azure-sql-database.webp)](https://azure.microsoft.com/en-us/pricing/details/azure-sql-database/single/)
 
 In the rare cases where you need to scale beyond a single server you'll initially be able to 
 scale out your different App databases onto different servers.
@@ -251,7 +251,7 @@ as a great resource of how they're used in real-world Web Applications:
 Generate images for free using custom [Civit AI](https://civitai.com) and [FLUX-schnell](https://huggingface.co/black-forest-labs/FLUX.1-schnell)
 models:
 
-[![](/img/posts/scalable-sqlite/blazordiffusion.png)](https://blazordiffusion.com)
+[![](/img/posts/scalable-sqlite/blazordiffusion.webp)](https://blazordiffusion.com)
 
 - Website: [blazordiffusion.com](https://blazordiffusion.com)
 - GitHub: [github.com/NetCoreApps/BlazorDiffusionVue](https://github.com/NetCoreApps/BlazorDiffusionVue/)
@@ -263,7 +263,7 @@ to answer your technical questions. [pvq.app](https://pvq.app) is populated with
 rated StackOverflow questions - checkout [pvq.app/leaderboard](https://pvq.app/leaderboard) 
 to find the best performing LLM models (results are surprising!)
 
-[![](/img/posts/scalable-sqlite/pvq.png)](https://pvq.app)
+[![](/img/posts/scalable-sqlite/pvq.webp)](https://pvq.app)
 
 - Website: [pvq.app](https://pvq.app)
 - GitHub: [github.com/ServiceStack/pvq.app](https://github.com/ServiceStack/pvq.app)
@@ -280,8 +280,8 @@ where it serves as a private gateway to process all LLM, AI and image transforma
 that any of our Apps need where it dynamically delegates requests across multiple Ollama, 
 Open AI Chat, LLM Gateway, Comfy UI, Whisper and ffmpeg providers. 
 
-[![](/img/posts/scalable-sqlite/ai-server.png)](https://openai.servicestack.net)
-[![](/img/posts/scalable-sqlite/ai-server-chat.png)](https://openai.servicestack.net)
+[![](/img/posts/scalable-sqlite/ai-server.webp)](https://openai.servicestack.net)
+[![](/img/posts/scalable-sqlite/ai-server-chat.webp)](https://openai.servicestack.net)
 
 - Website: [openai.servicestack.net](https://openai.servicestack.net)
 - GitHub: [github.com/ServiceStack/ai-server](https://github.com/ServiceStack/ai-server)
