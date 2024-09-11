@@ -1,6 +1,6 @@
 ---
-title: Effortless Background Jobs and Task Schedulers for .NET 8 Apps
-summary: Introducing ServiceStack Jobs for managing background and scheduled tasks
+title: Simple Background Jobs & Recurring Tasks for .NET 8
+summary: Introducing Background Jobs for managing background jobs and scheduled tasks
 tags: [workers,commands,.net8]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?crop=entropy&fit=crop&h=1000&w=2000
