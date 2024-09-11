@@ -272,10 +272,11 @@ to find the best performing LLM models (results are surprising!)
 
 The independent Microservice used to provide all AI Features used by the above applications. 
 It's already been used to execute millions of LLM and Comfy UI Requests to generate Open AI Chat Answers
-and Generated Images use to populate blazordiffusion.com and pvq.app websites. 
+and Generated Images used to populate the
+[blazordiffusion.com](https://blazordiffusion.com) and [pvq.app](https://pvq.app) websites. 
 
-It was the project used to develop and use [Background Jobs](/posts/background-jobs) in action 
-that also serves as a private gateway to process all LLM, AI and image transformations requests 
+It was the project used to develop and test [Background Jobs](/posts/background-jobs) in action 
+where it serves as a private gateway to process all LLM, AI and image transformations requests 
 that any of our Apps need where it dynamically delegates requests across multiple Ollama, 
 Open AI Chat, LLM Gateway, Comfy UI, Whisper and ffmpeg providers. 
 
