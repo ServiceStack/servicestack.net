@@ -6,7 +6,7 @@ author: Demis Bellot
 image: https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?crop=entropy&fit=crop&h=1000&w=2000
 ---
 
-We're happy to announce **ServiceStack.Jobs** our effortless solution for queueing and managing 
+We're happy to announce **Background Jobs** our effortless solution for queueing and managing 
 background jobs and scheduled tasks in any .NET 8 App, implemented in true ServiceStack fashion
 where it seamlessly integrates into existing ServiceStack Apps with a [built-in](/auto-ui) Management UI
 to provide real-time monitoring, inspection and management of background jobs.
@@ -29,7 +29,7 @@ designed for the task.
 
 We decided on using SQLite as the backing store for durable jobs since it's low latency, 
 [fast disk persistence](https://www.sqlite.org/fasterthanfs.html) and embeddable file-based 
-database makes it ideally suited for the task which allows creation of naturally partitionable 
+database makes it ideally suited for the task which allows creation of naturally partition-able 
 and archivable monthly databases on-the-fly without any additional admin overhead or external
 infrastructure dependencies making it an easy add-on into any .NET App without impacting or 
 adding load to its existing configured databases.
