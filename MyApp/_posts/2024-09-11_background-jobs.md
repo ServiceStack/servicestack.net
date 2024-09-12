@@ -43,7 +43,9 @@ that can be used as internal invokable, inspectable and auto-retryable building 
 
 ### Real Time Admin UI
 
-Dashboard Summary of Executed, Failed and Cancelled Jobs and Worker Stats
+The Background Jobs Admin UI provides a real time view into the status of all background jobs including 
+their progress, completion times, Executed, Failed and Cancelled Jobs, etc. which is useful for monitoring 
+and debugging purposes. 
 
 ![](/img/posts/background-jobs/jobs-dashboard.webp)
 
@@ -185,6 +187,46 @@ the following options:
  - `ReplyTo` - Optional field for capturing where to send notification for completion of a Job
  - `Args` - Optional String Dictionary of Arguments that can be attached to a Job
 
+### Schedule Recurring Tasks
+
+:::youtube DtB8KaXXMCM
+Schedule your Reoccurring Tasks with Background Jobs!
+:::
+
+APIs and Commands can be scheduled to run at either a `TimeSpan` or
+[CRON Expression](https://github.com/HangfireIO/Cronos?tab=readme-ov-file#cron-format) interval, e.g:
+
+```csharp
+jobs.RecurringCommand<CheckUrlsCommand>(Schedule.Cron("* * * * *"));
+jobs.RecurringCommand<CheckUrlsCommand>(
+    Schedule.Interval(TimeSpan.FromMinutes(1)));
+
+jobs.RecurringCommand<CheckUrlsCommand>(Schedule.EveryMinute, new CheckUrls {
+    Urls = urls
+});
+
+jobs.RecurringApi(Schedule.Interval(TimeSpan.FromMinutes(1)), new CheckUrls {
+    Urls = urls
+});
+```
+
+Scheduled Tasks can be registered with an optional task name and custom Background Options, e.g:
+
+```csharp
+jobs.RecurringCommand<CheckUrlsCommand>("Check URLs", Schedule.EveryMinute, 
+   new() {
+       RunCommand = true // don't persist job
+   });
+```
+
+If no task name is provided, the Command Name or APIs Request DTO will be used.
+
+Scheduled Tasks are idempotent where the same registration with the same name will
+either create or update the scheduled task registration without losing track of the
+last time the Recurring Task was run which is also viewable in the Jobs Admin UI:
+
+![](/img/posts/background-jobs/jobs-scheduled-tasks-last-job.webp)
+
 ### Executing non-durable jobs
 
 `IBackgroundJobs` also supports `RunCommand` methods to be able to execute jobs transiently 
@@ -213,46 +255,6 @@ var result = await jobs.RunCommandAsync<SendEmailCommand>(new SendEmail {...},
         Worker = "smtp"
     });
 ```
-
-### Schedule Recurring Tasks
-
-:::youtube DtB8KaXXMCM
-Schedule your Reoccurring Tasks with Background Jobs!
-:::
-
-APIs and Commands can be scheduled to run at either a `TimeSpan` or 
-[CRON Expression](https://github.com/HangfireIO/Cronos?tab=readme-ov-file#cron-format) interval, e.g:
-
-```csharp
-jobs.RecurringCommand<CheckUrlsCommand>(Schedule.Cron("* * * * *"));
-jobs.RecurringCommand<CheckUrlsCommand>(
-    Schedule.Interval(TimeSpan.FromMinutes(1)));
-
-jobs.RecurringCommand<CheckUrlsCommand>(Schedule.EveryMinute, new CheckUrls {
-    Urls = urls
-});
-
-jobs.RecurringApi(Schedule.Interval(TimeSpan.FromMinutes(1)), new CheckUrls {
-    Urls = urls
-});
-```
-
-Scheduled Tasks can be registered with an optional task name and custom Background Options, e.g: 
-
-```csharp
-jobs.RecurringCommand<CheckUrlsCommand>("Check URLs", Schedule.EveryMinute, 
-   new() {
-       RunCommand = true // don't persist job
-   });
-```
-
-If no task name is provided, the Command Name or APIs Request DTO will be used. 
-
-Scheduled Tasks are idempotent where the same registration with the same name will 
-either create or update the scheduled task registration without losing track of the
-last time the Recurring Task was run which is also viewable in the Jobs Admin UI:
-
-![](/img/posts/background-jobs/jobs-scheduled-tasks-last-job.webp)
 
 ### Serially Execute Jobs with named Workers
 
