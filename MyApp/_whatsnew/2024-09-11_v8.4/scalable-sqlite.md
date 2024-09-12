@@ -1,5 +1,5 @@
 ---
-title: High Performance, Safe and Scalable SQLite
+title: Safe, Scalable, High Performance SQLite Apps
 url: https://docs.servicestack.net/ormlite/scalable-sqlite
 image: /img/posts/scalable-sqlite/pvq.webp
 order: 3
