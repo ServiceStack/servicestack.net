@@ -113,7 +113,7 @@ x mix jobs
 :::
 
 Which adds the `Configure.BackgroundJobs.cs` [Modular Startup](https://docs.servicestack.net/modular-startup)
-configuration and **ServiceStack.Jobs** Reference to your project.
+configuration and a **ServiceStack.Jobs** NuGet package reference to your project.
 
 ## Usage
 
