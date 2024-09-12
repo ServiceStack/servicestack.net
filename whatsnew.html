@@ -136,6 +136,113 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.4</h2>
+        <div class="text-center text-lg font-normal text-gray-500 mb-8">September 11, 2024</div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/background-jobs"><img src="/img/posts/background-jobs/jobs-dashboard.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/background-jobs">Execute Background Jobs and Recurring Tasks</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p><strong>Background Jobs</strong> is our effortless solution for managing background jobs and
+scheduled tasks in any .NET 8 App, implemented in true ServiceStack fashion where
+it seamlessly integrates into existing ServiceStack Apps with a built-in Management UI
+to provide real-time monitoring, inspection and management of background jobs.</p>
+<p>It packs all useful features we wanted in its initial V1 release, including:</p>
+<ul>
+<li>No infrastructure dependencies
+<ul>
+<li>Monthly archivable rolling Databases with full Job Execution History</li>
+</ul>
+</li>
+<li>Execute existing <strong>APIs</strong> or <strong>Commands</strong></li>
+<li>Schedule <strong>Reoccurring Tasks</strong></li>
+<li>Serially execute jobs with <strong>named Workers</strong></li>
+<li>Queue Jobs that <strong>Depends On</strong> successful completion of a parent Job</li>
+<li>Execute <strong>Callback</strong> on successful execution of Job</li>
+<li>Queue Jobs to <strong>Run After</strong> a specified Date</li>
+<li>Execute Jobs within the context of an Authenticated User</li>
+<li><strong>Auto Retry</strong> and <strong>Timeout</strong> failed jobs on a default or per-job limit</li>
+<li>Cancellable Jobs</li>
+<li>Requeue Failed Jobs</li>
+<li>Maintain Status, Logs and Progress of Executing Jobs</li>
+<li>Execute transitive (i.e. non-durable) jobs</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/background-jobs" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/sqlite-request-logs"><img src="/img/posts/sqlite-request-logs/sqlite-request-logs.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/sqlite-request-logs">Capture Request Logs in Monthly Rolling SQLite DBs</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>SQLite's low latency, high-performance and embeddable nature make it ideal for self-managing
+isolated appliance black-box functionality like Request Logging which offers up to
+<a href="https://www.sqlite.org/fasterthanfs.html">35% faster disk performance</a> than standard file logging.</p>
+<h3 id="rolling-monthly-sqlite-databases">Rolling Monthly SQLite Databases<a class="header-anchor" href="javascript:;" onclick="location.hash='#rolling-monthly-sqlite-databases'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>SQLite is unique in its ability to create lightweight databases on-the-fly where Requests
+will be persisted into isolated Monthly databases which can be easily archived
+into managed file storage instead of a singular growing database.</p>
+<p>SQLite Request Logs also make it easier to generate monthly aggregate reports that provide
+key insights into the usage of your App.</p>
+<h4 id="autoquery-admin-logging-ui">AutoQuery Admin Logging UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#autoquery-admin-logging-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>As SQLite Requests Logs also makes it efficiently possible to sort and filter through logs,
+the Admin Logging UI has been upgraded to using a fully queryable AutoQueryGrid when using
+<code>SqliteRequestLogger</code></p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/sqlite-request-logs" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/ormlite/scalable-sqlite"><img src="/img/posts/scalable-sqlite/pvq.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/ormlite/scalable-sqlite">High Performance, Safe and Scalable SQLite</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Ever since adding support for Litestream in ServiceStack project's templates GitHub Action Deployments
+we've been using SQLite as the backend for our latest new .NET Apps as it's the most cost-effective
+option that frees us from needing to use cloud managed databases and by extension expensive major cloud
+providers instead of the better value commodity cloud providers.</p>
+<p>SQLite is a highly-performant DB that can handle a large number of concurrent read operations and
+35% faster filesystem performance for write operations with next to no latency that's often
+faster than other RDBMS's courtesy of its proximity to the running application which gives it
+unique advantages over traditional client/server RDBMS's where it's not susceptible to the
+<a href="https://www.sqlite.org/np1queryprob.html">N+1 Queries problem</a> and is also able to execute your
+custom C# Logic inside SQL Queries using <a href="https://www.sqlite.org/appfunc.html">Application SQL Functions</a>.</p>
+<p>With <a href="https://litestream.io">litestream.io</a> taking care of real-time replication to managed storage
+we just need to workaround SQLite's single concurrent writer to unlock the value, performance and
+unique features of SQLite in our Apps which we cover in this release with integrated support for
+Database Locks and Sync Commands.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/ormlite/scalable-sqlite" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.3</h2>
         <div class="text-center text-lg font-normal text-gray-500 mb-8">June 17, 2024</div>
             <div class="flex flex-wrap my-24">
