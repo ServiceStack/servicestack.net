@@ -6,10 +6,10 @@ author: Demis Bellot
 image: https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?crop=entropy&fit=crop&h=1000&w=2000
 ---
 
-We're happy to announce **Background Jobs** our effortless solution for queueing and managing 
+We're excited to announce **Background Jobs** our effortless solution for queueing and managing 
 background jobs and scheduled tasks in any .NET 8 App, implemented in true ServiceStack fashion
-where it seamlessly integrates into existing ServiceStack Apps with a [built-in](/auto-ui) Management UI
-to provide real-time monitoring, inspection and management of background jobs.
+where it seamlessly integrates into existing Apps and call existing APIs and sports a 
+[built-in](/auto-ui) Management UI to provide real-time monitoring, inspection and management of background jobs.
 
 :::youtube 2Cza_a_rrjA
 Durable Background Jobs and Scheduled Tasks for .NET
@@ -17,7 +17,7 @@ Durable Background Jobs and Scheduled Tasks for .NET
 
 ### Durable and Infrastructure-Free
 
-Prior to Jobs we've been using [Background MQ](https://docs.servicestack.net/background-mq) for executing
+Prior to Background Jobs we've been using [Background MQ](https://docs.servicestack.net/background-mq) for executing
 our background tasks which lets you queue any Request DTO to execute its API in a background worker.
 It's been our preferred choice as it didn't require any infrastructure dependencies since its concurrent
 queues are maintained in memory, this also meant they were non-durable that didn't survive across App restarts. 
@@ -27,19 +27,19 @@ designed for the task.
 
 #### SQLite Persistence
 
-We decided on using SQLite as the backing store for durable jobs since it's low latency, 
+It uses SQLite as the backing store for its durability since it's low latency, 
 [fast disk persistence](https://www.sqlite.org/fasterthanfs.html) and embeddable file-based 
 database makes it ideally suited for the task which allows creation of naturally partition-able 
-and archivable monthly databases on-the-fly without any additional admin overhead or external
-infrastructure dependencies making it an easy add-on into any .NET App without impacting or 
-adding load to its existing configured databases.
+and archivable monthly databases on-the-fly without any maintenance overhead or infrastructure 
+dependencies making it easy to add to any .NET App without impacting or adding increased load to 
+their existing configured databases.
 
 ### Queue APIs or Commands
 
-To enable even better reuse of ServiceStack APIs you're able to queue your existing ServiceStack APIs
-as a background job in addition to [Commands](https://docs.servicestack.net/commands) added in the 
-[last v8.3 release](https://docs.servicestack.net/releases/v8_03) used for encapsulating units of logic
-that can be used as internal invokable, inspectable and auto-retryable building blocks.
+For even greater reuse you're able to queue your existing ServiceStack APIs
+as a Background Job in addition to [Commands](https://docs.servicestack.net/commands) added in the 
+[last v8.3 release](https://docs.servicestack.net/releases/v8_03) for encapsulating units of logic
+into internal invokable, inspectable and auto-retryable building blocks.
 
 ### Real Time Admin UI
 
@@ -69,7 +69,7 @@ Cancel Running jobs and Requeue failed jobs
 
 ### Feature Overview
 
-Despite being a v1 release it packs all the features we wanted to use in a Background Jobs solution including:
+Even in its v1 release it packs all the features we wanted in a Background Jobs solution:
 
  - No infrastructure dependencies
    - Monthly archivable rolling Databases with full Job Execution History
@@ -90,13 +90,12 @@ Despite being a v1 release it packs all the features we wanted to use in a Backg
  - Execute transitive (i.e. non-durable) jobs using named workers
  - Attach optional `Tag`, `BatchId`, `CreatedBy`, `ReplyTo` and `Args` with Jobs
 
-Please [let us know](https://servicestack.net/ideas) if there are any other missing features
-you would love to see implemented.
+Please [let us know](https://servicestack.net/ideas) of any other missing features you'd love to see implemented.
 
 ## Install
 
 As it's more versatile and better suited, we've replaced the usage of Background MQ with
-ServiceStack.Jobs in all **.NET 8 Identity Auth Templates** for sending Identity Auth Confirmation 
+**ServiceStack.Jobs** in all **.NET 8 Identity Auth Templates** for sending Identity Auth Confirmation 
 Emails when SMTP is enabled. So the easiest way to get started with ServiceStack.Jobs is to 
 [create a new Identity Auth Project](https://servicestack.net/start), e.g:
 
@@ -141,7 +140,7 @@ class MyService(IBackgroundJobs jobs) : Service
 
 Which records and immediately executes a worker to execute the `SendEmailCommand` with the specified
 `SendEmail` Request argument. It also returns a reference to a Job which can be used later to query
-and track execution of a job.
+and track the execution of a job.
 
 Alternatively a `SendEmail` API could be executed with just the Request DTO: 
 
@@ -165,7 +164,7 @@ that gets updated as it progresses through the queue.
 For execution the API or command is resolved from the IOC before being invoked with the Request.
 APIs are executed via the [MQ Request Pipeline](https://docs.servicestack.net/order-of-operations)
 and commands executed using the [Commands Feature](https://docs.servicestack.net/commands) where
-it will be also visible in the [Commands Admin UI](https://docs.servicestack.net/commands#command-admin-ui).
+they'll also be visible in the [Commands Admin UI](https://docs.servicestack.net/commands#command-admin-ui).
 
 ### Background Job Options
 
@@ -189,6 +188,9 @@ the following options:
 
 ### Schedule Recurring Tasks
 
+In addition to queueing jobs to run in the background, it also supports scheduling recurring tasks 
+to execute APIs or Commands at fixed intervals.
+
 :::youtube DtB8KaXXMCM
 Schedule your Reoccurring Tasks with Background Jobs!
 :::
@@ -210,7 +212,7 @@ jobs.RecurringApi(Schedule.Interval(TimeSpan.FromMinutes(1)), new CheckUrls {
 });
 ```
 
-Scheduled Tasks can be registered with an optional task name and custom Background Options, e.g:
+That can be registered with an optional **Task Name** and **Background Options**, e.g:
 
 ```csharp
 jobs.RecurringCommand<CheckUrlsCommand>("Check URLs", Schedule.EveryMinute, 
@@ -219,7 +221,9 @@ jobs.RecurringCommand<CheckUrlsCommand>("Check URLs", Schedule.EveryMinute,
    });
 ```
 
-If no task name is provided, the Command Name or APIs Request DTO will be used.
+:::info
+If no name is provided, the Command's Name or APIs Request DTO will be used
+:::
 
 Scheduled Tasks are idempotent where the same registration with the same name will
 either create or update the scheduled task registration without losing track of the
@@ -227,14 +231,36 @@ last time the Recurring Task was run which is also viewable in the Jobs Admin UI
 
 ![](/img/posts/background-jobs/jobs-scheduled-tasks-last-job.webp)
 
+As such it's recommended to always define your App's Scheduled Tasks on Startup:
+
+```csharp
+public class ConfigureBackgroundJobs : IHostingStartup
+{
+   public void Configure(IWebHostBuilder builder) => builder
+     .ConfigureServices((context,services) => {
+         services.AddPlugin(new CommandsFeature());
+         services.AddPlugin(new BackgroundsJobFeature());
+         services.AddHostedService<JobsHostedService>();
+     }).ConfigureAppHost(afterAppHostInit: appHost => {
+         var services = appHost.GetApplicationServices();
+
+         var jobs = services.GetRequiredService<IBackgroundJobs>();
+         // Register Scheduled Tasks
+         jobs.RecurringCommand<MyCommand>(Schedule.Hourly);
+     });
+}
+```
+
 ### Executing non-durable jobs
 
-`IBackgroundJobs` also supports `RunCommand` methods to be able to execute jobs transiently 
+`IBackgroundJobs` also supports `RunCommand*` methods for executing background jobs transiently 
 (i.e. non-durable), which is useful for commands that want to be serially executed by a named worker 
 but don't need to be persisted.
 
+#### Execute in Background and return immediately
+
 You could use this to queue system emails to be sent by the same **smtp** worker and are happy to 
-avoid tracking its state and execution history in the Jobs database.
+not have its state and execution history tracked in the Jobs database.
 
 ```csharp
 var job = jobs.RunCommand<SendEmailCommand>(new SendEmail { ... }, 
@@ -245,6 +271,8 @@ var job = jobs.RunCommand<SendEmailCommand>(new SendEmail { ... },
 
 In this case `RunCommand` returns the actual `BackgroundJob` instance that will be updated by 
 the worker. 
+
+#### Execute in Background and wait for completion
 
 You can also use `RunCommandAsync` if you prefer to wait until the job has been executed. Instead
 of a Job it returns the **Result** of the command if it returned one. 
