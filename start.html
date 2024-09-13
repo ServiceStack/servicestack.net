@@ -337,12 +337,8 @@ const App = {
                             <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkProfiling">Profiling</label>
                         </div>
                         <div>
-                            <input id="chkServerEvents" v-model="mixModel.serverevents" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="serverevents">
-                            <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkServerEvents">Server Events</label>
-                        </div>
-                        <div>
-                            <input id="chkCors" v-model="mixModel.cors" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="cors">
-                            <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkCors"><abbr title="Cross-Origin Resource Sharing">CORS</abbr></label>
+                            <input id="chkSqlitelogs" v-model="mixModel.sqlitelogs" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="sqlitelogs">
+                            <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkSqlitelogs">Request Logs</label>
                         </div>
                         <div>
                             <input id="chkOpenApi" v-model="mixModel.openapi3" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="openapi">
@@ -351,6 +347,14 @@ const App = {
                         <div>
                             <input id="chkApiKeys" v-model="mixModel.apikeys" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="apikeys">
                             <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkApiKeys">API Keys</label>
+                        </div>
+                        <div>
+                            <input id="chkServerEvents" v-model="mixModel.serverevents" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="serverevents">
+                            <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkServerEvents">Server Events</label>
+                        </div>
+                        <div>
+                            <input id="chkCors" v-model="mixModel.cors" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="cors">
+                            <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkCors"><abbr title="Cross-Origin Resource Sharing">CORS</abbr></label>
                         </div>
                     </div>
                     <div class="p-2 mr-2">
