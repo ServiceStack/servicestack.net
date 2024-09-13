@@ -94,6 +94,10 @@ const App = {
                             <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkProfiling">Profiling</label>
                         </div>
                         <div>
+                            <input id="chkSqlitelogs" v-model="mixModel.sqlitelogs" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="sqlitelogs">
+                            <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkSqlitelogs">Request Logs</label>
+                        </div>
+                        <div>
                             <input id="chkServerEvents" v-model="mixModel.serverevents" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-300 focus:ring-indigo-600" value="serverevents">
                             <label class="select-none ml-3 text-sm font-medium leading-6 text-gray-900 dark:text-gray-50" for="chkServerEvents">Server Events</label>
                         </div>
