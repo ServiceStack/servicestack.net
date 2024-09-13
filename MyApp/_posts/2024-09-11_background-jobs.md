@@ -198,7 +198,6 @@ Schedule your Reoccurring Tasks with Background Jobs!
 APIs and Commands can be scheduled to run at either a `TimeSpan` or
 [CRON Expression](https://github.com/HangfireIO/Cronos?tab=readme-ov-file#cron-format) interval, e.g:
 
-
 ### CRON Expression Examples
 
 ```csharp
