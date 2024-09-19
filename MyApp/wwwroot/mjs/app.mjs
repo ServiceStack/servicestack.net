@@ -108,20 +108,93 @@ export function mount(sel, component, props) {
     return app
 }
 
-export function mountAll() {
+async function mountApp(el, props) {
+    let appPath = el.getAttribute('data-component')
+    if (!appPath.startsWith('/') && !appPath.startsWith('.')) {
+        appPath = `../${appPath}`
+    }
+
+    const module = await import(appPath)
+    unmount(el)
+    mount(el, module.default, props)
+}
+
+export async function remount() {
+    if (!AppData.init) {
+        init({ force: true })
+    } else {
+        mountAll({ force: true })
+    }
+}
+
+//Default Vue App that gets created with [data-component] is empty, e.g. Blog Posts without Vue components
+const DefaultApp = {
+    setup() {
+        function nav(url) {
+            window.open(url)
+        }
+        return { nav }
+    }
+}
+
+export function unmount(el) {
+    if (!el) return
+
+    try {
+        if (el.__vue_app__) {
+            el.__vue_app__.unmount(el)
+        }
+    } catch (e) {
+        console.log('force unmount', el.id)
+        el._vnode = el.__vue_app__ = undefined
+    }
+}
+
+export function mountAll(opt) {
     $$('[data-component]').forEach(el => {
-        if (alreadyMounted(el)) return
+
+        if (opt && opt.force) {
+            unmount(el)
+        } else {
+            if (alreadyMounted(el)) return
+        }
+
         let componentName = el.getAttribute('data-component')
-        if (!componentName) return
-        let component = Components[componentName] || ServiceStackVue.component(componentName)
-        if (!component) {
-            console.error(`Could not create component ${componentName}`)
+        let propsStr = el.getAttribute('data-props')
+        let props = propsStr && new Function(`return (${propsStr})`)() || {}
+
+        if (!componentName) {
+            mount(el, DefaultApp, props)
             return
         }
 
-        let propsStr = el.getAttribute('data-props')
-        let props = propsStr && new Function(`return (${propsStr})`)() || {}
+        if (componentName.includes('.')) {
+            mountApp(el, props)
+            return
+        }
+
+        let component = Components[componentName] || ServiceStackVue.component(componentName)
+        if (!component) {
+            console.error(`Component ${componentName} does not exist`)
+            return
+        }
+
         mount(el, component, props)
+    })
+    $$('[data-module]').forEach(async el => {
+        let modulePath = el.getAttribute('data-module')
+        if (!modulePath) return
+        if (!modulePath.startsWith('/') && !modulePath.startsWith('.')) {
+            modulePath = `../${modulePath}`
+        }
+        try {
+            const module = await import(modulePath)
+            if (typeof module.default?.load == 'function') {
+                module.default.load()
+            }
+        } catch(e) {
+            console.error(`Couldn't load module ${el.getAttribute('data-module')}`, e)
+        }
     })
 }
 

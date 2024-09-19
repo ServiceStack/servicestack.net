@@ -64,6 +64,11 @@
   </main>
 </div>
 
-@await Html.PartialAsync("Footer")
+@{
+  if (ViewData["HideFooter"] == null)
+  {
+    await Html.PartialAsync("Footer");
+  }
+}
 </body>
 </html>

@@ -41,7 +41,12 @@
     </main>
 </div>
 
-@await Html.PartialAsync("Footer")
+@{
+    if (ViewData["HideFooter"] == null)
+    {
+        await Html.PartialAsync("Footer");
+    }
+}
 
 <script type="module">
 import { init } from "app.mjs"
