@@ -6,7 +6,7 @@ var config = builder.Configuration;
 var mvcBuilder = builder.Services.AddRazorPages();
 if (builder.Environment.IsDevelopment())
 {
-    mvcBuilder.AddRazorRuntimeCompilation();
+    // mvcBuilder.AddRazorRuntimeCompilation();
 }
 
 services.AddServiceStack(typeof(MyServices).Assembly);

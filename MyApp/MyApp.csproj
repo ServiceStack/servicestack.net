@@ -6,6 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
+  <PropertyGroup>
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
   <ItemGroup>
     <Using Include="MyApp" />
     <Using Include="ServiceStack" />
@@ -21,13 +24,13 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.33.*" />
+    <PackageReference Include="Markdig" Version="0.37.*" />
     <PackageReference Include="ServiceStack" Version="8.*" />
     <PackageReference Include="ServiceStack.Mvc" Version="8.*" />
     <PackageReference Include="ServiceStack.Extensions" Version="8.*" />
 
     <!-- Required for Razor compilation on change: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-5.0 -->
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.*" />
   </ItemGroup>
 
   <!--  <ItemGroup>-->
