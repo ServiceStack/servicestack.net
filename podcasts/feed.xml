@@ -1,0 +1,71 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+    <title>.NET Technology Show</title>
+    <link>https://servicestack.net/blog</link>
+    <description>Backstage pass to all things ServiceStack &amp; .NET</description>
+    <image>
+        <url>/img/podcasts/cover.jpg</url>
+        <title>.NET Technology Show</title>
+        <link>https://servicestack.net/podcasts</link>
+    </image>
+    <generator>razor-ssg</generator>
+    <copyright></copyright>
+    <lastBuildDate>Thu, 19 Sep 2024 13:53:05 GMT</lastBuildDate>
+    <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
+    <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
+    <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Scalable SQLite</title>
+        <link>https://servicestack.net/posts/scalable-sqlite</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/scalable-sqlite</guid>
+        <pubDate>Thu, 19 Sep 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-09-19T00:00:00Z</atom:updated>
+        <category>sqlite</category>
+        <category>performance</category>
+        <category>scalability</category>
+        <description>Techniques in ServiceStack for building high-performance Scalable Web Apps</description>
+    </item>
+    <item>
+        <title>SQLite Request Logging</title>
+        <link>https://servicestack.net/posts/sqlite-request-logs</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/sqlite-request-logs</guid>
+        <pubDate>Tue, 17 Sep 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-09-17T00:00:00Z</atom:updated>
+        <category>sqlite</category>
+        <category>logging</category>
+        <category>admin-ui</category>
+        <category>api</category>
+        <description>Checking out ServiceStack&#x27;s new SQLite-backed Request Logs feature and Admin UI enhancements</description>
+    </item>
+    <item>
+        <title>Background Jobs</title>
+        <link>https://servicestack.net/posts/background-jobs</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/background-jobs</guid>
+        <pubDate>Thu, 12 Sep 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-09-12T00:00:00Z</atom:updated>
+        <category>jobs</category>
+        <category>admin-ui</category>
+        <category>commands</category>
+        <category>api</category>
+        <description>Taking a deep dive into Background Jobs, a new library for .NET 8 Apps for simplifying task scheduling and management</description>
+    </item>
+    <item>
+        <title>ServiceStack v8.4 Release</title>
+        <link>https://servicestack.net/posts/v8.4-release</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/v8.4-release</guid>
+        <pubDate>Wed, 11 Sep 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-09-11T00:00:00Z</atom:updated>
+        <category>release</category>
+        <category>jobs</category>
+        <category>logging</category>
+        <category>admin-ui</category>
+        <category>commands</category>
+        <category>api</category>
+        <description>The latest features and improvements in ServiceStack v8.4 covering Background Jobs, SQLite Request Logs, Scalable SQLite Apps and more!</description>
+    </item>
+</channel>
+</rss>
