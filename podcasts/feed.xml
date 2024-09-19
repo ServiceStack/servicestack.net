@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Thu, 19 Sep 2024 13:53:05 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 19 Sep 2024 16:45:12 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
@@ -66,6 +66,201 @@
         <category>commands</category>
         <category>api</category>
         <description>The latest features and improvements in ServiceStack v8.4 covering Background Jobs, SQLite Request Logs, Scalable SQLite Apps and more!</description>
+    </item>
+    <item>
+        <title>Commands Feature</title>
+        <link>https://servicestack.net/posts/commands-feature</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/commands-feature</guid>
+        <pubDate>Wed, 03 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-03T00:00:00Z</atom:updated>
+        <category>commands</category>
+        <category>admin-ui</category>
+        <category>api</category>
+        <description>Utilize Commands to build more robust and observable systems</description>
+    </item>
+    <item>
+        <title>Simple Auth Story for .NET 8 Microservices</title>
+        <link>https://servicestack.net/posts/simple-auth-microservices</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/simple-auth-microservices</guid>
+        <pubDate>Tue, 02 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-02T00:00:00Z</atom:updated>
+        <category>auth</category>
+        <category>.net8</category>
+        <category>servicestack</category>
+        <description>A Simple Auth configuration using API Keys and Admin UI that&#x27;s ideal for .NET 8 Microservices</description>
+    </item>
+    <item>
+        <title>Using API Keys to secure .NET 8 APIs</title>
+        <link>https://servicestack.net/posts/apikeys</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/apikeys</guid>
+        <pubDate>Mon, 01 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-01T00:00:00Z</atom:updated>
+        <category>apikeys</category>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>db</category>
+        <description>Using API Keys for simplified fine-grained access control in ServiceStack .NET 8 APIs</description>
+    </item>
+    <item>
+        <title>ASP.NET Core Output Caching</title>
+        <link>https://servicestack.net/posts/redis-outputcache</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/redis-outputcache</guid>
+        <pubDate>Wed, 05 Jun 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-06-05T00:00:00Z</atom:updated>
+        <category>caching</category>
+        <category>.net8</category>
+        <category>redis</category>
+        <description>How to use ASP.NET Core Output Caching to cache the response of a ServiceStack Service using ServiceStack.Redis</description>
+    </item>
+    <item>
+        <title>ASP.NET Core Rate Limiter Middleware</title>
+        <link>https://servicestack.net/posts/asp-rate-limiter-middleware</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/asp-rate-limiter-middleware</guid>
+        <pubDate>Mon, 08 Apr 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-04-08T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>middleware</category>
+        <description>Learn how to use the new Rate Limiter Middleware in ServiceStack to protect your APIs from abuse.</description>
+    </item>
+    <item>
+        <title>Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs</title>
+        <link>https://servicestack.net/posts/kotlin-compose-multiplatform</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/kotlin-compose-multiplatform</guid>
+        <pubDate>Wed, 13 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-13T00:00:00Z</atom:updated>
+        <category>kotlin</category>
+        <category>ios</category>
+        <category>android</category>
+        <description>Explore the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps</description>
+    </item>
+    <item>
+        <title>New React SPA Template</title>
+        <link>https://servicestack.net/posts/net8-react-spa-template</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/net8-react-spa-template</guid>
+        <pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-06T00:00:00Z</atom:updated>
+        <category>react</category>
+        <category>.net8</category>
+        <category>autoquery</category>
+        <category>admin</category>
+        <description>Explore the new enhanced Vite TypeScript React SPA template for .NET 8</description>
+    </item>
+    <item>
+        <title>New Vue SPA Template</title>
+        <link>https://servicestack.net/posts/net8-vue-spa-template</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/net8-vue-spa-template</guid>
+        <pubDate>Tue, 05 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-05T00:00:00Z</atom:updated>
+        <category>vue</category>
+        <category>.net8</category>
+        <category>autoquery</category>
+        <category>admin</category>
+        <description>Introducing the enhanced Vite TypeScript Vue SPA template for .NET 8</description>
+    </item>
+    <item>
+        <title>Vite Press Plugin</title>
+        <link>https://servicestack.net/posts/vite-press-plugin</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/vite-press-plugin</guid>
+        <pubDate>Mon, 04 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-04T00:00:00Z</atom:updated>
+        <category>docs</category>
+        <category>markdown</category>
+        <description>Introducing the Vite Press Plugin for Vite Vue &amp; React Apps</description>
+    </item>
+    <item>
+        <title>New Blazor Interactive Auto Template with Custom Admin UIs</title>
+        <link>https://servicestack.net/posts/blazor-8-admin</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/blazor-8-admin</guid>
+        <pubDate>Mon, 26 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-26T00:00:00Z</atom:updated>
+        <category>blazor</category>
+        <category>.net8</category>
+        <category>admin</category>
+        <description>Discover how to use ServiceStack.Blazor components to quickly create customizable and professional-looking admin pages in a Blazor application</description>
+    </item>
+    <item>
+        <title>ASP.NET Core JWT Identity Auth</title>
+        <link>https://servicestack.net/posts/jwt-identity-auth</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/jwt-identity-auth</guid>
+        <pubDate>Thu, 22 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-22T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>.net8</category>
+        <category>auth</category>
+        <description>Learn about integration and value added features of ASP.NET Core JWT Identity Auth</description>
+    </item>
+    <item>
+        <title>Built-In Identity Auth Admin UI</title>
+        <link>https://servicestack.net/posts/identity-auth-admin-ui</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/identity-auth-admin-ui</guid>
+        <pubDate>Wed, 21 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-21T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>.net8</category>
+        <category>auth</category>
+        <description>Explore the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8</description>
+    </item>
+    <item>
+        <title>System.Text.Json ServiceStack APIs</title>
+        <link>https://servicestack.net/posts/system-text-json-apis</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/system-text-json-apis</guid>
+        <pubDate>Tue, 20 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-20T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>.net8</category>
+        <category>json</category>
+        <category>apis</category>
+        <description>ServiceStack .NET 8&#x2B; APIs can now be configured to use high-performance async System.Text.Json serialization</description>
+    </item>
+    <item>
+        <title>OpenAPI v3 and Swagger UI</title>
+        <link>https://servicestack.net/posts/openapi-v3</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/openapi-v3</guid>
+        <pubDate>Mon, 19 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-19T00:00:00Z</atom:updated>
+        <category>openapi</category>
+        <category>.net8</category>
+        <description>A walkthrough of the new OpenAPI v3 support in ServiceStack 8.1</description>
+    </item>
+    <item>
+        <title>ServiceStack Endpoint Routing</title>
+        <link>https://servicestack.net/posts/servicestack-endpoint-routing</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/servicestack-endpoint-routing</guid>
+        <pubDate>Wed, 07 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-07T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>.net8</category>
+        <category>apis</category>
+        <description>ServiceStack .NET 8 is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IOC</description>
+    </item>
+    <item>
+        <title>Migrating to ASP.NET Core Identity for Authentication</title>
+        <link>https://servicestack.net/posts/identity-migration</link>
+        <author> ()</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/identity-migration</guid>
+        <pubDate>Tue, 06 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-06T00:00:00Z</atom:updated>
+        <category>identity</category>
+        <category>auth</category>
+        <category>servicestack</category>
+        <description>A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication</description>
     </item>
 </channel>
 </rss>
