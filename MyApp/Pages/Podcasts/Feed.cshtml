@@ -24,7 +24,7 @@
     <managingEditor>@Podcasts.Config.Email</managingEditor>
     <webMaster>@Podcasts.Config.Email</webMaster>
     <atom:link href="@Podcasts.Config.PublicBaseUrl.CombineWith("feed.xml")" rel="self" type="application/rss+xml" />
-@foreach (var post in Podcasts.GetEpisodes().Take(10))
+@foreach (var post in Podcasts.GetEpisodes().Take(50))
 {
     var author = Podcasts.Authors.FirstOrDefault(x => x.Name == post.Author);
     <item>
