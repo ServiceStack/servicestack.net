@@ -12,7 +12,7 @@
 @{
     Layout = "_LayoutPodcast";
     var selectedTag = Podcasts.GetTagBySlug(Model.Slug);
-    ViewData["Title"] = $"{selectedTag} tagged podcasts";
+    ViewData["Title"] = $"{selectedTag} tagged podcast episodes";
     
     var allEpisodes = Podcasts.GetEpisodes();
     var allTags = allEpisodes.SelectMany(x => x.Tags).Distinct().ToList();

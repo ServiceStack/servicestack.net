@@ -17,7 +17,35 @@
             </div>
         </div>
     </div>
+
+    @{
+        var allYears = Podcasts.VisibleEpisodes.Select(x => x.Date.Value.Year).Distinct().OrderByDescending(x => x);
+        List<MarkdownFileInfo> CurrentYearOrLast5(List<MarkdownFileInfo> episodes)
+        {
+            var year = DateTime.UtcNow.Year;
+            var currentYear = episodes.Where(x => x.Date?.Year == year).ToList();
+            return currentYear.Count > 5
+                ? currentYear
+                : episodes.Take(5).ToList();
+        }
+    }
+    <div class="bg-red-50">
+        <div class="float-right mt-12 mr-4 flex flex-col text-sm font-semibold leading-6">
+        @foreach (var year in allYears)
+        {
+            if (year == DateTime.UtcNow.Year)
+            {
+                <span class="text-gray-600">@year</span>
+            }
+            else
+            {
+                <a href="@Podcasts.GetYearLink(year)" class="text-indigo-600">@year</a>
+            }
+        }
+        </div>
+    </div>
+    
     <div class="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-        @await Html.PartialAsync(nameof(PodcastEpisodes), new PodcastEpisodes { Episodes = Podcasts.GetEpisodes() })
+        @await Html.PartialAsync(nameof(PodcastEpisodes), new PodcastEpisodes { Episodes = CurrentYearOrLast5(Podcasts.GetEpisodes()) })
     </div>
 </div>
