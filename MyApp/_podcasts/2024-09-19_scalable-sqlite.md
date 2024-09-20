@@ -1,7 +1,7 @@
 ---
 title: Scalable SQLite
 tags: [sqlite,performance,scalability]
-summary: Techniques in ServiceStack for building high-performance Scalable Web Apps
+summary: Exploring different techniques in ServiceStack for building maximum value, high-performance Scalable SQLite Web Apps
 url: https://media.servicestack.com/podcasts/scalable-sqlite.mp3
 ---
 

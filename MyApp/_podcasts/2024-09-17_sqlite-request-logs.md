@@ -1,7 +1,7 @@
 ---
 title: SQLite Request Logging
 tags: [sqlite,logging,admin-ui,api]
-summary: Checking out ServiceStack's new SQLite-backed Request Logs feature and Admin UI enhancements
+summary: Checking out ServiceStack's new SQLite-backed Request Logs feature and enhanced log querying and filtering in the Admin UI
 url: https://media.servicestack.com/podcasts/sqlite-request-logs.mp3
 ---
 
