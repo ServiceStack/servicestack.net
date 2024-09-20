@@ -19,6 +19,12 @@ It also includes a practical example of deploying a .NET application, highlighti
 Dockerfiles, docker-compose.yml, and GitHub Actions secrets and concludes by emphasizing 
 the benefits of this approach, including reduced complexity, cost savings, and flexibility.
 
+### Videos
+
+:::youtube 7dardvqBFbE
+Using GitHub for Auto Deployments - Kubernetes Not Required
+:::
+
 ### Links
 
 - [Blog Post](/posts/kubernetes_not_required)

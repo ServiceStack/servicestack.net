@@ -15,6 +15,12 @@ extending the life of tokens.
 Finally, it describes a service for converting authenticated sessions to JWT tokens, 
 which can be useful for integrating with external OAuth providers.
 
+### Videos
+
+:::youtube zAq9hp7ojn4
+OpenAPI v3 and Swagger UI
+:::
+
 ### Links
 
 - [Blog Post](/posts/jwt-identity-auth)

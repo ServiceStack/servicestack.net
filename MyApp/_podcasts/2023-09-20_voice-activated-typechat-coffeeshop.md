@@ -15,6 +15,12 @@ It also discusses the use of local OpenAI Whisper and Llama.cpp for running LLMs
 highlighting the challenges and opportunities associated with this approach and concludes with 
 a discussion of future .NET implementations for TypeChat's different GPT examples.
 
+### Videos
+
+:::youtube OtgrIdkvw-4
+CoffeeShop .NET App
+:::
+
 ### Links
 
 - [Blog Post](/posts/voice-activated-typechat-coffeeshop)

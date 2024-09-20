@@ -19,6 +19,12 @@ It also demonstrates a real-world application of JSONL for indexing AI-generated
 using the Blazor Diffusion API and Typesense, showcasing how the format facilitates efficient 
 data indexing and retrieval.
 
+### Videos
+
+:::youtube m0tAfjvJaZg
+Stream processing with JSON Lines Format
+:::
+
 ### Links
 
 - [Blog Post](/posts/jsonl-format)

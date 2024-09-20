@@ -15,6 +15,12 @@ developing APIs and CRUD apps, and Auto Admin Pages for managing database tables
 The template also offers a choice of Entity Framework or OrmLite for database interaction 
 and provides a built-in SQLite database for quick setup.
 
+### Videos
+
+:::youtube hqyozHSL0Nk
+Blazor Tailwind Template
+:::
+
 ### Links
 
 - [Blog Post](/posts/net8-blazor-template)

@@ -13,6 +13,12 @@ The React SPA template aims to provide developers with a streamlined and efficie
 modern web applications, offering tools for identity authentication, markdown content creation, 
 and interactive components.
 
+### Videos
+
+:::youtube WXLF0piz6G0
+Explore the high productivity features in the new ServiceStack React SPA template
+:::
+
 ### Links
 
 - [Blog Post](/posts/net8-react-spa-template)

@@ -13,6 +13,12 @@ Vue components, built-in authentication, Tailwind CSS, dark mode, and a Vite Pre
 The Vue SPA template aims to provide developers with a more efficient and enjoyable experience 
 when building web applications with .NET 8 and Vue.
 
+### Videos
+
+:::youtube JlUjWlVslRg
+Explore the high productivity features in the new ServiceStack Vue SPA template
+:::
+
 ### Links
 
 - [Blog Post](/posts/net8-vue-spa-template)

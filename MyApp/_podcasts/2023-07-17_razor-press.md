@@ -18,6 +18,12 @@ portfolios, and marketing sites. The project is based on Razor SSG, which is rec
 for more complex projects requiring additional Razor and Markdown features, and 
 both templates benefit from the flexibility of Razor Pages layouts and partials.
 
+### Videos
+
+:::youtube uqEa_DfFFDQ
+Introducing Razor Press Template
+:::
+
 ### Links
 
 - [Blog Post](/posts/razor-press)

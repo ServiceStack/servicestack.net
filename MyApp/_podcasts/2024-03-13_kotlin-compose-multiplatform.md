@@ -14,6 +14,12 @@ It then guides the reader through setting up an environment using either Android
 or JetBrains Fleet, and provides instructions for creating new projects, updating DTOs, 
 and running both the .NET API and Kotlin Desktop App.
 
+### Videos
+
+:::youtube r6T3B7o1GYE
+JetBrains Compose Multiplatform iOS & Android Apps
+:::
+
 ### Links
 
 - [Blog Post](/posts/kotlin-compose-multiplatform)

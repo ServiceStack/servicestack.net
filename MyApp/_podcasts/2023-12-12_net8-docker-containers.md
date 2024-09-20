@@ -17,6 +17,16 @@ The guide concludes with a detailed breakdown of the GitHub Actions workflow and
 including the permissions required, the different jobs involved, and the triggers that activate 
 the deployment process.
 
+### Videos
+
+:::youtube y57c-9jeIww
+Learn about the latest streamlined containerization support built into .NET 8
+:::
+
+:::youtube 7dardvqBFbE
+Use GitHub Actions for Auto Deployments
+:::
+
 ### Links
 
 - [Blog Post](/posts/net8-docker-containers)

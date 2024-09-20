@@ -18,6 +18,16 @@ It concludes with a comparison of different Blazor implementations, including th
 template, demonstrating the significant improvements achieved through the combination of 
 static rendering and Vue.js.
 
+### Videos
+
+:::youtube YwZdtLEtROA
+Full stack web UI with Blazor in .NET 8
+:::
+
+:::youtube ujbTGn4IwFs
+Blazor Vue Template
+:::
+
 ### Links
 
 - [Blog Post](/posts/net8-best-blazor)

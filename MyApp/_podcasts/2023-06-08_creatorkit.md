@@ -20,6 +20,16 @@ those who prefer to keep their data self-hosted.
 The developers plan to expand CreatorKit's capabilities with features like commerce integration, 
 Stripe integration, and more in the future.
 
+### Videos
+
+:::youtube _qDVtfcHf14
+Mailchimp self-host alternative for .NET
+:::
+
+:::youtube lgpl-VjxtdU
+Disqus self-host alternative for .NET
+:::
+
 ### Links
 
 - [Blog Post](/posts/creatorkit)

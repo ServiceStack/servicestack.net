@@ -19,6 +19,12 @@ The integration of the Commands Feature with the Background MQ enables scalable 
 commands, particularly valuable for working with server-side SQLite databases which have 
 limitations on concurrent writes.
 
+### Videos
+
+:::youtube SXPdBHbncPc
+Use Commands to build robust and observable systems with Admin UI
+:::
+
 ### Links
 
 - [Blog Post](/posts/commands-feature)

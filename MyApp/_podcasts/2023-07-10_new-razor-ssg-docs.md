@@ -22,6 +22,12 @@ The migration of docs.servicestack.net from VitePress to Razor SSG and the subse
 of Razor Press demonstrate the potential of Razor SSG for creating fast, reliable, and feature-rich 
 static websites.
 
+### Videos
+
+:::youtube uqEa_DfFFDQ
+Introducing Razor Press Template
+:::
+
 ### Links
 
 - [Blog Post](/posts/new-razor-ssg-docs)

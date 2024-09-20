@@ -19,6 +19,12 @@ dependency injection framework, endpoint routing, and authorization mechanisms f
 Additionally, the article provides guidance on migrating existing ServiceStack projects to 
 adopt the new features.
 
+### Videos
+
+:::youtube RaDHkk4tfdU
+Migrating to ASP.NET Core Endpoints
+:::
+
 ### Links
 
 - [Blog Post](/posts/servicestack-endpoint-routing)

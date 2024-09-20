@@ -16,6 +16,12 @@ It also analyzes the relative performance of different insertion methods, such a
 inserts and single row inserts, in order to highlight the performance benefits of 
 using bulk insert strategies when working with large amounts of data.
 
+### Videos
+
+:::youtube 3gO_OEWIyPo
+ADO.NET Bulk Insert OrmLite Benchmarks
+:::
+
 ### Links
 
 - [Blog Post](/posts/bulk-insert-performance)

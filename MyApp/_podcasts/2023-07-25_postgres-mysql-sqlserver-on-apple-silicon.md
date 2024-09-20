@@ -14,6 +14,12 @@ systems. They provide specific commands for installing and running each database
 It concludes with instructions for accessing and managing these databases using JetBrains DataGrip 
 and demonstrating how to access them from a ServiceStack .NET application.
 
+### Videos
+
+:::youtube NZkeyuc_prg
+.NET Database Admin UI
+:::
+
 ### Links
 
 - [Blog Post](/posts/postgres-mysql-sqlserver-on-apple-silicon)

@@ -27,6 +27,9 @@
 
     var author = Podcasts.Authors.FirstOrDefault(x => x.Name == doc.Author);
     var image = doc.Image ?? Podcasts.FallbackSplashUrl;
+    
+    var docMjs = Podcasts.VirtualFiles.GetFile($"/wwwroot/podcasts/{doc.Slug}.mjs");
+    var docCss = Podcasts.VirtualFiles.GetFile($"/wwwroot/podcasts/{doc.Slug}.css");
 
     void EpisodePlayButton(MarkdownFileBase episode)
     {
@@ -58,6 +61,13 @@
 <link rel="stylesheet" href="css/typography.css">
 <link rel="stylesheet" href="css/lite-yt-embed.css">
 
+@{
+    if (docCss != null)
+    {
+        <link rel="stylesheet" href="posts/@(doc.Slug).css">
+    }
+}
+
 <article class="py-16 lg:py-36">
     <div class="lg:px-8">
         <div class="lg:max-w-4xl">
@@ -80,18 +90,54 @@
                     @if (doc.Tags?.Count > 0)
                     {
                         <div class="ml-24 mt-4 flex flex-wrap gap-1">
-                        @foreach (var tag in doc.Tags)
-                        {
-                            <a href="@Podcasts.GetTagLink(tag)" class="text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">@tag</a>
-                        }
+                            @foreach (var tag in doc.Tags)
+                            {
+                                <a href="@Podcasts.GetTagLink(tag)" class="text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">@tag</a>
+                            }
                         </div>
                     }
                 </header>
                 <hr class="my-12 border-gray-200" />
-                <div class="prose prose-slate mt-14 [&>h2:nth-of-type(3n)]:before:bg-violet-200 [&>h2:nth-of-type(3n+2)]:before:bg-indigo-200 [&>h2]:mt-12 [&>h2]:flex [&>h2]:items-center [&>h2]:font-mono [&>h2]:text-sm [&>h2]:font-medium [&>h2]:leading-7 [&>h2]:text-slate-900 dark:text-slate-50 [&>h2]:before:mr-3 [&>h2]:before:h-3 [&>h2]:before:w-1.5 [&>h2]:before:rounded-r-full [&>h2]:before:bg-cyan-200 [&>ul]:mt-6 [&>ul]:list-['\2013\20'] [&>ul]:pl-5">
+                <div id="podcast" class="prose prose-slate mt-14 [&>h2:nth-of-type(3n)]:before:bg-violet-200 [&>h2:nth-of-type(3n+2)]:before:bg-indigo-200 [&>h2]:mt-12 [&>h2]:flex [&>h2]:items-center [&>h2]:font-mono [&>h2]:text-sm [&>h2]:font-medium [&>h2]:leading-7 [&>h2]:text-slate-900 dark:text-slate-50 [&>h2]:before:mr-3 [&>h2]:before:h-3 [&>h2]:before:w-1.5 [&>h2]:before:rounded-r-full [&>h2]:before:bg-cyan-200 [&>ul]:mt-6 [&>ul]:list-['\2013\20'] [&>ul]:pl-5">
                     @Html.Raw(doc.Preview)
                 </div>
             </div>
         </div>
     </div>
 </article>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<script type="module">
+import { mount } from "app.mjs"
+@if (docMjs != null)
+{
+    <text>
+        import App from "./podcasts/@(doc.Slug).mjs" 
+    </text>
+}
+else
+{
+    <text>
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    </text>
+}
+mount('#podcast', App)
+</script>

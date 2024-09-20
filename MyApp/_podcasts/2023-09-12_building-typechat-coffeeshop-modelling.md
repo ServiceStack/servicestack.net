@@ -17,6 +17,20 @@ the use of #Script, a templating language, to dynamically generate the TypeScrip
 TypeChat and concludes by outlining the next steps in developing a functional voice-activated 
 coffee shop application.
 
+### Videos
+
+:::youtube wlRA4_owEsc
+Build beautiful Custom .NET Admin UIs
+:::
+
+:::youtube MjNqPAXLH5w
+Building a TypeChat CoffeeShop .NET App
+:::
+
+:::youtube 7vChIGHWPuI
+Use Natural Language to get GPT Agents to book meetings with your APIs
+:::
+
 ### Links
 
 - [Blog Post](/posts/building-typechat-coffeeshop-modelling)

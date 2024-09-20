@@ -17,6 +17,12 @@ and integrate API key functionality into the API Explorer and concludes by highl
 advantages of this approach for securing microservices with easy-to-use administrative tools 
 and client integrations.
 
+### Videos
+
+:::youtube 0ceU91ZBhTQ
+Simple Auth Story with API Keys ideal for .NET 8 Microservices
+:::
+
 ### Links
 
 - [Blog Post](/posts/simple-auth-microservices)

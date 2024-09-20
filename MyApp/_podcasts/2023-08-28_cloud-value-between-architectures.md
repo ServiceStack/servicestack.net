@@ -17,6 +17,12 @@ approach with lower costs, while AWS and Azure provide a wider range of managed 
 Ultimately, the choice between ARM and x86, and between providers, depends on factors 
 such as workload requirements, scalability needs, and budget constraints.
 
+### Videos
+
+:::youtube yeGEI3n5pnQ
+Should .NET Apps switch to ARM?
+:::
+
 ### Links
 
 - [Blog Post](/posts/cloud-value-between-architectures)

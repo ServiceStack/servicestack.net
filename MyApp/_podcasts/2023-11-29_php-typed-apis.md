@@ -18,6 +18,12 @@ which simplifies the development experience and then concludes by emphasizing th
 JsonServiceClient library, which enables a smooth and consistent typed API development 
 experience for PHP developers.
 
+### Videos
+
+:::youtube ZLVdaJ38vwc
+Learn about the rich JsonServiceClient & end-to-end typed API support for PHP
+:::
+
 ### Links
 
 - [Blog Post](/posts/php-typed-apis)

@@ -22,6 +22,12 @@ It concludes by discussing a proof-of-concept project called "GptMeetingAgent" t
 how to build an Agent that can book meetings with colleagues, showcasing the potential of 
 ChatGPT Agents to automate complex tasks.
 
+### Videos
+
+:::youtube 7vChIGHWPuI
+ChatGPT powered meeting Agent
+:::
+
 ### Links
 
 - [Blog Post](/posts/chat-gpt-agents)

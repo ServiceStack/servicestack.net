@@ -17,6 +17,16 @@ The author then details the process of upgrading a .NET 6 Blazor application to 
 including component compatibility and best practices for sharing components between server 
 and client projects. 
 
+### Videos
+
+:::youtube BXjcKkaK-nM
+New Blazor Interactive Auto Template with Custom Admin UIs
+:::
+
+:::youtube JW88KHwt_5I
+ServiceStack.Blazor Components
+:::
+
 ### Links
 
 - [Blog Post](/posts/blazor-8-admin)

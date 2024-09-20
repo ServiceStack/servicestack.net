@@ -16,6 +16,12 @@ them as functions.
 While the library is still in development, the authors highlight its potential to 
 streamline development and enhance the user experience of applications that integrate with LLMs.
 
+### Videos
+
+:::youtube 7vChIGHWPuI
+Chat GPT powered Meeting Agent
+:::
+
 ### Links
 
 - [Blog Post](/posts/semantic-kernel-gptmeetngs)
