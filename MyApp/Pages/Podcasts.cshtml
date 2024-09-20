@@ -29,6 +29,12 @@
         </button>
         <script>
         window.togglePlayButton = function (el) {
+            document.querySelectorAll('[data-url] .paused').forEach(x => {
+                x.classList.remove('hidden')
+            })
+            document.querySelectorAll('[data-url] .playing').forEach(x => {
+                x.classList.add('hidden')
+            })
             const isPlaying = window.toggleEpisode(el.dataset)
             el.querySelector('.paused').classList.toggle('hidden', isPlaying)
             el.querySelector('.playing').classList.toggle('hidden', !isPlaying)
