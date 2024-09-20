@@ -14,3 +14,7 @@ It also introduces a new user interface for browsing and querying the request lo
 traditional Logging UI with an AutoQueryGrid for more advanced filtering and sorting capabilities. 
 This allows developers to gain valuable insights into the usage of their web services through these 
 granular logs and monthly aggregate reports.
+
+### Links
+
+- [Blog Post](/posts/sqlite-request-logs)

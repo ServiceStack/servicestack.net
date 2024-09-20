@@ -1,7 +1,7 @@
 ---
 title: New React SPA Template
-summary: Explore the new enhanced Vite TypeScript React SPA template for .NET 8
-tags: [react,.net8,autoquery,admin]
+summary: A tour of the features in the new enhanced Vite TypeScript React SPA template for .NET 8
+tags: [template,react,.net8,autoquery]
 url: https://media.servicestack.com/podcasts/net8-react-spa-template.mp3
 ---
 
@@ -12,3 +12,7 @@ Tailwind CSS, and Vite Press.
 The React SPA template aims to provide developers with a streamlined and efficient way to build 
 modern web applications, offering tools for identity authentication, markdown content creation, 
 and interactive components.
+
+### Links
+
+- [Blog Post](/posts/net8-react-spa-template)

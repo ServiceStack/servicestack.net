@@ -1,6 +1,6 @@
 ---
 title: Vue Stable Diffusion
-summary: Rewriting Blazor Diffussion image generation & album catalog in Vue & Razor SSG  
+summary: Rewriting Blazor Diffusion image generation & album catalog in Vue & Razor SSG  
 tags: [vue, tailwind]
 image: https://images.unsplash.com/photo-1573490647695-2892d0bf89e7?crop=entropy&fit=crop&h=1000&w=2000
 author: Demis Bellot

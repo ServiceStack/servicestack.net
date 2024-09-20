@@ -20,7 +20,7 @@
     <div class="relative mx-auto max-w-7xl">
         @await Html.PartialAsync("BlogTitle", $"All posts published in <b>{Model.Year}</b>")
     </div>
-    <div class="mt-4 relative mb-8 mx-auto max-w-7xl">
+    <div class="my-4 relative mx-auto max-w-7xl">
         <div class="flex flex-wrap justify-center">
             @foreach (var year in allYears)
             {

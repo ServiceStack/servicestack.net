@@ -1,7 +1,7 @@
 ---
 title: New Vue SPA Template
-summary: Introducing the enhanced Vite TypeScript Vue SPA template for .NET 8
-tags: [vue,.net8,autoquery,admin]
+summary: Getting to know the advanced features and capabilities of the enhanced Vite TypeScript Vue SPA template for .NET 8
+tags: [template,vue,.net8,autoquery]
 url: https://media.servicestack.com/podcasts/net8-vue-spa-template.mp3
 ---
 
@@ -12,3 +12,7 @@ Vue components, built-in authentication, Tailwind CSS, dark mode, and a Vite Pre
 
 The Vue SPA template aims to provide developers with a more efficient and enjoyable experience 
 when building web applications with .NET 8 and Vue.
+
+### Links
+
+- [Blog Post](/posts/net8-vue-spa-template)

@@ -15,3 +15,7 @@ It goes through real-world examples of open-source web applications built on SQL
 its suitability for various use cases including an exciting upcoming project: AI Server, 
 which aims to provide a free, OSS platform for managing and accessing various AI services, 
 emphasizing its reliance on SQLite for its database needs.
+
+### Links
+
+- [Blog Post](/posts/scalable-sqlite)

@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core JWT Identity Auth
-summary: Learn about integration and value added features of ASP.NET Core JWT Identity Auth   
+summary: Looking at the integration and value added features of ASP.NET Core JWT Identity Auth in ServiceStack   
 tags: [.net8,auth,jwt]
 url: https://media.servicestack.com/podcasts/jwt-identity-auth.mp3
 ---
@@ -14,3 +14,7 @@ extending the life of tokens.
 
 Finally, it describes a service for converting authenticated sessions to JWT tokens, 
 which can be useful for integrating with external OAuth providers.
+
+### Links
+
+- [Blog Post](/posts/jwt-identity-auth)

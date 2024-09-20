@@ -1,7 +1,7 @@
 ---
 title: Commands Feature
 tags: [commands,admin-ui,api]
-summary: Utilize Commands to build more robust and observable systems
+summary: Looking into how to utilize Commands to build more robust and observable systems
 url: https://media.servicestack.com/podcasts/commands-feature.mp3
 ---
 
@@ -18,3 +18,7 @@ and error logs.
 The integration of the Commands Feature with the Background MQ enables scalable execution of 
 commands, particularly valuable for working with server-side SQLite databases which have 
 limitations on concurrent writes.
+
+### Links
+
+- [Blog Post](/posts/commands-feature)

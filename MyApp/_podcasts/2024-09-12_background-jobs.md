@@ -10,3 +10,7 @@ This feature allows developers to execute existing APIs or custom commands in th
 using cron expressions or Time Spans, and track the status and progress of jobs. 
 Background Jobs uses SQLite for persistence and offers a real-time administration UI for monitoring and managing tasks. 
 It covers an overview of the feature's capabilities, including how to use it, configure options, and implementing custom commands.
+
+### Links
+
+- [Blog Post](/posts/background-jobs)
