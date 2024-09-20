@@ -1,7 +1,7 @@
 ---
 title: System.Text.Json ServiceStack APIs
 summary: ServiceStack .NET 8+ APIs can now be configured to use high-performance async System.Text.Json serialization  
-tags: [servicestack,.net8,json,apis]
+tags: [.net8,json,api]
 url: https://media.servicestack.com/podcasts/system-text-json-apis.mp3
 ---
 

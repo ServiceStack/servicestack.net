@@ -1,7 +1,7 @@
 ---
 title: Migrating to ASP.NET Core Identity for Authentication 
-summary: A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication   
-tags: [identity,auth, servicestack]
+summary: A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication
+tags: [auth,identity-auth]
 image: https://images.unsplash.com/photo-1596563910641-86f6aebaab9a?crop=entropy&fit=crop&h=1000&w=2000
 author: Darren Reid
 ---

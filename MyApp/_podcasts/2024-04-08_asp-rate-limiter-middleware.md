@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Rate Limiter Middleware
 summary: Learn how to use the new Rate Limiter Middleware in ServiceStack to protect your APIs from abuse.
-tags: [servicestack,.net8,auth,middleware]
+tags: [.net8,auth,middleware]
 url: https://media.servicestack.com/podcasts/asp-rate-limiter-middleware.mp3
 ---
 

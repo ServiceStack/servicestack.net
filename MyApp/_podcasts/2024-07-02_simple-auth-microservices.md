@@ -1,7 +1,7 @@
 ---
 title: Simple Auth Story for .NET 8 Microservices
 summary: A Simple Auth configuration using API Keys and Admin UI that's ideal for .NET 8 Microservices
-tags: [auth,.net8,servicestack]
+tags: [.net8,auth,apikeys]
 url: https://media.servicestack.com/podcasts/simple-auth-microservices.mp3
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core JWT Identity Auth
 summary: Learn about integration and value added features of ASP.NET Core JWT Identity Auth   
-tags: [servicestack,.net8,auth]
+tags: [.net8,auth,jwt]
 url: https://media.servicestack.com/podcasts/jwt-identity-auth.mp3
 ---
 

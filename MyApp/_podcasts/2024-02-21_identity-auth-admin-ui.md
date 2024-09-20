@@ -1,7 +1,7 @@
 ---
 title: Built-In Identity Auth Admin UI
-summary: Explore the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8  
-tags: [servicestack,.net8,auth]
+summary: Explore the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8
+tags: [.net8,identity-auth,admin-ui]
 url: https://media.servicestack.com/podcasts/identity-auth-admin-ui.mp3
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: ServiceStack Endpoint Routing
 summary: ServiceStack .NET 8 is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IOC    
-tags: [servicestack,.net8,apis]
+tags: [.net8,api]
 url: https://media.servicestack.com/podcasts/servicestack-endpoint-routing.mp3
 ---
 
