@@ -42,7 +42,7 @@ const MuteButton = {
     components: { MuteIcon },
     template:`
         <button type="button" :aria-label="player.muted ? 'Unmute' : 'Mute'"
-              class="group relative rounded-md hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 md:order-none"
+              class="group relative rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 md:order-none"
               @click="player.toggleMute()">
           <div class="absolute -inset-4 md:hidden" />
           <MuteIcon :muted="player.muted"
@@ -100,7 +100,7 @@ const playbackRates = [
 const PlaybackRateButton = {
     template:`
     <button type="button"
-          class="relative flex h-6 w-6 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
+          class="relative flex h-6 w-6 items-center justify-center rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
           @click="nextPlaybackRate()"
           aria-label="Playback rate">
       <div class="absolute -inset-4 md:hidden"></div>
@@ -124,13 +124,13 @@ const PlaybackRateButton = {
 const PlayButton = {
     template:`
         <button type="button" :aria-label="player.isPlaying ? 'Pause' : 'Play'"
-              class="group relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-700 focus:ring-offset-2 md:h-14 md:w-14"
+              class="group relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200 hover:bg-slate-900 dark:hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-700 dark:focus:ring-slate-200 focus:ring-offset-2 dark:ring-offset-black md:h-14 md:w-14"
               @click="player.toggle()">
           <div class="absolute -inset-3 md:hidden" />
-            <svg v-if="player.isPlaying" viewBox="0 0 36 36" aria-hidden="true" class="h-5 w-5 fill-white group-active:fill-white/80 md:h-7 md:w-7">
+            <svg v-if="player.isPlaying" viewBox="0 0 36 36" aria-hidden="true" class="h-5 w-5 fill-white dark:fill-black group-active:fill-white/80 dark:group-active:fill-black/80 md:h-7 md:w-7">
               <path d="M8.5 4C7.67157 4 7 4.67157 7 5.5V30.5C7 31.3284 7.67157 32 8.5 32H11.5C12.3284 32 13 31.3284 13 30.5V5.5C13 4.67157 12.3284 4 11.5 4H8.5ZM24.5 4C23.6716 4 23 4.67157 23 5.5V30.5C23 31.3284 23.6716 32 24.5 32H27.5C28.3284 32 29 31.3284 29 30.5V5.5C29 4.67157 28.3284 4 27.5 4H24.5Z" />
             </svg>    
-            <svg v-else viewBox="0 0 36 36" aria-hidden="true" class="h-5 w-5 fill-white group-active:fill-white/80 md:h-7 md:w-7">
+            <svg v-else viewBox="0 0 36 36" aria-hidden="true" class="h-5 w-5 fill-white dark:fill-black group-active:fill-white/80 dark:group-active:fill-black/80 md:h-7 md:w-7">
               <path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z" />
             </svg>
         </button>    
@@ -163,7 +163,7 @@ const Slider = {
     template:`
       <div class="w-full flex items-center">
         <div ref="sliderRef"
-          class="relative flex-grow h-2 bg-gray-200 rounded-full cursor-pointer"
+          class="relative flex-grow h-2 bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer"
           @click="handleClick"
           @mousedown="startDrag"
           @mousemove="handleDrag"
@@ -171,13 +171,13 @@ const Slider = {
           @mouseleave="stopDrag">
           <div class="absolute top-0 left-0 h-full bg-blue-500 rounded-full" 
             :style="{ width: progress + '%' }"></div>
-          <div class="absolute top-1/2 -mt-2 w-4 h-4 bg-white border-2 border-blue-500 rounded-full shadow"
+          <div class="absolute top-1/2 -mt-2 w-4 h-4 bg-white dark:bg-black border-2 border-blue-500 rounded-full shadow"
             :style="{ left: 'calc(' + progress + '% - 0.5rem)' }"></div>
         </div>
         <div class="hidden ml-2 items-center gap-2 md:flex whitespace-nowrap">
-            <span class="hidden rounded-md px-1 py-0.5 font-mono text-sm leading-6 md:block text-slate-500">{{ formatTime(currentTime) }}</span>
-            <span class="text-sm leading-6 text-slate-300" aria-hidden="true">/</span>
-            <span class="hidden rounded-md px-1 py-0.5 font-mono text-sm leading-6 text-slate-500 md:block">{{ formatTime(duration) }}</span>
+            <span class="hidden rounded-md px-1 py-0.5 font-mono text-sm leading-6 md:block text-slate-500 dark:text-slate-400">{{ formatTime(currentTime) }}</span>
+            <span class="text-sm leading-6 text-slate-300 dark:text-slate-600" aria-hidden="true">/</span>
+            <span class="hidden rounded-md px-1 py-0.5 font-mono text-sm leading-6 text-slate-500 dark:text-slate-400 md:block">{{ formatTime(duration) }}</span>
         </div>                    
       </div>    
     `,
@@ -259,7 +259,7 @@ const AudioPlayer = {
             @durationchange="onDurationChange(Math.floor($event.currentTarget.duration))"
             :muted="muted"
         />
-        <div v-if="src" class="flex items-center gap-6 bg-white/90 px-4 py-4 shadow shadow-slate-200/80 ring-1 ring-slate-900/5 backdrop-blur-sm md:px-6">
+        <div v-if="src" class="flex items-center gap-6 bg-white/90 dark:bg-black/90 px-4 py-4 shadow shadow-slate-200/80 dark:shadow-slate-700/80 ring-1 ring-slate-900/5 dark:ring-slate-50/5 backdrop-blur-sm md:px-6">
             <div class="hidden md:block">
                 <PlayButton :player="player"/>
             </div>
