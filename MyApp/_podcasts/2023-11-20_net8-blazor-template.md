@@ -15,6 +15,19 @@ developing APIs and CRUD apps, and Auto Admin Pages for managing database tables
 The template also offers a choice of Entity Framework or OrmLite for database interaction 
 and provides a built-in SQLite database for quick setup.
 
+### Getting Started
+
+Create a new Blazor App with your preferred project name:
+
+<project-creator v-slot="x">
+    <project-template :name="x.text" repo="NetCoreTemplates/blazor" :tags="['auto','tailwind']">
+        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor</div>
+        <template #icon>
+            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
+        </template>
+    </project-template>
+</project-creator>
+
 ### Videos
 
 :::youtube hqyozHSL0Nk

@@ -18,6 +18,19 @@ It concludes with a comparison of different Blazor implementations, including th
 template, demonstrating the significant improvements achieved through the combination of 
 static rendering and Vue.js.
 
+### Getting Started
+
+Create a new Blazor Vue App with your preferred project name:
+
+<project-creator v-slot="x">
+    <project-template :name="x.text" repo="NetCoreTemplates/blazor-vue" :tags="['vue','tailwind']">
+        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Vue</div>
+        <template #icon>
+            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
+        </template>
+    </project-template>
+</project-creator>
+
 ### Videos
 
 :::youtube YwZdtLEtROA
