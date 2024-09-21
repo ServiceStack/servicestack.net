@@ -8,6 +8,7 @@ import ShellCommand from "./components/ShellCommand.mjs"
 import VueComponentGallery from "./components/VueComponentGallery.mjs"
 import VueComponentLibrary from "./components/VueComponentLibrary.mjs"
 import ProjectTemplate from "./components/ProjectTemplate.mjs"
+import ProjectCreator from "./components/ProjectCreator.mjs"
 import { PagingNav, FileLayout, ApiReference } from "./components/Docs.mjs"
 
 let client = null, Apps = []
@@ -55,6 +56,7 @@ const Components = {
     VueComponentGallery,
     VueComponentLibrary,
     ProjectTemplate,
+    ProjectCreator,
     PagingNav,
     FileLayout,
     
