@@ -13,6 +13,25 @@ The React SPA template aims to provide developers with a streamlined and efficie
 modern web applications, offering tools for identity authentication, markdown content creation, 
 and interactive components.
 
+### Getting Started
+
+Create a new React SPA App with your preferred project name:
+
+<project-creator v-slot="x">
+    <project-template :name="x.text" repo="NetCoreTemplates/react-spa" :tags="['vite','auth']">
+        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">React SPA</div>
+        <template #icon>
+            <img class='w-12 h-12' src="/img/svgs/react.svg">
+        </template>
+    </project-template>
+</project-creator>
+
+Alternatively create a new project with the [x dotnet tool](https://docs.servicestack.net/dotnet-new):
+
+:::sh
+x new react-spa ProjectName
+:::
+
 ### Videos
 
 :::youtube WXLF0piz6G0

@@ -15,6 +15,14 @@ traditional Logging UI with an AutoQueryGrid for more advanced filtering and sor
 This allows developers to gain valuable insights into the usage of their web services through these 
 granular logs and monthly aggregate reports.
 
+### Getting Started
+
+Configure existing .NET 8 Projects to use the new `SqliteRequestLogger` by running:
+
+:::sh
+x mix sqlitelogs
+:::
+
 ### Links
 
 - [Blog Post](/posts/sqlite-request-logs)

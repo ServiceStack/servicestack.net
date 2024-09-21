@@ -17,6 +17,14 @@ and integrate API key functionality into the API Explorer and concludes by highl
 advantages of this approach for securing microservices with easy-to-use administrative tools 
 and client integrations.
 
+### Getting Started
+
+Existing projects **without any Authentication** can enable this simple Auth story by running:
+
+:::sh
+x mix apikeys-auth
+:::
+
 ### Videos
 
 :::youtube 0ceU91ZBhTQ

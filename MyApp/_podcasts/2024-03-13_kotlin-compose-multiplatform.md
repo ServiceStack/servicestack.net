@@ -14,6 +14,25 @@ It then guides the reader through setting up an environment using either Android
 or JetBrains Fleet, and provides instructions for creating new projects, updating DTOs, 
 and running both the .NET API and Kotlin Desktop App.
 
+### Getting Started
+
+Create a new Kotlin Multiplatform App with your preferred project name:
+
+<project-creator v-slot="x">
+    <project-template :name="x.text" repo="NetCoreTemplates/kmp-desktop" :tags="['kotlin','desktop']">
+        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Compose Desktop</div>
+        <template #icon>
+            <img class='w-12 h-12' src="/img/svgs/compose.svg">
+        </template>
+    </project-template>
+</project-creator>
+
+Alternatively create a new project with the [x dotnet tool](https://docs.servicestack.net/dotnet-new):
+
+:::sh
+x new kmp-desktop MyApp
+:::
+
 ### Videos
 
 :::youtube r6T3B7o1GYE

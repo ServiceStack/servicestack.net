@@ -16,6 +16,25 @@ Background Jobs uses SQLite for persistence and offers a real-time administratio
 monitoring and managing tasks. It covers an overview of the feature's capabilities, including 
 how to use it, configure options, and implementing custom commands.
 
+### Getting Started
+
+Create any new [Identity Auth template](/start) which is pre-configured with Background Jobs, e.g:
+
+<project-creator v-slot="x">
+    <project-template :name="x.text" repo="NetCoreTemplates/blazor-vue" :tags="['auth','vue']">
+        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor Vue</div>
+        <template #icon>
+            <img class='w-12 h-12' src="/img/svgs/blazor.svg">
+        </template>
+    </project-template>
+</project-creator>
+
+Alternatively create a new project with the [x dotnet tool](https://docs.servicestack.net/dotnet-new):
+
+:::sh
+x new blazor-vue ProjectName
+:::
+
 ### Videos
 
 :::youtube 2Cza_a_rrjA

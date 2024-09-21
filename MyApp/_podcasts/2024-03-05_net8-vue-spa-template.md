@@ -13,6 +13,25 @@ Vue components, built-in authentication, Tailwind CSS, dark mode, and a Vite Pre
 The Vue SPA template aims to provide developers with a more efficient and enjoyable experience 
 when building web applications with .NET 8 and Vue.
 
+### Getting Started
+
+Create a new Vue SPA App with your preferred project name:
+
+<project-creator v-slot="x">
+    <project-template :name="x.text" repo="NetCoreTemplates/vue-spa" :tags="['vite','auth']">
+        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Vue SPA</div>
+        <template #icon>
+            <img class='w-12 h-12' src="/img/svgs/vue.svg">
+        </template>
+    </project-template>
+</project-creator>
+
+Alternatively create a new project with the [x dotnet tool](https://docs.servicestack.net/dotnet-new):
+
+:::sh
+x new vue-spa ProjectName
+:::
+
 ### Videos
 
 :::youtube JlUjWlVslRg
