@@ -21,17 +21,9 @@ Web APIs help un-silo the data, create more efficient access points and reduce t
 
 ServiceStack and AutoQuery can help solve this problem by making it easy to expose data as an API, and by simplifying the use of that data in any application.
 
-<div class="relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-40">
-        <div class="aspect-w-16 aspect-h-9">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/CrKtXVrPj8Q"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
+:::youtube CrKtXVrPj8Q
+Use AutoQuery to search Xkcd comics
+:::
 
 In this post, we'll look at how to use AutoQuery to create a web app from a dataset, and to make it a bit of fun, we are going to use a dataset of XKCD comics.
 This dataset is from HuggingFace's [datasets](https://huggingface.co/datasets/olivierdehaene/xkcd) repository if you want to repeat

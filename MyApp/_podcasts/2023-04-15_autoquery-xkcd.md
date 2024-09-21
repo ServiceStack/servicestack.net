@@ -17,6 +17,12 @@ how to use AutoQueryGrid and DataGrid components to display and filter comic dat
 It emphasizes the ease of use and flexibility provided by ServiceStack tools and libraries for 
 building full-stack applications quickly and efficiently.
 
+### Videos
+
+:::youtube CrKtXVrPj8Q
+Use AutoQuery to search Xkcd comics
+:::
+
 ### Links
 
 - [Blog Post](/posts/autoquery-xkcd)
