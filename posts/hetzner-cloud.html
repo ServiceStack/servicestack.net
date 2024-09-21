@@ -179,7 +179,7 @@ mountAll()
                             <div class="mb-6 text-lg text-gray-500">
                                 <time datetime="2022-09-06T00:00:00.0000000">September 6, 2022</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>13 min read</span>
+                                <span>12 min read</span>
                             </div>
                         </div>
                 </div>
@@ -200,7 +200,7 @@ mountAll()
 <p><a href="https://www.digitalocean.com/pricing">DigitalOcean</a> provides <a href="https://www.digitalocean.com/pricing/droplets">&quot;Droplets&quot;</a> with this fixed pricing model with a nice and simple interface. Their pricing was quite good and we realized we could run all 20+ of our demo applications on a single droplet for $40/month.</p>
 <p>For deployment, <a href="https://docs.servicestack.net/do-github-action-mix-deployment">we also like to keep things as simple as we can, whilst keeping portability</a>. Since all our projects are public and on GitHub, we use <a href="https://docs.servicestack.net/do-github-action-mix-deployment#github-repository-setup">GitHub Actions</a> heavily along with a pattern that deploys our applications using Docker Compose via SSH.
 Each application runs in its own container behind an <a href="https://docs.servicestack.net/do-github-action-mix-deployment#get-nginx-reverse-proxy-and-letsencrypt-companion-running">NGINX proxy</a> with a side car that handles renewing LetsEncrypt certificates. Below is an example of this pattern with Blazor and Litestream.</p>
-<iframe class="youtube" src="https://www.youtube.com/embed/fY50dWszpw4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="fY50dWszpw4" playlabel="Using Blazor WASM with Litestream" style="background-image:url('https://img.youtube.com/vi/fY50dWszpw4/maxresdefault.jpg')"></lite-youtube>
 <p>A nice side effect of this approach is moving servers is relatively painless. We change the DNS entry for the application to point to our new server, update the GitHub Action Secrets if needed and run our Release workflow.</p>
 <p>A minute or so later, the application is back running again. Since their were 20+ of these repositories we took advantage of the <a href="https://cli.github.com/manual/gh_secret_set">GitHub Organization Secrets</a> so we only needed to update values in one place, and <a href="https://cli.github.com/manual/gh_workflow_run">running the workflows again</a> can also be done programmatically through the GitHub CLI.</p>
 <h2 id="digitalocean-price-increase">DigitalOcean Price Increase<a class="header-anchor" href="javascript:;" onclick="location.hash='#digitalocean-price-increase'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
