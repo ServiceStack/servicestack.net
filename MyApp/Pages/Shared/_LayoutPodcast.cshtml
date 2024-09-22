@@ -179,7 +179,7 @@ const bus = new EventBus()
 globalThis.toggleEpisode = function (episode) {
     if (!lastEpisode || episode.url !== lastEpisode?.src) {
         unmount(audioPlayer)
-        lastEpisode = { id:episode.slug, title:episode.title, src:episode.url, bus }
+        lastEpisode = { id:episode.slug, title:episode.title, src:episode.url, autoPlay:true, bus }
         lastApp = mount(audioPlayer, AudioPlayer, lastEpisode)
         return true
     } else {
