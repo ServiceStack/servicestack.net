@@ -259,21 +259,21 @@ const AudioPlayer = {
             @durationchange="onDurationChange(Math.floor($event.currentTarget.duration))"
             :muted="muted"
         />
-        <div v-if="src" class="flex items-center gap-6 bg-white/90 dark:bg-black/90 px-4 py-4 shadow shadow-slate-200/80 dark:shadow-slate-700/80 ring-1 ring-slate-900/5 dark:ring-slate-50/5 backdrop-blur-sm md:px-6">
+        <div v-if="src" :class="v.cls">
             <div class="hidden md:block">
                 <PlayButton :player="player"/>
             </div>
-            <div class="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
+            <div :class="v.innerCls">
                 <a :href="'/podcasts/' + id"
                     class="truncate text-center text-sm font-bold leading-6 md:text-left"
                     :title="title">
                     {{title}}
                 </a>
-                <div class="flex justify-between gap-6">
-                    <div class="flex items-center md:hidden">
+                <div :class="v.controlsCls">
+                    <div :class="v.startControlsCls">
                         <MuteButton :player="player"/>
                     </div>
-                    <div class="flex flex-none items-center gap-4">
+                    <div :class="v.midControlsCls">
                         <RewindButton :player="player"/>
                         <div class="md:hidden">
                             <PlayButton :player="player"/>
@@ -281,7 +281,7 @@ const AudioPlayer = {
                         <ForwardButton :player="player"/>
                     </div>
                     <Slider :currentTime="currentTime" :duration="duration" @update:currentTime="player.currentTime=$event" />
-                    <div class="flex items-center gap-4">
+                    <div :class="v.endControlsCls">
                         <div class="flex items-center">
                             <PlaybackRateButton :player="player"/>
                         </div>
@@ -299,7 +299,33 @@ const AudioPlayer = {
         title: String,
         src: String,
         playbackRate: Number,
-        currentTime: Number
+        currentTime: Number,
+        autoPlay: Boolean,
+        variant: String,
+        cls: { 
+            type: String,
+            default: 'flex items-center gap-6 bg-white/90 dark:bg-black/90 px-4 py-4 shadow shadow-slate-200/80 dark:shadow-slate-700/80 ring-1 ring-slate-900/5 dark:ring-slate-50/5 backdrop-blur-sm md:px-6'
+        },
+        innerCls: {
+            type: String,
+            default: 'mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1'
+        },
+        controlsCls: {
+            type: String,
+            default: 'flex justify-between gap-6'
+        },
+        startControlsCls: {
+            type: String,
+            default: 'flex items-center md:hidden'
+        },
+        midControlsCls: {
+            type: String,
+            default: 'flex flex-none items-center gap-4'
+        },
+        endControlsCls: {
+            type: String,
+            default: 'flex items-center gap-4'
+        },
     },
     setup(props) {
         const refPlayer = ref()
@@ -308,6 +334,33 @@ const AudioPlayer = {
         const currentTime = ref()
         const duration = ref()
         const playbackRate = ref(props.playbackRate || 1)
+
+        const variants = {
+            cls: {
+                compact: 'flex items-center bg-white/90 dark:bg-black/90 shadow shadow-slate-200/80 dark:shadow-slate-700/80 ring-1 ring-slate-900/5 dark:ring-slate-50/5 backdrop-blur-sm gap-2 pl-2 pr-4 rounded-full'
+            },
+            innerCls: {
+                compact: 'mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-1 overflow-hidden p-1'
+            },
+            controlsCls: {
+                compact: 'flex justify-between gap-2'
+            },
+            startControlsCls: {},
+            midControlsCls: {
+                compact: 'flex flex-none items-center gap-1 mr-1'
+            },
+            endControlsCls: {
+                compact: 'flex items-center gap-1'
+            },
+        }
+        const v = {
+            cls: variants.cls[props.variant] ?? props.cls,
+            innerCls: variants.innerCls[props.variant] ?? props.innerCls,
+            controlsCls: variants.controlsCls[props.variant] ?? props.controlsCls,
+            startControlsCls: variants.startControlsCls[props.variant] ?? props.startControlsCls,
+            midControlsCls: variants.midControlsCls[props.variant] ?? props.midControlsCls,
+            endControlsCls: variants.endControlsCls[props.variant] ?? props.endControlsCls,
+        }
 
         function onPlay() {
             state.value = 'playing'
@@ -327,7 +380,7 @@ const AudioPlayer = {
             get id() { return props.id },
             get title() { return props.title },
             play() {
-                console.log('play', state.value, refPlayer.value.src, props.src)
+                // console.log('play', state.value, refPlayer.value.src, props.src)
                 if (refPlayer.value.src !== props.src) {
                     refPlayer.value.src = props.src
                     refPlayer.value.load()
@@ -371,14 +424,17 @@ const AudioPlayer = {
             get isPlaying() { return state.value === 'playing' },
         }
 
-        let sub = props.bus.subscribe('toggleAudioPlayer', () => player.toggle())
+        let sub = props.bus?.subscribe('toggleAudioPlayer', () => player.toggle())
         onMounted(() => {
-            player.toggle()
+            if (props.autoPlay) {
+                player.toggle()
+            }
         })
-        onUnmounted(() => sub.unsubscribe())
-        console.log('AudioPlayer.mjs', globalThis.player)
+        onUnmounted(() => sub?.unsubscribe())
+        // console.log('AudioPlayer.mjs', globalThis.player)
         
         return {
+            v,
             refPlayer,
             muted,
             player,
@@ -392,4 +448,5 @@ const AudioPlayer = {
         }
     }
 }
+
 export default AudioPlayer
