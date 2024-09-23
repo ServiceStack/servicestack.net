@@ -253,13 +253,13 @@ const AudioPlayer = {
         Slider,
     },
     template:`
-        <audio ref="refPlayer"
-            @play="onPlay()" @pause="onPause()"
-            @timeupdate="onTimeUpdate(Math.floor($event.currentTarget.currentTime))"
-            @durationchange="onDurationChange(Math.floor($event.currentTarget.duration))"
-            :muted="muted"
-        />
         <div v-if="src" :class="v.cls">
+            <audio ref="refPlayer"
+                @play="onPlay()" @pause="onPause()"
+                @timeupdate="onTimeUpdate(Math.floor($event.currentTarget.currentTime))"
+                @durationchange="onDurationChange(Math.floor($event.currentTarget.duration))"
+                :muted="muted"
+            />
             <div class="hidden md:block">
                 <PlayButton :player="player"/>
             </div>

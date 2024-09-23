@@ -1,6 +1,8 @@
 ﻿@page "/whatsnew"
 @attribute [RenderStatic]
 @inject MarkdownWhatsNew WhatsNew
+@inject MarkdownPodcasts Podcasts
+
 @{
     ViewData["Title"] = "What's New";
 
@@ -43,9 +45,28 @@
         var releaseVersion = release.RightPart('_');
         if (features.Count == 0) continue;
         var releaseDate = features[0].Date!.Value;
+        var podcastSlug = releaseVersion.Replace('.', '-') + "-release";
+        var podcast = Podcasts.GetEpisodes().FirstOrDefault(x => x.Slug == podcastSlug);
         
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">@releaseVersion</h2>
-        <div class="text-center text-lg font-normal text-gray-500 mb-8">@($"{releaseDate:MMMM d, yyyy}")</div>
+        <div class="text-center text-lg font-normal text-gray-500">@($"{releaseDate:MMMM d, yyyy}")</div>
+        
+        @if (podcast != null)
+        {
+            <div class="mt-2 flex justify-center">
+                <a href="@Podcasts.GetPodcastLink(podcast)" class="group flex items-center gap-2 rounded-full bg-white/25 p-1.5 text-xs text-slate-900 ring-1 ring-inset ring-black/[0.08] hover:bg-white/50 hover:ring-black/[0.13]">
+                    <img src="/img/svgs/podcast.svg" alt="" class="h-8 w-8 rounded-full">
+                    <div class="pr-2">
+                        <p class="font-semibold">
+                            Listen to podcast episode
+                        </p>
+                        <p class="text-gray-600">@podcast.Title</p>
+                    </div>
+                </a>
+            </div>
+        }
+        
+        <div class="mb-8"></div>
 
         @foreach (var feature in features)
         {

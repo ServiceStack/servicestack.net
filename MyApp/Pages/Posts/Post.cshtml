@@ -1,6 +1,7 @@
 @page "/posts/{slug}"
 @model PostModel
 @inject MarkdownBlog Blog
+@inject MarkdownPodcasts Podcasts
 @inject AppConfig AppConfig
 
 @implements IRenderStatic<PostModel>
@@ -115,7 +116,7 @@
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
                 @doc.Title
             </h1>
-            <div class="flex justify-between">
+            <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
                     @if (authorHref != null)
                     {
@@ -138,7 +139,18 @@
                     </div>
                 </div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                
+                @{
+                    var episode = Podcasts.GetEpisodes().FirstOrDefault(x => x.Slug == doc.Slug);
+                    if (episode != null)
+                    {
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'@episode.Slug', title:'@episode.Title', src:'@episode.Url', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
+                    }
+                }
             </div>
+            
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
                     <img src="@image" alt="@doc.Title Background" class="shadow-small">
@@ -147,10 +159,10 @@
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        @foreach (var tag in doc.Tags)
-                        {
-                            <a href="@Blog.GetTagLink(tag)" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">@tag</a>
-                        }
+                    @foreach (var tag in doc.Tags)
+                    {
+                        <a href="@Blog.GetTagLink(tag)" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">@tag</a>
+                    }
                     </div>
                     @if (doc.Date != null)
                     {
