@@ -29,12 +29,12 @@
     var author = Podcasts.Authors.FirstOrDefault(x => x.Name == post.Author);
     <item>
         <title>@post.Title</title>
-        @Html.Raw($"<link>{Podcasts.Config.PublicBaseUrl.CombineWith("posts", post.Slug)}</link>")
+        @Html.Raw($"<link>{Podcasts.Config.PublicBaseUrl.CombineWith("podcasts", post.Slug)}</link>")
         @if (author != null)
         {
         <author>@author.Email (@author.Name)</author>
         }
-        <guid isPermaLink="false">@Podcasts.Config.PublicBaseUrl.CombineWith("posts", post.Slug)</guid>
+        <guid isPermaLink="false">@Podcasts.Config.PublicBaseUrl.CombineWith("podcasts", post.Slug)</guid>
         <pubDate>@post.Date!.Value.ToString("R")</pubDate>
         <atom:updated>@post.Date!.Value.ToUniversalTime().ToString("yyyy-MM-dd'T'HH:mm:ssZ")</atom:updated>
         @foreach (var tag in post.Tags.Safe())
