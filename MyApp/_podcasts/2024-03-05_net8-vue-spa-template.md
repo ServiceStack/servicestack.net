@@ -3,6 +3,7 @@ title: New Vue SPA Template
 summary: Getting to know the advanced features and capabilities of the enhanced Vite TypeScript Vue SPA template for .NET 8
 tags: [template,vue,.net8,autoquery]
 url: https://media.servicestack.com/podcasts/net8-vue-spa-template.mp3
+draft: true
 ---
 
 This episode focuses on the new Vue Single Page Application (SPA) template designed for .NET 8. 

@@ -2,7 +2,8 @@
 title: Simple, Modern JavaScript
 summary: Learning about JavaScript Modules, Vue 3 and available rich UI Component Library
 tags: [js,dev,vue]
-url: https://media.servicestack.com/podcasts/javascript.mp3   
+url: https://media.servicestack.com/podcasts/javascript.mp3
+draft: true
 ---
 
 This episode outlines a modern JavaScript development approach that emphasizes simplicity 

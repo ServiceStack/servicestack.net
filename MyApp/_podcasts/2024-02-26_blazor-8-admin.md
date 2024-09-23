@@ -3,6 +3,7 @@ title: New Blazor Interactive Auto Template with Custom Admin UIs
 summary: Discovering how to use ServiceStack.Blazor components to quickly create customizable and professional-looking admin pages in a Blazor application
 tags: [blazor,.net8,admin]
 url: https://media.servicestack.com/podcasts/blazor-8-admin.mp3
+draft: true
 ---
 
 This episode talks about the new InteractiveAuto rendering mode in Blazor for .NET 8, which combines 

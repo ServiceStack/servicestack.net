@@ -3,6 +3,7 @@ title: ASP.NET Core Identity Auth in .NET 8
 summary: Talking about ServiceStack's switch to ASP.NET Core Identity Auth in new .NET 8 Blazor, Razor and MVC Project Templates  
 tags: [c#,identity-auth,blazor]
 url: https://media.servicestack.com/podcasts/net8-identity-auth.mp3
+draft: true
 ---
 
 This episode talks about ServiceStack's transition to using ASP.NET Core Identity Authentication 

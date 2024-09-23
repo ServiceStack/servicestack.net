@@ -2,7 +2,8 @@
 title: Install PostgreSQL, MySql and SQL Server on Apple Silicon
 summary: Checking out an effortless way to install PostgreSQL, MySql and SQL Server on macOS running Apple Silicon
 tags: [rdbms,macos,dev]
-url: https://media.servicestack.com/podcasts/postgres-mysql-sqlserver-on-apple-silicon.mp3   
+url: https://media.servicestack.com/podcasts/postgres-mysql-sqlserver-on-apple-silicon.mp3
+draft: true
 ---
 
 This episode talks about the process of installing and using PostgreSQL, MySQL, and SQL Server 

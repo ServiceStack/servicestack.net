@@ -2,7 +2,8 @@
 title: Introducing Razor Press
 summary: Checking out the Markdown & Razor Pages Static Site Generator for beautiful fast Content & Documentation
 tags: [template,razor,markdown,ssg]
-url: https://media.servicestack.com/podcasts/razor-press.mp3   
+url: https://media.servicestack.com/podcasts/razor-press.mp3
+draft: true
 ---
 
 This episode looks at Razor Press - a free and open-source static site generator built with 

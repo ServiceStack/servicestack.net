@@ -2,7 +2,8 @@
 title: New Razor SSG generated docs.servicestack.net
 summary: Taking a tour of the new docs.servicestack.net website that's now generated with Razor SSG - now with Dark Mode!
 tags: [docs,razor,ssg]
-url: https://media.servicestack.com/podcasts/new-razor-ssg-docs.mp3   
+url: https://media.servicestack.com/podcasts/new-razor-ssg-docs.mp3
+draft: true
 ---
 
 This episode discusses the migration of the docs.servicestack.net website from VitePress to 

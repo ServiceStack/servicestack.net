@@ -2,7 +2,8 @@
 title: Vue Stable Diffusion
 summary: Looking at the rewrite of the Blazor Diffusion image generation .NET App & album catalog in Vue & Razor SSG  
 tags: [app,vue,tailwind]
-url: https://media.servicestack.com/podcasts/vue-stable-diffusion.mp3   
+url: https://media.servicestack.com/podcasts/vue-stable-diffusion.mp3
+draft: true
 ---
 
 This episode looks at a comparison of two frameworks, Blazor and Vue, for building web applications. 

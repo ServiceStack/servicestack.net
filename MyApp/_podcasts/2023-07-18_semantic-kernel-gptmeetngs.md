@@ -2,7 +2,8 @@
 title: Trying Microsoft's Semantic Kernel
 summary: Looking at benefits of incorporating the Semantic Kernel into our GPT Meeting Agent gives developers more flexibility when working with LLMs  
 tags: [ai,.net,dev]
-url: https://media.servicestack.com/podcasts/semantic-kernel-gptmeetngs.mp3   
+url: https://media.servicestack.com/podcasts/semantic-kernel-gptmeetngs.mp3
+draft: true
 ---
 
 This episode describes the development of a GPT Meeting Agent, a program that leverages 

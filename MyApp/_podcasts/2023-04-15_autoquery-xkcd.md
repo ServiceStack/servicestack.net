@@ -2,7 +2,8 @@
 title: Bringing xkcd static dataset to life with AutoQuery 
 summary: Unsiloing data quickly with AutoQuery to make your datasets available from queryable Web APIs
 tags: [app,autoquery,vue]
-url: https://media.servicestack.com/podcasts/autoquery-xkcd.mp3   
+url: https://media.servicestack.com/podcasts/autoquery-xkcd.mp3
+draft: true
 ---
 
 This episode looks at creating a web app from a dataset of XKCD comics using AutoQuery, 

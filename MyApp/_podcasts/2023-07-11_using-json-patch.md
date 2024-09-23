@@ -2,7 +2,8 @@
 title: JSON Patch secrets into appsettings.json
 summary: Simplify managing App secrets by JSON patching them into your appsettings.json with during deployments
 tags: [x,json,devops,github-actions]
-url: https://media.servicestack.com/podcasts/using-json-patch.mp3   
+url: https://media.servicestack.com/podcasts/using-json-patch.mp3
+draft: true
 ---
 
 This episode talks about JSON Patching, a method for modifying JSON files by adding, removing, 

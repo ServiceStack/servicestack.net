@@ -3,6 +3,7 @@ title: New .NET 8 Blazor Tailwind Template
 summary: Kicking the tires on the new Blazor for .NET 8 project template for streamlined Web UI development in C#
 tags: [template,.net8,blazor]
 url: https://media.servicestack.com/podcasts/net8-blazor-template.mp3
+draft: true
 ---
 
 This episode covers the new Blazor template for .NET 8 that simplifies C# Web UI development. 

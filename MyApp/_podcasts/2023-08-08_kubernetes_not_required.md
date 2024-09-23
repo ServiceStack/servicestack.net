@@ -2,7 +2,8 @@
 title: Using GitHub for Auto Deployments - Kubernetes Not Required
 summary: Looking at a cost-effective and straightforward web app deployment pattern using GitHub and a single Linux server
 tags: [github-actions,devops,hosting]
-url: https://media.servicestack.com/podcasts/kubernetes_not_required.mp3   
+url: https://media.servicestack.com/podcasts/kubernetes_not_required.mp3
+draft: true
 ---
 
 This episode explains a method for deploying web applications directly from GitHub to a Linux server 

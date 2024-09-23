@@ -3,6 +3,7 @@ title: Commands Feature
 tags: [commands,admin-ui,api]
 summary: Looking into how to utilize Commands to build more robust and observable systems
 url: https://media.servicestack.com/podcasts/commands-feature.mp3
+draft: true
 ---
 
 This episode focuses on the new Commands Feature in ServiceStack which provides a structured 

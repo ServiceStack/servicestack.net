@@ -3,6 +3,7 @@ title: Docker Containerization in .NET 8
 summary: Checking out the new .NET 8 Docker Container support and GitHub Actions Deployments in new Project Templates
 tags: [.net8,github-actions,hosting]
 url: https://media.servicestack.com/podcasts/net8-docker-containers.mp3
+draft: true
 ---
 
 This episode outlines how to containerize .NET 8 applications using Docker and deploy 
