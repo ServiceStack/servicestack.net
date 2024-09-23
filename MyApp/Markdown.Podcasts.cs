@@ -16,6 +16,9 @@ public class PodcastConfig
     public string? Email { get; set; }
     public string? CopyrightOwner { get; set; }
     public List<PodcastIconLink> ListenLinks { get; set; } = [];
+    public string? GetAbsoluteImageUrl() => ImageUrl == null ? null : ImageUrl.StartsWith("http")
+       ? ImageUrl
+       : PublicBaseUrl.CombineWith(ImageUrl);
 }
 public class PodcastIconLink
 {

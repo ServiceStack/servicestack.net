@@ -13,7 +13,7 @@
 @if (Blog.Config.BlogImageUrl != null)
 {
     <image>
-        <url>@Blog.Config.BlogImageUrl</url>
+        <url>@Blog.Config.GetAbsoluteImageUrl()</url>
         <title>@Blog.Config.BlogTitle</title>
         @Html.Raw($"<link>{Blog.Config.PublicBaseUrl}/blog</link>")
     </image>

@@ -17,6 +17,9 @@ public class BlogConfig
     public string? BlogEmail { get; set; }
     public string? CopyrightOwner { get; set; }
     public string? BlogImageUrl { get; set; }
+    public string? GetAbsoluteImageUrl() => BlogImageUrl == null ? null : BlogImageUrl.StartsWith("http")
+        ? BlogImageUrl
+        : PublicBaseUrl.CombineWith(BlogImageUrl);
 }
 
 public class AuthorInfo
