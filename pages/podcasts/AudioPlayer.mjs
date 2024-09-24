@@ -338,7 +338,7 @@ const AudioPlayer = {
 
         const variants = {
             cls: {
-                compact: 'flex items-center bg-white/90 dark:bg-black/90 shadow shadow-slate-200/80 dark:shadow-slate-700/80 ring-1 ring-slate-900/5 dark:ring-slate-50/5 backdrop-blur-sm gap-2 pl-2 pr-4 rounded-full'
+                compact: 'flex items-center bg-white/90 dark:bg-black/90 shadow shadow-slate-200/80 dark:shadow-slate-700/80 ring-1 ring-slate-900/5 dark:ring-slate-50/5 backdrop-blur-sm gap-2 pl-1 pr-4 rounded-full'
             },
             innerCls: {
                 compact: 'mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-1 overflow-hidden p-1'
