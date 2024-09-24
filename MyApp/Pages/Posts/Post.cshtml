@@ -138,8 +138,6 @@
                         @{ AuthorLinks(); }
                     </div>
                 </div>
-                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
-                
                 @{
                     var episode = Podcasts.GetEpisodes().FirstOrDefault(x => x.Slug == doc.Slug);
                     if (episode != null)
@@ -149,6 +147,7 @@
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                     }
                 }
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
