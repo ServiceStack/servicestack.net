@@ -67,7 +67,7 @@
 @{
   if (ViewData["HideFooter"] == null)
   {
-    await Html.PartialAsync("Footer");
+    @await Html.PartialAsync("Footer")
   }
 }
 </body>
