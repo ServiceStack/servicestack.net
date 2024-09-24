@@ -39,9 +39,9 @@
         <itunes:email>itunes.OwnerEmail</itunes:email>
     </itunes:owner>        
     }
-    if (Podcasts.Config.ImageUrl != null || itunes.ImageUrl != null)
+    if (Podcasts.Config.ItunesImageUrl != null)
     {
-    <itunes:image href="@(itunes.ImageUrl ?? Podcasts.Config.ImageUrl)"/>
+    <itunes:image href="@Podcasts.Config.GetAbsoluteItunesImageUrl()"/>
     }
     <itunes:subtitle>@(itunes.Subtitle ?? Podcasts.Config.Description)</itunes:subtitle>
     <itunes:summary><![CDATA[ @(itunes.Summary ?? Podcasts.Config.About) ]]></itunes:summary>
@@ -109,6 +109,10 @@
         @if (doc.Tags?.Count > 0)
         {
         <itunes:keywords>@string.Join(",", doc.Tags)</itunes:keywords>        
+        }
+        @if (Podcasts.Config.ItunesImageUrl != null)
+        {
+        <itunes:image href="@Podcasts.Config.GetAbsoluteItunesImageUrl()"/>
         }
     </item>
 }

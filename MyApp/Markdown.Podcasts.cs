@@ -23,6 +23,11 @@ public class PodcastConfig
     public string? GetAbsoluteImageUrl() => ImageUrl == null ? null : ImageUrl.StartsWith("http")
         ? ImageUrl
         : PublicBaseUrl.CombineWith(ImageUrl);
+
+    public string? ItunesImageUrl => Itunes?.ImageUrl ?? ImageUrl;
+    public string? GetAbsoluteItunesImageUrl() => ItunesImageUrl == null ? null : ItunesImageUrl.StartsWith("http")
+        ? ItunesImageUrl
+        : PublicBaseUrl.CombineWith(ItunesImageUrl);
 }
 public class PodcastIconLink
 {
