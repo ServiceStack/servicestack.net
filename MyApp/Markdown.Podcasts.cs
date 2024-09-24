@@ -13,12 +13,16 @@ public class PodcastConfig
     public string Description { get; set; }
     public string About { get; set; }
     public string? ImageUrl { get; set; }
+    public string? ImageTitle { get; set; }
+    public string? ImageLink { get; set; }
     public string? Email { get; set; }
     public string? CopyrightOwner { get; set; }
+    public string? Category { get; set; }
+    public ItunesPodcast? Itunes { get; set; }
     public List<PodcastIconLink> ListenLinks { get; set; } = [];
     public string? GetAbsoluteImageUrl() => ImageUrl == null ? null : ImageUrl.StartsWith("http")
-       ? ImageUrl
-       : PublicBaseUrl.CombineWith(ImageUrl);
+        ? ImageUrl
+        : PublicBaseUrl.CombineWith(ImageUrl);
 }
 public class PodcastIconLink
 {
@@ -26,6 +30,20 @@ public class PodcastIconLink
     public string Href { get; set; }
     public string Svg { get; set; }
 }
+
+public class ItunesPodcast
+{
+    public string? Author { get; set; }
+    public string? OwnerName { get; set; }
+    public string? OwnerEmail { get; set; }
+    public string? Subtitle { get; set; }
+    public string? Summary { get; set; }
+    public bool? Explicit { get; set; }
+    public string? ImageUrl { get; set; }
+    public string? Type { get; set; }
+    public List<string>? Categories { get; set; }
+}
+
 
 public class MarkdownPodcasts(ILogger<MarkdownBlog> log, IWebHostEnvironment env, IVirtualFiles fs)
     : MarkdownPagesBase<MarkdownFileInfo>(log, env, fs)
@@ -78,6 +96,9 @@ public class MarkdownPodcasts(ILogger<MarkdownBlog> log, IWebHostEnvironment env
             latestEpisodes = latestEpisodes.Where(x => x.Date.GetValueOrDefault().Year == year);
         return latestEpisodes.OrderByDescending(x => x.Date).ToList();
     }
+
+    public string GetPodcastsAbsoluteUrl() => Config.PublicBaseUrl.CombineWith("podcasts");
+    public string GetFeedAbsoluteUrl() => Config.PublicBaseUrl.CombineWith("podcasts","feed.xml");
 
     public string GetPodcastLink(MarkdownFileInfo post) => $"podcasts/{post.Slug}";
 
@@ -140,7 +161,7 @@ public class MarkdownPodcasts(ILogger<MarkdownBlog> log, IWebHostEnvironment env
         doc.Date = date;
         writer.Flush();
         doc.Preview = writer.ToString();
-
+        
         return doc;
     }
 

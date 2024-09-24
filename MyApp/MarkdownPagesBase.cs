@@ -26,6 +26,13 @@ public class MarkdigConfig
     }
 }
 
+ public class MediaInfo
+{
+    public int? Size { get; set; }
+    public TimeSpan? Duration { get; set; }
+    public string? Format { get; set; }
+}
+
 public class MarkdownFileBase
 {
     public string Path { get; set; } = default!;
@@ -63,6 +70,7 @@ public class MarkdownFileBase
     public int? LineCount { get; set; }
     public string? Group { get; set; }
     public int? Order { get; set; }
+    public MediaInfo? Media { get; set; }
     public DocumentMap? DocumentMap { get; set; }
 
     /// <summary>
