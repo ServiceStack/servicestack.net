@@ -3,6 +3,7 @@ title: Vite Press Plugin
 summary: Introducing the Universal Vite Press Plugin for Vite Vue & React Apps and its unique compatibility with .NET 8 Apps utilizing Markdig
 tags: [template,docs,markdown]
 url: https://media.servicestack.com/podcasts/vite-press-plugin.mp3
+media: {size:727341,duration:181.776000,format:mp3}
 draft: true
 ---
 

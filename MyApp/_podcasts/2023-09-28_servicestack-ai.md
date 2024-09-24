@@ -3,6 +3,7 @@ title: ServiceStack.AI - Chat GPT and Managed Cloud Providers
 summary: Guide into implementing Voice Transcriptions and TypeChat GPT in .NET    
 tags: [ai,autoquery,c#,dev]
 url: https://media.servicestack.com/podcasts/servicestack-ai.mp3
+media: {size:1885389,duration:471.288000,format:mp3}
 draft: true
 ---
 

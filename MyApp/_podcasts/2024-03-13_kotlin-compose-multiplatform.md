@@ -3,6 +3,7 @@ title: Kotlin Compose Multiplatform with end-to-end typed Kotlin & C# APIs
 summary: Talking about the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps
 tags: [template,kotlin,ios,android]
 url: https://media.servicestack.com/podcasts/kotlin-compose-multiplatform.mp3
+media: {size:1930893,duration:482.664000,format:mp3}
 draft: true
 ---
 

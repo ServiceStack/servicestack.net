@@ -3,6 +3,7 @@ title: .NET 8's Best Blazor is not Blazor as we know it
 summary: We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise    
 tags: [template,blazor,vue,api]
 url: https://media.servicestack.com/podcasts/net8-best-blazor.mp3
+media: {size:2251533,duration:562.824000,format:mp3}
 draft: true
 ---
 

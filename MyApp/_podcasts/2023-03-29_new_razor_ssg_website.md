@@ -3,6 +3,7 @@ title: New Razor SSG generated servicestack.net
 summary: Celebrating 150M Downloads with a new Razor SSG generated Website
 tags: [app,razor,ssg]
 url: https://media.servicestack.com/podcasts/new_razor_ssg_website.mp3
+media: {size:1403661,duration:350.856000,format:mp3}
 draft: true
 ---
 

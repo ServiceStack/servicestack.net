@@ -3,6 +3,7 @@ title: Exploring the new streamable JSON Lines Format
 summary: A dive into the JSON Lines format and how to use it in ServiceStack
 tags: [jsonl,json,api]
 url: https://media.servicestack.com/podcasts/jsonl-format.mp3
+media: {size:2202573,duration:550.584000,format:mp3}
 draft: true
 ---
 

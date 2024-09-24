@@ -3,6 +3,7 @@ title: Which RDBMS has the fastest .NET Bulk Insert implementation?
 summary: Measuring the different performance of RDBMS Bulk Insert implementations to find out which one is faster for .NET applications.
 tags: [rdbms,.net]
 url: https://media.servicestack.com/podcasts/bulk-insert-performance.mp3
+media: {size:1906893,duration:476.664000,format:mp3}
 draft: true
 ---
 

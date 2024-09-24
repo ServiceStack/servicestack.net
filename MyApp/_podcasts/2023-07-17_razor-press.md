@@ -3,6 +3,7 @@ title: Introducing Razor Press
 summary: Checking out the Markdown & Razor Pages Static Site Generator for beautiful fast Content & Documentation
 tags: [template,razor,markdown,ssg]
 url: https://media.servicestack.com/podcasts/razor-press.mp3
+media: {size:1030701,duration:257.616000,format:mp3}
 draft: true
 ---
 

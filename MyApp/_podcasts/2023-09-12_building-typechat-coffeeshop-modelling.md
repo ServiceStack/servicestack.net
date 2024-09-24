@@ -3,6 +3,7 @@ title: Modelling TypeChat's CoffeeShop in .NET
 summary: Looking at Modelling TypeChat's CoffeeShop App and rapidly developing it with OrmLite POCO classes and AutoQuery CRUD APIs 
 tags: [autoquery,c#,api,design]
 url: https://media.servicestack.com/podcasts/building-typechat-coffeeshop-modelling.mp3
+media: {size:2237421,duration:559.296000,format:mp3}
 draft: true
 ---
 

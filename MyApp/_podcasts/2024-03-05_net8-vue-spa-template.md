@@ -3,6 +3,7 @@ title: New Vue SPA Template
 summary: Getting to know the advanced features and capabilities of the enhanced Vite TypeScript Vue SPA template for .NET 8
 tags: [template,vue,.net8,autoquery]
 url: https://media.servicestack.com/podcasts/net8-vue-spa-template.mp3
+media: {size:1414413,duration:353.544000,format:mp3}
 draft: true
 ---
 

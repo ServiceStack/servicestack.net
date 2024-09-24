@@ -3,6 +3,7 @@ title: Introducing CreatorKit
 summary: Exploring CreatorKit - an OSS Self-Hosting alternative to Mailchimp and Disqus
 tags: [app,creatorkit]
 url: https://media.servicestack.com/podcasts/creatorkit.mp3
+media: {size:1523661,duration:380.856000,format:mp3}
 draft: true
 ---
 

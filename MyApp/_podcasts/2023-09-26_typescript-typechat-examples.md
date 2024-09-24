@@ -3,6 +3,7 @@ title: All of TypeScript's TypeChat Examples in .NET
 summary: Exploring the approach of implementing Voice Transcriptions with TypeChat GPT in .NET    
 tags: [autoquery,c#,dev,typescript]
 url: https://media.servicestack.com/podcasts/typescript-typechat-examples.mp3
+media: {size:2428173,duration:606.984000,format:mp3}
 draft: true
 ---
 

@@ -3,6 +3,7 @@ title: Vue Stable Diffusion
 summary: Looking at the rewrite of the Blazor Diffusion image generation .NET App & album catalog in Vue & Razor SSG  
 tags: [app,vue,tailwind]
 url: https://media.servicestack.com/podcasts/vue-stable-diffusion.mp3
+media: {size:1880109,duration:469.968000,format:mp3}
 draft: true
 ---
 

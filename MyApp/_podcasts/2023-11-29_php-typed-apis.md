@@ -3,6 +3,7 @@ title: PHP typed client DTOs for .NET APIs
 summary: Covering the new first class end-to-end typed support for calling .NET APIs with PHP
 tags: [php,api,service-reference]
 url: https://media.servicestack.com/podcasts/php-typed-apis.mp3
+media: {size:2225709,duration:556.368000,format:mp3}
 draft: true
 ---
 
