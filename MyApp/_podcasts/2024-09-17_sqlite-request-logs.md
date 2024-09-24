@@ -4,7 +4,6 @@ tags: [sqlite,logging,admin-ui,api]
 summary: Checking out ServiceStack's new SQLite-backed Request Logs feature and enhanced log querying and filtering in the Admin UI
 url: https://media.servicestack.com/podcasts/sqlite-request-logs.mp3
 media: {size:809613,duration:202.344000,format:mp3}
-draft: true
 ---
 
 This episode describes the new `SqliteRequestLogger` feature which uses SQLite databases to store 
