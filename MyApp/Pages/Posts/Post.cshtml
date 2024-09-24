@@ -145,7 +145,7 @@
                     if (episode != null)
                     {
                         <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'@episode.Slug', title:'@episode.Title', src:'@episode.Url', variant:'compact' }"
+                             data-props="{ id:'@episode.Slug', title:'@episode.Title', src:'@episode.Url', beaconUrl:'@Html.PodcastStatUrl(episode.Slug)', variant:'compact' }"
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                     }
                 }

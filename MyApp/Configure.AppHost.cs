@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceStack.IO;
+using ServiceStack.Text;
 
 [assembly: HostingStartup(typeof(MyApp.AppHost))]
 
@@ -57,6 +59,14 @@ public static class HtmlHelpers
 
     public static string ContentUrl(this IHtmlHelper html, string? relativePath) => ToAbsoluteContentUrl(relativePath); 
     public static string ApiUrl(this IHtmlHelper html, string? relativePath) => ToAbsoluteApiUrl(relativePath);
+
+    public static string PodcastStatUrl(this IHtmlHelper html, string? slug) => 
+        ToAbsoluteApiUrl($"/stats/stat/record?name={slug}&source=podcast&version={html.GetVersion()}");
+    
+    public static string GetVersion(this IHtmlHelper html) =>
+        typeof(Env).Assembly
+            .GetCustomAttribute<AssemblyFileVersionAttribute>()?
+            .Version.LastLeftPart('.') ?? "0.0.0";
 }
 
 public class Hello : IGet, IReturn<StringResponse> {}
