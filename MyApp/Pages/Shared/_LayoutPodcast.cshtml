@@ -176,11 +176,11 @@ let lastApp = null
 
 const bus = new EventBus()
 
-globalThis.toggleEpisode = function (episode) {
+globalThis.toggleEpisode = function (episode,source="layout") {
     if (!lastEpisode || episode.url !== lastEpisode?.src) {
         unmount(audioPlayer)
         lastEpisode = { id:episode.slug, title:episode.title, src:episode.url, autoPlay:true, bus, 
-            beaconUrl:`${globalThis.client.baseUrl??''}/stats/stat/record?name=${episode.slug}&source=podcast&version=@Html.GetVersion()`}
+            beaconUrl:`${globalThis.client.baseUrl??''}/stats/podcast/record?name=${episode.slug}&source=${source}&version=@Html.GetVersion()`}
         lastApp = mount(audioPlayer, AudioPlayer, lastEpisode)
         return true
     } else {

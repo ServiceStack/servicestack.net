@@ -50,7 +50,7 @@
         </button>
         <script>
         window.togglePlayButton = function (el) {
-            const isPlaying = window.toggleEpisode(el.dataset)
+            const isPlaying = window.toggleEpisode(el.dataset,"podcast")
             el.querySelector('.paused').classList.toggle('hidden', isPlaying)
             el.querySelector('.playing').classList.toggle('hidden', !isPlaying)
             el.setAttribute('aria-label', (isPlaying ? 'Play' : 'Pause') + ` episode ${el.dataset.title}`);

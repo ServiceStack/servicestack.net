@@ -31,7 +31,7 @@
                 document.querySelectorAll('[data-url] .playing').forEach(x => {
                     x.classList.add('hidden')
                 })
-                const isPlaying = window.toggleEpisode(el.dataset)
+                const isPlaying = window.toggleEpisode(el.dataset,"episodes")
                 el.querySelector('.paused').classList.toggle('hidden', isPlaying)
                 el.querySelector('.playing').classList.toggle('hidden', !isPlaying)
                 el.setAttribute('aria-label', (isPlaying ? 'Play' : 'Pause') + ` episode ${el.dataset.title}`);
