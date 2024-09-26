@@ -4,7 +4,6 @@ summary: Learn how to build concurrent, safe scalable SQLite .NET Apps
 tags: [sqlite,.net8]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 Ever since adding [support for Litestream](https://docs.servicestack.net/ormlite/litestream) in
