@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Tue, 24 Sep 2024 14:26:07 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Sep 2024 12:54:25 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,22 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Scalable SQLite</title>
+        <link>https://servicestack.net/podcasts/scalable-sqlite</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/scalable-sqlite</guid>
+        <pubDate>Thu, 19 Sep 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-09-19T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/scalable-sqlite.mp3" length="2301741" type="audio/mpeg"/>
+        <category>sqlite</category>
+        <category>performance</category>
+        <category>scalability</category>
+        <description>Exploring different techniques in ServiceStack for building maximum value, high-performance Scalable SQLite Web Apps</description>
+        <itunes:summary><![CDATA[ Exploring different techniques in ServiceStack for building maximum value, high-performance Scalable SQLite Web Apps ]]></itunes:summary>
+        <itunes:duration>575</itunes:duration>
+        <itunes:keywords>sqlite,performance,scalability</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>SQLite Request Logging</title>
         <link>https://servicestack.net/podcasts/sqlite-request-logs</link>
@@ -78,6 +94,22 @@
         <itunes:summary><![CDATA[ The latest features and improvements in ServiceStack v8.4 covering Background Jobs, SQLite Request Logs, Scalable SQLite Apps and more! ]]></itunes:summary>
         <itunes:duration>600</itunes:duration>
         <itunes:keywords>release,jobs,logging,admin-ui,commands,api</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Commands Feature</title>
+        <link>https://servicestack.net/podcasts/commands-feature</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/commands-feature</guid>
+        <pubDate>Wed, 03 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-03T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/commands-feature.mp3" length="2474061" type="audio/mpeg"/>
+        <category>commands</category>
+        <category>admin-ui</category>
+        <category>api</category>
+        <description>Looking into how to utilize Commands to build more robust and observable systems</description>
+        <itunes:summary><![CDATA[ Looking into how to utilize Commands to build more robust and observable systems ]]></itunes:summary>
+        <itunes:duration>618</itunes:duration>
+        <itunes:keywords>commands,admin-ui,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>

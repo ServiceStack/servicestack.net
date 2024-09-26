@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>blazor tagged podcast episodes - ServiceStack</title>
+    <title>Scalable SQLite - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -183,547 +183,527 @@ mountAll()
             <div class="border-t border-slate-200 dark:border-slate-700 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120">
         <svg aria-hidden="true" class="absolute left-0 top-0 h-20 w-full">
             <defs>
-                <linearGradient id="waveform-578-fade" x1="0" x2="0" y1="0" y2="1">
+                <linearGradient id="waveform-345-fade" x1="0" x2="0" y1="0" y2="1">
                     <stop offset="40%" stop-color="white"></stop>
                     <stop offset="100%" stop-color="black"></stop>
                 </linearGradient>
-                <linearGradient id="waveform-578-gradient">
+                <linearGradient id="waveform-345-gradient">
                     <stop offset="0%" stop-color="#4989E8"></stop>
                     <stop offset="50%" stop-color="#6159DA"></stop>
                     <stop offset="100%" stop-color="#FF54AD"></stop>
                 </linearGradient>
-                <mask id="waveform-578-mask">
-                    <rect width="100%" height="100%" fill="url(#waveform-578-pattern)"></rect>
+                <mask id="waveform-345-mask">
+                    <rect width="100%" height="100%" fill="url(#waveform-345-pattern)"></rect>
                 </mask>
-                <pattern id="waveform-578-pattern"
+                <pattern id="waveform-345-pattern"
                          width="400"
                          height="100%"
                          patternUnits="userSpaceOnUse">
                     <rect width="2"
-                          height="47"
+                          height="70"
                           x="2"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="76"
+                          x="6"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="74"
-                          x="6"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="52"
                           x="10"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="48"
+                          height="54"
                           x="14"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="46"
-                          x="18"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="50"
-                          x="22"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="68"
-                          x="26"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="41"
-                          x="30"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="70"
-                          x="34"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="53"
-                          x="38"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="75"
-                          x="42"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="76"
-                          x="46"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="76"
-                          x="50"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="48"
-                          x="54"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="52"
-                          x="58"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="51"
-                          x="62"
-                          fill="url(#waveform-578-fade)"></rect>
+                          x="18"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="55"
-                          x="66"
-                          fill="url(#waveform-578-fade)"></rect>
+                          height="75"
+                          x="22"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="50"
-                          x="70"
-                          fill="url(#waveform-578-fade)"></rect>
+                          x="26"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="53"
-                          x="74"
-                          fill="url(#waveform-578-fade)"></rect>
+                          height="72"
+                          x="30"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="61"
-                          x="78"
-                          fill="url(#waveform-578-fade)"></rect>
+                          height="65"
+                          x="34"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="79"
+                          x="38"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="40"
+                          x="42"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="74"
+                          x="46"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="55"
+                          x="50"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="56"
+                          x="54"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="44"
+                          x="58"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="49"
+                          x="62"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="53"
+                          x="66"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="62"
+                          x="70"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="77"
+                          x="74"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="73"
+                          x="78"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="55"
                           x="82"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="50"
+                          height="47"
                           x="86"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="64"
+                          height="62"
                           x="90"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="64"
                           x="94"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="75"
+                          height="71"
                           x="98"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="79"
+                          height="72"
                           x="102"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="69"
+                          height="54"
                           x="106"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="69"
+                          height="50"
                           x="110"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="73"
+                          height="65"
                           x="114"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="69"
+                          height="49"
                           x="118"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="52"
                           x="122"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="43"
-                          x="126"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="78"
-                          x="130"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="76"
-                          x="134"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="77"
-                          x="138"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="79"
-                          x="142"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="48"
-                          x="146"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="54"
-                          x="150"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="62"
-                          x="154"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="51"
-                          x="158"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="46"
-                          x="162"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="62"
-                          x="166"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="62"
-                          x="170"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="43"
-                          x="174"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="69"
-                          x="178"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="65"
-                          x="182"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="64"
-                          x="186"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="49"
-                          x="190"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="79"
-                          x="194"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="65"
-                          x="198"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="55"
-                          x="202"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="50"
-                          x="206"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="79"
-                          x="210"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="72"
-                          x="214"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="44"
-                          x="218"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="40"
-                          x="222"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="78"
-                          x="226"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="45"
-                          x="230"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="45"
-                          x="234"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="77"
-                          x="238"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="70"
-                          x="242"
-                          fill="url(#waveform-578-fade)"></rect>
+                          x="126"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="43"
+                          x="130"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="78"
+                          x="134"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="52"
+                          x="138"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="48"
+                          x="142"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="50"
-                          x="246"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="56"
-                          x="250"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="66"
-                          x="254"
-                          fill="url(#waveform-578-fade)"></rect>
+                          x="146"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="60"
-                          x="258"
-                          fill="url(#waveform-578-fade)"></rect>
+                          x="150"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="67"
-                          x="262"
-                          fill="url(#waveform-578-fade)"></rect>
+                          height="49"
+                          x="154"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="53"
+                          x="158"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="42"
+                          x="162"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="58"
+                          x="166"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="71"
+                          x="170"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="54"
+                          x="174"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="78"
+                          x="178"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="64"
-                          x="266"
-                          fill="url(#waveform-578-fade)"></rect>
+                          x="182"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="47"
+                          height="54"
+                          x="186"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="43"
+                          x="190"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="49"
+                          x="194"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="62"
+                          x="198"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="48"
+                          x="202"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="74"
+                          x="206"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="41"
+                          x="210"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="76"
+                          x="214"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="59"
+                          x="218"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="70"
+                          x="222"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="49"
+                          x="226"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="67"
+                          x="230"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="46"
+                          x="234"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="41"
+                          x="238"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="41"
+                          x="242"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="40"
+                          x="246"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="45"
+                          x="250"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="76"
+                          x="254"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="79"
+                          x="258"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="48"
+                          x="262"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="72"
+                          x="266"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="57"
                           x="270"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="49"
+                          x="274"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="52"
+                          x="278"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="79"
+                          x="282"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="66"
-                          x="274"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="72"
-                          x="278"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="72"
-                          x="282"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="51"
                           x="286"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="67"
                           x="290"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="77"
+                          height="51"
                           x="294"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="69"
+                          height="76"
                           x="298"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="48"
+                          height="78"
                           x="302"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="40"
+                          height="54"
                           x="306"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="69"
+                          height="74"
                           x="310"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="57"
+                          height="58"
                           x="314"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="44"
-                          x="318"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="46"
-                          x="322"
-                          fill="url(#waveform-578-fade)"></rect>
+                          x="318"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="48"
+                          height="64"
+                          x="322"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="51"
                           x="326"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="73"
                           x="330"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="43"
+                          height="51"
                           x="334"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="64"
+                          height="56"
                           x="338"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="71"
+                          height="79"
                           x="342"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="62"
+                          height="46"
                           x="346"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="77"
+                          height="44"
                           x="350"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="43"
+                          height="45"
                           x="354"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="43"
                           x="358"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="59"
+                          height="73"
                           x="362"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
-                          height="61"
+                          height="78"
                           x="366"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="71"
+                          x="370"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="75"
-                          x="370"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="55"
                           x="374"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="74"
-                          x="378"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="41"
-                          x="382"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="42"
+                          x="378"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="40"
+                          x="382"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="41"
                           x="386"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="69"
+                          x="390"
+                          fill="url(#waveform-345-fade)"></rect>
+                    <rect width="2"
+                          height="53"
+                          x="394"
+                          fill="url(#waveform-345-fade)"></rect>
                     <rect width="2"
                           height="43"
-                          x="390"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="49"
-                          x="394"
-                          fill="url(#waveform-578-fade)"></rect>
-                    <rect width="2"
-                          height="76"
                           x="398"
-                          fill="url(#waveform-578-fade)"></rect>
+                          fill="url(#waveform-345-fade)"></rect>
                 </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#waveform-578-gradient)" mask="url(#waveform-578-mask)" opacity="0.25"></rect>
+            <rect width="100%" height="100%" fill="url(#waveform-345-gradient)" mask="url(#waveform-345-mask)" opacity="0.25"></rect>
         </svg>
                 <div class="relative">
                     
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
 
 
-<div class="pb-12 pt-16 sm:pb-4 lg:pt-12">
+<article class="py-16 lg:py-36">
     <div class="lg:px-8">
         <div class="lg:max-w-4xl">
             <div class="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4 lg:px-0">
-                <h1 class="text-2xl font-bold leading-7 text-slate-900">
-                    Episodes
-                </h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="divide-y divide-slate-100 dark:divide-slate-800 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100 dark:lg:border-slate-800">
-
-        <div class="relative p-4 mx-auto max-w-7xl">
-            <div class="flex flex-wrap justify-center">
-                    <a href="podcasts/tagged/admin-ui" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">admin-ui</a>
-                    <a href="podcasts/tagged/api" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">api</a>
-                    <a href="podcasts/tagged/release" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">release</a>
-                    <a href="podcasts/tagged/commands" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">commands</a>
-                    <a href="podcasts/tagged/sqlite" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">sqlite</a>
-                    <a href="podcasts/tagged/logging" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">logging</a>
-                    <a href="podcasts/tagged/jobs" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">jobs</a>
-                    <a href="podcasts/tagged/identity-auth" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">identity-auth</a>
-                    <a href="podcasts/tagged/performance" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">performance</a>
-                    <a href="podcasts/tagged/scalability" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">scalability</a>
-                    <a href="podcasts/tagged/apikeys" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">apikeys</a>
-                    <a href="podcasts/tagged/vue" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">vue</a>
-                    <a href="podcasts/tagged/react" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">react</a>
-                    <a href="podcasts/tagged/vite" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">vite</a>
-                    <a href="podcasts/tagged/markdown" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">markdown</a>
-                    <a href="podcasts/tagged/kotlin" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">kotlin</a>
-                    <a href="podcasts/tagged/ioc" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">ioc</a>
-                    <a href="podcasts/tagged/json" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">json</a>
-                    <a href="podcasts/tagged/openapi" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">openapi</a>
-                    <a href="podcasts/tagged/swagger" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">swagger</a>
-                    <a href="podcasts/tagged/net8" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">.net8</a>
-                    <a href="podcasts/tagged/docker" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">docker</a>
-                    <span class="mr-2 mb-2 text-xs leading-5 font-semibold bg-indigo-600 dark:bg-indigo-300 text-white dark:text-black rounded-full py-1 px-3 flex items-center space-x-2">blazor</span>
-                    <a href="podcasts/tagged/mvc" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">mvc</a>
-                    <a href="podcasts/tagged/razor" class="mr-2 mb-2 text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">razor</a>
-            </div>
-        </div>
-
-        
-    
-    <article aria-labelledby="episode-v8-0-release-title" class="py-10 sm:py-12">
-        <div class="lg:px-8">
-            <div class="lg:max-w-4xl">
-                <div class="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4 lg:px-0">
-                    <div class="flex flex-col items-start">
-                        <h2 id="episode-v8-0-release-title" class="mt-2 text-lg font-bold text-slate-900 dark:text-slate-50">
-                            <a href="podcasts/v8-0-release">ServiceStack v8.0 Release</a>
-                        </h2>
-                        <time dateTime=2023-11-20 00:00:00Z class="order-first font-mono text-sm leading-7 text-slate-500 dark:text-slate-400">
-                            Monday, 20 November 2023
-                        </time>
-                        <p class="mt-1 text-base leading-7 text-slate-700 dark:text-slate-200">
-                            ServiceStack v8 is here with all packages now including .net8.0 builds, all Project Templates upgraded to .NET 8, GitHub Actions now using .NET 8 Docker containers, new Tailwind Blazor, Razor Pages &amp; MVC Templates now using ASP .NET Identity Auth &amp; EF
-                        </p>
-                        <div class="mt-4 flex items-center gap-4">
-        <button data-slug="v8-0-release" data-title="ServiceStack v8.0 Release" data-url="https://media.servicestack.com/podcasts/v8-0-release.mp3"
-                type="button" aria-label="Play episode ServiceStack v8.0 Release"
+                <header class="flex flex-col">
+                    <div class="flex items-center gap-6">
+        <button data-slug="scalable-sqlite" data-title="Scalable SQLite" data-url="https://media.servicestack.com/podcasts/scalable-sqlite.mp3"
+                type="button" aria-label="Play episode Scalable SQLite"
                 onclick="togglePlayButton(this)"
-                class="flex items-center gap-x-3 text-sm font-bold leading-6 text-pink-500 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-200 active:text-pink-900 dark:active:text-pink-50">
+                class="group relative flex h-18 w-18 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200 hover:bg-slate-900 dark:hover:bg-slate-50 focus:outline-none focus:ring focus:ring-slate-700 dark:focus:ring-slate-200 focus:ring-offset-4 dark:ring-offset-black">
             <div class="paused flex items-center gap-x-1">
-                <svg aria-hidden="true" viewBox="0 0 10 10" class="h-2.5 w-2.5 fill-current">
-                    <path d="M8.25 4.567a.5.5 0 0 1 0 .866l-7.5 4.33A.5.5 0 0 1 0 9.33V.67A.5.5 0 0 1 .75.237l7.5 4.33Z" />
+                <svg viewBox="0 0 36 36" aria-hidden="true" class="h-9 w-9 fill-white dark:fill-black group-active:fill-white/80 dark:group-active:fill-black/80">
+                    <path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z" />
                 </svg>
-                <span aria-hidden="true">Listen</span>
             </div>
             <div class="hidden playing flex items-center gap-x-1">
-                <svg aria-hidden="true" viewBox="0 0 10 10" class="h-2.5 w-2.5 fill-current">
-                    <path fillRule="evenodd" clipRule="evenodd"
-                          d="M1.496 0a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5H2.68a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5H1.496Zm5.82 0a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5H8.5a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5H7.316Z" />
+                <svg viewBox="0 0 36 36" aria-hidden="true" class="h-9 w-9 fill-white dark:fill-black group-active:fill-white/80 dark:group-active:fill-black/80">
+                    <path d="M8.5 4C7.67157 4 7 4.67157 7 5.5V30.5C7 31.3284 7.67157 32 8.5 32H11.5C12.3284 32 13 31.3284 13 30.5V5.5C13 4.67157 12.3284 4 11.5 4H8.5ZM24.5 4C23.6716 4 23 4.67157 23 5.5V30.5C23 31.3284 23.6716 32 24.5 32H27.5C28.3284 32 29 31.3284 29 30.5V5.5C29 4.67157 28.3284 4 27.5 4H24.5Z" />
                 </svg>
-                <span aria-hidden="true">Listen</span>
             </div>
         </button>
         <script>
-            window.togglePlayButton = function (el) {
-                document.querySelectorAll('[data-url] .paused').forEach(x => {
-                    x.classList.remove('hidden')
-                })
-                document.querySelectorAll('[data-url] .playing').forEach(x => {
-                    x.classList.add('hidden')
-                })
-                const isPlaying = window.toggleEpisode(el.dataset,"episodes")
-                el.querySelector('.paused').classList.toggle('hidden', isPlaying)
-                el.querySelector('.playing').classList.toggle('hidden', !isPlaying)
-                el.setAttribute('aria-label', (isPlaying ? 'Play' : 'Pause') + ` episode ${el.dataset.title}`);
-            }
+        window.togglePlayButton = function (el) {
+            const isPlaying = window.toggleEpisode(el.dataset,"podcast")
+            el.querySelector('.paused').classList.toggle('hidden', isPlaying)
+            el.querySelector('.playing').classList.toggle('hidden', !isPlaying)
+            el.setAttribute('aria-label', (isPlaying ? 'Play' : 'Pause') + ` episode ${el.dataset.title}`);
+        }
         </script>
-                            <span aria-hidden="true" class="text-sm font-bold text-slate-400">/</span>
-                            <a href="podcasts/v8-0-release"
-                               class="flex items-center text-sm font-bold leading-6 text-pink-500 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-200 active:text-pink-900 dark:active:text-pink-50"
-                               aria-label="Show notes for episode ServiceStack v8.0 Release">
-                                Show notes
-                            </a>
-                                <span aria-hidden="true" class="text-sm font-bold text-slate-400">/</span>
-                                <div class="flex flex-wrap gap-1">
-                                    <a href="podcasts/tagged/release" class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-slate-400/20 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">release</a>
-                                    <a href="podcasts/tagged/net8" class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-slate-400/20 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">.net8</a>
-                                    <a href="podcasts/tagged/docker" class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-slate-400/20 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">docker</a>
-                                    <a href="podcasts/tagged/identity-auth" class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-slate-400/20 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">identity-auth</a>
-                                    <a href="podcasts/tagged/blazor" class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-slate-400/20 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">blazor</a>
-                                    <a href="podcasts/tagged/mvc" class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-slate-400/20 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">mvc</a>
-                                    <a href="podcasts/tagged/razor" class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-slate-400/20 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100">razor</a>
-                                </div>
+                        <div class="flex flex-col">
+                            <h1 class="mt-2 text-4xl font-bold text-slate-900 dark:text-slate-50">
+                                Scalable SQLite
+                            </h1>
+                            <time dateTime=2024-09-19 00:00:00Z class="order-first font-mono text-sm leading-7 text-slate-500 dark:text-slate-400">
+                                Thursday, 19 September 2024
+                            </time>
                         </div>
                     </div>
+                    <p class="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700 dark:text-slate-200">
+                        Exploring different techniques in ServiceStack for building maximum value, high-performance Scalable SQLite Web Apps
+                    </p>
+                        <div class="ml-24 mt-4 flex flex-wrap gap-1">
+                                <a href="podcasts/tagged/sqlite" class="text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">sqlite</a>
+                                <a href="podcasts/tagged/performance" class="text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">performance</a>
+                                <a href="podcasts/tagged/scalability" class="text-xs leading-5 font-semibold bg-slate-400/10 dark:bg-slate-400/40 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-400/50 dark:highlight-white/5">scalability</a>
+                        </div>
+                </header>
+                <hr class="my-12 border-gray-200" />
+                <div id="podcast" class="prose prose-slate mt-14 [&>h2:nth-of-type(3n)]:before:bg-violet-200 [&>h2:nth-of-type(3n+2)]:before:bg-indigo-200 [&>h2]:mt-12 [&>h2]:flex [&>h2]:items-center [&>h2]:font-mono [&>h2]:text-sm [&>h2]:font-medium [&>h2]:leading-7 [&>h2]:text-slate-900 dark:text-slate-50 [&>h2]:before:mr-3 [&>h2]:before:h-3 [&>h2]:before:w-1.5 [&>h2]:before:rounded-r-full [&>h2]:before:bg-cyan-200 [&>ul]:mt-6 [&>ul]:list-['\2013\20'] [&>ul]:pl-5">
+                    <p>This episode covers the benefits and limitations of using SQLite as a database for web applications.
+It highlights its advantages, including performance, low cost, and flexibility, but also
+acknowledges its single concurrent writer limitation then proposes solutions to overcome this
+limitation through techniques like using separate databases, employing database locks, and queuing
+database writes with SyncCommand.</p>
+<p>It goes through real-world examples of open-source web applications built on SQLite, demonstrating
+its suitability for various use cases including an exciting upcoming project: AI Server,
+which aims to provide a free, OSS platform for managing and accessing various AI services,
+emphasizing its reliance on SQLite for its database needs.</p>
+<h3 id="links">Links<a class="header-anchor" href="javascript:;" onclick="location.hash='#links'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><a href="/posts/scalable-sqlite">Blog Post</a></li>
+</ul>
+
                 </div>
             </div>
         </div>
-    </article>
-
     </div>
-</div>
+</article>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    mount('#podcast', App)
+</script>
+
                 </div>
             </div>
             <footer class="border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 py-10 pb-40 sm:py-16 sm:pb-32 lg:hidden">
