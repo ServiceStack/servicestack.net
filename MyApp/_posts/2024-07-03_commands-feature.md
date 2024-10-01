@@ -1,5 +1,5 @@
 ---
-title: Utilize Commands to build more robust and observable systems
+title: Utilize C# Commands to build more robust and observable systems
 summary: Learn how to build testable, robust observable systems with the new Commands Feature
 tags: [commands,.net8]
 author: Demis Bellot
@@ -26,7 +26,7 @@ How code-bases are structured is largely a matter of developer preference, howev
 to add value in this area by introducing an appealing option with our new managed **Commands** Feature.
 
 :::youtube SXPdBHbncPc
-Use Commands to build robust and observable systems with Admin UI
+Use C# Commands to build robust and observable systems with Admin UI
 :::
 
 ## Code Architecture 

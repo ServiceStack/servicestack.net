@@ -1,12 +1,12 @@
 ---
 title: Commands Feature
 tags: [commands,admin-ui,api]
-summary: Looking into how to utilize Commands to build more robust and observable systems
+summary: Looking into how to utilize C# Commands to build more robust and observable systems
 url: https://media.servicestack.com/podcasts/commands-feature.mp3
 media: {size:2474061,duration:618.456000,format:mp3}
 ---
 
-This episode focuses on the new Commands Feature in ServiceStack which provides a structured 
+This episode focuses on the new C# Commands Feature in ServiceStack which provides a structured 
 approach to implementing internal logic for improved code reusability, testability, observability,
 and robustness. It allows developers to separate logic into independent units called Commands, 
 which can be executed in managed background threads. 

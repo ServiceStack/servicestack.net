@@ -1,7 +1,7 @@
 ---
-title: Background Jobs
+title: C# Background Jobs
 tags: [jobs,admin-ui,commands,api]
-summary: Taking a deep dive into Background Jobs, a new library for .NET 8 Apps for simplifying task scheduling and management
+summary: Taking a deep dive into C# Background Jobs, a new library for .NET 8 Apps for simplifying task scheduling and management
 url: https://media.servicestack.com/podcasts/background-jobs.mp3
 media: {size:1990029,duration:497.448000,format:mp3}
 ---

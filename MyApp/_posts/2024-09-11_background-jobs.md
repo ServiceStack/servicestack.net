@@ -1,18 +1,18 @@
 ---
-title: Simple Background Jobs & Recurring Tasks for .NET 8
-summary: Introducing Background Jobs for managing background jobs and scheduled tasks
+title: Simple C# Background Jobs & Recurring Tasks for .NET 8
+summary: Introducing C# Background Jobs for managing background jobs and scheduled tasks
 tags: [workers,commands,.net8]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?crop=entropy&fit=crop&h=1000&w=2000
 ---
 
 We're excited to announce **Background Jobs** our effortless solution for queueing and managing 
-background jobs and scheduled tasks in any .NET 8 App, implemented in true ServiceStack fashion
+background jobs and scheduled tasks in any .NET 8 C# App, implemented in true ServiceStack fashion
 where it seamlessly integrates into existing Apps and call existing APIs and sports a 
 [built-in](/auto-ui) Management UI to provide real-time monitoring, inspection and management of background jobs.
 
 :::youtube 2Cza_a_rrjA
-Durable Background Jobs and Scheduled Tasks for .NET
+Durable C# Background Jobs and Scheduled Tasks for .NET
 :::
 
 ### Durable and Infrastructure-Free

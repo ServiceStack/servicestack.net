@@ -1,6 +1,6 @@
 ---
-title: Scalable Server SQLite Apps 
-summary: Learn how to build concurrent, safe scalable SQLite .NET Apps 
+title: Scalable Server SQLite C# Apps 
+summary: Learn how to build concurrent, safe scalable SQLite .NET Apps in C#
 tags: [sqlite,.net8]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&fit=crop&h=1000&w=2000
@@ -8,7 +8,7 @@ image: https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&fi
 
 Ever since adding [support for Litestream](https://docs.servicestack.net/ormlite/litestream) in
 our project's templates [GitHub Action Deployments](https://servicestack.net/posts/kubernetes_not_required)
-we've been using SQLite as the backend for our new .NET Apps as it's the 
+we've been using SQLite as the backend for our new .NET C# Apps as it's the 
 [most cost-effective option](https://docs.servicestack.net/ormlite/litestream#savings-at-scale)
 that frees us from needing to use a cloud managed database which lets us make use of Hetzner's much cheaper
 [US Cloud VMs](https://www.hetzner.com/cloud/).

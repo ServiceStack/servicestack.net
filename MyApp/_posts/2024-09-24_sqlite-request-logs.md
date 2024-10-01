@@ -1,6 +1,6 @@
 ---
-title: SQLite Request Logs 
-summary: Maintain Request Log History in rolling Monthly SQLite databases 
+title: SQLite C# Request Logs 
+summary: Maintain C# Request Log History in rolling Monthly SQLite databases 
 tags: [sqlite,.net8]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1535350356005-fd52b3b524fb?crop=entropy&fit=crop&h=1000&w=2000
@@ -17,7 +17,7 @@ it ideal for self-managing isolated appliance backends like Background Jobs and 
 benefit from integrating with your existing RDBMS.
 
 The new [ServiceStack.Jobs](https://nuget.org/packages/ServiceStack.Jobs) NuGet package allows us
-to deliver plug and play SQLite backed features into .NET 8 Apps that are configured with any RDBMS
+to deliver plug and play SQLite backed features into .NET 8 C# Apps that are configured with any RDBMS
 or without one. The next feature added is a SQLite backed provider for [Request Logs](https://docs.servicestack.net/request-logger) 
 with the new `SqliteRequestLogger` which can be added to existing .NET 8 Apps with the
 [mix tool](https://docs.servicestack.net/mix-tool):

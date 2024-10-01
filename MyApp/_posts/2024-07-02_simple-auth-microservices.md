@@ -1,6 +1,6 @@
 ---
-title: Simple Auth Story for .NET 8 Microservices
-summary: A Simple Auth configuration using API Keys and Admin UI that's ideal for .NET 8 Microservices
+title: Simple Auth Story for .NET 8 C# Microservices
+summary: A Simple Auth configuration using API Keys and Admin UI that's ideal for .NET 8 C# Microservices
 tags: [.net8,auth,apikeys]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1529265895721-65945a176cff?crop=entropy&fit=crop&h=1000&w=2000
@@ -10,7 +10,7 @@ With ServiceStack now [fully integrated with ASP.NET Core Identity Auth](https:/
 our latest [.NET 8 Tailwind Templates](/start) now include a full-featured Auth Configuration complete with User Registration, 
 Login, Password Recovery, Two Factory Auth, and more.
 
-Whilst this is great for Web Applications which need it, it neglects the class of Apps which don't need User Auth and
+Whilst this is great for C# Web Applications which need it, it neglects the class of Apps which don't need User Auth and
 the additional complexity it brings with Identity and Password Management, EF Migrations, Token Expirations, etc. 
 
 For these stand-alone Apps, Microservices and Docker Appliances that would still like to restrict Access to their APIs
