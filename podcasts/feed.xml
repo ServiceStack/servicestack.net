@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Thu, 26 Sep 2024 12:54:25 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2024 07:37:03 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -113,6 +113,39 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
+        <title>Simple Auth Story for .NET 8 Microservices</title>
+        <link>https://servicestack.net/podcasts/simple-auth-microservices</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/simple-auth-microservices</guid>
+        <pubDate>Tue, 02 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-02T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/simple-auth-microservices.mp3" length="2623341" type="audio/mpeg"/>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>apikeys</category>
+        <description>Taking a look at the simple &quot;user-free&quot; Auth story made possible with API Keys and Admin UI that&#x27;s ideal for .NET 8 Microservices</description>
+        <itunes:summary><![CDATA[ Taking a look at the simple &quot;user-free&quot; Auth story made possible with API Keys and Admin UI that&#x27;s ideal for .NET 8 Microservices ]]></itunes:summary>
+        <itunes:duration>655</itunes:duration>
+        <itunes:keywords>.net8,auth,apikeys</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Using API Keys to secure .NET 8 APIs</title>
+        <link>https://servicestack.net/podcasts/apikeys</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/apikeys</guid>
+        <pubDate>Mon, 01 Jul 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-07-01T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/apikeys.mp3" length="2403309" type="audio/mpeg"/>
+        <category>apikeys</category>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>rdbms</category>
+        <description>Exploring the new API Keys Identity Auth feature and how its Admin UI enables simple fine-grained access control in ServiceStack .NET 8 APIs</description>
+        <itunes:summary><![CDATA[ Exploring the new API Keys Identity Auth feature and how its Admin UI enables simple fine-grained access control in ServiceStack .NET 8 APIs ]]></itunes:summary>
+        <itunes:duration>600</itunes:duration>
+        <itunes:keywords>apikeys,.net8,auth,rdbms</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>ServiceStack v8.3 Release</title>
         <link>https://servicestack.net/podcasts/v8-3-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v8-3-release</guid>
@@ -128,6 +161,105 @@
         <itunes:summary><![CDATA[ The latest features and improvements in ServiceStack v8.3 covering Commands Feature, API Keys, Integrated Admin UIs and more! ]]></itunes:summary>
         <itunes:duration>459</itunes:duration>
         <itunes:keywords>release,apikeys,admin-ui,commands,api</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ASP.NET Core Output Caching</title>
+        <link>https://servicestack.net/podcasts/redis-outputcache</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/redis-outputcache</guid>
+        <pubDate>Wed, 05 Jun 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-06-05T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/redis-outputcache.mp3" length="2012973" type="audio/mpeg"/>
+        <category>caching</category>
+        <category>.net8</category>
+        <category>redis</category>
+        <description>A look at how to use ASP.NET Core Output Caching and ServiceStack.Redis to cache the response of ServiceStack APIs in Redis</description>
+        <itunes:summary><![CDATA[ A look at how to use ASP.NET Core Output Caching and ServiceStack.Redis to cache the response of ServiceStack APIs in Redis ]]></itunes:summary>
+        <itunes:duration>503</itunes:duration>
+        <itunes:keywords>caching,.net8,redis</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ASP.NET Core Rate Limiter Middleware</title>
+        <link>https://servicestack.net/podcasts/asp-rate-limiter-middleware</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/asp-rate-limiter-middleware</guid>
+        <pubDate>Mon, 08 Apr 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-04-08T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/asp-rate-limiter-middleware.mp3" length="2585901" type="audio/mpeg"/>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>middleware</category>
+        <description>A guide explaining how ASP.NET Core&#x27;s Rate Limiter Middleware can be used to protect ServiceStack APIs and Apps from abuse</description>
+        <itunes:summary><![CDATA[ A guide explaining how ASP.NET Core&#x27;s Rate Limiter Middleware can be used to protect ServiceStack APIs and Apps from abuse ]]></itunes:summary>
+        <itunes:duration>646</itunes:duration>
+        <itunes:keywords>.net8,auth,middleware</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Kotlin Compose Multiplatform with end-to-end typed Kotlin &amp; C# APIs</title>
+        <link>https://servicestack.net/podcasts/kotlin-compose-multiplatform</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/kotlin-compose-multiplatform</guid>
+        <pubDate>Wed, 13 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-13T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/kotlin-compose-multiplatform.mp3" length="1930893" type="audio/mpeg"/>
+        <category>template</category>
+        <category>kotlin</category>
+        <category>ios</category>
+        <category>android</category>
+        <description>Talking about the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps</description>
+        <itunes:summary><![CDATA[ Talking about the exciting new JetBrains Technology for creating native Mobile, Desktop and Web Apps ]]></itunes:summary>
+        <itunes:duration>482</itunes:duration>
+        <itunes:keywords>template,kotlin,ios,android</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>New React SPA Template</title>
+        <link>https://servicestack.net/podcasts/net8-react-spa-template</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-react-spa-template</guid>
+        <pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-06T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/net8-react-spa-template.mp3" length="2731533" type="audio/mpeg"/>
+        <category>template</category>
+        <category>react</category>
+        <category>.net8</category>
+        <category>autoquery</category>
+        <description>A tour of the features in the new enhanced Vite TypeScript React SPA template for .NET 8</description>
+        <itunes:summary><![CDATA[ A tour of the features in the new enhanced Vite TypeScript React SPA template for .NET 8 ]]></itunes:summary>
+        <itunes:duration>682</itunes:duration>
+        <itunes:keywords>template,react,.net8,autoquery</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>New Vue SPA Template</title>
+        <link>https://servicestack.net/podcasts/net8-vue-spa-template</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-vue-spa-template</guid>
+        <pubDate>Tue, 05 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-05T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/net8-vue-spa-template.mp3" length="1414413" type="audio/mpeg"/>
+        <category>template</category>
+        <category>vue</category>
+        <category>.net8</category>
+        <category>autoquery</category>
+        <description>Getting to know the advanced features and capabilities of the enhanced Vite TypeScript Vue SPA template for .NET 8</description>
+        <itunes:summary><![CDATA[ Getting to know the advanced features and capabilities of the enhanced Vite TypeScript Vue SPA template for .NET 8 ]]></itunes:summary>
+        <itunes:duration>353</itunes:duration>
+        <itunes:keywords>template,vue,.net8,autoquery</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Vite Press Plugin</title>
+        <link>https://servicestack.net/podcasts/vite-press-plugin</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/vite-press-plugin</guid>
+        <pubDate>Mon, 04 Mar 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-03-04T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/vite-press-plugin.mp3" length="727341" type="audio/mpeg"/>
+        <category>template</category>
+        <category>docs</category>
+        <category>markdown</category>
+        <description>Introducing the Universal Vite Press Plugin for Vite Vue &amp; React Apps and its unique compatibility with .NET 8 Apps utilizing Markdig</description>
+        <itunes:summary><![CDATA[ Introducing the Universal Vite Press Plugin for Vite Vue &amp; React Apps and its unique compatibility with .NET 8 Apps utilizing Markdig ]]></itunes:summary>
+        <itunes:duration>181</itunes:duration>
+        <itunes:keywords>template,docs,markdown</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
