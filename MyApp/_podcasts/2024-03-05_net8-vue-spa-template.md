@@ -4,7 +4,6 @@ summary: Getting to know the advanced features and capabilities of the enhanced 
 tags: [template,vue,.net8,autoquery]
 url: https://media.servicestack.com/podcasts/net8-vue-spa-template.mp3
 media: {size:1414413,duration:353.544000,format:mp3}
-draft: true
 ---
 
 This episode focuses on the new Vue Single Page Application (SPA) template designed for .NET 8. 

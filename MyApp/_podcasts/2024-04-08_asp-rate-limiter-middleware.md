@@ -4,7 +4,6 @@ summary: A guide explaining how ASP.NET Core's Rate Limiter Middleware can be us
 tags: [.net8,auth,middleware]
 url: https://media.servicestack.com/podcasts/asp-rate-limiter-middleware.mp3
 media: {size:2585901,duration:646.416000,format:mp3}
-draft: true
 ---
 
 This episode looks at how to use ASP.NET Core's built-in rate limiting middleware to protect 

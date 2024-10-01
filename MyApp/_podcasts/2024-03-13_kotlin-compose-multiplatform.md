@@ -4,7 +4,6 @@ summary: Talking about the exciting new JetBrains Technology for creating native
 tags: [template,kotlin,ios,android]
 url: https://media.servicestack.com/podcasts/kotlin-compose-multiplatform.mp3
 media: {size:1930893,duration:482.664000,format:mp3}
-draft: true
 ---
 
 This episode covers how to develop cross-platform applications using JetBrains' Compose 

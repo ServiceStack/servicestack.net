@@ -4,7 +4,6 @@ summary: A tour of the features in the new enhanced Vite TypeScript React SPA te
 tags: [template,react,.net8,autoquery]
 url: https://media.servicestack.com/podcasts/net8-react-spa-template.mp3
 media: {size:2731533,duration:682.824000,format:mp3}
-draft: true
 ---
 
 This episode covers the new React Single Page Application (SPA) template for .NET 8 from ServiceStack. 

@@ -4,7 +4,6 @@ summary: A look at how to use ASP.NET Core Output Caching and ServiceStack.Redis
 tags: [caching,.net8,redis]
 url: https://media.servicestack.com/podcasts/redis-outputcache.mp3
 media: {size:2012973,duration:503.184000,format:mp3}
-draft: true
 ---
 
 This episode discusses how to use ASP.NET Core Output Caching to improve the performance of 
