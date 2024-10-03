@@ -41,7 +41,7 @@ previous ServiceStack v8.3 release we [worked around this limitation](https://do
 by using [MQ Command DTOs](https://docs.servicestack.net/commands#mq-command-dtos) to route all DB
 Writes to be executed by a single Background MQ Thread.
 
-This works great for [messaging-based architectures](https://docs.servicestack.net/commands#messaging)
+This works great for [messaging-based architectures](https://docs.servicestack.net/commands#messaging-workflow)
 where you can queue commands to be processed serially, but the overhead of using commands for all 
 DB writes can be cumbersome when needing to perform sporadic writes within complex logic.
 
