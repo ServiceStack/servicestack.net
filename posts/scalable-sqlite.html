@@ -228,7 +228,7 @@ have multiple requests writing to the same database at the same time, they will 
 previous ServiceStack v8.3 release we <a href="https://docs.servicestack.net/commands#use-case-sqlite-writes">worked around this limitation</a>
 by using <a href="https://docs.servicestack.net/commands#mq-command-dtos">MQ Command DTOs</a> to route all DB
 Writes to be executed by a single Background MQ Thread.</p>
-<p>This works great for <a href="https://docs.servicestack.net/commands#messaging">messaging-based architectures</a>
+<p>This works great for <a href="https://docs.servicestack.net/commands#messaging-workflow">messaging-based architectures</a>
 where you can queue commands to be processed serially, but the overhead of using commands for all
 DB writes can be cumbersome when needing to perform sporadic writes within complex logic.</p>
 <h2 id="multiple-sqlite-databases">Multiple SQLite Databases<a class="header-anchor" href="javascript:;" onclick="location.hash='#multiple-sqlite-databases'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
