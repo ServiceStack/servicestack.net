@@ -15,7 +15,9 @@ that frees us from needing to use a cloud managed database which lets us make us
 
 We're also seeing increased usage of SQLite Server Apps with [Bluesky Social](https://github.com/bluesky-social/atproto/pull/1705)
 having moved to SQLite and all of 37 Signals new [Once](https://once.com) Web Apps 
-[using SQLite](https://world.hey.com/dhh/multi-tenancy-is-what-s-hard-about-scaling-web-services-dd1e0e81)
+[using SQLite](https://world.hey.com/dhh/multi-tenancy-is-what-s-hard-about-scaling-web-services-dd1e0e81), 
+Tailscale having migrated their [primary database to SQLite](https://tailscale.com/blog/database-for-2022)
+whos ex-Google founders have [been using since 2018](https://www.youtube.com/watch?v=RqubKSF3wig)
 and Cloud Providers building distributed databases on top of SQLite like 
 [Cloudflare D1](https://blog.cloudflare.com/introducing-d1/) and Fly.io's 
 multi-region distributed [LiteFS](https://fly.io/docs/litefs/) solution.
