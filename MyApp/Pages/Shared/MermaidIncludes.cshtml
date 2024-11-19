@@ -1,0 +1,39 @@
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
