@@ -1,6 +1,6 @@
 ---
 title: Templates moving to Kamal for deployments
-summary: We are adopting Kamal for deployments in our templates, which simplifies the deployment process...
+summary: All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server.
 tags: [github-actions,docker,devops]
 author: Darren Reid
 image: https://images.unsplash.com/photo-1494961104209-3c223057bd26?crop=entropy&fit=crop&h=1000&w=2000
@@ -12,6 +12,12 @@ Since introducing GitHub Actions support to our templates, we've promoted the si
 Along with this decreasing in value from the major cloud vendors, and the general hardware improvements, we've also been leaning into the use of SQLite, using it as the primary database for some of our larger example applications like PVQ.app, BlazorDiffusion, and most recently, AI Server.
 
 We were delighted to see that the folks over at BaseCamp doubled down on these same types of tooling by releasing the MRSK project, which is now known as Kamal.
+
+### Use Kamal to deploy .NET Apps to any Linux server
+
+:::youtube -mDJfRG8mLQ
+Use Kamal with GitHub Actions to deploy .NET Apps to any Linux server
+:::
 
 ## What is [Kamal](https://kamal-deploy.org/)?
 
