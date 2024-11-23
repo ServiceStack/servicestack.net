@@ -73,7 +73,7 @@ dependencies: [
 Download AI Server's Swift DTOs:
 
 :::copy
-npx get-dtos swift https://openai.servicestack.net
+`npx get-dtos swift https://openai.servicestack.net`
 :::
 
 You'll then be able to call Ollama by sending the OpenAI Chat compatible `OpenAiChatCompletion` 

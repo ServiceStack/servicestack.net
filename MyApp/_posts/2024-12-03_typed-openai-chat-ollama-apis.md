@@ -38,7 +38,7 @@ Install the `ServiceStack.Client` NuGet package:
 Download AI Server's C# DTOs with [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
 
 :::copy
-x csharp https://openai.servicestack.net
+`x csharp https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with `JsonApiClient`:
@@ -69,7 +69,7 @@ npm install @servicestack/client
 Download AI Server's TypeScript DTOs:
 
 :::copy
-npx get-dtos typescript https://openai.servicestack.net
+`npx get-dtos typescript https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient: 
@@ -110,7 +110,7 @@ Define an Import Map referencing its saved location
 Download AI Server's ESM JavaScript DTOs:
 
 :::copy
-npx get-dtos mjs https://openai.servicestack.net
+`npx get-dtos mjs https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
@@ -143,7 +143,7 @@ pip install servicestack
 Download AI Server's Python DTOs:
 
 :::copy
-npx get-dtos python https://openai.servicestack.net
+`npx get-dtos python https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
@@ -174,7 +174,7 @@ servicestack: ^3.0.1
 Download AI Server's Dart DTOs:
 
 :::copy
-npx get-dtos dart https://openai.servicestack.net
+`npx get-dtos dart https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
@@ -208,7 +208,7 @@ Include `servicestack/client` package in your projects `composer.json`:
 Download AI Server's PHP DTOs:
 
 :::copy
-npx get-dtos php https://openai.servicestack.net
+`npx get-dtos php https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
@@ -246,7 +246,7 @@ implementation 'net.servicestack:client:1.1.3'
 Download AI Server's Java DTOs:
 
 :::copy
-npx get-dtos java https://openai.servicestack.net
+`npx get-dtos java https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
@@ -279,7 +279,7 @@ implementation 'net.servicestack:client:1.1.3'
 Download AI Server's Kotlin DTOs:
 
 :::copy
-npx get-dtos kotlin https://openai.servicestack.net
+`npx get-dtos kotlin https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
@@ -316,7 +316,7 @@ dependencies: [
 Download AI Server's Swift DTOs:
 
 :::copy
-npx get-dtos swift https://openai.servicestack.net
+`npx get-dtos swift https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
@@ -350,7 +350,7 @@ Install the `ServiceStack.Client` NuGet package:
 Download AI Server's F# DTOs with [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
 
 :::copy
-x fsharp https://openai.servicestack.net
+`x fsharp https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with `JsonApiClient`:
@@ -384,7 +384,7 @@ Install the `ServiceStack.Client` NuGet package:
 Download AI Server's VB.NET DTOs with [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
 
 :::copy
-x vbnet https://openai.servicestack.net
+`x vbnet https://openai.servicestack.net`
 :::
 
 Call API by sending `OpenAiChatCompletion` Request DTO with `JsonApiClient`:
