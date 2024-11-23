@@ -7,7 +7,7 @@ image: https://images.unsplash.com/photo-1593486544625-13ef2368e43a?crop=entropy
 draft: true
 ---
 
-A happy consequence of the release of [AI Server](/posts/typed-openai-chat-ollama-apis) is that its 
+A happy consequence of the release of [AI Server](/posts/ai-server) is that its 
 [OpenAiChatCompletion](https://openai.servicestack.net/ui/OpenAiChatCompletion?tab=details) API is an 
 **Open AI Chat compatible API** that can be used to access other LLM API Gateways, like Open AI's Chat GPT, Open Router, 
 Mistral AI, GroqCloud as well as self-hosted Ollama instances directly in 11 of the most popular Web, Mobile & Desktop languages. 
