@@ -363,7 +363,7 @@ let client = new JsonApiClient(baseUrl)
 
 let result = client.Post<OpenAiChatCompletionResponse>("/v1/chat/completions", 
      OpenAiChatCompletion(
-        Model = "llama3.1:8b",
+        Model = "mixtral:8x22b",
         Messages = ResizeArray [
             OpenAiMessage(
                 Role = "user",
@@ -397,15 +397,14 @@ Dim client = New JsonApiClient(baseUrl)
 
 Dim result = Await client.PostAsync(Of OpenAiChatResponse)(
     "/v1/chat/completions",
-    New OpenAiChatCompletion() 
-        With {
-            .Model = "mixtral:8x22b",
-            .Messages = New List(Of OpenAiMessage) From {
-                New OpenAiMessage With {
-                    .Role = "user",
-                    .Content = "What's the capital of France?"
-                }
-            },
-            .MaxTokens = 50
-        })
+    New OpenAiChatCompletion() With {
+        .Model = "mixtral:8x22b",
+        .Messages = New List(Of OpenAiMessage) From {
+            New OpenAiMessage With {
+                .Role = "user",
+                .Content = "What's the capital of France?"
+            }
+        },
+        .MaxTokens = 50
+    })
 ```
