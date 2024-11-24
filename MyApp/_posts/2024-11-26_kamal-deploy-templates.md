@@ -96,4 +96,4 @@ Once created, you can follow the steps in your empty repository to init your tem
 
 ## Summary
 
-We're excited to be moving our templates to Kamal for deployments as it has distilled the simply approach we have baked in our templates for a number of years while massively improving the ergonomics. We're excited to see what the BaseCamp team does with the project, and we're looking forward to seeing the community grow around it. If you have any questions about the templates or Kamal, feel free to reach out to us on our Discord, GitHub Discussions or Customer Forums.
+We're excited to be moving our templates to Kamal for deployments as it has distilled the simple approach we have baked in our templates for a number of years while massively improving the ergonomics. We're excited to see what the BaseCamp team does with the project, and we're looking forward to seeing the community grow around it. If you have any questions about the templates or Kamal, feel free to reach out to us on our Discord, GitHub Discussions or Customer Forums.
