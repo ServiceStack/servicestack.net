@@ -58,6 +58,23 @@ proxy:
   host: myapp.example.com # Your domain pointing to the same IP as your host
 ```
 
+### Health Checks
+
+The template includes the use of ASP.NET Core Health Checks, that use the default Kamal path of `/up` to check if the application is running before deploying.
+
+```csharp
+public class HealthCheck : IHealthCheck
+{
+    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken token = default)
+    {
+        // Perform health check logic here
+        return HealthCheckResult.Healthy();
+    }
+}
+```
+
+Kamal checks this path before deploying your application, so you can add any custom health checks to this path to ensure your application is ready to receive traffic.
+
 ## GitHub Repository
 
 With your application created and configured for deployment, you can create a new GitHub Repository and add the GitHub Actions Secret of `PRIVATE_SSH_KEY` which should be a separate SSH key for deployments that has access to your Linux host.
