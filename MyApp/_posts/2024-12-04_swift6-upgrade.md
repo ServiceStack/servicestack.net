@@ -20,7 +20,7 @@ that accept file uploads like [Image to Image](https://docs.servicestack.net/ai-
 
 [ServiceStack.Swift](https://github.com/ServiceStack/ServiceStack.Swift) received the biggest upgrade, 
 which was also rewritten to take advantage of Swift 6 features, including Swift promises which replaced the previous 
-[PromiseKit](https://github.com/mxcl/PromiseKit) dependency - making it dependency-free. 
+[PromiseKit](https://github.com/mxcl/PromiseKit) dependency - making it now dependency-free! 
 
 For example you can request a [Speech to Text](https://docs.servicestack.net/ai-server/speech-to-text) 
 transcription by sending an audio file to the `SpeechToText` API using the new `postFilesWithRequest` method:
@@ -34,34 +34,58 @@ client.bearerToken = apiKey
 let request = SpeechToText()
 request.refId = "uniqueUserIdForRequest"
 
-let files = [UploadFile(fileName:"audio.mp3", data:mp3Data, fieldName:"audio")]
-
-let response: GenerationResponse = try client.postFilesWithRequest(
-    request:request, files:files)
+let response = try client.postFilesWithRequest(request:request, 
+    file:UploadFile(fileName:"audio.mp3", data:mp3Data, fieldName:"audio"))
 
 Inspect.printDump(response)
 ``` 
 
 ### Async Upload Files with API Example
 
-Alternatively use the new `postFilesWithRequestAsync` method to call the API asynchronously
-using [Swift 6 Concurrency](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/) 
+Alternatively use the new `postFileWithRequestAsync` method to call the API asynchronously
+using [Swift 6 Concurrency](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/)
 new **async/await** feature:
 
 ```swift
-let response: GenerationResponse = try await client.postFilesWithRequestAsync(
-    request:request, files:files)
+let response = try await client.postFileWithRequestAsync(request:request, 
+    file:UploadFile(fileName:"audio.mp3", data:mp3Data, fieldName:"audio"))
     
 Inspect.printDump(response)
+```
+
+### Multiple file upload with API Request examples
+
+Whilst the `postFilesWithRequest` methods can be used to upload multiple files with an API Request. e.g:
+
+```swift
+let request = WatermarkVideo()
+request.position = .BottomRight
+
+let response = try client.postFilesWithRequest(request: request,
+    files: [
+        UploadFile(fileName: "video.mp4", data:videoData, fieldName:"video"),
+        UploadFile(fileName: "mark.jpg", data:imgData, fieldName:"watermark")
+    ])
+```
+
+Async Example:
+
+```swift
+let response = try await client.postFilesWithRequestAsync(request: request,
+    files: [
+        UploadFile(fileName: "video.mp4", data:videoData, fieldName:"video"),
+        UploadFile(fileName: "mark.jpg", data:imgData, fieldName:"watermark")
+    ])
 ```
 
 ### Sending typed Open AI Chat Ollama Requests with Swift
 
 Even if you're not running AI Server you can still use its typed DTOs to call any compatible
-Open AI Chat Compatible API like a self-hosted [Ollama](https://ollama.com) API. To call this
-from Swift:
+Open AI Chat Compatible API like a self-hosted [Ollama](https://ollama.com) API. 
 
-Include `ServiceStack` package in your projects `Package.swift`
+To call an Ollama endpoint from Swift:
+
+1. Include `ServiceStack` package in your projects `Package.swift`
 
 ```swift
 dependencies: [
@@ -70,7 +94,7 @@ dependencies: [
 ],
 ```
 
-Download AI Server's Swift DTOs:
+2. Download AI Server's Swift DTOs:
 
 :::copy
 `npx get-dtos swift https://openai.servicestack.net`
