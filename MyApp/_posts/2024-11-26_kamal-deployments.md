@@ -1,9 +1,10 @@
 ---
-title: Templates moving to Kamal for deployments
-summary: We are adopting Kamal for deployments in our templates, which simplifies the deployment process...
+title: .NET 8 Templates migrated to use Kamal for deployments
+summary: All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server.
 tags: [github-actions,docker,devops]
 author: Darren Reid
 image: https://images.unsplash.com/photo-1494961104209-3c223057bd26?crop=entropy&fit=crop&h=1000&w=2000
+draft: true
 ---
 
 Since introducing GitHub Actions support to our templates, we've promoted the simplified deployments, focusing on tooling like SSH and Docker Compose to give the most portability to projects by default. This was partly inspired by the fact that cloud providers value offerings have been decreasing, especially over the last 5 years. We then showed in a [previous blog post how much money can be saved](/posts/hetzner-cloud) by considering the use of hosting providers like Hetzner (who we have been using for many years), and moved all our templates and live demos to Hetzner resulting in a roughly $0.50 per month cost per application.
@@ -11,6 +12,12 @@ Since introducing GitHub Actions support to our templates, we've promoted the si
 Along with this decreasing in value from the major cloud vendors, and the general hardware improvements, we've also been leaning into the use of SQLite, using it as the primary database for some of our larger example applications like PVQ.app, BlazorDiffusion, and most recently, AI Server.
 
 We were delighted to see that the folks over at BaseCamp doubled down on these same types of tooling by releasing the MRSK project, which is now known as Kamal.
+
+### Use Kamal to deploy .NET Apps to any Linux server
+
+:::youtube -mDJfRG8mLQ
+Use Kamal with GitHub Actions to deploy .NET Apps to any Linux server
+:::
 
 ## What is [Kamal](https://kamal-deploy.org/)?
 
@@ -106,4 +113,4 @@ Once created, you can follow the steps in your empty repository to init your tem
 
 ## Summary
 
-We're excited to be moving our templates to Kamal for deployments as it has distilled the simply approach we have baked in our templates for a number of years while massively improving the ergonomics. We're excited to see what the BaseCamp team does with the project, and we're looking forward to seeing the community grow around it. If you have any questions about the templates or Kamal, feel free to reach out to us on our Discord, GitHub Discussions or Customer Forums.
+We're excited to be moving our templates to Kamal for deployments as it has distilled the simple approach we have baked in our templates for a number of years while massively improving the ergonomics. We're excited to see what the BaseCamp team does with the project, and we're looking forward to seeing the community grow around it. If you have any questions about the templates or Kamal, feel free to reach out to us on our Discord, GitHub Discussions or Customer Forums.

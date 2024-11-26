@@ -11,7 +11,7 @@
 .hljs-strong{font-weight:bold}
 
 /* https://unpkg.com/@highlightjs/cdn-assets/styles/atom-one-dark.min.css */
-pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#abb2bf;background:#282c34}
+pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#abb2bf;background:#1e1e2e}
 .hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}
 .hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst,.hljs-tag{color:#e06c75}
 .hljs-literal{color:#56b6c2}
@@ -24,7 +24,7 @@ pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5p
 /*highlightjs*/
 .hljs, .prose :where(pre):not(:where([class~="not-prose"] *)) .hljs {
     color: #e5e7eb !important;
-    background-color: #282c34 !important;
+    background-color: #1e1e2e !important;
 }
 .hljs-comment, .hljs-quote {
     color: rgb(148 163 184); /*text-slate-400*/
@@ -41,7 +41,7 @@ pre {
     padding: .8571429em 1.1428571em;    
     max-width: calc(100vw - 1rem);
     min-width: fit-content;
-    background-color: #282c34 !important;
+    background-color: #1e1e2e !important;
 }
 pre code.hljs {
     display: block;
