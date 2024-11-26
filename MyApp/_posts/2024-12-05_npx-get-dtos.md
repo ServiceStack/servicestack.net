@@ -39,22 +39,60 @@ Running `npx get-dtos` without any arguments will display the available options:
             --verbose             Display verbose logging
             --ignore-ssl-errors   Ignore SSL Errors
 
-### Reusable DTOs and Reusable Clients in any language
+## Reusable DTOs and Reusable Clients in any language
 
 A benefit of [Add ServiceStack Reference](https://docs.servicestack.net/add-servicestack-reference) is that only an 
 API DTOs need to be generated which can then be used to call any remote instance running that API. E.g. DTOs generated
 for our deployed AI Server instance at [openai.servicestack.net](https://openai.servicestack.net) can be used to call
 any self-hosted AI Server instance, likewise the same generic client can also be used to call any other ServiceStack API.
 
+### Typed Open AI Chat & Ollama APIs in 11 Languages
+
+A good example of its versatility is in the [Typed OpenAI Chat & Ollama APIs](/posts/typed-openai-chat-ollama-apis) 
+in which AI Server's Typed DTOs can be used to call **any Open AI Chat compatible API** in its 11 supported languages.
+
 ### TypeScript Example
 
-For example you can get the TypeScript DTOs for the just released [AI Server](/posts/ai-server) with:
+For example you can get the TypeScript DTOs for the just released [AI Server](/posts/ai-server) by:
 
-:::sh
+1. Installing the `@servicestack/client` npm package:
+
+:::copy
+npm install @servicestack/client
+:::
+
+2. Download AI Server's TypeScript DTOs:
+
+:::copy
 `npx get-dtos typescript https://openai.servicestack.net`
 :::
 
 Which just like the `x` tool will add the TypeScript DTOs to the `dtos.ts` file
+
+### Calling Ollama from TypeScript
+
+Call Ollama by sending `OpenAiChatCompletion` Request DTO with JsonServiceClient:
+
+```ts
+import { JsonServiceClient } from "@servicestack/client"
+import { OpenAiChatCompletion } from "./dtos"
+
+const client = new JsonServiceClient(baseUrl)
+
+const response = await client.postToUrl("/v1/chat/completions",
+    new OpenAiChatCompletion({
+        model: "mixtral:8x22b",
+        messages: [
+            { role: "user", content: "What's the capital of France?" }
+        ],
+        max_tokens: 50
+    })
+)
+
+const answer = response.choices[0].message.content
+```
+
+### Update TypeScript DTOs
 
 And later update all TypeScript ServiceStack References in the current directory with:
 
