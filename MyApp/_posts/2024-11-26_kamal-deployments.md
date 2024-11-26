@@ -1,5 +1,5 @@
 ---
-title: Templates moving to Kamal for deployments
+title: .NET 8 Templates migrated to use Kamal for deployments
 summary: All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server.
 tags: [github-actions,docker,devops]
 author: Darren Reid
