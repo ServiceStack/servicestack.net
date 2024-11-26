@@ -10,10 +10,25 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Tue, 26 Nov 2024 08:33:06 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2024 14:34:07 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Introducing AI Server</title>
+        <link>https://servicestack.net/posts/ai-server</link>
+        <author>demis@servicestack.com (Demis Bellot)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/ai-server</guid>
+        <pubDate>Tue, 26 Nov 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-11-26T00:00:00Z</atom:updated>
+        <category>ai-server</category>
+        <category>ai</category>
+        <category>gpt</category>
+        <category>service-reference</category>
+        <category>c#</category>
+        <category>js</category>
+        <description>Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs</description>
+    </item>
     <item>
         <title>Podcasts now in Razor SSG</title>
         <link>https://servicestack.net/posts/razor-ssg-podcasts</link>
@@ -119,18 +134,6 @@
         <category>.net8</category>
         <category>redis</category>
         <description>How to use ASP.NET Core Output Caching to cache the response of a ServiceStack Service using ServiceStack.Redis</description>
-    </item>
-    <item>
-        <title>Using ASP.NET Core Rate Limiter Middleware</title>
-        <link>https://servicestack.net/posts/asp-rate-limiter-middleware</link>
-        <author>darren@servicestack.com (Darren Reid)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/asp-rate-limiter-middleware</guid>
-        <pubDate>Mon, 08 Apr 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-04-08T00:00:00Z</atom:updated>
-        <category>.net8</category>
-        <category>auth</category>
-        <category>middleware</category>
-        <description>Learn how to use the new Rate Limiter Middleware in ServiceStack to protect your APIs from abuse.</description>
     </item>
 </channel>
 </rss>
