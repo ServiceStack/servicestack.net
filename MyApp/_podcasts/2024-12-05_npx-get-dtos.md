@@ -2,7 +2,7 @@
 title: DTOs in all languages downloadable without .NET
 summary: ServiceStack Typed DTOs for all languages can now be downloaded and uploaded without .NET installed
 tags: [api,service-reference,js]
-url: https://media.servicestack.com/podcasts/typed-openai-chat-ollama-apis.mp3
+url: https://media.servicestack.com/podcasts/npx-get-dtos.mp3
 media: {size:1262540,duration:315.576000,format:mp3}
 draft: true
 ---
