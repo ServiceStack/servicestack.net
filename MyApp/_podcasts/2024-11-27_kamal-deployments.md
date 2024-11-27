@@ -14,7 +14,6 @@ templates utilize Kamal, a CLI tool simplifying deployments to any Linux server 
 Kamal automates tasks such as reverse proxy setup and TLS certificate management. 
 
 The integration with GitHub Actions maintains CI/CD benefits while improving local management via Kamal's commands. 
-The authors express enthusiasm for Kamal's ease of use and potential for community growth.
 
 ### Videos
 
