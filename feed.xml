@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Wed, 27 Nov 2024 03:01:35 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 27 Nov 2024 13:48:08 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>.NET 8 Templates migrated to use Kamal for deployments</title>
+        <link>https://servicestack.net/posts/kamal-deployments</link>
+        <author>darren@servicestack.com (Darren Reid)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/kamal-deployments</guid>
+        <pubDate>Tue, 26 Nov 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-11-26T00:00:00Z</atom:updated>
+        <category>github-actions</category>
+        <category>docker</category>
+        <category>devops</category>
+        <description>All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server.</description>
+    </item>
     <item>
         <title>Introducing AI Server</title>
         <link>https://servicestack.net/posts/ai-server</link>
@@ -122,18 +134,6 @@
         <category>servicestack</category>
         <category>licensing</category>
         <description>Regenerate your License Key to support RedHat Enterprise Linux 9 Default Cryptography Policy</description>
-    </item>
-    <item>
-        <title>Using ASP.NET Core Output Caching</title>
-        <link>https://servicestack.net/posts/redis-outputcache</link>
-        <author>darren@servicestack.com (Darren Reid)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/redis-outputcache</guid>
-        <pubDate>Wed, 05 Jun 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-06-05T00:00:00Z</atom:updated>
-        <category>caching</category>
-        <category>.net8</category>
-        <category>redis</category>
-        <description>How to use ASP.NET Core Output Caching to cache the response of a ServiceStack Service using ServiceStack.Redis</description>
     </item>
 </channel>
 </rss>

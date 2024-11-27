@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>In pursuit of the best value US cloud provider - ServiceStack</title>
+    <title>.NET 8 Templates migrated to use Kamal for deployments - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -35,10 +35,10 @@
     
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="We&#x27;ve been using AWS at ServiceStack for 10&#x2B; years, it&#x27;s served us well but suffers from complex &amp; expensive pricing" />
-    <meta property="og:url" content="https://servicestack.net/posts/hetzner-cloud" />
-    <meta property="og:title" content="In pursuit of the best value US cloud provider" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server." />
+    <meta property="og:url" content="https://servicestack.net/posts/kamal-deployments" />
+    <meta property="og:title" content=".NET 8 Templates migrated to use Kamal for deployments" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1494961104209-3c223057bd26?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -128,7 +128,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                In pursuit of the best value US cloud provider
+                .NET 8 Templates migrated to use Kamal for deployments
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -158,26 +158,29 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'kamal-deployments', title:'.NET 8 Templates migrated to use Kamal for deployments', src:'https://media.servicestack.com/podcasts/kamal-deployments.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=kamal-deployments&amp;source=post&amp;version=8.5.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="In pursuit of the best value US cloud provider Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1494961104209-3c223057bd26?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt=".NET 8 Templates migrated to use Kamal for deployments Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
-                        <a href="posts/tagged/hosting" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">hosting</a>
+                        <a href="posts/tagged/github-actions" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
+                        <a href="posts/tagged/docker" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docker</a>
                         <a href="posts/tagged/devops" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">devops</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2022-09-06T00:00:00.0000000">September 6, 2022</time>
+                                <time datetime="2024-11-26T00:00:00.0000000">November 26, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>12 min read</span>
+                                <span>5 min read</span>
                             </div>
                         </div>
                 </div>
@@ -190,255 +193,95 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>At <a href="/">ServiceStack</a>, we have been using AWS for hosting for over 10 years. It has served us well, but it suffers from complex pricing and possibility of bill shock due to its fractured pay-as-you-go design.</p>
-<p>Thankfully, more and more companies are providing simpler offerings for hosting needs, and AWS themselves launched <a href="https://aws.amazon.com/lightsail">Lightsail</a> as their answer to market demands for simple hosting options that package everything you need for basic hosting.</p>
-<p>These simpler hosting options tend to bundle several things together as one fixed monthly price. A VM with a specific compute and memory allocation, as well as data transfer, and storage.</p>
-<h2 id="looking-at-different-us-offerings">Looking at different US offerings<a class="header-anchor" href="javascript:;" onclick="location.hash='#looking-at-different-us-offerings'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Something we wanted to do was to host our <a href="https://github.com/ServiceStackApps/LiveDemos">live demo applications</a> on a US based host. We were using <a href="https://www.hetzner.com/dedicated-rootserver">Hetzner dedicated servers</a> in the past for non-latency sensitive use cases like our build server and <a href="https://gist.cafe">Gist.Cafe (our interactive playground for multiple platforms)</a> but we also wanted our demo applications to be snappy for US users.</p>
-<p><a href="https://www.digitalocean.com/pricing">DigitalOcean</a> provides <a href="https://www.digitalocean.com/pricing/droplets">&quot;Droplets&quot;</a> with this fixed pricing model with a nice and simple interface. Their pricing was quite good and we realized we could run all 20+ of our demo applications on a single droplet for $40/month.</p>
-<p>For deployment, <a href="https://docs.servicestack.net/do-github-action-mix-deployment">we also like to keep things as simple as we can, whilst keeping portability</a>. Since all our projects are public and on GitHub, we use <a href="https://docs.servicestack.net/do-github-action-mix-deployment#github-repository-setup">GitHub Actions</a> heavily along with a pattern that deploys our applications using Docker Compose via SSH.
-Each application runs in its own container behind an <a href="https://docs.servicestack.net/do-github-action-mix-deployment#get-nginx-reverse-proxy-and-letsencrypt-companion-running">NGINX proxy</a> with a side car that handles renewing LetsEncrypt certificates. Below is an example of this pattern with Blazor and Litestream.</p>
-<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="fY50dWszpw4" playlabel="Using Blazor WASM with Litestream" style="background-image:url('https://img.youtube.com/vi/fY50dWszpw4/maxresdefault.jpg')"></lite-youtube>
-<p>A nice side effect of this approach is moving servers is relatively painless. We change the DNS entry for the application to point to our new server, update the GitHub Action Secrets if needed and run our Release workflow.</p>
-<p>A minute or so later, the application is back running again. Since their were 20+ of these repositories we took advantage of the <a href="https://cli.github.com/manual/gh_secret_set">GitHub Organization Secrets</a> so we only needed to update values in one place, and <a href="https://cli.github.com/manual/gh_workflow_run">running the workflows again</a> can also be done programmatically through the GitHub CLI.</p>
-<h2 id="digitalocean-price-increase">DigitalOcean Price Increase<a class="header-anchor" href="javascript:;" onclick="location.hash='#digitalocean-price-increase'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>In June of 2022, we got a notification that <a href="https://www.digitalocean.com/try/new-pricing">prices for droplets would be increasing</a>, and for our droplet it would be going from <strong>$40 to $48</strong>. While this is a small amount of money, it prompted us to have a wider look into this market.</p>
-<p>Something we try to do at ServiceStack is to not only provide a comprehensive .NET Framework for building API first systems, but also seek out great value hosting options we can recommend in this ever change space which we're happy to share, like this blog post, that might be useful to our users and others.</p>
-<p>Not everyone builds massively distributed systems, and as hardware performance increases, and platforms like <a href="https://devblogs.microsoft.com/dotnet/performance-improvements-in-aspnet-core-6">.NET are becoming even more optimized</a>, a setup with just a server or two can manage larger loads and use cases.</p>
-<p>Our research and evaluations ended up right back at <a href="https://www.hetzner.com/cloud">Hetzner but this time with their Cloud offering</a>. For less than <strong>$15 USD</strong> per month, you can get a <strong>4 vCPU, 8GB RAM, 160GB storage and 20TB</strong> of data transfer <strong>hosted in the US</strong>.</p>
-<p>We found this was by far the cheapest offering for a simple fixed monthly hosting, and looked to compare how well it performed against the more traditional cloud hosting setups.</p>
-<h2 id="litestream-and-sqlite">Litestream and SQLite<a class="header-anchor" href="javascript:;" onclick="location.hash='#litestream-and-sqlite'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Our demo applications use <a href="https://www.sqlite.org">SQLite</a> as a simple way to host the database storage and application together, taking advantage of SQLite's embedded nature.
-We were also testing out <a href="https://litestream.io">Litestream</a> as a possible solution to the lack of data backups and safety when using SQLite for more production like workloads.</p>
-<div class="mx-auto mt-4 mb-4">
-  <a href="https://litestream.io">
-      <div class="inline-flex justify-center w-full">
-        <img src="/img/posts/hetzner-cloud/litestream.svg" alt="">
-      </div>
-      <div class="text-gray-500 text-center">litestream.io</div>
-  </a>
+                    <p>Since introducing GitHub Actions support to our templates, we've promoted the simplified deployments, focusing on tooling like SSH and Docker Compose to give the most portability to projects by default. This was partly inspired by the fact that cloud providers value offerings have been decreasing, especially over the last 5 years. We then showed in a <a href="/posts/hetzner-cloud">previous blog post how much money can be saved</a> by considering the use of hosting providers like Hetzner (who we have been using for many years), and moved all our templates and live demos to Hetzner resulting in a roughly $0.50 per month cost per application.</p>
+<p>Along with this decreasing in value from the major cloud vendors, and the general hardware improvements, we've also been leaning into the use of SQLite, using it as the primary database for some of our larger example applications like PVQ.app, BlazorDiffusion, and most recently, AI Server.</p>
+<p>We were delighted to see that the folks over at BaseCamp doubled down on these same types of tooling by releasing the MRSK project, which is now known as Kamal.</p>
+<h3 id="use-kamal-to-deploy.net-apps-to-any-linux-server">Use Kamal to deploy .NET Apps to any Linux server<a class="header-anchor" href="javascript:;" onclick="location.hash='#use-kamal-to-deploy.net-apps-to-any-linux-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="-mDJfRG8mLQ" playlabel="Use Kamal with GitHub Actions to deploy .NET Apps to any Linux server" style="background-image:url('https://img.youtube.com/vi/-mDJfRG8mLQ/maxresdefault.jpg')"></lite-youtube>
+<h2 id="what-is-kamal">What is <a href="https://kamal-deploy.org/">Kamal</a>?<a class="header-anchor" href="javascript:;" onclick="location.hash='#what-is-kamal'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Kamal is a tool that offers the same flexibility by wrapping up the use of fundamental tooling like SSH and Docker into a great CLI tool that tries to make the management of containerized applications, enabling them to be deployed anywhere there is a Linux host that is accessible via SSH. It handles reverse proxy of web traffic automatically, as well as even the initial setup of the reverse proxy and related tooling to any target Linux host.</p>
+<p>This means you get the same great ergonomics of just pointing your DNS and configuration file to a server, and <em>Kamal takes care of the rest</em>, including TLS certificates via LetsEncrypt.</p>
+<p>It even has commands that allow you to check on your running applications, view logs etc and all you need to do is run the commands from your local repository directory.</p>
+<p>While our own templates have used the same approach for GitHub Actions, the usage was always awkward and lacked any dedicated CLI tooling you could run locally to check on your running applications.</p>
+<h2 id="whats-in-the-templates">What's in the templates?<a class="header-anchor" href="javascript:;" onclick="location.hash='#whats-in-the-templates'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We still believe that having a CI process is important, and while Kamal deployments are repeatable from your local machine and uses locking to avoid multiple developers deploying changes, the single consistent process of a CI is hard to beat. So while we have moved the templates to use Kamal, we've incorporated GitHub Actions by default so you can still get the benefits of running commands like <code>kamal app logs</code> locally from your development machine when looking at production issues, but have that consistent workflow for deployment on your repositories GitHub Actions.</p>
+<h2 id="how-it-works">How it works<a class="header-anchor" href="javascript:;" onclick="location.hash='#how-it-works'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>One of the big benefits of Kamal is the focus on ergonomics and the really well done documentation that the BaseCamp team has put together. So if you need to know more about Kamal, <a href="https://kamal-deploy.org/docs/">checkout their docs</a>. For the ServiceStack templates, you will need to add a valid <code>PRIVATE_SSH_KEY</code> as a GitHub Actions secret to get it working along with the customization of your <code>config/deploy.yml</code> file which is a part of any Kamal setup. In short, you will need:</p>
+<ul>
+<li>Get a Linux host running with SSH access</li>
+<li>Update your DNS configuration with an A record pointing to that hosts IP address</li>
+<li>Create a new project using one of our updated templates using a command like:</li>
+</ul>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new blazor-vue MyApp</p>
 </div>
-<p>Litestream runs as a separate process and watches your SQLite file for changes and replicates them to storage options like AWS S3, Azure Blob storage and SFTP.
-<a href="https://docs.servicestack.net/ormlite/litestream">We created several templates to make this easier</a> and provide a way to bake in automated disaster recovery using Litestream when used with GitHub Actions and our SSH with Docker Compose deployment.</p>
-<p>With some basic load testing, we noticed that SQLite performed pretty well without any effort on our part, and decided we should see how this compares to the commonly suggested hosting patterns provided by the large cloud providers of AWS and Azure.</p>
-<p>We used the recommended &quot;Production&quot; setups provided by AWS RDS and Azure SQL Database wizards along with 2 vCPU application server to provide the basis on our comparison.
-The reason we chose to use the suggested defaults from these providers was to illustrate the power of defaults when offered by market leaders. When compared to a simple SQLite setup, and providers that offer fixed monthly pricing like Hetzner and DigitalOcean, which is often enough to small companies selling Business to Business (B2B) solutions, AWS and Azure recommended &quot;Production&quot; environments can look extremely over priced.</p>
-<p>One of the main reasons managed database solutions are chosen is the fact that they take care of automated backups and restore if things go wrong. There are other nice features that definitely have a lot of value, but managed disaster recovery is probably the most commonly cited one I've come across for why services like RDS are chosen during early development.</p>
-<p>Litestream provides this kind of data safety and disaster recovery functionality by targeting cost effective and robust storage solutions like AWS S3 and other cloud provided object stores, and making the backup process close to real-time, and accessible via their CLI.
-And the embedded nature of SQLite removes the uncertainty of the process of upgrading your database.</p>
-<h2 id="the-test">The Test<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-test'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>To get a clearer idea how each of these hosting options perform with a fairly modest workload, we used a <a href="https://gatling.io">Gatling</a> test to simulate a user logging into our sample Bookings application, browsing around and creating a booking.</p>
-<p>These series of steps had 2 write requests and 8 read, separated by 2 seconds per step. We then setup a Gatling simulation that ramped up adding new users to our system from 5 per second to 15 per second, to add a growing number of users over 10 minutes, then sustained over another 10 minutes.</p>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/img/posts/hetzner-cloud/aws-gatling-result.png" alt="">
-    </div>
-<div class="text-gray-500 text-center">AWS Gatling Result.</div>
-</div>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/img/posts/hetzner-cloud/azure-gatling-result.png" alt="">
-    </div>
-<div class="text-gray-500 text-center">Azure Gatling Result.</div>
-</div>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/img/posts/hetzner-cloud/hetzner-gatling-result.png" alt="">
-    </div>
-<div class="text-gray-500 text-center">Hetzner Gatling Result.</div>
-</div>
-<p>All 3 setups could handle this rate of requests without issue, and though the &quot;Recommended&quot; AWS and Azure setups would have more headroom, the price difference is far too large to ignore, especially as the difference is paid every month.
-The requests throughput of that this test illustrated ~100rps can suit many many use cases, and SQLite is <a href="https://www.sqlite.org/whentouse.html#:%7E:text=An%20SQLite%20database%20is%20limited,to%20something%20less%20than%20this.">really only limited by its single writer design</a>. We did previous tests of upto 250rps on the same Hetzner Cloud instance with SQLite, but this was starting to reach the maximum throughput, again purely to do with the single writer limitation.</p>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/images/litestream/litestream-costs.svg" alt="">
-    </div>
-<div class="text-gray-500 text-center">Previous test result price comparison without AWS using Provisioned IOPS.</div>
-</div>
-<p>This level of throughput is enough to service many kinds of businesses with a drastically more simple system to manage, with large cost savings. Also, with the use of an ORM like <a href="https://docs.servicestack.net/ormlite">OrmLite</a>, switching to another database provider can be migrated if and when the traditional offerings like Postgres are needed.</p>
-<h2 id="the-setups">The Setups<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-setups'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<style>
-    table {
-        width: 100%;
-        margin-top: 4em;
-        margin-bottom: 4em;
-    }
-</style>
-<p>The original setup for tests we did in June didn't default to provisioned IOPs for AWS, but when repeating the tests AWS costs blow out due to this feature being enabled by default.</p>
-<p>Without provisioned IOPs, it drops to around <strong>$132/month</strong> as an estimated cost. The <strong>$300/month</strong> default feature for a &quot;Production&quot; database is very hard for AWS to justify, and I think more of a sign of their poor performing GP2 storage option. Although this will only impact very &quot;chatty&quot; types of applications that need higher IOPs throughput, the difference in performance from RDS vs providers like DigitalOcean and Hetzner can be quite stark.</p>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/img/posts/hetzner-cloud/aws-rds-with-provisioned-iops.png" alt="">
-    </div>
-<div class="text-gray-500 text-center">AWS RDS now defaults to provisioned IOPs for a Production setup, drastically increasing costs.</div>
-</div>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>AWS (DB)</th>
-<th>AWS (App)</th>
-<th>Azure (DB)</th>
-<th>Azure (App)</th>
-<th>DigitalOcean</th>
-<th>Hetzner Cloud</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>vCPU</td>
-<td>2</td>
-<td>2</td>
-<td>4</td>
-<td>2</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>Memory  (GB)</td>
-<td>8</td>
-<td>4</td>
-<td>10</td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
-</tr>
-<tr>
-<td>Storage (GB)</td>
-<td>100 (provisioned)</td>
-<td>16</td>
-<td>32</td>
-<td>30</td>
-<td>160</td>
-<td>160</td>
-</tr>
-<tr>
-<td>Cost</td>
-<td>$442</td>
-<td>$34</td>
-<td>$373</td>
-<td>$70</td>
-<td>$48</td>
-<td>$15</td>
-</tr>
-</tbody>
-</table>
-<p>The above specs were provided as &quot;Production&quot; defaults when using a single database instance. Azure SQL Database defaults to costing $373, during the load test, the database CPU hit ~25%.</p>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/img/posts/hetzner-cloud/azure-db-cpu-during-test.png" alt="">
-    </div>
-<div class="text-gray-500 text-center">Azure SQL database without tuning performs poorly for cost, likely due to lack of indexes</div>
-</div>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>AWS (DB)</th>
-<th>AWS (App)</th>
-<th>Azure (DB)</th>
-<th>Azure (App)</th>
-<th>Hetzner Cloud</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Max CPU %</td>
-<td>8</td>
-<td>35</td>
-<td>25</td>
-<td>45</td>
-<td>40</td>
-</tr>
-</tbody>
-</table>
-<p>This is without any tuning on any of the databases, so while you like more performance out of the recommended setups, it is still clear SQLite performs well by default, and it is well worth considering not only Hetzner Cloud for value for money, but if your use can only needs a single host with SQLite.</p>
-<h2 id="hetzner-cloud">Hetzner Cloud<a class="header-anchor" href="javascript:;" onclick="location.hash='#hetzner-cloud'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>While we were primarily looking for one of the lowest cost options with simplified pricing, Hetzner Cloud pleasantly surprised us with a few features the larger providers could learn from.</p>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/img/posts/hetzner-cloud/hetzner-cloud-buy.png" alt="">
-    </div>
-<div class="text-gray-500 text-center">Hetzner Cloud Pricing.</div>
-</div>
-<h3 id="creating-a-new-instance-is-fast">Creating a new instance is fast<a class="header-anchor" href="javascript:;" onclick="location.hash='#creating-a-new-instance-is-fast'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Most of the time if will be ready to remote to before you can open your terminal. Not sure if this is due to some kind of pre-creation process on Hetzner part during the creation screen, but everything is very responsive.
-In my testing from the time the &quot;Create&quot; button was clicked, my SSH commands would succeed within <strong>20 seconds</strong>.</p>
-<h3 id="live-graphs">Live Graphs<a class="header-anchor" href="javascript:;" onclick="location.hash='#live-graphs'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Another part of the responsiveness is their &quot;Live&quot; graphs for monitoring. It is surprisingly low latency and an extremely stark difference between AWS charging extra for &quot;Detailed&quot; monitoring on EC2 instances. The graphs update every 3-5 seconds in the browser and look to be over a few seconds behind real-time.</p>
-<div class="mx-auto mt-4 mb-4">
-    <div class="inline-flex justify-center w-full">
-      <img src="/img/posts/hetzner-cloud/hetzner-cloud-live-graphs.gif" alt="">
-    </div>
-<div class="text-gray-500 text-center">Live monitoring updates every 3-5 seconds.</div>
-</div>
-<p>CloudWatch is a major value add for AWS, and Hetzner's offering is very very basic in comparison, but it is nice to see live updating stats right in your web browser, and something hopefully the other providers can also offer in the future.</p>
-<h3 id="price">Price<a class="header-anchor" href="javascript:;" onclick="location.hash='#price'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This is the biggest draw card by a long way. The AWS and Azure &quot;recommended&quot; setups are extremely expensive for the hardware and performance they offer. Yes they are mature cloud offerings with a large array of features, but their <strong>pricing scales with hardware resources</strong>.
-Products like <strong>Provisioned IOPs</strong> are extremely expensive, and when other cloud providers are offering far more performant and competitive storage with their instances, it can feel like AWS is using it's market share and their defaults to upsell very expensive products.</p>
-<h3 id="transfer-costs">Transfer costs<a class="header-anchor" href="javascript:;" onclick="location.hash='#transfer-costs'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>It's been long known that one of the ways large cloud providers keep customers in their network is by charging <a href="https://aws.amazon.com/blogs/architecture/overview-of-data-transfer-costs-for-common-architectures">excessively large and complex data egress costs</a>. Something attractive about simplified pricing from Hetzner Cloud (and DigitalOcean to a lesser degree) is the included data transfer of 20TB a month.</p>
-<p>Not only is AWS data transfer pricing extremely complicated (inter region vs cross region vs CloudFront vs Transit Gateway and so on), but if your application was sending a lot of data to clients, that same <strong>20TB</strong> you get for free with a <strong>$15 server</strong>, would cost <strong>$1,791 just for data</strong> when coming from AWS. Azure pricing also confusing, and in some ways more expensive.</p>
-<h2 id="defaults-are-powerful">Defaults are powerful<a class="header-anchor" href="javascript:;" onclick="location.hash='#defaults-are-powerful'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Both AWS and Azure &quot;recommended&quot; defaults are there not because the software selected (SQL Server and Postgres) need that amount of resources just to operate, but more as an upsell.
-Lots of projects and applications absolutely do not need features like &quot;Provisioned IOPs&quot;, despite GP2 storage of AWS being incredibly slow.</p>
-<p>Performing disk speed check using the Linux utility <code>fio</code> an AWS EC2 instance with 100GB GP2 storage can do ~2250 IOPS and 9MB/s read, and ~750 IOPs at 3MB/s write.
-In contrast, Digital Ocean $48 instance, this is not even paying the extra $8/month for the faster storage can do 35.2k IOPS at 144MB/s read, and 11.8k IOPS at 48MB/s write.</p>
-<p>Hetzner again is the stand out, with the $15 instance tests resulting in 50.8k IOPS at 207MB/s read, and 16.9k IOPS at 69MB/s write.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Read IOPS</th>
-<th>Write IOPs</th>
-<th>Read MBs</th>
-<th>Write MBs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AWS</td>
-<td>2.3k</td>
-<td>0.8k</td>
-<td>9.2 MB/s</td>
-<td>3.1 MB/s</td>
-</tr>
-<tr>
-<td>Azure</td>
-<td>3.0k</td>
-<td>1.0k</td>
-<td>12.5 MB/s</td>
-<td>4.2 MB/s</td>
-</tr>
-<tr>
-<td>DigitalOcean</td>
-<td>35.2k</td>
-<td>11.8k</td>
-<td>144 MB/s</td>
-<td>48.2 MB/s</td>
-</tr>
-<tr>
-<td>Hetzner Cloud</td>
-<td>50.5k</td>
-<td>16.9k</td>
-<td>207 MB/s</td>
-<td>69.2 MB/s</td>
-</tr>
-</tbody>
-</table>
-<p>All tests used the following <code>fio</code> command.</p>
-<pre><code class="language-shell">fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test \
---filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Update the <code>config/deploy.yml</code> with the following details:</p>
+<h3 id="github-container-registry-image">GitHub Container Registry Image<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-container-registry-image'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Update with your preferred container image name:</p>
+<pre><code class="language-yml"># Name of the container image
+image: my-user/myapp
 </code></pre>
-<h2 id="sqlite">SQLite<a class="header-anchor" href="javascript:;" onclick="location.hash='#sqlite'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Part of the resurgence in popularity of using SQLite is not only the simplicity of a single server, but also as hardware is getting faster, issues surrounding limitations of a single writer are becoming less of an issue for a wider number of use cases.</p>
-<p>Litestream's elegant solution for streaming backups to cheap replica storage is definitely adding to that popularity as well since it was a sticking point for a lot of use cases that need that simple data redundancy functionality.</p>
-<p>Other solutions for Postgres like <code>pgbackrest</code> are similar, but the ease of use is another big part of what makes SQLite and Litestream a great combination.
-One command to watch and replicate, another to restore, and it runs completely independent of your application using the SQLite file.</p>
-<h2 id="hetzner-cloud-is-hard-to-beat-on-price">Hetzner Cloud is hard to beat on price<a class="header-anchor" href="javascript:;" onclick="location.hash='#hetzner-cloud-is-hard-to-beat-on-price'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We're going to keep testing Hetzner Cloud with new applications and use cases going into the future. While they are a very new player in the crowded Cloud Provider market, and their offerings are much more limited, the pricing is a breath of fresh air from the large three providers.</p>
-<p>More competition in this space is a great thing, and for those that can use solutions like SQLite for their projects, checking out some of the smaller players like DigitalOcean and Hetzner Cloud is well worth your time.
-The early signs from Hetzner Cloud is they not only have an amazing value product, but the features they do have improve on the equivalents from likes of AWS and Azure, which is hopefully a sign of things to come from them.</p>
+<h3 id="server-web">Server Web<a class="header-anchor" href="javascript:;" onclick="location.hash='#server-web'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Configure with your Linux Host IP Address:</p>
+<pre><code class="language-yml">servers:
+  # IP address of server, optionally use env variable
+  web:
+    - 123.123.123.123
+</code></pre>
+<p>Alternatively, you can use an environment variable for the server IP address, e.g:</p>
+<pre><code class="language-yml">  web:
+    - &lt;%= ENV['KAMAL_DEPLOY_IP'] %&gt;
+</code></pre>
+<h3 id="proxy-host">Proxy Host<a class="header-anchor" href="javascript:;" onclick="location.hash='#proxy-host'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Configure with your domain pointing to the same IP as your host:</p>
+<pre><code class="language-yml">proxy:
+  ssl: true
+  host: myapp.example.com
+</code></pre>
+<h3 id="health-checks">Health Checks<a class="header-anchor" href="javascript:;" onclick="location.hash='#health-checks'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The template includes the use of ASP.NET Core Health Checks, that use the default Kamal path of <code>/up</code> to check if the application is running before deploying.</p>
+<pre><code class="language-csharp">public class HealthCheck : IHealthCheck
+{
+    public async Task&lt;HealthCheckResult&gt; CheckHealthAsync(HealthCheckContext context, CancellationToken token = default)
+    {
+        // Perform health check logic here
+        return HealthCheckResult.Healthy();
+    }
+}
+</code></pre>
+<p>Kamal checks this path before deploying your application, so you can add any custom health checks to this path to ensure your application is ready to receive traffic.</p>
+<h2 id="github-repository">GitHub Repository<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-repository'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>With your application created and configured for deployment, you can create a new GitHub Repository and add the GitHub Actions Secret of <code>PRIVATE_SSH_KEY</code> which should be a separate SSH key for deployments that has access to your Linux host.</p>
+<p>You can use the GitHub CLI to do of these steps.</p>
+<pre><code class="language-bash">gh repo create
+</code></pre>
+<p>When prompted, create an empty repository.</p>
+<p>Then add the <code>PRIVATE_SSH_KEY</code> secret.</p>
+<pre><code>gh secret set PRIVATE_SSH_KEY &lt; deploy-key
+</code></pre>
+<p>Where <code>deploy-key</code> is your deployment specific SSH key file.</p>
+<p>Once created, you can follow the steps in your empty repository to init your templated <code>MyApp</code> project and push your initial commit. If you're deploy.yml config and DNS was setup correctly, the GitHub Action will do the following:</p>
+<ul>
+<li>Build and test your application running the MyApp.Tests project by default</li>
+<li>Publish your application as a Docker container to GitHub's <code>ghcr.io</code> repository</li>
+<li>Use Kamal to initialize your Linux host to be able to run Kamal applications and use their default <code>kamal-proxy</code></li>
+<li>Fix volume permissions your for application due to ASP.NET containerization not running as root user in the container.</li>
+<li>Run your <code>AppTasks=migrate</code> command before running your application initializing the SQLite database</li>
+<li>Run your AppHost using <code>kamal deploy -P --version latest</code> command.</li>
+</ul>
+<h2 id="summary">Summary<a class="header-anchor" href="javascript:;" onclick="location.hash='#summary'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We're excited to be moving our templates to Kamal for deployments as it has distilled the simple approach we have baked in our templates for a number of years while massively improving the ergonomics. We're excited to see what the BaseCamp team does with the project, and we're looking forward to seeing the community grow around it. If you have any questions about the templates or Kamal, feel free to reach out to us on our Discord, GitHub Discussions or Customer Forums.</p>
 
                 </div>
             </div>
@@ -490,47 +333,6 @@ The early signs from Hetzner Cloud is they not only have an amazing value produc
                         More from Darren Reid
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/kamal-deployments">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1494961104209-3c223057bd26?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/kamal-deployments" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title=".NET 8 Templates migrated to use Kamal for deployments">
-                                                    .NET 8 Templates migrated to use Kamal for deployments
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server.</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Darren Reid</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt=".NET 8 Templates migrated to use Kamal for deployments background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-11-26T00:00:00.0000000">November 26, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>5 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -647,6 +449,47 @@ The early signs from Hetzner Cloud is they not only have an amazing value produc
                                                     <time datetime="2024-02-26T00:00:00.0000000">February 26, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>7 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/openapi-v3">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1496478981722-3ae516118a04?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/openapi-v3" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="OpenAPI v3 and Swagger UI">
+                                                    OpenAPI v3 and Swagger UI
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">A walkthrough of the new OpenAPI v3 support in ServiceStack 8.1</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Darren Reid</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/darren.jpg" alt="OpenAPI v3 and Swagger UI background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/darren-reid" class="hover:underline">Darren Reid</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-02-19T00:00:00.0000000">February 19, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>6 min read</span>
                                                 </div>
                                             </div>
                                         </div>
