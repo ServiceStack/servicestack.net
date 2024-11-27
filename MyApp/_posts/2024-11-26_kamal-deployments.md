@@ -6,11 +6,11 @@ author: Darren Reid
 image: https://images.unsplash.com/photo-1494961104209-3c223057bd26?crop=entropy&fit=crop&h=1000&w=2000
 ---
 
-Since introducing GitHub Actions support to our templates, we've promoted the simplified deployments, focusing on tooling like SSH and Docker Compose to give the most portability to projects by default. This was partly inspired by the fact that cloud providers value offerings have been decreasing, especially over the last 5 years. We then showed in a [previous blog post how much money can be saved](/posts/hetzner-cloud) by considering the use of hosting providers like Hetzner (who we have been using for many years), and moved all our templates and live demos to Hetzner resulting in a roughly $0.50 per month cost per application.
+Since introducing [GitHub Actions support to our templates](https://docs.servicestack.net/ssh-docker-compose-deploment), we've promoted the simplified deployments, focusing on tooling like SSH and Docker Compose to give the most portability to projects by default. This was partly inspired by the fact that cloud providers value offerings have been decreasing, especially over the last 5 years. We've previously showed [the significant savings](https://servicestack.net/posts/hetzner-cloud) available by utilizing of hosting providers like Hetzner (who we've been using for several years), and moved all our templates and live demos to Hetzner resulting in a roughly **$0.50 per month** cost per .NET App.
 
-Along with this decreasing in value from the major cloud vendors, and the general hardware improvements, we've also been leaning into the use of SQLite, using it as the primary database for some of our larger example applications like PVQ.app, BlazorDiffusion, and most recently, AI Server.
+Along with this decreasing in value from the major cloud vendors, and the general hardware improvements, we've also been leaning into [using SQLite for server .NET Apps](/posts/scalable-sqlite), using it as the primary database for some of our larger example applications like [pvq.app](https://pvq.app), [blazordiffusion.com](https://blazordiffusion.com), and most recently, [AI Server](https://openai.servicestack.net).
 
-We were delighted to see that the folks over at BaseCamp doubled down on these same types of tooling by releasing the MRSK project, which is now known as Kamal.
+We're delighted to see that the folks at BaseCamp are estimating to [save millions from their cloud exit](https://world.hey.com/dhh/our-cloud-exit-savings-will-now-top-ten-million-over-five-years-c7d9b5bd) and have doubled down on their general purpose Docker deployment solutions with their initial MRSK project, that's now known as Kamal.
 
 ### Use Kamal to deploy .NET Apps to any Linux server
 
