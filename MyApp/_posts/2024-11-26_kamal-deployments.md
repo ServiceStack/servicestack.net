@@ -4,7 +4,6 @@ summary: All Identity Auth templates now use Kamal for deployments, simplifying 
 tags: [github-actions,docker,devops]
 author: Darren Reid
 image: https://images.unsplash.com/photo-1494961104209-3c223057bd26?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 Since introducing GitHub Actions support to our templates, we've promoted the simplified deployments, focusing on tooling like SSH and Docker Compose to give the most portability to projects by default. This was partly inspired by the fact that cloud providers value offerings have been decreasing, especially over the last 5 years. We then showed in a [previous blog post how much money can be saved](/posts/hetzner-cloud) by considering the use of hosting providers like Hetzner (who we have been using for many years), and moved all our templates and live demos to Hetzner resulting in a roughly $0.50 per month cost per application.

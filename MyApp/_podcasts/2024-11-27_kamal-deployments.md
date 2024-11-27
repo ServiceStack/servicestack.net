@@ -4,7 +4,6 @@ summary: All Identity Auth templates now use Kamal for deployments, simplifying 
 tags: [github-actions,docker,devops]
 url: https://media.servicestack.com/podcasts/kamal-deployments.mp3
 media: {size:5227532,duration:1306.824000,format:mp3}
-draft: true
 ---
 
 This episode explores the shift in deployment strategy for .NET applications using the [Kamal deployment](https://kamal-deploy.org/) tool. 
