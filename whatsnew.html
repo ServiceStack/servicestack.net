@@ -142,6 +142,124 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.5</h2>
+        <div class="text-center text-lg font-normal text-gray-500">November 26, 2024</div>
+            <div class="mt-2 flex justify-center">
+                <a href="podcasts/v8-5-release" class="group flex items-center gap-2 rounded-full bg-white/25 p-1.5 text-xs text-slate-900 ring-1 ring-inset ring-black/[0.08] hover:bg-white/50 hover:ring-black/[0.13]">
+                    <img src="/img/svgs/podcast.svg" alt="" class="h-8 w-8 rounded-full">
+                    <div class="pr-2">
+                        <p class="font-semibold">
+                            Listen to podcast episode
+                        </p>
+                        <p class="text-gray-600">ServiceStack v8.5 Release</p>
+                    </div>
+                </a>
+            </div>
+        <div class="mb-8"></div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/ai-server"><img src="/img/posts/ai-server/ai-server-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/ai-server">Introducing AI Server</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're excited to announce AI Server - an open-source, self-hosted Docker gateway for managing API access
+to various AI services. It offers centralized management of LLMs, Ollama endpoints, media APIs, Comfy UI
+and FFmpeg agents, distributing loads across multiple servers.</p>
+<p>It's initial V1 release comes packed with features, including:</p>
+<ul>
+<li><strong>Centralized Management</strong>: Manage all your AI services from a single Admin UI</li>
+<li><strong>Load Balancing</strong>: Distribute loads across multiple servers</li>
+<li><strong>Native Typed Integrations</strong>: For 11 popular programming languages</li>
+<li><strong>Synchronous, Queued, and Callback-based APIs</strong>: For different use-cases</li>
+<li><strong>Monitoring and Analytics</strong>: Live monitoring, analytics and full history</li>
+<li><strong>Protected Access</strong>: With simple API keys</li>
+</ul>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/ai-server" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/kamal-deployments"><img src="/img/posts/kamal-deployments/kamal-splash.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/kamal-deployments">.NET 8 Templates now using Kamal for deployments</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We've updated the built-in GitHub Actions for all Identity Auth templates to use the <a href="https://kamal-deploy.org/">Kamal deployment</a> tool
+for customers considering their potential <a href="https://world.hey.com/dhh/our-cloud-exit-savings-will-now-top-ten-million-over-five-years-c7d9b5bd">cloud exit cost savings</a>
+by exploring the shift in deployment strategy for self-hosting their .NET Docker Apps on their own servers or
+in-expensive cloud providers like <a href="https://www.hetzner.com">hetzner.com</a></p>
+<p>Previously, a less streamlined process involving <a href="https://docs.servicestack.net/kamal-deploy">SSH and Docker Compose</a> was used.
+Now, all Identity Auth templates utilize Kamal, a CLI tool simplifying deployments to any Linux server accessible via SSH.
+Kamal automates tasks such as reverse proxy setup and TLS certificate management whilst providing useful
+local management tools via Kamal's commands.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/kamal-deployments" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/typed-openai-chat-ollama-apis"><img src="/img/posts/ai-server/ai-server-languages.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/typed-openai-chat-ollama-apis">Typed Open AI Chat &amp; Ollama APIs in 11 Languages</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>AI Server's <code>OpenAiChatCompletion</code> API - is an OpenAI compatible Chat API with ChatGPT and
+other LLMs like Ollama, the benefit of which allows developers to use its Typed DTOs and ServiceStack
+generic Service Clients to call any Open AI Chat compatible API directly, in all of ServiceStack's
+11 supported popular programming languages.</p>
+<p>This allows developers to easily integrate typed access to different LLMs into their applications.
+Instructions are provided for each language demonstrating how to install necessary packages, download DTOs,
+and send API requests.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/typed-openai-chat-ollama-apis" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/swift6-upgrade"><img src="https://docs.servicestack.net/img/pages/servicestack-reference/swift-logo-banner.jpg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/swift6-upgrade">ServiceStack.Swift client library rewritten for Swift 6</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>All generic service client libraries have been upgraded to support multiple file uploads with API requests
+to take advantage of AI Server APIs that accept file uploads like Image to Image, Speech to Text or its
+FFmpeg Image and Video Transforms.</p>
+<p>ServiceStack.Swift received the biggest upgrade, which was also rewritten to take advantage of Swift 6 features,
+including Swift promises which replaced the previous PromiseKit dependency - making it now dependency-free!</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/swift6-upgrade" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.4</h2>
         <div class="text-center text-lg font-normal text-gray-500">September 11, 2024</div>
             <div class="mt-2 flex justify-center">
