@@ -3,7 +3,7 @@ title: Create Simple, Fast, Reliable Apps with Litestream
 url: https://youtu.be/WXRwT7ayc1Y
 tags: [ormlite,db,litestream,hosting]
 date: 22-07-2022
-order: 6
+order: 7
 ---
 
 This guide introduces [Litestream](https://litestream.io) for SQLite and demonstrates using ServiceStack Litestream mix templates for efficient setup. 

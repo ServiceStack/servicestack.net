@@ -3,7 +3,7 @@ title: Using GitHub Actions for CI & .NET App Deployments
 url: https://youtu.be/0PvzcnxlBvc
 tags: [github-actions,deployment]
 date: 22-04-2021
-order: 3
+order: 4
 ---
 
 This tutorial demonstrates enabling continuous integration, deployment, hosting, and Let's Encrypt HTTPS configuration 

@@ -219,10 +219,10 @@
 })
 
 @await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "CreatorKit",
-  Summary = "Open Source self-hosted alternative to Mailchimp and Disqus",
-  Group = "creatorkit",
-  LearnMore = "https://servicestack.net/creatorkit/",
+  Title = "AI Server",
+  Summary = "Unified APIs for LLM APIs, Ollama, ComfyUI & FFmpeg",
+  Group = "ai-server",
+  LearnMore = "https://servicestack.net/posts/ai-server",
   Background = "bg-slate-100 dark:bg-slate-800",
 })
 
@@ -230,6 +230,14 @@
   Title = "Features",
   Summary = "Learn about other exciting features in the ServiceStack software ecosystem",
   Group = "features",
+})
+
+@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
+  Title = "CreatorKit",
+  Summary = "Open Source self-hosted alternative to Mailchimp and Disqus",
+  Group = "creatorkit",
+  LearnMore = "https://servicestack.net/creatorkit/",
+  Background = "bg-slate-100 dark:bg-slate-800",
 })
 
 @await Html.PartialAsync("Home/Features")

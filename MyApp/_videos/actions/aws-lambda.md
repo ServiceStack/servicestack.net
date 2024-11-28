@@ -3,7 +3,7 @@ title: Run ServiceStack .NET Apps in AWS Lambda Containers
 url: https://youtu.be/8mpGNTsSlvE
 tags: [github-actions,deployment,aws,lambda]
 date: 02-02-2021
-order: 5
+order: 6
 ---
 
 This walkthrough demonstrates deploying a ServiceStack application to AWS Lambda using Docker containers through GitHub Actions. 

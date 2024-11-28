@@ -3,7 +3,7 @@ title: Deploy Docker .NET Apps to AWS ECS with GitHub Actions
 url: https://youtu.be/Eh4tvLN8i8g
 tags: [github-actions,deployment,aws,ecs]
 date: 21-04-2021
-order: 4
+order: 5
 ---
 
 ServiceStack projects, enabling the configuration for building, testing, and deploying to a cost-efficient AWS ECS setup. 

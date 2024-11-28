@@ -3,7 +3,7 @@ title: GitHub for Auto Deployments - Kubernetes Not Required
 url: https://youtu.be/7dardvqBFbE
 tags: [github-actions,deployment,hosting]
 date: 08-08-2023
-order: 2
+order: 3
 ---
 
 Step by step walkthrough for deploying your App via GitHub Actions and plain old SSH. 
