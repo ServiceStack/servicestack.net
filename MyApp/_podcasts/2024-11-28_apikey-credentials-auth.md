@@ -1,7 +1,7 @@
 ---
 title: Simple API Keys Credentials Provider for .NET 8 C# Microservices
 summary: Improved Simple Auth using API Keys and Admin UI that's ideal for .NET 8 C# Microservices
-tags: [ .net8,auth,apikeys ]
+tags: [.net8,auth,apikeys]
 url: https://media.servicestack.com/podcasts/apikey-credentials-auth.mp3
 media: {size:3618860,duration:904.656000,format:mp3}
 ---

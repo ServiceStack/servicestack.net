@@ -2,7 +2,7 @@
 title: Typed Open AI Chat & Ollama APIs in 11 Languages
 url: /posts/typed-openai-chat-ollama-apis
 image: /img/posts/ai-server/ai-server-languages.png
-order: 3
+order: 4
 ---
 
 AI Server's `OpenAiChatCompletion` API - is an OpenAI compatible Chat API with ChatGPT and

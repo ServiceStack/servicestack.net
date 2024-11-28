@@ -2,7 +2,7 @@
 title: ServiceStack.Swift client library rewritten for Swift 6
 url: /posts/swift6-upgrade
 image: https://docs.servicestack.net/img/pages/servicestack-reference/swift-logo-banner.jpg
-order: 4
+order: 5
 ---
 
 All generic service client libraries have been upgraded to support multiple file uploads with API requests 
