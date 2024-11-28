@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Wed, 27 Nov 2024 14:05:51 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 28 Nov 2024 05:49:57 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Simple API Keys Credentials Provider for .NET 8 C# Microservices</title>
+        <link>https://servicestack.net/posts/apikey-credentials-auth</link>
+        <author>demis@servicestack.com (Demis Bellot)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/apikey-credentials-auth</guid>
+        <pubDate>Thu, 28 Nov 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-11-28T00:00:00Z</atom:updated>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>apikeys</category>
+        <description>Improved Simple Auth using API Keys and Admin UI that&#x27;s ideal for .NET 8 C# Microservices</description>
+    </item>
     <item>
         <title>.NET 8 Templates migrated to use Kamal for deployments</title>
         <link>https://servicestack.net/posts/kamal-deployments</link>
@@ -122,18 +134,6 @@
         <category>identity-auth</category>
         <category>rdbms</category>
         <description>Using C# API Keys for simplified fine-grained access control in ServiceStack .NET 8 APIs</description>
-    </item>
-    <item>
-        <title>Support for RHEL 9&#x27;s hardened cryptography policy</title>
-        <link>https://servicestack.net/posts/rhel9-cryptography</link>
-        <author>demis@servicestack.com (Demis Bellot)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/rhel9-cryptography</guid>
-        <pubDate>Sun, 30 Jun 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-06-30T00:00:00Z</atom:updated>
-        <category>.net8</category>
-        <category>servicestack</category>
-        <category>licensing</category>
-        <description>Regenerate your License Key to support RedHat Enterprise Linux 9 Default Cryptography Policy</description>
     </item>
 </channel>
 </rss>
