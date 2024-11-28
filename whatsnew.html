@@ -214,6 +214,34 @@ local management tools via Kamal's commands.</p>
             </div>        
             <div class="flex flex-wrap my-24">
                 <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/apikey-credentials-auth"><img src="/img/posts/apikey-credentials-auth/ai-server-auth-apiexplorer.png" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/apikey-credentials-auth">API Keys Credentials Provider for .NET 8 Microservices</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The usability of the <strong>Simple Auth with API Keys</strong> story has been significantly improved with the new
+<code>ApiKeyCredentialsProvider</code> which enables .NET Microservices to provide persistent UserSession-like
+behavior using simple API Keys which can be configured together with <code>AuthSecretAuthProvider</code> and
+<code>ApiKeysFeature</code> to enable a Credentials Auth implementation users can use with their API Keys
+to restrict access to Authorized Users or Admin AuthSecret to protect Admin UIs and APIs.</p>
+<h3 id="session-auth-with-api-keys">Session Auth with API Keys<a class="header-anchor" href="javascript:;" onclick="location.hash='#session-auth-with-api-keys'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Behind the scenes this creates a Server Auth Session but instead of maintaining an Authenticated
+User Session it saves the API Key in the session then attaches the API Key to each request.
+This makes it possible to make API Key validated requests with just a session cookie instead of
+requiring resubmission of API Keys for each request.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/apikey-credentials-auth" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
                     <a href="/posts/typed-openai-chat-ollama-apis"><img src="/img/posts/ai-server/ai-server-languages.png" alt="" loading="lazy"></a>
                 </div>
                 <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
