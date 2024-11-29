@@ -152,11 +152,115 @@
 </div>
 </section>
 
+<section>
+  <div id="native-types" class="bg-white dark:bg-black pb-24 sm:pb-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="text-center ">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Write once, integrate from anywhere</h2>
+      </div>
+    
+      <div id="openaichat" class="mt-12"></div>
+    
+    </div>
+  </div>
+</section>
+
+@await Html.PartialAsync("HighlightIncludes")
+<link rel="stylesheet" href="css/typography.css">
+
+<style>
+.hljs, .prose :where(pre):not(:where([class~="not-prose"] *)) .hljs {
+  color: #e5e7eb !important;
+  background-color: #1e1e2e !important;
+}
+.hljs-comment, .hljs-quote {
+  color: rgb(148 163 184); /*text-slate-400*/
+}
+</style>
+<script type="module">
+import { createApp, ref, reactive } from "vue"
+import { App, usePageRoutes } from "/js/core.mjs"
+import ServiceStackVue from "@@servicestack/vue"
+import OpenAiChatLangs from "/mjs/components/OpenAiChatLangs.mjs"
+
+
+const app = new App()
+app.use(ServiceStackVue)
+app.component('RouterLink', ServiceStackVue.component('RouterLink'))
+//const client = window.client = new JsonServiceClient()
+//const events = app.events
+
+let routes = usePageRoutes(app, {
+  page:'admin',
+  queryKeys: ('tab,provider,db,schema,table,q,page,sort,new,edit,op,skip,id,lang').split(','),
+  handlers: {
+    init(state) { console.debug('init', state) }, /*debug*/
+    nav(state) { console.debug('nav', state) } /*debug*/
+  },
+})
+
+const Component = {
+  components: {
+    OpenAiChatLangs,
+  },
+  template: `
+    <OpenAiChatLangs baseUrl="https://openai.servicestack.net" :routes="routes">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">Developer APIs</h2>
+          <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Open AI Chat</p>
+          <p class="mt-6 text-lg leading-8 text-gray-600">
+            ServiceStack's end-to-end typed APIs enable you to write your APIs once and take advantage of 
+            native typed integrations for all popular languages used in Web, Mobile and Desktop platforms.
+          </p>
+          <p class="mt-6 text-lg leading-8 text-gray-600">
+            Example of calling an 
+            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ai-server/openai-chat-all-languages">Open AI compatible Chat API</a>. 
+            ServiceStack APIs are executed using the same generic JSON Service Client and the native Typed DTOs generated in each language.
+          </p>
+          <dl class="mt-10 max-w-xl space-y-6 text-base leading-7 text-gray-600 lg:max-w-none">
+            <div class="relative pl-6">
+              <dt class="inline font-semibold text-gray-900">
+                Smart Generic Clients <span class="px-1" aria-hidden="true">·</span>
+              </dt>
+              <dd class="inline">
+                All languages utilize a feature-rich, idiomatic generic JSON Client that can call 
+                any ServiceStack API
+              </dd>
+            </div>
+            <div class="relative pl-6">
+              <dt class="inline font-semibold text-gray-900">
+                Clean Typed DTOs <span class="px-1" aria-hidden="true">·</span>
+              </dt>
+              <dd class="inline">
+                Native Typed DTOs annotated with API docs utilizing
+                available typing features generated for each language
+              </dd>
+            </div>
+            <div class="relative pl-6">
+              <dt class="inline font-semibold text-gray-900">
+                Good Development UX <span class="px-1" aria-hidden="true">·</span>
+              </dt>
+              <dd class="inline">
+                Single command to add / update references to remote ServiceStack APIs. GUI plugins for popular IDEs
+              </dd>
+            </div>
+          </dl>
+        </div>            
+    </OpenAiChatLangs>`,
+  props: {},
+  setup() {
+    return { routes }
+  }
+}
+
+app.build(Component).mount('#openaichat')
+app.start()
+</script>
+
 @await Html.PartialAsync("Newsletter")
 
 @await Html.PartialAsync("Testimonials")
 
-<link rel="stylesheet" href="css/typography.css">
 
 @await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
   Title = "ServiceStack APIs",

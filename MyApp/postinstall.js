@@ -10,6 +10,8 @@ const files = {
       'servicestack-client.min.mjs':     '/@servicestack/client@2/dist/servicestack-client.min.mjs',
       'servicestack-vue.mjs':            '/@servicestack/vue@3/dist/servicestack-vue.mjs',
       'servicestack-vue.min.mjs':        '/@servicestack/vue@3/dist/servicestack-vue.min.mjs',
+      'highlight.mjs':                   '/@highlightjs/cdn-assets/es/highlight.min.js',
+      // 'marked.mjs':                      'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js',
   },
   typings: {
       'vue/index.d.ts':                  '/vue@3/dist/vue.d.ts',
@@ -21,6 +23,8 @@ const files = {
       '@vue/shared.d.ts':                '/@vue/shared@3/dist/shared.d.ts',
       '@servicestack/client/index.d.ts': '/@servicestack/client/dist/index.d.ts',  
       '@servicestack/vue/index.d.ts':    '/@servicestack/vue@3/dist/index.d.ts',
+      'highlight/index.d.ts':            'https://raw.githubusercontent.com/highlightjs/highlight.js/main/types/index.d.ts',
+      // 'marked/index.d.ts':               'https://cdn.jsdelivr.net/npm/marked/lib/marked.d.ts',
   },
   tailwind: {
       'creatorkit.js': 'https://raw.githubusercontent.com/NetCoreApps/CreatorKit/main/CreatorKit/wwwroot/tailwind/all.components.txt'
