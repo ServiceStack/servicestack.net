@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Docker Containerization in .NET 8 - ServiceStack</title>
+    <title>Typed Open AI Chat &amp; Ollama APIs in 11 Languages - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -37,10 +37,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content=".NET 8 Docker Containers and GitHub Actions Deployments in new Project Templates" />
-    <meta property="og:url" content="https://servicestack.net/posts/net8-docker-containers" />
-    <meta property="og:title" content="Docker Containerization in .NET 8" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1609884557151-1e356d32900c?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs" />
+    <meta property="og:url" content="https://servicestack.net/posts/typed-openai-chat-ollama-apis" />
+    <meta property="og:title" content="Typed Open AI Chat &amp; Ollama APIs in 11 Languages" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1593486544625-13ef2368e43a?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -130,7 +130,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Docker Containerization in .NET 8
+                Typed Open AI Chat &amp; Ollama APIs in 11 Languages
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -167,27 +167,32 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'typed-openai-chat-ollama-apis', title:'Typed Open AI Chat &amp; Ollama APIs in 11 Languages', src:'https://media.servicestack.com/podcasts/typed-openai-chat-ollama-apis.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=typed-openai-chat-ollama-apis&amp;source=post&amp;version=8.5.3', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1609884557151-1e356d32900c?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Docker Containerization in .NET 8 Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1593486544625-13ef2368e43a?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Typed Open AI Chat &amp; Ollama APIs in 11 Languages Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/dotnet" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dotnet</a>
-                        <a href="posts/tagged/github-actions" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">github-actions</a>
-                        <a href="posts/tagged/hosting" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">hosting</a>
-                        <a href="posts/tagged/devops" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">devops</a>
+                        <a href="posts/tagged/ai-server" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai-server</a>
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
+                        <a href="posts/tagged/service-reference" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">service-reference</a>
+                        <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
+                        <a href="posts/tagged/js" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">js</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-12-12T00:00:00.0000000">December 12, 2023</time>
+                                <time datetime="2024-12-02T00:00:00.0000000">December 2, 2024</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>12 min read</span>
+                                <span>5 min read</span>
                             </div>
                         </div>
                 </div>
@@ -200,242 +205,131 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <h3 id="all.net-project-templates-upgraded-to.net-8">All .NET Project Templates upgraded to .NET 8<a class="header-anchor" href="javascript:;" onclick="location.hash='#all.net-project-templates-upgraded-to.net-8'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Included in the release of <a href="https://docs.servicestack.net/releases/v8_00">ServiceStack v8</a> all of ServiceStack's
-<a href="https://github.com/NetCoreTemplates/">.NET project templates</a> have been upgraded to use <strong>ServiceStack v8</strong> and <strong>.NET 8</strong> target framework, in addition
-the built-in CI/CD deployment GitHub Actions have been upgraded to use the <a href="https://devblogs.microsoft.com/dotnet/securing-containers-with-rootless/">secure rootless Linux Docker containers</a>
-that's now built into .NET 8 which allow you to effortlessly deploy your containerized .NET 8 Apps with Docker and
-GitHub Registry via SSH to any Linux Server.</p>
-<div class="not-prose mt-16 flex flex-col items-center">
-   <div class="flex">
-      <svg class="w-28 h-28" xmlns="http://www.w3.org/2000/svg" width="256" height="185" viewBox="0 0 256 185"><path fill="#2396ED" d="M250.716 70.497c-5.765-4-18.976-5.5-29.304-3.5c-1.2-10-6.725-18.749-16.333-26.499l-5.524-4l-3.844 5.75c-4.803 7.5-7.205 18-6.485 28c.24 3.499 1.441 9.749 5.044 15.249c-3.362 2-10.328 4.5-19.455 4.5H1.155l-.48 2c-1.682 9.999-1.682 41.248 18.014 65.247c14.892 18.249 36.99 27.499 66.053 27.499c62.93 0 109.528-30.25 131.386-84.997c8.647.25 27.142 0 36.51-18.75c.24-.5.72-1.5 2.401-5.249l.961-2l-5.284-3.25ZM139.986 0h-26.42v24.999h26.42V0Zm0 29.999h-26.42v24.999h26.42v-25Zm-31.225 0h-26.42v24.999h26.42v-25Zm-31.225 0H51.115v24.999h26.421v-25ZM46.311 59.998H19.89v24.999h26.42v-25Zm31.225 0H51.115v24.999h26.421v-25Zm31.225 0h-26.42v24.999h26.42v-25Zm31.226 0h-26.422v24.999h26.422v-25Zm31.225 0H144.79v24.999h26.422v-25Z"/></svg>
-   </div>
-</div>
-<div class="not-prose mt-4 px-4 sm:px-6">
-<div class="text-center"><h3 id="docker-containers" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-    .NET 8 Docker Containers
-</h3></div>
-<p class="mx-auto mt-5 max-w-3xl text-xl text-gray-500">
-    Learn about the latest streamlined containerization support built into .NET 8
-</p>
-<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="y57c-9jeIww" style="background-image: url('https://img.youtube.com/vi/y57c-9jeIww/maxresdefault.jpg')"></lite-youtube>
-</div>
-</div>
-<h3 id="net-8-docker-containerization">.NET 8 Docker Containerization<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-8-docker-containerization'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>.NET 8 simplifies Docker integration using functionality built into the .NET SDK tooling where it's able to use <code>dotnet publish</code>
-to publish your .NET 8 App to a container image without a Dockerfile, adhering to the latest Least privilege and hardened security
-best practices of running App's as non-root by default.</p>
-<p>This <strong>publish to container</strong> feature also supports creating Docker images for different architectures like ARM64 which
-sees <a href="https://devblogs.microsoft.com/dotnet/this-arm64-performance-in-dotnet-8/">significant improvements in .NET 8</a>
-making deploying your .NET Apps to ARM64 an <a href="https://servicestack.net/posts/cloud-value-between-architectures">even better value proposition</a>.</p>
-<p>If you need more control over your Docker image, you can still use a Dockerfile to customize your image, and there are <a href="https://github.com/tmds/build-image">even tools to generate Dockerfiles for you from your project</a>.</p>
-<h3 id="github-action-deployments">GitHub Action Deployments<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-action-deployments'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>In today's DevOps ecosystem, <a href="https://github.com/features/actions">GitHub Actions</a> stand out as an invaluable asset for
-automating CI/CD workflows directly within your GitHub repository. The introduction of .NET 8 takes this a step further,
-offering a streamlined approach to generating Docker images through the <code>&lt;PublishProfile&gt;DefaultContainer&lt;/PublishProfile&gt;</code>
-setting in your <code>.csproj</code>. This ensures consistent application packaging, making it deployment-ready by just using <code>dotnet publish</code>.</p>
-<p>ServiceStack's project templates bring additional flexibility, by utilizing foundational tools like
-<a href="https://www.docker.com">Docker</a> for containerization and <a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH</a> for secure deployments,
-it's able to deploy your Dockerized .NET applications to any Linux server, whether self-hosted or on any cloud provider.</p>
-<h4 id="live-demos-use-their-github-actions-to-deploy-themselves">Live Demos use their GitHub Actions to deploy themselves<a class="header-anchor" href="javascript:;" onclick="location.hash='#live-demos-use-their-github-actions-to-deploy-themselves'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>Each template's Live demo are themselves utilizing their included GitHub Actions to deploy itself to a Linux server running
-on a <strong>€13.60 /month</strong> shared 8BG RAM <a href="https://www.hetzner.com/cloud">Hetzner Cloud VM</a> that's currently running 50+ Docker Containers.</p>
-<p>This guide aims to walk you through the hosting setup and the GitHub Actions release process as introduced in the
-ServiceStack's latest .NET 8 project templates.</p>
-<h2 id="deployment-files">Deployment Files<a class="header-anchor" href="javascript:;" onclick="location.hash='#deployment-files'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Deployment files that are included in project templates to facilitate GitHub Actions deployments:</p>
-<h4 id="deploy">.deploy/<a class="header-anchor" href="javascript:;" onclick="location.hash='#deploy'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<ul>
-<li><a href="https://github.com/NetCoreTemplates/blazor/blob/master/.deploy/nginx-proxy-compose.yml">nginx-proxy-compose.yml</a> - Manage nginx reverse proxy and Lets Encrypt companion container (one-time setup per server)</li>
-<li><a href="https://github.com/NetCoreTemplates/blazor/blob/main/.deploy/docker-compose.yml">docker-compose.yml</a> - Manage .NET App Docker Container</li>
-</ul>
-<h4 id="githubworkflows">.github/workflows/<a class="header-anchor" href="javascript:;" onclick="location.hash='#githubworkflows'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<ul>
-<li><a href="https://github.com/NetCoreTemplates/blazor/blob/master/.github/workflows/build.yml">build.yml</a> - Build .NET Project and Run Tests</li>
-<li><a href="https://github.com/NetCoreTemplates/blazor/blob/master/.github/workflows/release.yml">release.yml</a> - Build container, Push to GitHub Packages Registry, SSH deploy to Linux server, Run DB Migrations and start new Docker Container if successful otherwise revert Migration</li>
-</ul>
-<h2 id="prerequisites">Prerequisites<a class="header-anchor" href="javascript:;" onclick="location.hash='#prerequisites'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Before your Linux server can accept GitHub Actions deployments, we need to setup your Linux deployment server.
-For a step-by-step walk through of these steps and more information about this solution, checkout our video guide below:</p>
-<div class="not-prose mt-16 flex flex-col items-center">
-   <div class="flex">
-      <svg class="w-28 h-28" xmlns="http://www.w3.org/2000/svg" width="256" height="185" viewBox="0 0 256 185"><path fill="#2396ED" d="M250.716 70.497c-5.765-4-18.976-5.5-29.304-3.5c-1.2-10-6.725-18.749-16.333-26.499l-5.524-4l-3.844 5.75c-4.803 7.5-7.205 18-6.485 28c.24 3.499 1.441 9.749 5.044 15.249c-3.362 2-10.328 4.5-19.455 4.5H1.155l-.48 2c-1.682 9.999-1.682 41.248 18.014 65.247c14.892 18.249 36.99 27.499 66.053 27.499c62.93 0 109.528-30.25 131.386-84.997c8.647.25 27.142 0 36.51-18.75c.24-.5.72-1.5 2.401-5.249l.961-2l-5.284-3.25ZM139.986 0h-26.42v24.999h26.42V0Zm0 29.999h-26.42v24.999h26.42v-25Zm-31.225 0h-26.42v24.999h26.42v-25Zm-31.225 0H51.115v24.999h26.421v-25ZM46.311 59.998H19.89v24.999h26.42v-25Zm31.225 0H51.115v24.999h26.421v-25Zm31.225 0h-26.42v24.999h26.42v-25Zm31.226 0h-26.422v24.999h26.422v-25Zm31.225 0H144.79v24.999h26.422v-25Z"/></svg>
-   </div>
-</div>
-<div class="not-prose mt-4 px-4 sm:px-6">
-<div class="text-center"><h3 id="docker-containers" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-    Use GitHub Actions for Auto Deployments
-</h3></div>
-<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="7dardvqBFbE" style="background-image: url('https://img.youtube.com/vi/7dardvqBFbE/maxresdefault.jpg')"></lite-youtube>
-</div>
-</div>
-<h3 id="setup-deployment-server">Setup Deployment Server<a class="header-anchor" href="javascript:;" onclick="location.hash='#setup-deployment-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<h4 id="install-docker-and-docker-compose">1. Install Docker and Docker-Compose<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-docker-and-docker-compose'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>Follow <a href="https://docs.docker.com/engine/install/ubuntu/">Docker's installation instructions</a>
-to install the latest version of Docker.</p>
-<h4 id="configure-ssh-for-github-actions">2. Configure SSH for GitHub Actions<a class="header-anchor" href="javascript:;" onclick="location.hash='#configure-ssh-for-github-actions'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>Generate a dedicated SSH key pair to be used by GitHub Actions:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>ssh-keygen -t rsa -b 4096 -f ~/.ssh/github_actions</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Add the <strong>public key</strong> to your server's SSH <strong>authorized_keys</strong>:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>cat ~/.ssh/github_actions.pub &gt;&gt; ~/.ssh/authorized_keys</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Add the <strong>private key</strong> to your repo's <code>DEPLOY_KEY</code> GitHub Action Secret which GitHub Actions will use to
-securely SSH into the server.</p>
-<h4 id="set-up-nginx-reverse-proxy">3. Set Up nginx-reverse-proxy<a class="header-anchor" href="javascript:;" onclick="location.hash='#set-up-nginx-reverse-proxy'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>You should have a <code>docker-compose</code> file similar to the <code>nginx-proxy-compose.yml</code> in your repository. Upload this file to your server:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>scp nginx-proxy-compose.yml user@your_server:~/</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>To bring up the nginx reverse proxy and its companion container for handling TLS certificates, run:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>docker compose -f ~/nginx-proxy-compose.yml up -d</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>This will start an nginx reverse proxy along with a companion LetsEncrypt container that will automatically watch for
-additional Docker containers on the same network and initialize them with valid TLS certificates.</p>
-<h3 id="ready-to-host-containerized.net-apps">Ready to host containerized .NET Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#ready-to-host-containerized.net-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Your Linux server is now ready to accept multiple .NET App deployments from GitHub Actions. The guide below walks through
-the process of setting up your GitHub repository to deploy new ServiceStack .NET Apps to your Linux server.</p>
-<h2 id="step-by-step-guide">Step-by-Step Guide<a class="header-anchor" href="javascript:;" onclick="location.hash='#step-by-step-guide'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<h3 id="create-your-servicestack-application">1. Create Your ServiceStack Application<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-your-servicestack-application'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Start by creating your ServiceStack application, either from <a href="https://servicestack.net/start">ServiceStack's Start Page</a>
-or by using the <a href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a>:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new blazor ProjectName</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Replace <code>ProjectName</code> with your desired project name to generate a new ServiceStack application pre-configured
-with the necessary Docker compose files and GitHub Action workflows as above.</p>
-<h3 id="configure-dns-for-your-application">2. Configure DNS for Your Application<a class="header-anchor" href="javascript:;" onclick="location.hash='#configure-dns-for-your-application'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>You need a domain to point to your Linux server. Create an A Record in your DNS settings that points to the IP address
-of your Linux server:</p>
-<ul>
-<li><strong>Subdomain</strong>: <code>app.example.org</code></li>
-<li><strong>Record Type</strong>: A</li>
-<li><strong>Value/Address</strong>: IP address of your Linux server</li>
-</ul>
-<p>This ensures that any requests to <code>app.example.org</code> are directed to your server.</p>
-<h3 id="setting-up-github-secrets">3. Setting Up GitHub Secrets<a class="header-anchor" href="javascript:;" onclick="location.hash='#setting-up-github-secrets'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Navigate to your GitHub repository's settings, find the &quot;Secrets and variables&quot; section, and add the following secrets:</p>
-<ul>
-<li><code>DEPLOY_HOST</code>: IP address or hostname of your Linux server</li>
-<li><code>DEPLOY_USERNAME</code>: SSH Username to use for deployments</li>
-<li><code>DEPLOY_KEY</code>: Private key generated for GitHub Actions to SSH into your server</li>
-<li><code>LETSENCRYPT_EMAIL</code>: Your email address for Let's Encrypt notifications</li>
-</ul>
-<h4 id="using-github-cli-for-secret-management">Using GitHub CLI for Secret Management<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-github-cli-for-secret-management'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>You can use the <a href="https://cli.github.com/manual/gh_secret_set">GitHub CLI</a> for a quicker setup of these GitHub Action Secrets, e.g:</p>
-<pre><code class="language-bash">gh secret set DEPLOY_HOST --body=&quot;linux-server-host&quot;
-gh secret set DEPLOY_USERNAME --body=&quot;linux-server-username&quot;
-gh secret set DEPLOY_KEY --bodyFile=&quot;path/to/ssh-private-key&quot;
-gh secret set LETSENCRYPT_EMAIL --body=&quot;your-email@example.org&quot;
+                    <p>A happy consequence of the release of <a href="/posts/ai-server">AI Server</a> is that its
+<a href="https://openai.servicestack.net/ui/OpenAiChatCompletion?tab=details">OpenAiChatCompletion</a> API is an
+<strong>Open AI Chat compatible API</strong> that can be used to access other LLM API Gateways, like Open AI's Chat GPT, Open Router,
+Mistral AI, GroqCloud as well as self-hosted Ollama instances directly in 11 of the most popular Web, Mobile &amp; Desktop languages.</p>
+<p>This is a great opportunity to showcase the simplicity and flexibility of the
+<a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a> feature where invoking APIs are
+all done the same way in all languages where the same generic Service Client can be used to call any ServiceStack API by
+downloading their typed API DTOs and sending its populated Request DTO.</p>
+<p>Typically your <code>baseUrl</code> would be the URL of the remote ServiceStack API, but in this case we're using the
+generic JSON Service Client and Typed DTOs to call an external Open AI Chat API directly, e.g. to call your
+local self-hosted <a href="https://ollama.com">Ollama Server</a> you'd use:</p>
+<pre><code class="language-csharp">var baseUrl = &quot;http://localhost:11434&quot;;
 </code></pre>
-<p>These secrets will populate environment variables within your GitHub Actions workflow and other configuration files,
-enabling secure and automated deployment of your ServiceStack applications.</p>
-<h3 id="push-to-main-branch-to-trigger-deployment">4. Push to Main Branch to Trigger Deployment<a class="header-anchor" href="javascript:;" onclick="location.hash='#push-to-main-branch-to-trigger-deployment'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>With everything set up, pushing code to the main branch of your repository will trigger the GitHub Action workflow, initiating the deployment process:</p>
-<pre><code class="language-bash">git add .
-git commit -m &quot;Initial commit&quot;
-git push origin main
+<p>We'll use this to show how to call Open AI Chat APIs in 11 different languages:</p>
+<h2 id="c">C#<a class="header-anchor" href="javascript:;" onclick="location.hash='#c'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Install the <code>ServiceStack.Client</code> NuGet package:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>&lt;PackageReference Include=&quot;ServiceStack.Client&quot; Version=&quot;8.*&quot; /&gt;</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's C# DTOs with <a href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a>:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>x csharp https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with <code>JsonApiClient</code>:</p>
+<pre><code class="language-csharp">using ServiceStack;
+
+var client = new JsonApiClient(baseUrl);
+
+var result = await client.PostAsync&lt;OpenAiChatResponse&gt;(&quot;/v1/chat/completions&quot;,
+    new OpenAiChatCompletion {
+        Model = &quot;mixtral:8x22b&quot;,
+        Messages = [
+            new () { Role = &quot;user&quot;, Content = &quot;What's the capital of France?&quot; }
+        ],
+        MaxTokens = 50
+    });
 </code></pre>
-<h3 id="verifying-the-deployment">5. Verifying the Deployment<a class="header-anchor" href="javascript:;" onclick="location.hash='#verifying-the-deployment'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>After the GitHub Actions workflow completes, you can verify the deployment by:</p>
-<ul>
-<li>Checking the workflow's logs in your GitHub repository to ensure it completed successfully</li>
-<li>Navigating to your application's URL (e.g., <code>https://app.example.org</code>) in a web browser. You should see your ServiceStack application up and running with a secure HTTPS connection</li>
-</ul>
-<h2 id="features">Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<h3 id="db-migrations">DB Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#db-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The GitHub Actions workflow includes a step to run database migrations on the remote server in the <strong>Run remote db migrations</strong> step
-which automatically runs the <code>migrate</code> AppTask in the <code>app-migration</code> companion Docker container on the Linux Host Server
-to validate migration was successful before completing deployment of the new App. A failed migration will cause deployment to fail
-and the previous App version to continue to run.</p>
-<h3 id="patch-appsettings.json-with-production-secrets">Patch appsettings.json with production secrets<a class="header-anchor" href="javascript:;" onclick="location.hash='#patch-appsettings.json-with-production-secrets'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>One way to maintain sensitive information like API keys and connection strings for your Production App outside of its
-source code GitHub repository is to patch the <code>appsettings.json</code> file with a <a href="https://jsonpatch.com">JSON Patch</a> that's
-stored in your repo's <code>APPSETTINGS_PATCH</code> GitHub Action Secret which will be applied with the deployed App's <code>appsettings.json</code> file.</p>
-<p>For example this JSON Patch below will replace values and objects in your App's <strong>appsettings.json</strong>:</p>
-<pre><code class="language-json">[
-    { &quot;op&quot;:&quot;add&quot;, &quot;path&quot;:&quot;/oauth.facebook.AppSecret&quot;,  &quot;value&quot;:&quot;xxxx&quot; },
-    { &quot;op&quot;:&quot;add&quot;, &quot;path&quot;:&quot;/oauth.microsoft.AppSecret&quot;, &quot;value&quot;:&quot;xxxx&quot; },
-    { &quot;op&quot;:&quot;add&quot;, &quot;path&quot;:&quot;/smtp&quot;, &quot;value&quot;:{
-        &quot;UserName&quot;: &quot;xxxx&quot;,
-        &quot;Password&quot;: &quot;xxxx&quot;,
-        &quot;Host&quot;: &quot;smtp-server.example.org&quot;,
-        &quot;Port&quot;: 587,
-        &quot;From&quot;: &quot;noreply@example.org&quot;,
-        &quot;FromName&quot;: &quot;No Reply&quot;
-      } 
+<h2 id="typescript">TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Install the <code>@servicestack/client</code> npm package:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npm install @servicestack/client</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's TypeScript DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos typescript https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-ts">import { JsonServiceClient } from &quot;@servicestack/client&quot;
+import { OpenAiChatCompletion } from &quot;./dtos&quot;
+
+const client = new JsonServiceClient(baseUrl)
+
+const result = await client.postToUrl(&quot;/v1/chat/completions&quot;,
+    new OpenAiChatCompletion({
+        model: &quot;mixtral:8x22b&quot;,
+        messages: [
+            { role: &quot;user&quot;, content: &quot;What's the capital of France?&quot; }
+        ],
+        max_tokens: 50
+    })
+)
+</code></pre>
+<h2 id="javascript">JavaScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#javascript'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Save <a href="https://unpkg.com/@servicestack/client@2/dist/servicestack-client.mjs">servicestack-client.mjs</a> to your project</p>
+<p>Define an Import Map referencing its saved location</p>
+<pre><code class="language-html">&lt;script type=&quot;importmap&quot;&gt;
+    {
+        &quot;imports&quot;: {
+            &quot;@servicestack/client&quot;: &quot;/js/servicestack-client.mjs&quot;
+        }
     }
-]
+&lt;/script&gt;
 </code></pre>
-<p>You can test your JSON Patch by saving it to <code>appsettings.json.patch</code> and applying it with the
-<a href="https://docs.servicestack.net/dotnet-tool#patch-json-files">patch feature</a> of the <code>x</code> dotnet tool:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x patch appsettings.json.patch</p>
+<p>Download AI Server's ESM JavaScript DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos mjs https://openai.servicestack.net</code></p>
 </div>
                     </div>
                 <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
                         <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
                             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
@@ -443,95 +337,399 @@ stored in your repo's <code>APPSETTINGS_PATCH</code> GitHub Action Secret which 
                     </div>
                 </div>
             </div>
-<h2 id="anatomy-of-github-actions-workflow">Anatomy of GitHub Actions Workflow<a class="header-anchor" href="javascript:;" onclick="location.hash='#anatomy-of-github-actions-workflow'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>GitHub Actions workflows are defined in YAML files, and they provide a powerful way to automate your development process.
-This guide will take you through the key sections of the workflow to give you a comprehensive understanding of how it functions.</p>
-<h2 id="permissions">Permissions<a class="header-anchor" href="javascript:;" onclick="location.hash='#permissions'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>In this workflow, two permissions are specified:</p>
-<ul>
-<li><code>packages: write</code>: Allows the workflow to upload Docker images to GitHub Packages</li>
-<li><code>contents: write</code>: Required to access the repository content</li>
-</ul>
-<p>Specifying permissions ensures that the GitHub Actions runner has just enough access to perform the tasks in the workflow.</p>
-<h2 id="jobs">Jobs<a class="header-anchor" href="javascript:;" onclick="location.hash='#jobs'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This workflow consists of two jobs: <code>push_to_registry</code> and <code>deploy_via_ssh</code>.</p>
-<h3 id="push_to_registry">push_to_registry<a class="header-anchor" href="javascript:;" onclick="location.hash='#push_to_registry'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This job runs on an Ubuntu 22.04 runner and is responsible for pushing the Docker image to the GitHub Container Registry. It proceeds only if the previous workflow did not fail. The job includes the following steps:</p>
-<ol>
-<li><strong>Checkout</strong>: Retrieves the latest or specific tag of the repository's code</li>
-<li><strong>Env variable assignment</strong>: Assigns necessary environment variables for subsequent steps</li>
-<li><strong>Login to GitHub Container Registry</strong>: Authenticates to the GitHub Container Registry</li>
-<li><strong>Setup .NET Core</strong>: Prepares the environment for .NET 8</li>
-<li><strong>Build and push Docker image</strong>: Creates and uploads the Docker image to GitHub Container Registry (ghcr.io)</li>
-</ol>
-<h3 id="deploy_via_ssh">deploy_via_ssh<a class="header-anchor" href="javascript:;" onclick="location.hash='#deploy_via_ssh'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This job also runs on an Ubuntu 22.04 runner and depends on the successful completion of the <code>push_to_registry</code> job. Its role is to deploy the application via SSH. The steps involved are:</p>
-<ol>
-<li><strong>Checkout</strong>: Retrieves the latest or specific tag of the repository's code</li>
-<li><strong>Repository name fix and env</strong>: Sets up necessary environment variables</li>
-<li><strong>Create .env file</strong>: Generates a .env file required for deployment</li>
-<li><strong>Copy files to target server via scp</strong>: Securely copies files to the remote server</li>
-<li><strong>Run remote db migrations</strong>: Executes database migrations on the remote server</li>
-<li><strong>Remote docker-compose up via ssh</strong>: Deploys the Docker image with the application</li>
-</ol>
-<h2 id="triggers-on">Triggers (on)<a class="header-anchor" href="javascript:;" onclick="location.hash='#triggers-on'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The workflow is designed to be triggered by:</p>
-<ol>
-<li><strong>New GitHub Release</strong>: Activates when a new release is published</li>
-<li><strong>Successful Build action</strong>: Runs whenever the specified Build action completes successfully on the main or master branches</li>
-<li><strong>Manual trigger</strong>: Allows for rollback to a specific release or redeployment of the latest release, with an input for specifying the version tag</li>
-</ol>
-<p>Understanding these sections will help you navigate and modify the workflow as per your needs, ensuring a smooth and automated deployment process.</p>
-<h2 id="deployment-server-setup-expanded">Deployment Server Setup Expanded<a class="header-anchor" href="javascript:;" onclick="location.hash='#deployment-server-setup-expanded'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<h3 id="ubuntu-as-the-reference-point">Ubuntu as the Reference Point<a class="header-anchor" href="javascript:;" onclick="location.hash='#ubuntu-as-the-reference-point'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Though our example leverages Ubuntu, it's important to emphasize that the primary requirements for this deployment architecture are a Linux operating system, Docker, and SSH. Many popular Linux distributions like CentOS, Fedora, or Debian will work just as efficiently, provided they support Docker and SSH.</p>
-<h3 id="the-crucial-role-of-ssh-in-github-actions">The Crucial Role of SSH in GitHub Actions<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-crucial-role-of-ssh-in-github-actions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><strong>SSH</strong> (Secure SHell) is not just a protocol to remotely access your server's terminal. In the context of GitHub Actions:</p>
-<ul>
-<li>SSH offers a <strong>secure channel</strong> between GitHub Actions and your Linux server</li>
-<li>Enables GitHub to <strong>execute commands directly</strong> on your server</li>
-<li>Provides a mechanism to <strong>transfer files</strong> (like Docker-compose configurations or environment files) from the GitHub repository to the server</li>
-</ul>
-<p>By generating a dedicated SSH key pair specifically for GitHub Actions (as above), we ensure a secure and isolated access mechanism.
-Only the entities possessing the private key (in this case, only GitHub Actions) can initiate an authenticated connection.</p>
-<h3 id="docker-docker-compose-powering-the-architecture">Docker &amp; Docker-Compose: Powering the Architecture<a class="header-anchor" href="javascript:;" onclick="location.hash='#docker-docker-compose-powering-the-architecture'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><strong>Docker</strong> encapsulates your ServiceStack application into containers, ensuring consistency across different environments. Some of its advantages include:</p>
-<ul>
-<li><strong>Isolation</strong>: Your application runs in a consistent environment, irrespective of where Docker runs.</li>
-<li><strong>Scalability</strong>: Easily replicate containers to handle more requests.</li>
-<li><strong>Version Control for Environments</strong>: Create, maintain, and switch between different container images.</li>
-</ul>
-<p><strong>Docker-Compose</strong> extends Docker's benefits by orchestrating the deployment of multi-container applications:</p>
-<ul>
-<li><strong>Ease of Configuration</strong>: Describe your application's entire stack, including the application, database, cache, etc., in a single YAML file.</li>
-<li><strong>Consistency Across Multiple Containers</strong>: Ensures that containers are spun up in the right order and with the correct configurations.</li>
-<li><strong>Simplifies Commands</strong>: Instead of a long string of Docker CLI commands, a single <code>docker-compose up</code> brings your whole stack online.</li>
-</ul>
-<h3 id="nginx-reverse-proxy-the-silent-workhorse">NGINX Reverse Proxy: The Silent Workhorse<a class="header-anchor" href="javascript:;" onclick="location.hash='#nginx-reverse-proxy-the-silent-workhorse'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Using an <strong>nginx reverse proxy</strong> in this deployment design offers several powerful advantages:</p>
-<ul>
-<li><strong>Load Balancing</strong>: Distributes incoming requests across multiple ServiceStack applications, ensuring optimal resource utilization.</li>
-<li><strong>TLS Management</strong>: Together with its companion container, nginx reverse proxy automates the process of obtaining and renewing TLS certificates. This ensures your applications are always securely accessible over HTTPS.</li>
-<li><strong>Routing</strong>: Directs incoming traffic to the correct application based on the domain or subdomain.</li>
-<li><strong>Performance</strong>: Caches content to reduce load times and reduce the load on your ServiceStack applications.</li>
-</ul>
-<p>With an nginx reverse proxy, you can host multiple ServiceStack (or non-ServiceStack) applications on a single server while providing each with its domain or subdomain.</p>
-<h2 id="additional-resources">Additional Resources<a class="header-anchor" href="javascript:;" onclick="location.hash='#additional-resources'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<h3 id="docker-docker-compose">Docker &amp; Docker-Compose<a class="header-anchor" href="javascript:;" onclick="location.hash='#docker-docker-compose'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong><a href="https://docs.docker.com/">Docker Documentation</a></strong>: Core concepts, CLI usage, and practical applications</li>
-<li><strong><a href="https://docs.docker.com/compose/">Docker-Compose Documentation</a></strong>: Define and manage multi-container applications</li>
-</ul>
-<h3 id="github-actions">GitHub Actions<a class="header-anchor" href="javascript:;" onclick="location.hash='#github-actions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong><a href="https://docs.github.com/en/actions">GitHub Actions Documentation</a></strong>: Creating workflows, managing secrets, and automation tips</li>
-<li><strong><a href="https://github.com/actions/starter-workflows">Starter Workflows</a></strong>: Templates for various languages and tools</li>
-</ul>
-<h3 id="ssh-security">SSH &amp; Security<a class="header-anchor" href="javascript:;" onclick="location.hash='#ssh-security'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong><a href="https://www.ssh.com/academy/ssh/keygen">SSH Key Management</a></strong>: Guidelines on generating and managing SSH keys</li>
-<li><strong><a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub Actions Secrets</a></strong>: Securely store and use sensitive information</li>
-</ul>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-js">import { JsonServiceClient } from &quot;@servicestack/client&quot;
+import { OpenAiChatCompletion } from &quot;./dtos.mjs&quot;
+
+const client = new JsonServiceClient(baseUrl)
+
+const result = await client.postToUrl(&quot;/v1/chat/completions&quot;,
+    new OpenAiChatCompletion({
+        model: &quot;mixtral:8x22b&quot;,
+        messages: [
+            { role: &quot;user&quot;, content: &quot;What's the capital of France?&quot; }
+        ],
+        max_tokens: 50
+    })
+)
+</code></pre>
+<h2 id="python">Python<a class="header-anchor" href="javascript:;" onclick="location.hash='#python'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Install the <code>servicestack</code> PyPI package:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>pip install servicestack</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's Python DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos python https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-py">from servicestack import JsonServiceClient
+from my_app.dtos import *
+
+client = JsonServiceClient(baseUrl)
+
+result = client.post_url(&quot;/v1/chat/completions&quot;,OpenAiChatCompletion(
+    model=&quot;mixtral:8x22b&quot;,
+    messages=[
+        OpenAiMessage(role=&quot;user&quot;,content=&quot;What's the capital of France?&quot;)
+    ],
+    max_tokens=50
+))
+</code></pre>
+<h2 id="dart">Dart<a class="header-anchor" href="javascript:;" onclick="location.hash='#dart'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Include <code>servicestack</code> package in your projects <code>pubspec.yaml</code>:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>servicestack: ^3.0.1</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's Dart DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos dart https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-dart">import 'dart:io';
+import 'dart:typed_data';
+import 'package:servicestack/client.dart';
+
+var client = JsonServiceClient(baseUrl);
+
+var result = await client.postToUrl('/v1/chat/completions', 
+    OpenAiChatCompletion()
+      ..model = 'mixtral:8x22b'
+      ..max_tokens = 50
+      ..messages = [
+        OpenAiMessage()
+          ..role = 'user'
+          ..content = &quot;What's the capital of France?&quot;
+      ]);
+</code></pre>
+<h3 id="php">PHP<a class="header-anchor" href="javascript:;" onclick="location.hash='#php'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Include <code>servicestack/client</code> package in your projects <code>composer.json</code>:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>&quot;servicestack/client&quot;: &quot;^1.0&quot;</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's PHP DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos php https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-php">use ServiceStack\JsonServiceClient;
+use dtos\OpenAiChatCompletion;
+use dtos\OpenAiMessage;
+
+$client = new JsonServiceClient(baseUrl);
+$client-&gt;bearerToken = apiKey;
+
+/** @var {OpenAiChatCompletionResponse} $response */
+$result = $client-&gt;postUrl('/v1/chat/completions', 
+    body: new OpenAiChatCompletion(
+        model: &quot;mixtral:8x22b&quot;,
+        messages: [
+            new OpenAiMessage(
+                role: &quot;user&quot;,
+                content: &quot;What's the capital of France?&quot;
+            )
+        ],
+        max_tokens: 50
+    ));
+</code></pre>
+<h2 id="java">Java<a class="header-anchor" href="javascript:;" onclick="location.hash='#java'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Include <code>net.servicestack:client</code> package in your projects <code>build.gradle</code>:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>implementation 'net.servicestack:client:1.1.3'</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's Java DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos java https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-java">import net.servicestack.client.*;
+import java.util.Collections;
+
+var client = new JsonServiceClient(baseUrl);
+
+OpenAiChatResponse result = client.post(&quot;/v1/chat/completions&quot;, 
+    new OpenAiChatCompletion()
+        .setModel(&quot;mixtral:8x22b&quot;)
+        .setMaxTokens(50)
+        .setMessages(Utils.createList(new OpenAiMessage()
+                .setRole(&quot;user&quot;)
+                .setContent(&quot;What's the capital of France?&quot;)
+        )),
+    OpenAiChatResponse.class);
+</code></pre>
+<h2 id="kotlin">Kotlin<a class="header-anchor" href="javascript:;" onclick="location.hash='#kotlin'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Include <code>net.servicestack:client</code> package in your projects <code>build.gradle</code>:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>implementation 'net.servicestack:client:1.1.3'</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's Kotlin DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos kotlin https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-kotlin">package myapp
+import net.servicestack.client.*
+
+val client = JsonServiceClient(baseUrl)
+
+val result: OpenAiChatResponse = client.post(&quot;/v1/chat/completions&quot;, 
+    OpenAiChatCompletion().apply {
+        model = &quot;mixtral:8x22b&quot;
+        messages = arrayListOf(OpenAiMessage().apply {
+            role = &quot;user&quot;
+            content = &quot;What's the capital of France?&quot;
+        })
+        maxTokens = 50
+    }, 
+    OpenAiChatResponse::class.java)
+</code></pre>
+<h2 id="swift">Swift<a class="header-anchor" href="javascript:;" onclick="location.hash='#swift'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Include <code>ServiceStack</code> package in your projects <code>Package.swift</code></p>
+<pre><code class="language-swift">dependencies: [
+    .package(url: &quot;https://github.com/ServiceStack/ServiceStack.Swift.git&quot;,
+        Version(6,0,0)..&lt;Version(7,0,0)),
+],
+</code></pre>
+<p>Download AI Server's Swift DTOs:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos swift https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
+<pre><code class="language-swift">import Foundation
+import ServiceStack
+
+let client = JsonServiceClient(baseUrl:baseUrl)
+
+let request = OpenAiChatCompletion()
+request.model = &quot;mixtral:8x22b&quot;
+let msg =  OpenAiMessage()
+msg.role = &quot;user&quot;
+msg.content = &quot;What's the capital of France?&quot;
+request.messages = [msg]
+request.max_tokens = 50
+
+let result:OpenAiChatResponse = try await client.postAsync(
+    &quot;/v1/chat/completions&quot;, request:request)
+</code></pre>
+<h2 id="f">F#<a class="header-anchor" href="javascript:;" onclick="location.hash='#f'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Install the <code>ServiceStack.Client</code> NuGet package:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>&lt;PackageReference Include=&quot;ServiceStack.Client&quot; Version=&quot;8.*&quot; /&gt;</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's F# DTOs with <a href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a>:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>x fsharp https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with <code>JsonApiClient</code>:</p>
+<pre><code class="language-fsharp">open ServiceStack
+open ServiceStack.Text
+
+let client = new JsonApiClient(baseUrl)
+
+let result = client.Post&lt;OpenAiChatCompletionResponse&gt;(&quot;/v1/chat/completions&quot;, 
+     OpenAiChatCompletion(
+        Model = &quot;mixtral:8x22b&quot;,
+        Messages = ResizeArray [
+            OpenAiMessage(
+                Role = &quot;user&quot;,
+                Content = &quot;What's the capital of France?&quot;
+            )
+        ],
+        MaxTokens = 50))
+</code></pre>
+<h2 id="vb.net">VB.NET<a class="header-anchor" href="javascript:;" onclick="location.hash='#vb.net'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Install the <code>ServiceStack.Client</code> NuGet package:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>&lt;PackageReference Include=&quot;ServiceStack.Client&quot; Version=&quot;8.*&quot; /&gt;</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Download AI Server's VB.NET DTOs with <a href="https://docs.servicestack.net/dotnet-tool">x dotnet tool</a>:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>x vbnet https://openai.servicestack.net</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call API by sending <code>OpenAiChatCompletion</code> Request DTO with <code>JsonApiClient</code>:</p>
+<pre><code class="language-vb">Imports ServiceStack
+Imports ServiceStack.Text
+
+Dim client = New JsonApiClient(baseUrl)
+
+Dim result = Await client.PostAsync(Of OpenAiChatResponse)(
+    &quot;/v1/chat/completions&quot;,
+    New OpenAiChatCompletion() With {
+        .Model = &quot;mixtral:8x22b&quot;,
+        .Messages = New List(Of OpenAiMessage) From {
+            New OpenAiMessage With {
+                .Role = &quot;user&quot;,
+                .Content = &quot;What's the capital of France?&quot;
+            }
+        },
+        .MaxTokens = 50
+    })
+</code></pre>
 
                 </div>
             </div>
@@ -590,47 +788,6 @@ Only the entities possessing the private key (in this case, only GitHub Actions)
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/typed-openai-chat-ollama-apis">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1593486544625-13ef2368e43a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/typed-openai-chat-ollama-apis" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Typed Open AI Chat &amp; Ollama APIs in 11 Languages">
-                                                    Typed Open AI Chat &amp; Ollama APIs in 11 Languages
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Typed Open AI Chat &amp; Ollama APIs in 11 Languages background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2024-12-02T00:00:00.0000000">December 2, 2024</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>5 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -747,6 +904,47 @@ Only the entities possessing the private key (in this case, only GitHub Actions)
                                                     <time datetime="2024-10-02T00:00:00.0000000">October 2, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/scalable-sqlite">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/scalable-sqlite" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Scalable Server SQLite Apps">
+                                                    Scalable Server SQLite Apps
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Learn how to build concurrent, safe scalable SQLite .NET Apps in C#</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Scalable Server SQLite Apps background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-09-26T00:00:00.0000000">September 26, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>11 min read</span>
                                                 </div>
                                             </div>
                                         </div>
