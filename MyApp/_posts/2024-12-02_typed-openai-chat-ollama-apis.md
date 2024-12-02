@@ -4,7 +4,6 @@ summary: Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Oll
 tags: [ai-server,ai,gpt,service-reference,c#,js]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1593486544625-13ef2368e43a?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 A happy consequence of the release of [AI Server](/posts/ai-server) is that its 

@@ -4,7 +4,6 @@ summary: Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Oll
 tags: [ai-server,ai,gpt,service-reference,c#,js]
 url: https://media.servicestack.com/podcasts/typed-openai-chat-ollama-apis.mp3
 media: {size:2711372,duration:677.784000,format:mp3}
-draft: true
 ---
 
 This episode covers AI Server's `OpenAiChatCompletion` API - an OpenAI compatible Chat API with ChatGPT and 
