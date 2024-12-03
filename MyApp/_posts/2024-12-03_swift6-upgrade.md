@@ -4,7 +4,6 @@ summary: ServiceStack.Swift has been rewritten to take advantage of Swift 6 feat
 tags: [api,service-reference,swift]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 ![](https://docs.servicestack.net/img/pages/servicestack-reference/swift-logo-banner.jpg)

@@ -4,7 +4,6 @@ summary: ServiceStack.Swift has been rewritten to take advantage of Swift 6 feat
 tags: [api,service-reference,swift]
 url: https://media.servicestack.com/podcasts/swift6-upgrade.mp3
 media: {size:1430252,duration:357.504000,format:mp3}
-draft: true
 ---
 
 This episode covers updates to the ServiceStack.Swift client library. Key improvements include a rewrite 
