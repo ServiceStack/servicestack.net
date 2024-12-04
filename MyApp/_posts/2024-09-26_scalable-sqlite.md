@@ -323,10 +323,12 @@ letting Admins create and distribute API Keys to only allow authorized clients t
 AI Server's APIs, which can be optionally further restricted to only
 [allow access to specific APIs](https://docs.servicestack.net/auth/apikeys#creating-user-api-keys).
 
-## Active Development
 
-AI Server is still actively developed whilst we finish adding support for different 
-AI Requests in its first V1 release, including:
+### AI Server V1
+
+[AI Server V1](/posts/ai-server) is now released!
+
+The initial V1 release comes packed with features, including:
 
 #### Large Language Models
 - Open AI Chat
@@ -355,8 +357,7 @@ AI Requests in its first V1 release, including:
 #### Managed File Storage
 - Blob Storage - isolated and restricted by API Key
 
-### AI Sever V1
+### AI Server Feedback
 
-[AI Server V1](/posts/ai-server) is now released!
-
-Feel free to reach us at [ai-server/discussions](https://github.com/ServiceStack/ai-server/discussions) with any AI Server questions.
+Feel free to reach us at [ai-server/discussions](https://github.com/ServiceStack/ai-server/discussions) 
+with any AI Server questions.
