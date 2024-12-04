@@ -4,7 +4,6 @@ summary: ServiceStack Typed DTOs for all languages can now be downloaded and upl
 tags: [api,service-reference,js]
 url: https://media.servicestack.com/podcasts/npx-get-dtos.mp3
 media: {size:1262540,duration:315.576000,format:mp3}
-draft: true
 ---
 
 This episode covers a new npm script, `npx get-dtos`, that simplifies accessing ServiceStack APIs. 

@@ -4,7 +4,6 @@ summary: ServiceStack Typed DTOs for all languages can now be downloaded and upl
 tags: [api,service-reference,js]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1639262498805-17c7dc422d37?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 To make it easier to consume ServiceStack APIs in any language, we've added the ability to download and upload Typed DTOs 
