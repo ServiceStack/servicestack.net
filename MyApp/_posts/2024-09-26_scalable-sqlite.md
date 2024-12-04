@@ -355,16 +355,8 @@ AI Requests in its first V1 release, including:
 #### Managed File Storage
 - Blob Storage - isolated and restricted by API Key
 
-### V1 Release
+### AI Sever V1
 
-We'll announce **V1** after we've finished implementing the above AI Features with any
-necessary Admin UIs, feature documentation / API Docs and have streamlined the 
-Server Install / Client Setup experience. After V1 we'll be happy to start accepting 
-any external contributions for other AI Features users would like AI Server to support.
+[AI Server V1](/posts/ai-server) is now released!
 
-To get notified when AI Server is ready for public consumption, 
-follow [@ServiceStack](https://twitter.com/servicestack)
-or [join our ~Quarterly Newsletter](/posts/scalable-sqlite#top).
-
-In the meantime you can reach us at [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions)
-with any AI Server questions.
+Feel free to reach us at [ai-server/discussions](https://github.com/ServiceStack/ai-server/discussions) with any AI Server questions.
