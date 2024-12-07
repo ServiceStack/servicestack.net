@@ -6,8 +6,8 @@ author: Demis Bellot
 image: https://images.unsplash.com/photo-1639262498805-17c7dc422d37?crop=entropy&fit=crop&h=1000&w=2000
 ---
 
-To make it easier to consume ServiceStack APIs in any language, we've added the ability to download and upload Typed DTOs 
-in all languages without needing .NET installed with the new `npx get-dtos` npm script.
+To make it easier to consume ServiceStack APIs in any language, we've added the ability to download 
+Typed DTOs from any ServiceStack API in all languages without needing .NET installed with the new `npx get-dtos` npm script.
 
 It has the same syntax and functionality as the `x` dotnet tool for adding and updating ServiceStack References where
 in most cases you can replace `x <lang>` with `npx get-dtos <lang>` to achieve the same result.
@@ -28,7 +28,7 @@ Running `npx get-dtos` without any arguments will display the available options:
     get-dtos swift      <url>        Add Swift ServiceStack Reference         (Alias 'sw')
     get-dtos fsharp     <url>        Add F# ServiceStack Reference            (Alias 'fs')
     get-dtos vbnet      <url>        Add VB.NET ServiceStack Reference        (Alias 'vb')
-    get-dtos tsd        <url>        Add TypeScript Definition ServiceStack Reference    
+    get-dtos tsd        <url>        Add TypeScript Definition ServiceStack Reference
     
     Options:
         -h, --help, ?             Print this message
