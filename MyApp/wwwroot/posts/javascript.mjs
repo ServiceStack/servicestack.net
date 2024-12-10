@@ -2,7 +2,7 @@ import { JsonApiClient } from "@servicestack/client"
 import ServiceStackVue, { useMetadata } from "@servicestack/vue"
 export default {
     install(app) {
-        const client = JsonApiClient.create('https://blazor-gallery-api.jamstacks.net/')
+        const client = JsonApiClient.create('https://blazor-gallery.jamstacks.net/')
 
         app.provide('client', client)
         app.use(ServiceStackVue)
