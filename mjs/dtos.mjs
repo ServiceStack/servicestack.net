@@ -577,7 +577,7 @@ export class Hello {
     /** @type {string} */
     name;
     getTypeName() { return 'Hello' }
-    getMethod() { return 'POST' }
+    getMethod() { return 'GET' }
     createResponse() { return new Hello() }
 }
 export class PaymentsResponse {
