@@ -26,9 +26,8 @@ sophisticated development workflow without the need for any npm build tools.
 
 ### Bringing Simplicity Back
 
-The [razor](https://github.com/NetCoreTemplates/razor) template focuses on simplicity and eschews many aspects that has 
-complicated modern JavaScript development,
-specifically:
+The [Blazor Vue](/posts/net8-best-blazor) template focuses on simplicity and eschews many aspects that has 
+complicated modern JavaScript development, specifically:
 
  - No npm node_modules or build tools
  - No client side routing
