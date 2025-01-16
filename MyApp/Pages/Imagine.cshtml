@@ -1,0 +1,416 @@
+@page "/imagine"
+@attribute [RenderStatic]
+@{
+    //Layout = "_LayoutPodcast";
+    ViewData["Title"] = "Text to Blazor App";
+}
+<style>
+.cm-s-default {
+    height: 100% !important;
+}
+/*
+blue-500 #3b82f6
+green-500 #22c55e
+ */
+.container {
+}
+</style>
+<div class="pb-12 pt-16 sm:pb-4 lg:pt-12">
+    <div>
+        <div class="mx-auto px-4 sm:px-6 md:max-w-3xl md:px-4 lg:px-0">
+            <h1 class="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
+                <label for="prompt" class="flex items-center">
+                    <a href="/imagine">
+                        <img src="/img/svgs/blazor.svg" alt="Blazor Vue Logo" class="mr-4 w-20 h-20 inline-block align-middle">
+                    </a>
+                    Text to Blazor Vue App
+                </label>
+            </h1>
+        </div>
+    </div>
+
+    <div id="app" class="mx-auto lg:max-w-7xl">
+
+        <div v-if="!generation" class="mx-auto lg:max-w-4xl">
+            <div class="flex justify-center mb-4">
+                <div class="w-48">
+                    <label for="project" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project Name</label>
+                    <div class="mt-1 relative shadow-sm rounded-md">
+                        <input type="text" name="project" id="project"
+                               class="block w-full sm:text-sm rounded-md dark:text-white dark:bg-gray-900 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 dark:border-gray-600"
+                               placeholder="Project Name"
+                               autocomplete="off" spellcheck="false"
+                               v-model="project">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-section flex justify-between items-center max-fullscreen">
+                <svg v-if="routes.id" @@click="navGen(-1)" class="w-24 h-24 cursor-pointer text-slate-300 hover:text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Previous Generation</title><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M8.293 12.707a1 1 0 0 1 0-1.414l5.657-5.657a1 1 0 1 1 1.414 1.414L10.414 12l4.95 4.95a1 1 0 0 1-1.414 1.414z"/></g></svg>
+                <div class="mt-1 w-full relative shadow-sm rounded-md">
+                    <textarea id="prompt" class="flex-grow border py-2 px-3 text-2xl block w-full rounded-md dark:text-white dark:bg-gray-900 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 dark:border-gray-600"
+                              type="text" autocomplete="off" spellcheck="false" autofocus="true"
+                              placeholder="What App do you want to create?" v-model="prompt"></textarea>
+                </div>
+                <svg v-if="routes.id" @@click="navGen(1)" class="w-24 h-24 cursor-pointer text-slate-300 hover:text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Next Generation</title><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M15.707 11.293a1 1 0 0 1 0 1.414l-5.657 5.657a1 1 0 1 1-1.414-1.414l4.95-4.95l-4.95-4.95a1 1 0 0 1 1.414-1.414z"/></g></svg>
+            </div>
+            
+            <div class="text-center">
+                <div class="error-summary invalid-feedback my-1"></div>
+            </div>
+
+            <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+                <div class="mt-5 mb-8 flex justify-center gap-8">
+                    <button id="btnGenerate" @@click="generate()" type="button" :disabled="!prompt || prompt == gist?.description || loadingGeneration" 
+                            class="cursor-pointer rounded-full bg-white dark:bg-slate-700 px-8 py-3 text-xl text-slate-600 hover:text-slate-800 disabled:text-slate-400 disabled:bg-gray-100 hover:bg-gray-50 border-2 border-indigo-500 disabled:border-slate-300 hover:border-green-500 rounded-md shadow disabled:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300">
+                        Generate App
+                    </button>
+                </div>
+                <div v-if="loadingGeneration" class="mb-8 flex justify-center">
+                    <form-loading text="generating..."></form-loading>
+                </div>
+            </div>
+        </div>
+        <div v-else v-cloak>
+            <div v-if="!routes.id" class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mb-4">
+                    <div class="mx-auto flex items-center justify-center">
+                        <p class="relative rounded-full px-4 py-1.5 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 ring-inset">
+                            {{generation.description}}
+                        </p>
+                        <span class="ml-2" title="New Generation" @@click="clearGeneration()">
+                            <svg class="cursor-pointer w-5 h-5 text-gray-500 hover:text-red-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l2.9 2.9q.275.275.7.275t.7-.275t.275-.7t-.275-.7L13.4 12l2.9-2.9q.275-.275.275-.7t-.275-.7t-.7-.275t-.7.275L12 10.6L9.1 7.7q-.275-.275-.7-.275t-.7.275t-.275.7t.275.7l2.9 2.9l-2.9 2.9q-.275.275-.275.7t.275.7t.7.275t.7-.275zm0 8.6q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="sm:hidden">
+                        <label for="tabs" class="sr-only">Select a tab</label>
+                        <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+                        <select id="tabs" name="tabs" @@change="routes.to({ model:$event.target.value, id:undefined, page:undefined, pageSize:undefined })"
+                                class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                            <option v-for="(file,model) in generation.files" :value="model">{{file.filename}}</option>
+                        </select>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex" aria-label="Tabs">
+                                <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+                                <div v-for="(file,model) in generation.files" v-href="{ model, id:undefined, page:undefined, pageSize:undefined }"
+                                     :class="['cursor-pointer w-1/4 border-b-2 px-1 py-2 text-center text-sm font-medium text-gray-500', model == selectedModel ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700']">
+                                    <div class="flex flex-col justify-center items-center">
+                                        <img :src="getIcon(model)" class="w-8 h-8">
+                                        <span class="mt-3">{{model}}</span>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="routes.id && gist">
+                <div class="mb-4 mx-auto max-w-sm">
+                    <button v-href="{id:undefined}" type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                        View Generation
+                        <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+                <div v-if="gist.description" class="mb-4 flex items-center justify-center mx-auto relative ">
+                    <svg v-if="routes.id" @@click="navGen(-1)" class="w-8 h-8 cursor-pointer text-slate-300 hover:text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Previous Generation</title><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M8.293 12.707a1 1 0 0 1 0-1.414l5.657-5.657a1 1 0 1 1 1.414 1.414L10.414 12l4.95 4.95a1 1 0 0 1-1.414 1.414z"/></g></svg>
+                    <p class="rounded-full px-4 py-1.5 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 ring-inset">
+                        {{gist.description}}
+                    </p>
+                    <svg v-if="routes.id" @@click="navGen(1)" class="w-8 h-8 cursor-pointer text-slate-300 hover:text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Next Generation</title><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M15.707 11.293a1 1 0 0 1 0 1.414l-5.657 5.657a1 1 0 1 1-1.414-1.414l4.95-4.95l-4.95-4.95a1 1 0 0 1 1.414-1.414z"/></g></svg>
+                </div>
+            </div>
+        </div>
+        <div v-if="gist">
+            <gist-view :gist="gist"></gist-view>
+            <div class="mt-4 flex justify-center">
+                <div>
+                    <div class="-ml-4 mb-2 text-center text-gray-500">download {{selectedModel}}</div>
+                    <a class="archive-url hover:no-underline" :href="archiveUrl" title="Download new Blazor App">
+                        <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width: 150px;">
+                            <div class="text-center font-extrabold flex items-center justify-center mb-2">
+                                <div class="text-4xl text-blue-400 my-3">
+                                    <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"/></svg>
+                                </div></div>
+                            <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor App</div>
+                            <div class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{project}}.zip</div>
+                        </div>
+                    </a>
+                </div>
+            </div>            
+        </div>
+
+        <div class="my-24" v-cloak>
+            <div class="mx-auto lg:max-w-5xl overflow-hidden bg-white sm:rounded-lg sm:shadow-sm">
+                <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+                    <div class="-mt-4 -ml-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
+                        <div class="mt-4 ml-4">
+                            <h3 class="text-base font-semibold text-gray-900">Generated Applications</h3>
+                            <p class="mt-1 text-sm text-gray-500">Download existing full-stack Blazor Vue Web Apps</p>
+                        </div>
+                        <pages-nav class="mt-4 w-1/2" path="/imagine" :total="accepted.length" :page-size="parseInt(routes.pageSize) || 10" :page="Math.max(1,routes.page ?? 1)"></pages-nav>
+                    </div>
+                </div>
+                <ul role="list" class="divide-y divide-gray-200">
+                    <li v-for="info in infos" :class="[info.id == routes.id ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-50']">
+                        <span v-href="{id:info.id, model:undefined}" class="cursor-pointer block">
+                            <div class="px-4 py-4 sm:px-6">
+                                <div class="flex items-center justify-between">
+                                    <div class="truncate text-sm font-medium">{{info.prompt}}</div>
+                                </div>
+                                <div class="mt-2 flex justify-between">
+                                    <div class="sm:flex">
+                                        <div class="flex items-center text-sm">
+                                            <img :src="getIcon(info.model)" class="mr-1.5 size-5 shrink-0" alt="Model Icon">
+                                            {{info.model}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("CodeMirrorIncludes")
+
+<script type="module">
+import { ref, computed, watch, reactive, onMounted, nextTick } from "vue"
+import { App, usePageRoutes } from "core"
+import { JsonServiceClient, rightPart, lastRightPart } from "@@servicestack/client"
+import ServiceStackVue from "@@servicestack/vue"
+import PagesNav from "./mjs/components/PagesNav.mjs"
+import GistView from "./mjs/components/GistView.mjs"
+
+export const icons = {
+    'llama3.1:70b':         '/img/models/llama.svg',
+    'llama3.3:70b':         '/img/models/llama.svg',
+    'llama3:8b':            '/img/models/llama.svg',
+    'codestral:22b':        '/img/models/codestral.svg',
+    'mistral-nemo:12b':     '/img/models/mistral-nemo.svg',
+    'phi-4:14b':            '/img/models/phi4.svg',
+    'mixtral:8x7b':         '/img/models/mixtral.jpg',
+    'mixtral:8x22b':        '/img/models/mixtral.jpg',
+    'nova-micro':           '/img/models/aws.svg',
+    'nova-lite':            '/img/models/aws.svg',
+    'nova-pro':             '/img/models/aws.svg',
+    'gpt-3.5-turbo':        '/img/models/gpt-3.5.svg',
+    'gpt-4':                '/img/models/gpt-4.svg',
+    'gpt-4-turbo':          '/img/models/gpt-4.svg',
+    'gpt-4o':               '/img/models/gpt-4.svg',
+    'gpt-4o-mini':          '/img/models/gpt-4.svg',
+    'o1-preview':           '/img/models/gpt-4.svg',
+    'o1-mini':              '/img/models/gpt-4.svg',
+    'deepseek-v2.5:236b':   '/img/models/deepseek-coder.jpg',
+    'qwen2.5:72b':          '/img/models/qwen.svg',
+    'qwen2.5-coder:32b':    '/img/models/qwen.svg',
+    'qwq:32b':              '/img/models/qwen.svg',
+    'gemma2:9b':            '/img/models/gemma.svg',
+    'claude-3-haiku':       '/img/models/claude-3-haiku.svg',
+    'claude-3-sonnet':      '/img/models/claude-3-sonnet.svg',
+    'claude-3-5-haiku':     '/img/models/claude-3-haiku.svg',
+    'claude-3-5-sonnet':    '/img/models/claude-3-5-sonnet.svg',
+    'gemini-flash-2.0':     '/img/models/gemini-pro.svg',
+    'gemini-flash-1.5':     '/img/models/gemini-pro.svg',
+    'gemini-flash-1.5-8b':  '/img/models/gemini-pro.svg',
+    'gemini-pro-1.5':       '/img/models/gemini-pro.svg',
+}
+
+const app = new App()
+app.use(ServiceStackVue)
+app.component('RouterLink', ServiceStackVue.component('RouterLink'))
+const client = window.client = new JsonServiceClient()
+const events = app.events
+
+let routes = usePageRoutes(app, {
+    page:'imagine',
+    queryKeys: ('model,id,q,page,skip,show,orderBy,pageSize,tab').split(','),
+    handlers: {
+        init(state) { console.debug('init', state) }, /*debug*/
+        nav(state) { console.debug('nav', state) } /*debug*/
+    },
+})
+
+let store = {
+    gistCache: {}
+}
+store = reactive(store)
+globalThis.store = store
+
+const AppComponent = {
+    components: {
+        PagesNav,
+        GistView,
+    },
+    setup() {
+        const project = ref('Acme')
+        const prompt = ref('')
+        const accepted = ref([])
+        const gist = ref()
+        const loadingGeneration = ref(false)
+        const loadingGist = ref(false)
+        const generation = ref()
+        const archiveUrl = computed(() => !gist.value?.id ? null 
+            : `https://account.servicestack.net/archive/NetCoreTemplates/blazor-vue?Name=${project.value}&okai=${gist.value.id}`)
+        
+        const selectedModel = computed(() => routes.model || Object.keys(generation.value?.files || {})[0])
+        const infos = computed(() => {
+            const skip = ((routes.page || 1) - 1) * (routes.pageSize || 10)
+            return accepted.value.slice(skip, skip + (routes.pageSize || 10))
+        })
+        
+        const generationId = computed(() => selectedModel.value &&
+            lastRightPart(generation.value?.files[selectedModel.value]?.raw_url, '/') 
+            || lastRightPart(Object.values(generation.value?.files || {})[0]?.raw_url, '/'))
+
+        watch(() => routes.model, () => {
+            console.log('routes.model', routes.model)
+            const genId = generationId.value
+            gist.value = null
+            if (genId && store.gistCache[genId]) {
+                nextTick(() => {
+                    gist.value = store.gistCache[generationId.value]
+                })
+            }
+        })
+
+        watch(() => routes.id,  async (id, oldId) => {
+            console.log('routes.id', routes.id, id, oldId)
+            if (!id) {
+                gist.value = null
+                const genId = generationId.value
+                if (genId && store.gistCache[genId]) {
+                    nextTick(() => {
+                        gist.value = store.gistCache[genId]
+                    })
+                }
+                return
+            }
+            if (store.gistCache[id]) {
+                gist.value = null
+                nextTick(() => {
+                    if (routes.id === id) {
+                        gist.value = store.gistCache[id]
+                        if (gist.value.description) {
+                            prompt.value = gist.value.description
+                        }
+                    }
+                })
+                return
+            }
+            const url = `https://okai.servicestack.com/models/gist?prompt=${id}&include=all&template=blazor-vue&project=${project.value}`
+            const r = await fetch(url)
+            const gistObj = await r.json()
+            gist.value = null
+            nextTick(() => {
+                if (routes.id === id) {
+                    gist.value = store.gistCache[id] = gistObj
+                    if (gist.value.description) {
+                        prompt.value = gist.value.description
+                    }
+                }
+            })
+        })
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        async function generate() {
+            loadingGeneration.value = true
+            await sleep(2000)
+            let cached = true
+            let generateModelsUrl = new URL('https://okai.servicestack.com/models/gist')
+            function addQueryParams(args) {
+                for (const [k,v] of Object.entries(args)) {
+                    generateModelsUrl.searchParams.set(k, v)
+                }
+            }
+            if (cached) {
+                addQueryParams({ prompt: 1735872878252, cached: 1 })
+            } else {
+                addQueryParams({ 
+                    prompt: prompt.value, 
+                    include: 'all', 
+                    project: project.value, 
+                    template: 'blazor-vue' 
+                })
+            }
+            const r = await fetch(generateModelsUrl)
+            generation.value = await r.json()
+            await Promise.all(Object.keys(generation.value.files).map(async model => {
+                const id = lastRightPart(generation.value.files[model].raw_url, '/')
+                const r = await fetch(`https://okai.servicestack.com/models/gist?prompt=${id}&include=all&template=blazor-vue&project=${project.value}`)
+                store.gistCache[id] = await r.json()
+            }))
+            gist.value = store.gistCache[generationId.value]
+            loadingGeneration.value = false
+        }
+
+        function getIcon(model) {
+            return 'https://openai.servicestack.net/' + (icons[model] || '/img/models/gpt-4.svg')
+        }
+        
+        function clearGeneration() {
+            generation.value = null
+            routes.to({ model:undefined, id:undefined, page:undefined, pageSize:undefined, tab:undefined })
+        }
+        
+        function navGen(pos) {
+            const gen = accepted.value.find(x => x.id == routes.id)
+            if (!gen) {
+                routes.to({ id: accepted.value[0].id })
+            } else {
+                const idx = accepted.value.indexOf(gen)
+                let nextPos = idx + pos
+                const next = nextPos < 0 
+                    ? accepted.value[accepted.value.length - 1]
+                    : accepted.value[nextPos % accepted.value.length]
+                if (next) {
+                    routes.to({ id: next.id })
+                }
+            }
+        }
+
+        onMounted(async () => {
+            const r = await fetch('/okai/accepted/index.json')
+            accepted.value = await r.json()
+            accepted.value.reverse()
+        })
+        
+        return {
+            store, 
+            routes, 
+            project,
+            prompt,
+            accepted,
+            infos,
+            gist,
+            loadingGeneration,
+            loadingGist,
+            selectedModel,
+            generation,
+            generationId,
+            archiveUrl,
+            generate,
+            getIcon,
+            clearGeneration,
+            navGen,
+            rightPart,
+        }
+    }
+}
+
+app.provides({ client, events, routes, store, })
+
+app.build(AppComponent).mount('#app')
+app.start()
+</script>

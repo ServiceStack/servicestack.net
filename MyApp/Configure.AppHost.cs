@@ -69,7 +69,10 @@ public static class HtmlHelpers
             .Version.LastLeftPart('.') ?? "0.0.0";
 }
 
-public class Hello : IGet, IReturn<StringResponse> {}
+public class Hello : IGet, IReturn<StringResponse>
+{
+    public string Name { get; set; }
+}
 public class MyServices : Service
 {
     public object Any(Hello request) => new StringResponse { Result = $"Hello, World!" };
