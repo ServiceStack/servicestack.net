@@ -244,16 +244,41 @@ green-500 #22c55e
         </div>
         <div v-if="gist">
             <gist-view :gist="gist"></gist-view>
+            
+            <div class="mt-4 flex justify-center items-center">
+                <svg class="mr-1 w-5 h-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"/></svg>
+                <div class="text-gray-500">download {{selectedModel ?? rightPart(gist.owner,'/')}}</div>
+            </div>
+            
             <div class="mt-4 flex justify-center">
                 <div>
-                    <div class="-ml-4 mb-2 text-center text-gray-500">download {{selectedModel}}</div>
-                    <a class="archive-url hover:no-underline" :href="archiveUrl" title="Download new Blazor App">
+                    <a class="archive-url hover:no-underline" :href="archiveUrl('blazor-admin')" title="Download new Blazor Admin App">
                         <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width: 150px;">
                             <div class="text-center font-extrabold flex items-center justify-center mb-2">
                                 <div class="text-4xl text-blue-400 my-3">
-                                    <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"/></svg>
-                                </div></div>
-                            <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Blazor App</div>
+                                    <img class="w-12 h-12" src="/img/svgs/blazor.svg" alt="Blazor Admin Logo">
+                                </div>
+                            </div>
+                            <div class="flex justify-center h-8">
+                                <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 dark:text-blue-400 text-sm">internal</span></div>
+                            </div>        
+                            <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Admin Only</div>
+                            <div class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{project}}.zip</div>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a class="archive-url hover:no-underline" :href="archiveUrl('blazor-vue')" title="Download new Blazor Vue App">
+                        <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width: 150px;">
+                            <div class="text-center font-extrabold flex items-center justify-center mb-2">
+                                <div class="text-4xl text-blue-400 my-3">
+                                    <img class="w-12 h-12" src="/img/svgs/blazor.svg" alt="Blazor Vue Logo">
+                                </div>
+                            </div>
+                            <div class="flex justify-center h-8">
+                                <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 dark:text-blue-400 text-sm">public</span></div>
+                            </div>
+                            <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">UI + Admin</div>
                             <div class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{project}}.zip</div>
                         </div>
                     </a>
@@ -381,8 +406,8 @@ const AppComponent = {
         const loadingGeneration = ref(false)
         const loadingGist = ref(false)
         const generation = ref()
-        const archiveUrl = computed(() => !gist.value?.id ? null 
-            : `https://account.servicestack.net/archive/NetCoreTemplates/blazor-vue?Name=${project.value}&okai=${gist.value.id}`)
+        const archiveUrl = (template) => !gist.value?.id ? null 
+            : `https://account.servicestack.net/archive/NetCoreTemplates/${template}?Name=${project.value}&okai=${gist.value.id}`
         
         const selectedModel = computed(() => routes.model || Object.keys(generation.value?.files || {})[0])
         const infos = computed(() => {
@@ -429,7 +454,7 @@ const AppComponent = {
                 })
                 return
             }
-            const url = `https://okai.servicestack.com/models/gist?prompt=${id}&include=all&template=blazor-vue&project=${project.value}`
+            const url = `https://okai.servicestack.com/models/gist?prompt=${id}&include=all,-header&template=blazor-vue&project=${project.value}`
             const r = await fetch(url)
             const gistObj = await r.json()
             gist.value = null
@@ -471,7 +496,7 @@ const AppComponent = {
             generation.value = await r.json()
             await Promise.all(Object.keys(generation.value.files).map(async model => {
                 const id = lastRightPart(generation.value.files[model].raw_url, '/')
-                const r = await fetch(`https://okai.servicestack.com/models/gist?prompt=${id}&include=all&template=blazor-vue&project=${project.value}`)
+                const r = await fetch(`https://okai.servicestack.com/models/gist?prompt=${id}&include=all,-header&template=blazor-vue&project=${project.value}`)
                 store.gistCache[id] = await r.json()
             }))
             gist.value = store.gistCache[generationId.value]
