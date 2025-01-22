@@ -21,6 +21,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.MapGet("/text", async ctx => 
+    ctx.Response.Redirect(AppConfig.Instance.PublicBaseUrl.CombineWith("/text")));
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
