@@ -1,0 +1,192 @@
+[
+  {
+    "Condition": {
+      "KeyPrefixEquals": "buy"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "Buy"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "subscriptions"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "renew"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "account"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "trial"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "free"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net",
+      "Protocol": "https",
+      "ReplaceKeyWith": "free/"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "forgot-password/"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "reset-password/"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "pricing"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "login"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "mythz_blog"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "apps/"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "ormlite"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net",
+      "ReplaceKeyWith": "ormlite/"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "redis"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net",
+      "ReplaceKeyWith": "redis/"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "vs-templates/"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "auth/"
+    },
+    "Redirect": {
+      "HostName": "account.servicestack.net"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "discuss"
+    },
+    "Redirect": {
+      "HostName": "github.com",
+      "Protocol": "https",
+      "ReplaceKeyPrefixWith": "ServiceStack/Discuss/discussions"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "discord"
+    },
+    "Redirect": {
+      "HostName": "discord.gg",
+      "Protocol": "https",
+      "ReplaceKeyPrefixWith": "w4ayGbuYpA"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "ask"
+    },
+    "Redirect": {
+      "HostName": "github.com",
+      "Protocol": "https",
+      "ReplaceKeyPrefixWith": "ServiceStack/Discuss/discussions/categories/q-a"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "ideas"
+    },
+    "Redirect": {
+      "HostName": "github.com",
+      "Protocol": "https",
+      "ReplaceKeyPrefixWith": "ServiceStack/Discuss/discussions/categories/ideas"
+    }
+  },
+  {
+    "Condition": {
+      "KeyPrefixEquals": "showcase"
+    },
+    "Redirect": {
+      "HostName": "github.com",
+      "Protocol": "https",
+      "ReplaceKeyPrefixWith": "ServiceStack/Discuss/discussions/categories/show-and-tell"
+    }
+  }
+]
