@@ -242,15 +242,16 @@ green-500 #22c55e
                 </div>
             </div>
         </div>
-        <div v-if="gist">
+        <div v-if="gist" v-cloak>
             <gist-view :gist="gist"></gist-view>
             
-            <div class="mt-4 flex justify-center items-center">
+            <div class="mt-4 flex justify-center items-center" v-cloak>
                 <svg class="mr-1 w-5 h-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"/></svg>
-                <div class="text-gray-500">download {{selectedModel ?? rightPart(gist.owner,'/')}}</div>
+                <div class="text-gray-500">download</div>
+                <img v-if="useModel" :src="getIcon(useModel)" class="ml-1.5 size-5 shrink-0" alt="Model Icon" :title="'download ' + useModel + ' data models'">
             </div>
             
-            <div class="mt-4 flex justify-center">
+            <div class="mt-4 flex justify-center" v-cloak>
                 <div>
                     <a class="archive-url hover:no-underline" :href="archiveUrl('blazor-admin')" title="Download new Blazor Admin App">
                         <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width: 150px;">
@@ -406,6 +407,7 @@ const AppComponent = {
         const loadingGeneration = ref(false)
         const loadingGist = ref(false)
         const generation = ref()
+        const useModel = computed(() => selectedModel.value ?? gist.value ? rightPart(gist.value.owner,'/') : '')
         const archiveUrl = (template) => !gist.value?.id ? null 
             : `https://account.servicestack.net/archive/NetCoreTemplates/${template}?Name=${project.value}&okai=${gist.value.id}`
         
@@ -542,6 +544,7 @@ const AppComponent = {
             accepted,
             infos,
             gist,
+            useModel,
             loadingGeneration,
             loadingGist,
             selectedModel,
