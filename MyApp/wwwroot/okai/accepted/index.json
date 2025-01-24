@@ -112,13 +112,6 @@
     "groupName": "PostCategories"
   },
   {
-    "id": "1735873704297",
-    "model": "llama3.3:70b",
-    "provider": "openrouter",
-    "prompt": "Create a CMS to manage a website",
-    "groupName": "Comments"
-  },
-  {
     "id": "1735872878252",
     "model": "llama3.3:70b",
     "provider": "openrouter",
@@ -126,10 +119,38 @@
     "groupName": "MenuItems"
   },
   {
+    "id": "1735873704297",
+    "model": "llama3.3:70b",
+    "provider": "openrouter",
+    "prompt": "Create a CMS to manage a website",
+    "groupName": "Comments"
+  },
+  {
     "id": "1736959853686",
     "model": "llama3.3:70b",
     "provider": "openrouter",
     "prompt": "Create an employee management, payroll and benefits administration App",
     "groupName": "EmployeeJobTitles"
+  },
+  {
+    "id": "1736790645942",
+    "model": "qwen2.5-coder:32b",
+    "provider": "openrouter",
+    "prompt": "create a job board",
+    "groupName": "JobSkills"
+  },
+  {
+    "id": "1737008556870",
+    "model": "codestral:22b",
+    "provider": "codestral",
+    "prompt": "Create an internal Collaboration tool to Facilitate teamwork and communication among employees ",
+    "groupName": "ProjectMembers"
+  },
+  {
+    "id": "1737685678104",
+    "model": "codestral:22b",
+    "provider": "codestral",
+    "prompt": "Create an employee self-service App with benefits enrollment, payroll access, and time-off requests",
+    "groupName": "EmployeeBenefits"
   }
 ]

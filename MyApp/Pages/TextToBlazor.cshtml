@@ -20,7 +20,7 @@ green-500 #22c55e
         <div class="mx-auto px-4 sm:px-6 md:max-w-3xl md:px-4 lg:px-0">
             <h1 class="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
                 <label for="prompt" class="flex items-center">
-                    <a href="/imagine">
+                    <a href="/text-to-blazor">
                         <img src="/img/svgs/blazor.svg" alt="Blazor Vue Logo" class="mr-4 w-20 h-20 inline-block align-middle">
                     </a>
                     Text to Blazor Vue App
@@ -65,7 +65,7 @@ green-500 #22c55e
 
             <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
                 <div class="mt-5 mb-8 flex justify-center gap-8">
-                    <button id="btnGenerate" @@click="generate()" type="button" :disabled="!prompt || prompt == gist?.description || loadingGeneration" 
+                    <button id="btnGenerate" @@click="generate($event)" type="button" :disabled="!prompt || prompt == gist?.description || loadingGeneration" 
                             class="cursor-pointer rounded-full bg-white dark:bg-slate-700 px-8 py-3 text-xl text-slate-600 hover:text-slate-800 disabled:text-slate-400 disabled:bg-gray-100 hover:bg-gray-50 border-2 border-indigo-500 disabled:border-slate-300 hover:border-green-500 rounded-md shadow disabled:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300">
                         Generate App
                     </button>
@@ -135,7 +135,7 @@ green-500 #22c55e
             </div>
         </div>
         <div v-if="gist" v-cloak>
-            <gist-view :gist="gist"></gist-view>
+            <gist-view :gist="gist" :icon="getIcon(useModel)"></gist-view>
             
             <div class="mt-4 flex justify-center items-center" v-cloak>
                 <svg class="mr-1 w-5 h-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"/></svg>
@@ -256,6 +256,7 @@ export const icons = {
     'gemini-flash-1.5':     '/img/models/gemini-pro.svg',
     'gemini-flash-1.5-8b':  '/img/models/gemini-pro.svg',
     'gemini-pro-1.5':       '/img/models/gemini-pro.svg',
+    'gemini-flash-thinking-2.0': '/img/models/gemini-pro.svg',
 }
 
 const app = new App()
@@ -359,10 +360,10 @@ const AppComponent = {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
         
-        async function generate() {
+        async function generate(e) {
             loadingGeneration.value = true
             await sleep(2000)
-            let cached = true
+            let cached = e.ctrlKey // hold CTRL to use cached model
             let generateModelsUrl = new URL('https://okai.servicestack.com/models/gist')
             function addQueryParams(args) {
                 for (const [k,v] of Object.entries(args)) {
@@ -374,7 +375,7 @@ const AppComponent = {
             } else {
                 addQueryParams({ 
                     prompt: prompt.value, 
-                    include: 'all', 
+                    include: 'all,-header', 
                     project: project.value, 
                     template: 'blazor-vue' 
                 })
