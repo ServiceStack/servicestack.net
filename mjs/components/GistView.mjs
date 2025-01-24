@@ -6,7 +6,8 @@ export default {
     <div class="flex gap-x-1">
         <div class="w-1/2">
             <div class="flex justify-between items-center">
-                <div class="mr-4">
+                <div class="mr-4 flex items-center">
+                    <img v-if="icon" :src="icon" class="ml-1.5 size-5 shrink-0" :title="useModel + ' data models'">
                     <h4 class="ml-2 text-sm font-semibold leading-7 text-gray-600">Data Models</h4>
                 </div>
                 <div>
@@ -51,12 +52,14 @@ export default {
     `,
     props: {
         gist: Object,
+        icon: String,
     },
     setup(props) {
         const routes = inject('routes')
         let cmTsd, cmGen
         const refTsd = ref()
         const refGen = ref()
+        const useModel = computed(() => rightPart(props.gist.owner,'/') ?? '')
 
         function getLabel(path) {
             return path.endsWith('index.mjs')
@@ -138,6 +141,7 @@ export default {
 
         return {
             routes,
+            useModel,
             refTsd,
             refGen,
             tsdFileName,
