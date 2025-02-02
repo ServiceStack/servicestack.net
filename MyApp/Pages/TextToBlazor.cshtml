@@ -17,13 +17,13 @@ green-500 #22c55e
 </style>
 <div class="pb-12 pt-16 sm:pb-4 lg:pt-12">
     <div>
-        <div class="mx-auto px-4 sm:px-6 md:max-w-3xl md:px-4 lg:px-0">
+        <div class="mx-auto px-4 sm:px-6 md:max-w-4xl md:px-4 lg:px-0">
             <h1 class="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
                 <label for="prompt" class="flex items-center">
                     <a href="/text-to-blazor">
-                        <img src="/img/svgs/blazor.svg" alt="Blazor Vue Logo" class="mr-4 w-20 h-20 inline-block align-middle">
+                        <img src="/img/svgs/blazor.svg" alt="Blazor Vue Logo" class="mr-4 w-16 h-16 inline-block align-middle">
                     </a>
-                    Text to Blazor Vue App
+                    Text to Blazor CRUD App
                 </label>
             </h1>
         </div>
@@ -228,11 +228,14 @@ export const icons = {
     'llama3.1:70b':         '/img/models/llama.svg',
     'llama3.3:70b':         '/img/models/llama.svg',
     'llama3:8b':            '/img/models/llama.svg',
-    'codestral:22b':        '/img/models/codestral.svg',
-    'mistral-nemo:12b':     '/img/models/mistral-nemo.svg',
     'phi-4:14b':            '/img/models/phi4.svg',
+    'codestral:22b':        '/img/models/codestral.svg',
+    'mistral:7b':           '/img/models/mistral.svg',
+    'mistral-nemo:12b':     '/img/models/mistral-nemo.svg',
     'mixtral:8x7b':         '/img/models/mixtral.jpg',
     'mixtral:8x22b':        '/img/models/mixtral.jpg',
+    'mistral-small:24b':    '/img/models/mistral.svg',
+    'mistral-large:123b':   '/img/models/mistral.svg',
     'nova-micro':           '/img/models/aws.svg',
     'nova-lite':            '/img/models/aws.svg',
     'nova-pro':             '/img/models/aws.svg',
@@ -243,10 +246,17 @@ export const icons = {
     'gpt-4o-mini':          '/img/models/gpt-4.svg',
     'o1-preview':           '/img/models/gpt-4.svg',
     'o1-mini':              '/img/models/gpt-4.svg',
-    'deepseek-v2.5:236b':   '/img/models/deepseek-coder.jpg',
+    'o3-mini':              '/img/models/gpt-4.svg',
+    'deepseek-v3:671b':     '/img/models/deepseek-3.jpg',
+    'deepseek-r1:671b':     '/img/models/deepseek.jpg',
+    'deepseek-r1:70b':      '/img/models/deepseek.jpg',
     'qwen2.5:72b':          '/img/models/qwen.svg',
     'qwen2.5-coder:32b':    '/img/models/qwen.svg',
     'qwq:32b':              '/img/models/qwen.svg',
+    'qwq:72b':              '/img/models/qwen.svg',
+    'qwen-turbo':           '/img/models/qwen.svg',
+    'qwen-plus':            '/img/models/qwen.svg',
+    'qwen-max':             '/img/models/qwen.svg',
     'gemma2:9b':            '/img/models/gemma.svg',
     'claude-3-haiku':       '/img/models/claude-3-haiku.svg',
     'claude-3-sonnet':      '/img/models/claude-3-sonnet.svg',
@@ -392,7 +402,7 @@ const AppComponent = {
         }
 
         function getIcon(model) {
-            return 'https://openai.servicestack.net/' + (icons[model] || '/img/models/gpt-4.svg')
+            return 'https://openai.servicestack.net' + (icons[model] || '/img/models/gpt-4.svg')
         }
         
         function clearGeneration() {
