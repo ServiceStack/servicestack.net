@@ -119,9 +119,32 @@ Alternatively you can nuke the App's database (e.g. `App_Data/app.db`) and recre
 After running the DB migrations, you can hit the ground running and start using the Admin UI to manage the new 
 Data Model RDBMS Tables:
 
-<video autoplay="autoplay" loop="loop" controls>
-    <source src="https://media.servicestack.com/videos/autoquerygrid-new.mp4" type="video/mp4">
-</video>
+:::youtube 8buo_ce3SNM
+Using AutoQuery CRUD UI in a Text to Blazor App
+:::
+
+## Audited Data Models
+
+The Instant CRUD UI also includes effortless support for maintaining a detailed audit history for changes to 
+select tables by inheriting from the `AuditBase` base class, e.g:
+
+```ts
+export class Job extends AuditBase {
+    ...
+}
+```
+
+This will include additional `CreatedBy`, `CreatedDate`, `ModifiedBy`, `ModifiedDate`, `DeletedBy` and `DeletedDate`
+properties to the specified Table and also generates the necessary [Audit Behaviors](https://docs.servicestack.net/autoquery/crud#apply-generic-crud-behaviors)
+on the AutoQuery APIs to maintain the audit history for each CRUD operation.
+
+### AutoQuery CRUD Audit Log
+
+As the **blazor-admin** and **blazor-vue** templates are configured to use the [AutoQuery CRUD Executable Audit Log](https://docs.servicestack.net/autoquery/audit-log)
+in its [Configure.AutoQuery.cs](https://github.com/NetCoreTemplates/blazor-admin/blob/main/MyApp/Configure.AutoQuery.cs)
+the Audit Behaviors will also maintain an Audit Trail of all CRUD operations which can be viewed in the Admin UI:
+
+![](/img/posts/text-to-blazor/okai-audit-form.webp)
 
 ## TypeScript Schema
 
@@ -447,30 +470,6 @@ public class Todo
     public string Name { get; set; }
 }
 ```
-
-## Audited Data Models
-
-Another productivity feature of AutoQuery CRUD is its effortless support for maintaining audit history of 
-important tables which can be enabled by inheriting from the `AuditBase` base class, e.g:
-
-```ts
-export class Booking extends AuditBase {
-    ...
-}
-```
-
-Which will include the necessary `CreatedBy`, `CreatedDate`, `ModifiedBy`, `ModifiedDate`, `DeletedBy` and `DeletedDate` 
-properties in the Booking Table and also generating the necessary [Audit Behaviors](https://docs.servicestack.net/autoquery/crud#apply-generic-crud-behaviors)
-on the AutoQuery APIs to maintain the audit history for each CRUD operation.
-
-### AutoQuery CRUD Audit Log
-
-As the **blazor-admin** and **blazor-vue** templates are configured to use the [AutoQuery CRUD Executable Audit Log](https://docs.servicestack.net/autoquery/audit-log)
-[Configure.AutoQuery.cs](https://github.com/NetCoreTemplates/blazor-admin/blob/main/MyApp/Configure.AutoQuery.cs)
-the Audit Behaviors will also maintain an Audit Trail of all CRUD operations which can be 
-[viewed in Locode](https://docs.servicestack.net/locode/auditing).
-
-[![](http://docs.servicestack.net/img/pages/locode/audit-history-update.png)](https://docs.servicestack.net/locode/auditing)
 
 ### Custom APIs
 
