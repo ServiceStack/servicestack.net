@@ -1,5 +1,5 @@
 ---
-title: Generate CRUD APIs and Admin UIs from existing DB
+title: Generate CRUD APIs and Admin UIs from existing DBs
 summary: Use the metadata from an existing RDBMS to generate AutoQuery CRUD APIs and Admin UIs for managing your data.
 tags: [okai,db,autoquery,api,admin-ui]
 author: Demis Bellot
@@ -42,7 +42,8 @@ This task can then be run from the command line with:
 dotnet run --AppTasks=App.json
 :::
 
-Which will generate the `App_Data/App.json` file containing the metadata for all tables in the RDBMS.
+Which will generate the `App_Data/App.json` file containing the table definition metadata for all tables in 
+the specified RDBMS.
 
 ### Different Connection or DB Schema
 
