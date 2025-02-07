@@ -7,7 +7,7 @@ image: https://images.unsplash.com/photo-1484662020986-75935d2ebc66?crop=entropy
 ---
 
 A core piece of functionality in the [Text to Blazor CRUD App](/posts/text-to-blazor) feature is distilling an AI Prompt
-into TypeScript classes that can be [further customized](https://localhost:5002/posts/text-to-blazor#customize-data-models)
+into TypeScript classes that can be [further customized](/posts/text-to-blazor#customize-data-models)
 to generate AutoQuery CRUD APIs and Admin UIs for managing the underlying RDBMS tables.
 
 ## TypeScript Data Models
