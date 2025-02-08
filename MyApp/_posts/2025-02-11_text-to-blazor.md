@@ -11,6 +11,10 @@ Apps from just a text description.
 
 [![](/img/posts/text-to-blazor/text-to-blazor-prompt.webp)](/text-to-blazor)
 
+<div class="pb-4 not-prose flex justify-center">
+<a href="https://servicestack.net/text-to-blazor" class="text-3xl text-indigo-600 hover:text-indigo-800">https://servicestack.net/text-to-blazor</a>
+</div>
+
 This will query 5 different high quality AI models to generate 5 different Data Models, APIs, DB Migrations 
 and Admin UIs which you can browse to find the one that best matches your requirements.
 
@@ -18,12 +22,12 @@ and Admin UIs which you can browse to find the one that best matches your requir
 
 ### Using AI to only generate Data Models
 
-Whilst the result is a working CRUD App, the approach we've taken is very different from most AI tools
-which uses AI to generate the entire App that ends up with a whole new code-base you didn't write
-that you now need to maintain.
+Whilst the result is a working CRUD App, the approach taken is very different from most AI tools
+which uses AI to generate the entire App that ends up with a whole new code-base developers didn't write
+which they'd now need to maintain.
 
-Instead we're just using AI to generate the initial Data Models within a **TypeScript Declaration file** 
-which we've found is best format supported by AI models that's also the best typed DSL for defining
+Instead AI is only used to generate the initial Data Models within a **TypeScript Declaration file**
+which we've found is the best format supported by AI models that's also the best typed DSL for defining
 data models with minimal syntax that's easy for humans to read and write.
 
 ### Download preferred Blazor Vue CRUD App
@@ -41,14 +45,13 @@ generated Blazor Vue CRUD App:
 
 ### Blazor Vue App
 
-**UI + Admin** - Creates a new [blazor-vue](https://blazor-vue.web-templates.io) template which is ideal 
-for Internet or public facing Apps which sports a full-featured public facing UI for the Web App's 
-users whilst providing a back-office Admin UI for Admin Users to manage the App's data.
+**UI + Admin** - Creates a new [blazor-vue](https://blazor-vue.web-templates.io) template that's ideal
+for Internet or public facing Apps, sporting a full-featured public facing UI for a Web App's
+users whilst enabling a back-office CRUD UI for Admin Users to manage their App's data.
 
 ![](/img/posts/text-to-blazor/okai-blazor-vue.webp)
 
-Clicking on the **Admin UI** button will Authenticate using the Admin User's credentials and take you to the 
-Admin UI at `/admin`:
+Clicking on the **Admin UI** button will take you to the Admin UI at `/admin`:
 
 ![](/img/posts/text-to-blazor/okai-blazor-vue-admin.webp)
 
@@ -123,10 +126,20 @@ Data Model RDBMS Tables:
 Using AutoQuery CRUD UI in a Text to Blazor App
 :::
 
+### Create new Records from Search Dialog
+
+We're continually improving the UX of the [AutoQueryGrid Component](/vue/autoquerygrid) used in generating CRUD UIs to enable a more productive and seamless workflow. A change added to that end that you can see in the above video is the ability to add new Records from a Search dialog:
+
+![](/img/posts/text-to-blazor/autoquerygrid-new2.webp)
+
+This now lets you start immediately creating new records without needing to create any lookup entries beforehand.
+
 ## Audited Data Models
 
-The Instant CRUD UI also includes effortless support for maintaining a detailed audit history for changes to 
-select tables by inheriting from the `AuditBase` base class, e.g:
+The TypeScript Data Models enable a rapid development experience for defining an App's Data Models which are used
+to generate the necessary AutoQuery CRUD APIs to support an Admin UI.
+
+An example of the producitivity of this approach is the effortless support for maintaining a detailed audit history for changes to select tables by inheriting from the `AuditBase` base class, e.g:
 
 ```ts
 export class Job extends AuditBase {
@@ -134,8 +147,15 @@ export class Job extends AuditBase {
 }
 ```
 
+Which can then be regenerated using the name of the TypeScript Model definitions:
+
+:::sh
+npx okai Jobs.d.ts
+:::
+
 This will include additional `CreatedBy`, `CreatedDate`, `ModifiedBy`, `ModifiedDate`, `DeletedBy` and `DeletedDate`
-properties to the specified Table and also generates the necessary [Audit Behaviors](https://docs.servicestack.net/autoquery/crud#apply-generic-crud-behaviors)
+properties to the specified Table and also generates the necessary
+[Audit Behaviors](https://docs.servicestack.net/autoquery/crud#apply-generic-crud-behaviors)
 on the AutoQuery APIs to maintain the audit history for each CRUD operation.
 
 ### AutoQuery CRUD Audit Log
@@ -248,7 +268,7 @@ export type Config = {
 }
 ```
 
-So if no longer want the code regeneration to update the DB Migration for it, you can just remove it
+So if you no longer want the code regeneration to update the DB Migration for it, you can just remove it
 from the Config.
 
 ## Customize Data Models
