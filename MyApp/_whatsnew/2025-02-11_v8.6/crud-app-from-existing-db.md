@@ -1,6 +1,6 @@
 ---
 title: Generate CRUD APIs and Admin UIs from existing DBs
-url: /posts/crud-app-from-existing-db
+url: https://docs.servicestack.net/autoquery/okai-db
 image: /img/svgs/servicify.svg
 order: 4
 ---

@@ -1,6 +1,6 @@
 ---
 title: FREE Access to the worlds most popular AI Models
-url: /posts/okai-chat
+url: https://docs.servicestack.net/autoquery/okai-chat
 image: /img/posts/okai-chat/okai-chat.webp
 order: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: New okai tool for Rapid App Development
-url: /posts/okai-models
+url: https://docs.servicestack.net/autoquery/okai-models
 image: /img/posts/okai-models/okai-models.webp
 order: 2
 ---
