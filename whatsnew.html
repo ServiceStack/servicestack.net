@@ -144,6 +144,131 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.6</h2>
+        <div class="text-center text-lg font-normal text-gray-500">February 11, 2025</div>
+            <div class="mt-2 flex justify-center">
+                <a href="podcasts/v8-6-release" class="group flex items-center gap-2 rounded-full bg-white/25 p-1.5 text-xs text-slate-900 ring-1 ring-inset ring-black/[0.08] hover:bg-white/50 hover:ring-black/[0.13]">
+                    <img src="/img/svgs/podcast.svg" alt="" class="h-8 w-8 rounded-full">
+                    <div class="pr-2">
+                        <p class="font-semibold">
+                            Listen to podcast episode
+                        </p>
+                        <p class="text-gray-600">ServiceStack v8.6 Release</p>
+                    </div>
+                </a>
+            </div>
+        <div class="mb-8"></div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/text-to-blazor"><img src="/img/whatsnew/v8.6/text-to-blazor-gen.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/text-to-blazor">Text to Blazor</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're excited to announce Text to Blazor - our first initiative for harnessing AI to help to rapidly
+generating Blazor Apps!</p>
+<p><a href="/text-to-blazor">Text to Blazor</a> is a new online project creator that lets you generate a new Blazor CRUD App
+from just a text description. It queries 5 different high quality AI models to generate 5 different Data Models,
+APIs, DB Migrations and Admin UIs which you can browse to find the one that best matches your requirements.</p>
+<p>Unlike most AI generators, LLMs are only used to generate the initial Data Models within a <strong>TypeScript Declaration file</strong>
+which is the best format supported by AI models that's also the best typed DSL for defining data models with
+minimal syntax that's easy for humans to read and write.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/text-to-blazor" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/okai-models"><img src="/img/posts/okai-models/okai-models.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/okai-models">New okai tool for Rapid App Development</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new <code>okai</code> npm tool works similar to the online <a href="/posts/text-to-blazor">Text to Blazor App</a> generator
+except it's a local tool that can add additional functionality to an existing project.</p>
+<p>The syntax for adding a new feature to your Web App is <code>npx okai &lt;prompt&gt;</code>, e.g:</p>
+<pre><code class="language-sh">npx okai &quot;The kind of Feature you would like to add&quot;
+</code></pre>
+<p>Where it will generate the Data Models, AutoQuery CRUD APIs, DB Migrations and Admin UI for the
+selected feature which you'll see after selecting the LLM Data Models you want to use</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/okai-models" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/okai-chat"><img src="/img/posts/okai-chat/okai-chat.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/okai-chat">FREE Access to the worlds most popular AI Models</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>As part of the development of <a href="/posts/okai-models">okai</a> for generating <a href="/posts/text-to-blazor">Blazor CRUD Apps from a text prompt</a>
+using your preferred AI Models, we've also made available a generic <strong>chat</strong> prompt that can be used as a
+convenient way to conduct personal research against many of the worlds most popular Large Language Models - for Free!</p>
+<p>No API Keys, no Signups, no installs, no cost, you can just start immediately using the <code>npx okai chat</code> script to ask LLMs
+for assistance:</p>
+<pre><code class="language-sh">npx okai chat &quot;command to copy a folder with rsync?&quot;
+</code></pre>
+<p>This will use the default model (currently codestral:22b) to answer your question.</p>
+<p>You can also use your preferred model with the <code>-m &lt;model&gt;</code> flag with either the model <strong>name</strong> or its <strong>alias</strong>,
+e.g you can use <a href="https://techcommunity.microsoft.com/blog/aiplatformblog/introducing-phi-4-microsoft%E2%80%99s-newest-small-language-model-specializing-in-comple/4357090">Microsoft's PHI-4 14B</a> model with:</p>
+<pre><code class="language-sh">npx okai -m phi chat &quot;command to copy folder with rsync?&quot;
+</code></pre>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/okai-chat" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/crud-app-from-existing-db"><img src="/img/svgs/servicify.svg" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/crud-app-from-existing-db">Generate CRUD APIs and Admin UIs from existing DBs</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>This release also enables a new and flexible way to generate AutoQuery CRUD APIs and Admin UIs for an existing
+database using TypeScript Data Models which serve as the blueprint for generating everything needed to support
+the feature in your App, including the AutoQuery CRUD APIs, Admin UIs and DB Migrations.</p>
+<p>First step is capturing metadata from existing RDBMS tables with the <code>App.json</code> AppTask which uses your
+App's configured DB connection to generate the metadata:</p>
+<pre><code class="language-sh">dotnet run --AppTasks=App.json
+</code></pre>
+<p>The generated <code>App_Data/App.json</code> metadata can then be converted into TypeScript Data Models with the <code>okai</code> tool:</p>
+<pre><code class="language-sh">npx okai convert App_Data/App.json &gt; ../MyApp.ServiceModel/App.d.ts
+</code></pre>
+<p>Where you'll then be able to use okai's existing code generation framework to customize the Data Models
+before generating their CRUD APIs and Admin UIs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/crud-app-from-existing-db" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.5</h2>
         <div class="text-center text-lg font-normal text-gray-500">November 26, 2024</div>
             <div class="mt-2 flex justify-center">
