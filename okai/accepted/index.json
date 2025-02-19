@@ -189,5 +189,149 @@
     "provider": "groq",
     "prompt": "Create an auction site for compute hardware",
     "groupName": "Auctions"
+  },
+  {
+    "id": "1739316390465",
+    "model": "gemini-flash-2.0",
+    "timing": "3222",
+    "provider": "google",
+    "prompt": "create an app to manage food plots for hunting wildlife in eastern north carolina. the app needs to track food plot location, soil type, planting history and maintenance schedule. The app should keep a journal of wildlife sightings and animals harvested.",
+    "groupName": "PlantingHistories"
+  },
+  {
+    "id": "1739341495569",
+    "model": "codestral:22b",
+    "timing": "2678",
+    "provider": "codestral",
+    "prompt": "Create an employee management, payroll and benefits administration App",
+    "groupName": "Employees"
+  },
+  {
+    "id": "1739362716555",
+    "model": "codestral:22b",
+    "timing": "4059",
+    "provider": "codestral",
+    "prompt": "Beauty app",
+    "groupName": "Appointments"
+  },
+  {
+    "id": "1739376686684",
+    "model": "codestral:22b",
+    "timing": "1627",
+    "provider": "codestral",
+    "prompt": "Create an application that allows different finance managers add their budget fugures for their local sports section. Each budget is part of a full budget for the group.  the Super Finance Manager will initiate the budget process, but adding specific budget positions in each sports sections, which the finance manager cannot amend. The budget should be established on a quarter, with a yearly sum column.",
+    "groupName": "BudgetItems"
+  },
+  {
+    "id": "1739528782655",
+    "model": "deepseek-r1:70b",
+    "timing": "74548",
+    "provider": "openrouter",
+    "prompt": "Blazor hybrid app with tailwind and chart.js integration and light/dark mode with responsive UI which we can easily integrate with .net maui",
+    "groupName": "ChartConfigurations"
+  },
+  {
+    "id": "1739528782656",
+    "model": "llama3.3:70b",
+    "timing": "1357",
+    "provider": "groq",
+    "prompt": "Blazor hybrid app with tailwind and chart.js integration and light/dark mode with responsive UI which we can easily integrate with .net maui",
+    "groupName": "ChartOptions"
+  },
+  {
+    "id": "1739529328011",
+    "model": "llama3.3:70b",
+    "timing": "1277",
+    "provider": "groq",
+    "prompt": "Blazor hybrid app with bootstrap 5, a nice main layout and nav menu that is very responsive and allows the pages and containers to respond to the nav menu opening and closing and the nav menu is able to show icons and nav items or just icons or close. And a dashbaord with chart.js integration and light/dark mode with responsive UI which we can easily integrate with .net maui",
+    "groupName": "LayoutConfigs"
+  },
+  {
+    "id": "1739536247998",
+    "model": "codestral:22b",
+    "timing": "1148",
+    "provider": "codestral",
+    "prompt": "log aaplication ",
+    "groupName": "Users"
+  },
+  {
+    "id": "1739536247999",
+    "model": "deepseek-r1:70b",
+    "timing": "3722",
+    "provider": "groq",
+    "prompt": "log application",
+    "groupName": "LogEntries"
+  },
+  {
+    "id": "1739553231664",
+    "model": "deepseek-r1:70b",
+    "timing": "3312",
+    "provider": "groq",
+    "prompt": "create a job board",
+    "groupName": "Applications"
+  },
+  {
+    "id": "1739567093661",
+    "model": "codestral:22b",
+    "timing": "3085",
+    "provider": "codestral",
+    "prompt": "Create a Bloomberg terminal like app",
+    "groupName": "PortfolioHoldings"
+  },
+  {
+    "id": "1739589143773",
+    "model": "codestral:22b",
+    "timing": "2551",
+    "provider": "codestral",
+    "prompt": "Create an auction site for compute hardware",
+    "groupName": "Auctions"
+  },
+  {
+    "id": "1739632426996",
+    "model": "deepseek-r1:70b",
+    "timing": "2288",
+    "provider": "groq",
+    "prompt": "Log App for tracing logs and connecting mongodb",
+    "groupName": "LogProcessings"
+  },
+  {
+    "id": "1739632244052",
+    "model": "deepseek-r1:70b",
+    "timing": "3330",
+    "provider": "groq",
+    "prompt": "Create app connecting with mongo db for logging and tracing logs for api request",
+    "groupName": "ApiLogs"
+  },
+  {
+    "id": "1739772772876",
+    "model": "codestral:22b",
+    "timing": "1702",
+    "provider": "codestral",
+    "prompt": "Generate app for logging and tracing api request",
+    "groupName": "ApiLogs"
+  },
+  {
+    "id": "1739785782076",
+    "model": "gemini-flash-2.0",
+    "timing": "4439",
+    "provider": "google",
+    "prompt": "Create a multi-language Facebook Marketplace clone with auction functionality.",
+    "groupName": "Listings"
+  },
+  {
+    "id": "1739787749927",
+    "model": "deepseek-r1:70b",
+    "timing": "4125",
+    "provider": "groq",
+    "prompt": "Create a CRUD application for  logging and tracing request.",
+    "groupName": "LogEntries"
+  },
+  {
+    "id": "1739796854228",
+    "model": "gemini-flash-2.0",
+    "timing": "3731",
+    "provider": "google",
+    "prompt": "create dashboard which will read logs and traces from a existing asp.net core project using open telemetry feature and show tracing in dashboard with data.",
+    "groupName": "TraceEvents"
   }
 ]

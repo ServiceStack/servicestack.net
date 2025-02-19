@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Podcasts now in Razor SSG - ServiceStack</title>
+    <title>Generate CRUD APIs and Admin UIs from existing DBs - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Razor SSG now includes support for Podcasts" />
-    <meta property="og:url" content="https://servicestack.net/posts/razor-ssg-podcasts" />
-    <meta property="og:title" content="Podcasts now in Razor SSG" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1482442120256-9c03866de390?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="Use the metadata from an existing RDBMS to generate AutoQuery CRUD APIs and Admin UIs for managing your data." />
+    <meta property="og:url" content="https://servicestack.net/posts/crud-app-from-existing-db" />
+    <meta property="og:title" content="Generate CRUD APIs and Admin UIs from existing DBs" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1484662020986-75935d2ebc66?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -131,7 +131,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Podcasts now in Razor SSG
+                Generate CRUD APIs and Admin UIs from existing DBs
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -169,28 +169,30 @@ mountAll()
                     </div>
                 </div>
                         <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'razor-ssg-podcasts', title:'Podcasts now in Razor SSG', src:'https://media.servicestack.com/podcasts/razor-ssg-podcasts.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=razor-ssg-podcasts&amp;source=post&amp;version=8.6.1', variant:'compact' }"
+                             data-props="{ id:'crud-app-from-existing-db', title:'New okai tool for Rapid App Development', src:'https://media.servicestack.com/podcasts/ai-server.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=crud-app-from-existing-db&amp;source=post&amp;version=8.6.1', variant:'compact' }"
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1482442120256-9c03866de390?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Podcasts now in Razor SSG Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1484662020986-75935d2ebc66?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Generate CRUD APIs and Admin UIs from existing DBs Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/razor" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
-                        <a href="posts/tagged/ssg" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ssg</a>
-                        <a href="posts/tagged/markdown" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">markdown</a>
+                        <a href="posts/tagged/okai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">okai</a>
+                        <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
+                        <a href="posts/tagged/autoquery" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">autoquery</a>
+                        <a href="posts/tagged/api" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">api</a>
+                        <a href="posts/tagged/admin-ui" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin-ui</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2024-10-02T00:00:00.0000000">October 2, 2024</time>
+                                <time datetime="2025-02-19T00:00:00.0000000">February 19, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>3 min read</span>
                             </div>
                         </div>
                 </div>
@@ -203,169 +205,115 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <h2 id="razor-ssg-now-supports-podcasts">Razor SSG now supports Podcasts!<a class="header-anchor" href="javascript:;" onclick="location.hash='#razor-ssg-now-supports-podcasts'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><a href="https://razor-ssg.web-templates.io">Razor SSG</a> is our FREE Project Template for creating fast, statically generated Websites and Blogs with
-Markdown &amp; C# Razor Pages. A benefit of using Razor SSG to maintain our
-<a href="https://github.com/ServiceStack/servicestack.net">github.com/ServiceStack/servicestack.net</a> website is that
-any improvements added to <strong>servicestack.net</strong> end up being rolled into the Razor SSG Project Template
-for everyone else to enjoy.</p>
-<p>The latest feature recently added is <a href="https://servicestack.net/podcasts">ServiceStack Podcasts</a>, providing an easy alternative to
-learning about new features in our <a href="https://docs.servicestack.net/releases/v8_04">TL;DR Release Notes</a> during a commute as well as a
-fun and more informative experience whilst reading <a href="https://servicestack.net/blog">blog posts</a>.</p>
-<p>The same podcast feature has now been rolled into the Razor SSG template allowing anyone to add the same
-feature to their Razor SSG Websites which can be developed and hosted for FREE on GitHub Pages CDN:</p>
-<h3 id="create-a-new-razor-ssg-project">Create a new Razor SSG Project<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-a-new-razor-ssg-project'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<project-creator v-slot="x">
-    <project-template :name="x.text" repo="NetCoreTemplates/razor-ssg" :tags="['ssg','markdown']">
-        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Razor SSG</div>
-        <template #icon>
-            <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="currentColor" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
-        </template>
-    </project-template>
-</project-creator>
-<h3 id="markdown-powered">Markdown Powered<a class="header-anchor" href="javascript:;" onclick="location.hash='#markdown-powered'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The Podcast feature is very similar to the Markdown Blog Posts where each podcast is a simple
-<code>.md</code> Markdown page seperated by a publish date and its unique slug, e.g:</p>
-<p><strong><a href="https://github.com/NetCoreTemplates/razor-ssg/tree/main/MyApp/_podcasts">/_podcasts</a></strong></p>
-<div class="language-files"><div class="ml-6">
-  <div class="flex items-center text-base leading-8">
-    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
-    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
-    <span>_pages</span>
-  </div>
-</div>
-<div class="ml-6">
-  <div class="flex items-center text-base leading-8">
-    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
-    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
-    <span>_podcasts</span>
-  </div>
-<div>
-<div class="ml-6 flex items-center text-base leading-8">
-  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
-  <span>config.json</span>
-</div>
-<div class="ml-6 flex items-center text-base leading-8">
-  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
-  <span>2024-10-02_razor-ssg-podcasts.md</span>
-</div>
-<div class="ml-6 flex items-center text-base leading-8">
-  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
-  <span>2024-09-19_scalable-sqlite.md</span>
-</div>
-<div class="ml-6 flex items-center text-base leading-8">
-  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
-  <span>2024-09-17_sqlite-request-logs.md</span>
-</div>
-<div class="ml-6 flex items-center text-base leading-8">
-  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
-  <span>...</span>
-</div>
-</div>
-</div>
-<div class="ml-6">
-  <div class="flex items-center text-base leading-8">
-    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
-    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
-    <span>_posts</span>
-  </div>
-</div>
-<div class="ml-6">
-  <div class="flex items-center text-base leading-8">
-    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
-    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
-    <span>_videos</span>
-  </div>
-</div>
-<div class="ml-6">
-  <div class="flex items-center text-base leading-8">
-    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
-    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
-    <span>_whatsnew</span>
-  </div>
-</div>
-</div>
-<p>All editable content within different Podcast pages like the Podcast Sidebar is customizable within
-<a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/_podcasts/config.json">_podcasts/config.json</a>.</p>
-<p><a href="https://razor-ssg.web-templates.io/podcasts"><img src="/img/posts/razor-ssg-podcasts/razor-ssg-podcast-layout.webp" alt="" /></a></p>
-<h3 id="podcast-page">Podcast Page<a class="header-anchor" href="javascript:;" onclick="location.hash='#podcast-page'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Whilst all content about a podcast is contained within its <code>.md</code> file and frontmatter which just like
-Blog Posts can contain interactive Vue Components and custom <a href="https://razor-press.web-templates.io/containers">Markdown Containers</a>.</p>
-<p>The <a href="https://razor-ssg.web-templates.io/podcasts/background-jobs">Backgrounds Jobs Podcast Page</a> is a
-good example of this where its <a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/_podcasts/2024-09-12_background-jobs.md?plain=1">2024-09-12_background-jobs.md</a>
-contains both a <code>&lt;project-creator&gt;</code> Vue Component as well as <code>sh</code> and <code>youtube</code> custom markdown
-containers to render its page:</p>
-<p><a href="https://razor-ssg.web-templates.io/podcasts/background-jobs"><img src="/img/posts/razor-ssg-podcasts/razor-ssg-podcast-page.webp" alt="" /></a></p>
-<h3 id="audio-player">Audio Player<a class="header-anchor" href="javascript:;" onclick="location.hash='#audio-player'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Podcasts are played using the <a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/wwwroot/pages/podcasts/AudioPlayer.mjs">AudioPlayer.mjs</a>
-Vue Component that's enabled on each podcast page which will appear at the bottom of the page when played:</p>
-<p><a href="https://razor-ssg.web-templates.io/podcasts"><img src="/img/posts/razor-ssg-podcasts/razor-ssg-podcast-audioplayer.webp" alt="" /></a></p>
-<p>The <code>AudioPlayer</code> component is also independently usable as a standard Vue Component in
-markdown content like <a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/_posts/2024-10-02_razor-ssg-podcasts.md?plain=1#L72">this .md page</a>:</p>
-<pre><code class="language-html">&lt;audio-player id=&quot;scalable-sqlite&quot; title=&quot;Scalable SQLite&quot; variant=&quot;compact&quot;
-    src=&quot;https://media.servicestack.com/podcasts/scalable-sqlite.mp3&quot;&gt;
-&lt;/audio-player&gt;
+                    <p>A core piece of functionality in the <a href="/posts/text-to-blazor">Text to Blazor CRUD App</a> feature is distilling an AI Prompt
+into TypeScript classes that can be <a href="/posts/text-to-blazor#customize-data-models">further customized</a>
+to generate AutoQuery CRUD APIs and Admin UIs for managing the underlying RDBMS tables.</p>
+<h2 id="typescript-data-models">TypeScript Data Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescript-data-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Using TypeScript to define models is a flexible and effortless way to define your data models as it offers a DSL-like
+format with minimal boilerplate that's human-friendly to read and write that can also leverage TypeScript's
+powerful TypeScript Type System to provide a rich authoring experience with strong typing and intellisense
+that's validated against the referenced <a href="https://okai.servicestack.com/api.d.ts">api.d.ts</a> schema
+containing all the C# Types, interfaces, and attributes used in defining APIs, DTOs and Data Models.</p>
+<h3 id="blueprint-for-code-generation">Blueprint for Code Generation<a class="header-anchor" href="javascript:;" onclick="location.hash='#blueprint-for-code-generation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The TypeScript Data Models then serve as the blueprint for generating everything needed to support the feature
+in your App, including the AutoQuery CRUD APIs, Admin UIs and DB Migrations should you prefer to re-create it from scratch.</p>
+<h3 id="rdbms-metadata-apptask">RDBMS Metadata AppTask<a class="header-anchor" href="javascript:;" onclick="location.hash='#rdbms-metadata-apptask'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The first step in generating TypeScript Data Models is to capture the metadata from the existing RDBMS tables which
+we can do with the <code>App.json</code> <a href="https://docs.servicestack.net/app-tasks">AppTask</a> below which uses your App's configured
+RDBMS connection to generate the Table Definitions for all tables in the specified RDBMS connection and schema
+to the file of your choice (e.g <code>App_Data/App.json</code>):</p>
+<pre><code class="language-csharp">AppTasks.Register(&quot;App.json&quot;, args =&gt;
+  appHost.VirtualFiles.WriteFile(&quot;App_Data/App.json&quot;,ClientConfig.ToSystemJson(
+      migrator.DbFactory.GetTables(namedConnection:null, schema:null))));
 </code></pre>
-<div class="py-8 mx-auto w-2/3 not-prose"><p><audio-player id="scalable-sqlite" title="Scalable SQLite" variant="compact"
-src="https://media.servicestack.com/podcasts/scalable-sqlite.mp3">
-</audio-player></p>
+<p>This task can then be run from the command line with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet run --AppTasks=App.json</p>
 </div>
-<p>It can also be embeddable inside Razor <code>.cshtml</code> pages using
-<a href="https://servicestack.net/posts/net8-best-blazor#declarative-vue-components">Declarative Vue Components</a>, e.g:</p>
-<pre><code class="language-html">@{
-    var episode = Podcasts.GetEpisodes().FirstOrDefault(x =&gt; x.Slug == doc.Slug);
-    &lt;div data-component=&quot;pages/podcasts/AudioPlayer.mjs&quot;
-         data-props=&quot;{ id:'@episode.Slug', title:'@episode.Title', src:'@episode.Url', variant:'compact' }&quot;
-         class=&quot;mt-4 md:w-[450px] md:mt-0&quot;&gt;&lt;/div&gt;
-}
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Which will generate the <code>App_Data/App.json</code> file containing the table definition metadata for all tables in
+the specified RDBMS.</p>
+<h3 id="different-connection-or-db-schema">Different Connection or DB Schema<a class="header-anchor" href="javascript:;" onclick="location.hash='#different-connection-or-db-schema'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you prefer to generate the metadata for a different connection or schema, you can create a new AppTask
+with your preferred <code>namedConnection</code> and/or <code>schema</code>, e.g:</p>
+<pre><code class="language-csharp">AppTasks.Register(&quot;Sales.json&quot;, args =&gt;
+  appHost.VirtualFiles.WriteFile(&quot;Sales.json&quot;, ClientConfig.ToSystemJson(
+    migrator.DbFactory.GetTables(namedConnection:&quot;reports&quot;,schema:&quot;sales&quot;))));
 </code></pre>
-<h3 id="dark-mode">Dark Mode<a class="header-anchor" href="javascript:;" onclick="location.hash='#dark-mode'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>As Razor SSG is built with Tailwind CSS, Dark Mode is also easily supported:</p>
-<p><a href="https://razor-ssg.web-templates.io/podcasts/background-jobs"><img src="/img/posts/razor-ssg-podcasts/razor-ssg-podcast-dark.webp" alt="" /></a></p>
-<h3 id="browse-by-tags">Browse by Tags<a class="header-anchor" href="javascript:;" onclick="location.hash='#browse-by-tags'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Just like <a href="https://razor-ssg.web-templates.io/posts/">blog post archives</a>, the frontmatter collection of <code>tags</code> is used to generate related podcast pages,
-aiding discoverability by grouping related podcasts by <strong>tag</strong> at the following route:</p>
-<pre><code>/podcasts/tagged/{tag}
-</code></pre>
-<p><a href="https://razor-ssg.web-templates.io/podcasts/tagged/release">https://razor-ssg.web-templates.io/podcasts/tagged/release</a></p>
-<p><a href="https://razor-ssg.web-templates.io/podcasts/tagged/release"><img src="/img/posts/razor-ssg-podcasts/razor-ssg-podcast-tag.webp" alt="" /></a></p>
-<h3 id="browse-by-year">Browse by Year<a class="header-anchor" href="javascript:;" onclick="location.hash='#browse-by-year'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Likewise podcast archives are also browsable by the year their published at the route:</p>
-<pre><code>/podcasts/year/{year}
-</code></pre>
-<p><a href="https://razor-ssg.web-templates.io/podcasts/year/2024">https://razor-ssg.web-templates.io/podcasts/year/2024</a></p>
-<p><a href="https://razor-ssg.web-templates.io/podcasts/year/2024"><img src="/img/posts/razor-ssg-podcasts/razor-ssg-podcast-year.webp" alt="" /></a></p>
-<h3 id="itunes-compatible-podcast-rss-feed">iTunes-compatible Podcast RSS Feed<a class="header-anchor" href="javascript:;" onclick="location.hash='#itunes-compatible-podcast-rss-feed'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The information in <a href="https://github.com/NetCoreTemplates/razor-ssg/blob/main/MyApp/_podcasts/config.json">config.json</a>
-is also used in the generated podcast RSS feed at:</p>
-<p><a href="https://razor-ssg.web-templates.io/podcasts/feed.xml">/podcasts/feed.xml</a></p>
-<p>Which is a popular format podcast Applications can use to get notified when new Podcast
-episodes are available. The RSS Feed is also compatible with <a href="https://podcasters.apple.com">podcasters.apple.com</a>
-and can be used to publish your podcast to <a href="https://podcasts.apple.com">Apple Podcasts</a>.</p>
-<pre><code class="language-xml">&lt;rss xmlns:itunes=&quot;http://www.itunes.com/dtds/podcast-1.0.dtd&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot; xmlns:podcast=&quot;https://podcastindex.org/namespace/1.0&quot; xmlns:media=&quot;http://search.yahoo.com/mrss/&quot; version=&quot;2.0&quot;&gt;
-    &lt;channel&gt;
-        &lt;title&gt;Their Side&lt;/title&gt;
-        &lt;link&gt;https://razor-ssg.web-templates.io/podcasts&lt;/link&gt;
-        &lt;description&gt;&lt;![CDATA[ Conversations with the most tragically misunderstood people of our time. ]]&gt;&lt;/description&gt;
-        &lt;image&gt;
-            &lt;url&gt;https://razor-ssg.web-templates.io/img/posts/cover.png&lt;/url&gt;
-            &lt;title&gt;Their Side&lt;/title&gt;
-            &lt;link&gt;/podcasts&lt;/link&gt;
-        &lt;/image&gt;
-        &lt;generator&gt;razor-ssg&lt;/generator&gt;
-        &lt;copyright&gt;Razor SSG&lt;/copyright&gt;
-        &lt;lastBuildDate&gt;Wed, 02 Oct 2024 03:54:03 GMT&lt;/lastBuildDate&gt;
-        &lt;managingEditor&gt;email@example.org (Razor SSG)&lt;/managingEditor&gt;
-        &lt;webMaster&gt;email@example.org (Razor SSG)&lt;/webMaster&gt;
-        &lt;atom:link href=&quot;https://razor-ssg.web-templates.io/podcasts/feed.xml&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot; /&gt;
-        &lt;itunes:author&gt;Razor SSG&lt;/itunes:author&gt;
-        &lt;itunes:owner&gt;
-            &lt;itunes:name&gt;Razor SSG&lt;/itunes:name&gt;
-            &lt;itunes:email&gt;email@example.org&lt;/itunes:email&gt;
-        &lt;/itunes:owner&gt;
-        &lt;itunes:image href=&quot;https://razor-ssg.web-templates.io/img/posts/cover-1920.jpg&quot;/&gt;
-...
-</code></pre>
+<h3 id="generate-typescript-data-models">Generate TypeScript Data Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#generate-typescript-data-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The next step is to generate TypeScript Data Models from the captured metadata which can be done with the <code>okai</code> tool
+by running the <code>convert</code> command with the path to the <code>App.json</code> JSON table definitions which will generate the
+TypeScript Data Models to stdout which can be redirected to a file in your <strong>ServiceModel</strong> project, e.g:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai convert App_Data/App.json &gt; ../MyApp.ServiceModel/App.d.ts</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h2 id="generate-crud-apis-and-admin-uis">Generate CRUD APIs and Admin UIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#generate-crud-apis-and-admin-uis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The data models defined in the <code>App.d.ts</code> TypeScript Declaration file is what drives the
+generation of the Data Models, APIs, DB Migrations and Admin UIs.</p>
+<h3 id="customize-data-models">Customize Data Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#customize-data-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This can be further customized by editing the TypeScript Declaration file and re-running the <code>okai</code> tool
+with just the filename, e.g:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai App.d.ts</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Which will re-generate the Data Models, APIs, DB Migrations and Admin UIs based on the updated Data Models.</p>
+<p><img src="/img/posts/okai-models/npx-okai-App.png" alt="" /></p>
+<div class="tip custom-block">
+            <p class="custom-block-title">TIP</p><p>You only need to specify the <code>App.d.ts</code> TypeScript filename (i.e. not the filepath) from
+anywhere within your .NET solution</p>
+</div>
+<h3 id="live-code-generation">Live Code Generation<a class="header-anchor" href="javascript:;" onclick="location.hash='#live-code-generation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you'd prefer to see the generated code in real-time you can add the <code>--watch</code> flag to watch the
+TypeScript Declaration file for changes and automatically re-generate the generated files on Save:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai App.d.ts --watch</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<video autoplay="autoplay" loop="loop" controls>
+    <source src="https://media.servicestack.com/videos/okai-watch.mp4" type="video/mp4">
+</video>
 
                 </div>
             </div>
@@ -424,47 +372,6 @@ and can be used to publish your podcast to <a href="https://podcasts.apple.com">
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/crud-app-from-existing-db">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1484662020986-75935d2ebc66?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/crud-app-from-existing-db" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Generate CRUD APIs and Admin UIs from existing DBs">
-                                                    Generate CRUD APIs and Admin UIs from existing DBs
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Use the metadata from an existing RDBMS to generate AutoQuery CRUD APIs and Admin UIs for managing your data.</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Generate CRUD APIs and Admin UIs from existing DBs background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-02-19T00:00:00.0000000">February 19, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>3 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -588,6 +495,47 @@ and can be used to publish your podcast to <a href="https://podcasts.apple.com">
                                 </div>
 
                             </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ai-server">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1642516303080-431f6681f864?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ai-server" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Self Hosted AI Server for LLMs, Ollama, Comfy UI &amp; FFmpeg">
+                                                    Self Hosted AI Server for LLMs, Ollama, Comfy UI &amp; FFmpeg
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Self Hosted AI Server for LLMs, Ollama, Comfy UI &amp; FFmpeg background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-12-06T00:00:00.0000000">December 6, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>8 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -604,52 +552,18 @@ init()
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
 
-<link rel="stylesheet" href="/css/asciinema-player.css">
-<script src="/lib/js/asciinema-player.js"></script>
-<script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ 
-        startOnLoad: true,
-        theme: 'base',
-        'themeVariables': {
-            'primaryColor': '#fff',
-            'lineColor': '#333',
-            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
-            'secondaryColor': '#fff',
-            'primaryTextColor': '#333',
-            'tertiaryColor': '#333'
-        }        
-    });
-</script>
-<style>
-pre.mermaid {
-    background-color: #fff !important;
-}
-.dark pre.mermaid {
-    background-color: #000 !important; /*bg-gray-800*/
-}
-.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
-    background-color: #000 !important;
-}
-.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
-    color: rgb(209 213 219) !important;
-}
-.dark pre.mermaid .flowchart-link { 
-    stroke: rgb(209 213 219) !important;
-}
-.dark pre.mermaid .node rect {
-    stroke: #fff !important;
-}
-.dark pre.mermaid .marker.flowchart-v2 {
-    stroke: #fff !important;
-    fill: #fff !important;
-}
-</style>
 
 <script type="module">
 import { mount } from "app.mjs"
 
-        import App from "./posts/razor-ssg-podcasts.mjs" 
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
     mount('#post', App)
 </script>
 
