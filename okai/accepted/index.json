@@ -219,7 +219,7 @@
     "model": "codestral:22b",
     "timing": "1627",
     "provider": "codestral",
-    "prompt": "Create an application that allows different finance managers add their budget fugures for their local sports section. Each budget is part of a full budget for the group.  the Super Finance Manager will initiate the budget process, but adding specific budget positions in each sports sections, which the finance manager cannot amend. The budget should be established on a quarter, with a yearly sum column.",
+    "prompt": "Create an application that allows different finance managers add their budget figures for their local sports section. Each budget is part of a full budget for the group.  the Super Finance Manager will initiate the budget process, but adding specific budget positions in each sports sections, which the finance manager cannot amend. The budget should be established on a quarter, with a yearly sum column.",
     "groupName": "BudgetItems"
   },
   {
@@ -251,8 +251,8 @@
     "model": "codestral:22b",
     "timing": "1148",
     "provider": "codestral",
-    "prompt": "log aaplication ",
-    "groupName": "Users"
+    "prompt": "log application",
+    "groupName": "Logs"
   },
   {
     "id": "1739536247999",
@@ -277,6 +277,14 @@
     "provider": "codestral",
     "prompt": "Create a Bloomberg terminal like app",
     "groupName": "PortfolioHoldings"
+  },
+  {
+    "id": "1739577414324",
+    "model": "deepseek-r1:70b",
+    "timing": "2249",
+    "provider": "groq",
+    "prompt": "add docker build",
+    "groupName": "DockerBuilds"
   },
   {
     "id": "1739589143773",
@@ -323,7 +331,7 @@
     "model": "deepseek-r1:70b",
     "timing": "4125",
     "provider": "groq",
-    "prompt": "Create a CRUD application for  logging and tracing request.",
+    "prompt": "Create a CRUD application for logging and tracing request.",
     "groupName": "LogEntries"
   },
   {
@@ -333,5 +341,21 @@
     "provider": "google",
     "prompt": "create dashboard which will read logs and traces from a existing asp.net core project using open telemetry feature and show tracing in dashboard with data.",
     "groupName": "TraceEvents"
+  },
+  {
+    "id": "1739950429662",
+    "model": "codestral:22b",
+    "timing": "2246",
+    "provider": "codestral",
+    "prompt": "create a project which analyse the logs of asp.net core project and display it in dashboard for query ",
+    "groupName": "LogEntries"
+  },
+  {
+    "id": "1740085853496",
+    "model": "codestral:22b",
+    "timing": "1480",
+    "provider": "codestral",
+    "prompt": "I would like to create a single page application that has authentication with role management. The app should provide features for managing equipment in a handyman company. I would like to show the employees equipment they can book. This could be trailers and tools.",
+    "groupName": "Bookings"
   }
 ]
