@@ -48,9 +48,33 @@ public class AppHost() : AppHostBase("MyApp"), IHostingStartup
 public class AppConfig
 {
     public static AppConfig Instance { get; } = new();
+    public string Title { get; set; }
     public string LocalBaseUrl { get; set; }
     public string PublicBaseUrl { get; set; }
     public string? GitPagesBaseUrl { get; set; }
+    public string? GitPagesRawBaseUrl { get; set; }
+
+    public void Init(IVirtualDirectory contentDir)
+    {
+        ResolveGitBlobBaseUrls(contentDir);
+    }
+
+    public void ResolveGitBlobBaseUrls(IVirtualDirectory contentDir)
+    {
+        var srcDir = new DirectoryInfo(contentDir.RealPath);
+        var gitConfig = new FileInfo(Path.Combine(srcDir.Parent!.FullName, ".git", "config"));
+        if (gitConfig.Exists)
+        {
+            var txt = gitConfig.ReadAllText();
+            var pos = txt.IndexOf("url = ", StringComparison.Ordinal);
+            if (pos >= 0)
+            {
+                var url = txt[(pos + "url = ".Length)..].LeftPart(".git").LeftPart('\n').Trim();
+                GitPagesBaseUrl = url.CombineWith($"blob/main/{srcDir.Name}");
+                GitPagesRawBaseUrl = url.Replace("github.com","raw.githubusercontent.com").CombineWith($"refs/heads/main/{srcDir.Name}");
+            }
+        }
+    }
 }
 
 public static class HtmlHelpers
