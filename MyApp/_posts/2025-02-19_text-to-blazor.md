@@ -9,6 +9,10 @@ image: https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?crop=entropy
 Text to Blazor is our first initiative for harnessing AI to help to rapidly generate new Blazor Admin CRUD 
 Apps from just a text description.
 
+<div class="flex justify-center">
+    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Bd283EYJKxM" style="background-image: url('https://img.youtube.com/vi/Bd283EYJKxM/maxresdefault.jpg')"></lite-youtube>
+</div>
+
 [![](/img/posts/text-to-blazor/text-to-blazor-prompt.webp)](/text-to-blazor)
 
 <div class="pb-4 not-prose flex justify-center">
