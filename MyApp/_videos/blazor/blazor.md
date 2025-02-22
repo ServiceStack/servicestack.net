@@ -3,7 +3,7 @@ title: Blazor Tailwind App for .NET 8
 url: https://youtu.be/hqyozHSL0Nk
 tags: [blazor, server, tailwind]
 date: 21-11-2023
-order: 1
+order: 2
 ---
 
 ServiceStack's new [Blazor project template](/posts/net8-blazor-template) takes advantage of .NET 8 Blazor's new features 

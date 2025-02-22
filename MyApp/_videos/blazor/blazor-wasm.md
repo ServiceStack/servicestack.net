@@ -3,7 +3,7 @@ title: Blazor WASM Tailwind App for .NET 8
 url: https://youtu.be/U_LflAxz1z0
 tags: [blazor, wasm, tailwind]
 date: 21-11-2023
-order: 3
+order: 4
 ---
 
 This video walks through the **Blazor Web Assembly** Tailwind template - a powerful framework that allows developers to create 
