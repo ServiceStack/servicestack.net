@@ -357,5 +357,21 @@
     "provider": "codestral",
     "prompt": "I would like to create a single page application that has authentication with role management. The app should provide features for managing equipment in a handyman company. I would like to show the employees equipment they can book. This could be trailers and tools.",
     "groupName": "Bookings"
+  },
+  {
+    "id": "1740268644406",
+    "model": "deepseek-r1:70b",
+    "timing": "4374",
+    "provider": "groq",
+    "prompt": "CREATE AN ACCOUNTING APP THAT LODGE company EXPENSES (INCLUDING GST).CREATES AND RECORD invoices, with option to send the invoice to client, and save clients details. and has a payroll option to issue payslip to emploees and record payments and crud emploees",
+    "groupName": "Invoices"
+  },
+  {
+    "id": "1740268644409",
+    "model": "gemini-flash-2.0",
+    "timing": "7673",
+    "provider": "google",
+    "prompt": "CREATE AN ACCOUNTING APP THAT LODGE company EXPENSES (INCLUDING GST).CREATES AND RECORD invoices, with option to send the invoice to client, and save clients details. and has a payroll option to issue payslip to emploees and record payments and crud emploees",
+    "groupName": "Payments"
   }
 ]
