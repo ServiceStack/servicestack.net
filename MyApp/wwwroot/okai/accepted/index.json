@@ -373,5 +373,29 @@
     "provider": "groq",
     "prompt": "Create a website like Groupon, but mainly for Chinese restaurants",
     "groupName": "OrderItems"
+  },
+  {
+    "id": "1740414611252",
+    "model": "codestral:22b",
+    "timing": "2992",
+    "provider": "codestral",
+    "prompt": "Create a Gig Bookings management application which manages venues, artists, availability, email notifications, reporting, payment processing, audit trail, communication tracking. Artists should be able to log in and view their own gigs (upcoming and historical), and update their availability for future gigs. They should only be able to see their own gigs. Owners/Managers of venues should also be able to log in and view all (upcoming / historical) gigs at their venue(s). There will also need to be admin-level access for users who can view all gigs. Users should be able to see gigs in both list and calendar format. Artists can be either a band, duo or individual. Each individual person could form part of one or more bands and duos, as well as being their own solo artist.",
+    "groupName": "Gigs"
+  },
+  {
+    "id": "1740416077539",
+    "model": "deepseek-r1:70b",
+    "timing": "3005",
+    "provider": "groq",
+    "prompt": "Solar Production",
+    "groupName": "SolarPanels"
+  },
+  {
+    "id": "1740416938276",
+    "model": "codestral:22b",
+    "timing": "1196",
+    "provider": "codestral",
+    "prompt": "create an ai application similar to GPT. the app should be able to use different ai providers like openai, gemini, mistral, ollama. store chat history in a mongodb database. include templates\n",
+    "groupName": "ChatMessages"
   }
 ]
