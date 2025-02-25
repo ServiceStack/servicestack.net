@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Develop using Visual Studio - ServiceStack</title>
+    <title>FREE Access to the worlds most popular AI Models - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Exploring development workflow in VS Code and Visual Studio .NET" />
-    <meta property="og:url" content="https://servicestack.net/posts/vs" />
-    <meta property="og:title" content="Develop using Visual Studio" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
+    <meta property="og:description" content="No API Keys, no Signups, just free access to the worlds most popular AI Large Language Models" />
+    <meta property="og:url" content="https://servicestack.net/posts/okai-chat" />
+    <meta property="og:title" content="FREE Access to the worlds most popular AI Models" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1629131530695-30684ecb2366?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -131,7 +131,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Develop using Visual Studio
+                FREE Access to the worlds most popular AI Models
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -168,25 +168,29 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'okai-chat', title:'FREE Access to the worlds most popular AI Models', src:'https://media.servicestack.com/podcasts/ai-server.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=okai-chat&amp;source=post&amp;version=8.6.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="Develop using Visual Studio Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1629131530695-30684ecb2366?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="FREE Access to the worlds most popular AI Models Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
-                        <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
+                        <a href="posts/tagged/okai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">okai</a>
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-01-10T00:00:00.0000000">January 10, 2023</time>
+                                <time datetime="2025-02-25T00:00:00.0000000">February 25, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>6 min read</span>
+                                <span>3 min read</span>
                             </div>
                         </div>
                 </div>
@@ -199,51 +203,141 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>A popular alternative development environment to our preferred <a href="rider">JetBrains Rider</a> IDE is to use
-Visual Studio, the primary issue with this is that VS Code is a better IDE with richer support for JavaScript and npm
-projects whilst Visual Studio is a better IDE for C# Projects.</p>
-<p>Essentially this is why we recommend Rider where it's best at both, where both C# and JS/TypeScript projects can
-be developed from within the same solution.</p>
-<h3 id="developing-with-just-vs-code">Developing with just VS Code<a class="header-anchor" href="javascript:;" onclick="location.hash='#developing-with-just-vs-code'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<a href="https://visualstudio.microsoft.com/" title="VS Code" class="sm:float-left mr-8">
-    <svg class="w-24 h-24" style="margin-top:1rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 254"><defs><linearGradient id="logosVisualStudioCode0" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#FFF"/><stop offset="100%" stop-color="#FFF" stop-opacity="0"/></linearGradient><path id="logosVisualStudioCode1" d="M180.828 252.605a15.872 15.872 0 0 0 12.65-.486l52.501-25.262a15.94 15.94 0 0 0 9.025-14.364V41.197a15.939 15.939 0 0 0-9.025-14.363l-52.5-25.263a15.877 15.877 0 0 0-18.115 3.084L74.857 96.35l-43.78-33.232a10.614 10.614 0 0 0-13.56.603L3.476 76.494c-4.63 4.211-4.635 11.495-.012 15.713l37.967 34.638l-37.967 34.637c-4.623 4.219-4.618 11.502.012 15.714l14.041 12.772a10.614 10.614 0 0 0 13.56.604l43.78-33.233l100.507 91.695a15.853 15.853 0 0 0 5.464 3.571Zm10.464-183.649l-76.262 57.889l76.262 57.888V68.956Z"/></defs><mask id="logosVisualStudioCode2" fill="#fff"><use href="#logosVisualStudioCode1"/></mask><path fill="#0065A9" d="M246.135 26.873L193.593 1.575a15.885 15.885 0 0 0-18.123 3.08L3.466 161.482c-4.626 4.219-4.62 11.502.012 15.714l14.05 12.772a10.625 10.625 0 0 0 13.569.604L238.229 33.436c6.949-5.271 16.93-.315 16.93 8.407v-.61a15.938 15.938 0 0 0-9.024-14.36Z" mask="url(#logosVisualStudioCode2)"/><path fill="#007ACC" d="m246.135 226.816l-52.542 25.298a15.887 15.887 0 0 1-18.123-3.08L3.466 92.207c-4.626-4.218-4.62-11.502.012-15.713l14.05-12.773a10.625 10.625 0 0 1 13.569-.603l207.132 157.135c6.949 5.271 16.93.315 16.93-8.408v.611a15.939 15.939 0 0 1-9.024 14.36Z" mask="url(#logosVisualStudioCode2)"/><path fill="#1F9CF0" d="M193.428 252.134a15.892 15.892 0 0 1-18.125-3.083c5.881 5.88 15.938 1.715 15.938-6.603V11.273c0-8.318-10.057-12.483-15.938-6.602a15.892 15.892 0 0 1 18.125-3.084l52.533 25.263a15.937 15.937 0 0 1 9.03 14.363V212.51c0 6.125-3.51 11.709-9.03 14.363l-52.533 25.262Z" mask="url(#logosVisualStudioCode2)"/><path fill="url(#logosVisualStudioCode0)" fill-opacity=".25" d="M180.828 252.605a15.874 15.874 0 0 0 12.65-.486l52.5-25.263a15.938 15.938 0 0 0 9.026-14.363V41.197a15.939 15.939 0 0 0-9.025-14.363L193.477 1.57a15.877 15.877 0 0 0-18.114 3.084L74.857 96.35l-43.78-33.232a10.614 10.614 0 0 0-13.56.603L3.476 76.494c-4.63 4.211-4.635 11.495-.012 15.713l37.967 34.638l-37.967 34.637c-4.623 4.219-4.618 11.502.012 15.714l14.041 12.772a10.614 10.614 0 0 0 13.56.604l43.78-33.233l100.506 91.695a15.857 15.857 0 0 0 5.465 3.571Zm10.464-183.65l-76.262 57.89l76.262 57.888V68.956Z" mask="url(#logosVisualStudioCode2)"/></svg>
-</a>
-<p>If you prefer the dev UX of a lightweight text editor or your C# project isn't large, than VS Code on its own
-can provide a great development UX which is also what <a href="https://v3.vuejs.org/api/sfc-tooling.html#ide-support">Vue recommends themselves</a>,
-to be used together with the <a href="https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar">Volar extension</a>.</p>
-<p>VSCode's <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Integrated Terminal</a> has great multi-terminal
-support you can toggle between the editor and terminal with <code>Ctrl+</code> or open a new Terminal Window with
-<code>Ctrl+Shift+`</code> to run Tailwind with:</p>
-<pre><code class="language-bash">$ npm run ui:dev
+                    <p>As part of the development of <a href="/posts/okai-models">okai</a> for generating <a href="/posts/text-to-blazor">Blazor CRUD Apps from a text prompt</a>
+using your preferred AI Models, we've also made available a generic <strong>chat</strong> prompt that can be used as a
+convenient way to conduct personal research against many of the worlds most popular Large Language Models - for Free!</p>
+<p><img src="/img/posts/okai-chat/okai-chat.webp" alt="" /></p>
+<p>No API Keys, no Signups, no installs, no cost, you can just start immediately using the <code>npx okai chat</code> script to ask LLMs
+for assistance:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai chat &quot;command to copy a folder with rsync?&quot;</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>This will use the default model (currently codestral:22b) to answer your question.</p>
+<h3 id="select-preferred-model">Select Preferred Model<a class="header-anchor" href="javascript:;" onclick="location.hash='#select-preferred-model'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>You can also use your preferred model with the <code>-m &lt;model&gt;</code> flag with either the model <strong>name</strong> or its <strong>alias</strong>,
+e.g you can use
+<a href="https://techcommunity.microsoft.com/blog/aiplatformblog/introducing-phi-4-microsoft%E2%80%99s-newest-small-language-model-specializing-in-comple/4357090">Microsoft's PHI-4 14B</a> model with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai -m phi chat &quot;command to copy folder with rsync?&quot;</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="list-available-models">List Available Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#list-available-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>We're actively adding more great performing and leading experimental models as they're released.
+You can view the list of available models with <code>ls models</code>:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai ls models</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Which at this time will return the following list of available models along with instructions for how to use them:</p>
+<pre><code class="language-txt">USAGE (5 models max):
+a) OKAI_MODELS=codestral,llama3.3,flash
+b) okai -models codestral,llama3.3,flash &lt;prompt&gt;
+c) okai -m flash chat &lt;prompt&gt;
+
+FREE MODELS:
+claude-3-haiku            (alias hakiu)
+codestral:22b             (alias codestral)
+deepseek-r1:32b
+deepseek-r1:70b
+deepseek-r2:32b
+deepseek-v3:671b          (alias deepseek)
+gemini-flash-1.5
+gemini-flash-1.5-8b       (alias flash-8b)
+gemini-flash-2.0          (alias flash)
+gemini-flash-lite-2.0     (alias flash-lite)
+gemini-flash-thinking-2.0 (alias flash-thinking)
+gemini-pro-2.0            (alias gemini-pro)
+gemma2:9b                 (alias gemma)
+gpt-3.5-turbo             (alias gpt-3.5)
+gpt-4o-mini
+llama3.1:70b              (alias llama3.1)
+llama3.3:70b              (alias llama3.3)
+llama3:8b                 (alias llama3)
+mistral-nemo:12b          (alias mistral-nemo)
+mistral-small:24b         (alias mistral-small)
+mistral:7b                (alias mistral)
+mixtral:8x22b
+mixtral:8x7b              (alias mixtral)
+nova-lite
+nova-micro
+phi-4:14b                 (alias phi,phi-4)
+qwen-plus
+qwen-turbo
+qwen2.5-coder:32b         (alias qwen2.5-coder)
+qwen2.5:32b
+qwen2.5:72b               (alias qwen2.5)
+qwq:32b                   (alias qwq)
+qwq:72b
+
+PREMIUM MODELS: *
+claude-3-5-haiku
+claude-3-5-sonnet
+claude-3-7-sonnet         (alias sonnet)
+claude-3-sonnet
+deepseek-r1:671b          (alias deepseek-r1)
+gemini-pro-1.5
+gpt-4
+gpt-4-turbo
+gpt-4o
+mistral-large:123b
+nova-pro
+o1-mini
+o1-preview
+o3-mini
+qwen-max
+
+ * requires valid license:
+a) SERVICESTACK_LICENSE=&lt;key&gt;
+b) SERVICESTACK_CERTIFICATE=&lt;LC-XXX&gt;
+c) okai -models &lt;premium,models&gt; -license &lt;license&gt; &lt;prompt&gt;
 </code></pre>
-<p>Then in a new Terminal Window, start a new watched .NET App with:</p>
-<pre><code class="language-bash">$ dotnet watch
-</code></pre>
-<p>With both projects started you can open a browser tab running at <code>https://localhost:5001</code> where it
-will automatically reload itself at every <code>Ctrl+S</code> save point.</p>
-<h4 id="useful-vs-code-extensions">Useful VS Code extensions<a class="header-anchor" href="javascript:;" onclick="location.hash='#useful-vs-code-extensions'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>We recommend these extensions below to enhance the development experience of this template:</p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">Tailwind CSS IntelliSense</a> - Add Intellisense for Tailwind classes</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html">es6-string-html</a> - Add HTML Syntax Highlighting in string literals</li>
-</ul>
-<h3 id="using-visual-studio">Using Visual Studio<a class="header-anchor" href="javascript:;" onclick="location.hash='#using-visual-studio'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<a href="https://code.visualstudio.com/" title="Visual Studio" class="sm:float-left mr-8">
-    <svg class="w-24 h-24" style="margin-top:1rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><defs><linearGradient id="logosVisualStudio0" x1="50%" x2="50%" y1=".002%" y2="100%"><stop offset="0%" stop-color="#FFF"/><stop offset="100%" stop-color="#FFF" stop-opacity="0"/></linearGradient></defs><path fill="#52218A" d="M36.987 200.406a10.667 10.667 0 0 1-11.04 1.734L6.56 194.006A10.667 10.667 0 0 1 0 184.22V70.46a10.667 10.667 0 0 1 6.56-9.787l19.387-8a10.667 10.667 0 0 1 11.04 1.733l4.346 3.6a5.893 5.893 0 0 0-9.333 4.8v129.067a5.893 5.893 0 0 0 9.333 4.8l-4.346 3.733Z"/><path fill="#6C33AF" d="M6.56 194.006A10.667 10.667 0 0 1 0 184.22v-.88a6.16 6.16 0 0 0 10.667 4.133L176 4.673a16 16 0 0 1 18.187-3.093l52.746 25.386A16 16 0 0 1 256 41.393v.613a10.107 10.107 0 0 0-16.507-7.813l-198.16 162.48l-4.346 3.733a10.667 10.667 0 0 1-11.04 1.734L6.56 194.006Z"/><path fill="#854CC7" d="M6.56 60.673A10.667 10.667 0 0 0 0 70.46v.88a6.16 6.16 0 0 1 10.667-4.134L176 250.006a16 16 0 0 0 18.187 3.094l52.746-25.387A16 16 0 0 0 256 213.286v-.613a10.107 10.107 0 0 1-16.507 7.813L41.333 58.006l-4.346-3.733a10.667 10.667 0 0 0-11.04-1.6l-19.387 8Z"/><path fill="#B179F1" d="M194.187 253.1A16 16 0 0 1 176 250.006a9.387 9.387 0 0 0 16-6.64v-232a9.387 9.387 0 0 0-16-6.693a16 16 0 0 1 18.187-3.093l52.746 25.36A16 16 0 0 1 256 41.366v171.947a16 16 0 0 1-9.067 14.427l-52.746 25.36Z"/><path fill="url(#logosVisualStudio0)" fill-opacity=".25" d="M183.707 254.273a16 16 0 0 0 10.48-1.173l52.746-25.36A16 16 0 0 0 256 213.313V41.366a16 16 0 0 0-9.067-14.426L194.187 1.58A16 16 0 0 0 182.24.806A16 16 0 0 0 176 4.673L90.987 98.7L41.333 58.006l-4.346-3.733a10.667 10.667 0 0 0-9.627-2.213a6.8 6.8 0 0 0-1.413.48L6.56 60.673A10.667 10.667 0 0 0 0 69.66v115.36a10.664 10.664 0 0 0 6.56 8.986l19.387 8a6.8 6.8 0 0 0 1.413.48c3.378.882 6.973.056 9.627-2.213l4.346-3.6l49.654-40.693L176 250.006a16 16 0 0 0 7.707 4.267ZM192 73.153l-66.107 54.187L192 181.526V73.153ZM32 90.726l33.093 36.614L32 163.953V90.726Z"/></svg>
-</a>
-<p>As your C# project grows you'll want to consider running the back-end C# Solution with Visual Studio .NET with its
-much improved intelli-sense, navigation, tests runner &amp; debug capabilities.</p>
-<p>As we've never had a satisfactory experience trying develop npm or JS/TypeScript projects with VS.NET, we'd recommend only
-using VS.NET for C# and Razor and continuing to use VSCode for everything else.</p>
-<p>If you'd prefer to use Visual Studio for front-end development we recommend moving all JS to external files for a better
-Dev UX, e.g:</p>
-<pre><code class="language-html">&lt;script type=&quot;module&quot; src=&quot;/Pages/SignIn.mjs&quot;&gt;&lt;/script&gt;
-</code></pre>
-<h3 id="deploying-to-production">Deploying to Production<a class="header-anchor" href="javascript:;" onclick="location.hash='#deploying-to-production'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This template also includes the necessary GitHub Actions to deploy this Apps production static assets to GitHub Pages CDN,
-for more info, checkout <a href="deploy">GitHub Actions Deployments</a>.</p>
-<h3 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>If you're new to Vue 3 a good place to start is <a href="https://vuejs.org/api/composition-api-setup.html">Vue 3 Composition API</a>.</p>
+<p>Where you'll be able to use any of the great performing inexpensive models listed under <code>FREE MODELS</code> for Free.
+Whilst ServiceStack customers with an active commercial license can also use any of the  more expensive
+and better performing models listed under <code>PREMIUM MODELS</code> by either:</p>
+<ol type="a">
+<li>Setting the <code>SERVICESTACK_LICENSE</code> Environment Variable with your <strong>License Key</strong></li>
+<li>Setting the <code>SERVICESTACK_CERTIFICATE</code> Variable with your <strong>License Certificate</strong></li>
+<li>Inline using the <code>-license</code> flag with either the <strong>License Key</strong> or <strong>Certificate</strong></li>
+</ol>
+<h3 id="free-for-personal-usage">FREE for Personal Usage<a class="header-anchor" href="javascript:;" onclick="location.hash='#free-for-personal-usage'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To be able to maintain this as a free service we're limiting usage as a tool that developers can use for personal
+assistance and research by limiting usage to <strong>60 requests /hour</strong> which should be more than enough for most
+personal usage and research whilst deterring usage in automated tools.</p>
+<div class="tip custom-block">
+            <p class="custom-block-title">info</p><p>Rate limiting is implemented with a sliding <a href="https://en.wikipedia.org/wiki/Token_bucket">Token Bucket algorithm</a>
+that replenishes 1 additional request every 60s</p>
+</div>
 
                 </div>
             </div>
@@ -302,47 +396,6 @@ for more info, checkout <a href="deploy">GitHub Actions Deployments</a>.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/okai-chat">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1629131530695-30684ecb2366?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/okai-chat" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="FREE Access to the worlds most popular AI Models">
-                                                    FREE Access to the worlds most popular AI Models
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">No API Keys, no Signups, just free access to the worlds most popular AI Large Language Models</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="FREE Access to the worlds most popular AI Models background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-02-25T00:00:00.0000000">February 25, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>3 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -459,6 +512,47 @@ for more info, checkout <a href="deploy">GitHub Actions Deployments</a>.</p>
                                                     <time datetime="2024-12-06T00:00:00.0000000">December 6, 2024</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>8 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/npx-get-dtos">
+                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1639262498805-17c7dc422d37?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/npx-get-dtos" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="DTOs in all languages downloadable without .NET">
+                                                    DTOs in all languages downloadable without .NET
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack Typed DTOs for all languages can now be downloaded and uploaded without .NET installed</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="DTOs in all languages downloadable without .NET background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2024-12-04T00:00:00.0000000">December 4, 2024</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>4 min read</span>
                                                 </div>
                                             </div>
                                         </div>
