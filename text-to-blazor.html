@@ -544,7 +544,7 @@ const AppComponent = {
         }
 
         onMounted(async () => {
-            const r = await fetch('/okai/accepted/index.json')
+            const r = await fetch(`/okai/accepted/index.json?t=${Date.now()}`)
             accepted.value = await r.json()
             accepted.value.reverse()
         })
