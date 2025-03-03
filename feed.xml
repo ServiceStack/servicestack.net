@@ -10,10 +10,23 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Mon, 03 Mar 2025 09:49:54 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 03 Mar 2025 11:27:52 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>llms.txt and llms-full.txt support for Razor SSG and Razor Press</title>
+        <link>https://servicestack.net/posts/llms-txt</link>
+        <author>demis@servicestack.com (Demis Bellot)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/llms-txt</guid>
+        <pubDate>Mon, 03 Mar 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-03-03T00:00:00Z</atom:updated>
+        <category>ssg</category>
+        <category>ai</category>
+        <category>gpt</category>
+        <category>markdown</category>
+        <description>Free Razor SSG and Razor Press Static Site Templates now auto generates llms.txt and llms-full.txt files for Large Language Models</description>
+    </item>
     <item>
         <title>Generate CRUD APIs and Admin UIs from existing DBs</title>
         <link>https://servicestack.net/posts/crud-app-from-existing-db</link>
@@ -133,18 +146,6 @@
         <category>c#</category>
         <category>js</category>
         <description>Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs</description>
-    </item>
-    <item>
-        <title>Simple API Keys Credentials Provider for .NET 8 C# Microservices</title>
-        <link>https://servicestack.net/posts/apikey-credentials-auth</link>
-        <author>demis@servicestack.com (Demis Bellot)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/apikey-credentials-auth</guid>
-        <pubDate>Thu, 28 Nov 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-11-28T00:00:00Z</atom:updated>
-        <category>.net8</category>
-        <category>auth</category>
-        <category>apikeys</category>
-        <description>Improved Simple Auth using API Keys and Admin UI that&#x27;s ideal for .NET 8 C# Microservices</description>
     </item>
 </channel>
 </rss>
