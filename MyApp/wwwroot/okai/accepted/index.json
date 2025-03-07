@@ -477,5 +477,13 @@
     "provider": "codestral",
     "prompt": "Create a web application that is mobile-friendly to allow users to make donations. They need to be able to deposit round sums of money, via Stripe, and hold a balance. And then they will pay donations from that balance. every time they make a donation, their balance decreases by the donation amount. All users will first need to create an account. They can do so via Twitter, Google, Microsoft or Facebook logins. Once they have an account, they can create a profile and add (and manage) payment methods. The screens available for users will then be: Unauthenticated homepage, authenticated homepage, signup, login, Manage profile, Manage account, View balance and transaction history, make a donation, Manage payment information.",
     "groupName": "Profiles"
+  },
+  {
+    "id": "1741288156446",
+    "model": "codestral:22b",
+    "timing": "2099",
+    "provider": "codestral",
+    "prompt": "Financial Reports",
+    "groupName": "FinancialReports"
   }
 ]
