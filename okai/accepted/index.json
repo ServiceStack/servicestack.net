@@ -485,5 +485,29 @@
     "provider": "codestral",
     "prompt": "Financial Reports",
     "groupName": "FinancialReports"
+  },
+  {
+    "id": "1741485975496",
+    "model": "codestral:22b",
+    "timing": "845",
+    "provider": "codestral",
+    "prompt": "a blazor web application for displaying historical market data for the NDX",
+    "groupName": "HistoricalMarketDatas"
+  },
+  {
+    "id": "1741493653024",
+    "model": "deepseek-r1:70b",
+    "timing": "1997",
+    "provider": "groq",
+    "prompt": "Manage a staff list",
+    "groupName": "Staffs"
+  },
+  {
+    "id": "1741493817666",
+    "model": "mistral-small:24b",
+    "timing": "5661",
+    "provider": "openrouter",
+    "prompt": "I need to create a application to maintain inventory at a culinary school, where it need to keep start of master item list for produce, add category to the master item list, keep track of the recipes created based of the master item list",
+    "groupName": "RecipeIngredients"
   }
 ]
