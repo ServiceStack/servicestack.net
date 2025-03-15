@@ -557,5 +557,29 @@
     "provider": "codestral",
     "prompt": "i want to create a mobile app for my local small town. would include shopping categories, things to do, places to visit, where homeworkers can use to get out of the house with their laptops and ability for businesses to pay for a promoted space etc.",
     "groupName": "PromotedSpacePayments"
+  },
+  {
+    "id": "1741977092776",
+    "model": "codestral:22b",
+    "timing": "3131",
+    "provider": "codestral",
+    "prompt": "I want to create a marketing and customer access portal for a modernized software development company. It would include contract inquiries, contract quotes, customers, billing addresses, shipping addresses, testimonials, services, and license keys",
+    "groupName": "LicenseKeys"
+  },
+  {
+    "id": "1741981988102",
+    "model": "codestral:22b",
+    "timing": "2295",
+    "provider": "codestral",
+    "prompt": "inventory management",
+    "groupName": "InventoryItems"
+  },
+  {
+    "id": "1741985685756",
+    "model": "deepseek-r1:70b",
+    "timing": "2053",
+    "provider": "groq",
+    "prompt": "I want an app to manage AI agent (called Sidekicks) configurations. Agents will have names, roles (a string used as an introduction in a multi-agent system), a model (string), system instructions, and a collection of tools the agent can run. Tools are defined as OpenAPI references, so a name and a url where the definition can be found. Those should probably also have a regular text field where manual definitions can be stored. Agents should belong to a collection of workspaces. A workspace is just an organizational unit that can have projects, where all the work is done.",
+    "groupName": "Projects"
   }
 ]
