@@ -581,5 +581,13 @@
     "provider": "groq",
     "prompt": "I want an app to manage AI agent (called Sidekicks) configurations. Agents will have names, roles (a string used as an introduction in a multi-agent system), a model (string), system instructions, and a collection of tools the agent can run. Tools are defined as OpenAPI references, so a name and a url where the definition can be found. Those should probably also have a regular text field where manual definitions can be stored. Agents should belong to a collection of workspaces. A workspace is just an organizational unit that can have projects, where all the work is done.",
     "groupName": "Projects"
+  },
+  {
+    "id": "1742264887412",
+    "model": "codestral:22b",
+    "timing": "971",
+    "provider": "codestral",
+    "prompt": "I need an app that manages tasks . Each task can have on or more categories.",
+    "groupName": "CategoryTasks"
   }
 ]
