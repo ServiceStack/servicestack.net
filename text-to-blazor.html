@@ -139,7 +139,7 @@ green-500 #22c55e
 
     <div id="app" class="mx-auto lg:max-w-7xl">
 
-        <div v-if="!generation" class="mx-auto lg:max-w-4xl">
+        <div v-if="!generation" class="mx-auto lg:max-w-4xl xl:max-w-5xl">
             <div class="flex justify-center mb-4">
                 <div class="w-48">
                     <label for="project" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project Name</label>
@@ -159,7 +159,7 @@ green-500 #22c55e
                 </button>
                 <div class="mt-1 w-full relative shadow-sm rounded-md">
                     <textarea id="prompt" class="flex-grow border py-2 px-3 text-2xl block w-full rounded-md dark:text-white dark:bg-gray-900 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 dark:border-gray-600"
-                              type="text" autocomplete="off" spellcheck="false" autofocus="true"
+                              type="text" autocomplete="off" spellcheck="false" autofocus="true" style="height:180px"
                               placeholder="Describe what data models you need for the App do you want to create?" v-model="prompt"></textarea>
                 </div>
                 <button @click="navGen(1)" type="button" title="Next Generation">
