@@ -589,5 +589,21 @@
     "provider": "codestral",
     "prompt": "I need an app that manages tasks . Each task can have on or more categories.",
     "groupName": "CategoryTasks"
+  },
+  {
+    "id": "1742347899971",
+    "model": "codestral:22b",
+    "timing": "1733",
+    "provider": "codestral",
+    "prompt": "build a blazor app project for ground control station that shows this telemetry data:\n\n```cpp\nstruct TelemetryData {\n    uint32_t packetNumber;\n    uint8_t satelliteStatus;\n    uint8_t errorCode;\n    uint32_t missionTime;\n    uint32_t pressure1;\n    uint32_t pressure2;\n    int16_t descentRate; // m/s * 100\n    int16_t temp;        // °C * 100\n    uint8_t batteryVoltage; // V * 10\n    float gps1Latitude;\n    float gps1Longitude;\n    int16_t gps1Altitude; // m * 10\n    int16_t pitch; // degrees * 100\n    int16_t roll;  // degrees * 100\n    int16_t yaw;   // degrees * 100\n    uint8_t lnln[4];\n    int16_t iotS1Data; // * 100\n    int16_t iotS2Data; // * 100\n    uint32_t teamNumber;\n} __attribute__((packed));\n```",
+    "groupName": "TelemetryDatas"
+  },
+  {
+    "id": "1742353277161",
+    "model": "deepseek-r1:70b",
+    "timing": "3880",
+    "provider": "groq",
+    "prompt": "Corporate an Internal company portal with task and document management system",
+    "groupName": "Projects"
   }
 ]
