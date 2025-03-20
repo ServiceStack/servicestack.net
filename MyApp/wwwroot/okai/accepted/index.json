@@ -605,5 +605,21 @@
     "provider": "groq",
     "prompt": "Corporate an Internal company portal with task and document management system",
     "groupName": "Projects"
+  },
+  {
+    "id": "1742462525241",
+    "model": "codestral:22b",
+    "timing": "1350",
+    "provider": "codestral",
+    "prompt": "Create a multi-tenant app to manage contacts and Addresses, a mini CRM",
+    "groupName": "Contacts"
+  },
+  {
+    "id": "1742468389731",
+    "model": "deepseek-r1:70b",
+    "timing": "3968",
+    "provider": "groq",
+    "prompt": "Make a helpdesk system to manage complaints and show recent complaints with chat with its assigned Agent. The Help Desk Agent can resolve issues with the user via Chat.",
+    "groupName": "Chats"
   }
 ]
