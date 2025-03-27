@@ -180,18 +180,25 @@ green-500 #22c55e
         </div>
 
         <div class="my-24" v-cloak>
-            <div class="mx-auto lg:max-w-5xl overflow-hidden bg-white sm:rounded-lg sm:shadow-sm">
-                <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-                    <div class="-mt-4 -ml-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                        <div class="mt-4 ml-4">
-                            <h3 class="text-base font-semibold text-gray-900">Generated Applications</h3>
-                            <p class="mt-1 text-sm text-gray-500">Download existing Blazor CRUD Apps</p>
-                        </div>
-                        <pages-nav class="mt-4 w-2/3" path="/imagine" :total="accepted.length" :page-size="parseInt(routes.pageSize) || 10" :page="Math.max(1,routes.page ?? 1)"></pages-nav>
-                    </div>
+            <div class="my-4 text-center">
+                <h3 class="text-base font-semibold text-gray-900 dark:text-gray-50">Download existing generated Blazor CRUD Apps</h3>
+            </div>
+            <div class="mx-auto lg:max-w-5xl overflow-hidden bg-white dark:bg-black sm:rounded-lg sm:shadow-sm">
+                <div class="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 px-4 py-5 sm:px-6">
+                    <pages-nav class="w-full" path="/imagine" :total="accepted.filter(x => !filter || x.prompt.toLowerCase().includes(filter.toLowerCase())).length" :page-size="parseInt(routes.pageSize) || 10" :page="Math.max(1,routes.page ?? 1)">
+                        <template #header>
+                            <div class="py-1.5 px-3.5">
+                                <svg class="absolute ml-2.5 mt-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
+                                </svg>
+                                <input type="search" v-model="filter" placeholder="Filter..." autocomplete="off" spellcheck="false"
+                                       class="border rounded-full overflow-hidden flex w-full px-4 py-1 pl-8 border-gray-200 dark:border-gray-800 dark:bg-black">
+                            </div>
+                        </template>
+                    </pages-nav>
                 </div>
                 <ul role="list" class="divide-y divide-gray-200">
-                    <li v-for="info in infos" :class="[info.id == routes.id ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-50']">
+                    <li v-for="info in filteredInfos" :class="[info.id == routes.id ? 'bg-indigo-600 dark:bg-indigo-300 text-white dark:text-black' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900']">
                         <span v-href="{id:info.id, model:undefined}" class="cursor-pointer block">
                             <div class="px-4 py-4 sm:px-6">
                                 <div class="flex items-center justify-between">
@@ -313,6 +320,14 @@ const AppComponent = {
         const infos = computed(() => {
             const skip = ((routes.page || 1) - 1) * (routes.pageSize || 10)
             return accepted.value.slice(skip, skip + (routes.pageSize || 10))
+        })
+        const filter = ref('')
+        const filteredInfos = computed(() => {
+            if (filter.value) {
+                const skip = ((routes.page || 1) - 1) * (routes.pageSize || 10)
+                return accepted.value.filter(x => x.prompt.toLowerCase().includes(filter.value.toLowerCase())).slice(skip, skip + (routes.pageSize || 10))
+            }
+            return infos.value
         })
         
         const generationId = computed(() => selectedModel.value &&
@@ -446,6 +461,8 @@ const AppComponent = {
             loadingGeneration,
             loadingGist,
             selectedModel,
+            filter,
+            filteredInfos,
             generation,
             generationId,
             archiveUrl,
