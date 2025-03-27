@@ -661,5 +661,45 @@
     "provider": "google",
     "prompt": "Create an application to document information about products found around the house",
     "groupName": "Products"
+  },
+  {
+    "id": "1742920247390",
+    "model": "codestral:22b",
+    "timing": "1188",
+    "provider": "codestral",
+    "prompt": "View, Create & Update metrics built on top of market research surveys. Metrics will have a name, description and link to a questionCode",
+    "groupName": "Metrics"
+  },
+  {
+    "id": "1742938175027",
+    "model": "mistral-small:24b",
+    "timing": "3995",
+    "provider": "openrouter",
+    "prompt": "make a todo list",
+    "groupName": "TodoItems"
+  },
+  {
+    "id": "1743009704814",
+    "model": "mistral-small:24b",
+    "timing": "2039",
+    "provider": "openrouter",
+    "prompt": "Customer data model",
+    "groupName": "Customers"
+  },
+  {
+    "id": "1743017496314",
+    "model": "llama3.3:70b",
+    "timing": "744",
+    "provider": "groq",
+    "prompt": "Tour, has a price for adults, children and infants. Has accommodation, with room types and specific rooms. Has dates it is available.",
+    "groupName": "Rooms"
+  },
+  {
+    "id": "1743033158528",
+    "model": "gemini-flash-2.0",
+    "timing": "1778",
+    "provider": "google",
+    "prompt": "create an admin panel to check other instances via http health checks",
+    "groupName": "HealthCheckLogs"
   }
 ]
