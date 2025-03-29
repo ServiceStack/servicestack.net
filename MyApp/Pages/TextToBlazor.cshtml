@@ -176,7 +176,11 @@ green-500 #22c55e
                         </div>
                     </a>
                 </div>
-            </div>            
+            </div>
+            <div class="mt-4 mx-auto max-w-sm">
+                <h4 class="py-6 text-center text-xl">In <span class="font-semibold text-indigo-700">/{{project}}</span>, Create Database with:</h4>
+                <copy-line prefix="$ " text="npm run migrate"></copy-line>
+            </div>
         </div>
 
         <div class="my-24" v-cloak>
@@ -230,6 +234,7 @@ import { JsonServiceClient, rightPart, lastRightPart } from "@@servicestack/clie
 import ServiceStackVue from "@@servicestack/vue"
 import PagesNav from "./mjs/components/PagesNav.mjs"
 import GistView from "./mjs/components/GistView.mjs"
+import CopyLine from "./mjs/components/CopyLine.mjs"
 
 export const icons = {
     'llama3.1:70b':         '/img/models/llama.svg',
@@ -303,6 +308,7 @@ const AppComponent = {
     components: {
         PagesNav,
         GistView,
+        CopyLine,
     },
     setup() {
         const project = ref('Acme')
