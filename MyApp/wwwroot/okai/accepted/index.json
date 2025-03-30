@@ -733,5 +733,13 @@
     "provider": "groq",
     "prompt": "create CRUD page from this Poco class:  \n\n public class Transaction\n {\n     public int Id { get; set; }\n     public string Description { get; set; }\n     public bool IsPurchas { get; set; }\n     public DateOnly ClosingDate { get; set; }\n }",
     "groupName": "Transactions"
+  },
+  {
+    "id": "1743314150782",
+    "model": "codestral:22b",
+    "timing": "3216",
+    "provider": "codestral",
+    "prompt": "I want you to create a functional Website for a system to promote small hotel offers.",
+    "groupName": "Bookings"
   }
 ]
