@@ -725,5 +725,13 @@
     "provider": "codestral",
     "prompt": "create   warehouse management system with barcode scanner and serial number",
     "groupName": "SerialNumbers"
+  },
+  {
+    "id": "1743218626265",
+    "model": "llama3.3:70b",
+    "timing": "525",
+    "provider": "groq",
+    "prompt": "create CRUD page from this Poco class:  \n\n public class Transaction\n {\n     public int Id { get; set; }\n     public string Description { get; set; }\n     public bool IsPurchas { get; set; }\n     public DateOnly ClosingDate { get; set; }\n }",
+    "groupName": "Transactions"
   }
 ]
