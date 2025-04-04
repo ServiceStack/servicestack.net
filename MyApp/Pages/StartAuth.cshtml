@@ -255,31 +255,6 @@ const App = {
             </div>
         </div>
 
-        <div class="mb-4 flex flex-col items-center">
-            <h2 class="my-8 tracking-tight font-semibold text-xl text-slate-600">Single Page Apps</h2>
-            <div class="flex flex-wrap justify-center gap-x-2">
-                <div>
-                    <ProjectTemplate :name="name" :mix="mixTags" repo="NetCoreTemplates/angular-spa" :tags="['bootstrap']" :count="count('angular-spa')">
-                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Angular</div>
-                        <template #icon>
-                            <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.5l8.84 3.15l-1.34 11.7L12 21.5l-7.5-4.15l-1.34-11.7L12 2.5m0 2.1L6.47 17h2.06l1.11-2.78h4.7L15.45 17h2.05L12 4.6m1.62 7.9h-3.23L12 8.63l1.62 3.87Z"/></svg>
-                        </template>
-                    </ProjectTemplate>
-                </div>
-                <div>
-                    <ProjectTemplate :name="name" :mix="mixTags" repo="NetCoreTemplates/svelte-spa" :tags="['bootstrap']" :count="count('svelte-spa')">
-                        <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">Svelte</div>
-                        <template #icon>
-                            <svg class="w-12 h-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m15 8l-5 3l.821-.495c1.86-1.15 4.412-.49 5.574 1.352a3.91 3.91 0 0 1-1.264 5.42l-5.053 3.126c-1.86 1.151-4.312.591-5.474-1.251a3.91 3.91 0 0 1 1.263-5.42l.26-.16"/><path d="m8 17l5-3l-.822.496c-1.86 1.151-4.411.491-5.574-1.351a3.91 3.91 0 0 1 1.264-5.42l5.054-3.127c1.86-1.15 4.311-.59 5.474 1.252a3.91 3.91 0 0 1-1.264 5.42l-.26.16"/></g></svg>
-                        </template>
-                    </ProjectTemplate>
-                </div>
-            </div>
-            <div class="text-gray-500">
-                Run <b>npm install</b> in the <b>{{name}}</b> project folder after install               
-            </div>
-        </div>
-
         <div class="mt-12 text-gray-500 flex flex-col items-center">
             <p class="my-4 text-center">
                 Alternatively create & restore this new custom Web App with the 
