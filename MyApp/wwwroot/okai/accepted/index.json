@@ -757,5 +757,29 @@
     "provider": "groq",
     "prompt": "create   warehouse management system with barcode scanner and serial number and bin number",
     "groupName": "ItemInstances"
+  },
+  {
+    "id": "1743871302122",
+    "model": "deepseek-r1:70b",
+    "timing": "4271",
+    "provider": "groq",
+    "prompt": "create   warehouse management system with barcode scanner and serial number and bin number",
+    "groupName": "Inventories"
+  },
+  {
+    "id": "1744040050653",
+    "model": "codestral:22b",
+    "timing": "941",
+    "provider": "codestral",
+    "prompt": "Claims form taking policy number and claim value as a form",
+    "groupName": "Claims"
+  },
+  {
+    "id": "1744171908142",
+    "model": "gemini-flash-2.0",
+    "timing": "4111",
+    "provider": "google",
+    "prompt": "Generate an application for managing prices in an online store. It should be possible to set prices based on policies, e.g. change prices for products belonging to a product group.",
+    "groupName": "Prices"
   }
 ]
