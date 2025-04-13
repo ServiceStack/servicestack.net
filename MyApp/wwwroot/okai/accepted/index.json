@@ -789,5 +789,21 @@
     "provider": "google",
     "prompt": "Create a bookstore site for buying all types of books",
     "groupName": "Books"
+  },
+  {
+    "id": "1744399518430",
+    "model": "codestral:22b",
+    "timing": "1348",
+    "provider": "codestral",
+    "prompt": "Create an app that presents the text of an agreement along with specific data for the intended user (name, address, date, cost of the service) and allow each agreement to be assigned to a specific user. Perhaps by using a unique Url? Also include a way for the user to submit diigital initials and a signature at specified locations in the agreement text.",
+    "groupName": "Signatures"
+  },
+  {
+    "id": "1744514914485",
+    "model": "deepseek-r1:70b",
+    "timing": "6225",
+    "provider": "groq",
+    "prompt": "Registration of customers and integration with the ViaCEP API",
+    "groupName": "CustomerRegistrations"
   }
 ]
