@@ -14,6 +14,8 @@ new Identity **Roles** Admin UI:
 
 ![](/img/posts/identityauth-claims-roles/identityauth-roles.webp)
 
+### Custom Application Roles
+
 If your App uses an extended `IdentityRole` data model, it can be configured with:
 
 ```csharp
@@ -34,8 +36,7 @@ The Edit Role Admin UI can also be configured to Add/Remove Claims to a Role, e.
 
 ![](/img/posts/identityauth-claims-roles/identityauth-role-claims.webp)
 
-Any Added or Removed Claims are applied after clicking **Update Role**, so you exit the UI without applying any 
-changes by clicking **Cancel**.
+Any Added or Removed Claims are only applied after clicking **Update Role**, likewise you can exit the UI without applying any changes by clicking **Cancel**.
 
 Claims added to Roles have similar behavior to having Claims individually applied to all Users with that Role such that
 when a User is Authenticated they're populated with all claims assigned to their Roles in addition to their individual User Claims. 
