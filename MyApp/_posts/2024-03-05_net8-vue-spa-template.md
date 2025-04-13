@@ -2,7 +2,7 @@
 title: New Vue SPA Template
 summary: Introducing the enhanced Vite TypeScript Vue SPA template for .NET 8
 tags: [vue,.net8,autoquery,admin]
-image: https://images.unsplash.com/photo-1590212151175-e58edd96185b?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/net8-vue-spa-template/bg.webp
 author: Demis Bellot
 ---
 

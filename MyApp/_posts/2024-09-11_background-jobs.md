@@ -3,7 +3,7 @@ title: Simple C# Background Jobs & Recurring Tasks for .NET 8
 summary: Introducing C# Background Jobs for managing background jobs and scheduled tasks
 tags: [workers,commands,.net8]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/background-jobs/bg.webp
 ---
 
 We're excited to announce **Background Jobs** our effortless solution for queueing and managing 

@@ -3,7 +3,7 @@ title: New Angular 19 ASP.NET Core Identity Auth Tailwind SPA Template
 summary: Introducing our new Angular 19 IdentityAuth Tailwind Template with DarkMode and support for RxJS and Signals dev models
 tags: [angular,templates,identity-auth,autoquery]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/angular-template/bg.webp
 ---
 
 We're thrilled to announce the launch of our newest Single Page Application (SPA) template which enhances the

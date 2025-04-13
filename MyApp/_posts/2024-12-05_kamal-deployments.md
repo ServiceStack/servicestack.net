@@ -3,7 +3,7 @@ title: .NET 8 Templates migrated to use Kamal for deployments
 summary: All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server.
 tags: [github-actions,docker,devops]
 author: Darren Reid
-image: https://images.unsplash.com/photo-1494961104209-3c223057bd26?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/kamal-deployments/bg.webp
 ---
 
 Since introducing [GitHub Actions support to our templates](https://docs.servicestack.net/ssh-docker-compose-deploment), we've promoted the simplified deployments, focusing on tooling like SSH and Docker Compose to give the most portability to projects by default. This was partly inspired by the fact that cloud providers value offerings have been decreasing, especially over the last 5 years. We've previously showed [the significant savings](https://servicestack.net/posts/hetzner-cloud) available by utilizing of hosting providers like Hetzner (who we've been using for several years), and moved all our templates and live demos to Hetzner resulting in a roughly **$0.50 per month** cost per .NET App.

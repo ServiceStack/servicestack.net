@@ -2,7 +2,7 @@
 title: ASP.NET Core JWT Identity Auth
 summary: Learn about integration and value added features of ASP.NET Core JWT Identity Auth   
 tags: [.net8,auth,jwt]
-image: https://images.unsplash.com/photo-1618482914248-29272d021005?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/jwt-identity-auth/bg.webp
 author: Demis Bellot
 ---
 

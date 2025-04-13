@@ -2,7 +2,7 @@
 title: Exploring the new streamable JSON Lines Format
 summary: A dive into the JSON Lines format and how to use it in ServiceStack
 tags: [serialization, servicestack, jsonl]
-image: https://images.unsplash.com/photo-1687042268541-5cc60ad9d3de?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/jsonl-format/bg.webp
 author: Darren Reid
 ---
 

@@ -2,7 +2,7 @@
 title: Modelling TypeChat's CoffeeShop in .NET
 summary: We look at Modelling TypeChat's CoffeeShop App  
 tags: [autoquery, c#, dev, servicestack]
-image: https://images.unsplash.com/photo-1501516069922-a9982bd6f3bd?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/building-typechat-coffeeshop-modelling/bg.webp
 author: Demis Bellot
 ---
 

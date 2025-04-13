@@ -2,7 +2,7 @@
 title: Built-In Identity Auth Admin UI
 summary: Explore the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8
 tags: [.net8,identity-auth,admin-ui]
-image: https://images.unsplash.com/photo-1563920443079-783e5c786b83?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/identity-auth-admin-ui/bg.webp
 author: Demis Bellot
 ---
 

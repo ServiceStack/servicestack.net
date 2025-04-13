@@ -3,7 +3,7 @@ title: Scalable Server SQLite Apps
 summary: Learn how to build concurrent, safe scalable SQLite .NET Apps in C#
 tags: [sqlite,.net8]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/scalable-sqlite/bg.webp
 ---
 
 Ever since adding [support for Litestream](https://docs.servicestack.net/ormlite/litestream) in

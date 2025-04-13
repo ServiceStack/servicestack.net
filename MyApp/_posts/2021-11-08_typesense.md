@@ -3,7 +3,7 @@ title: Real-time search with Typesense
 summary: As part of migrating docs to VitePress we've added UX improvements like instant search powered by Typesense!
 author: Darren Reid
 tags: [dev, docs]
-image: https://images.unsplash.com/photo-1473163928189-364b2c4e1135?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/typesense/bg.webp
 ---
 
 We have [recently migrated](/blog/jekyll-to-vitepress) the [ServiceStack Docs](https://docs.servicestack.net) website from using Jekyll for static site generation (SSG) to using 

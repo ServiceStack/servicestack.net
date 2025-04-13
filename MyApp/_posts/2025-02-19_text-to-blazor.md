@@ -3,7 +3,7 @@ title: Text to Blazor Vue CRUD Apps
 summary: Discover how to quickly generate Blazor Admin CRUD Apps from a text description using the new okai tool
 tags: [okai,ai,autoquery,blazor,vue]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/text-to-blazor/bg.webp
 ---
 
 Text to Blazor is our first initiative for harnessing AI to help to rapidly generate new Blazor Admin CRUD 

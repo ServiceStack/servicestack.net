@@ -2,7 +2,7 @@
 title: New .NET 8 Blazor Tailwind Template
 summary: The new Blazor for .NET 8 template streamlines web UI development in C#.
 tags: [dotnet, blazor, templates]
-image: https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/net8-blazor-template/bg.webp
 author: Darren Reid
 ---
 

@@ -147,9 +147,12 @@ async function main() {
         }
         const outputPath = join(outputDir, 'bg.webp');
         if (existsSync(outputPath)) {
-          const relativePath = `./${outputPath}`;
+          const relativePath = `./img/posts/${slug}/bg.webp`;
           console.log(`  File already exists: ${relativePath}, skipping conversion`);
+
+          console.log(`  Updating ${mdFile} with existing image path: ${relativePath}`);
           const updatedContent = fileContent.replace(imageUrl, relativePath);
+          writeFileSync(mdPath, updatedContent, 'utf8');
           continue;
         }
         

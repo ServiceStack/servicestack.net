@@ -2,7 +2,7 @@
 title: Jamstack Hosting Costs @ $.40 /mo
 summary: Exploring cost & scalability benefits of hybrid CDN & .NET Apps
 date: 2021-12-04
-image: https://images.unsplash.com/photo-1506399309177-3b43e99fead2?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/jamstacks_hosting/bg.webp
 tags: [dev, hosting, devops]
 author: Demis Bellot
 ---

@@ -2,7 +2,7 @@
 title: PHP typed client DTOs for .NET APIs 
 summary: Announcing 1st class end-to-end typed support for calling .NET APIs with PHP
 tags: [php, servicestack, service-reference]
-image: https://images.unsplash.com/photo-1599507593548-0187ac4043c6?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/php-typed-apis/bg.webp
 author: Demis Bellot
 ---
 

@@ -3,7 +3,7 @@ title: Generate CRUD APIs and Admin UIs from existing DBs
 summary: Use the metadata from an existing RDBMS to generate AutoQuery CRUD APIs and Admin UIs for managing your data.
 tags: [okai,db,autoquery,api,admin-ui]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1484662020986-75935d2ebc66?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/crud-app-from-existing-db/bg.webp
 ---
 
 A core piece of functionality in the [Text to Blazor CRUD App](/posts/text-to-blazor) feature is distilling an AI Prompt

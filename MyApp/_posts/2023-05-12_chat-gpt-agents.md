@@ -2,7 +2,7 @@
 title: Creating ChatGPT Agents to call System APIs
 summary: A walkthrough of how to enable Large Language Model 'Agents' with access to your own ServiceStack APIs
 tags: [servicestack, gpt, ai]
-image: https://images.unsplash.com/photo-1675271591211-126ad94e495d?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/chat-gpt-agents/bg.webp
 author: Darren Reid
 ---
 

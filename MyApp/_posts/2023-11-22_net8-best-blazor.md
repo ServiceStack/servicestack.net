@@ -2,7 +2,7 @@
 title: .NET 8's Best Blazor is not Blazor as we know it  
 summary: We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise    
 tags: [c#, blazor, servicestack]
-image: https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/net8-best-blazor/bg.webp
 author: Demis Bellot
 ---
 

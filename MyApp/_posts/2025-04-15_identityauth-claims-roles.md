@@ -3,7 +3,7 @@ title: Complete Admin UI Management for Identity Claims and Roles
 summary: With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management
 tags: [identity-auth,admin-ui,auth]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/identityauth-claims-roles/bg.webp
 ---
 
 The latest ServiceStack v8.7 Release completes our transition to [ASP .NET Core Identity Auth](https://docs.servicestack.net/auth/identity-auth) 

@@ -2,7 +2,7 @@
 title: Simple, Modern JavaScript
 summary: Learn about JS Modules, Vue 3 and available rich UI Components
 tags: [js, dev]
-image: https://images.unsplash.com/photo-1497515114629-f71d768fd07c?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/javascript/bg.webp
 author: Demis Bellot
 ---
 

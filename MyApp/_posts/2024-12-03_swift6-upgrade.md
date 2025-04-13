@@ -3,7 +3,7 @@ title: ServiceStack.Swift client library rewritten for Swift 6
 summary: ServiceStack.Swift has been rewritten to take advantage of Swift 6 features, now dependency-free.
 tags: [api,service-reference,swift]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/swift6-upgrade/bg.webp
 ---
 
 ![](https://docs.servicestack.net/img/pages/servicestack-reference/swift-logo-banner.jpg)

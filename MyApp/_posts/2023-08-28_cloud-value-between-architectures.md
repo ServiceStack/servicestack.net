@@ -2,7 +2,7 @@
 title: Should .NET Apps switch to ARM?
 summary: Evaluating the cost and performance of ARM vs x86 in AWS, Azure, and Hetzner
 tags: [dotnet, hosting, arm, performance]
-image: https://images.unsplash.com/photo-1587845323226-bad89242c735?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/cloud-value-between-architectures/bg.webp
 author: Darren Reid
 ---
 

@@ -3,7 +3,7 @@ title: SQLite C# Request Logs
 summary: Maintain C# Request Log History in rolling Monthly SQLite databases 
 tags: [sqlite,.net8]
 author: Demis Bellot
-image: https://images.unsplash.com/photo-1535350356005-fd52b3b524fb?crop=entropy&fit=crop&h=1000&w=2000
+image: ./img/posts/sqlite-request-logs/bg.webp
 ---
 
 Up until this release all of ServiceStack's database features like [AutoQuery](https://servicestack.net/autoquery)
