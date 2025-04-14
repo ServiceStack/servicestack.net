@@ -26,6 +26,19 @@ This release continues to see a number of improvements to AI Server starting wit
 - **Mistral:** mistral-small, mistral-saba
 - **Unknown:** quasar
 
+## Built in Analytics & Logging
+
+We've brought [comprehensive Analytics](https://docs.servicestack.net/admin-ui-analytics) added in ServiceStack v5.7 into
+AI Server's Admin UI to provide deep and invaluable insight into your System API Usage, device distribution, API Keys 
+and the IPs where most traffic generates.
+
+[![](/img/posts/ai-server-improvements/ai-server-analytics.webp)](https://docs.servicestack.net/admin-ui-analytics)
+
+For even finer grained detail of your AI Server's usage we've also surfaced the [SQLite Request Logs](https://docs.servicestack.net/sqlite-request-logs) 
+functionality inside AI Server's Admin UI which lets you monitor your API System usage in real-time:
+
+[![](/img/posts/ai-server-improvements/ai-server-logging.webp)](https://docs.servicestack.net/admin-ui-profiling)
+
 ## Support for Thinking Responses
 
 With the rise and popularity of **Thinking** Models we've added custom rendering of *thinking* responses in a collapsible
