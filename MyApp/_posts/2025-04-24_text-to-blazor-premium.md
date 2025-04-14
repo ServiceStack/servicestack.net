@@ -6,16 +6,65 @@ author: Demis Bellot
 image: ./img/posts/text-to-blazor/bg.webp
 ---
 
+## Text to Blazor now utilizing world's best coding models
+
+After the positive reception we've received for Text to Blazor we've now upgraded it to use the best 
+(non-thinking) coding LLMs from the leading AI and OSS companies, inc:
+
+<div class="not-prose py-4 flex justify-between items-center">
+    <div class="mx-auto text-center">
+        <img class="mx-auto h-20" src="https://openai.servicestack.net/img/models/gemini-pro.svg">
+        <div>
+            <b class="block">Google</b>
+            <span class="text-sm">Gemini 2.5 Pro</span>
+        </div>
+    </div>
+    <div class="mx-auto text-center">
+        <img class="mx-auto h-20" src="https://openai.servicestack.net/img/models/claude-3-sonnet.svg">
+        <div>
+            <b class="block">Anthropic</b>
+            <span class="text-sm">Claude 3.7 Sonnet</span>
+        </div>
+    </div>
+    <div class="mx-auto text-center">
+        <img class="mx-auto h-20 p-2" src="https://openai.servicestack.net/img/models/llama.svg">
+        <div>
+            <b class="block">Meta</b>
+            <span class="text-sm">Llama 4 Maverick (400B)</span>
+        </div>
+    </div>
+    <div class="mx-auto text-center">
+        <img class="mx-auto h-20" src="https://openai.servicestack.net/img/models/deepseek-3.jpg">
+        <div>
+            <b class="block">DeepSeek</b>
+            <span class="text-sm">DeepSeek V3 (685B)</span>
+        </div>
+    </div>
+    <div class="mx-auto text-center">
+        <img class="mx-auto h-20 p-2" src="https://openai.servicestack.net/img/models/codestral.svg">
+        <div>
+            <b class="block">Mistral</b>
+            <span class="text-sm">Codestral (22B)</span>
+        </div>
+    </div>
+</div>
+
+
+These LLMs routinely top [Aider's LLM Leaderboards](https://aider.chat/docs/leaderboards/) and are also amongst
+the most popular LLMs used for **programming** on [Open Router](https://openrouter.ai):
+
+[![](/img/posts/text-to-blazor-premium/popular-coding-llms.webp)]([/text-to-blazor](https://openrouter.ai/rankings/programming?view=day))
+
 ## 100+ Blazor CRUD Apps Created!
 
 Since [Text to Blazor's announcement](/posts/text-to-blazor) in ServiceStack's last release we're happy
 to report that more than 100+ Blazor CRUD Apps have been created and downloaded!
 
+Text to Blazor harnesses the power of AI to instantly generate new Blazor Admin CRUD Apps from just a text description.
+
 <div class="flex justify-center">
     <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Bd283EYJKxM" style="background-image: url('https://img.youtube.com/vi/Bd283EYJKxM/maxresdefault.jpg')"></lite-youtube>
 </div>
-
-Text to Blazor harnesses the power of AI to instantly generate new Blazor Admin CRUD Apps from just a text description.
 
 [![](/img/posts/text-to-blazor/text-to-blazor-prompt.webp)](/text-to-blazor)
 
@@ -23,25 +72,8 @@ Text to Blazor harnesses the power of AI to instantly generate new Blazor Admin 
 <a href="https://servicestack.net/text-to-blazor" class="text-3xl text-indigo-600 hover:text-indigo-800">https://servicestack.net/text-to-blazor</a>
 </div>
 
-## Text to Blazor now utilizing world's best coding models
 
-This will query 5 different high quality AI coding models to generate 5 different Data Models, APIs, DB Migrations and Admin UIs which you can browse to find the one that best matches your requirements.
-
-After the positive reception we've received from Text to Blazor we've now upgraded it to use the best 
-dense (i.e. non-thinking) coding LLMs from leading AI and OSS companies:
-
- - **Google** - Gemini 2.5 Pro
- - **Anthropic** - Claude 3.7 Sonnet
- - **Meta** - Llama 4 Maverick (400B)
- - **DeepSeek** - DeepSeek V3 (685B)
- - **Mistral** - Codestral (22B)
-
-Which routinely top [Aider's LLM Leaderboards](https://aider.chat/docs/leaderboards/) that's also amongst
-the most popular LLMs used for programming on [Open Router](https://openrouter.ai):
-
-[![](/img/posts/text-to-blazor-premium/popular-coding-llms.webp)]([/text-to-blazor](https://openrouter.ai/rankings/programming?view=day))
-
-Which you can choose from to download the best Data Models to use for your new CRUD App:
+This will query 5 different leading AI coding models to generate 5x different Data Models, APIs, DB Migrations and Admin UIs which you choose amongst to pick the best one that matches your requirements for your new CRUD App:
 
 [![](/img/posts/text-to-blazor-premium/text-to-blazor-premium.webp)](/text-to-blazor)
 

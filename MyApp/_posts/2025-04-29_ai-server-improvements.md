@@ -1,0 +1,81 @@
+---
+title: AI Server improvements
+summary: New SOTA LLMs added, support for thinking responses, Ollama Vision Models & Generate API
+tags: [ai-server,ai,gpt,service-reference,c#,js]
+author: Demis Bellot
+image: ./img/posts/ai-server/bg.webp
+---
+
+## AI Server improvements
+
+AI Server is our Free OSS Docker self-hosted private gateway to manage API access to multiple LLM APIs, Ollama endpoints, Media APIs, Comfy UI and FFmpeg Agents that's designed as a one-stop solution to manage an organization's AI integrations for all their System Apps with its developer friendly HTTP JSON APIs that supports any programming language or framework.
+
+[![](/img/svgs/ai-server-overview.svg)](https://openai.servicestack.net)
+
+:::youtube Ojo80oFQte8
+Introducing AI Server
+:::
+
+This release continues to see a number of improvements to AI Server starting with adding support for popular LLM models added during this release, including:
+
+- **Google:** gemini-pro-2.0, gemini-flash-2.0, gemini-flash-lite-2.0, gemini-flash-thinking-2.0, gemma3
+- **OpenAI:** o1, o1-preview, o1-mini, o3-mini, gpt-4o-mini
+- **Alibaba:** qwen2.5, qwen2.5-coder, qwen-turbo, qwen-plus, qwen-max
+- **Meta:** llama4
+- **Microsoft:** phi4
+- **Mistral:** mistral-small, mistral-saba
+- **Unknown:** quasar
+
+## Support for Thinking Responses
+
+With the rise and popularity of **Thinking** Models we've added custom rendering of *thinking* responses in a collapsible
+and scrollable container:
+
+[![](/img/posts/ai-server-improvements/ai-server-thinking.png)](https://docs.servicestack.net/ai-server/chat)
+
+## Support for Ollama Vision Models
+
+By default [ImageToText](/ai-server/image-to-text) uses a purpose-specific **Florence 2 Vision model** with ComfyUI for its functionality which is capable of generating a very short description about an image, e.g:
+
+> A woman sitting on the edge of a lake with a wolf
+
+But with LLMs gaining multi modal capabilities and Ollama's recent support of Vision Models we can instead use popular
+Open Source models like Google's **gemma3:27b** or Mistral's **mistral-small:24b** to extract information from images.
+
+Both models are very capable vision models that's can provide rich detail about an image:
+
+### Describe Image
+
+<div class="not-prose mt-8 grid grid-cols-2 gap-4">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-improvements/gemma3-describe.png">
+        <img class="p-2" src="/img/posts/ai-server-improvements/gemma3-describe.png" />
+    </a>
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-improvements/mistral-small-describe.png">
+        <img class="p-2" src="/img/posts/ai-server-improvements/mistral-small-describe.png" />
+    </a>
+</div>
+
+### Caption Image
+
+Although our initial testing sees gemma being better at responding to a wide variety of different prompts, e.g:
+
+<div class="not-prose mt-8 grid grid-cols-2 gap-4">
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-improvements/gemma3-caption.png">
+        <img class="p-2" src="/img/posts/ai-server-improvements/gemma3-caption.png" />
+    </a>
+    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-improvements/mistral-small-caption.png">
+        <img class="p-2" src="/img/posts/ai-server-improvements/mistral-small-caption.png" />
+    </a>
+</div>
+
+## New OllamaGenerate Endpoints
+
+To support Ollama's vision models AI Server added a new feature pipeline around
+[Ollama's generate completion API](https://github.com/ollama/ollama/blob/main/docs/api.md#generate-a-completion):
+
+- [ImageToText](https://openai.servicestack.net/ui/ImageToText)
+  - **Model** - Whether to use a Vision Model for the request
+  - **Prompt** - Prompt for the vision model
+- [OllamaGeneration](https://openai.servicestack.net/ui/OllamaGeneration): Synchronous invocation of Ollama's Generate API
+- [QueueOllamaGeneration](https://openai.servicestack.net/ui/QueueOllamaGeneration): Asynchronous or Web Callback invocation of Ollama's Generate API
+- [GetOllamaGenerationStatus](https://openai.servicestack.net/ui/GetOllamaGenerationStatus): Get the generation status of an Ollama Generate API
