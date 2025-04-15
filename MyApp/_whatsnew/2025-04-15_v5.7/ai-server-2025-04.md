@@ -1,5 +1,5 @@
 ---
-title: AI Server improvements
+title: AI Server - April 2025 Update
 url: https://docs.servicestack.net/ai-server/
 image: /img/posts/ai-server/ai-server-splash.png
 order: 4

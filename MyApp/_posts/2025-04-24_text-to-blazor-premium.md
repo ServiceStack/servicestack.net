@@ -77,16 +77,6 @@ This will query 5 different leading AI coding models to generate 5x different Da
 
 [![](/img/posts/text-to-blazor-premium/text-to-blazor-premium.webp)](/text-to-blazor)
 
-### Using AI to only generate Data Models
-
-Whilst the result is a working CRUD App, the approach taken is very different from most AI tools
-which uses AI to generate the entire App that ends up with a whole new code-base developers didn't write
-which they'd now need to maintain.
-
-Instead AI is only used to generate the initial Data Models within a **TypeScript Declaration file**
-which we've found is the best format supported by AI models that's also the best typed DSL for defining
-data models with minimal syntax that's easy for humans to read and write.
-
 ### Download preferred Blazor Vue CRUD App
 
 Once you've decided on the Data Models that best matches your requirements, you can download your preferred 
@@ -180,3 +170,12 @@ the Audit Behaviors will also maintain an Audit Trail of all CRUD operations whi
 
 ![](/img/posts/text-to-blazor/okai-audit-form.webp)
 
+### Using AI to only generate Data Models
+
+Whilst the result is a working CRUD App, the approach taken is very different from most AI tools
+which uses AI to generate the entire App that ends up with a whole new code-base developers didn't write
+which they'd now need to maintain.
+
+Instead AI is only used to generate the initial Data Models within a **TypeScript Declaration file**
+which we've found is the best format supported by AI models that's also the best typed DSL for defining
+data models with minimal syntax that's easy for humans to read and write.
