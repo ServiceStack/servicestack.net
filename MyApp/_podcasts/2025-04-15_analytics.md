@@ -1,6 +1,6 @@
 ---
 title: In Depth and Interactive API Analytics available to all ServiceStack Apps
-summary: With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management
+summary: Comprehensive and Interactive API Analytics in the built-in Admin UI, offering deep insights into API usage, performance, users, API Keys, and IPs.
 tags: [analytics,admin-ui,apis,sqlite]
 author: Demis Bellot
 url: https://media.servicestack.com/podcasts/analytics.mp3
