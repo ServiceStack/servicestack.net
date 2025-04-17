@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>New Razor SSG generated servicestack.net - ServiceStack</title>
+    <title>Complete Admin UI Management for Identity Claims and Roles - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Celebrating 150M Downloads with a new Razor SSG generated Website" />
-    <meta property="og:url" content="https://servicestack.net/posts/new_razor_ssg_website" />
-    <meta property="og:title" content="New Razor SSG generated servicestack.net" />
-    <meta property="og:image" content="./img/posts/new_razor_ssg_website/bg.webp" />
+    <meta property="og:description" content="With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management" />
+    <meta property="og:url" content="https://servicestack.net/posts/identityauth-claims-roles" />
+    <meta property="og:title" content="Complete Admin UI Management for Identity Claims and Roles" />
+    <meta property="og:image" content="./img/posts/identityauth-claims-roles/bg.webp" />
 
 
 </head>
@@ -131,7 +131,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                New Razor SSG generated servicestack.net
+                Complete Admin UI Management for Identity Claims and Roles
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -168,26 +168,29 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'identityauth-claims-roles', title:'Complete Admin UI Management for Identity Claims and Roles', src:'https://media.servicestack.com/podcasts/identityauth-claims-roles.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=identityauth-claims-roles&amp;source=post&amp;version=8.7.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/new_razor_ssg_website/bg.webp" alt="New Razor SSG generated servicestack.net Background" class="shadow-small">
+                    <img src="./img/posts/identityauth-claims-roles/bg.webp" alt="Complete Admin UI Management for Identity Claims and Roles Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/razor" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
-                        <a href="posts/tagged/ssg" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ssg</a>
-                        <a href="posts/tagged/website" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">website</a>
+                        <a href="posts/tagged/identity-auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">identity-auth</a>
+                        <a href="posts/tagged/admin-ui" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin-ui</a>
+                        <a href="posts/tagged/auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">auth</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-03-29T00:00:00.0000000">March 29, 2023</time>
+                                <time datetime="2025-04-17T00:00:00.0000000">April 17, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>3 min read</span>
+                                <span>2 min read</span>
                             </div>
                         </div>
                 </div>
@@ -200,61 +203,62 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <h2 id="celebrating-150m-total-downloads">Celebrating 150M Total Downloads<a class="header-anchor" href="javascript:;" onclick="location.hash='#celebrating-150m-total-downloads'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We're happy to report that ServiceStack has eclipsed <strong>150M total downloads!</strong></p>
-<div class="my-16 flex mx-auto justify-center">
-   <a href="https://www.nuget.org/profiles/servicestack"><img class="w-96" src="/img/posts/razor-ssg/150M-downloads.png"></a>
+                    <p>The latest ServiceStack v8.7 Release completes our transition to <a href="https://docs.servicestack.net/auth/identity-auth">ASP .NET Core Identity Auth</a>
+with management APIs and Admin UIs for managing Identity Auth Roles and Claims for both Users and Roles.</p>
+<p>All ServiceStack Apps now includes a complete IdentityAuth Management Admin UI which can Add/Remove Roles from the
+new Identity <strong>Roles</strong> Admin UI:</p>
+<p><img src="/img/posts/identityauth-claims-roles/identityauth-roles.webp" alt="" /></p>
+<h3 id="custom-application-roles">Custom Application Roles<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-application-roles'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If your App uses an extended <code>IdentityRole</code> data model, it can be configured with:</p>
+<pre><code class="language-csharp">services.AddPlugin(
+    new AuthFeature(IdentityAuth.For&lt;ApplicationUser,ApplicationRole&gt;(...)));
+</code></pre>
+<p>If it's also configured to use a different <code>PrimaryKey</code> type, it can be configured with:</p>
+<pre><code class="language-csharp">services.AddPlugin(
+    new AuthFeature(IdentityAuth.For&lt;AppUser,AppRole,int&gt;(...)));
+</code></pre>
+<h3 id="identityauth-role-claims">IdentityAuth Role Claims<a class="header-anchor" href="javascript:;" onclick="location.hash='#identityauth-role-claims'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The Edit Role Admin UI can also be configured to Add/Remove Claims to a Role, e.g:</p>
+<p><img src="/img/posts/identityauth-claims-roles/identityauth-role-claims.webp" alt="" /></p>
+<p>Any Added or Removed Claims are only applied after clicking <strong>Update Role</strong>, likewise you can exit the UI without applying any changes by clicking <strong>Cancel</strong>.</p>
+<p>Claims added to Roles have similar behavior to having Claims individually applied to all Users with that Role such that
+when a User is Authenticated they're populated with all claims assigned to their Roles in addition to their individual User Claims.</p>
+<h3 id="identityauth-user-claims">IdentityAuth User Claims<a class="header-anchor" href="javascript:;" onclick="location.hash='#identityauth-user-claims'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst the new User Claim Management UI allows you to assign Claims to individual Users:</p>
+<p><img src="/img/posts/identityauth-claims-roles/identityauth-user-claims.webp" alt="" /></p>
+<h2 id="validating-claims">Validating Claims<a class="header-anchor" href="javascript:;" onclick="location.hash='#validating-claims'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Claims are attestations or attributes about a User which we can use to restrict access to APIs to only Users who
+have been assigned that claim. We could use this to implement a permission system that restricts usage with a
+<code>todos:write</code> permission with something like:</p>
+<pre><code class="language-csharp">[ValidateHasClaim(&quot;perm&quot;, &quot;todos:write&quot;)]
+class CreateTodo {}
+</code></pre>
+<p>Normally this would result in the generic missing claims error message:</p>
+<div class="not-prose"><p><error-summary :status="{message:`perm Claim with 'todos:write' is Required`}"></error-summary></p>
 </div>
-<p>Which comes just after a year from <strong>100M downloads</strong> in <a href="https://docs.servicestack.net/releases/v6_00">v6 Release</a> when we announced
-<a href="https://servicestack.net/free">ServiceStack is now FREE for Individuals &amp; OSS!</a></p>
-<p>We're celebrating this new milestone with a <strong>brand new website</strong>, rewritten from Ruby's Jekyll with an exciting new
-<a href="https://razor-ssg.web-templates.io">Razor SSG</a> project template which takes advantage of the advances we've made in the last few releases
-with our npm dependency-free approach to <a href="/posts/javascript">Simple, Modern JavaScript</a>,
-the built-in support for
-<a href="/posts/prerendering">Prerendering Razor Pages</a> and the rich Tailwind
-<a href="https://docs.servicestack.net/vue/">Vue Component Library</a>
-to create an enjoyable experience for creating Fast, FREE, beautiful, CDN-hostable static generated websites &amp; blogs!</p>
-<div class="not-prose my-16 px-4 sm:px-6">
-<div class="text-center"><h3 id="new-website" class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
-    <a class="text-indigo-600 hover:text-indigo-600" href="https://servicestack.net">servicestack.net</a>
-</h3></div>
-<p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-    Checkout the new Vue, Tailwind & Razor SSG powered <a class="text-indigo-600 hover:text-indigo-600" href="https://servicestack.net">servicestack.net</a> website!
-</p>
-<div class="my-8">
-<a href="https://servicestack.net" class="not-prose max-w-4xl"><div class="block flex justify-center shadow hover:shadow-lg rounded"><img class="" src="/img/whatsnew/v6.8/servicestack.net-home-1440.png"></div></a>
-</div></div>
-<h3 id="migrating-away-from-jekyll">Migrating away from Jekyll<a class="header-anchor" href="javascript:;" onclick="location.hash='#migrating-away-from-jekyll'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>We have a lot to thank Jekyll for as the pioneer of statically generated websites and igniting the <a href="https://jamstack.org">Jamstack</a> movement
-showing the benefits of markdown powered, statically-generated websites. However managing Ruby from Windows/WSL has always been a source of friction
-which was awkward to manage from a different filesystem which ultimately prompted seeking an alternative solution after Jekyll upgrades broke RubyMine
-support forcing the use of text editors to maintain our website code-base and content.</p>
-<h3 id="search-for-a-better-ssg-solution">Search for a better SSG Solution<a class="header-anchor" href="javascript:;" onclick="location.hash='#search-for-a-better-ssg-solution'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Our experience with maintaining extensive <a href="https://servicestack.net/posts/jekyll-to-vitepress">documentation in VitePress</a> and static website
-content in Jekyll has effectively taught us that any heavy content website that can be maintained in Markdown and statically generated, should be.
-Not only is it the fastest way to deliver static content from CDN edge caches, inexpensive &amp; portable to host,
-but it's vastly more reliable than an App Server that's dependent on uptime of VMs, infrastructure dependencies, load balancer and firewall misconfigurations,
-account or billing issues, etc.</p>
-<h3 id="ssg-c-razor-pages-with-vue-tailwind">SSG C# Razor Pages with Vue &amp; Tailwind<a class="header-anchor" href="javascript:;" onclick="location.hash='#ssg-c-razor-pages-with-vue-tailwind'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Deterred by the growing complexity of current SSG solutions, we decided to create a new solution using C# &amp; Razor Pages
-with a clean implementation that allowed full control with an <strong>npm dependency-free</strong> solution letting us adopt our preferred approach to
-<a href="/posts/javascript">Simple, Modern JavaScript</a> without any build-tooling or SPA complexity.</p>
-<p>We're happy with the results of <a href="https://servicestack.net">https://servicestack.net</a> new Razor SSG website -
-a clean, crisp code-base utilizing simple JS Module Vue 3 components, the source code of which is publicly maintained at:</p>
-<div class="my-8 flex justify-center">
-    <a class="text-3xl text-indigo-600 hover:text-indigo-800" href="https://github.com/servicestack/servicestack.net">https://github.com/servicestack/servicestack.net</a>
+<p>But as the <code>perm</code> claim has a customized error message:</p>
+<pre><code class="language-csharp">HasClaimValidator.ClaimErrorMessages[&quot;perm&quot;]= &quot;`${Value} Permission Required`&quot;;
+</code></pre>
+<p>It will generate that Error Response instead:</p>
+<div class="not-prose"><p><error-summary :status="{message:`'todos:write' Permission Required`}"></error-summary></p>
 </div>
-<p>Which serves as a good example at how well Razor SSG scales for larger websites.</p>
-<h3 id="benefits-from-jekyll">Benefits from Jekyll<a class="header-anchor" href="javascript:;" onclick="location.hash='#benefits-from-jekyll'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Whilst still only at <strong>v1</strong> release, we found it already had a number of advantages over the existing Jekyll static website:</p>
-<ul>
-<li>Faster live reloads</li>
-<li>C#/Razor more type-save &amp; productive than Ruby/Liquid</li>
-<li>Greater flexibility in implementing new features</li>
-<li>Better IDE support (from Rider)</li>
-<li>Ability to reuse our .NET libraries</li>
-<li>Better development experience from Windows</li>
-</ul>
+<p>Which is a good example showing how <code>HasClaimValidator.ClaimErrorMessages</code> can be used to add custom error messages
+for your own custom claim validation.</p>
+<h3 id="inspecting-claims-inside-services">Inspecting Claims inside Services<a class="header-anchor" href="javascript:;" onclick="location.hash='#inspecting-claims-inside-services'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>You can also inspect and validate a Users Claim by inspecting the Authenticated ClaimsPrincipal, e.g:</p>
+<pre><code class="language-csharp">public class TodoServices : Service
+{
+    public object Any(CreateTodo request)
+    {
+        var user = Request.GetClaimsPrincipal();
+        if (!user.HasClaim(&quot;perm&quot;, &quot;todos:write&quot;))
+            throw HttpError.Forbidden(&quot;todos:write Permission Required&quot;);
+        
+        var allUserClaims = user.Claims.ToList();
+        //...
+    }
+}
+</code></pre>
 
                 </div>
             </div>
@@ -313,47 +317,6 @@ a clean, crisp code-base utilizing simple JS Module Vue 3 components, the source
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/identityauth-claims-roles">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/identityauth-claims-roles/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/identityauth-claims-roles" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Complete Admin UI Management for Identity Claims and Roles">
-                                                    Complete Admin UI Management for Identity Claims and Roles
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Complete Admin UI Management for Identity Claims and Roles background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-04-17T00:00:00.0000000">April 17, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>2 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -468,6 +431,47 @@ a clean, crisp code-base utilizing simple JS Module Vue 3 components, the source
                                                 </p>
                                                 <div class="flex space-x-1 text-sm text-gray-500">
                                                     <time datetime="2025-02-27T00:00:00.0000000">February 27, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>3 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/okai-chat">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/okai-chat/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/okai-chat" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="FREE CLI Access to the worlds most popular AI Models">
+                                                    FREE CLI Access to the worlds most popular AI Models
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">No API Keys, no Signups, just free access to the worlds most popular AI Large Language Models</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="FREE CLI Access to the worlds most popular AI Models background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-02-25T00:00:00.0000000">February 25, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>3 min read</span>
                                                 </div>

@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Tue, 15 Apr 2025 08:37:55 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 17 Apr 2025 05:30:50 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Complete Admin UI Management for Identity Claims and Roles</title>
+        <link>https://servicestack.net/posts/identityauth-claims-roles</link>
+        <author>demis@servicestack.com (Demis Bellot)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/identityauth-claims-roles</guid>
+        <pubDate>Thu, 17 Apr 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-04-17T00:00:00Z</atom:updated>
+        <category>identity-auth</category>
+        <category>admin-ui</category>
+        <category>auth</category>
+        <description>With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management</description>
+    </item>
     <item>
         <title>In Depth and Interactive API Analytics available to all ServiceStack Apps</title>
         <link>https://servicestack.net/posts/analytics</link>
@@ -132,18 +144,6 @@
         <category>service-reference</category>
         <category>js</category>
         <description>ServiceStack Typed DTOs for all languages can now be downloaded and uploaded without .NET installed</description>
-    </item>
-    <item>
-        <title>ServiceStack.Swift client library rewritten for Swift 6</title>
-        <link>https://servicestack.net/posts/swift6-upgrade</link>
-        <author>demis@servicestack.com (Demis Bellot)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/swift6-upgrade</guid>
-        <pubDate>Tue, 03 Dec 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-12-03T00:00:00Z</atom:updated>
-        <category>api</category>
-        <category>service-reference</category>
-        <category>swift</category>
-        <description>ServiceStack.Swift has been rewritten to take advantage of Swift 6 features, now dependency-free.</description>
     </item>
 </channel>
 </rss>
