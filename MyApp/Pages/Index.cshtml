@@ -5,6 +5,21 @@
     ViewData["Title"] = "ServiceStack";
 }
 
+@section head {
+  <link rel="preload" href="/img/pages/index/dashboard.webp" as="image">
+  <link rel="preload" href="/img/pages/index/analytics.webp" as="image">
+  <link rel="preload" href="/img/pages/index/users.webp" as="image">
+  <link rel="preload" href="/img/pages/index/roles.webp" as="image">
+  <link rel="preload" href="/img/pages/index/apikeys.webp" as="image">
+  <link rel="preload" href="/img/pages/index/logging.webp" as="image">
+  <link rel="preload" href="/img/pages/index/profiling.webp" as="image">
+  <link rel="preload" href="/img/pages/index/commands.webp" as="image">
+  <link rel="preload" href="/img/pages/index/backgroundjobs.webp" as="image">
+  <link rel="preload" href="/img/pages/index/validation.webp" as="image">
+  <link rel="preload" href="/img/pages/index/database.webp" as="image">
+  <link rel="preload" href="/img/pages/index/redis.webp" as="image">
+}
+
 <section class="relative isolate overflow-hidden bg-gray-900">
   <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
     <defs>
@@ -230,8 +245,8 @@ const OpenAiChat = {
             <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ai-server/openai-chat-all-languages">Open AI compatible Chat API</a>. 
             ServiceStack APIs are executed using the same generic JSON Service Client and the native Typed DTOs generated in each language.
           </p>
-          <dl class="mt-10 max-w-xl space-y-6 text-base leading-7 text-gray-600 lg:max-w-none">
-            <div class="relative pl-6">
+          <dl class="mt-10 max-w-xl space-y-4 text-base leading-7 text-gray-600 lg:max-w-none">
+            <div class="relative pl-4">
               <dt class="inline font-semibold text-gray-900">
                 Smart Generic Clients <span class="px-1" aria-hidden="true">·</span>
               </dt>
@@ -240,21 +255,21 @@ const OpenAiChat = {
                 any ServiceStack API
               </dd>
             </div>
-            <div class="relative pl-6">
+            <div class="relative pl-4">
               <dt class="inline font-semibold text-gray-900">
                 Clean Typed DTOs <span class="px-1" aria-hidden="true">·</span>
               </dt>
               <dd class="inline">
                 Native Typed DTOs annotated with API docs utilizing
-                available typing features generated for each language
+                available typing features generated for each lang
               </dd>
             </div>
-            <div class="relative pl-6">
+            <div class="relative pl-4">
               <dt class="inline font-semibold text-gray-900">
                 Good Development UX <span class="px-1" aria-hidden="true">·</span>
               </dt>
               <dd class="inline">
-                Single command to add / update references to remote ServiceStack APIs. GUI plugins for popular IDEs
+                Single command to add / update references to remote ServiceStack APIs. Plugins for popular IDEs
               </dd>
             </div>
           </dl>
@@ -322,6 +337,7 @@ const AnalyticsUi = {
 </div>  
   `,
   setup() {
+
     const adminUis = {
       'dashboard': {
         title:'Dashboard',
