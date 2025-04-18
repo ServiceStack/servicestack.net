@@ -1934,6 +1934,38 @@ select{
   width: 100vw;
 }
 
+.w-\[200px\] {
+  width: 200px;
+}
+
+.w-\[400px\] {
+  width: 400px;
+}
+
+.w-\[360px\] {
+  width: 360px;
+}
+
+.w-\[84rem\] {
+  width: 84rem;
+}
+
+.w-\[84em\] {
+  width: 84em;
+}
+
+.w-\[320px\] {
+  width: 320px;
+}
+
+.w-\[340px\] {
+  width: 340px;
+}
+
+.w-\[330px\] {
+  width: 330px;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -2253,10 +2285,6 @@ select{
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .grid-cols-6 {
