@@ -805,5 +805,21 @@
     "provider": "google",
     "prompt": "Registration of customers and integration with the ViaCEP API",
     "groupName": "Customers"
+  },
+  {
+    "id": "1744927478418",
+    "model": "codestral:22b",
+    "timing": "2535",
+    "provider": "codestral",
+    "prompt": "Generate an application that has both and admin and customer facing solution.   The Application should contain Customer Data, manage both support tickets and projects for customers.   Admin Feature would alow that admin to create and update a customer, including contact information and assign application users to a customer.",
+    "groupName": "SupportTickets"
+  },
+  {
+    "id": "1744955028884",
+    "model": "gemini-pro-2.5",
+    "timing": "11918",
+    "provider": "google",
+    "prompt": "Make a simple chat App",
+    "groupName": "Messages"
   }
 ]
