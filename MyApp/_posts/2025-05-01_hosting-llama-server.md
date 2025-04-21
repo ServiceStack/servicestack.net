@@ -365,7 +365,9 @@ for all your Apps so they can access AI Servers APIs with the [API Keys UI](http
 
 ![](/img/posts/hosting-llama-server/admin-apikeys.webp)
 
-It's recommended to use a different API Key per App so they can be monitored and analyzed separately.
+Here you can create new API keys, view existing keys, and revoke keys as needed. Keys can be created with expiration dates, and restrictions to specific API endpoints, along with notes to help identify the key's purpose.
+
+It's recommended to use a different API Key per App so they can be monitored and analyzed separately. 
 
 With a valid API Key in hand your App's can use AI Server's DTOs with ServiceStack generic
 service clients to enable typed integrations in [11 different languages](https://docs.servicestack.net/ai-server/openai-chat-all-languages).
