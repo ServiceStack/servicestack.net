@@ -144,6 +144,64 @@ identified by their GPU index:
   capabilities: [gpu]
 ```
 
+## Systemd Services
+
+You can trade hosting flexibility to squeeze an extra ounce of performance and run without the overhead of a container by running a compiled llama-server natively by cloning llama.cpp repo:
+
+:::sh
+git clone https://github.com/ggml-org/llama.cpp
+:::
+
+For NVIDIA GPUs you'll need to install [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) before running a CUDA optimized llama.cpp build with:
+
+```sh
+cmake -B build -DGGML_CUDA=ON
+cmake --build build --config Release
+```
+
+If all goes well after a long while you'll get a freshly minted llama-server executable at
+`/build/bin/llama-server` which you can create a managed Systemd service with:
+
+:::sh
+sudo vi /etc/systemd/system/llama-server-gemma3.service
+:::
+
+With the configuration of your llama-server service using your preferred model and configuration options, e.g:
+
+```ini
+[Unit]
+Description=Llama Server: Gemma3 27B
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/deploy/llama.cpp
+Environment="CUDA_VISIBLE_DEVICES=0"
+ExecStart=/home/deploy/llama.cpp/build/bin/llama-server \
+  --model /home/deploy/llama.cpp/models/gemma-3-27b-it-qat-q4_0-gguf \
+  -ngl 999 --host 0.0.0.0 --port 8080
+Restart=on-failure
+RestartSec=5s
+StandardOutput=file:/home/deploy/llama.cpp/logs/llama-server-gemma3.stdout.log
+StandardError=file:/home/deploy/llama.cpp/logs/llama-server-gemma3.stderr.log
+
+[Install]
+WantedBy=multi-user.target
+```
+
+To enable your new systemd service, reload systemd's configuration with:
+
+:::sh
+systemctl daemon-reload
+:::
+
+Where you'll now be able to use systemd to start/stop/restart your llama-service with:
+
+:::sh
+systemctl start llama-server-gemma3
+:::
+
 ### Typed Open AI Chat APIs in 11 Languages
 
 Since [AI Server](https://openai.servicestack.net) is written in ServiceStack we're able to use
@@ -230,3 +288,161 @@ const result = await client.postToUrl("/v1/chat/completions",
 Inspect.printDump(result)
 ```
 
+## Managed AI Server Gateway
+
+If your organization needs to maintain a number of AI integrations you may want to consider
+running them behind a Managed AI Gateway so that your App's only need to be configured to use a 
+single endpoint, abstracting away all the complexity of managing multiple AI Providers, 
+API Key managment and monitoring behind a single location.
+
+### Open Source AI Server
+
+To support this use-case we're developing [AI Server](https://openai.servicestack.net) - an OSS self-hosted managed gateway that our production AI Applications utilize for all their AI requirements.
+
+AI Server allows you to orchestrate your systems AI requests through a single self-hosted application to control what AI Providers App's should use without impacting their client integrations. It serves as a private gateway to process LLM, AI, and Media Transformations, dynamically delegating tasks across multiple providers.
+
+[![](https://docs.servicestack.net/img/pages/ai-server/overview.svg)](https://openai.servicestack.net)
+
+:::youtube Ojo80oFQte8
+AI Server
+:::
+
+Benefits include:
+
+ - **Unified AI Gateway** - Centralized management, load balance and monitor AI usage
+ - **Multi Providers** - Manage multiple self-hosted llama-server/Ollama instances or API Hosted LLMs (e.g. OpenAI, Anthropic, Mistral AI, Google, OpenRouter, Groq)
+ - **Load Balancing** - Delegate requests across multiple providers hosting same model
+ - **Developer UX** - Simple Typed AI access to developer friendly APIs 
+ in 11 different languages supporting **Synchronous**, **Queued** and **Web Callback** integrations
+ - **Secure access** - Only allow access from Auhtorized Apps using simple API keys
+ - **Analytics** - Observe and monitor your Organizations AI Usage
+ - **Background Jobs** - Monitor executing AI requests in real-time
+ - **Audit History** - Access previous AI Request/Responses in monthly archivable DBs
+
+### Install
+
+AI Server can be installed on Linux, macOS or WSL/Windows with Docker
+
+1. Clone the Repository
+
+:::sh
+git clone https://github.com/ServiceStack/ai-server
+:::
+
+2. Run the Installer
+
+:::sh
+cd ai-server && cat install.sh | bash
+:::
+
+<ascii-cinema src="https://docs.servicestack.net/pages/ai-server/ai-server-install.cast"
+  loop="true" poster="npt:00:21" theme="dracula" rows="12" />
+
+This will launch a self-hosted instance of AI Server at: `https://localhost:5006` where you'll be able to Sign In with your chosen Admin password at installation and access AI Server's Admin UI at:
+
+<div class="not-prose">
+  <h3 class="text-4xl text-center text-indigo-800 pb-3">
+    <span class="text-gray-300">https://localhost:5006</span>/admin
+  </h3>
+</div>
+
+![](/img/posts/hosting-llama-server/ai-server-admin-dashboard.webp)
+
+## Registering llama-server endpoints
+
+To let AI Server know about your new llama-server instances create a new **AI Provider** with the **Custom** AI Provider type to register an OpenAI Chat compatible endpoint, e.g:
+
+[![](/img/posts/ai-server-2025-04/custom-openai-provider.webp)](https://docs.servicestack.net/ai-server/)
+
+As llama-server is only configured to serve a single model it can configured with any model name as it's ignored by llama-server but used by AI Server to route AI requests for that model to the custom AI Provider instance which you can try in the [Chat UI](https://docs.servicestack.net/ai-server/chat):
+
+[![](/img/posts/ai-server-2025-04/custom-openai-provider-chat.webp)](https://docs.servicestack.net/ai-server/chat)
+
+## Create API Keys for your Apps
+
+After testing the llama-server instance is working with the Chat UI it's time to create API Keys
+for all your Apps so they can access AI Servers APIs with the [API Keys UI](https://docs.servicestack.net/auth/admin-apikeys#api-keys-admin-ui):
+
+![](/img/posts/hosting-llama-server/ai-server-admin-apikeys.webp)
+
+It's recommended to use a different API Key per App so they can be monitored and analyzed separately.
+
+With a valid API Key in hand your App's can use AI Server's DTOs with ServiceStack generic
+service clients to enable typed integrations in [11 different languages](https://docs.servicestack.net/ai-server/openai-chat-all-languages).
+
+### Synchronous Usage Example
+
+Here's an example of Synchronous Usage in C#: 
+
+```csharp
+var client = new JsonApiClient("https://localhost:5006") { 
+  BearerToken = Environment.GetEnvironmentVariable("AI_SERVER_API_KEY")
+};
+
+var response = await client.PostAsync(new OpenAiChatCompletion {
+    Model = "phi4.gguf",
+    Messages =
+    [
+      new() { Role = "system", Content = "You are a helpful AI assistant" },
+      new() { Role = "user", Content = "How do LLMs work?" }
+    ],
+    MaxTokens = 50
+});
+var answer = response.Choices[0].Message.Content;
+```
+
+### Queued Open AI Chat Completion
+
+Alternatively, you can call the same endpoint asynchronously which will queue the request for processing then check the status of the request and download the response when it's ready.
+
+```csharp
+var response = await client.PostAsync(new QueueOpenAiChatCompletion {
+  Request = new() {
+    Model = "phi4.gguf",
+      Messages =
+      [
+        new() { Role = "system", Content = "You are a helpful AI assistant" },
+        new() { Role = "user", Content = "How do LLMs work?" }
+      ],
+      MaxTokens = 50
+    },
+});
+
+// Poll for Job Completion Status
+GetOpenAiChatStatusResponse status = new();
+while (status.JobState is 
+  BackgroundJobState.Started or BackgroundJobState.Queued)
+{
+    status = await client.GetAsync(new GetOpenAiChatStatus { 
+      RefId = response.RefId 
+    });
+    await Task.Delay(1000);
+}
+
+var answer = status.Result.Choices[0].Message.Content;
+```
+
+### ReplyTo Callback Chat Completion
+
+A more reliable Application integration pattern is to provide a `ReplyTo` callback URL to get notified of the response when it's completed, e.g:
+
+```csharp
+var response = await client.PostAsync(new QueueOpenAiChatCompletion {
+  Request = new() {
+    Model = "phi4.gguf",
+      Messages =
+      [
+        new() { Role = "system", Content = "You are a helpful AI assistant" },
+        new() { Role = "user", Content = "How do LLMs work?" }
+      ],
+      MaxTokens = 50
+    },
+    ReplyTo = "https://localhost:5001/api/QueueOpenAiChatResponse"
+});
+```
+
+This enables a push notification integration where your response is not coupled to the client making the request and polling for the response. It's a more robust solution as the notification is handled by a managed background job with retries so that App's are still able to get notified of responses after deployments.
+
+## AI Server Feedback
+
+We're actively developing AI Server as centralized hub to manage both self-hosted and API Hosted LLM Integrations. Feel free to reach us at [ai-server/discussions](https://github.com/ServiceStack/ai-server/discussions) with any feature requests or feedback.
