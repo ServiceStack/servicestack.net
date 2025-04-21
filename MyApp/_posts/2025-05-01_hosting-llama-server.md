@@ -346,7 +346,7 @@ This will launch a self-hosted instance of AI Server at: `https://localhost:5006
   </h3>
 </div>
 
-![](/img/posts/hosting-llama-server/ai-server-admin-dashboard.webp)
+![](/img/posts/hosting-llama-server/admin-dashboard.webp)
 
 ## Registering llama-server endpoints
 
@@ -363,7 +363,7 @@ As llama-server is only configured to serve a single model it can configured wit
 After testing the llama-server instance is working with the Chat UI it's time to create API Keys
 for all your Apps so they can access AI Servers APIs with the [API Keys UI](https://docs.servicestack.net/auth/admin-apikeys#api-keys-admin-ui):
 
-![](/img/posts/hosting-llama-server/ai-server-admin-apikeys.webp)
+![](/img/posts/hosting-llama-server/admin-apikeys.webp)
 
 It's recommended to use a different API Key per App so they can be monitored and analyzed separately.
 
