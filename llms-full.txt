@@ -111,6 +111,25 @@ To support Ollama's vision models AI Server added a new feature pipeline around
 - [QueueOllamaGeneration](https://openai.servicestack.net/ui/QueueOllamaGeneration): Asynchronous or Web Callback invocation of Ollama's Generate API
 - [GetOllamaGenerationStatus](https://openai.servicestack.net/ui/GetOllamaGenerationStatus): Get the generation status of an Ollama Generate API
 
+## Online Status Indicator
+
+Internally AI Server tracks which enabled providers are online and which have successive failures to
+trigger taking them offline. Periodically a scheduled task checks or offline providers to test whether
+they've come back online and their status is updated accordingly.
+
+This status now has a **green** and **red** visible dot indicator in the AI Provider list and in 
+the Edit form where you can manually check the online provider status:
+
+### AI Provider Status
+
+![](/img/posts/ai-server-2025-04/online-status.webp)
+
+### Media Provider Status
+
+The same feature is also available on Media Providers list and Edit page:
+
+![](/img/posts/ai-server-2025-04/online-status-media.webp)
+
 ## Support for Thinking Responses
 
 With the rise and popularity of **Thinking** Models we've added custom rendering of *thinking* responses in a collapsible

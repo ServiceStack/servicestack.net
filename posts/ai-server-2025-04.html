@@ -300,6 +300,17 @@ Open Source models like Google's <strong>gemma3:27b</strong> or Mistral's <stron
 <li><a href="https://openai.servicestack.net/ui/QueueOllamaGeneration">QueueOllamaGeneration</a>: Asynchronous or Web Callback invocation of Ollama's Generate API</li>
 <li><a href="https://openai.servicestack.net/ui/GetOllamaGenerationStatus">GetOllamaGenerationStatus</a>: Get the generation status of an Ollama Generate API</li>
 </ul>
+<h2 id="online-status-indicator">Online Status Indicator<a class="header-anchor" href="javascript:;" onclick="location.hash='#online-status-indicator'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Internally AI Server tracks which enabled providers are online and which have successive failures to
+trigger taking them offline. Periodically a scheduled task checks or offline providers to test whether
+they've come back online and their status is updated accordingly.</p>
+<p>This status now has a <strong>green</strong> and <strong>red</strong> visible dot indicator in the AI Provider list and in
+the Edit form where you can manually check the online provider status:</p>
+<h3 id="ai-provider-status">AI Provider Status<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-provider-status'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><img src="/img/posts/ai-server-2025-04/online-status.webp" alt="" /></p>
+<h3 id="media-provider-status">Media Provider Status<a class="header-anchor" href="javascript:;" onclick="location.hash='#media-provider-status'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The same feature is also available on Media Providers list and Edit page:</p>
+<p><img src="/img/posts/ai-server-2025-04/online-status-media.webp" alt="" /></p>
 <h2 id="support-for-thinking-responses">Support for Thinking Responses<a class="header-anchor" href="javascript:;" onclick="location.hash='#support-for-thinking-responses'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>With the rise and popularity of <strong>Thinking</strong> Models we've added custom rendering of <em>thinking</em> responses in a collapsible
 and scrollable container:</p>
