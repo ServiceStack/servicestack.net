@@ -42,13 +42,13 @@ and operation — a crucial factor when incorporating self-hosting AI solutions 
 Organizations that have incorporated container based deployment solutions will most likely prefer 
 a docker solution of which is available in a number of different hardware optimized configurations including CPU, CUDA for NVIDIA GPUs, ROCm for AMD GPUs and MUSA for Moore Threads GPUs.
 
-Docker containers requiring NVIDIA GPU accelearation will require installing the
+Docker containers requiring NVIDIA GPU acceleration will require installing the
 [NVidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) which allows you to run the `llama.cpp:server-cuda` CUDA optimized image with the `--gpus` flag to utilize your hardwares NVIDIA GPUs, e.g:
 
 ```sh
 docker run -p 8080:8080 -v /path/to/models:/models --gpus all \
     ghcr.io/ggml-org/llama.cpp:server-cuda -m models/phi-4.Q4_K_M.gguf \
-    -c 512 --host 0.0.0.0 --port 8080 --n-gpu-layers 999
+    --host 0.0.0.0 --port 8080 --n-gpu-layers 999
 ```
 
 llama.cpp can run models in the [GGUF File format](https://github.com/ggml-org/ggml/blob/master/docs/gguf.md) that are commonly [hosted on hugging face](https://huggingface.co/models?library=gguf&sort=trending). As of this writing Microsoft, Google and Mistral AI have released some of the best quantized LLMs you can run on consumer GPUs:
@@ -62,8 +62,6 @@ llama.cpp can run models in the [GGUF File format](https://github.com/ggml-org/g
 Docker compose is a great solution for hosting llama-server in production environments which simplifies managing multiple services within declarative configurations, making deployments more repeatable and scalable.
 
 ```yml
-version: '3'
-
 services:
   phi:
     image: ghcr.io/ggml-org/llama.cpp:server-cuda
