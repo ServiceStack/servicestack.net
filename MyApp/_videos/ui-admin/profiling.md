@@ -3,7 +3,7 @@ title: Real-time insights with Request Logging & Profiling UIs
 url: https://youtu.be/LgQHTSHSk1g
 tags: [logging,profiling,api,ui]
 date: 25-07-2022
-order: 4
+order: 5
 ---
 
 The new Request Logging & Profiling UIs bring an invaluable new level of observability into your App, 

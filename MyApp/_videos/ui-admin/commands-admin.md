@@ -3,7 +3,7 @@ title: Build robust and observable systems with Commands
 url: https://youtu.be/SXPdBHbncPc
 tags: [logic,admin,ui]
 date: 18-06-2024
-order: 2
+order: 3
 ---
 
 How code-bases are structured is largely a matter of preference, however we've been able to add value 
