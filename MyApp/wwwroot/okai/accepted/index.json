@@ -837,5 +837,13 @@
     "provider": "openrouter",
     "prompt": "create one crud page for books with cosmos db as database",
     "groupName": "Books"
+  },
+  {
+    "id": "1745835274794",
+    "model": "gemini-pro-2.5",
+    "timing": "23949",
+    "provider": "google",
+    "prompt": "Entities (SQL tables):\n\ncampaign: for campaigns (id, name, etc).\n\nsmsgateway: stores SMS API info (api_url, username, password).\n\nsms_number: stores SMS numbers (refs smsgateway).\n\ncampaign_number: associates an sms_number with a campaign.\n\nuser: stores customer/user info (business name, address, phone, carrier, etc).\n\ncampaign_user: links users to campaigns (refs campaign and user).\n\ndne: \"Do Not Engage\" list (never message these users).\n\ncampaign_prefab: pre-fabricated message templates, tied to a campaign.\n\nCore Features:\n\nCreate/Edit/Delete campaigns, SMS gateways, SMS numbers, users, prefab messages.\n\nAssociate SMS numbers and users with specific campaigns.\n\nBulk Send a message to all users in a campaign.\n\nTemplate messages: Allow messages to inject fields from the user table (e.g., {{businessName}}).\n\nDNE Enforcement: Check DNE list before sending any message or responding.\n\nChat-style interface for incoming/outgoing SMS replies (real-time feel if possible).\n\nNotifications page showing unread or new SMS responses.\n\nOther:\n\nAdmin dashboard UI for all tables.\n\nEnsure DNE list checks at every relevant send/receive point.\n\nPrefab messages editable and reusable within campaigns.\n\nSupport for reading SMS responses and replying back through the correct SMS gateway and number.",
+    "groupName": "CampaignNumbers"
   }
 ]
