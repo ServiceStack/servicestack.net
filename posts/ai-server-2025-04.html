@@ -193,7 +193,7 @@ mountAll()
                             <div class="mb-6 text-lg text-gray-500">
                                 <time datetime="2025-04-24T00:00:00.0000000">April 24, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>4 min read</span>
+                                <span>5 min read</span>
                             </div>
                         </div>
                 </div>
@@ -217,6 +217,24 @@ API Keys and identify IPs where most traffic generates.</p>
 <p>For even finer grained detail of your AI Server's usage we've also surfaced the <a href="https://docs.servicestack.net/sqlite-request-logs">SQLite Request Logs</a>
 functionality inside AI Server's Admin UI which lets you monitor your API System usage in real-time:</p>
 <p><a href="https://docs.servicestack.net/admin-ui-profiling"><img src="/img/posts/ai-server-2025-04/ai-server-logging.webp" alt="" /></a></p>
+<h2 id="redesigned-ui">Redesigned UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#redesigned-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>As AI Server gains more features it became necessary to group UI features under group headings and associated
+sub menus:</p>
+<video controls>
+  <source src="https://media.servicestack.com/videos/ai-server-command-palette.mp4" type="video/mp4" />
+</video>
+<h3 id="command-palette">Command Palette<a class="header-anchor" href="javascript:;" onclick="location.hash='#command-palette'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>A new Command Palette has been added to quickly navigate between AI Server's different user-facing features
+which can be opened with the <code>/</code> key:</p>
+<p><img src="/img/posts/ai-server-2025-04/ai-server-command-palette.webp" alt="" /></p>
+<h3 id="convert-image">Convert Image<a class="header-anchor" href="javascript:;" onclick="location.hash='#convert-image'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>AI Server has now added a UI to convert images between different image formats:
+<code>.png</code>, <code>.jpg</code>, <code>.gif</code>, <code>.bmp</code>, <code>.tiff</code> and <code>.webp</code></p>
+<p><img src="/img/posts/ai-server-2025-04/convert-image.webp" alt="" /></p>
+<h3 id="convert-video">Convert Video<a class="header-anchor" href="javascript:;" onclick="location.hash='#convert-video'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>AI Server configured with a Media Provider can also convert between different video formats:
+<code>.mp4</code>, <code>.mov</code>, <code>.webm</code>, <code>.mkv</code>, <code>.avi</code>, <code>.wmv</code> and <code>.ogg</code>:</p>
+<p><img src="/img/posts/ai-server-2025-04/convert-video.webp" alt="" /></p>
 <h2 id="support-for-new-models">Support for new Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#support-for-new-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This release continues to see a number of improvements to AI Server starting with adding support for popular LLM models added during this release, including:</p>
 <ul>

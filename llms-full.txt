@@ -200,6 +200,36 @@ functionality inside AI Server's Admin UI which lets you monitor your API System
 
 [![](/img/posts/ai-server-2025-04/ai-server-logging.webp)](https://docs.servicestack.net/admin-ui-profiling)
 
+## Redesigned UI
+
+As AI Server gains more features it became necessary to group UI features under group headings and associated
+sub menus:
+
+<video controls>
+  <source src="https://media.servicestack.com/videos/ai-server-command-palette.mp4" type="video/mp4" />
+</video>
+
+### Command Palette
+
+A new Command Palette has been added to quickly navigate between AI Server's different user-facing features
+which can be opened with the `/` key:
+
+![](/img/posts/ai-server-2025-04/ai-server-command-palette.webp)
+
+### Convert Image
+
+AI Server has now added a UI to convert images between different image formats: 
+`.png`, `.jpg`, `.gif`, `.bmp`, `.tiff` and `.webp`
+
+![](/img/posts/ai-server-2025-04/convert-image.webp)
+
+### Convert Video
+
+AI Server configured with a Media Provider can also convert between different video formats: 
+`.mp4`, `.mov`, `.webm`, `.mkv`, `.avi`, `.wmv` and `.ogg`:
+
+![](/img/posts/ai-server-2025-04/convert-video.webp)
+
 ## Support for new Models
 
 This release continues to see a number of improvements to AI Server starting with adding support for popular LLM models added during this release, including:
