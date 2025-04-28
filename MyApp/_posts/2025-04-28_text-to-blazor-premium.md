@@ -6,7 +6,7 @@ author: Demis Bellot
 image: ./img/posts/text-to-blazor/bg.webp
 ---
 
-## Text to Blazor now utilizing world's best coding models
+## Text to Blazor now utilizing leading coding models
 
 After the positive reception we've received for Text to Blazor we've now upgraded it to use the best 
 (non-thinking) coding LLMs from the leading AI and OSS companies, inc:
