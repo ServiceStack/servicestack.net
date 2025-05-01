@@ -845,5 +845,21 @@
     "provider": "google",
     "prompt": "Entities (SQL tables):\n\ncampaign: for campaigns (id, name, etc).\n\nsmsgateway: stores SMS API info (api_url, username, password).\n\nsms_number: stores SMS numbers (refs smsgateway).\n\ncampaign_number: associates an sms_number with a campaign.\n\nuser: stores customer/user info (business name, address, phone, carrier, etc).\n\ncampaign_user: links users to campaigns (refs campaign and user).\n\ndne: \"Do Not Engage\" list (never message these users).\n\ncampaign_prefab: pre-fabricated message templates, tied to a campaign.\n\nCore Features:\n\nCreate/Edit/Delete campaigns, SMS gateways, SMS numbers, users, prefab messages.\n\nAssociate SMS numbers and users with specific campaigns.\n\nBulk Send a message to all users in a campaign.\n\nTemplate messages: Allow messages to inject fields from the user table (e.g., {{businessName}}).\n\nDNE Enforcement: Check DNE list before sending any message or responding.\n\nChat-style interface for incoming/outgoing SMS replies (real-time feel if possible).\n\nNotifications page showing unread or new SMS responses.\n\nOther:\n\nAdmin dashboard UI for all tables.\n\nEnsure DNE list checks at every relevant send/receive point.\n\nPrefab messages editable and reusable within campaigns.\n\nSupport for reading SMS responses and replying back through the correct SMS gateway and number.",
     "groupName": "CampaignNumbers"
+  },
+  {
+    "id": "1745983785321",
+    "model": "codestral:22b",
+    "timing": "1832",
+    "provider": "codestral",
+    "prompt": "Build an app for managing job applications for nurses. The app should allow filtering applicants based on experience, skills and specialties. Add a form to allow adding a new applicant details, including the ability to attach a PDF resume. Add some test data to the database.",
+    "groupName": "Skills"
+  },
+  {
+    "id": "1746020017904",
+    "model": "deepseek-v3:671b",
+    "timing": "3654",
+    "provider": "openrouter",
+    "prompt": "Create an application that keeps track of applications installed on servers. Use Sqlite database engine. Model properties: - Name (mandatory, unique) - ServerName (mandatory) - OperatingSystem (mandatory, selector: Windows, Linux+Docker) - DatabaseServerName (mandatory) - DatabaseName (mandatory) - AdminPwd (mandatory) - LogServerUrl (mandatory) - WSAppUrl (mandatory) - WSAdminUrl (mandatory) - IntegrationUrls (array of integration app name, url, description)",
+    "groupName": "IntegrationUrls"
   }
 ]
