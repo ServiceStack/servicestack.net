@@ -10,6 +10,7 @@
 
 @{
     ViewData["Title"] = $"{Model.Year} posts";
+    ViewData["HeaderMenu"] = "blog";
     var allYears = Blog.VisiblePosts.Select(x => x.Date.Value.Year).Distinct().OrderByDescending(x => x);
 }
 

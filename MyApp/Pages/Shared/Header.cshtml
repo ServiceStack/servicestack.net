@@ -22,15 +22,25 @@
                                 </a>
                             </li>
                         }
-                        RenderNavLink(Html.ContentUrl("/whatsnew"), "What's New");
-                        RenderNavLink(Html.ContentUrl("/blog"), "Blog");
-                        RenderNavLink(Html.ContentUrl("/podcasts"), "Podcasts", "hidden lg:block");
-                        RenderNavLink("https://docs.servicestack.net", "Docs", "hidden lg:block"); 
-                        RenderNavLink("https://forums.servicestack.net", "Forums", "hidden lg:block");
-                        RenderNavLink(Html.ApiUrl("/free"), "Free");
-                        RenderNavLink(Html.ApiUrl("/trial"), "Trial");
-                        RenderNavLink(Html.ApiUrl("/pricing"), "Pricing");
-                        RenderNavLink(Html.ApiUrl("/account/subscription"), "Sign In", aCls:"text-gray-50 sm:text-slate-700 dark:text-gray-50");
+
+                        if (ViewData["HeaderMenu"] is "blog")
+                        {
+                            RenderNavLink(Html.ContentUrl("/blog"), "Blog");
+                            RenderNavLink(Html.ContentUrl("/posts/"), "Archive");
+                            RenderNavLink(Html.ContentUrl("/podcasts"), "Podcasts");
+                        }
+                        else
+                        {
+                            RenderNavLink(Html.ContentUrl("/whatsnew"), "What's New");
+                            RenderNavLink(Html.ContentUrl("/blog"), "Blog");
+                            RenderNavLink(Html.ContentUrl("/podcasts"), "Podcasts", "hidden lg:block");
+                            RenderNavLink("https://docs.servicestack.net", "Docs", "hidden lg:block"); 
+                            RenderNavLink("https://forums.servicestack.net", "Forums", "hidden lg:block");
+                            RenderNavLink(Html.ApiUrl("/free"), "Free");
+                            RenderNavLink(Html.ApiUrl("/trial"), "Trial");
+                            RenderNavLink(Html.ApiUrl("/pricing"), "Pricing");
+                            RenderNavLink(Html.ApiUrl("/account/subscription"), "Sign In", aCls:"text-gray-50 sm:text-slate-700 dark:text-gray-50");
+                        }
                     }
                     <li class="relative flex flex-wrap just-fu-start m-0">
                         <div data-component="DarkModeToggle" class="ml-2 w-10"></div>

@@ -24,6 +24,7 @@
             : doc.Layout;
 
     ViewData["Title"] = doc.Title;
+    ViewData["HeaderMenu"] = "blog";
 
     var author = Podcasts.Authors.FirstOrDefault(x => x.Name == doc.Author);
     var image = doc.Image ?? Podcasts.FallbackSplashUrl;

@@ -13,6 +13,7 @@
 @{
     Layout = "_LayoutPodcast";
     ViewData["Title"] = $"{Model.Year} podcast episodes";
+    ViewData["HeaderMenu"] = "blog";
     var allYears = Podcasts.VisibleEpisodes.Select(x => x.Date.Value.Year).Distinct().OrderByDescending(x => x);
 }
 

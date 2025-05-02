@@ -25,6 +25,7 @@
             ? null
             : doc.Layout;
     ViewData["Title"] = doc.Title;
+    ViewData["HeaderMenu"] = "blog";
 
     var author = Blog.Authors.FirstOrDefault(x => x.Name == doc.Author);
     var image = doc.Image ?? Blog.FallbackSplashUrl;

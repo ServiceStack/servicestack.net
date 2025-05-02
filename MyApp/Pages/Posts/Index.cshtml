@@ -3,6 +3,7 @@
 @inject MarkdownBlog Blog
 @{
     ViewData["Title"] = "Blog";
+    ViewData["HeaderMenu"] = "blog";
 
     var allPosts = Blog.GetPosts();
     var allTags = allPosts.SelectMany(x => x.Tags).Distinct();

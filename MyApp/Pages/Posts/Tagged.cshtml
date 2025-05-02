@@ -11,6 +11,7 @@
 @{
     var selectedTag = Blog.GetTagBySlug(Model.Slug);
     ViewData["Title"] = $"{selectedTag} tagged posts";
+    ViewData["HeaderMenu"] = "blog";
     
     var allPosts = Blog.GetPosts();
     var allTags = allPosts.SelectMany(x => x.Tags).Distinct().ToList();
