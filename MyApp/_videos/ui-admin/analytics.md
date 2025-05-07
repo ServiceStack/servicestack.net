@@ -1,5 +1,5 @@
 ---
-title: API Keys with Built-In Admin and Identity User UIs
+title: In Depth and Interactive API Analytics available to all ServiceStack Apps!
 url: https://youtu.be/kjLcm1llC5Y
 tags: [db,auth,admin,ui]
 date: 22-04-2025
