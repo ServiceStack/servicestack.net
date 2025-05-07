@@ -861,5 +861,29 @@
     "provider": "openrouter",
     "prompt": "Create an application that keeps track of applications installed on servers. Use Sqlite database engine. Model properties: - Name (mandatory, unique) - ServerName (mandatory) - OperatingSystem (mandatory, selector: Windows, Linux+Docker) - DatabaseServerName (mandatory) - DatabaseName (mandatory) - AdminPwd (mandatory) - LogServerUrl (mandatory) - WSAppUrl (mandatory) - WSAdminUrl (mandatory) - IntegrationUrls (array of integration app name, url, description)",
     "groupName": "IntegrationUrls"
+  },
+  {
+    "id": "1746030604926",
+    "model": "codestral:22b",
+    "timing": "1631",
+    "provider": "codestral",
+    "prompt": "an inventory management system",
+    "groupName": "Products"
+  },
+  {
+    "id": "1746635363139",
+    "model": "codestral:22b",
+    "timing": "2516",
+    "provider": "codestral",
+    "prompt": "Ecommerce",
+    "groupName": "OrderItems"
+  },
+  {
+    "id": "1746635378062",
+    "model": "deepseek-v3:671b",
+    "timing": "19577",
+    "provider": "openrouter",
+    "prompt": "Create an Insurance App that includes:\n\nSection 1: General Information:\nPurchase Date\nFactory warranty end date (offer options by period)\nPlan\nDoes it include protected purchase?\n\n-----------------\nSection 2: Risk\n\nPurchase description\nProduct value / insured amount\nInvoice number\nSerial number/identifier\n\n-----------------\nSection 3: Insured\n\nDocument type\nDocument number\nFirst name\nLast name\nDate of birth\nSex\nNationality\nContact information\nEmail\nPhone type\nPhone number\nAddress\nProvince/Department\nMunicipality/Town\nPostal code\nStreet\nNumber\nRemainder of the address?",
+    "groupName": "Insuredpeople"
   }
 ]
