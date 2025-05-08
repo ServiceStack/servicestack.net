@@ -885,5 +885,13 @@
     "provider": "openrouter",
     "prompt": "Create an Insurance App that includes:\n\nSection 1: General Information:\nPurchase Date\nFactory warranty end date (offer options by period)\nPlan\nDoes it include protected purchase?\n\n-----------------\nSection 2: Risk\n\nPurchase description\nProduct value / insured amount\nInvoice number\nSerial number/identifier\n\n-----------------\nSection 3: Insured\n\nDocument type\nDocument number\nFirst name\nLast name\nDate of birth\nSex\nNationality\nContact information\nEmail\nPhone type\nPhone number\nAddress\nProvince/Department\nMunicipality/Town\nPostal code\nStreet\nNumber\nRemainder of the address?",
     "groupName": "Insuredpeople"
+  },
+  {
+    "id": "1746669055804",
+    "model": "deepseek-v3:671b",
+    "timing": "43651",
+    "provider": "openrouter",
+    "prompt": "I need to create a responsive web app that allows me to view the results of soccer tournaments. Similar to flashscore.com. Where I can add favorite events, display the results and statistics of the matches.",
+    "groupName": "Matches"
   }
 ]
