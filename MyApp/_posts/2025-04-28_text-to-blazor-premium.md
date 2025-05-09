@@ -13,39 +13,39 @@ After the positive reception we've received for Text to Blazor we've now upgrade
 
 <div class="not-prose py-4 flex justify-between items-center">
     <div class="mx-auto text-center">
-        <img class="mx-auto h-20" src="https://openai.servicestack.net/img/models/gemini-pro.svg">
-        <div>
-            <b class="block">Google</b>
-            <span class="text-sm">Gemini 2.5 Pro</span>
-        </div>
+      <img class="mx-auto h-20" src="/img/models/gemini-pro.svg">
+      <div>
+        <b class="block">Google</b>
+        <span class="text-sm">Gemini 2.5 Pro</span>
+      </div>
     </div>
     <div class="mx-auto text-center">
-        <img class="mx-auto h-20" src="https://openai.servicestack.net/img/models/claude-3-sonnet.svg">
-        <div>
-            <b class="block">Anthropic</b>
-            <span class="text-sm">Claude 3.7 Sonnet</span>
-        </div>
+      <img class="mx-auto h-20" src="/img/models/anthropic.svg">
+      <div>
+        <b class="block">Anthropic</b>
+        <span class="text-sm">Claude 3.7 Sonnet</span>
+      </div>
     </div>
     <div class="mx-auto text-center">
-        <img class="mx-auto h-20 p-2" src="https://openai.servicestack.net/img/models/llama.svg">
-        <div>
-            <b class="block">Meta</b>
-            <span class="text-sm">Llama 4 Maverick (400B)</span>
-        </div>
+      <img class="mx-auto h-20 p-2" src="/img/models/meta.svg">
+      <div>
+        <b class="block">Meta</b>
+        <span class="text-sm">Llama 4 Maverick (400B)</span>
+      </div>
     </div>
     <div class="mx-auto text-center">
-        <img class="mx-auto h-20" src="https://openai.servicestack.net/img/models/deepseek-3.jpg">
-        <div>
-            <b class="block">DeepSeek</b>
-            <span class="text-sm">DeepSeek V3 (685B)</span>
-        </div>
+      <img class="mx-auto h-20" src="/img/models/deepseek.jpg">
+      <div>
+        <b class="block">DeepSeek</b>
+        <span class="text-sm">DeepSeek V3 (685B)</span>
+      </div>
     </div>
     <div class="mx-auto text-center">
-        <img class="mx-auto h-20 p-2" src="https://openai.servicestack.net/img/models/codestral.svg">
-        <div>
-            <b class="block">Mistral</b>
-            <span class="text-sm">Codestral (22B)</span>
-        </div>
+      <img class="mx-auto h-20 p-2" src="/img/models/mistral.svg">
+      <div>
+        <b class="block">Mistral</b>
+        <span class="text-sm">Codestral (22B)</span>
+      </div>
     </div>
 </div>
 
