@@ -302,7 +302,7 @@ const AppComponent = {
         CopyLine,
     },
     setup() {
-        const project = ref('Acme')
+        const project = ref('MyApp')
         const prompt = ref('')
         const accepted = ref([])
         const gist = ref()
@@ -366,7 +366,11 @@ const AppComponent = {
                 })
                 return
             }
-            const url = `https://okai.servicestack.com/models/gist?prompt=${id}&include=all,-header&template=blazor-vue&project=${project.value}`
+            const host = location.origin === 'https://localhost:5002' && false
+                ? 'https://localhost:5001'
+                : 'https://account.servicestack.net'
+            
+            const url = host + `/models/gist?prompt=${id}&include=all,-header&template=blazor-vue&project=${project.value}`
             const r = await fetch(url)
             const gistObj = await r.json()
             gist.value = null
