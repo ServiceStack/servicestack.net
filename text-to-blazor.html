@@ -311,21 +311,19 @@ green-500 #22c55e
                 </div>
                 <ul role="list" class="divide-y divide-gray-200">
                     <li v-for="info in filteredInfos" :class="[info.id == routes.id ? 'bg-indigo-600 dark:bg-indigo-300 text-white dark:text-black' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900']">
-                        <span v-href="{id:info.id, model:undefined}" class="cursor-pointer block">
-                            <div class="px-4 py-4 sm:px-6">
+                        <div v-href="{id:info.id, model:undefined}" class="cursor-pointer block flex items-center">
+                            <img :src="getIcon(info.model)" class="mx-4 w-12 h-12 shrink-0" alt="Model Icon">
+                            <div class="py-4">
                                 <div class="flex items-center justify-between">
                                     <div class="truncate text-sm font-medium">{{info.prompt}}</div>
                                 </div>
-                                <div class="mt-2 flex justify-between">
-                                    <div class="sm:flex">
-                                        <div class="flex items-center text-sm">
-                                            <img :src="getIcon(info.model)" class="mr-1.5 size-5 shrink-0" alt="Model Icon">
-                                            {{info.model}}
-                                        </div>
+                                <div class="mt-2 flex">
+                                    <div class="px-1.5 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 dark:text-blue-400 text-xs">
+                                        {{info.model}}
                                     </div>
                                 </div>
                             </div>
-                        </span>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -358,7 +356,7 @@ export const icons = {
     'llama4:400b':          '/img/models/llama.svg',
     'llama4:109b':          '/img/models/llama.svg',
     'phi-4:14b':            '/img/models/phi4.svg',
-    'codestral:22b':        '/img/models/codestral.svg',
+    'codestral:22b':        '/img/models/mistral.svg',
     'mistral:7b':           '/img/models/mistral.svg',
     'mistral-nemo:12b':     '/img/models/mistral-nemo.svg',
     'mixtral:8x7b':         '/img/models/mixtral.jpg',
@@ -376,7 +374,7 @@ export const icons = {
     'o1-preview':           '/img/models/gpt-4.svg',
     'o1-mini':              '/img/models/gpt-4.svg',
     'o3-mini':              '/img/models/gpt-4.svg',
-    'deepseek-v3:671b':     '/img/models/deepseek-3.jpg',
+    'deepseek-v3:671b':     '/img/models/deepseek.jpg',
     'deepseek-r1:671b':     '/img/models/deepseek.jpg',
     'deepseek-r1:70b':      '/img/models/deepseek.jpg',
     'qwen2.5:72b':          '/img/models/qwen.svg',
