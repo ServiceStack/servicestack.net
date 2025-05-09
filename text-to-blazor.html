@@ -358,15 +358,11 @@ export const icons = {
     'phi-4:14b':            '/img/models/phi4.svg',
     'codestral:22b':        '/img/models/mistral.svg',
     'mistral:7b':           '/img/models/mistral.svg',
-    'mistral-nemo:12b':     '/img/models/mistral-nemo.svg',
-    'mixtral:8x7b':         '/img/models/mixtral.jpg',
-    'mixtral:8x22b':        '/img/models/mixtral.jpg',
     'mistral-small:24b':    '/img/models/mistral.svg',
     'mistral-large:123b':   '/img/models/mistral.svg',
     'nova-micro':           '/img/models/aws.svg',
     'nova-lite':            '/img/models/aws.svg',
     'nova-pro':             '/img/models/aws.svg',
-    'gpt-3.5-turbo':        '/img/models/gpt-3.5.svg',
     'gpt-4':                '/img/models/gpt-4.svg',
     'gpt-4-turbo':          '/img/models/gpt-4.svg',
     'gpt-4o':               '/img/models/gpt-4.svg',
@@ -386,18 +382,11 @@ export const icons = {
     'qwen-max':             '/img/models/qwen.svg',
     'gemma2:9b':            '/img/models/gemma.svg',
     'gemma3:27b':           '/img/models/gemma.svg',
-    'claude-3-haiku':       '/img/models/claude-3-haiku.svg',
     'claude-3-sonnet':      '/img/models/claude-3-sonnet.svg',
-    'claude-3-5-haiku':     '/img/models/claude-3-haiku.svg',
     'claude-3-5-sonnet':    '/img/models/claude-3-sonnet.svg',
     'claude-3-7-sonnet':    '/img/models/claude-3-sonnet.svg',
-    'gemini-pro-1.5':       '/img/models/gemini-pro.svg',
-    'gemini-flash-1.5':     '/img/models/gemini-pro.svg',
-    'gemini-flash-1.5-8b':  '/img/models/gemini-pro.svg',
     'gemini-pro-2.5':       '/img/models/gemini-pro.svg',
     'gemini-flash-2.0':     '/img/models/gemini-pro.svg',
-    'gemini-flash-lite-2.0':'/img/models/gemini-pro.svg',
-    'gemini-flash-thinking-2.0': '/img/models/gemini-pro.svg',
 }
 
 const app = new App()
@@ -542,7 +531,7 @@ const AppComponent = {
         }
 
         function getIcon(model) {
-            return 'https://openai.servicestack.net' + (icons[model] || '/img/models/gpt-4.svg')
+            return icons[model] || '/img/models/gpt-4.svg'
         }
         
         function clearGeneration() {
