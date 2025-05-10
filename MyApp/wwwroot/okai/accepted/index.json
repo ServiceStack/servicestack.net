@@ -917,5 +917,13 @@
     "provider": "anthropic",
     "prompt": "I need to create an Application for inventory purposes where I can check on inventory progress from my Android App",
     "groupName": "Inventories"
+  },
+  {
+    "id": "1746822297771",
+    "model": "claude-3-7-sonnet",
+    "timing": "7436",
+    "provider": "anthropic",
+    "prompt": "Create an app that allows an accountant to:\n1. Create and manage a list of clients\n2. For a given client, create a calendar entry that has:  Date, Type of Payment Due, Amount\n\nAllowing the application to visualize a calendar of payments",
+    "groupName": "PaymentCalendarEntries"
   }
 ]
