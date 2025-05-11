@@ -925,5 +925,13 @@
     "provider": "anthropic",
     "prompt": "Create an app that allows an accountant to:\n1. Create and manage a list of clients\n2. For a given client, create a calendar entry that has:  Date, Type of Payment Due, Amount\n\nAllowing the application to visualize a calendar of payments",
     "groupName": "PaymentCalendarEntries"
+  },
+  {
+    "id": "1746932033019",
+    "model": "deepseek-v3:671b",
+    "timing": "94864",
+    "provider": "openrouter",
+    "prompt": "A Human Resources App for managing employee data, payroll, benefits administration, recruitment, onboarding, performance management, and training.",
+    "groupName": "EmploymentDetails"
   }
 ]
