@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Install PostgreSQL, MySql and SQL Server on Apple Silicon - ServiceStack</title>
+    <title>Using llama.cpp to self-host Large Language Models in Production - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Easiest way to install PostgreSQL, MySql and SQL Server on macOS running Apple Silicon&#x27;s M2" />
-    <meta property="og:url" content="https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon" />
-    <meta property="og:title" content="Install PostgreSQL, MySql and SQL Server on Apple Silicon" />
-    <meta property="og:image" content="./img/posts/postgres-mysql-sqlserver-on-apple-silicon/bg.webp" />
+    <meta property="og:description" content="A practical guide to self-hosting LLMs in production using llama.cpp&#x27;s llama-server with Docker compose and Systemd" />
+    <meta property="og:url" content="https://servicestack.net/posts/hosting-llama-server" />
+    <meta property="og:title" content="Using llama.cpp to self-host Large Language Models in Production" />
+    <meta property="og:image" content="./img/posts/hosting-llama-server/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Install PostgreSQL, MySql and SQL Server on Apple Silicon
+                Using llama.cpp to self-host Large Language Models in Production
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -138,25 +138,29 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'hosting-llama-server', title:'Using llama.cpp to self-host Large Language Models in Production', src:'https://media.servicestack.com/podcasts/hosting-llama-server.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=hosting-llama-server&amp;source=post&amp;version=8.7.3', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/postgres-mysql-sqlserver-on-apple-silicon/bg.webp" alt="Install PostgreSQL, MySql and SQL Server on Apple Silicon Background" class="shadow-small">
+                    <img src="./img/posts/hosting-llama-server/bg.webp" alt="Using llama.cpp to self-host Large Language Models in Production Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
-                        <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
+                        <a href="posts/tagged/ai-server" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai-server</a>
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-07-25T00:00:00.0000000">July 25, 2023</time>
+                                <time datetime="2025-05-13T00:00:00.0000000">May 13, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>8 min read</span>
+                                <span>10 min read</span>
                             </div>
                         </div>
                 </div>
@@ -169,359 +173,521 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>Becoming a <a href="https://twitter.com/demisbellot/status/1678256650753552384">recent owner</a> of Apple's shiny new 15&quot; Macbook Air
-was my first foray into Apple's exciting new ARM chips where they've somehow managed to package all day battery life
-with performance exceeding my primary Intel iMac 5K Desktop into the the thinnest of form factors.</p>
-<p><a href="https://www.apple.com/macbook-air/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/macbookair_2x.jpg" alt="" /></a></p>
-<p>As a .NET developer that primarily develops on Windows/WSL and deploys to Linux x86 servers I've been hesitant to
-move to Apple's new ARM hardware architecture with the potential friction and incompatibilities that might entail,
-however with more ServiceStack Customers moving to Apple's new computers it's become increasingly important to
-also ensure we can deliver a great development experience of ServiceStack on Apple Silicon.</p>
-<h3 id="everything-just-works">Everything just works<a class="header-anchor" href="javascript:;" onclick="location.hash='#everything-just-works'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>What I wasn't expecting is for all the development tools I use daily would not only work flawlessly, but to do so natively
-with all running native ARM builds:</p>
-<ul>
-<li>Oh My Zsh</li>
-<li>.NET SDK</li>
-<li>Rider</li>
-<li>Node.js</li>
-<li>VS Code</li>
-<li>Docker</li>
-<li>GitHub Desktop</li>
-<li>Discord</li>
-<li>DataGrip</li>
-</ul>
-<p>This has got to be the smoothest transition to a new general purpose CPU architecture in the history of computing of
-which credit should go to all involved, Apple for making new hardware so appealing to encourage mass adoption and
-all developers of these products for releasing native macOS ARM builds to support their Users on Apple Silicon.</p>
-<h3 id="installing-all-popular-rdbmss">Installing all popular RDBMS's<a class="header-anchor" href="javascript:;" onclick="location.hash='#installing-all-popular-rdbmss'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Our <a href="https://account.servicestack.net/ormlite/">OrmLite</a> multi &amp; cross-platform ORM is the first product we want to profile
-and benchmark to ensure it also has great performance on Apple Silicon. For this I wanted to have local installations
-of each supported Sqlite, PostgreSQL, MySql and SQL Server RDBMS to load test against, which as it was easier than it should be,
-I wanted to document here so that it's hopeful useful for others needing to do the same thing.</p>
-<p>Installing developer tools has not only become frictionless, but in today's world of ubiquitous Docker adoption, it's
-become much easier to run complex RDBMS software on macOS ARM, even SQL Server - the unlikeliest of combinations!</p>
-<p>First thing you'll need to install is <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> for macOS
-by clicking on their <a href="https://desktop.docker.com/mac/main/arm64/Docker.dmg">Apple Chip</a> download which will let you
-run each RDBMS in a containerized Docker App.</p>
-<p>After Docker is running, installing and running PostgreSQL and MySql can be done with a single command:</p>
-<h3 id="install-and-run-postgresql">Install and run PostgreSQL<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-postgresql'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --name postgres -e POSTGRES_PASSWORD=p@55wOrd -p 127.0.0.1:5432:5432 -d postgres</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h3 id="install-and-run-mysql">Install and run MySql<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-mysql'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=p@55wOrd -d mysql:latest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<blockquote>
-<p>Feel free to update commands to use your preferred strong password instead</p>
-</blockquote>
-<h3 id="install-and-run-sql-server">Install and run SQL Server<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-sql-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>SQL Server requires more resources than the popular RDBMS's and as it doesn't have a native ARM Docker Image requires
-a bit more configuration.</p>
-<p>First you'll want to ensure you have at least <strong>4GB RAM</strong> available to containers from
-the <strong>Resources</strong> Tab in Docker Settings you can open with <code>⌘,</code></p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-resources.png" alt="" /></p>
-<p>My MacBook Air's <strong>24GB RAM</strong> configuration defaulted to <strong>7.9 GB</strong>, if you have a lower configuration you'll want to ensure
-<strong>4GB</strong> is available to SQL Server.</p>
-<p>Next in the <strong>General</strong> tab you'll want to ensure <strong>Use Virtualization Framework</strong> and <strong>VirtioFS</strong> is checked which will
-allow SQL Server <strong>AMD64</strong> Image will run on Apple's new
-<a href="https://developer.apple.com/documentation/virtualization">Virtualization framework</a>:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-general.png" alt="" /></p>
-<p>After which you'll be able to install and run SQL Server with:</p>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --platform=linux/amd64 --name mssql -e ACCEPT_EULA=1 -e MSSQL_SA_PASSWORD=p@55wOrd -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>You'll be able to check if all Docker containers are now running by clicking on the <strong>Containers</strong> tab in Docker Desktop:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-containers.png" alt="" /></p>
-<h3 id="lazydocker">lazydocker<a class="header-anchor" href="javascript:;" onclick="location.hash='#lazydocker'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>That's pretty sweet, although I'm even more excited about
-<a href="https://github.com/jesseduffield/lazydocker">lazydocker</a> as an alternative to Docker Desktop for managing
-Docker containers which can be installed with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>brew install lazydocker</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>As it's a Terminal UI it can be run everywhere where there's a Terminal, in local and remote terminals as well as
-Rider and VS Code's built-in Terminal UIs where you can quickly perform Docker tasks without breaking your development
-workflow:</p>
-<p><a href="https://github.com/jesseduffield/lazydocker"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/lazydocker.png" alt="" /></a></p>
-<h2 id="datagrip">DataGrip<a class="header-anchor" href="javascript:;" onclick="location.hash='#datagrip'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Now we can see they're all running, lets connect to them. You could use the command line tools specific to each database
-but my preference is to use <a href="https://www.jetbrains.com/datagrip/">JetBrains DataGrip</a> which lets you connect and manage
-any RDBMS from a single Desktop App, including many of the most popular NoSQL data stores.</p>
-<h3 id="connect-to-all-database-connections">Connect to all Database connections<a class="header-anchor" href="javascript:;" onclick="location.hash='#connect-to-all-database-connections'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>In <strong>Database Explorer</strong>, click on the <code>+</code> New Icon to add a new Data Source to <strong>Microsoft SQL Server</strong>, <strong>MySql</strong>
-and <strong>PostgreSQL</strong> using the passwords used to run the Docker commands (e.g.<code>p@55wOrd</code>) and the default user names
-for each RDBMS:</p>
-<ul>
-<li>SQL Server: <code>sa</code></li>
-<li>MySQL: <code>root</code></li>
-<li>PostgreSQL: <code>postgres</code></li>
-</ul>
-<p>After connecting to all databases you should end up with active connections to all empty databases:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-databases.png" alt="" /></a></p>
-<p>Which you can open a <strong>New &gt; Query Console</strong> or <code>⇧⌘L</code> to start executing generic queries against like <code>SELECT @@VERSION</code>
-in SQL Server to display the version of SQL Server that's running:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-mssql-version.png" alt="" /></a></p>
-<h3 id="create-test-databases">Create Test Databases<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-test-databases'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>But to do anything interesting lets create <code>test</code> database which you can create with <code>New &gt; Database</code> for SQL Server and
-PostgreSQL or <code>New &gt; Schema</code> in MySQL:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-test.png" alt="" /></a></p>
-<h3 id="net-database-admin-ui">.NET Database Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-database-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Next thing to try is accessing them from the same Application, which ServiceStack .NET Apps have great
-support for with its built-in <a href="https://docs.servicestack.net/admin-ui-database">Database Admin UI</a> which lets you
-browse and query an App's configured databases:</p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="NZkeyuc_prg" style="background-image: url('https://img.youtube.com/vi/NZkeyuc_prg/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>You can easily try this out from the database-enabled <a href="https://razor.web-templates.io">razor</a> project template which
-adopts our <a href="/posts/javascript">Simple, Modern JavaScript</a> approach that uses the native
-JavaScript Modules support in modern Web Browsers to avoid any complex npm build tooling.</p>
-<p>We can create an App to test against your databases by installing the <a href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a> and
-<code>x</code> <a href="https://docs.servicestack.net/dotnet-tool">dotnet tool</a>:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet tool install --global x</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>This will let you create any <a href="/start">ServiceStack Project Template</a> with your preferred Project Name from the command-line, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new razor DatabaseTest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Which creates a new .NET App that you can open with your preferred .NET IDE or text editor, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>code DatabaseTest/DatabaseTest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>By default the App is configured to use a local SQLite database, we can extend it to connect to different RDBMS's
-by adding the necessary RDBMS and <code>AdminDatabaseFeature</code> NuGet packages in <code>DatabaseTest.csproj</code>:</p>
-<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.OrmLite.MySql&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.PostgreSQL&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.SqlServer.Data&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.Server&quot; Version=&quot;8.*&quot; /&gt;
+                    <p><a href="https://ollama.com">Ollama</a>, <a href="https://lmstudio.ai">LM Studio</a> and <a href="https://jan.ai">Jan</a>
+have become popular choices for AI enthusiasts looking to run large language models
+(LLMs) locally which provide a UX-friendly intuitive interfaces for downloading, installing and running a variety of open-source models on personal workstations, acceleratable with GPUs.</p>
+<p>However, when scaling beyond personal use, these tools reveal their limitations which weren't
+designed with production deployment in mind, often lacking flexible and robust resource
+management, fine-grained authorized usage and optimizations necessary for sustained, high-demand
+environments.</p>
+<h2 id="enter-llama-server-the-production-workhorse">Enter llama-server: The Production workhorse<a class="header-anchor" href="javascript:;" onclick="location.hash='#enter-llama-server-the-production-workhorse'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The technology underpinning these applications is
+<a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>, a groundbreaking C/C++ implementation that
+enables running sophisticated language models on consumer hardware.
+This remarkable project, created by Georgi Gerganov, revolutionized the LLM landscape by making
+previously cloud-only models accessible to everyday users through clever quantization techniques
+and memory-efficient operations.</p>
+<p>While Ollama and LM Studio provide user-friendly wrappers around this technology, llama.cpp's
+<a href="https://github.com/ggml-org/llama.cpp/tree/master/examples/server">llama-server</a> leverages the
+same core but strips away the overhead to focus exclusively on performance and stability.
+By directly utilizing the llama.cpp library and its server component, organizations can bypass the
+abstractions introduced by desktop applications and tap into the raw power of the underlying engine whose
+<a href="https://github.com/ggml-org/llama.cpp/tree/master/examples/server#usage">highly configurable runtime</a>
+allows for optimized self-hosting of authorized models.</p>
+<p>This direct approach eliminates unnecessary layers that might introduce latency or unexpected
+behaviors, providing a more consistent and predictable experience necessary for production environments.
+For DevOps teams and system administrators, this translates to fewer surprises during deployment
+and operation — a crucial factor when incorporating self-hosting AI solutions into critical business applications.</p>
+<h2 id="hosting-llama-server-with-docker">Hosting llama-server with Docker<a class="header-anchor" href="javascript:;" onclick="location.hash='#hosting-llama-server-with-docker'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Organizations that have incorporated container based deployment solutions will most likely prefer
+a docker solution of which is available in a number of different hardware optimized configurations including CPU, CUDA for NVIDIA GPUs, ROCm for AMD GPUs and MUSA for Moore Threads GPUs.</p>
+<p>Docker containers requiring NVIDIA GPU acceleration will require installing the
+<a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">NVidia Container Toolkit</a> which allows you to run the <code>llama.cpp:server-cuda</code> CUDA optimized image with the <code>--gpus</code> flag to utilize your hardwares NVIDIA GPUs, e.g:</p>
+<pre><code class="language-sh">docker run -p 8080:8080 -v /path/to/models:/models --gpus all \
+    ghcr.io/ggml-org/llama.cpp:server-cuda -m models/phi-4.Q4_K_M.gguf \
+    --host 0.0.0.0 --port 8080 --n-gpu-layers 999
 </code></pre>
-<p>New dependencies can be installed with VS Code's <strong>Restore</strong> popup or by explicitly running <code>dotnet restore</code>.</p>
-<p>We can then register named connections for each of our databases by replacing the existing <code>Configure.Db.cs</code> with:</p>
-<pre><code class="language-csharp">public class ConfigureDb : IHostingStartup
+<p>llama.cpp can run models in the <a href="https://github.com/ggml-org/ggml/blob/master/docs/gguf.md">GGUF File format</a> that are commonly <a href="https://huggingface.co/models?library=gguf&amp;sort=trending">hosted on hugging face</a>. As of this writing Microsoft, Google and Mistral AI have released some of the best quantized LLMs you can run on consumer GPUs:</p>
+<ul>
+<li><a href="https://huggingface.co/bartowski/phi-4-GGUF/tree/main">Phi-4 14B</a> by Microsoft</li>
+<li><a href="https://huggingface.co/google/gemma-3-27b-it-qat-q4_0-gguf/tree/main">Gemma3 27B</a> by Google</li>
+<li><a href="https://huggingface.co/openfree/Mistral-Small-3.1-24B-Instruct-2503-Q8_0-GGUF/tree/main">Mistral Small 3.1 24B</a> by Mistral AI</li>
+</ul>
+<h3 id="docker-compose">Docker compose<a class="header-anchor" href="javascript:;" onclick="location.hash='#docker-compose'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Docker compose is a great solution for hosting llama-server in production environments which simplifies managing multiple services within declarative configurations, making deployments more repeatable and scalable.</p>
+<pre><code class="language-yml">services:
+  phi:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    environment:
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_MODEL=/models/phi-4.Q4_K_M.gguf
+    ports:
+      - &quot;8000:8080&quot;
+    volumes:
+      - ./models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  gemma:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    environment:
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_MODEL=/models/gemma-3-27b-it-qat-q4_0-gguf
+    ports:
+      - &quot;8001:8080&quot;
+    volumes:
+      - ./models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  mistral:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    environment:
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_MODEL=/models/mistral-small-3.1-24b-instruct-2503-q8_0.gguf
+    ports:
+      - &quot;8002:8080&quot;
+    volumes:
+      - ./models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+</code></pre>
+<p>After saving this to <code>docker-compose.yml</code> along with the models:</p>
+<div class="language-files"><div class="ml-6">
+  <div class="flex items-center text-base leading-8">
+    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
+    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
+    <span>models</span>
+  </div>
+<div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>phi-4.Q4_K_M.gguf</span>
+</div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>gemma-3-27b-it-qat-q4_0-gguf</span>
+</div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>mistral-small-3.1-24b-instruct-2503-q8_0.gguf</span>
+</div>
+</div>
+</div>
+<div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>docker-compose.yml</span>
+</div>
+</div>
+</div>
+<p>You'll be able to run and test them with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>docker compose up</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>This will launch 3 container instances of llama-server configured to run different models accessible via an <a href="https://platform.openai.com/docs/api-reference/chat">OpenAI compatible API</a> on ports <code>8000</code>, <code>8001</code> and <code>8002</code> which you can test using llama-server's Chat Web UI.</p>
+<h3 id="dedicated-gpus">Dedicated GPUs<a class="header-anchor" href="javascript:;" onclick="location.hash='#dedicated-gpus'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Docker containers can also be configured to run llama-server on different dedicated GPUs,
+identified by their GPU index:</p>
+<pre><code class="language-yml">- driver: nvidia
+  device_ids: ['0'] # Assign to GPU 0
+  capabilities: [gpu]
+</code></pre>
+<h2 id="systemd-services">Systemd Services<a class="header-anchor" href="javascript:;" onclick="location.hash='#systemd-services'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>You can trade hosting flexibility to squeeze an extra ounce of performance and run without the overhead of a container by running a compiled llama-server natively by cloning llama.cpp repo:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>git clone <a href="https://github.com/ggml-org/llama.cpp">https://github.com/ggml-org/llama.cpp</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>For NVIDIA GPUs you'll need to install <a href="https://developer.nvidia.com/cuda-toolkit">NVIDIA CUDA Toolkit</a> before running a CUDA optimized llama.cpp build with:</p>
+<pre><code class="language-sh">cmake -B build -DGGML_CUDA=ON
+cmake --build build --config Release
+</code></pre>
+<p>If all goes well after a long while you'll get a freshly minted llama-server executable at
+<code>/build/bin/llama-server</code> which you can create a managed Systemd service with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>sudo vi /etc/systemd/system/llama-server-gemma3.service</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>With the configuration of your llama-server service using your preferred model and configuration options, e.g:</p>
+<pre><code class="language-ini">[Unit]
+Description=Llama Server: Gemma3 27B
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/deploy/llama.cpp
+Environment=&quot;CUDA_VISIBLE_DEVICES=0&quot;
+ExecStart=/home/deploy/llama.cpp/build/bin/llama-server \
+  --model /home/deploy/llama.cpp/models/gemma-3-27b-it-qat-q4_0-gguf \
+  -ngl 999 --host 0.0.0.0 --port 8080
+Restart=on-failure
+RestartSec=5s
+StandardOutput=file:/home/deploy/llama.cpp/logs/llama-server-gemma3.stdout.log
+StandardError=file:/home/deploy/llama.cpp/logs/llama-server-gemma3.stderr.log
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>To enable your new systemd service, reload systemd's configuration with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>systemctl daemon-reload</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Where you'll now be able to use systemd to start/stop/restart your llama-service with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>systemctl start llama-server-gemma3</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="typed-open-ai-chat-apis-in-11-languages">Typed Open AI Chat APIs in 11 Languages<a class="header-anchor" href="javascript:;" onclick="location.hash='#typed-open-ai-chat-apis-in-11-languages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Since <a href="https://openai.servicestack.net">AI Server</a> is written in ServiceStack we're able to use
+its OpenAI Compatible Chat API DTOs to enable typed integrations in its
+<a href="https://docs.servicestack.net/ai-server/openai-chat-all-languages">11 supported languages</a>.</p>
+<h3 id="access-llama-server-from-c">Access llama-server from C#<a class="header-anchor" href="javascript:;" onclick="location.hash='#access-llama-server-from-c'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ol>
+<li>Create an empty console application:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet new console</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="2">
+<li>Add the <strong>ServiceStack.Client</strong> NuGet package:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet add package ServiceStack.Client</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="3">
+<li>Download AI Server's Typed C# DTOs:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx get-dtos csharp <a href="https://openai.servicestack.net">https://openai.servicestack.net</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="4">
+<li>Call llama-server's OpenAI Chat API from C#:</li>
+</ol>
+<pre><code class="language-csharp">// Program.cs
+using ServiceStack;
+using ServiceStack.Text;
+using AiServer.ServiceModel;
+
+var client = new JsonApiClient(&quot;https://localhost:8000&quot;);
+var result = await client.PostAsync&lt;OpenAiChatResponse&gt;(&quot;/v1/chat/completions&quot;,
+    new OpenAiChatCompletion {
+        Messages = [
+            new () { Role = &quot;user&quot;, Content = &quot;What's the capital of France?&quot; }
+        ],
+        MaxTokens = 50
+    });
+
+result.PrintDump();
+</code></pre>
+<p>Run the program:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet run</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="access-llama-server-from-node-or-bun-with-typescript">Access llama-server from <a href="https://nodejs.org">Node</a> or <a href="https://bun.sh">Bun</a> with TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#access-llama-server-from-node-or-bun-with-typescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ol>
+<li>Add the <code>@servicestack/client</code> client library:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm install @servicestack/client</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="2">
+<li>Download AI Server's TypeScript DTOs:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx get-dtos typescript <a href="https://openai.servicestack.net">https://openai.servicestack.net</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call llama-server with TypeScript DTOs and the generic <code>JsonServiceClient</code></p>
+<pre><code class="language-ts">import { JsonServiceClient, Inspect } from &quot;@servicestack/client&quot;
+import { OpenAiChatCompletion } from &quot;./dtos&quot;
+
+const client = new JsonServiceClient(&quot;https://localhost:8000&quot;)
+
+const result = await client.postToUrl(&quot;/v1/chat/completions&quot;,
+    new OpenAiChatCompletion({
+        messages: [
+            { role: &quot;user&quot;, content: &quot;What's the capital of France?&quot; }
+        ],
+        max_tokens: 50
+    })
+)
+
+Inspect.printDump(result)
+</code></pre>
+<h2 id="managed-ai-server-gateway">Managed AI Server Gateway<a class="header-anchor" href="javascript:;" onclick="location.hash='#managed-ai-server-gateway'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If your organization needs to maintain a number of AI integrations you may want to consider
+running them behind a Managed AI Gateway so that your App's only need to be configured to use a
+single endpoint, abstracting away all the complexity of managing multiple AI Providers,
+API Key managment and monitoring behind a single location.</p>
+<h3 id="open-source-ai-server">Open Source AI Server<a class="header-anchor" href="javascript:;" onclick="location.hash='#open-source-ai-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To support this use-case we're developing <a href="https://openai.servicestack.net">AI Server</a> - an OSS self-hosted managed gateway that our production AI Applications utilize for all their AI requirements.</p>
+<p>AI Server allows you to orchestrate your systems AI requests through a single self-hosted application to control what AI Providers App's should use without impacting their client integrations. It serves as a private gateway to process LLM, AI, and Media Transformations, dynamically delegating tasks across multiple providers.</p>
+<p><a href="https://openai.servicestack.net"><img src="https://docs.servicestack.net/img/pages/ai-server/overview.svg" alt="" /></a></p>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Ojo80oFQte8" playlabel="AI Server" style="background-image:url('https://img.youtube.com/vi/Ojo80oFQte8/maxresdefault.jpg')"></lite-youtube>
+<p>Benefits include:</p>
+<ul>
+<li><strong>Unified AI Gateway</strong> - Centralized management, load balance and monitor AI usage</li>
+<li><strong>Multi Providers</strong> - Manage multiple self-hosted llama-server/Ollama instances or API Hosted LLMs (e.g. OpenAI, Anthropic, Mistral AI, Google, OpenRouter, Groq)</li>
+<li><strong>Load Balancing</strong> - Delegate requests across multiple providers hosting same model</li>
+<li><strong>Developer UX</strong> - Simple Typed AI access to developer friendly APIs
+in 11 different languages supporting <strong>Synchronous</strong>, <strong>Queued</strong> and <strong>Web Callback</strong> integrations</li>
+<li><strong>Secure access</strong> - Only allow access from Auhtorized Apps using simple API keys</li>
+<li><strong>Analytics</strong> - Observe and monitor your Organizations AI Usage</li>
+<li><strong>Background Jobs</strong> - Monitor executing AI requests in real-time</li>
+<li><strong>Audit History</strong> - Access previous AI Request/Responses in monthly archivable DBs</li>
+</ul>
+<h3 id="install">Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>AI Server can be installed on Linux, macOS or WSL/Windows with Docker</p>
+<ol>
+<li>Clone the Repository</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>git clone <a href="https://github.com/ServiceStack/ai-server">https://github.com/ServiceStack/ai-server</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="2">
+<li>Run the Installer</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>cd ai-server &amp;&amp; cat install.sh | bash</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p><ascii-cinema src="https://docs.servicestack.net/pages/ai-server/ai-server-install.cast"
+loop="true" poster="npt:00:21" theme="dracula" rows="12" /></p>
+<p>This will launch a self-hosted instance of AI Server at: <code>https://localhost:5006</code> where you'll be able to Sign In with your chosen Admin password at installation and access AI Server's Admin UI at:</p>
+<div class="not-prose">
+  <h3 class="text-4xl text-center text-indigo-800 pb-3">
+    <span class="text-gray-300">https://localhost:5006</span>/admin
+  </h3>
+</div>
+<p><img src="/img/posts/hosting-llama-server/admin-dashboard.webp" alt="" /></p>
+<h2 id="registering-llama-server-endpoints">Registering llama-server endpoints<a class="header-anchor" href="javascript:;" onclick="location.hash='#registering-llama-server-endpoints'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To let AI Server know about your new llama-server instances create a new <strong>AI Provider</strong> with the <strong>Custom</strong> AI Provider type to register an OpenAI Chat compatible endpoint, e.g:</p>
+<p><a href="https://docs.servicestack.net/ai-server/"><img src="/img/posts/ai-server-2025-04/custom-openai-provider.webp" alt="" /></a></p>
+<p>As llama-server is only configured to serve a single model it can configured with any model name as it's ignored by llama-server but used by AI Server to route AI requests for that model to the custom AI Provider instance which you can try in the <a href="https://docs.servicestack.net/ai-server/chat">Chat UI</a>:</p>
+<p><a href="https://docs.servicestack.net/ai-server/chat"><img src="/img/posts/ai-server-2025-04/custom-openai-provider-chat.webp" alt="" /></a></p>
+<h2 id="create-api-keys-for-your-apps">Create API Keys for your Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-api-keys-for-your-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>After testing the llama-server instance is working with the Chat UI it's time to create API Keys
+for all your Apps so they can access AI Servers APIs with the <a href="https://docs.servicestack.net/auth/admin-apikeys#api-keys-admin-ui">API Keys UI</a>:</p>
+<p><img src="/img/posts/hosting-llama-server/admin-apikeys.webp" alt="" /></p>
+<p>Here you can create new API keys, view existing keys, and revoke keys as needed. Keys can be created with expiration dates, and restrictions to specific API endpoints, along with notes to help identify the key's purpose.</p>
+<p>It's recommended to use a different API Key per App so they can be monitored and analyzed separately.</p>
+<p>With a valid API Key in hand your App's can use AI Server's DTOs with ServiceStack generic
+service clients to enable typed integrations in <a href="https://docs.servicestack.net/ai-server/openai-chat-all-languages">11 different languages</a>.</p>
+<h3 id="synchronous-usage-example">Synchronous Usage Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#synchronous-usage-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Here's an example of Synchronous Usage in C#:</p>
+<pre><code class="language-csharp">var client = new JsonApiClient(&quot;https://localhost:5006&quot;) { 
+  BearerToken = Environment.GetEnvironmentVariable(&quot;AI_SERVER_API_KEY&quot;)
+};
+
+var response = await client.PostAsync(new OpenAiChatCompletion {
+    Model = &quot;phi4.gguf&quot;,
+    Messages =
+    [
+      new() { Role = &quot;system&quot;, Content = &quot;You are a helpful AI assistant&quot; },
+      new() { Role = &quot;user&quot;, Content = &quot;How do LLMs work?&quot; }
+    ],
+    MaxTokens = 50
+});
+var answer = response.Choices[0].Message.Content;
+</code></pre>
+<h3 id="queued-open-ai-chat-completion">Queued Open AI Chat Completion<a class="header-anchor" href="javascript:;" onclick="location.hash='#queued-open-ai-chat-completion'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Alternatively, you can call the same endpoint asynchronously which will queue the request for processing then check the status of the request and download the response when it's ready.</p>
+<pre><code class="language-csharp">var response = await client.PostAsync(new QueueOpenAiChatCompletion {
+  Request = new() {
+    Model = &quot;phi4.gguf&quot;,
+      Messages =
+      [
+        new() { Role = &quot;system&quot;, Content = &quot;You are a helpful AI assistant&quot; },
+        new() { Role = &quot;user&quot;, Content = &quot;How do LLMs work?&quot; }
+      ],
+      MaxTokens = 50
+    },
+});
+
+// Poll for Job Completion Status
+GetOpenAiChatStatusResponse status = new();
+while (status.JobState is 
+  BackgroundJobState.Started or BackgroundJobState.Queued)
 {
-    public void Configure(IWebHostBuilder builder) =&gt; builder
-        .ConfigureServices((context,services) =&gt; {
-            var dbFactory = new OrmLiteConnectionFactory(
-                context.Configuration.GetConnectionString(&quot;DefaultConnection&quot;) ?? &quot;App_Data/db.sqlite&quot;,
-                SqliteDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;postgres&quot;, 
-                &quot;Server=localhost;User Id=postgres;Password=p@55wOrd;Database=test;Pooling=true;MinPoolSize=0;MaxPoolSize=200&quot;,
-                PostgreSqlDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;mysql&quot;, 
-                &quot;Server=localhost;User Id=root;Password=p@55wOrd;Database=test;Pooling=true;MinPoolSize=0;MaxPoolSize=200&quot;,
-                MySqlDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;mssql&quot;, 
-                &quot;Server=localhost;User Id=sa;Password=p@55wOrd;Database=test;MultipleActiveResultSets=True;Encrypt=False;&quot;,
-                SqlServer2012Dialect.Provider);
-
-            services.AddSingleton&lt;IDbConnectionFactory&gt;(dbFactory);
-        })
-        .ConfigureAppHost(appHost =&gt; {
-            // Enable built-in Database Admin UI at /admin-ui/database
-            appHost.Plugins.Add(new AdminDatabaseFeature());
-        });
+    status = await client.GetAsync(new GetOpenAiChatStatus { 
+      RefId = response.RefId 
+    });
+    await Task.Delay(1000);
 }
+
+var answer = status.Result.Choices[0].Message.Content;
 </code></pre>
-<p>This will now let us access the <a href="https://docs.servicestack.net/ormlite/getting-started#multiple-database-connections">registered databases</a>
-in our APIs, but first lets populate the databases with some data.</p>
-<h3 id="multi-database-migrations">Multi Database Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#multi-database-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>When a new project is created it populates its default configured SQLite database with some test data, we can do the same
-for the other registered database by duplicating the App's initial <a href="https://docs.servicestack.net/ormlite/db-migrations">DB migration</a>
-to a new DB <code>Migration1001.cs</code> with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>sed &quot;s/1000/1001/&quot; ./Migrations/Migration1000.cs &gt; ./Migrations/Migration1001.cs</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Then annotating it with a <code>[NamedConnection]</code> attribute for each registered database:</p>
-<pre><code class="language-csharp">[NamedConnection(&quot;mssql&quot;)]
-[NamedConnection(&quot;mysql&quot;)]
-[NamedConnection(&quot;postgres&quot;)]
-public class Migration1001 : MigrationBase
-{
-    //...
-}
+<h3 id="replyto-callback-chat-completion">ReplyTo Callback Chat Completion<a class="header-anchor" href="javascript:;" onclick="location.hash='#replyto-callback-chat-completion'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>A more reliable Application integration pattern is to provide a <code>ReplyTo</code> callback URL to get notified of the response when it's completed, e.g:</p>
+<pre><code class="language-csharp">var response = await client.PostAsync(new QueueOpenAiChatCompletion {
+  Request = new() {
+    Model = &quot;phi4.gguf&quot;,
+      Messages =
+      [
+        new() { Role = &quot;system&quot;, Content = &quot;You are a helpful AI assistant&quot; },
+        new() { Role = &quot;user&quot;, Content = &quot;How do LLMs work?&quot; }
+      ],
+      MaxTokens = 50
+    },
+    ReplyTo = &quot;https://localhost:5001/api/QueueOpenAiChatResponse&quot;
+});
 </code></pre>
-<p>That can then be executed with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run migrate</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Where it will execute all new DB Migrations, in this case apply the same Migration to each configured database.</p>
-<p>Now that our App's databases are all populated and ready to go, we can run it with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run dev</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Then view the built-in Admin Database UI at:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>https://localhost:5001/admin-ui/database</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>and signing in with the Admin user created in <code>Configure.AuthRepository.cs</code>:</p>
-<ul>
-<li><code>admin@email.com</code></li>
-<li><code>p@55wOrd</code></li>
-</ul>
-<p>Where it displays all the App's configured database tables on its home page:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-home.png" alt="" /></p>
-<p>Whose contents can be viewed by drilling down and clicking on each table:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-mssql-bookings.png" alt="" /></p>
-<p>Which displays its rows using the <a href="https://docs.servicestack.net/vue/autoquerygrid">AutoQuery Grid Vue Component</a> that
-can be sorted and filtered as needed:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-postgres-coupons.png" alt="" /></p>
-<h2 id="vue.mjs-project-template-features">Vue .mjs project template features<a class="header-anchor" href="javascript:;" onclick="location.hash='#vue.mjs-project-template-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Whilst you have the App running, check out its other high-productivity features:</p>
-<h3 id="create-a-multi-user-booking-system-with-autoquery">Create a multi-user Booking system with AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-a-multi-user-booking-system-with-autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The App's Bookings APIs are built using <a href="https://docs.servicestack.net/autoquery-crud">AutoQuery CRUD</a>, allowing for
-rapid development of typed CRUD Services using only declarative POCO DTOs:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/bookings-auto">https://localhost:5001/bookings-auto</a>
-</div>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="rSFiikDjGos" style="background-image: url('https://img.youtube.com/vi/rSFiikDjGos/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>In addition, all AutoQuery APIs benefit from the built-in <a href="https://docs.servicestack.net/locode/">Locode's</a> Auto Management UI:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/locode">https://localhost:5001/locode</a>
-</div>
-<p><a href="https://docs.servicestack.net/locode/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/db-test-locode.png" alt="" /></a></p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="hkuO_DMFXmc" style="background-image: url('https://img.youtube.com/vi/hkuO_DMFXmc/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>As well as end-to-end typed integrations with the most <a href="/service-reference">popular programming languages</a> accessible
-from the <a href="https://docs.servicestack.net/api-explorer#code-tab">code tab</a> of the built-in
-<a href="https://docs.servicestack.net/api-explorer">API Explorer</a>:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/ui/QueryBookings?tab=code">https://localhost:5001/ui/QueryBookings?tab=code</a>
-</div>
-<p><a href="https://docs.servicestack.net/api-explorer"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/db-test-ui-code.png" alt="" /></a></p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="lUDlTMq9DHU" style="background-image: url('https://img.youtube.com/vi/lUDlTMq9DHU/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>I hope this has been an informative post and highlighted some cool products and features, any questions or feedback
-is welcome by commenting below.</p>
+<p>This enables a push notification integration where your response is not coupled to the client making the request and polling for the response. It's a more robust solution as the notification is handled by a managed background job with retries so that App's are still able to get notified of responses after deployments.</p>
+<h2 id="ai-server-feedback">AI Server Feedback<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-server-feedback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We're actively developing AI Server as centralized hub to manage both self-hosted and API Hosted LLM Integrations. Feel free to reach us at <a href="https://github.com/ServiceStack/ai-server/discussions">ai-server/discussions</a> with any feature requests or feedback.</p>
 
                 </div>
             </div>
@@ -580,47 +746,6 @@ is welcome by commenting below.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/hosting-llama-server">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/hosting-llama-server/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/hosting-llama-server" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Using llama.cpp to self-host Large Language Models in Production">
-                                                    Using llama.cpp to self-host Large Language Models in Production
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">A practical guide to self-hosting LLMs in production using llama.cpp&#x27;s llama-server with Docker compose and Systemd</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Using llama.cpp to self-host Large Language Models in Production background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-05-13T00:00:00.0000000">May 13, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>10 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -744,6 +869,47 @@ is welcome by commenting below.</p>
                                 </div>
 
                             </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/identityauth-claims-roles">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/identityauth-claims-roles/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/identityauth-claims-roles" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Complete Admin UI Management for Identity Claims and Roles">
+                                                    Complete Admin UI Management for Identity Claims and Roles
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Complete Admin UI Management for Identity Claims and Roles background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-04-17T00:00:00.0000000">April 17, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>2 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -760,18 +926,52 @@ init()
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
 
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
 
 <script type="module">
 import { mount } from "app.mjs"
 
-    const App = {
-        setup() {
-            function nav(url) {
-                window.open(url)
-            }
-            return { nav }
-        }
-    }
+        import App from "./posts/hosting-llama-server.mjs" 
     mount('#post', App)
 </script>
 
