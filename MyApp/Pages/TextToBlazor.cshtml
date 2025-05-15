@@ -68,7 +68,7 @@ green-500 #22c55e
                 <div class="my-8 flex justify-center">
                     <button id="btnGenerate" @@click="generate($event)" type="button" :disabled="!prompt || prompt == gist?.description || loadingGeneration"
                             title="Generate your Blazor CRUD App"
-                            class="px-6 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2 text-lg font-medium w-full md:w-auto shadow-md text-green-700 hover:bg-green-200 border border-green-300
+                            class="cursor-pointer px-6 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2 text-lg font-medium w-full md:w-auto shadow-md text-green-700 hover:bg-green-200 border border-green-300
                             disabled:cursor-default disabled:bg-gray-50 disabled:text-gray-500 disabled:border disabled:border-gray-200"
                             :class="!prompt || prompt == gist?.description || loadingGeneration ? '' : 'bg-green-100'">
                         <span>Generate App</span>
@@ -277,6 +277,7 @@ export const icons = {
     'claude-3-7-sonnet':    '/img/models/claude-3-sonnet.svg',
     'gemini-pro-2.5':       '/img/models/gemini-pro.svg',
     'gemini-flash-2.0':     '/img/models/gemini-pro.svg',
+    'gemini-flash-2.5':     '/img/models/gemini-pro.svg',
 }
 
 const app = new App()
