@@ -14,6 +14,6 @@ Tailwindcss v4 is now the default version used in all new ServiceStack Tailwind 
 Vue, React and Angular Templates, including:
 
 - [Vue Component Library](/vue/)
-- [Blazor Components](https://servicestack.net/blazor)
+- [Blazor Components](/blazor)
 - All of ServiceStack's [Built-in Auto UIs](/auto-ui)
-- Build and deployment GitHub Actions
+- Build and deployment [GitHub Actions](https://docs.servicestack.net/github-action-templates)
