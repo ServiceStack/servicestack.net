@@ -1,6 +1,6 @@
 ---
 title: Tailwind CSS v4 Everywhere!
-url: https://docs.servicestack.net/posts/tailwindcss-v4
+url: /posts/tailwindcss-v4
 image: /img/whatsnew/v8.8/tailwindcss-v4.webp
 order: 1
 ---
