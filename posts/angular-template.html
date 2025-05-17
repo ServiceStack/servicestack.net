@@ -402,6 +402,24 @@ after receiving failed API Responses:</p>
     
 &lt;/app-page&gt;
 </code></pre>
+<h3 id="create-booking">Create Booking<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-booking'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The <a href="https://github.com/NetCoreTemplates/angular-spa/blob/main/MyApp.Client/src/app/bookings/booking-create.component.ts">booking-create.component.ts</a> shows the standard pattern of calling ServiceStack Typed APIs to
+save forms whilst saving any validation errors to the <code>ApiState</code> context:</p>
+<pre><code class="language-ts">async save(): Promise&lt;void&gt; {
+    this.api.begin();
+
+    const request = new CreateBooking(this.booking());
+    const api = await this.client.api(request);
+    if (api.succeeded) {
+        // Navigate back to bookings list after successful save
+        this.router.navigate(['/bookings']);
+    }
+
+    this.api.complete(api.error);
+}
+</code></pre>
+<p>Where any contextual validation will be displayed next to the input field:</p>
+<p><a href="https://angular-spa.web-templates.io/bookings/create"><img src="/img/posts/angular-spa/angular-booking-create-validation.webp" alt="" /></a></p>
 <h3 id="edit-booking">Edit Booking<a class="header-anchor" href="javascript:;" onclick="location.hash='#edit-booking'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>The <a href="https://github.com/NetCoreTemplates/angular-spa/blob/main/MyApp.Client/src/app/bookings/booking-edit.component.ts">booking-edit.component.ts</a>
 shows an example of using the <code>JsonServiceClient</code> with Signals to get and modify bookings:</p>
