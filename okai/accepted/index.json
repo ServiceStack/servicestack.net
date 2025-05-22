@@ -957,5 +957,45 @@
     "provider": "anthropic",
     "prompt": "I need a project management app to track the completion of each project",
     "groupName": "ProjectTasks"
+  },
+  {
+    "id": "1747588274718",
+    "model": "claude-3-7-sonnet",
+    "timing": "39017",
+    "provider": "anthropic",
+    "prompt": "A Facility wide App for managing employee data, payroll, benefits administration, recruitment, onboarding, performance management, training, work areas, stations, products, quality audit product check sheets, suppliers, supplier quality, and equipment or assets and what area they belong to.",
+    "groupName": "Employees"
+  },
+  {
+    "id": "1747595936839",
+    "model": "codestral:22b",
+    "timing": "2815",
+    "provider": "codestral",
+    "prompt": "An app to host PDF documents, structured markdown files, images, and other FAQ style notes across multiple topics for clients. The portal must be password protected and an admin user must be able to assign which of the different documents and areas-of-interest are visible to each client. Logging and/or reporting to know which docs have been accessed by any specific client, along with assigning of tasks to clients.",
+    "groupName": "Documents"
+  },
+  {
+    "id": "1747595936842",
+    "model": "claude-3-7-sonnet",
+    "timing": "13890",
+    "provider": "anthropic",
+    "prompt": "An app to host PDF documents, structured markdown files, images, and other FAQ style notes across multiple topics for clients. The portal must be password protected and an admin user must be able to assign which of the different documents and areas-of-interest are visible to each client. Logging and/or reporting to know which docs have been accessed by any specific client, along with assigning of tasks to clients.",
+    "groupName": "Documents"
+  },
+  {
+    "id": "1747774431954",
+    "model": "codestral:22b",
+    "timing": "3156",
+    "provider": "openrouter",
+    "prompt": "A Human Resources App for managing employee data, payroll, benefits administration, recruitment, onboarding, performance management, and training that does not use servicestack and uses entity framework or identical replacements",
+    "groupName": "Employees"
+  },
+  {
+    "id": "1747875159522",
+    "model": "claude-3-7-sonnet",
+    "timing": "11687",
+    "provider": "anthropic",
+    "prompt": "I would like to develop a web app for a hairdressing salon. I need the following roles: - Customers (for customer appointments and master data) - Hairdresser (with calendar, for viewing, changing, and setting appointments with reference to customers) - Admin (all customers, appointments, etc. including calendar) \n\nI need the following features: \nFor customers: Recording master data and opening appointments with multiple services and subtypes, such as washing, cutting, and blow-drying, short, medium, and long hair. Including history. \n\nFor admin: Recording services, subtypes, prices, duration, and which hairdressers are proficient in these services, opening hours per employee, including different days and holidays. \n\nFor hairdressers: Viewing, changing, and recording customer appointments with services, as well as customer selection or rudimentary recording of a new customers by phone and email",
+    "groupName": "AppointmentServices"
   }
 ]
