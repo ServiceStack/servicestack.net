@@ -967,14 +967,6 @@
     "groupName": "Employees"
   },
   {
-    "id": "1747595936839",
-    "model": "codestral:22b",
-    "timing": "2815",
-    "provider": "codestral",
-    "prompt": "An app to host PDF documents, structured markdown files, images, and other FAQ style notes across multiple topics for clients. The portal must be password protected and an admin user must be able to assign which of the different documents and areas-of-interest are visible to each client. Logging and/or reporting to know which docs have been accessed by any specific client, along with assigning of tasks to clients.",
-    "groupName": "Documents"
-  },
-  {
     "id": "1747595936842",
     "model": "claude-3-7-sonnet",
     "timing": "13890",
@@ -991,11 +983,27 @@
     "groupName": "Employees"
   },
   {
-    "id": "1747875159522",
-    "model": "claude-3-7-sonnet",
-    "timing": "11687",
-    "provider": "anthropic",
+    "id": "1748296672757",
+    "model": "codestral:22b",
+    "timing": "2409",
+    "provider": "codestral",
     "prompt": "I would like to develop a web app for a hairdressing salon. I need the following roles: - Customers (for customer appointments and master data) - Hairdresser (with calendar, for viewing, changing, and setting appointments with reference to customers) - Admin (all customers, appointments, etc. including calendar) \n\nI need the following features: \nFor customers: Recording master data and opening appointments with multiple services and subtypes, such as washing, cutting, and blow-drying, short, medium, and long hair. Including history. \n\nFor admin: Recording services, subtypes, prices, duration, and which hairdressers are proficient in these services, opening hours per employee, including different days and holidays. \n\nFor hairdressers: Viewing, changing, and recording customer appointments with services, as well as customer selection or rudimentary recording of a new customers by phone and email",
-    "groupName": "AppointmentServices"
+    "groupName": "Services"
+  },
+  {
+    "id": "1748395908269",
+    "model": "claude-3-7-sonnet",
+    "timing": "19389",
+    "provider": "anthropic",
+    "prompt": "I need a farming app that has the following tables: Breed, Reproduction, Animals, Feeding, FeedingDetails, Sales, Buyers, Vets, Locations and HealthStatus",
+    "groupName": "Animals"
+  },
+  {
+    "id": "1748396014908",
+    "model": "deepseek-v3:671b",
+    "timing": "11255",
+    "provider": "openrouter",
+    "prompt": "An App to store and manage my Banking Transactions",
+    "groupName": "Transactions"
   }
 ]
