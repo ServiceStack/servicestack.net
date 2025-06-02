@@ -1005,5 +1005,21 @@
     "provider": "openrouter",
     "prompt": "An App to store and manage my Banking Transactions",
     "groupName": "Transactions"
+  },
+  {
+    "id": "1748427578102",
+    "model": "claude-3-7-sonnet",
+    "timing": "7264",
+    "provider": "anthropic",
+    "prompt": "I work for a Financial services company. I need to design a web portal that our administrators can use to request client valuations.\n\nThe user should be able to:\n\n1) select a client to produce a valuation for\n2) select the opening and closing dates\n3) the base currency to use for the report\n4) the market index / benchmark to use for comparing performance of their investments\n5) multi select list of panels / report pages / widgets to show in the report\n\nOnce selection of these parameters is complete the user should be able to submit their request for processing.\n\nThe user should be able to monitor the. progress of their submitted requests.\n\nThe user should be able to download a completed valuation.",
+    "groupName": "ValuationRequests"
+  },
+  {
+    "id": "1748823514920",
+    "model": "codestral:22b",
+    "timing": "4127",
+    "provider": "codestral",
+    "prompt": "A Facility wide App for managing employee data, payroll, benefits administration, recruitment, onboarding, performance management, training, work areas, stations, products, quality audit product check sheets, suppliers, supplier quality, and equipment or assets and what area they belong to. There should be no booking/coupon option, but everything else should be at that same service model level. Everything needs to be treated as such. You have logistics management, employee management, quality management, production management, maintenance management, engineering management, etc.",
+    "groupName": "Employees"
   }
 ]
