@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Self Hosted AI Server for LLMs, Ollama, Comfy UI &amp; FFmpeg - ServiceStack</title>
+    <title>Using llama.cpp to self-host Large Language Models in Production - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs" />
-    <meta property="og:url" content="https://servicestack.net/posts/ai-server" />
-    <meta property="og:title" content="Self Hosted AI Server for LLMs, Ollama, Comfy UI &amp; FFmpeg" />
-    <meta property="og:image" content="./img/posts/ai-server/bg.webp" />
+    <meta property="og:description" content="A practical guide to self-hosting LLMs in production using llama.cpp&#x27;s llama-server with Docker compose and Systemd" />
+    <meta property="og:url" content="https://servicestack.net/posts/hosting-llama-server" />
+    <meta property="og:title" content="Using llama.cpp to self-host Large Language Models in Production" />
+    <meta property="og:image" content="./img/posts/hosting-llama-server/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Self Hosted AI Server for LLMs, Ollama, Comfy UI &amp; FFmpeg
+                Using llama.cpp to self-host Large Language Models in Production
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -139,14 +139,14 @@ mountAll()
                     </div>
                 </div>
                         <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'ai-server', title:'Introducing AI Server', src:'https://media.servicestack.com/podcasts/ai-server.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=ai-server&amp;source=post&amp;version=8.8.1', variant:'compact' }"
+                             data-props="{ id:'hosting-llama-server', title:'Using llama.cpp to self-host Large Language Models in Production', src:'https://media.servicestack.com/podcasts/hosting-llama-server.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=hosting-llama-server&amp;source=post&amp;version=8.8.1', variant:'compact' }"
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/ai-server/bg.webp" alt="Self Hosted AI Server for LLMs, Ollama, Comfy UI &amp; FFmpeg Background" class="shadow-small">
+                    <img src="./img/posts/hosting-llama-server/bg.webp" alt="Using llama.cpp to self-host Large Language Models in Production Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
@@ -155,15 +155,12 @@ mountAll()
                         <a href="posts/tagged/ai-server" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai-server</a>
                         <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
                         <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
-                        <a href="posts/tagged/service-reference" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">service-reference</a>
-                        <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
-                        <a href="posts/tagged/js" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">js</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2024-12-06T00:00:00.0000000">December 6, 2024</time>
+                                <time datetime="2025-06-03T00:00:00.0000000">June 3, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>8 min read</span>
+                                <span>10 min read</span>
                             </div>
                         </div>
                 </div>
@@ -176,47 +173,409 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <h2 id="ai-server-now-ready-to-serve">AI Server now ready to serve!<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-server-now-ready-to-serve'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We're excited to announce the first release of AI Server - a Free OSS self-hosted Docker private gateway to
-manage API access to multiple LLM APIs, Ollama endpoints, Media APIs, Comfy UI and FFmpeg Agents.</p>
-<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Ojo80oFQte8" playlabel="Introducing AI Server" style="background-image:url('https://img.youtube.com/vi/Ojo80oFQte8/maxresdefault.jpg')"></lite-youtube>
-<h3 id="centralized-management">Centralized Management<a class="header-anchor" href="javascript:;" onclick="location.hash='#centralized-management'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Designed as a one-stop solution to manage an organization's AI integrations for all their System Apps,
-by utilizing developer friendly HTTP JSON APIs that supports any programming language or framework.</p>
-<p><a href="https://openai.servicestack.net"><img src="/img/svgs/ai-server-overview.svg" alt="" /></a></p>
-<h3 id="distribute-load-across-multiple-ollama-open-ai-gateway-and-comfy-ui-agents">Distribute load across multiple Ollama, Open AI Gateway and Comfy UI Agents<a class="header-anchor" href="javascript:;" onclick="location.hash='#distribute-load-across-multiple-ollama-open-ai-gateway-and-comfy-ui-agents'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>It works as a private gateway to process LLM, AI and image transformations requests
-that any of our Apps need where it dynamically load balances requests across our local GPU Servers, Cloud GPU instances
-and API Gateways running multiple instances of Ollama, Open AI Chat, LLM Gateway, Comfy UI, Whisper
-and ffmpeg providers.</p>
-<p>In addition to maintaining a history of AI Requests, it also provides file storage
-for its CDN-hostable AI generated assets and on-the-fly, cacheable image transformations.</p>
-<h3 id="native-typed-integrations">Native Typed Integrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#native-typed-integrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Uses <a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a> to enable
-simple, native typed integrations for most popular Web, Mobile and Desktop languages including:
-C#, TypeScript, JavaScript, Python, Java, Kotlin, Dart, PHP, Swift, F# and VB.NET.</p>
-<p>Each AI Feature supports multiple call styles for optimal integration of different usages:</p>
+                    <p><a href="https://ollama.com">Ollama</a>, <a href="https://lmstudio.ai">LM Studio</a> and <a href="https://jan.ai">Jan</a>
+have become popular choices for AI enthusiasts looking to run large language models
+(LLMs) locally which provide a UX-friendly intuitive interfaces for downloading, installing and running a variety of open-source models on personal workstations, acceleratable with GPUs.</p>
+<p>However, when scaling beyond personal use, these tools reveal their limitations which weren't
+designed with production deployment in mind, often lacking flexible and robust resource
+management, fine-grained authorized usage and optimizations necessary for sustained, high-demand
+environments.</p>
+<h2 id="enter-llama-server-the-production-workhorse">Enter llama-server: The Production workhorse<a class="header-anchor" href="javascript:;" onclick="location.hash='#enter-llama-server-the-production-workhorse'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The technology underpinning these applications is
+<a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>, a groundbreaking C/C++ implementation that
+enables running sophisticated language models on consumer hardware.
+This remarkable project, created by Georgi Gerganov, revolutionized the LLM landscape by making
+previously cloud-only models accessible to everyday users through clever quantization techniques
+and memory-efficient operations.</p>
+<p>While Ollama and LM Studio provide user-friendly wrappers around this technology, llama.cpp's
+<a href="https://github.com/ggml-org/llama.cpp/tree/master/examples/server">llama-server</a> leverages the
+same core but strips away the overhead to focus exclusively on performance and stability.
+By directly utilizing the llama.cpp library and its server component, organizations can bypass the
+abstractions introduced by desktop applications and tap into the raw power of the underlying engine whose
+<a href="https://github.com/ggml-org/llama.cpp/tree/master/examples/server#usage">highly configurable runtime</a>
+allows for optimized self-hosting of authorized models.</p>
+<p>This direct approach eliminates unnecessary layers that might introduce latency or unexpected
+behaviors, providing a more consistent and predictable experience necessary for production environments.
+For DevOps teams and system administrators, this translates to fewer surprises during deployment
+and operation — a crucial factor when incorporating self-hosting AI solutions into critical business applications.</p>
+<h2 id="hosting-llama-server-with-docker">Hosting llama-server with Docker<a class="header-anchor" href="javascript:;" onclick="location.hash='#hosting-llama-server-with-docker'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Organizations that have incorporated container based deployment solutions will most likely prefer
+a docker solution of which is available in a number of different hardware optimized configurations including CPU, CUDA for NVIDIA GPUs, ROCm for AMD GPUs and MUSA for Moore Threads GPUs.</p>
+<p>Docker containers requiring NVIDIA GPU acceleration will require installing the
+<a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">NVidia Container Toolkit</a> which allows you to run the <code>llama.cpp:server-cuda</code> CUDA optimized image with the <code>--gpus</code> flag to utilize your hardwares NVIDIA GPUs, e.g:</p>
+<pre><code class="language-sh">docker run -p 8080:8080 -v /path/to/models:/models --gpus all \
+    ghcr.io/ggml-org/llama.cpp:server-cuda -m models/phi-4.Q4_K_M.gguf \
+    --host 0.0.0.0 --port 8080 --n-gpu-layers 999
+</code></pre>
+<p>llama.cpp can run models in the <a href="https://github.com/ggml-org/ggml/blob/master/docs/gguf.md">GGUF File format</a> that are commonly <a href="https://huggingface.co/models?library=gguf&amp;sort=trending">hosted on hugging face</a>. As of this writing Microsoft, Google and Mistral AI have released some of the best quantized LLMs you can run on consumer GPUs:</p>
 <ul>
-<li><strong>Synchronous API</strong> · Simplest API ideal for small workloads where the Response is returned in the same Request</li>
-<li><strong>Queued API</strong> · Returns a reference to the queued job executing the AI Request which can be used to poll for the API Response</li>
-<li><strong>Reply to Web Callback</strong> · Ideal for reliable App integrations where responses are posted back to a custom URL Endpoint</li>
+<li><a href="https://huggingface.co/bartowski/phi-4-GGUF/tree/main">Phi-4 14B</a> by Microsoft</li>
+<li><a href="https://huggingface.co/google/gemma-3-27b-it-qat-q4_0-gguf/tree/main">Gemma3 27B</a> by Google</li>
+<li><a href="https://huggingface.co/openfree/Mistral-Small-3.1-24B-Instruct-2503-Q8_0-GGUF/tree/main">Mistral Small 3.1 24B</a> by Mistral AI</li>
 </ul>
-<h3 id="live-monitoring-and-analytics">Live Monitoring and Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#live-monitoring-and-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Monitor performance and statistics of all your App's AI Usage, real-time logging of executing APIs with auto archival
-of completed AI Requests into monthly rolling SQLite databases.</p>
-<h3 id="protected-access-with-api-keys">Protected Access with API Keys<a class="header-anchor" href="javascript:;" onclick="location.hash='#protected-access-with-api-keys'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>AI Server utilizes <a href="https://docs.servicestack.net/auth/admin-apikeys">Simple Auth with API Keys</a>
-letting Admins create and distribute API Keys to only allow authorized clients to access their
-AI Server's APIs, which can be optionally further restricted to only
-<a href="https://docs.servicestack.net/auth/apikeys#creating-user-api-keys">allow access to specific APIs</a>.</p>
-<h2 id="install">Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>AI Server can be installed on macOS and Linux with Docker by running <a href="https://github.com/ServiceStack/ai-server/blob/main/install.sh">install.sh</a>:</p>
+<h3 id="docker-compose">Docker compose<a class="header-anchor" href="javascript:;" onclick="location.hash='#docker-compose'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Docker compose is a great solution for hosting llama-server in production environments which simplifies managing multiple services within declarative configurations, making deployments more repeatable and scalable.</p>
+<pre><code class="language-yml">services:
+  phi:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    environment:
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_MODEL=/models/phi-4.Q4_K_M.gguf
+    ports:
+      - &quot;8000:8080&quot;
+    volumes:
+      - ./models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  gemma:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    environment:
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_MODEL=/models/gemma-3-27b-it-qat-q4_0-gguf
+    ports:
+      - &quot;8001:8080&quot;
+    volumes:
+      - ./models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  mistral:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    environment:
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_MODEL=/models/mistral-small-3.1-24b-instruct-2503-q8_0.gguf
+    ports:
+      - &quot;8002:8080&quot;
+    volumes:
+      - ./models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+</code></pre>
+<p>After saving this to <code>docker-compose.yml</code> along with the models:</p>
+<div class="language-files"><div class="ml-6">
+  <div class="flex items-center text-base leading-8">
+    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
+    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
+    <span>models</span>
+  </div>
+<div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>phi-4.Q4_K_M.gguf</span>
+</div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>gemma-3-27b-it-qat-q4_0-gguf</span>
+</div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>mistral-small-3.1-24b-instruct-2503-q8_0.gguf</span>
+</div>
+</div>
+</div>
+<div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>docker-compose.yml</span>
+</div>
+</div>
+</div>
+<p>You'll be able to run and test them with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>docker compose up</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>This will launch 3 container instances of llama-server configured to run different models accessible via an <a href="https://platform.openai.com/docs/api-reference/chat">OpenAI compatible API</a> on ports <code>8000</code>, <code>8001</code> and <code>8002</code> which you can test using llama-server's Chat Web UI.</p>
+<h3 id="dedicated-gpus">Dedicated GPUs<a class="header-anchor" href="javascript:;" onclick="location.hash='#dedicated-gpus'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Docker containers can also be configured to run llama-server on different dedicated GPUs,
+identified by their GPU index:</p>
+<pre><code class="language-yml">- driver: nvidia
+  device_ids: ['0'] # Assign to GPU 0
+  capabilities: [gpu]
+</code></pre>
+<h2 id="systemd-services">Systemd Services<a class="header-anchor" href="javascript:;" onclick="location.hash='#systemd-services'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>You can trade hosting flexibility to squeeze an extra ounce of performance and run without the overhead of a container by running a compiled llama-server natively by cloning llama.cpp repo:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>git clone <a href="https://github.com/ggml-org/llama.cpp">https://github.com/ggml-org/llama.cpp</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>For NVIDIA GPUs you'll need to install <a href="https://developer.nvidia.com/cuda-toolkit">NVIDIA CUDA Toolkit</a> before running a CUDA optimized llama.cpp build with:</p>
+<pre><code class="language-sh">cmake -B build -DGGML_CUDA=ON
+cmake --build build --config Release
+</code></pre>
+<p>If all goes well after a long while you'll get a freshly minted llama-server executable at
+<code>/build/bin/llama-server</code> which you can create a managed Systemd service with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>sudo vi /etc/systemd/system/llama-server-gemma3.service</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>With the configuration of your llama-server service using your preferred model and configuration options, e.g:</p>
+<pre><code class="language-ini">[Unit]
+Description=Llama Server: Gemma3 27B
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/deploy/llama.cpp
+Environment=&quot;CUDA_VISIBLE_DEVICES=0&quot;
+ExecStart=/home/deploy/llama.cpp/build/bin/llama-server \
+  --model /home/deploy/llama.cpp/models/gemma-3-27b-it-qat-q4_0-gguf \
+  -ngl 999 --host 0.0.0.0 --port 8080
+Restart=on-failure
+RestartSec=5s
+StandardOutput=file:/home/deploy/llama.cpp/logs/llama-server-gemma3.stdout.log
+StandardError=file:/home/deploy/llama.cpp/logs/llama-server-gemma3.stderr.log
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>To enable your new systemd service, reload systemd's configuration with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>systemctl daemon-reload</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Where you'll now be able to use systemd to start/stop/restart your llama-service with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>systemctl start llama-server-gemma3</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="typed-open-ai-chat-apis-in-11-languages">Typed Open AI Chat APIs in 11 Languages<a class="header-anchor" href="javascript:;" onclick="location.hash='#typed-open-ai-chat-apis-in-11-languages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Since <a href="https://openai.servicestack.net">AI Server</a> is written in ServiceStack we're able to use
+its OpenAI Compatible Chat API DTOs to enable typed integrations in its
+<a href="https://docs.servicestack.net/ai-server/openai-chat-all-languages">11 supported languages</a>.</p>
+<h3 id="access-llama-server-from-c">Access llama-server from C#<a class="header-anchor" href="javascript:;" onclick="location.hash='#access-llama-server-from-c'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <ol>
-<li>Clone the AI Server repository from GitHub:</li>
+<li>Create an empty console application:</li>
 </ol>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>git clone https://github.com/ServiceStack/ai-server</code></p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet new console</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="2">
+<li>Add the <strong>ServiceStack.Client</strong> NuGet package:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet add package ServiceStack.Client</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="3">
+<li>Download AI Server's Typed C# DTOs:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx get-dtos csharp <a href="https://openai.servicestack.net">https://openai.servicestack.net</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="4">
+<li>Call llama-server's OpenAI Chat API from C#:</li>
+</ol>
+<pre><code class="language-csharp">// Program.cs
+using ServiceStack;
+using ServiceStack.Text;
+using AiServer.ServiceModel;
+
+var client = new JsonApiClient(&quot;https://localhost:8000&quot;);
+var result = await client.PostAsync&lt;OpenAiChatResponse&gt;(&quot;/v1/chat/completions&quot;,
+    new OpenAiChatCompletion {
+        Messages = [
+            new () { Role = &quot;user&quot;, Content = &quot;What's the capital of France?&quot; }
+        ],
+        MaxTokens = 50
+    });
+
+result.PrintDump();
+</code></pre>
+<p>Run the program:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet run</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h3 id="access-llama-server-from-node-or-bun-with-typescript">Access llama-server from <a href="https://nodejs.org">Node</a> or <a href="https://bun.sh">Bun</a> with TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#access-llama-server-from-node-or-bun-with-typescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ol>
+<li>Add the <code>@servicestack/client</code> client library:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm install @servicestack/client</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<ol start="2">
+<li>Download AI Server's TypeScript DTOs:</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx get-dtos typescript <a href="https://openai.servicestack.net">https://openai.servicestack.net</a></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Call llama-server with TypeScript DTOs and the generic <code>JsonServiceClient</code></p>
+<pre><code class="language-ts">import { JsonServiceClient, Inspect } from &quot;@servicestack/client&quot;
+import { OpenAiChatCompletion } from &quot;./dtos&quot;
+
+const client = new JsonServiceClient(&quot;https://localhost:8000&quot;)
+
+const result = await client.postToUrl(&quot;/v1/chat/completions&quot;,
+    new OpenAiChatCompletion({
+        messages: [
+            { role: &quot;user&quot;, content: &quot;What's the capital of France?&quot; }
+        ],
+        max_tokens: 50
+    })
+)
+
+Inspect.printDump(result)
+</code></pre>
+<h2 id="managed-ai-server-gateway">Managed AI Server Gateway<a class="header-anchor" href="javascript:;" onclick="location.hash='#managed-ai-server-gateway'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If your organization needs to maintain a number of AI integrations you may want to consider
+running them behind a Managed AI Gateway so that your App's only need to be configured to use a
+single endpoint, abstracting away all the complexity of managing multiple AI Providers,
+API Key managment and monitoring behind a single location.</p>
+<h3 id="open-source-ai-server">Open Source AI Server<a class="header-anchor" href="javascript:;" onclick="location.hash='#open-source-ai-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>To support this use-case we're developing <a href="https://openai.servicestack.net">AI Server</a> - an OSS self-hosted managed gateway that our production AI Applications utilize for all their AI requirements.</p>
+<p>AI Server allows you to orchestrate your systems AI requests through a single self-hosted application to control what AI Providers App's should use without impacting their client integrations. It serves as a private gateway to process LLM, AI, and Media Transformations, dynamically delegating tasks across multiple providers.</p>
+<p><a href="https://openai.servicestack.net"><img src="https://docs.servicestack.net/img/pages/ai-server/overview.svg" alt="" /></a></p>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Ojo80oFQte8" playlabel="AI Server" style="background-image:url('https://img.youtube.com/vi/Ojo80oFQte8/maxresdefault.jpg')"></lite-youtube>
+<p>Benefits include:</p>
+<ul>
+<li><strong>Unified AI Gateway</strong> - Centralized management, load balance and monitor AI usage</li>
+<li><strong>Multi Providers</strong> - Manage multiple self-hosted llama-server/Ollama instances or API Hosted LLMs (e.g. OpenAI, Anthropic, Mistral AI, Google, OpenRouter, Groq)</li>
+<li><strong>Load Balancing</strong> - Delegate requests across multiple providers hosting same model</li>
+<li><strong>Developer UX</strong> - Simple Typed AI access to developer friendly APIs
+in 11 different languages supporting <strong>Synchronous</strong>, <strong>Queued</strong> and <strong>Web Callback</strong> integrations</li>
+<li><strong>Secure access</strong> - Only allow access from Auhtorized Apps using simple API keys</li>
+<li><strong>Analytics</strong> - Observe and monitor your Organizations AI Usage</li>
+<li><strong>Background Jobs</strong> - Monitor executing AI requests in real-time</li>
+<li><strong>Audit History</strong> - Access previous AI Request/Responses in monthly archivable DBs</li>
+</ul>
+<h3 id="install">Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>AI Server can be installed on Linux, macOS or WSL/Windows with Docker</p>
+<ol>
+<li>Clone the Repository</li>
+</ol>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>git clone <a href="https://github.com/ServiceStack/ai-server">https://github.com/ServiceStack/ai-server</a></p>
 </div>
                     </div>
                 <div class="flex">
@@ -233,7 +592,7 @@ AI Server's APIs, which can be optionally further restricted to only
 </ol>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>cd ai-server &amp;&amp; cat install.sh | bash</code></p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>cd ai-server &amp;&amp; cat install.sh | bash</p>
 </div>
                     </div>
                 <div class="flex">
@@ -245,264 +604,90 @@ AI Server's APIs, which can be optionally further restricted to only
                     </div>
                 </div>
             </div>
-<p>The installer will detect common environment variables for the supported AI Providers like OpenAI, Google, Anthropic,
-and others, and prompt ask you if you want to add them to your AI Server configuration.</p>
 <p><ascii-cinema src="https://docs.servicestack.net/pages/ai-server/ai-server-install.cast"
 loop="true" poster="npt:00:21" theme="dracula" rows="12" /></p>
-<h3 id="optional-install-comfyui-agent">Optional - Install ComfyUI Agent<a class="header-anchor" href="javascript:;" onclick="location.hash='#optional-install-comfyui-agent'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>If your server also has a GPU you can ask the installer to also install the <a href="/ai-server/comfy-extension">ComfyUI Agent</a>:</p>
-<p><ascii-cinema src="https://docs.servicestack.net/pages/ai-server/agent-comfy-install.cast"
-loop="true" poster="npt:00:21" theme="dracula" rows="16" /></p>
-<p>The ComfyUI Agent is a separate Docker agent for running <a href="https://www.comfy.org">ComfyUI</a>,
-<a href="https://github.com/openai/whisper">Whisper</a> and <a href="https://www.ffmpeg.org">FFmpeg</a> on servers with GPUs to handle
-AI Server's <a href="https://docs.servicestack.net/ai-server/transform/image">Image</a> and
-<a href="https://docs.servicestack.net/ai-server/transform/video">Video transformations</a> and Media Requests, including:</p>
-<ul>
-<li><a href="https://docs.servicestack.net/ai-server/text-to-image">Text to Image</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/image-to-text">Image to Text</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/image-to-image">Image to Image</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/image-with-mask">Image with Mask</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/image-upscale">Image Upscale</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/speech-to-text">Speech to Text</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/text-to-speech">Text to Speech</a></li>
-</ul>
-<h4 id="comfy-ui-agent-installer">Comfy UI Agent Installer<a class="header-anchor" href="javascript:;" onclick="location.hash='#comfy-ui-agent-installer'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>To install the ComfyUI Agent on a separate server (with a GPU), you can clone and run the ComfyUI Agent installer
-on that server instead:</p>
-<ol>
-<li>Clone the Comfy Agent</li>
-</ol>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>git clone https://github.com/ServiceStack/agent-comfy.git</code></p>
+<p>This will launch a self-hosted instance of AI Server at: <code>https://localhost:5006</code> where you'll be able to Sign In with your chosen Admin password at installation and access AI Server's Admin UI at:</p>
+<div class="not-prose">
+  <h3 class="text-4xl text-center text-indigo-800 pb-3">
+    <span class="text-gray-300">https://localhost:5006</span>/admin
+  </h3>
 </div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<ol start="2">
-<li>Run the Installer</li>
-</ol>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>cd agent-comfy &amp;&amp; cat install.sh | bash</code></p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h2 id="running-in-production">Running in Production<a class="header-anchor" href="javascript:;" onclick="location.hash='#running-in-production'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We've been developing and running AI Server for several months now, processing millions of LLM and Comfy UI Requests
-to generate Open AI Chat Answers and Generated Images used to populate the
-<a href="https://pvq.app">pvq.app</a> and <a href="https://blazordiffusion.com">blazordiffusion.com</a> websites.</p>
-<p>Our production instance with more info about AI Server is available at:</p>
-<div class="m-0 text-center text-2xl font-semibold text-indigo-600"><p><a href="https://openai.servicestack.net">https://openai.servicestack.net</a></p>
-</div>
-<p><a href="https://openai.servicestack.net"><img src="/img/posts/ai-server/ai-server-languages.png" alt="" /></a></p>
-<h2 id="api-explorer">API Explorer<a class="header-anchor" href="javascript:;" onclick="location.hash='#api-explorer'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Whilst our production instance is protected by API Keys, you can still use it to explore available APIs in its API Explorer:</p>
-<div class="m-0 text-center text-2xl font-semibold text-indigo-600"><p><a href="https://openai.servicestack.net/ui/OpenAiChatCompletion">https://openai.servicestack.net/ui/</a></p>
-</div>
-<h2 id="documentation">Documentation<a class="header-anchor" href="javascript:;" onclick="location.hash='#documentation'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The documentation for AI Server is being maintained at:</p>
-<div class="m-0 text-center text-2xl font-semibold text-indigo-600"><p><a href="https://docs.servicestack.net/ai-server/">https://docs.servicestack.net/ai-server/</a></p>
-</div>
-<h2 id="built-in-uis">Built-in UIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-in-uis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Built-in UIs allow users with API Keys access to custom UIs for different AI features</p>
-<p><a href="https://openai.servicestack.net"><img src="/img/posts/ai-server/ai-server-builtin-uis.png" alt="" /></a></p>
-<h2 id="admin-uis">Admin UIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#admin-uis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Use Admin UI to manage API Keys that can access AI Server APIs and Features</p>
-<p><a href="https://openai.servicestack.net"><img src="/img/posts/ai-server/ai-server-admin-uis.png" alt="" /></a></p>
-<h2 id="features">Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The current release of AI Server supports a number of different modalities, including:</p>
-<h3 id="large-language-models">Large Language Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#large-language-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><a href="https://docs.servicestack.net/ai-server/chat">Open AI Chat</a>
-<ul>
-<li>Support for Ollama endpoints</li>
-<li>Support for Open Router, Anthropic, Open AI, Mistral AI, Google and Groq API Gateways</li>
-</ul>
-</li>
-</ul>
-<h3 id="comfy-ui-agent-replicate-dall-e-3">Comfy UI Agent / Replicate / DALL-E 3<a class="header-anchor" href="javascript:;" onclick="location.hash='#comfy-ui-agent-replicate-dall-e-3'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><a href="https://docs.servicestack.net/ai-server/text-to-image">Text to Image</a></li>
-</ul>
-<h3 id="comfy-ui-agent">Comfy UI Agent<a class="header-anchor" href="javascript:;" onclick="location.hash='#comfy-ui-agent'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><a href="https://docs.servicestack.net/ai-server/image-to-image">Image to Image</a>
-<ul>
-<li><a href="https://docs.servicestack.net/ai-server/image-upscale">Image Upscaling</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/image-with-mask">Image with Mask</a></li>
-</ul>
-</li>
-<li><a href="https://docs.servicestack.net/ai-server/image-to-text">Image to Text</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/text-to-speech">Text to Speech</a></li>
-<li><a href="https://docs.servicestack.net/ai-server/speech-to-text">Speech to Text</a></li>
-</ul>
-<h3 id="ffmpeg">FFmpeg<a class="header-anchor" href="javascript:;" onclick="location.hash='#ffmpeg'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><p><a href="https://docs.servicestack.net/ai-server/transform/image">Image Transformations</a></p>
-<ul>
-<li><strong>Crop Image</strong> - Crop an image to a specific size</li>
-<li><strong>Convert Image</strong> - Convert an image to a different format</li>
-<li><strong>Scale Image</strong> - Scale an image to a different resolution</li>
-<li><strong>Watermark Image</strong> - Add a watermark to an image</li>
-</ul>
-</li>
-<li><p><a href="https://docs.servicestack.net/ai-server/transform/video">Video Transformations</a></p>
-<ul>
-<li><strong>Crop Video</strong> - Crop a video to a specific size</li>
-<li><strong>Convert Video</strong> - Convert a video to a different format</li>
-<li><strong>Scale Video</strong> - Scale a video to a different resolution</li>
-<li><strong>Watermark Video</strong> - Add a watermark to a video</li>
-<li><strong>Trim Video</strong> - Trim a video to a specific length</li>
-</ul>
-</li>
-</ul>
-<h3 id="managed-file-storage">Managed File Storage<a class="header-anchor" href="javascript:;" onclick="location.hash='#managed-file-storage'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li>Blob Storage - isolated and restricted by API Key</li>
-</ul>
-<h2 id="ai-server-api-examples">AI Server API Examples<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-server-api-examples'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>To simplify integrations with AI Server each API Request can be called with 3 different call styles to better
-support different use-cases and integration patterns.</p>
-<h3 id="synchronous-open-ai-chat-example">Synchronous Open AI Chat Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#synchronous-open-ai-chat-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The <strong>Synchronous API</strong> is the simplest API ideal for small workloads where the Response is returned in the same Request:</p>
-<pre><code class="language-csharp">var client = new JsonApiClient(baseUrl);
-client.BearerToken = apiKey;
+<p><img src="/img/posts/hosting-llama-server/admin-dashboard.webp" alt="" /></p>
+<h2 id="registering-llama-server-endpoints">Registering llama-server endpoints<a class="header-anchor" href="javascript:;" onclick="location.hash='#registering-llama-server-endpoints'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To let AI Server know about your new llama-server instances create a new <strong>AI Provider</strong> with the <strong>Custom</strong> AI Provider type to register an OpenAI Chat compatible endpoint, e.g:</p>
+<p><a href="https://docs.servicestack.net/ai-server/"><img src="/img/posts/ai-server-2025-04/custom-openai-provider.webp" alt="" /></a></p>
+<p>As llama-server is only configured to serve a single model it can configured with any model name as it's ignored by llama-server but used by AI Server to route AI requests for that model to the custom AI Provider instance which you can try in the <a href="https://docs.servicestack.net/ai-server/chat">Chat UI</a>:</p>
+<p><a href="https://docs.servicestack.net/ai-server/chat"><img src="/img/posts/ai-server-2025-04/custom-openai-provider-chat.webp" alt="" /></a></p>
+<h2 id="create-api-keys-for-your-apps">Create API Keys for your Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-api-keys-for-your-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>After testing the llama-server instance is working with the Chat UI it's time to create API Keys
+for all your Apps so they can access AI Servers APIs with the <a href="https://docs.servicestack.net/auth/admin-apikeys#api-keys-admin-ui">API Keys UI</a>:</p>
+<p><img src="/img/posts/hosting-llama-server/admin-apikeys.webp" alt="" /></p>
+<p>Here you can create new API keys, view existing keys, and revoke keys as needed. Keys can be created with expiration dates, and restrictions to specific API endpoints, along with notes to help identify the key's purpose.</p>
+<p>It's recommended to use a different API Key per App so they can be monitored and analyzed separately.</p>
+<p>With a valid API Key in hand your App's can use AI Server's DTOs with ServiceStack generic
+service clients to enable typed integrations in <a href="https://docs.servicestack.net/ai-server/openai-chat-all-languages">11 different languages</a>.</p>
+<h3 id="synchronous-usage-example">Synchronous Usage Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#synchronous-usage-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Here's an example of Synchronous Usage in C#:</p>
+<pre><code class="language-csharp">var client = new JsonApiClient(&quot;https://localhost:5006&quot;) { 
+  BearerToken = Environment.GetEnvironmentVariable(&quot;AI_SERVER_API_KEY&quot;)
+};
 
-var response = client.Post(new OpenAiChatCompletion {
-    Model = &quot;mixtral:8x22b&quot;,
-    Messages = [
-        new() {
-            Role = &quot;user&quot;,
-            Content = &quot;What's the capital of France?&quot;
-        }
+var response = await client.PostAsync(new OpenAiChatCompletion {
+    Model = &quot;phi4.gguf&quot;,
+    Messages =
+    [
+      new() { Role = &quot;system&quot;, Content = &quot;You are a helpful AI assistant&quot; },
+      new() { Role = &quot;user&quot;, Content = &quot;How do LLMs work?&quot; }
     ],
     MaxTokens = 50
 });
-
 var answer = response.Choices[0].Message.Content;
 </code></pre>
-<h3 id="synchronous-media-generation-request-example">Synchronous Media Generation Request Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#synchronous-media-generation-request-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Other AI Requests can be called synchronously in the same way where its API is named after the modality
-it implements, e.g. you'd instead call <code>TextToImage</code> to generate an Image from a Text description:</p>
-<pre><code class="language-csharp">var response = client.Post(new TextToImage
-    PositivePrompt = &quot;A serene landscape with mountains and a lake&quot;,
-    Model = &quot;flux-schnell&quot;,
-    Width = 1024,
-    Height = 1024,
-    BatchSize = 1
+<h3 id="queued-open-ai-chat-completion">Queued Open AI Chat Completion<a class="header-anchor" href="javascript:;" onclick="location.hash='#queued-open-ai-chat-completion'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Alternatively, you can call the same endpoint asynchronously which will queue the request for processing then check the status of the request and download the response when it's ready.</p>
+<pre><code class="language-csharp">var response = await client.PostAsync(new QueueOpenAiChatCompletion {
+  Request = new() {
+    Model = &quot;phi4.gguf&quot;,
+      Messages =
+      [
+        new() { Role = &quot;system&quot;, Content = &quot;You are a helpful AI assistant&quot; },
+        new() { Role = &quot;user&quot;, Content = &quot;How do LLMs work?&quot; }
+      ],
+      MaxTokens = 50
+    },
 });
 
-File.WriteAllBytes(saveToPath, response.Results[0].Url.GetBytesFromUrl());
-</code></pre>
-<h3 id="queued-open-ai-chat-example">Queued Open AI Chat Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#queued-open-ai-chat-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The <strong>Queued API</strong> immediately Returns a reference to the queued job executing the AI Request:</p>
-<pre><code class="language-csharp">var response = client.Post(new QueueOpenAiChatCompletion
+// Poll for Job Completion Status
+GetOpenAiChatStatusResponse status = new();
+while (status.JobState is 
+  BackgroundJobState.Started or BackgroundJobState.Queued)
 {
-    Request = new()
-    {
-        Model = &quot;gpt-4-turbo&quot;,
-        Messages = [
-            new() { Role = &quot;system&quot;, Content = &quot;You are a helpful AI assistant.&quot; },
-            new() { Role = &quot;user&quot;, Content = &quot;How do LLMs work?&quot; }
-        ],
-        MaxTokens = 50
-    }
-});
-</code></pre>
-<p>Which can be used to poll for the API Response of any Job by calling <code>GetOpenAiChatStatusResponse</code>
-and checking when its state has finished running to get the completed <code>OpenAiChatResponse</code>:</p>
-<pre><code class="language-csharp">GetOpenAiChatStatusResponse status = new();
-while (status.JobState is BackgroundJobState.Started or BackgroundJobState.Queued)
-{
-    status = await client.GetAsync(new GetOpenAiChatStatus { RefId = response.RefId });
+    status = await client.GetAsync(new GetOpenAiChatStatus { 
+      RefId = response.RefId 
+    });
     await Task.Delay(1000);
 }
 
 var answer = status.Result.Choices[0].Message.Content;
 </code></pre>
-<h3 id="queued-media-artifact-generation-request-example">Queued Media Artifact Generation Request Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#queued-media-artifact-generation-request-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Most other AI Server Requests are Artifact generation requests which would instead call
-<code>GetArtifactGenerationStatus</code> to get the artifacts response of a queued job, e.g:</p>
-<pre><code class="language-csharp">var response = client.Post(new QueueTextToImage {
-    PositivePrompt = &quot;A serene landscape with mountains and a lake&quot;,
-    Model = &quot;flux-schnell&quot;,
-    Width = 1024,
-    Height = 1024,
-    BatchSize = 1
-});
-
-// Poll for Job Completion Status
-GetArtifactGenerationStatusResponse status = new();
-while (status.JobState is BackgroundJobState.Queued or BackgroundJobState.Started)
-{
-    status = client.Get(new GetArtifactGenerationStatus { JobId = response.JobId });
-    Thread.Sleep(1000);
-}
-
-File.WriteAllBytes(saveToPath, status.Results[0].Url.GetBytesFromUrl());
-</code></pre>
-<h3 id="queued-media-text-generation-request-example">Queued Media Text Generation Request Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#queued-media-text-generation-request-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Whilst the Media API Requests that generates text like <code>SpeechToText</code> or <code>ImageToText</code> would instead call
-<code>GetTextGenerationStatus</code> to get the text response of a queued job, e.g:</p>
-<pre><code class="language-csharp">using var fsAudio = File.OpenRead(&quot;files/test_audio.wav&quot;);
-var response = client.PostFileWithRequest(new QueueSpeechToText(),
-    new UploadFile(&quot;test_audio.wav&quot;, fsAudio, &quot;audio&quot;));
-
-// Poll for Job Completion Status
-GetTextGenerationStatusResponse status = new();
-while (status.JobState is BackgroundJobState.Started or BackgroundJobState.Queued)
-{
-    status = client.Get(new GetTextGenerationStatus { RefId = response.RefId });
-    Thread.Sleep(1000);
-}
-
-var answer = status.Results[0].Text;
-</code></pre>
-<h3 id="open-ai-chat-with-callback-example">Open AI Chat with Callback Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#open-ai-chat-with-callback-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The Queued API also accepts a <strong>Reply to Web Callback</strong> for a more reliable push-based App integration
-where responses are posted back to a custom URL Endpoint:</p>
-<pre><code class="language-csharp">var correlationId = Guid.NewGuid().ToString(&quot;N&quot;);
-var response = client.Post(new QueueOpenAiChatCompletion
-{
-    //...
-    ReplyTo = $&quot;https://example.org/api/OpenAiChatResponseCallback?CorrelationId=${correlationId}&quot;
+<h3 id="replyto-callback-chat-completion">ReplyTo Callback Chat Completion<a class="header-anchor" href="javascript:;" onclick="location.hash='#replyto-callback-chat-completion'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>A more reliable Application integration pattern is to provide a <code>ReplyTo</code> callback URL to get notified of the response when it's completed, e.g:</p>
+<pre><code class="language-csharp">var response = await client.PostAsync(new QueueOpenAiChatCompletion {
+  Request = new() {
+    Model = &quot;phi4.gguf&quot;,
+      Messages =
+      [
+        new() { Role = &quot;system&quot;, Content = &quot;You are a helpful AI assistant&quot; },
+        new() { Role = &quot;user&quot;, Content = &quot;How do LLMs work?&quot; }
+      ],
+      MaxTokens = 50
+    },
+    ReplyTo = &quot;https://localhost:5001/api/QueueOpenAiChatResponse&quot;
 });
 </code></pre>
-<p>Your callback can add any additional metadata on the callback to assist your App in correlating the response with
-the initiating request which just needs to contain the properties of the <code>OpenAiChatResponse</code> you're interested in
-along with any metadata added to the callback URL, e.g:</p>
-<pre><code class="language-csharp">public class OpenAiChatResponseCallback : IPost, OpenAiChatResponse, IReturnVoid
-{
-    public Guid CorrelationId { get; set; }
-}
-
-public object Post(OpenAiChatResponseCallback request)
-{
-    // Handle OpenAiChatResponse callabck
-}
-</code></pre>
-<p>Unless your callback API is restricted to only accept requests from your AI Server, you should include a
-unique Id like a <code>Guid</code> in the callback URL that can be validated against an initiating request to ensure
-the callback can't be spoofed.</p>
-<h2 id="feedback">Feedback<a class="header-anchor" href="javascript:;" onclick="location.hash='#feedback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Feel free to reach us at <a href="https://github.com/ServiceStack/ai-server/discussions">ai-server/discussions</a>
-with any AI Server questions.</p>
+<p>This enables a push notification integration where your response is not coupled to the client making the request and polling for the response. It's a more robust solution as the notification is handled by a managed background job with retries so that App's are still able to get notified of responses after deployments.</p>
+<h2 id="ai-server-feedback">AI Server Feedback<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-server-feedback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We're actively developing AI Server as centralized hub to manage both self-hosted and API Hosted LLM Integrations. Feel free to reach us at <a href="https://github.com/ServiceStack/ai-server/discussions">ai-server/discussions</a> with any feature requests or feedback.</p>
 
                 </div>
             </div>
@@ -561,47 +746,6 @@ with any AI Server questions.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/hosting-llama-server">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/hosting-llama-server/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/hosting-llama-server" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Using llama.cpp to self-host Large Language Models in Production">
-                                                    Using llama.cpp to self-host Large Language Models in Production
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">A practical guide to self-hosting LLMs in production using llama.cpp&#x27;s llama-server with Docker compose and Systemd</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Using llama.cpp to self-host Large Language Models in Production background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-06-03T00:00:00.0000000">June 3, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>10 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -725,6 +869,47 @@ with any AI Server questions.</p>
                                 </div>
 
                             </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/text-to-blazor-premium">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/text-to-blazor/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/text-to-blazor-premium" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Text to Blazor upgraded to use best coding LLMs">
+                                                    Text to Blazor upgraded to use best coding LLMs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Text to Blazor now generates CRUD Apps using best coding models from Google, Anthropic, Meta, DeepSeek &amp; Mistral</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Text to Blazor upgraded to use best coding LLMs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-04-28T00:00:00.0000000">April 28, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -786,7 +971,7 @@ pre.mermaid {
 <script type="module">
 import { mount } from "app.mjs"
 
-        import App from "./posts/ai-server.mjs" 
+        import App from "./posts/hosting-llama-server.mjs" 
     mount('#post', App)
 </script>
 
