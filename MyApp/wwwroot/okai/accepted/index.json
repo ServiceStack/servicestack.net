@@ -1045,5 +1045,21 @@
     "provider": "codestral",
     "prompt": "I work for a project planning company for UK railway maintenance projects. I need a Material Asset Management application featuring Bill of Materials, Stock Control, Warehousing, Tracking and Costing.",
     "groupName": "Materials"
+  },
+  {
+    "id": "1749207469989",
+    "model": "codestral:22b",
+    "timing": "1760",
+    "provider": "codestral",
+    "prompt": "create an audit planning system in asp.net core. We need to have multiple templates and admin will be assigning this to the users. Once assigned it will appear in their portal. they need to fill the check list and scoring will be tracked based on it.\n\nCore Functional Requirements\nMultiple Audit Templates\n\nAdmin Panel to Create & Assign Templates\n\nUser Portal to View & Fill Assigned Checklists\n\nChecklist Submission with Scoring\n\nScoring Tracking & Reporting",
+    "groupName": "ChecklistResponses"
+  },
+  {
+    "id": "1749282610377",
+    "model": "claude-3-7-sonnet",
+    "timing": "19620",
+    "provider": "anthropic",
+    "prompt": "An App to manage content in an Education Learning platform",
+    "groupName": "Modules"
   }
 ]
