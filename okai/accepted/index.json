@@ -1061,5 +1061,13 @@
     "provider": "anthropic",
     "prompt": "An App to manage content in an Education Learning platform",
     "groupName": "Modules"
+  },
+  {
+    "id": "1749553877567",
+    "model": "codestral:22b",
+    "timing": "742",
+    "provider": "codestral",
+    "prompt": "I need a checkin system for members, that can authenticate using 5 digit member number, 8 digit phone number or name, once they check in, the should select a room to join for the specific date, and be asked to answer 1 to 5 questions based on the date for that specific room. question like, \"would you like to eat\", \"would you like a snack\"",
+    "groupName": "CheckIns"
   }
 ]
