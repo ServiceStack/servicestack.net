@@ -1069,5 +1069,13 @@
     "provider": "codestral",
     "prompt": "I need a checkin system for members, that can authenticate using 5 digit member number, 8 digit phone number or name, once they check in, the should select a room to join for the specific date, and be asked to answer 1 to 5 questions based on the date for that specific room. question like, \"would you like to eat\", \"would you like a snack\"",
     "groupName": "CheckIns"
+  },
+  {
+    "id": "1749669573220",
+    "model": "codestral:22b",
+    "timing": "931",
+    "provider": "codestral",
+    "prompt": "Book Configuration and Creation Module (Metadata - PostgreSQL):\nMain Entity: BookConfig (or similar).\n\nBookConfig Fields:\n\nId (PK, automatic)\nBookName (string, unique, required)\nStatus (boolean: Active / Inactive, default value Active)\nConfigCreationDate (DateTime, auto-filled upon creation).\nConfigCreationUser (string, auto-filled with the authenticated user).\nDynamic Fields Sub-Module (related to BookConfig):\n\nAllow manual definition of fields for each individual BookConfig.\nProperties for each dynamic field:\nFieldName (string, required)\nDataType (string, e.g., \"Text\", \"Number\", \"Date\", \"Boolean\", \"Multiline\").\nIsAutoFilled (boolean, for fields like DataRegistrationDate, DataRegistrationUser).\nAllowListFiltering (boolean, indicates if the field should be a filtering option in the book's data list).\nIsRequired (boolean).\nDefaultValue (string, optional).",
+    "groupName": "DynamicFields"
   }
 ]
