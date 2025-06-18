@@ -1077,5 +1077,13 @@
     "provider": "codestral",
     "prompt": "Book Configuration and Creation Module (Metadata - PostgreSQL):\nMain Entity: BookConfig (or similar).\n\nBookConfig Fields:\n\nId (PK, automatic)\nBookName (string, unique, required)\nStatus (boolean: Active / Inactive, default value Active)\nConfigCreationDate (DateTime, auto-filled upon creation).\nConfigCreationUser (string, auto-filled with the authenticated user).\nDynamic Fields Sub-Module (related to BookConfig):\n\nAllow manual definition of fields for each individual BookConfig.\nProperties for each dynamic field:\nFieldName (string, required)\nDataType (string, e.g., \"Text\", \"Number\", \"Date\", \"Boolean\", \"Multiline\").\nIsAutoFilled (boolean, for fields like DataRegistrationDate, DataRegistrationUser).\nAllowListFiltering (boolean, indicates if the field should be a filtering option in the book's data list).\nIsRequired (boolean).\nDefaultValue (string, optional).",
     "groupName": "DynamicFields"
+  },
+  {
+    "id": "1750204243789",
+    "model": "codestral:22b",
+    "timing": "943",
+    "provider": "codestral",
+    "prompt": "an inventory management system with barcode and location",
+    "groupName": "Products"
   }
 ]
