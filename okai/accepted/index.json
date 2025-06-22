@@ -1085,5 +1085,21 @@
     "provider": "codestral",
     "prompt": "an inventory management system with barcode and location",
     "groupName": "Products"
+  },
+  {
+    "id": "1750327813852",
+    "model": "codestral:22b",
+    "timing": "1963",
+    "provider": "codestral",
+    "prompt": "- Users, with admin users, managing users, and basic users\n- employees (who work at branches, 1 or more, have default branch)\n- branches (who need users to operate)\n- plans (which user works at which branch at which time, switching branches during day is possible)\n- demand: expected workload at branches which translates to employees needed\n- satisfaction / coverage of demand (positive or negative)\n- requests: sick leave, holiday, excluded work times\n- work locations\n- work location preferences\n- date and time specific work location assignments",
+    "groupName": "Plans"
+  },
+  {
+    "id": "1750564446976",
+    "model": "claude-3-7-sonnet",
+    "timing": "11184",
+    "provider": "anthropic",
+    "prompt": "Quiz App where I can create questions different types, like multiple choice, single choice and text and code questions",
+    "groupName": "Choices"
   }
 ]
