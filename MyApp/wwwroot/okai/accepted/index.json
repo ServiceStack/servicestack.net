@@ -1167,14 +1167,6 @@
     "groupName": "CustomerIntegrations"
   },
   {
-    "id": "1752510744963",
-    "model": "claude-3-7-sonnet",
-    "timing": "5630",
-    "provider": "anthropic",
-    "prompt": "Generate a project for managing customers and customer locations.",
-    "groupName": "CustomerLocations"
-  },
-  {
     "id": "1752511207985",
     "model": "claude-3-7-sonnet",
     "timing": "5609",
@@ -1197,14 +1189,6 @@
     "provider": "anthropic",
     "prompt": "Generate SevenShiftsApiConfiguration  with CustomerLocationId as number,  and the following fields CompanyId , LocationId, DepartmentId, AccessToken , and Environment",
     "groupName": "SevenShiftsApiConfigurations"
-  },
-  {
-    "id": "1753155353043",
-    "model": "codestral:22b",
-    "timing": "2005",
-    "provider": "codestral",
-    "prompt": "Please create an elevator management application",
-    "groupName": "MaintenanceRequests"
   },
   {
     "id": "1753155353046",
