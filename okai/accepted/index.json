@@ -1101,5 +1101,125 @@
     "provider": "anthropic",
     "prompt": "Quiz App where I can create questions different types, like multiple choice, single choice and text and code questions",
     "groupName": "Choices"
+  },
+  {
+    "id": "1751031013057",
+    "model": "codestral:22b",
+    "timing": "1428",
+    "provider": "codestral",
+    "prompt": "Create a multi-tenant C# Blazor application to manage events with attendees",
+    "groupName": "Events"
+  },
+  {
+    "id": "1751055300815",
+    "model": "claude-3-7-sonnet",
+    "timing": "15263",
+    "provider": "anthropic",
+    "prompt": "create an application store website  for listing  ETSI MEC applications .provide a description and details upon hover and also details modal upon clicking a specific app . A repective page to upload ETSI MEC apps and also a page to compose (provive yaml style/monaco editor )and package MEC apps",
+    "groupName": "MecServiceCapabilities"
+  },
+  {
+    "id": "1751103671957",
+    "model": "gemini-flash-2.5",
+    "timing": "10144",
+    "provider": "google",
+    "prompt": "- Users, with admin users, managing users, and basic users\n- ACL\n- customers with codes\n- organizations with locations and with products",
+    "groupName": "Locations"
+  },
+  {
+    "id": "1751120675162",
+    "model": "deepseek-v3:671b",
+    "timing": "34281",
+    "provider": "openrouter",
+    "prompt": "I want a secure admin multi-client app that supports 2fa and is used to manage digital card instances that have been created for members of a client stored in sql server. The members details will be stored against the digital card created, not a separate record. A digital card has name, expiry date, barcode, status, and 3 additional free-form fields. We should be able to store the history of the digital card. Clients should be able to login and see only the digital cards created for their members. Clients should have roles which allow them to view their own digital cards and a role to perform operations on those cards. A client who has permisssion should be able to list, create, delete and update only their digital cards, and see their status which could be created, activated,de-activated. You should also be able to send push notifications to individual cards. A global administrator should be able to see all the clients and then drill down to administrate those cards in the same way a client can.There will be a dashboard page that shows how many digital cards have been created for a client and their different status",
+    "groupName": "DigitalCards"
+  },
+  {
+    "id": "1751292538939",
+    "model": "claude-3-7-sonnet",
+    "timing": "14393",
+    "provider": "anthropic",
+    "prompt": "I need an application that mimics both clockify and Fresdesk.  I need clients, client projects, client project tasks and tracking time and status on those projects and tasks.  Additionally,  I need to track support tickets for clients.",
+    "groupName": "TicketAttachments"
+  },
+  {
+    "id": "1751368528182",
+    "model": "codestral:22b",
+    "timing": "994",
+    "provider": "codestral",
+    "prompt": "An application for a housing society. The app shoul have a landing page, about, contact. Registered users will be able to submit complaints for admin to view and process. Users will be created by admin",
+    "groupName": "Complaints"
+  },
+  {
+    "id": "1752100587259",
+    "model": "claude-3-7-sonnet",
+    "timing": "13820",
+    "provider": "anthropic",
+    "prompt": "My application provides users with a digital wallet system that serves as a payment method for third-party services. Each user can create one or more wallet accounts within the platform. Each account is independent, with its own balance and transaction history.\n\nUpdated functional requirements:\n\n1. User wallet accounts\n\t•\tA user can own multiple wallet accounts.\n\t•\tEach account includes:\n\t•\tA custom name or label (e.g., “Main Wallet”, “Vehicle A”).\n\t•\tAn optional account type (e.g., personal, corporate, prepaid).\n\t•\tA status (active, suspended, closed).\n\t•\tCurrent balance.\n\t•\tCreation date and last updated timestamp.\n\n2. Top-ups (credits)\n\t•\tWallets support top-ups from various payment methods: credit/debit card, bank transfer, payment gateways, cash.\n\t•\tRecommended metadata:\n\t•\tTop-up amount.\n\t•\tPayment method used.\n\t•\tExternal transaction reference ID.\n\t•\tTimestamp.\n\t•\tStatus: pending, approved, failed.\n\t•\tUser who performed the action (for delegated access).\n\t•\tSource IP/device (for traceability).\n\t•\tOptional notes or applied promotions.\n\n3. Payments (debits)\n\t•\tDebit transactions are linked to a specific wallet account.\n\t•\tRecommended fields:\n\t•\tAmount.\n\t•\tService type (toll, parking, others).\n\t•\tExternal service reference.\n\t•\tStatus (approved, rejected, pending).\n\t•\tTimestamp.\n\t•\tLocation or service point (optional).\n\t•\tExternal system response code/message (for traceability).\n\n4. Transactions / Account statement\n\t•\tEach wallet has its own independent transaction history.\n\t•\tEach transaction should include:\n\t•\tUnique identifier.\n\t•\tType (credit, debit, refund, hold, adjustment).\n\t•\tBalance before and after the transaction.\n\t•\tDate and time.\n\t•\tShort description.\n\t•\tActor (who performed the transaction).\n\n5. Additional recommendations\n\t•\tSupport for reversals and refunds.\n\t•\tSupport for temporary holds on balance (e.g., pending external confirmation).\n\t•\tFull audit trail: created by, modified by, timestamps.\n\t•\tOptional multi-currency support (for future internationalization).",
+    "groupName": "Transactions"
+  },
+  {
+    "id": "1752506998014",
+    "model": "claude-3-7-sonnet",
+    "timing": "13777",
+    "provider": "anthropic",
+    "prompt": "Additionally, I need a track customer projects, and have employee time tracking for tickets and projects. I also need a place to track customer locations and integrations with 3rd party software which will include api keys and additional api access information. This can be at both the customer level and the customer location level. Each intergration may have different things to track. For example, integration with touchpoint API requires api_url, fiendly_name, api_key, environment (test or production ). For 7Shifts, I need to track company_id, firendly_name, location_id, access_token, api_url, and department_id",
+    "groupName": "CustomerIntegrations"
+  },
+  {
+    "id": "1752510744963",
+    "model": "claude-3-7-sonnet",
+    "timing": "5630",
+    "provider": "anthropic",
+    "prompt": "Generate a project for managing customers and customer locations.",
+    "groupName": "CustomerLocations"
+  },
+  {
+    "id": "1752511207985",
+    "model": "claude-3-7-sonnet",
+    "timing": "5609",
+    "provider": "anthropic",
+    "prompt": "Generate a project for managing customers and customer locations",
+    "groupName": "CustomerLocations"
+  },
+  {
+    "id": "1752516566051",
+    "model": "claude-3-7-sonnet",
+    "timing": "4213",
+    "provider": "anthropic",
+    "prompt": "Generate a section called integrations that will allow for integrating with api endpoing for each customer location (which already exist in a different model).  The integrtions are for touchpoint and 7Shifts and both require and is_active flag as well as an environment (Test | Production) .   Touchpoint configuration requires the following:  friendly_name,  api_url,  location_id, api_key.  The 7shifts integration requires the following: api_url, company_Id, location_id, access_token, and deparment_id",
+    "groupName": "Integrations"
+  },
+  {
+    "id": "1752534765755",
+    "model": "claude-3-7-sonnet",
+    "timing": "3920",
+    "provider": "anthropic",
+    "prompt": "Generate SevenShiftsApiConfiguration  with CustomerLocationId as number,  and the following fields CompanyId , LocationId, DepartmentId, AccessToken , and Environment",
+    "groupName": "SevenShiftsApiConfigurations"
+  },
+  {
+    "id": "1753155353043",
+    "model": "codestral:22b",
+    "timing": "2005",
+    "provider": "codestral",
+    "prompt": "Please create an elevator management application",
+    "groupName": "MaintenanceRequests"
+  },
+  {
+    "id": "1753155353046",
+    "model": "claude-3-7-sonnet",
+    "timing": "12081",
+    "provider": "anthropic",
+    "prompt": "Please create an elevator management application",
+    "groupName": "MaintenanceRecords"
+  },
+  {
+    "id": "1753156906370",
+    "model": "claude-3-7-sonnet",
+    "timing": "14196",
+    "provider": "anthropic",
+    "prompt": "I need a custom management tool that will track customers, customer users, support tickets for customers and our company agents. Additionally, I need a track customer projects,  and have employee time tracking for tickets and projects.",
+    "groupName": "Tickets"
   }
 ]
