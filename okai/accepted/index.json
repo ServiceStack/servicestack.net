@@ -1213,5 +1213,13 @@
     "provider": "codestral",
     "prompt": "Feature\tDescription\nBill of Materials (BoM)\tBlueprint of a product—defines raw materials, operations, and costs. Multiple BoMs can exist per item.\nWork Orders\tUsed to initiate production. Tracks raw material consumption and finished goods output.\nProduction Planning Tool\tForecasts and plans production based on demand and stock.\nJob Cards\tTasks assigned to workers/stations with operation details, time tracking, and status.\nOperations & Workstations\tDefines each step (cutting, assembling, painting, etc.) and resources/stations.\nRouting\tSequence of operations used for producing items.\nCapacity Planning\tChecks machine or workstation availability to avoid overloading.\nSubcontracting\tManages outsourced operations and raw material transfers to third-party vendors.\nScrap Management\tTracks wastage during production and scrap valuation.\nProduction Analytics\tBuilt-in reports for efficiency, costs, completion, delays, and throughput.\n\n🔄 Workflow Summary\nBoM Creation →\nDefine the materials and processes for a product.\n\nWork Order →\nCreate when production is needed (linked to a Sales Order or manually).\n\nMaterial Request / Stock Entry →\nIssue or transfer raw materials to production.\n\nJob Cards →\nAssign tasks to workers or machines.\n\nWork Order Completion →\nOutput finished goods into stock, track scrap, and compute costs.\n\n📊 Reports Available\nWork Order Summary\n\nBoM Comparison\n\nProduction Analytics\n\nJob Card Time Tracking\n\nSubcontracting Ledger\n\n🔌 Integrations with Other Modules\nModule\tIntegration\nInventory\tReal-time tracking of raw material consumption and finished good stock.\nSales\tAuto-create Work Orders from Sales Orders.\nPurchase\tRaise purchase requests for raw materials or subcontracting needs.\nAccounts\tCost accounting of manufacturing, scrap valuation, and vendor billing.\nHR\tWorker time logs and productivity via Job Cards.",
     "groupName": "Operations"
+  },
+  {
+    "id": "1754652315808",
+    "model": "codestral:22b",
+    "timing": "2100",
+    "provider": "codestral",
+    "prompt": "dog hotel schedule manegement application",
+    "groupName": "ServiceSchedules"
   }
 ]
