@@ -1215,11 +1215,27 @@
     "groupName": "Operations"
   },
   {
-    "id": "1754652315808",
+    "id": "1755173435956",
     "model": "codestral:22b",
-    "timing": "2100",
+    "timing": "849",
     "provider": "codestral",
-    "prompt": "dog hotel schedule manegement application",
-    "groupName": "ServiceSchedules"
+    "prompt": "Show me a generic example of what you are capable of.",
+    "groupName": "Comments"
+  },
+  {
+    "id": "1755436728888",
+    "model": "codestral:22b",
+    "timing": "1063",
+    "provider": "codestral",
+    "prompt": "I need a tool to create surveys using the SurveyJS library. Surveys have fixed properties like audit info, start and end dates and the the survey itself as json, plus custom properties that can be defined for each survey. Addionally there is an API to create survey instances with prepopulated values for the custom survey properties.",
+    "groupName": "CustomPropertyValues"
+  },
+  {
+    "id": "1755500089126",
+    "model": "deepseek-v3:671b",
+    "timing": "36932",
+    "provider": "openrouter",
+    "prompt": "Create a CRM and Ticketing App that is designed to suit a MSP",
+    "groupName": "Tickets"
   }
 ]
