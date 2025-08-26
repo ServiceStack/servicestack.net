@@ -1229,5 +1229,13 @@
     "provider": "anthropic",
     "prompt": "I need a tool to create surveys. Surveys have fixed properties like audit info, start and end dates and the the survey itself as json, plus custom properties that can be defined for each survey.",
     "groupName": "SurveyResponses"
+  },
+  {
+    "id": "1756177595696",
+    "model": "claude-3-7-sonnet",
+    "timing": "16510",
+    "provider": "anthropic",
+    "prompt": "I need an App to manage students, classes, teachers and courses in an university learning outcomes measurement system",
+    "groupName": "AssessmentSubmissions"
   }
 ]
