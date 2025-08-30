@@ -1237,5 +1237,21 @@
     "provider": "anthropic",
     "prompt": "I need an App to manage students, classes, teachers and courses in an university learning outcomes measurement system",
     "groupName": "AssessmentSubmissions"
+  },
+  {
+    "id": "1756193873744",
+    "model": "codestral:22b",
+    "timing": "1643",
+    "provider": "codestral",
+    "prompt": "Build an app that manages a factory which dispenses plastic granulate. It needs models for raw materials, recipes (raw material, percentages), orders (recipe, weight), and dispensers.",
+    "groupName": "RecipeItems"
+  },
+  {
+    "id": "1756328524760",
+    "model": "claude-3-7-sonnet",
+    "timing": "13693",
+    "provider": "anthropic",
+    "prompt": "Make a monitoring tool for healthness of webscrapping sources",
+    "groupName": "HealthChecks"
   }
 ]
