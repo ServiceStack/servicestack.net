@@ -1349,5 +1349,13 @@
     "provider": "google",
     "prompt": "Systems:\n1) Planning: owns Sales Orders, Demand, BOMs, MRP schedules.\n2) Replenishment: consumes MRP + Inventory, creates Purchase Orders.\n3) Warehouse: executes receiving, putaway, picking, delivery to locations per Sales Orders.\n\nCore entities (full CRUD + audit trail):\n- Item (SKU, description, UoM)\n- BOM (parent, component, qty)\n- Location (code, type)\n- InventoryBalance (item, location, qty, lastUpdated)\n- SalesOrder (header + lines: item, needDate, qty)\n- MRPPlan (item, period, requiredQty, projectedBalance)\n- PurchaseOrder (header + lines)\n- InventoryTransaction (type:+/-, item, qty, location, refDoc, timestamp)\n- Exception (priority, status [New, In-Review, Staged, Actioned, Closed], owner, item, qty delta, positive/negative flag, impacted system(s), notes, createdBy/On, SLA due)\n\nFeatures:\n- Dashboards: KPIs (late SO lines, stockouts, PO delays, open exceptions by priority/owner).\n- Exception Queue: capture mismatches (demand vs supply, negative balance, late PO/receipt), stage fixes, and post back to the relevant system(s).\n- Adapters (stubbed services + interfaces) for the 3 systems: import/export plans, POs, inventory, and confirmations. Support REST/webhooks; schedule background syncs.\n- Real-time updates via SignalR; notification rules by exception priority/age.\n- Alerts via email (SMTP) and optional SMS (Twilio) with deep links to records.\n- Role-based access: Admin, Planner, Warehouse, Viewer.\n- Validation: prevent negative inventory unless flagged; BOM explosion helper.\n- Activity log + immutable audit of all changes and exception lifecycle.\n\nUX:\n- Grids with filter/sort/export; detail drawers; bulk actions on exceptions.\n- “Stage & Apply” flow: simulate impact before committing to each target system.\n\nSeed with sample data and provide OpenAPI/Swagger.",
     "groupName": "InventoryBalances"
+  },
+  {
+    "id": "1757992115456",
+    "model": "claude-sonnet-4-0",
+    "timing": "8799",
+    "provider": "anthropic",
+    "prompt": "1. Display product manuals. Manuals are Markdown-formatted files placed in the same folder. 2. The manuals contain some ST codes that need to be displayed, as well as some Mermaid Chart-formatted flowcharts.",
+    "groupName": "ProductManuals"
   }
 ]
