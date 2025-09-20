@@ -1357,5 +1357,29 @@
     "provider": "anthropic",
     "prompt": "1. Display product manuals. Manuals are Markdown-formatted files placed in the same folder. 2. The manuals contain some ST codes that need to be displayed, as well as some Mermaid Chart-formatted flowcharts.",
     "groupName": "ProductManuals"
+  },
+  {
+    "id": "1758252867678",
+    "model": "qwen3-coder",
+    "timing": "27704",
+    "provider": "openrouter",
+    "prompt": "ERP DEMO",
+    "groupName": "SalesOrderLines"
+  },
+  {
+    "id": "1758311780101",
+    "model": "claude-sonnet-4-0",
+    "timing": "32709",
+    "provider": "anthropic",
+    "prompt": "ecommerce saas product. Should contain cart, session, products, catalog, orders, payments, etc",
+    "groupName": "Orders"
+  },
+  {
+    "id": "1758334487291",
+    "model": "claude-sonnet-4-0",
+    "timing": "11477",
+    "provider": "anthropic",
+    "prompt": "Create an obsidian interactive app that manages content files",
+    "groupName": "ContentFileTags"
   }
 ]
