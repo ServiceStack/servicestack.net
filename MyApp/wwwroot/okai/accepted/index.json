@@ -1389,5 +1389,13 @@
     "provider": "anthropic",
     "prompt": "I want to create an application that allows a user to generate quotations, convert completed quotations into invoice and then track invoice payment",
     "groupName": "QuotationItems"
+  },
+  {
+    "id": "1758676639027",
+    "model": "qwen3-coder",
+    "timing": "55536",
+    "provider": "openrouter",
+    "prompt": "Create an banking app. The app must have: wallet balance, card payment processing, qrcode payment processing, add bank account, and account settings.",
+    "groupName": "Transactions"
   }
 ]
