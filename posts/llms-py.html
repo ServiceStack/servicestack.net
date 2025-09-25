@@ -266,7 +266,17 @@ llms --chat audio-request.json --audio talk.mp3 &quot;Transcribe this audio file
 llms --default grok-4-fast
 
 # Run an Open AI Chat compatible server
-llms --server --port 8080
+llms --serve 8000
+</code></pre>
+<p>Example client usage:</p>
+<pre><code class="language-bash">curl -X POST http://localhost:8000/v1/chat/completions \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;model&quot;: &quot;kimi-k2&quot;,
+    &quot;messages&quot;: [
+      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot;}
+    ]
+  }'
 </code></pre>
 <h3 id="configurable-multi-provider-gateway">🌐 Configurable Multi-Provider Gateway<a class="header-anchor" href="javascript:;" onclick="location.hash='#configurable-multi-provider-gateway'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Acts as an intelligent gateway that can route requests for 160+ models across:</p>
