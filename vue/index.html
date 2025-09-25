@@ -26,9 +26,9 @@
     "imports": {
         "app.mjs": "./mjs/app.mjs",
         "dtos.mjs": "./mjs/dtos.mjs",
-        "vue": "./lib/mjs/vue.min.mjs",
-        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
-        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "vue": "./lib/mjs/vue.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.mjs",
         "highlight.mjs": "./lib/mjs/highlight.mjs",
         "core": "./js/core.mjs"
     }
@@ -51,17 +51,17 @@
             <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
                 <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     What's New
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Blog
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
-                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Podcasts
                                 </a>
                             </li>
@@ -76,22 +76,22 @@
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Free
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Trial
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Pricing
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
+                                <a href="https://localhost:5002/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
                                     Sign In
                                 </a>
                             </li>
@@ -1159,12 +1159,12 @@ setMetadata()
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
                 <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
                 <div>
-                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
-                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
-                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
-                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
-                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
-                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://localhost:5002/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://localhost:5002/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://localhost:5002/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://localhost:5002/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://localhost:5002/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://localhost:5002/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
                     <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
                 </div>
             </div>
@@ -1178,7 +1178,7 @@ setMetadata()
                     <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
                     <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
                     <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
-                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                    <a href="https://localhost:5002/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
                 </div>
             </div>
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
@@ -1189,17 +1189,17 @@ setMetadata()
                     <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
                     <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
                     <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
-                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                    <a href="https://localhost:5002/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
                 </div>
             </div>
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
                 <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
                 <div>
-                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
-                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
-                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
-                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
-                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                    <a href="https://localhost:5002/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://localhost:5002/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://localhost:5002/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://localhost:5002/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://localhost:5002/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
                 </div>
             </div>
             <div class="px-4 mt-4 flex justify-end">
@@ -1236,7 +1236,7 @@ setMetadata()
                 <p class="pt-2">Copyright (c) ServiceStack Inc. 2024</p>
             </div>
             <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
-                <a href="https://servicestack.net/start"
+                <a href="https://localhost:5002/start"
                    class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                     Get started
                 </a>
@@ -1247,8 +1247,8 @@ setMetadata()
 </footer>
 
 <script type="module">
-import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
-import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+import { mail } from 'https://localhost:5003/mjs/components/mail.mjs'
+import { post } from 'https://localhost:5003/mjs/components/post.mjs'
 
 mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
 post('[data-post]', {

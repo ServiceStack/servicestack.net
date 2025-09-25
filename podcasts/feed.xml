@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Wed, 24 Sep 2025 01:20:11 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 25 Sep 2025 14:00:13 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -674,6 +674,100 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
+        <title>New Blazor Interactive Auto Template with Custom Admin UIs</title>
+        <link>https://servicestack.net/podcasts/blazor-8-admin</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/blazor-8-admin</guid>
+        <pubDate>Mon, 26 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-26T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/blazor-8-admin.mp3" length="2149773" type="audio/mpeg"/>
+        <category>blazor</category>
+        <category>.net8</category>
+        <category>admin</category>
+        <description>Discovering how to use ServiceStack.Blazor components to quickly create customizable and professional-looking admin pages in a Blazor application</description>
+        <itunes:summary><![CDATA[ Discovering how to use ServiceStack.Blazor components to quickly create customizable and professional-looking admin pages in a Blazor application ]]></itunes:summary>
+        <itunes:duration>537</itunes:duration>
+        <itunes:keywords>blazor,.net8,admin</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ASP.NET Core JWT Identity Auth</title>
+        <link>https://servicestack.net/podcasts/jwt-identity-auth</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/jwt-identity-auth</guid>
+        <pubDate>Thu, 22 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-22T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/jwt-identity-auth.mp3" length="2151789" type="audio/mpeg"/>
+        <category>.net8</category>
+        <category>auth</category>
+        <category>jwt</category>
+        <description>Looking at the integration and value added features of ASP.NET Core JWT Identity Auth in ServiceStack</description>
+        <itunes:summary><![CDATA[ Looking at the integration and value added features of ASP.NET Core JWT Identity Auth in ServiceStack ]]></itunes:summary>
+        <itunes:duration>537</itunes:duration>
+        <itunes:keywords>.net8,auth,jwt</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Built-In Identity Auth Admin UI</title>
+        <link>https://servicestack.net/podcasts/identity-auth-admin-ui</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/identity-auth-admin-ui</guid>
+        <pubDate>Wed, 21 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-21T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/identity-auth-admin-ui.mp3" length="999309" type="audio/mpeg"/>
+        <category>.net8</category>
+        <category>identity-auth</category>
+        <category>admin-ui</category>
+        <description>Exploring the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8</description>
+        <itunes:summary><![CDATA[ Exploring the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8 ]]></itunes:summary>
+        <itunes:duration>249</itunes:duration>
+        <itunes:keywords>.net8,identity-auth,admin-ui</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>System.Text.Json ServiceStack APIs</title>
+        <link>https://servicestack.net/podcasts/system-text-json-apis</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/system-text-json-apis</guid>
+        <pubDate>Tue, 20 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-20T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/system-text-json-apis.mp3" length="1711629" type="audio/mpeg"/>
+        <category>.net8</category>
+        <category>json</category>
+        <category>api</category>
+        <description>Looking at ServiceStack .NET 8&#x2B; APIs new capability for using high-performance async System.Text.Json serialization</description>
+        <itunes:summary><![CDATA[ Looking at ServiceStack .NET 8&#x2B; APIs new capability for using high-performance async System.Text.Json serialization ]]></itunes:summary>
+        <itunes:duration>427</itunes:duration>
+        <itunes:keywords>.net8,json,api</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>OpenAPI v3 and Swagger UI</title>
+        <link>https://servicestack.net/podcasts/openapi-v3</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/openapi-v3</guid>
+        <pubDate>Mon, 19 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-19T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/openapi-v3.mp3" length="3201549" type="audio/mpeg"/>
+        <category>openapi</category>
+        <category>.net8</category>
+        <description>A walkthrough of the exciting new OpenAPI v3 support in ServiceStack v8.1</description>
+        <itunes:summary><![CDATA[ A walkthrough of the exciting new OpenAPI v3 support in ServiceStack v8.1 ]]></itunes:summary>
+        <itunes:duration>800</itunes:duration>
+        <itunes:keywords>openapi,.net8</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ServiceStack Endpoint Routing</title>
+        <link>https://servicestack.net/podcasts/servicestack-endpoint-routing</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/servicestack-endpoint-routing</guid>
+        <pubDate>Wed, 07 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-07T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/servicestack-endpoint-routing.mp3" length="1668621" type="audio/mpeg"/>
+        <category>.net8</category>
+        <category>api</category>
+        <description>Talking about the new era of ServiceStack .NET 8 which is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IoC</description>
+        <itunes:summary><![CDATA[ Talking about the new era of ServiceStack .NET 8 which is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IoC ]]></itunes:summary>
+        <itunes:duration>417</itunes:duration>
+        <itunes:keywords>.net8,api</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>ServiceStack v8.1 Release</title>
         <link>https://servicestack.net/podcasts/v8-1-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v8-1-release</guid>
@@ -693,23 +787,83 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
-        <title>ServiceStack v8.0 Release</title>
-        <link>https://servicestack.net/podcasts/v8-0-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-0-release</guid>
-        <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-11-20T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-0-release.mp3" length="2715309" type="audio/mpeg"/>
-        <category>release</category>
+        <title>Migrating to ASP.NET Core Identity for Authentication</title>
+        <link>https://servicestack.net/podcasts/identity-migration</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/identity-migration</guid>
+        <pubDate>Tue, 06 Feb 2024 00:00:00 GMT</pubDate>
+        <atom:updated>2024-02-06T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/identity-migration.mp3" length="2348493" type="audio/mpeg"/>
+        <category>auth</category>
+        <category>identity-auth</category>
+        <description>A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication</description>
+        <itunes:summary><![CDATA[ A walkthrough of migrating our BlazorDiffusion example application over to ASP.NET Core Identity for authentication ]]></itunes:summary>
+        <itunes:duration>587</itunes:duration>
+        <itunes:keywords>auth,identity-auth</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Docker Containerization in .NET 8</title>
+        <link>https://servicestack.net/podcasts/net8-docker-containers</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-docker-containers</guid>
+        <pubDate>Tue, 12 Dec 2023 00:00:00 GMT</pubDate>
+        <atom:updated>2023-12-12T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/net8-docker-containers.mp3" length="2299821" type="audio/mpeg"/>
         <category>.net8</category>
-        <category>docker</category>
+        <category>github-actions</category>
+        <category>hosting</category>
+        <description>Checking out the new .NET 8 Docker Container support and GitHub Actions Deployments in new Project Templates</description>
+        <itunes:summary><![CDATA[ Checking out the new .NET 8 Docker Container support and GitHub Actions Deployments in new Project Templates ]]></itunes:summary>
+        <itunes:duration>574</itunes:duration>
+        <itunes:keywords>.net8,github-actions,hosting</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>PHP typed client DTOs for .NET APIs</title>
+        <link>https://servicestack.net/podcasts/php-typed-apis</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/php-typed-apis</guid>
+        <pubDate>Wed, 29 Nov 2023 00:00:00 GMT</pubDate>
+        <atom:updated>2023-11-29T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/php-typed-apis.mp3" length="2225709" type="audio/mpeg"/>
+        <category>php</category>
+        <category>api</category>
+        <category>service-reference</category>
+        <description>Covering the new first class end-to-end typed support for calling .NET APIs with PHP</description>
+        <itunes:summary><![CDATA[ Covering the new first class end-to-end typed support for calling .NET APIs with PHP ]]></itunes:summary>
+        <itunes:duration>556</itunes:duration>
+        <itunes:keywords>php,api,service-reference</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ASP.NET Core Identity Auth in .NET 8</title>
+        <link>https://servicestack.net/podcasts/net8-identity-auth</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-identity-auth</guid>
+        <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
+        <atom:updated>2023-11-28T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/net8-identity-auth.mp3" length="1979181" type="audio/mpeg"/>
+        <category>c#</category>
         <category>identity-auth</category>
         <category>blazor</category>
-        <category>mvc</category>
-        <category>razor</category>
-        <description>ServiceStack v8 is here with all packages now including .net8.0 builds, all Project Templates upgraded to .NET 8, GitHub Actions now using .NET 8 Docker containers, new Tailwind Blazor, Razor Pages &amp; MVC Templates now using ASP .NET Identity Auth &amp; EF</description>
-        <itunes:summary><![CDATA[ ServiceStack v8 is here with all packages now including .net8.0 builds, all Project Templates upgraded to .NET 8, GitHub Actions now using .NET 8 Docker containers, new Tailwind Blazor, Razor Pages &amp; MVC Templates now using ASP .NET Identity Auth &amp; EF ]]></itunes:summary>
-        <itunes:duration>678</itunes:duration>
-        <itunes:keywords>release,.net8,docker,identity-auth,blazor,mvc,razor</itunes:keywords>        
+        <description>Talking about ServiceStack&#x27;s switch to ASP.NET Core Identity Auth in new .NET 8 Blazor, Razor and MVC Project Templates</description>
+        <itunes:summary><![CDATA[ Talking about ServiceStack&#x27;s switch to ASP.NET Core Identity Auth in new .NET 8 Blazor, Razor and MVC Project Templates ]]></itunes:summary>
+        <itunes:duration>494</itunes:duration>
+        <itunes:keywords>c#,identity-auth,blazor</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>.NET 8&#x27;s Best Blazor is not Blazor as we know it</title>
+        <link>https://servicestack.net/podcasts/net8-best-blazor</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-best-blazor</guid>
+        <pubDate>Wed, 22 Nov 2023 00:00:00 GMT</pubDate>
+        <atom:updated>2023-11-22T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/net8-best-blazor.mp3" length="2251533" type="audio/mpeg"/>
+        <category>template</category>
+        <category>blazor</category>
+        <category>vue</category>
+        <category>api</category>
+        <description>We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise</description>
+        <itunes:summary><![CDATA[ We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise ]]></itunes:summary>
+        <itunes:duration>562</itunes:duration>
+        <itunes:keywords>template,blazor,vue,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>

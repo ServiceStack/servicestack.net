@@ -26,9 +26,9 @@
     "imports": {
         "app.mjs": "./mjs/app.mjs",
         "dtos.mjs": "./mjs/dtos.mjs",
-        "vue": "./lib/mjs/vue.min.mjs",
-        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
-        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "vue": "./lib/mjs/vue.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.mjs",
         "highlight.mjs": "./lib/mjs/highlight.mjs",
         "core": "./js/core.mjs"
     }
@@ -60,17 +60,17 @@
             <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
                 <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Blog
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Archive
                                 </a>
                             </li>
                             <li class="relative flex flex-wrap just-fu-start m-0">
-                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                <a href="https://localhost:5002/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
                                     Podcasts
                                 </a>
                             </li>
@@ -138,6 +138,9 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'new-razor-ssg-docs', title:'New Razor SSG generated docs.servicestack.net', src:'https://media.servicestack.com/podcasts/new-razor-ssg-docs.mp3', beaconUrl:'https://localhost:5002/stats/podcast/record?name=new-razor-ssg-docs&amp;source=post&amp;version=8.8.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
@@ -326,6 +329,47 @@ implemented in just markdown, Razor or a hybrid mix of both. The <a href="https:
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
+                                        <a href="posts/llms-py">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/llms-py/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/llms-py" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="llms.py - Lightweight OpenAI compatible CLI and server gateway for multiple LLMs">
+                                                    llms.py - Lightweight OpenAI compatible CLI and server gateway for multiple LLMs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Support for Text, Image and Audio generation. Seamlessly mix and match local models with premium cloud LLMs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="llms.py - Lightweight OpenAI compatible CLI and server gateway for multiple LLMs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-09-25T00:00:00.0000000">September 25, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
                                         <a href="posts/text-to-blazor-upgraded">
                                             <img class="h-48 w-full object-cover" src="./img/posts/text-to-blazor-upgraded/bg.webp" alt="">
                                         </a>
@@ -446,47 +490,6 @@ implemented in just markdown, Razor or a hybrid mix of both. The <a href="https:
                                 </div>
 
                             </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/angular-template">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/angular-template/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/angular-template" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="New Angular 19 ASP.NET Core Identity Auth Tailwind SPA Template">
-                                                    New Angular 19 ASP.NET Core Identity Auth Tailwind SPA Template
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Introducing our new Angular 19 IdentityAuth Tailwind Template with DarkMode and support for RxJS and Signals dev models</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="New Angular 19 ASP.NET Core Identity Auth Tailwind SPA Template background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-05-06T00:00:00.0000000">May 6, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>9 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                     </div>
                 </div>
             </div>
@@ -527,12 +530,12 @@ import { mount } from "app.mjs"
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
                 <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
                 <div>
-                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
-                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
-                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
-                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
-                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
-                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://localhost:5002/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://localhost:5002/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://localhost:5002/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://localhost:5002/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://localhost:5002/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://localhost:5002/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
                     <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
                 </div>
             </div>
@@ -546,7 +549,7 @@ import { mount } from "app.mjs"
                     <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
                     <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
                     <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
-                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                    <a href="https://localhost:5002/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
                 </div>
             </div>
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
@@ -557,17 +560,17 @@ import { mount } from "app.mjs"
                     <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
                     <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
                     <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
-                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                    <a href="https://localhost:5002/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
                 </div>
             </div>
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
                 <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
                 <div>
-                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
-                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
-                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
-                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
-                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                    <a href="https://localhost:5002/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://localhost:5002/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://localhost:5002/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://localhost:5002/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://localhost:5002/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
                 </div>
             </div>
             <div class="px-4 mt-4 flex justify-end">
@@ -604,7 +607,7 @@ import { mount } from "app.mjs"
                 <p class="pt-2">Copyright (c) ServiceStack Inc. 2024</p>
             </div>
             <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
-                <a href="https://servicestack.net/start"
+                <a href="https://localhost:5002/start"
                    class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                     Get started
                 </a>
@@ -615,8 +618,8 @@ import { mount } from "app.mjs"
 </footer>
 
 <script type="module">
-import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
-import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+import { mail } from 'https://localhost:5003/mjs/components/mail.mjs'
+import { post } from 'https://localhost:5003/mjs/components/post.mjs'
 
 mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
 post('[data-post]', {
