@@ -39,7 +39,7 @@ jobs:
             if [ custom_domain ]
             then
               # Persist CNAME settings
-              echo "$custom_domain" >> ./MyApp/wwwroot/CNAME
+              echo "$custom_domain" > ./MyApp/wwwroot/CNAME
             fi
           fi
 
