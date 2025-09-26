@@ -58,14 +58,16 @@ public class ConfigureSsg : IHostingStartup
                 // prerender with: `$ npm run prerender` 
                 AppTasks.Register("prerender", args =>
                 {
-                    // Force production mode
-                    // appHost.Config.DebugMode = false;
+                    var env = appHost.GetHostingEnvironment().EnvironmentName;
                     
                     #if DEBUG
-                    Console.WriteLine($"Prerendering DEBUG {appHost.Config.DebugMode}...");
+                    Console.WriteLine($"Prerendering DEBUG {env}:{appHost.Config.DebugMode}...");
                     #else
-                    Console.WriteLine($"Prerendering !DEBUG {appHost.Config.DebugMode}...");
+                    Console.WriteLine($"Prerendering !DEBUG {env}:{appHost.Config.DebugMode}...");
                     #endif
+
+                    // Force production mode
+                    appHost.Config.DebugMode = false;
                     
                     appHost.Resolve<MarkdownMeta>().RenderToAsync(
                         metaDir: appHost.ContentRootDirectory.RealPath.CombineWith("wwwroot/meta"),
