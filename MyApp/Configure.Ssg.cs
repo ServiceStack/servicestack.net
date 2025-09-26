@@ -59,12 +59,12 @@ public class ConfigureSsg : IHostingStartup
                 AppTasks.Register("prerender", args =>
                 {
                     // Force production mode
-                    appHost.Config.DebugMode = false;
+                    // appHost.Config.DebugMode = false;
                     
                     #if DEBUG
-                    Console.WriteLine("Prerendering DEBUG...");
+                    Console.WriteLine($"Prerendering DEBUG {appHost.Config.DebugMode}...");
                     #else
-                    Console.WriteLine("Prerendering !DEBUG...");
+                    Console.WriteLine($"Prerendering !DEBUG {appHost.Config.DebugMode}...");
                     #endif
                     
                     appHost.Resolve<MarkdownMeta>().RenderToAsync(
