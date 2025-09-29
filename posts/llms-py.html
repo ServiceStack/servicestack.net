@@ -196,7 +196,7 @@ preferred priority - whether optimizing for cost, performance or availability.</
 <h4 id="option-1-pypi-package">Option 1: PyPI Package<a class="header-anchor" href="javascript:;" onclick="location.hash='#option-1-pypi-package'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install lapi</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install llms-py</p>
 </div>
                     </div>
                 <div class="flex">
@@ -257,10 +257,14 @@ llms --image photo.jpg &quot;What's in this image?&quot;
 # Use with audio
 llms --audio talk.mp3 &quot;Transcribe this audio file&quot;
 
+# Use with attached file
+llms --file report.pdf &quot;Summarize this PDF&quot;
+
 # With custom request template
 llms --chat request.json &quot;Explain quantum computing in simple terms&quot;
 llms --chat image-request.json --image photo.jpg &quot;What's in this image?&quot;
 llms --chat audio-request.json --audio talk.mp3 &quot;Transcribe this audio file&quot;
+llms --chat file-request.json --file report.pdf &quot;Summarize this PDF&quot;
 
 # Set default model
 llms --default grok-4-fast
@@ -373,7 +377,7 @@ reliable access to the best models available, llms.py has you covered.</p>
 <p><strong>Links:</strong></p>
 <ul>
 <li>📚 <a href="https://github.com/ServiceStack/llms">Documentation &amp; Examples</a></li>
-<li>📦 <a href="https://pypi.org/project/lapi/">PyPI Package</a></li>
+<li>📦 <a href="https://pypi.org/project/llms-py/">PyPI Package</a></li>
 <li>🔧 <a href="https://github.com/ServiceStack/llms">Source Code</a></li>
 </ul>
 
