@@ -1397,5 +1397,29 @@
     "provider": "openrouter",
     "prompt": "Create an banking app. The app must have: wallet balance, card payment processing, qrcode payment processing, add bank account, and account settings.",
     "groupName": "Transactions"
+  },
+  {
+    "id": "1759130550209",
+    "model": "qwen3-coder",
+    "timing": "2778",
+    "provider": "openrouter",
+    "prompt": "namespace TWNTFY.ServiceModel.Entities\n{\n    [Alias(\"NOTIFY_TEMPLATE\")]\n    public class NTemplate\n    {\n        [PrimaryKey]\n        [StringLength(100)]\n        public required string Id { get; set; }\n\n        [Index]\n        [Required]\n        [StringLength(100)]\n        public Channel Channel { get; set; }\n\n        [StringLength(500)]\n        public string? Description { get; set; }\n\n        [StringLength(StringLengthAttribute.MaxText)]\n        public string? ChannelSetting { get; set; }\n\n        [StringLength(StringLengthAttribute.MaxText)]\n        public string? RequestSetting { get; set; }\n\n        [StringLength(500)]\n        public string? Subject { get; set; }\n\n        [StringLength(500)]\n        public string? SubjectEn { get; set; }\n\n        [StringLength(StringLengthAttribute.MaxText)]\n        public string? Content { get; set; }\n\n        [StringLength(StringLengthAttribute.MaxText)]\n        public string? ContentEn { get; set; }\n        public bool IsByPass { get; set; } = false;\n        public int? ValiationDays { get; set; }\n\n        [StringLength(1000)]\n        public List<string>? RejectIfAnySent { get; set; }\n        [StringLength(1000)]\n        public List<string>? RejectIfLatestIsAnyOf { get; set; }\n        [StringLength(1000)]\n        public List<string>? RequiredLatestToBeAnyOf { get; set; }\n        [StringLength(1000)]\n        public List<string>? RequiredAnyPreviousToBeAnyOf { get; set; }\n    }\n\n\n    public enum Channel\n    {\n        OTT,\n        EMAIL,\n        SMS,\n        GAPO\n    }\n}",
+    "groupName": "NTemplates"
+  },
+  {
+    "id": "1759132069590",
+    "model": "qwen3-coder",
+    "timing": "3109",
+    "provider": "openrouter",
+    "prompt": "create app only crud Template, using auth secet only\n public class NTemplate\n {\n     [PrimaryKey]\n     [StringLength(100)]\n     public required string Id { get; set; }\n\n     [Index]\n     [Required]\n     [StringLength(100)]\n     public Channel Channel { get; set; }\n\n     [StringLength(500)]\n     public string? Description { get; set; }\n\n     [StringLength(StringLengthAttribute.MaxText)]\n     public string? ChannelSetting { get; set; }\n\n     [StringLength(StringLengthAttribute.MaxText)]\n     public string? RequestSetting { get; set; }\n\n     [StringLength(500)]\n     public string? Subject { get; set; }\n\n     [StringLength(500)]\n     public string? SubjectEn { get; set; }\n\n     [StringLength(StringLengthAttribute.MaxText)]\n     public string? Content { get; set; }\n\n     [StringLength(StringLengthAttribute.MaxText)]\n     public string? ContentEn { get; set; }\n     public bool IsByPass { get; set; } = false;\n     public int? ValiationDays { get; set; }\n\n     [StringLength(1000)]\n     public List<string>? RejectIfAnySent { get; set; }\n     [StringLength(1000)]\n     public List<string>? RejectIfLatestIsAnyOf { get; set; }\n     [StringLength(1000)]\n     public List<string>? RequiredLatestToBeAnyOf { get; set; }\n     [StringLength(1000)]\n     public List<string>? RequiredAnyPreviousToBeAnyOf { get; set; }\n }\n\n\n public enum Channel\n {\n     OTT,\n     EMAIL,\n     SMS,\n     GAPO\n }",
+    "groupName": "NTemplates"
+  },
+  {
+    "id": "1759190583050",
+    "model": "claude-sonnet-4-0",
+    "timing": "9255",
+    "provider": "anthropic",
+    "prompt": "Write a ASP.net in c# tenant manager with fields to allow administrator to assign properties to a tenant like email, phone number, phone access, internet access, staff names with contact number, swipe tag number and id.  Allow tenants to be assigned to one or more office spaces numbered 1-55, tenants can have multiple offices and access in their tenancy. Each office should be assignable to a tenant.",
+    "groupName": "TenantOfficeAssignments"
   }
 ]
