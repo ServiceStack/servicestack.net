@@ -1421,5 +1421,21 @@
     "provider": "anthropic",
     "prompt": "Write a ASP.net in c# tenant manager with fields to allow administrator to assign properties to a tenant like email, phone number, phone access, internet access, staff names with contact number, swipe tag number and id.  Allow tenants to be assigned to one or more office spaces numbered 1-55, tenants can have multiple offices and access in their tenancy. Each office should be assignable to a tenant.",
     "groupName": "TenantOfficeAssignments"
+  },
+  {
+    "id": "1759206821101",
+    "model": "claude-sonnet-4-0",
+    "timing": "13964",
+    "provider": "anthropic",
+    "prompt": "Write Blazor Server app in c# called Tenant Manager, with integrated Microsoft Sign-on. The app is to document and control access for various staff members of tenants in a multi-tenant building. All ids are UUIDs.\nThe buiding has offices and shared spaces.  Offices have a room number, location, phone connection ports, and internet connection ports. \nTenants may lease one or many offices.\nA tenant has contact information including name, email, phone number, has phone access, has internet access. \nA tenant has staff, staff have a name, contact number, swipe tag, keys.  \nSwipe Tags have a serial number and issue number.",
+    "groupName": "Keys"
+  },
+  {
+    "id": "1759282083688",
+    "model": "claude-sonnet-4-0",
+    "timing": "7877",
+    "provider": "anthropic",
+    "prompt": "Build a app that daily affirmation tool that allows the user to enter a list of goals",
+    "groupName": "DailyAffirmationEntries"
   }
 ]
