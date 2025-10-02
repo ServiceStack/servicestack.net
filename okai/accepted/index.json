@@ -1437,5 +1437,21 @@
     "provider": "anthropic",
     "prompt": "Build a app that daily affirmation tool that allows the user to enter a list of goals",
     "groupName": "DailyAffirmationEntries"
+  },
+  {
+    "id": "1759355588101",
+    "model": "claude-sonnet-4-0",
+    "timing": "13283",
+    "provider": "anthropic",
+    "prompt": "Write Blazor Server app in C# called Tenant Manager, with integrated Microsoft Sign-on. The app is to document and control access for various staff members of tenants in a multi-tenant building.\nThe buiding has offices and shared spaces.  Offices have a room number, location, phone connection ports, and internet connection ports.\nTenants may lease one or many offices.\nA tenant has contact information including name, email, phone number, extension number, has phone access, has internet access.\nA tenant has staff, staff have a name, contact number, swipe tag, keys.  \nSwipe Tags have a serial number and issue number.",
+    "groupName": "TenantSpaceLeases"
+  },
+  {
+    "id": "1759356198009",
+    "model": "claude-sonnet-4-0",
+    "timing": "13800",
+    "provider": "anthropic",
+    "prompt": "Create a Blazor Server app in C# that will document tenant leases and document access control for the various staff members of tenants, in a multi-tenant building. The buiding has Offices which have a room number, location, phone connection ports, and internet connection ports. Tenants may lease one or many offices. A tenant has contact information including name, email, phone number, extension number, has phone access, has internet access. A tenant has staff, staff have a name, contact number, swipe tag, keys. Swipe Tags have a serial number and issue number.",
+    "groupName": "StaffSwipeTags"
   }
 ]
