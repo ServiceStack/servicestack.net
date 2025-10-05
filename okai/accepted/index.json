@@ -1453,5 +1453,13 @@
     "provider": "anthropic",
     "prompt": "Create a Blazor Server app in C# that will document tenant leases and document access control for the various staff members of tenants, in a multi-tenant building. The buiding has Offices which have a room number, location, phone connection ports, and internet connection ports. Tenants may lease one or many offices. A tenant has contact information including name, email, phone number, extension number, has phone access, has internet access. A tenant has staff, staff have a name, contact number, swipe tag, keys. Swipe Tags have a serial number and issue number.",
     "groupName": "StaffSwipeTags"
+  },
+  {
+    "id": "1759598678315",
+    "model": "claude-sonnet-4-0",
+    "timing": "24909",
+    "provider": "anthropic",
+    "prompt": "A blazor web app that will support a full suite of tools to support a business commerce operation, using microsoft sql server example databases, such as northwind, world wide importers, or adventureworks (https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)",
+    "groupName": "Products"
   }
 ]
