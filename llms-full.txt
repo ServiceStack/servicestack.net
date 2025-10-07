@@ -126,25 +126,44 @@ Perfect for research, document review, data analysis and content extractions.
 [![llms-files.webp](/img/posts/llms-py-ui/llms-files.webp)](/img/posts/llms-py-ui/llms-files.webp)
 :::
 
+## Custom AI Chat Requests
+
+Send Custom Chat Completion requests through the settings dialog, allowing Users to fine-tune 
+their AI requests with advanced options including:
+
+ - **Temperature** `(0-2)` for controlling response randomness 
+ - **Max Completion Tokens** to limit response length
+ - **Seed** values for deterministic sampling 
+ - **Top P** `(0-1)` for nucleus sampling
+ - **Frequency** & **Presence Penalty** `(-2.0 to 2.0)` for reducing repetition
+ - **Stop** Sequences to control where the API stops generating
+ - **Reasoning Effort** constraints for reasoning models
+ - **Top Logprobs** `(0-20)` for token probability analysis
+ - **Verbosity** settings
+
+:::{.wideshot}
+[![llms-settings.webp](/img/posts/llms-py-ui/llms-settings.webp)](/img/posts/llms-py-ui/llms-settings.webp)
+:::
+
+## Enable / Disable Providers
+
+Dynamically manage which providers you want to enable and disable at runtime.
+Providers are invoked in the order they're defined in `llms.json` that supports the requested model.
+If a provider fails, it tries the next available provider.
+
+By default Providers with Free tiers are enabled first, followed by local providers and then premium
+cloud providers which can all be enabled or disabled in the UI:
+
+:::{.wideshot}
+[![llms-providers.webp](/img/posts/llms-py-ui/llms-providers.webp)](/img/posts/llms-py-ui/llms-providers.webp)
+:::
+
 ## Search History
 
 Quickly find past conversations with built-in search:
 
 :::{.wideshot}
 [![llms-search-python.webp](/img/posts/llms-py-ui/llms-search-python.webp)](/img/posts/llms-py-ui/llms-search-python.webp)
-:::
-
-## Enable / Disable Providers
-
-Dynamically manage which providers you want to enable and disable at runtime. 
-Providers are invoked in the order they're defined in `llms.json` that supports the requested model.
-If a provider fails, it tries the next available provider.
-
-By default Providers with Free tiers are enabled first, followed by local providers and then premium 
-cloud providers which can all be enabled or disabled in the UI:
-
-:::{.wideshot}
-[![llms-providers.webp](/img/posts/llms-py-ui/llms-providers.webp)](/img/posts/llms-py-ui/llms-providers.webp)
 :::
 
 ## Smart Autocomplete for Models & System Prompts

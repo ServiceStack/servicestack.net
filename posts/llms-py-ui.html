@@ -157,7 +157,7 @@ mountAll()
                             <div class="mb-6 text-lg text-gray-500">
                                 <time datetime="2025-10-01T00:00:00.0000000">October 1, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>6 min read</span>
                             </div>
                         </div>
                 </div>
@@ -271,9 +271,21 @@ capable models to extract insights, summarize content or analyze data.</p>
 <p>Perfect for research, document review, data analysis and content extractions.</p>
 <div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-files.webp"><img src="/img/posts/llms-py-ui/llms-files.webp" alt="llms-files.webp" /></a></p>
 </div>
-<h2 id="search-history">Search History<a class="header-anchor" href="javascript:;" onclick="location.hash='#search-history'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Quickly find past conversations with built-in search:</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-search-python.webp"><img src="/img/posts/llms-py-ui/llms-search-python.webp" alt="llms-search-python.webp" /></a></p>
+<h2 id="custom-ai-chat-requests">Custom AI Chat Requests<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-ai-chat-requests'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Send Custom Chat Completion requests through the settings dialog, allowing Users to fine-tune
+their AI requests with advanced options including:</p>
+<ul>
+<li><strong>Temperature</strong> <code>(0-2)</code> for controlling response randomness</li>
+<li><strong>Max Completion Tokens</strong> to limit response length</li>
+<li><strong>Seed</strong> values for deterministic sampling</li>
+<li><strong>Top P</strong> <code>(0-1)</code> for nucleus sampling</li>
+<li><strong>Frequency</strong> &amp; <strong>Presence Penalty</strong> <code>(-2.0 to 2.0)</code> for reducing repetition</li>
+<li><strong>Stop</strong> Sequences to control where the API stops generating</li>
+<li><strong>Reasoning Effort</strong> constraints for reasoning models</li>
+<li><strong>Top Logprobs</strong> <code>(0-20)</code> for token probability analysis</li>
+<li><strong>Verbosity</strong> settings</li>
+</ul>
+<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-settings.webp"><img src="/img/posts/llms-py-ui/llms-settings.webp" alt="llms-settings.webp" /></a></p>
 </div>
 <h2 id="enable-disable-providers">Enable / Disable Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#enable-disable-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Dynamically manage which providers you want to enable and disable at runtime.
@@ -282,6 +294,10 @@ If a provider fails, it tries the next available provider.</p>
 <p>By default Providers with Free tiers are enabled first, followed by local providers and then premium
 cloud providers which can all be enabled or disabled in the UI:</p>
 <div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-providers.webp"><img src="/img/posts/llms-py-ui/llms-providers.webp" alt="llms-providers.webp" /></a></p>
+</div>
+<h2 id="search-history">Search History<a class="header-anchor" href="javascript:;" onclick="location.hash='#search-history'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Quickly find past conversations with built-in search:</p>
+<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-search-python.webp"><img src="/img/posts/llms-py-ui/llms-search-python.webp" alt="llms-search-python.webp" /></a></p>
 </div>
 <h2 id="smart-autocomplete-for-models-system-prompts">Smart Autocomplete for Models &amp; System Prompts<a class="header-anchor" href="javascript:;" onclick="location.hash='#smart-autocomplete-for-models-system-prompts'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Autocomplete components are used to quickly find and select the preferred model and system prompt.</p>
