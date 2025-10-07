@@ -1461,5 +1461,13 @@
     "provider": "anthropic",
     "prompt": "A blazor web app that will support a full suite of tools to support a business commerce operation, using microsoft sql server example databases, such as northwind, world wide importers, or adventureworks (https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)",
     "groupName": "Products"
+  },
+  {
+    "id": "1759738123774",
+    "model": "gemini-2.5-pro",
+    "timing": "17807",
+    "provider": "google",
+    "prompt": "Give me a simple site that takes a LanguagePackResource, this includes the LanguagePackId (Guid), Platform (string), ResourceName (string), ResourceValue (string), and Notes, always pass notes and null, Platform as web and LanguagePackId as an empty guid (0000). \n\nHave a connection string that lets me insert into a SQL database",
+    "groupName": "LanguagePackResources"
   }
 ]
