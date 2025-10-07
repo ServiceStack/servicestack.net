@@ -193,7 +193,7 @@ in Browsers to avoid needing any npm dependencies or build tools.</p>
                     </div>
                 </div>
             </div>
-<p>Start an OpenAI <code>/v1/chat/completions</code> server and UI on port <strong>8000</strong>:</p>
+<p>Start the UI and an OpenAI compatible API on port <strong>8000</strong>:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
                     <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>llms --serve 8000</p>
@@ -208,6 +208,7 @@ in Browsers to avoid needing any npm dependencies or build tools.</p>
                     </div>
                 </div>
             </div>
+<p>To launch the UI at <code>http://localhost:8000</code> and an OpenAI Endpoint at <code>http://localhost:8000/v1/chat/completions</code>.</p>
 <p>If no UI is needed, download just <a href="https://github.com/ServiceStack/llms/blob/main/llms.py">llms.py</a>
 for all other client &amp; server features:</p>
 <pre><code class="language-bash">curl -O https://raw.githubusercontent.com/ServiceStack/llms/main/llms.py
