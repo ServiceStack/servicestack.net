@@ -1469,5 +1469,13 @@
     "provider": "google",
     "prompt": "Give me a simple site that takes a LanguagePackResource, this includes the LanguagePackId (Guid), Platform (string), ResourceName (string), ResourceValue (string), and Notes, always pass notes and null, Platform as web and LanguagePackId as an empty guid (0000). \n\nHave a connection string that lets me insert into a SQL database",
     "groupName": "LanguagePackResources"
+  },
+  {
+    "id": "1759920066948",
+    "model": "claude-sonnet-4-0",
+    "timing": "5118",
+    "provider": "anthropic",
+    "prompt": "create a little project for keep student address and mobile add update del option,",
+    "groupName": "Addresses"
   }
 ]
