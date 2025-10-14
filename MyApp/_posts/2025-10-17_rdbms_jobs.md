@@ -4,6 +4,7 @@ summary: Run Background Jobs and Scheduled Tasks in PostgreSQL, SQL Server or My
 tags: [db,ormlite,jobs]
 author: Demis Bellot
 image: ./img/posts/background-jobs/bg.webp
+draft: true
 ---
 
 We're excited to announce that we've ported our much loved [Background Jobs](https://docs.servicestack.net/background-jobs)
