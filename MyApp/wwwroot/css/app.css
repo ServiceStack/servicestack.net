@@ -684,6 +684,9 @@
   .-mt-24 {
     margin-top: calc(var(--spacing) * -24);
   }
+  .-mt-24\! {
+    margin-top: calc(var(--spacing) * -24) !important;
+  }
   .-mt-32 {
     margin-top: calc(var(--spacing) * -32);
   }
@@ -755,6 +758,9 @@
   }
   .-mr-24 {
     margin-right: calc(var(--spacing) * -24);
+  }
+  .-mr-32\! {
+    margin-right: calc(var(--spacing) * -32) !important;
   }
   .-mr-40 {
     margin-right: calc(var(--spacing) * -40);
