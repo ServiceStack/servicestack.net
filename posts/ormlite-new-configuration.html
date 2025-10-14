@@ -296,7 +296,7 @@ multiple database connections with unique identifiers in a single fluent configu
 </code></pre>
 <h3 id="complex-type-json-serialization">Complex Type JSON Serialization<a class="header-anchor" href="javascript:;" onclick="location.hash='#complex-type-json-serialization'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Previously OrmLite only supported serializing Complex Types with a <a href="https://docs.servicestack.net/ormlite/complex-type-serializers">single Complex Type Serializer</a>
-but with new configuration model now uses a more configurable <code>JsonComplexTypeSerializer</code> where you can change the default
+but the new configuration model now uses a more configurable <code>JsonComplexTypeSerializer</code> where you can change the default
 JSON Serializer OrmLite should use for serializing Complex Types as well as fine-grain control over which types should
 be serialized with which serializer by using the <code>.ConfigureJson()</code> extension method for each provider.</p>
 <pre><code class="language-csharp">services.AddOrmLite(options =&gt; {
@@ -408,10 +408,9 @@ for finer-grain control over what Schema, Table, Column Names and Aliases should
 <li>Quoted Name (use verbatim) <code>TableRef.Literal(&quot;\&quot;MyTable\&quot;&quot;)</code></li>
 <li>Implicitly casts to a string as <code>new TableRef(&quot;MySchema&quot;)</code>.</li>
 </ul>
-<p>OrmLite handles differences between different RDBMS Providers via its <code>IOrmLiteDialectProvider</code> interface which is
-responsible for handling all differences between different RDBMS Providers. OrmLite used to maintain multiple overloads
-for handling some of these differences in referencing a table but they've now all been consolidated into use a single
-<code>TableRef</code> parameter:</p>
+<p>OrmLite handles differences between different RDBMS Providers via its <code>IOrmLiteDialectProvider</code> interface.
+Previously OrmLite used to maintain multiple overloads for handling some of these differences in referencing a
+table but they've now all been consolidated into use a single <code>TableRef</code> parameter:</p>
 <pre><code class="language-csharp">public interface IOrmLiteDialectProvider
 {
     bool DoesTableExist(IDbConnection db, TableRef tableRef);
@@ -441,7 +440,7 @@ dialect.QuoteTable(new(ModelDefinition&lt;MyTable&gt;.Definition)) //= &quot;my_
 </code></pre>
 <h3 id="improved-observability">Improved Observability<a class="header-anchor" href="javascript:;" onclick="location.hash='#improved-observability'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Significant effort was put into improving OrmLite's Observability where OrmLite's DB Connections can now be tagged
-to make them easier to track them in hooks, logs and traces.</p>
+to make them easier to track in hooks, logs and traces.</p>
 <p>To achieve this a new <code>Action&lt;IDbConnection&gt;</code> configuration callbacks were added to OrmLite Open Connection APIs
 which is invoked before a DB Connection is opened, e.g:</p>
 <pre><code class="language-csharp">using var db = dbFactory.Open(configure: db =&gt; db.WithTag(&quot;MyTag&quot;));
@@ -464,6 +463,7 @@ Services it will tag it with the Request DTO Name.</p>
 dbug: ServiceStack.OrmLiteLog[0]
       TIME: 1.818m
 </code></pre>
+<h4 id="db-command-execution-timing">DB Command Execution Timing<a class="header-anchor" href="javascript:;" onclick="location.hash='#db-command-execution-timing'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>OrmLite's debug logging now also includes the elapsed time it took to execute the command which is also available on the
 <code>IDbCommand</code> <code>GetTag()</code> and <code>GetElapsedTime()</code> APIs, e.g:</p>
 <pre><code class="language-csharp">OrmLiteConfig.AfterExecFilter = cmd =&gt;

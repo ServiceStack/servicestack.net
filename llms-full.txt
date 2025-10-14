@@ -990,7 +990,7 @@ public class ConfigureAiChat : IHostingStartup
 }
 ```
 
-### Compatibile with llms.py 
+### Compatible with llms.py 
 
 The other benefit of simple configuration and simple solutions, is that they're easy to implement. A perfect example
 of this being that this is the 2nd implementation done using this configuration. The same configuration, UI, APIs
@@ -2911,7 +2911,7 @@ services.AddOrmLite(options => {
 ### Complex Type JSON Serialization
 
 Previously OrmLite only supported serializing Complex Types with a [single Complex Type Serializer](https://docs.servicestack.net/ormlite/complex-type-serializers)
-but with new configuration model now uses a more configurable `JsonComplexTypeSerializer` where you can change the default 
+but the new configuration model now uses a more configurable `JsonComplexTypeSerializer` where you can change the default 
 JSON Serializer OrmLite should use for serializing Complex Types as well as fine-grain control over which types should
 be serialized with which serializer by using the `.ConfigureJson()` extension method for each provider.
 
@@ -3047,10 +3047,9 @@ The new `TableRef` struct allows for unified APIs that encapsulates different wa
 - Quoted Name (use verbatim) `TableRef.Literal("\"MyTable\"")`
 - Implicitly casts to a string as `new TableRef("MySchema")`.
 
-OrmLite handles differences between different RDBMS Providers via its `IOrmLiteDialectProvider` interface which is
-responsible for handling all differences between different RDBMS Providers. OrmLite used to maintain multiple overloads
-for handling some of these differences in referencing a table but they've now all been consolidated into use a single 
-`TableRef` parameter:
+OrmLite handles differences between different RDBMS Providers via its `IOrmLiteDialectProvider` interface.
+Previously OrmLite used to maintain multiple overloads for handling some of these differences in referencing a
+table but they've now all been consolidated into use a single `TableRef` parameter:
 
 ```csharp
 public interface IOrmLiteDialectProvider
@@ -3087,7 +3086,7 @@ dialect.QuoteTable(new(ModelDefinition<MyTable>.Definition)) //= "my_table"
 ### Improved Observability
 
 Significant effort was put into improving OrmLite's Observability where OrmLite's DB Connections can now be tagged
-to make them easier to track them in hooks, logs and traces.
+to make them easier to track in hooks, logs and traces.
 
 To achieve this a new `Action<IDbConnection>` configuration callbacks were added to OrmLite Open Connection APIs
 which is invoked before a DB Connection is opened, e.g:
@@ -3119,6 +3118,8 @@ dbug: ServiceStack.OrmLiteLog[0]
 dbug: ServiceStack.OrmLiteLog[0]
       TIME: 1.818m
 ```
+
+#### DB Command Execution Timing
 
 OrmLite's debug logging now also includes the elapsed time it took to execute the command which is also available on the 
 `IDbCommand` `GetTag()` and `GetElapsedTime()` APIs, e.g:
