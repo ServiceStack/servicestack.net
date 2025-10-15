@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Tue, 14 Oct 2025 16:17:47 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Oct 2025 15:45:06 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,40 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>ServiceStack v8.9 Release</title>
+        <link>https://servicestack.net/podcasts/v8-9-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-9-release</guid>
+        <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-10-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v8-9-release.mp3" length="14780679" type="audio/mpeg"/>
+        <category>release</category>
+        <category>ormlite</category>
+        <category>rdbms</category>
+        <category>admin-ui</category>
+        <category>apikeys</category>
+        <category>analytics</category>
+        <description>Latest features in ServiceStack v8.9 new OrmLite configuration model and features, RDBMS Logging/Analytics and more!</description>
+        <itunes:summary><![CDATA[ Latest features in ServiceStack v8.9 new OrmLite configuration model and features, RDBMS Logging/Analytics and more! ]]></itunes:summary>
+        <itunes:duration>1053</itunes:duration>
+        <itunes:keywords>release,ormlite,rdbms,admin-ui,apikeys,analytics</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>OrmLite new Configuration Model and Defaults</title>
+        <link>https://servicestack.net/podcasts/ormlite-new-configuration</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ormlite-new-configuration</guid>
+        <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-10-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ormlite-new-configuration.mp3" length="15673349" type="audio/mpeg"/>
+        <category>db</category>
+        <category>ormlite</category>
+        <description>Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features</description>
+        <itunes:summary><![CDATA[ Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features ]]></itunes:summary>
+        <itunes:duration>1113</itunes:duration>
+        <itunes:keywords>db,ormlite</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>Using llama.cpp to self-host Large Language Models in Production</title>
         <link>https://servicestack.net/podcasts/hosting-llama-server</link>
@@ -831,39 +865,6 @@
         <itunes:summary><![CDATA[ Covering the new first class end-to-end typed support for calling .NET APIs with PHP ]]></itunes:summary>
         <itunes:duration>556</itunes:duration>
         <itunes:keywords>php,api,service-reference</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ASP.NET Core Identity Auth in .NET 8</title>
-        <link>https://servicestack.net/podcasts/net8-identity-auth</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-identity-auth</guid>
-        <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-11-28T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/net8-identity-auth.mp3" length="1979181" type="audio/mpeg"/>
-        <category>c#</category>
-        <category>identity-auth</category>
-        <category>blazor</category>
-        <description>Talking about ServiceStack&#x27;s switch to ASP.NET Core Identity Auth in new .NET 8 Blazor, Razor and MVC Project Templates</description>
-        <itunes:summary><![CDATA[ Talking about ServiceStack&#x27;s switch to ASP.NET Core Identity Auth in new .NET 8 Blazor, Razor and MVC Project Templates ]]></itunes:summary>
-        <itunes:duration>494</itunes:duration>
-        <itunes:keywords>c#,identity-auth,blazor</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>.NET 8&#x27;s Best Blazor is not Blazor as we know it</title>
-        <link>https://servicestack.net/podcasts/net8-best-blazor</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-best-blazor</guid>
-        <pubDate>Wed, 22 Nov 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-11-22T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/net8-best-blazor.mp3" length="2251533" type="audio/mpeg"/>
-        <category>template</category>
-        <category>blazor</category>
-        <category>vue</category>
-        <category>api</category>
-        <description>We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise</description>
-        <itunes:summary><![CDATA[ We explore the exciting new potential of Blazor in .NET 8 to develop fast, interactive Web Apps without compromise ]]></itunes:summary>
-        <itunes:duration>562</itunes:duration>
-        <itunes:keywords>template,blazor,vue,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
