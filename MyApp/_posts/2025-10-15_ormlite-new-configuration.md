@@ -1,5 +1,5 @@
 ---
-title: OrmLite's new Configuration Model and Defaults
+title: OrmLite new Configuration Model and Defaults
 summary: Learn about OrmLite's new fluent Configuration Model, new defaults & features
 tags: [db,ormlite]
 author: Demis Bellot
