@@ -4,7 +4,6 @@ summary: Learn about OrmLite's new fluent Configuration Model, new defaults & fe
 tags: [db,ormlite]
 author: Demis Bellot
 image: ./img/posts/ormlite-new-configuration/bg.webp
-draft: true
 ---
 
 ## New Configuration Model and Defaults
