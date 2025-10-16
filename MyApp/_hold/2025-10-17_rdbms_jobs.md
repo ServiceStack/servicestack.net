@@ -1,47 +1,55 @@
 ---
 title: RDBMS Background Jobs
-summary: Run Background Jobs and Scheduled Tasks in PostgreSQL, SQL Server or MySQL 
+summary: Run Background Jobs and Scheduled Tasks in PostgreSQL, SQL Server or MySQL
 tags: [db,ormlite,jobs]
 author: Demis Bellot
 image: ./img/posts/background-jobs/bg.webp
-draft: true
 ---
 
 We're excited to announce that we've ported our much loved [Background Jobs](https://docs.servicestack.net/background-jobs)
-feature for SQLite to the popular **PostgreSQL**, **SQL Server** and **MySQL** RDBMS's.
+feature to the popular **PostgreSQL**, **SQL Server** and **MySQL** RDBMS's!
 
-Whilst we love [SQLite + Litestream](https://docs.servicestack.net/ormlite/litestream) for its low dev ops maintenance
-allowing us to break free from 
-[expensive cloud hosting hosts](https://docs.servicestack.net/ormlite/litestream#the-right-time-for-server-side-sqlite) 
-for managed RDBMS's, it's clear many of our Customers need the features of an industrial strength RDBMS.
+Since launching [Background Jobs](https://servicestack.net/posts/background-jobs) in September 2024, it's become
+one of our most popular features - providing a simple, infrastructure-free solution for managing background jobs
+and scheduled tasks in .NET 8+ Apps. The original implementation used SQLite for its durability, which worked
+beautifully for many use cases thanks to SQLite's low latency, fast disk persistence, and zero infrastructure requirements.
 
-In future we'll also be looking at providing a great self-hosted manged solution for Customers that can be run free of 
-expensive cloud hosting costs (starting with PostgreSQL). Before we can focus on this we needed to rewrite all our 
-SQLite-only features to work with OrmLite's other premier supported RDBMS's. 
+However, we recognize that many of our customers need the features and scalability of industrial-strength RDBMS systems.
+Whether it's for leveraging existing database infrastructure, meeting enterprise requirements, or utilizing advanced
+database features like native table partitioning - we wanted to ensure Background Jobs could work seamlessly with
+your preferred database platform.
 
-The new **DatabaseJobFeature** is a new implementation purpose built for PostgreSQL, SQL Server and MySQL backends that's 
-a drop-in replacement for SQLite's **BackgroundsJobFeature** which can be applied to an existing .NET 8+ project by 
-[mixing in](https://docs.servicestack.net/mix-tool) the **db-identity** or **db-jobs** gist files to your host project.
+## Introducing DatabaseJobsFeature
 
-## Install
+The new **DatabaseJobsFeature** is a purpose-built implementation for PostgreSQL, SQL Server, and MySQL that's
+a drop-in replacement for SQLite's **BackgroundsJobFeature**. It maintains the same simple API, data models,
+and service contracts - making migration from SQLite straightforward while unlocking the power of enterprise RDBMS platforms.
 
-For [ServiceStack ASP.NET Identity Auth](https://servicestack.net/start) Projects:
+Best of all, it can be added to an existing .NET 8+ project with a single command using our
+[mix tool](https://docs.servicestack.net/mix-tool):
+
+## Quick Start
+
+### For Identity Auth Projects
+
+If you're using [ServiceStack ASP.NET Identity Auth](https://servicestack.net/start) templates, simply run:
 
 :::sh
 x mix db-identity
 :::
 
-Which replaces `Configure.BackgroundJobs.cs` and `Configure.RequestLogs.cs` with an equivalent
-version that uses the new `DatabaseJobFeature` for sending Application Emails and `DbRequestLogger` 
-for API Request Logging.
+This replaces both `Configure.BackgroundJobs.cs` and `Configure.RequestLogs.cs` with RDBMS-compatible versions
+that use `DatabaseJobsFeature` for background jobs and `DbRequestLogger` for API request logging.
 
-All other .NET 8+ ServiceStack Apps should instead use:
+### For Other .NET 8+ Apps
+
+For all other ServiceStack applications, use:
 
 :::sh
 x mix db-jobs
 :::
 
-Which replaces `Configure.BackgroundJobs.cs` to use `DatabaseJobFeature`:
+This replaces `Configure.BackgroundJobs.cs` to use the new `DatabaseJobsFeature`:
 
 ```csharp
 public class ConfigureBackgroundJobs : IHostingStartup
@@ -49,26 +57,29 @@ public class ConfigureBackgroundJobs : IHostingStartup
     public void Configure(IWebHostBuilder builder) => builder
         .ConfigureServices(services => {
             services.AddPlugin(new CommandsFeature());
-            services.AddPlugin(new DatabaseJobFeature {
-                // NamedConnection = "<alternative db>"
+            services.AddPlugin(new DatabaseJobsFeature {
+                // Optional: Use a separate named connection
+                // NamedConnection = "jobs"
             });
             services.AddHostedService<JobsHostedService>();
          }).ConfigureAppHost(afterAppHostInit: appHost => {
             var services = appHost.GetApplicationServices();
             var jobs = services.GetRequiredService<IBackgroundJobs>();
-            // Example of registering a Recurring Job to run Every Hour
-            //jobs.RecurringCommand<MyCommand>(Schedule.Hourly);
+            // Example: Register recurring jobs to run on a schedule
+            // jobs.RecurringCommand<MyCommand>(Schedule.Hourly);
         });
 }
 
-public class JobsHostedService(ILogger<JobsHostedService> log, IBackgroundJobs jobs) : BackgroundService
+public class JobsHostedService(ILogger<JobsHostedService> log, IBackgroundJobs jobs)
+    : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await jobs.StartAsync(stoppingToken);
-        
+
         using var timer = new PeriodicTimer(TimeSpan.FromSeconds(3));
-        while (!stoppingToken.IsCancellationRequested && await timer.WaitForNextTickAsync(stoppingToken))
+        while (!stoppingToken.IsCancellationRequested &&
+               await timer.WaitForNextTickAsync(stoppingToken))
         {
             await jobs.TickAsync();
         }
@@ -76,26 +87,31 @@ public class JobsHostedService(ILogger<JobsHostedService> log, IBackgroundJobs j
 }
 ```
 
-Fortunately we were able reuse the same `IBackgroundJobs` interface, Data Models, and API Service Contracts 
-which greatly simplifies any migration efforts from SQLite's **ServiceStack.Jobs** implementation.
+## Seamless Migration from SQLite
 
-By implementing the same API Service Contracts (i.e. Request/Response DTOs) we're also able to reuse the same 
-[built-in](/auto-ui) Management UI to provide real-time monitoring, inspection and management of background jobs:
+We've maintained the same `IBackgroundJobs` interface, data models, and API service contracts, which means:
+
+- **Zero code changes** to your existing job enqueueing logic
+- **Same Admin UI** for monitoring and managing jobs
+- **Compatible APIs** - all your existing commands and job configurations work as-is
+
+The only change needed is swapping `BackgroundsJobFeature` for `DatabaseJobsFeature` in your configuration!
+
+Watch our video introduction to Background Jobs to see it in action:
 
 :::youtube 2Cza_a_rrjA
 Durable C# Background Jobs and Scheduled Tasks for .NET
 :::
 
-## RDBMS Optimizations
+## Smart RDBMS Optimizations
 
-A key benefit of using SQLite for Background Jobs was the ability to easily maintain completed and failed job history in 
-separate **monthly databases**. This approach prevented the main application database from growing unbounded by archiving 
-historical job data into isolated monthly SQLite database files (e.g., `jobs_2025-01.db`, `jobs_2025-02.db`). 
-These monthly databases could be easily backed up, archived to cold storage, or deleted after a retention period, 
-providing a simple yet effective data lifecycle management strategy.
+One of the key benefits of SQLite Background Jobs was the ability to maintain completed and failed job history in
+separate **monthly databases** (e.g., `jobs_2025-01.db`, `jobs_2025-02.db`). This prevented unbounded database growth
+and made it easy to archive or delete old job history.
 
-For the new **DatabaseJobFeature** supporting PostgreSQL, SQL Server, and MySQL, we've replicated this monthly 
-partitioning strategy using **monthly partitioned SQL tables** for the `CompletedJob` and `FailedJob` archive tables.
+For `DatabaseJobsFeature`, we've replicated this monthly partitioning strategy using **monthly partitioned tables**
+for the `CompletedJob` and `FailedJob` archive tables - but the implementation varies by database platform to leverage
+each RDBMS's strengths.
 
 ### PostgreSQL - Native Table Partitioning
 
