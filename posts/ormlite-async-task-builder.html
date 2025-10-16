@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Vue Stable Diffusion - ServiceStack</title>
+    <title>RDBMS Async Tasks Builder - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Rewriting Blazor Diffusion image generation &amp; album catalog in Vue &amp; Razor SSG" />
-    <meta property="og:url" content="https://servicestack.net/posts/vue-stable-diffusion" />
-    <meta property="og:title" content="Vue Stable Diffusion" />
-    <meta property="og:image" content="./img/posts/vue-stable-diffusion/bg.webp" />
+    <meta property="og:description" content="Effortlessly run multiple async DB Requests in parallel with OrmLite&#x27;s new Async Tasks Builder" />
+    <meta property="og:url" content="https://servicestack.net/posts/ormlite-async-task-builder" />
+    <meta property="og:title" content="RDBMS Async Tasks Builder" />
+    <meta property="og:image" content="./img/posts/ormlite-async-task-builder/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Vue Stable Diffusion
+                RDBMS Async Tasks Builder
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -139,27 +139,27 @@ mountAll()
                     </div>
                 </div>
                         <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'vue-stable-diffusion', title:'Vue Stable Diffusion', src:'https://media.servicestack.com/podcasts/vue-stable-diffusion.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=vue-stable-diffusion&amp;source=post&amp;version=8.9.0', variant:'compact' }"
+                             data-props="{ id:'ormlite-async-task-builder', title:'OrmLite new Configuration Model and Defaults', src:'https://media.servicestack.com/podcasts/ormlite-async-task-builder.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=ormlite-async-task-builder&amp;source=post&amp;version=8.9.0', variant:'compact' }"
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/vue-stable-diffusion/bg.webp" alt="Vue Stable Diffusion Background" class="shadow-small">
+                    <img src="./img/posts/ormlite-async-task-builder/bg.webp" alt="RDBMS Async Tasks Builder Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/vue" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">vue</a>
-                        <a href="posts/tagged/tailwind" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">tailwind</a>
+                        <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
+                        <a href="posts/tagged/ormlite" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ormlite</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-06-15T00:00:00.0000000">June 15, 2023</time>
+                                <time datetime="2025-10-17T00:00:00.0000000">October 17, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>4 min read</span>
                             </div>
                         </div>
                 </div>
@@ -172,190 +172,122 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>Just as <a href="https://blazordiffusion.com">blazordiffusion.com</a> was created to showcase ServiceStack's
-Blazor Server and Blazor WASM <a href="/blazor">project templates and components</a>, we've also recreated a new Stable Diffusion UI
-in Vue to showcase the <a href="https://razor-ssg.web-templates.io">Razor SSG</a> Project Template and Tailwind
-<a href="https://docs.servicestack.net/vue/">Vue Component Library</a> that's now available at:</p>
-<h3 class="not-prose text-center pb-8">
-    <a class="text-4xl text-blue-600 hover:underline" href="https://diffusion.works">https://diffusion.works</a>
-</h3>
-<h2 id="blazor-diffusion-with-a-vue-ui">Blazor Diffusion with a Vue UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#blazor-diffusion-with-a-vue-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Weighing close to <a href="https://api.blazordiffusion.com/metadata">100 APIs</a>, Blazor Diffusion is good representation of a
-medium-sized real-world App that can be used to compare the end user UX of different popular UI technologies used to
-develop Web Apps.</p>
-<p>These Diffusion Apps are especially comparable as both Blazor WASM and Vue are both SSG Jamstack Apps deployed to a CDN
-which both access the same <a href="https://api.blazordiffusion.com/metadata">https://api.blazordiffusion.com</a> backend .NET APIs and
-both make use of the Tailwind <a href="https://servicestack.net/blazor#blazor-component-gallery">Blazor Component Library</a> and
-<a href="https://docs.servicestack.net/vue/">Vue Component Library</a> rewritten in Vue, so any differences in UX are predominantly
-differences in what the UI technologies can deliver.</p>
-<p>We'll look at covering the development workflow, productivity, startup and runtime performance of Blazor Server,
-Blazor WASM and Vue in a future post, for now you can compare their GitHub code-bases and Live Demos of each or download
-and run them locally to evaluate their code-base size, development workflow and performance to evaluate the different
-UI technologies:</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Repo</th>
-<th>Live Demo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Vue</td>
-<td><a href="https://github.com/NetCoreApps/VueDiffusion">NetCoreApps/VueDiffusion</a></td>
-<td><a href="https://diffusion.works">https://diffusion.works</a></td>
-</tr>
-<tr>
-<td>Blazor WASM</td>
-<td><a href="https://github.com/NetCoreApps/BlazorDiffusionWasm">NetCoreApps/BlazorDiffusionWasm</a></td>
-<td><a href="https://blazordiffusion.com">blazordiffusion.com</a></td>
-</tr>
-<tr>
-<td>Blazor Server</td>
-<td><a href="https://github.com/NetCoreApps/BlazorDiffusion">NetCoreApps/BlazorDiffusion</a></td>
-<td><a href="https://server.blazordiffusion.com">server.blazordiffusion.com</a></td>
-</tr>
-</tbody>
-</table>
-<p>It's best to evaluate Blazor Server by running it locally as it in particular has poor responsiveness when served over
-high internet latencies, but loads and runs exceptional well in low latency environments like Intranets which is the
-only environment where we'd recommend hosting it.</p>
-<h2 id="razor-ssg">Razor SSG<a class="header-anchor" href="javascript:;" onclick="location.hash='#razor-ssg'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Vue Diffusion is built differently from other Razor SSG Apps as instead of being pre-rendered from static content
-like Markdown documents, it's prerendered from <a href="https://blazordiffusion.com">https://blazordiffusion.com</a> APIs to render its dynamic
-<a href="https://diffusion.works/albums/">Albums</a>, <a href="https://diffusion.works/top">Top</a> and <a href="https://diffusion.works/latest">Latest</a>
-pages at deployment which it does by configuring the App's <a href="https://docs.servicestack.net/service-gateway">Service Gateway</a> to reference
-<a href="https://github.com/NetCoreApps/VueDiffusion/blob/0bbbca3970c07c0cf261ae32c24736ae287981f9/MyApp/Configure.Ssg.cs#L22">external Blazor Diffusion APIs</a>:</p>
-<pre><code class="language-csharp">services.AddSingleton&lt;IServiceGateway&gt;(implementationFactory: 
-    provider =&gt; new JsonApiClient(AppConfig.Instance.ApiBaseUrl!));
+                    <h3 id="sequential-async-db-access">Sequential Async DB Access<a class="header-anchor" href="javascript:;" onclick="location.hash='#sequential-async-db-access'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Async improves I/O thread utilization in multi-threaded apps like Web Servers. However, it doesn't improve the performance
+of individual API Requests that need to execute multiple independent DB Requests. These are often written to run async
+db access sequentially like this:</p>
+<pre><code class="language-csharp">var rockstars = await Db.SelectAsync&lt;Rockstar&gt;();
+var albums = await Db.SelectAsync&lt;Album&gt;();
+var departments = await Db.SelectAsync&lt;Department&gt;();
+var employees = await Db.SelectAsync&lt;Employee&gt;();
 </code></pre>
-<p>Resulting in all APIs invoked within Razor Pages being delegated to external Blazor Diffusion APIs as the data source
-to generate its prerendered Razor Pages.</p>
-<h2 id="features">Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>For a preview of the development model of Razor SSG enhanced with Vue Components, checkout some of the different pages
-and their implementations:</p>
-<div class="not-prose">
-    <h3 class="text-3xl flex justify-between">
-        <span>Stable Diffusion Search</span>
-        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Index.cshtml">
-            Index.cshtml
-        </a>
-    </h3>
-</div>
-<p><a href="https://diffusion.works"><img src="/img/posts/vue-diffusion/vuediffusion-search.png" alt="" /></a></p>
-<div class="not-prose">
-    <h3 class="text-3xl flex justify-between">
-        <span>Generate Images</span>
-        <span>
-            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Create.cshtml">
-                Create.cshtml
-            </a>
-            <span class="text-gray-400">|</span> 
-            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Create.mjs">
-                Create.mjs
-            </a>
-        </span>
-    </h3>
-</div>
-<p><a href="https://diffusion.works/create"><img src="/img/posts/vue-diffusion/vuediffusion-create.png" alt="" /></a></p>
-<div class="not-prose">
-    <h3 class="text-3xl flex justify-between">
-        <span>Favorites</span>
-        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Favorites.cshtml">
-            Favorites.cshtml
-        </a>
-    </h3>
-</div>
-<p><a href="https://diffusion.works/favorites"><img src="/img/posts/vue-diffusion/vuediffusion-favorites.png" alt="" /></a></p>
-<div class="not-prose">
-    <h3 class="text-3xl flex justify-between">
-        <span>Albums</span>
-        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Albums.cshtml">
-            Albums.cshtml
-        </a>
-    </h3>
-</div>
-<p><a href="https://diffusion.works/albums/"><img src="/img/posts/vue-diffusion/vuediffusion-albums.png" alt="" /></a></p>
-<div class="not-prose">
-    <h3 class="text-3xl flex justify-between">
-        <span>Selected Image</span>
-        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Artifacts.mjs#L303">
-            Artifacts.mjs
-        </a>
-    </h3>
-</div>
-<p><a href="https://diffusion.works/?view=63121"><img src="/img/posts/vue-diffusion/vuediffusion-selected.png" alt="" /></a></p>
-<div class="not-prose">
-    <h3 class="text-3xl flex justify-between">
-        <span>Top Images</span>
-        <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Top.cshtml">
-            Top.cshtml
-        </a>
-    </h3>
-</div>
-<p><a href="https://diffusion.works/top"><img src="/img/posts/vue-diffusion/vuediffusion-top.png" alt="" /></a></p>
-<div class="not-prose">
-    <h3 class="text-3xl flex justify-between">
-        <span>Latest Images</span>
-        <span>
-            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Latest.cshtml">
-                Latest.cshtml
-            </a>
-            <span class="text-gray-400">|</span> 
-            <a class="text-blue-600 hover:underline" href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/Pages/Latest.cshtml.cs">
-                Latest.cshtml.cs
-            </a>
-        </span>
-    </h3>
-</div>
-<p><a href="https://diffusion.works/latest"><img src="/img/posts/vue-diffusion/vuediffusion-latest.png" alt="" /></a></p>
-<p>Most of these pages also utilize the reusable Vue 3 components defined in:</p>
-<ul>
-<li><a href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Artifacts.mjs">Artifacts.mjs</a></li>
-<li><a href="https://github.com/NetCoreApps/VueDiffusion/blob/main/MyApp/wwwroot/mjs/components/Auth.mjs">Auth.mjs</a></li>
-</ul>
-<h2 id="stale-while-revalidate-apis">Stale-While-Revalidate APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#stale-while-revalidate-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We'll have a lot more to write up about our experiences with Vue Diffusion vs Blazor Diffusion in future
-<a href="https://servicestack.net/blog">Blog Posts</a>, but we wanted to highlight the performance enhancing technique it uses
-to improve perceived performance between pages by utilizing <code>@servicestack/vue</code> new State-While-Revalidate (SWR) APIs.</p>
-<p>Latency is the biggest performance killer when hosting Web Applications on the Internet, so much so that we'd
-historically look to start with a <a href="https://jamstacks.net">Single Page App template</a> in order to provide the
-best UX up until the advent of native ES Modules support in modern browsers meant we could rid ourselves of
-SPA complexity and adopt a <a href="https://jamstacks.net/posts/javascript">Simple, Modern JavaScript</a> Multi Page App (MPA)
-approach combined with <a href="https://htmx.org/attributes/hx-boost/">htmx's Boost</a> feature to improve performance
-by avoiding full page reloads.</p>
-<p>However we found that to be a fragile approach when navigating back/forward between pages as you'd need to be
-mindful of what scripts to place between <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> tags and which scripts need to be re-executed
-between navigations, reintroducing some of the stateful SPA complexity we want to avoid with a traditional MPA Web App.</p>
-<p>We instead discovered we could get just as good UX with stateless full page reloads of pre-rendered HTML pages
-if we use SWR to fetch all the API data needed to render the page on first load:</p>
-<p><a href="https://diffusion.works"><img src="/img/posts/vue-diffusion/diffusion-swr.gif" alt="" /></a></p>
-<p>This is easily achieved in reactive Vue.js UIs by invoking API requests with the new <code>swr()</code> client API where if
-the same API request had been run before it will execute the callback immediately with its &quot;stale&quot; cached results
-in <code>localStorage</code> first, before executing the callback again after receiving the API response with the latest data:</p>
-<pre><code class="language-ts">import { useClient } from &quot;@servicestack/vue&quot;
-const client = useClient()
+<p>The issue being that it's not running them in parallel as each DB Request is executed sequentially with the Request for
+Albums not starting until the Request for Rockstars has completed.</p>
+<p>To run them in parallel you would need to open multiple scoped DB Connections, await them concurrently then do the
+syntax boilerplate gymnastics required to extract the generic typed results, e.g:</p>
+<pre><code class="language-csharp">var connections = await Task.WhenAll(
+    DbFactory.OpenDbConnectionAsync(),
+    DbFactory.OpenDbConnectionAsync(),
+    DbFactory.OpenDbConnectionAsync(),
+    DbFactory.OpenDbConnectionAsync()
+);
 
-const results = ref([])
-const topAlbums = ref([])
-//...
+using var dbRockstars = connections[0];
+using var dbAlbums = connections[1];
+using var dbDepartments = connections[2];
+using var dbEmployees = connections[3];
 
-onMounted(async () =&gt; {
-    await Promise.all([
-        client.swr(request.value, api =&gt; {
-            results.value = api.response?.results || []
-            //...
-        }),
-        client.swr(new AnonData(), async api =&gt; {
-            topAlbums.value = api.response?.topAlbums || []
-            //...
-        }),
-    ])
-})
+var tasks = new List&lt;Task&gt;
+{
+    dbRockstars.SelectAsync&lt;Rockstar&gt;(),
+    dbAlbums.SelectAsync&lt;Album&gt;(),
+    dbDepartments.SelectAsync&lt;Department&gt;(),
+    dbEmployees.SelectAsync&lt;Employee&gt;()
+};
+await Task.WhenAll(tasks);
+
+var rockstars = ((Task&lt;List&lt;Rockstar&gt;&gt;)tasks[0]).Result;
+var albums = ((Task&lt;List&lt;Album&gt;&gt;)tasks[1]).Result;
+var departments = ((Task&lt;List&lt;Department&gt;&gt;)tasks[2]).Result;
+var employees = ((Task&lt;List&lt;Employee&gt;&gt;)tasks[3]).Result;
 </code></pre>
-<p>This results in UIs being immediately rendered on load and if the API response has changed, the updated reactive
-collections will re-render the UI with the updated data.</p>
+<p>Even without Error handling, writing coding like this can quickly become tedious, less readable and error prone that
+as a result is rarely done.</p>
+<h3 id="parallel-db-requests-in-typescript">Parallel DB Requests in TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#parallel-db-requests-in-typescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This is easier to achieve in languages like TypeScript where typed ORMs like <a href="https://litdb.dev">litdb.dev</a>
+can run multiple DB Requests in parallel with just:</p>
+<pre><code class="language-csharp">const [rockstars, albums, departments, employees] = await Promise.all([
+    db.all&lt;Rockstar&gt;($.from(Rockstar)),     //= Rockstar[]
+    db.all&lt;Album&gt;($.from(Album)),           //= Album[]
+    db.all&lt;Department&gt;($.from(Department)), //= Department[]
+    db.all&lt;Employee&gt;($.from(Employee)),     //= Employee[]
+])
+</code></pre>
+<p>Which benefits from TypeScript's powerful type system that allows destructuring arrays whilst preserving their positional types,
+whilst its single threaded event loop lets you reuse the same DB Connection to run DB Requests in parallel without
+multi-threading issues.</p>
+<h2 id="ormlites-new-async-tasks-builder">OrmLite's new Async Tasks Builder<a class="header-anchor" href="javascript:;" onclick="location.hash='#ormlites-new-async-tasks-builder'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>OrmLite's new <code>AsyncDbTasksBuilder</code> provides a similar benefit of making it effortless to run multiple async DB Requests
+in parallel, which looks like:</p>
+<pre><code class="language-csharp">var results = await DbFactory.AsyncDbTasksBuilder()
+    .Add(db =&gt; db.SelectAsync&lt;Rockstar&gt;())
+    .Add(db =&gt; db.SelectAsync&lt;Album&gt;())
+    .Add(db =&gt; db.SelectAsync&lt;Department&gt;())
+    .Add(db =&gt; db.SelectAsync&lt;Employee&gt;())
+    .RunAsync();
+var (rockstars, albums, departments, employees) = results;
+</code></pre>
+<p>Which just like TypeScript's destructuring returns a positionally typed tuple of the results which can be destructured back
+into their typed variables, e.g:</p>
+<pre><code class="language-csharp">(List&lt;Rockstar&gt; rockstars, 
+ List&lt;Album&gt; albums,
+ List&lt;Department&gt; departments,
+ List&lt;Employee&gt; employees) = results;
+</code></pre>
+<h3 id="supports-up-to-8-tasks">Supports up to 8 Tasks<a class="header-anchor" href="javascript:;" onclick="location.hash='#supports-up-to-8-tasks'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>It allows chaining up to <strong>8 async Tasks in parallel</strong> as C#'s Type System doesn't allow for preserving different
+positional generic types in an unbounded collection. Instead each Task returns a new Generic Type builder which preserves
+the positional types before it.</p>
+<h3 id="supports-both-async-taskt-and-task-apis">Supports both Async <code>Task&lt;T&gt;</code> and <code>Task</code> APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#supports-both-async-taskt-and-task-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Where <code>Task&lt;T&gt;</code> and <code>Task</code> APIs can be mixed and matched interchangeably:</p>
+<pre><code class="language-csharp">var builder = DbFactory.AsyncDbTasksBuilder()
+    .Add(db =&gt; db.InsertAsync(rockstars[0],rockstars[1]))
+    .Add(db =&gt; db.SelectAsync&lt;Rockstar&gt;())
+    .Add(db =&gt; db.InsertAsync(albums[2],albums[3]))
+    .Add(db =&gt; db.SelectAsync&lt;Album&gt;())
+    .Add(db =&gt; db.InsertAsync([department]))
+    .Add(db =&gt; db.SelectAsync&lt;Department&gt;())
+    .Add(db =&gt; db.InsertAsync([employee]))
+    .Add(db =&gt; db.SelectAsync&lt;Employee&gt;());
+</code></pre>
+<p>Where to preserve the results chain, <code>Task</code> APIs return <code>bool</code> results, e.g:</p>
+<pre><code class="language-csharp">(bool r1, 
+ List&lt;Rockstar&gt; r2, 
+ bool r3, 
+ List&lt;RockstarAlbum&gt; r4, 
+ bool r5, 
+ List&lt;Department&gt; r6, 
+ bool r7, 
+ List&lt;Employee&gt; r8) = await builder.RunAsync();
+</code></pre>
+<h3 id="error-handling">Error Handling<a class="header-anchor" href="javascript:;" onclick="location.hash='#error-handling'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst tasks are executed in parallel when they're added, any Exceptions are only thrown when the task is awaited:</p>
+<pre><code class="language-csharp">using var Db = await OpenDbConnectionAsync();
+
+var builder = DbFactory.AsyncDbTasksBuilder()
+    .Add(db =&gt; db.InsertAsync(rockstars[0]))
+    .Add(db =&gt; db.InsertAsync(rockstars[0])); // &lt;-- Duplicate PK Exception
+
+// Exceptions are not thrown until the task is awaited
+try
+{
+    var task = builder.RunAsync();
+}
+catch (Exception e)
+{
+    throw;
+}
+</code></pre>
 
                 </div>
             </div>
@@ -414,47 +346,6 @@ collections will re-render the UI with the updated data.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/ormlite-async-task-builder">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-async-task-builder/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/ormlite-async-task-builder" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="RDBMS Async Tasks Builder">
-                                                    RDBMS Async Tasks Builder
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Effortlessly run multiple async DB Requests in parallel with OrmLite&#x27;s new Async Tasks Builder</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="RDBMS Async Tasks Builder background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-10-17T00:00:00.0000000">October 17, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>4 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -571,6 +462,47 @@ collections will re-render the UI with the updated data.</p>
                                                     <time datetime="2025-09-25T00:00:00.0000000">September 25, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/text-to-blazor-upgraded">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/text-to-blazor-upgraded/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/text-to-blazor-upgraded" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Text to Blazor CRUD upgraded to use best LLMs">
+                                                    Text to Blazor CRUD upgraded to use best LLMs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Discover how to quickly generate Blazor Admin CRUD Apps from a text description using the new okai tool</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.jpg" alt="Text to Blazor CRUD upgraded to use best LLMs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-09-02T00:00:00.0000000">September 2, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
                                                 </div>
                                             </div>
                                         </div>

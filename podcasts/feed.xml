@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Thu, 16 Oct 2025 11:29:10 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Oct 2025 12:54:51 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,21 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>OrmLite new Configuration Model and Defaults</title>
+        <link>https://servicestack.net/podcasts/ormlite-async-task-builder</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ormlite-async-task-builder</guid>
+        <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-10-17T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ormlite-async-task-builder.mp3" length="10311918" type="audio/mpeg"/>
+        <category>db</category>
+        <category>ormlite</category>
+        <description>Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features</description>
+        <itunes:summary><![CDATA[ Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features ]]></itunes:summary>
+        <itunes:duration>725</itunes:duration>
+        <itunes:keywords>db,ormlite</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>ServiceStack v8.9 Release</title>
         <link>https://servicestack.net/podcasts/v8-9-release</link>
@@ -849,22 +864,6 @@
         <itunes:summary><![CDATA[ Checking out the new .NET 8 Docker Container support and GitHub Actions Deployments in new Project Templates ]]></itunes:summary>
         <itunes:duration>574</itunes:duration>
         <itunes:keywords>.net8,github-actions,hosting</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>PHP typed client DTOs for .NET APIs</title>
-        <link>https://servicestack.net/podcasts/php-typed-apis</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/php-typed-apis</guid>
-        <pubDate>Wed, 29 Nov 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-11-29T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/php-typed-apis.mp3" length="2225709" type="audio/mpeg"/>
-        <category>php</category>
-        <category>api</category>
-        <category>service-reference</category>
-        <description>Covering the new first class end-to-end typed support for calling .NET APIs with PHP</description>
-        <itunes:summary><![CDATA[ Covering the new first class end-to-end typed support for calling .NET APIs with PHP ]]></itunes:summary>
-        <itunes:duration>556</itunes:duration>
-        <itunes:keywords>php,api,service-reference</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
