@@ -178,7 +178,6 @@ requires its single <strong>aiohttp</strong> python dependency for all client an
 <a href="https://servicestack.net/posts/javascript">Simple Modern JavaScript</a> approach of leveraging native JS Modules support
 in Browsers to avoid needing any npm dependencies or build tools.</p>
 <h2 id="install">Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>To get both llms.py and its UI it's recommended to install from PyPI:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
                     <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install llms-py</p>
@@ -209,12 +208,6 @@ in Browsers to avoid needing any npm dependencies or build tools.</p>
                 </div>
             </div>
 <p>To launch the UI at <code>http://localhost:8000</code> and an OpenAI Endpoint at <code>http://localhost:8000/v1/chat/completions</code>.</p>
-<p>If no UI is needed, download just <a href="https://github.com/ServiceStack/llms/blob/main/llms.py">llms.py</a>
-for all other client &amp; server features:</p>
-<pre><code class="language-bash">curl -O https://raw.githubusercontent.com/ServiceStack/llms/main/llms.py
-chmod +x llms.py
-mv llms.py ~/.local/bin/llms
-</code></pre>
 <h2 id="simple-and-flexible-ui">Simple and Flexible UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#simple-and-flexible-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>This starts the Chat UI from where you can interact with any of your configured OpenAI-compatible Chat
 Providers - for a single unified interface for accessing both local and premium cloud LLMs from the same UI.</p>

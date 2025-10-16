@@ -192,8 +192,7 @@ preferred priority - whether optimizing for cost, performance or availability.</
 <li><strong>Zero Dependencies for ComfyUI</strong>: Ideal for use in ComfyUI Custom Nodes</li>
 <li><strong>No Setup</strong>: Just download and use, configure preferred LLMs in <a href="https://github.com/ServiceStack/llms/blob/main/llms.json">llms.json</a></li>
 </ul>
-<h2 id="installation-options">📦 Installation Options<a class="header-anchor" href="javascript:;" onclick="location.hash='#installation-options'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<h4 id="option-1-pypi-package">Option 1: PyPI Package<a class="header-anchor" href="javascript:;" onclick="location.hash='#option-1-pypi-package'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<h2 id="install">📦 Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
                     <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install llms-py</p>
@@ -208,29 +207,6 @@ preferred priority - whether optimizing for cost, performance or availability.</
                     </div>
                 </div>
             </div>
-<h4 id="option-2-direct-download">Option 2: Direct Download<a class="header-anchor" href="javascript:;" onclick="location.hash='#option-2-direct-download'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>For standalone use, download <a href="https://github.com/ServiceStack/llms/blob/main/llms.py">llms.py</a> and make it executable:</p>
-<pre><code class="language-bash">curl -O https://raw.githubusercontent.com/ServiceStack/llms/main/llms.py
-chmod +x llms.py
-mv llms.py ~/.local/bin/llms
-</code></pre>
-<p>Then install its only dependency:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install aiohttp</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h4 id="ideal-for-usage-with-comfyui-custom-nodes">Ideal for usage with ComfyUI Custom Nodes<a class="header-anchor" href="javascript:;" onclick="location.hash='#ideal-for-usage-with-comfyui-custom-nodes'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>Simply drop <a href="https://github.com/ServiceStack/llms/blob/main/llms.py">llms.py</a> into your ComfyUI custom nodes directory - no additional dependencies required!</p>
 <h2 id="quick-start">🔧 Quick Start<a class="header-anchor" href="javascript:;" onclick="location.hash='#quick-start'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <pre><code class="language-bash"># Initialize configuration (saved in ~/.llms/llms.json)
 llms --init

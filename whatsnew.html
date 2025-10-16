@@ -144,6 +144,138 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.9</h2>
+        <div class="text-center text-lg font-normal text-gray-500">October 15, 2025</div>
+            <div class="mt-2 flex justify-center">
+                <a href="podcasts/v8-9-release" class="group flex items-center gap-2 rounded-full bg-white/25 p-1.5 text-xs text-slate-900 ring-1 ring-inset ring-black/[0.08] hover:bg-white/50 hover:ring-black/[0.13]">
+                    <img src="/img/svgs/podcast.svg" alt="" class="h-8 w-8 rounded-full">
+                    <div class="pr-2">
+                        <p class="font-semibold">
+                            Listen to podcast episode
+                        </p>
+                        <p class="text-gray-600">ServiceStack v8.9 Release</p>
+                    </div>
+                </a>
+            </div>
+        <div class="mb-8"></div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/rdbms-background-jobs"><img src="/img/whatsnew/v8.9/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/rdbms-background-jobs">Execute Background Jobs and Recurring Tasks in PostgreSQL, SQL Server &amp; MySQL</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>We're excited to announce that we've created a drop-in replacement for our much loved SQLite <strong>Background Jobs</strong>
+feature to run in <strong>PostgreSQL</strong>, <strong>SQL Server</strong>, and <strong>MySQL</strong>! The new <code>DatabaseJobsFeature</code> maintains the
+same simple API, data models, and service contracts - making migration straightforward while integrating
+with your existing database infrastructure.</p>
+<p>Add it to your .NET 8+ project with a single command. The implementation leverages each database's strengths - PostgreSQL
+gets automatic monthly table partitioning, while SQL Server and MySQL use indexed append-only tables for efficient job
+history management or maintain jobs in a separate database to isolate write-heavy workload from your primary App Database.</p>
+<p>It has all the loved features: queue APIs or Commands, schedule recurring tasks with CRON expressions,
+execute jobs serially with named workers, auto-retry failed jobs, and monitor everything in real-time through
+the Admin UI.</p>
+<p>Whether you need to integrate with existing enterprise infrastructure or leverage advanced RDBMS features -
+Database Jobs now works with your preferred DB!</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/rdbms-background-jobs" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/admin-ui-rdbms-analytics"><img src="/img/whatsnew/v8.7/analytics-apis-splash.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/admin-ui-rdbms-analytics">In Depth and Interactive API Analytics for PostgreSQL, SQL Server &amp; MySQL</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Comprehensive <strong>Request Logging &amp; Analytics</strong> is now available for <strong>PostgreSQL</strong>, <strong>SQL Server</strong>,
+and <strong>MySQL</strong> with <code>DbRequestLogger</code> - a drop-in replacement unlocking deep, interactive API analytics
+previously limited to SQLite.</p>
+<p>Get invaluable insights into API usage, performance monitoring, user behavior, troubleshooting, resource planning,
+and security with visual dashboards that make complex log data instantly understandable.</p>
+<p>The analytics are fully interactive, allowing you to drill down from high-level dashboards into individual API
+endpoints, users, API keys, and IP addresses. Each view provides comprehensive metrics including request volumes,
+response times, HTTP status distributions, duration histograms, and direct links back to filtered request logs
+for rapid troubleshooting. Monitor your most-used APIs, identify performance bottlenecks, track user activity patterns,
+and spot unusual traffic - all from the Admin UI.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/admin-ui-rdbms-analytics" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/auth/apikeys#protect-same-apis-with-api-keys-or-identity-auth"><img src="/img/whatsnew/v8.9/admin-ui-user-apikeys-create-dialog.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/auth/apikeys#protect-same-apis-with-api-keys-or-identity-auth">Protect same APIs with API Keys or Identity Auth</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Modern APIs need to serve different types of clients with distinct authentication requirements.
+<strong>Identity Auth</strong> is designed for interactive user workflows with sessions, roles, and permissions,
+while <strong>API Keys</strong> excel at machine-to-machine communication with simple token-based authentication,
+superior performance, and fine-grained scope-based access control.</p>
+<p>Previously, supporting both authentication models required maintaining two separate APIs—one protected
+with <code>[ValidateIsAuthenticated]</code> and another with <code>[ValidateApiKey]</code>—resulting in duplicate endpoints
+and documentation.</p>
+<p>ServiceStack's enhanced API Keys feature now lets you protect the <strong>same APIs and UIs</strong> with both
+authentication models. By adding a user's API Key to the <code>apikey</code> claim in their Identity Auth Cookie,
+authenticated users can seamlessly access <code>[ValidateApiKey]</code> protected APIs without sending the key explicitly.
+This unified approach eliminates API duplication while maintaining all the benefits of both authentication paradigms.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/auth/apikeys#protect-same-apis-with-api-keys-or-identity-auth" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/ai-chat-api"><img src="/img/whatsnew/v8.9/llms-syntax.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/ai-chat-api">AI Chat - OpenAI Chat API, UI and Gateway</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p><strong>AI Chat</strong> is a refreshingly simple solution for integrating AI into your applications, built around a clean,
+serializable <code>ChatCompletion</code> DTO that maps directly to the OpenAI Chat API. Unlike complex frameworks with
+non-portable abstractions and breaking changes, AI Chat embraces the stability and ubiquity of the OpenAI
+ChatCompletion API itself - the most important API for accessing LLMs.</p>
+<p>The simple <code>ChatCompletion</code> DTO works everywhere: store requests in databases, send through message queues,
+use in client workflows, debug with plain JSON, and unlock all of ServiceStack's DTO-based features automatically.</p>
+<p>AI Chat includes a customizable ChatGPT-like UI where you control the API keys, billing, and sanctioned providers
+your users can access - maintaining fast, local, and private AI access within your organization.
+The UI supports rich multimodal inputs including images, audio, and file attachments with vision-capable models,
+features full Markdown rendering with syntax highlighting for popular languages, and provides 200+ curated
+system prompts for various use cases.
+All chat history is stored locally in the browser's IndexedDB with import/export capabilities for backup and
+transfer between browsers.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/ai-chat-api" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v8.8</h2>
         <div class="text-center text-lg font-normal text-gray-500">May 14, 2025</div>
             <div class="mt-2 flex justify-center">

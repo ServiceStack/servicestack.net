@@ -488,8 +488,6 @@ in Browsers to avoid needing any npm dependencies or build tools.
 
 ## Install
 
-To get both llms.py and its UI it's recommended to install from PyPI:
-
 :::sh
 pip install llms-py
 :::
@@ -501,15 +499,6 @@ llms --serve 8000
 :::
 
 To launch the UI at `http://localhost:8000` and an OpenAI Endpoint at `http://localhost:8000/v1/chat/completions`.
-
-If no UI is needed, download just [llms.py](https://github.com/ServiceStack/llms/blob/main/llms.py) 
-for all other client & server features:
-
-```bash
-curl -O https://raw.githubusercontent.com/ServiceStack/llms/main/llms.py
-chmod +x llms.py
-mv llms.py ~/.local/bin/llms
-```
 
 ## Simple and Flexible UI
 
@@ -740,33 +729,11 @@ preferred priority - whether optimizing for cost, performance or availability.
 - **No Setup**: Just download and use, configure preferred LLMs in [llms.json](https://github.com/ServiceStack/llms/blob/main/llms.json)
 
 
-## 📦 Installation Options
-
-#### Option 1: PyPI Package
+## 📦 Install
 
 :::sh
 pip install llms-py
 :::
-
-#### Option 2: Direct Download
-
-For standalone use, download [llms.py](https://github.com/ServiceStack/llms/blob/main/llms.py) and make it executable:
-
-```bash
-curl -O https://raw.githubusercontent.com/ServiceStack/llms/main/llms.py
-chmod +x llms.py
-mv llms.py ~/.local/bin/llms
-```
-
-Then install its only dependency:
-
-:::sh
-pip install aiohttp
-:::
-
-#### Ideal for usage with ComfyUI Custom Nodes
-
-Simply drop [llms.py](https://github.com/ServiceStack/llms/blob/main/llms.py) into your ComfyUI custom nodes directory - no additional dependencies required!
 
 ## 🔧 Quick Start
 
