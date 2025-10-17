@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Thu, 16 Oct 2025 14:17:22 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 17 Oct 2025 05:09:05 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,57 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Creating a custom Explorer UI for OpenAIs Chat API</title>
+        <link>https://servicestack.net/podcasts/ai-chat-explorer</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ai-chat-explorer</guid>
+        <pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-11-04T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/apikey_auth_apis.mp3" length="11945780" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>openai</category>
+        <category>chat</category>
+        <description>Learning how to create a customized API Explorer API UIs like ChatCompletion&#x27;s UI</description>
+        <itunes:summary><![CDATA[ Learning how to create a customized API Explorer API UIs like ChatCompletion&#x27;s UI ]]></itunes:summary>
+        <itunes:duration>837</itunes:duration>
+        <itunes:keywords>llms,ai,openai,chat</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>AI Chat - A Customizable, Private, ChatGPT-like UI</title>
+        <link>https://servicestack.net/podcasts/ai-chat-ui</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ai-chat-ui</guid>
+        <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-10-31T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/apikey_auth_apis.mp3" length="10659555" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>openai</category>
+        <category>chat</category>
+        <description>Unlock the value of OpenAI Chat APIs using a simple, serializable ChatCompletion DTO that works everywhere</description>
+        <itunes:summary><![CDATA[ Unlock the value of OpenAI Chat APIs using a simple, serializable ChatCompletion DTO that works everywhere ]]></itunes:summary>
+        <itunes:duration>756</itunes:duration>
+        <itunes:keywords>llms,ai,openai,chat</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>AI Chat - A Simple OpenAI Chat Completions API, UI &amp; Client LLM Gateway</title>
+        <link>https://servicestack.net/podcasts/ai-chat</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ai-chat</guid>
+        <pubDate>Tue, 28 Oct 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-10-28T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/apikey_auth_apis.mp3" length="13193573" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>openai</category>
+        <category>chat</category>
+        <description>Unlock the value of OpenAI Chat APIs using a simple, serializable ChatCompletion DTO that works everywhere</description>
+        <itunes:summary><![CDATA[ Unlock the value of OpenAI Chat APIs using a simple, serializable ChatCompletion DTO that works everywhere ]]></itunes:summary>
+        <itunes:duration>950</itunes:duration>
+        <itunes:keywords>llms,ai,openai,chat</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>Protect same APIs with API Keys or Identity Auth</title>
         <link>https://servicestack.net/podcasts/apikey_auth_apis</link>
@@ -819,52 +870,6 @@
         <itunes:summary><![CDATA[ Exploring the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8 ]]></itunes:summary>
         <itunes:duration>249</itunes:duration>
         <itunes:keywords>.net8,identity-auth,admin-ui</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>System.Text.Json ServiceStack APIs</title>
-        <link>https://servicestack.net/podcasts/system-text-json-apis</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/system-text-json-apis</guid>
-        <pubDate>Tue, 20 Feb 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-02-20T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/system-text-json-apis.mp3" length="1711629" type="audio/mpeg"/>
-        <category>.net8</category>
-        <category>json</category>
-        <category>api</category>
-        <description>Looking at ServiceStack .NET 8&#x2B; APIs new capability for using high-performance async System.Text.Json serialization</description>
-        <itunes:summary><![CDATA[ Looking at ServiceStack .NET 8&#x2B; APIs new capability for using high-performance async System.Text.Json serialization ]]></itunes:summary>
-        <itunes:duration>427</itunes:duration>
-        <itunes:keywords>.net8,json,api</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>OpenAPI v3 and Swagger UI</title>
-        <link>https://servicestack.net/podcasts/openapi-v3</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/openapi-v3</guid>
-        <pubDate>Mon, 19 Feb 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-02-19T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/openapi-v3.mp3" length="3201549" type="audio/mpeg"/>
-        <category>openapi</category>
-        <category>.net8</category>
-        <description>A walkthrough of the exciting new OpenAPI v3 support in ServiceStack v8.1</description>
-        <itunes:summary><![CDATA[ A walkthrough of the exciting new OpenAPI v3 support in ServiceStack v8.1 ]]></itunes:summary>
-        <itunes:duration>800</itunes:duration>
-        <itunes:keywords>openapi,.net8</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack Endpoint Routing</title>
-        <link>https://servicestack.net/podcasts/servicestack-endpoint-routing</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/servicestack-endpoint-routing</guid>
-        <pubDate>Wed, 07 Feb 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-02-07T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/servicestack-endpoint-routing.mp3" length="1668621" type="audio/mpeg"/>
-        <category>.net8</category>
-        <category>api</category>
-        <description>Talking about the new era of ServiceStack .NET 8 which is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IoC</description>
-        <itunes:summary><![CDATA[ Talking about the new era of ServiceStack .NET 8 which is now more integrated then ever with support for ASP.NET Core Endpoint Routing and IoC ]]></itunes:summary>
-        <itunes:duration>417</itunes:duration>
-        <itunes:keywords>.net8,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
