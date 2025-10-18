@@ -61,10 +61,10 @@ jobs:
           if [ ! -z "$site_base_href" ]
           then
             echo "Prerendering for deployment to $site_base_href"
-            dotnet run --AppTasks=prerender --configuration Release --environment Production --BaseHref "$site_base_href"
+            dotnet run --no-launch-profile --AppTasks=prerender --configuration Release --environment Production --BaseHref "$site_base_href"
           else
             echo "Prerendering for deployment to $(cat ./wwwroot/CNAME)"
-            dotnet run --AppTasks=prerender --configuration Release --environment Production
+            dotnet run --no-launch-profile --AppTasks=prerender --configuration Release --environment Production
           fi
 
       # Deploy UI to GitHub Pages

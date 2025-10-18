@@ -65,9 +65,6 @@ public class ConfigureSsg : IHostingStartup
                     #else
                     Console.WriteLine($"Prerendering !DEBUG {env}:{appHost.Config.DebugMode}...");
                     #endif
-
-                    // Force production mode
-                    appHost.Config.DebugMode = false;
                     
                     appHost.Resolve<MarkdownMeta>().RenderToAsync(
                         metaDir: appHost.ContentRootDirectory.RealPath.CombineWith("wwwroot/meta"),

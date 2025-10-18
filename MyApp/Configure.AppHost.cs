@@ -15,17 +15,6 @@ public class AppHost() : AppHostBase("MyApp"), IHostingStartup
             context.Configuration.GetSection(nameof(AppConfig)).Bind(AppConfig.Instance);
             services.AddSingleton(AppConfig.Instance);
         });
-    
-    public override void Configure()
-    {
-        SetConfig(new HostConfig {
-#if DEBUG            
-            DebugMode = true,
-#else
-            DebugMode = false,
-#endif
-        });
-    }
 }
 
 public class AppConfig
