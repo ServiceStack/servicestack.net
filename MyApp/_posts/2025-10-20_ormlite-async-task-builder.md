@@ -81,22 +81,22 @@ in parallel, which looks like:
 
 ```csharp
 var results = await DbFactory.AsyncDbTasksBuilder()
-    .Add(db => db.SelectAsync<Rockstar>())
     .Add(db => db.SelectAsync<Album>())
-    .Add(db => db.SelectAsync<Department>())
+    .Add(db => db.SelectAsync<Rockstar>())
     .Add(db => db.SelectAsync<Employee>())
+    .Add(db => db.SelectAsync<Department>())
     .RunAsync();
-var (rockstars, albums, departments, employees) = results;
+var (albums, rockstars, employees, departments) = results;
 ```
 
 Which just like TypeScript's destructuring returns a positionally typed tuple of the results which can be destructured back 
 into their typed variables, e.g:
 
 ```csharp
-(List<Rockstar> rockstars, 
- List<Album> albums,
- List<Department> departments,
- List<Employee> employees) = results;
+(List<Album> albums,
+ List<Rockstar> rockstars, 
+ List<Employee> employees,
+ List<Department> departments) = results;
 ```
 
 ### Supports up to 8 Tasks
@@ -155,3 +155,4 @@ catch (Exception e)
     throw;
 }
 ```
+
