@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>AI Server - May 2025 Update - ServiceStack</title>
+    <title>RDBMS Async Tasks Builder - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="New SOTA LLMs added, support for thinking responses, Ollama Vision Models &amp; Generate API" />
-    <meta property="og:url" content="https://servicestack.net/posts/ai-server-2025-05" />
-    <meta property="og:title" content="AI Server - May 2025 Update" />
-    <meta property="og:image" content="./img/posts/ai-server/bg.webp" />
+    <meta property="og:description" content="Effortlessly run multiple async DB Requests in parallel with OrmLite&#x27;s new Async Tasks Builder" />
+    <meta property="og:url" content="https://servicestack.net/posts/ormlite-async-task-builder" />
+    <meta property="og:title" content="RDBMS Async Tasks Builder" />
+    <meta property="og:image" content="./img/posts/ormlite-async-task-builder/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                AI Server - May 2025 Update
+                RDBMS Async Tasks Builder
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -139,31 +139,27 @@ mountAll()
                     </div>
                 </div>
                         <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'ai-server-2025-05', title:'AI Server - May 2025 Update', src:'https://media.servicestack.com/podcasts/angular-template.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=ai-server-2025-05&amp;source=post&amp;version=8.9.1', variant:'compact' }"
+                             data-props="{ id:'ormlite-async-task-builder', title:'OrmLite new Configuration Model and Defaults', src:'https://media.servicestack.com/podcasts/ormlite-async-task-builder.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=ormlite-async-task-builder&amp;source=post&amp;version=8.9.1', variant:'compact' }"
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/ai-server/bg.webp" alt="AI Server - May 2025 Update Background" class="shadow-small">
+                    <img src="./img/posts/ormlite-async-task-builder/bg.webp" alt="RDBMS Async Tasks Builder Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/ai-server" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai-server</a>
-                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
-                        <a href="posts/tagged/gpt" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gpt</a>
-                        <a href="posts/tagged/service-reference" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">service-reference</a>
-                        <a href="posts/tagged/csharp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">c#</a>
-                        <a href="posts/tagged/js" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">js</a>
+                        <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
+                        <a href="posts/tagged/ormlite" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ormlite</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2025-05-01T00:00:00.0000000">May 1, 2025</time>
+                                <time datetime="2025-10-20T00:00:00.0000000">October 20, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>4 min read</span>
                             </div>
                         </div>
                 </div>
@@ -176,133 +172,122 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>AI Server is our Free OSS Docker self-hosted private gateway to manage API access to multiple LLM APIs, Ollama endpoints, Media APIs, Comfy UI and FFmpeg Agents that's designed as a one-stop solution to manage an organization's AI integrations for all their System Apps with its developer friendly HTTP JSON APIs that supports any programming language or framework.</p>
-<p><a href="https://openai.servicestack.net"><img src="/img/svgs/ai-server-overview.svg" alt="" /></a></p>
-<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="Ojo80oFQte8" playlabel="Introducing AI Server" style="background-image:url('https://img.youtube.com/vi/Ojo80oFQte8/maxresdefault.jpg')"></lite-youtube>
-<h2 id="built-in-analytics-logging">Built in Analytics &amp; Logging<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-in-analytics-logging'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We've brought <a href="https://docs.servicestack.net/admin-ui-analytics">comprehensive Analytics</a> added in <a href="https://docs.servicestack.net/releases/v8_07">ServiceStack v5.7</a>
-into AI Server's Admin UI to provide deep and invaluable insight into your System API Usage, device distribution,
-API Keys and identify IPs where most traffic generates.</p>
-<p><a href="https://docs.servicestack.net/admin-ui-analytics"><img src="/img/posts/ai-server-2025-04/ai-server-analytics.webp" alt="" /></a></p>
-<p>For even finer grained detail of your AI Server's usage we've also surfaced the <a href="https://docs.servicestack.net/sqlite-request-logs">SQLite Request Logs</a>
-functionality inside AI Server's Admin UI which lets you monitor your API System usage in real-time:</p>
-<p><a href="https://docs.servicestack.net/admin-ui-profiling"><img src="/img/posts/ai-server-2025-04/ai-server-logging.webp" alt="" /></a></p>
-<h2 id="redesigned-ui">Redesigned UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#redesigned-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>As AI Server gains more features it became necessary to group UI features under group headings and associated
-sub menus:</p>
-<video controls>
-  <source src="https://media.servicestack.com/videos/ai-server-command-palette.mp4" type="video/mp4" />
-</video>
-<h3 id="command-palette">Command Palette<a class="header-anchor" href="javascript:;" onclick="location.hash='#command-palette'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>A new Command Palette has been added to quickly navigate between AI Server's different user-facing features
-which can be opened with the <code>/</code> key:</p>
-<p><img src="/img/posts/ai-server-2025-04/ai-server-command-palette.webp" alt="" /></p>
-<h3 id="convert-image">Convert Image<a class="header-anchor" href="javascript:;" onclick="location.hash='#convert-image'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>AI Server has now added a UI to convert images between different image formats:
-<code>.png</code>, <code>.jpg</code>, <code>.gif</code>, <code>.bmp</code>, <code>.tiff</code> and <code>.webp</code></p>
-<p><img src="/img/posts/ai-server-2025-04/convert-image.webp" alt="" /></p>
-<h3 id="convert-video">Convert Video<a class="header-anchor" href="javascript:;" onclick="location.hash='#convert-video'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>AI Server configured with a Media Provider can also convert between different video formats:
-<code>.mp4</code>, <code>.mov</code>, <code>.webm</code>, <code>.mkv</code>, <code>.avi</code>, <code>.wmv</code> and <code>.ogg</code>:</p>
-<p><img src="/img/posts/ai-server-2025-04/convert-video.webp" alt="" /></p>
-<h2 id="support-for-new-models">Support for new Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#support-for-new-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>This release continues to see a number of improvements to AI Server starting with adding support for popular LLM models added during this release, including:</p>
-<ul>
-<li><strong>Google:</strong> gemini-flash-2.5, gemini-pro-2.5, gemini-flash-lite-2.0, gemini-flash-thinking-2.0, gemma3</li>
-<li><strong>OpenAI:</strong> o3, o4-mini, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano</li>
-<li><strong>Alibaba:</strong> qwen3, qwen-turbo, qwen-plus, qwen-max</li>
-<li><strong>Meta:</strong> llama-4-scout, llama-4-maverick</li>
-<li><strong>Microsoft:</strong> phi4</li>
-<li><strong>Mistral:</strong> mistral-small, mistral-saba</li>
-</ul>
-<h2 id="custom-openai-endpoints">Custom OpenAI Endpoints<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-openai-endpoints'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Prior to this release AI Requests were only able to reference LLM Models defined in AI Server's pre-defined
-<a href="https://github.com/ServiceStack/ai-server/blob/main/AiServer/wwwroot/lib/data/ai-models.json">ai-models.json</a>
-or included in your <a href="https://docs.servicestack.net/ai-server/configuration#custom-definitions">overrides folder</a>.</p>
-<p>Model definitions facilitate load balancing requests for a specific model across multiple AI Providers
-utilizing different model names back to a single model definition.</p>
-<p>This approach makes it harder to run custom or fine-tuned models from OpenAI Compatible Chat Endpoints
-which don't map to an existing model definition. To better support these use-cases AI Server now supports
-registering a custom OpenAI Chat compatible endpoints with custom models with the new <strong>Custom</strong> AI Provider Type:</p>
-<p><a href="https://docs.servicestack.net/ai-server/"><img src="/img/posts/ai-server-2025-04/custom-openai-provider.webp" alt="" /></a></p>
-<p>This now lets AI Server connect with other OpenAI Compatible API's like llama.cpp's
-<a href="https://github.com/ggml-org/llama.cpp?tab=readme-ov-file#llama-server">llama-server</a>, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>CUDA_VISIBLE_DEVICES=0 llama-server --model ./models/phi-4-q4.gguf -ngl 999 --port 8080</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Which launches an OpenAI compatible API configured to serve a single model that's run entirely on an
-NVidia GPU at port <strong>8080</strong>.</p>
-<p>As it's only configured to serve a single model you can choose to configure it with any model name you wish
-which llama-server ignores but AI Server uses to route any AI requests for that model to the custom AI Provider
-instance which you can try in <a href="https://docs.servicestack.net/ai-server/chat">AI Server's Chat UI</a>:</p>
-<p><a href="https://docs.servicestack.net/ai-server/chat"><img src="/img/posts/ai-server-2025-04/custom-openai-provider-chat.webp" alt="" /></a></p>
-<h2 id="support-for-ollama-vision-models">Support for Ollama Vision Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#support-for-ollama-vision-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>By default <a href="/ai-server/image-to-text">ImageToText</a> uses a purpose-specific <strong>Florence 2 Vision model</strong> with ComfyUI for its functionality which is capable of generating a very short description about an image, e.g:</p>
-<blockquote>
-<p>A woman sitting on the edge of a lake with a wolf</p>
-</blockquote>
-<p>But with LLMs gaining multi modal capabilities and Ollama's recent support of Vision Models we can instead use popular
-Open Source models like Google's <strong>gemma3:27b</strong> or Mistral's <strong>mistral-small:24b</strong> to extract information from images.</p>
-<p>Both models are very capable vision models that's can provide rich detail about an image:</p>
-<h3 id="describe-image">Describe Image<a class="header-anchor" href="javascript:;" onclick="location.hash='#describe-image'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-2025-04/gemma3-describe.png">
-        <img class="p-2" src="/img/posts/ai-server-2025-04/gemma3-describe.png" />
-    </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-2025-04/mistral-small-describe.png">
-        <img class="p-2" src="/img/posts/ai-server-2025-04/mistral-small-describe.png" />
-    </a>
-</div>
-<h3 id="caption-image">Caption Image<a class="header-anchor" href="javascript:;" onclick="location.hash='#caption-image'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Although our initial testing sees gemma being better at responding to a wide variety of different prompts, e.g:</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-2025-04/gemma3-caption.png">
-        <img class="p-2" src="/img/posts/ai-server-2025-04/gemma3-caption.png" />
-    </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700 flex flex-col justify-between" href="/img/posts/ai-server-2025-04/mistral-small-caption.png">
-        <img class="p-2" src="/img/posts/ai-server-2025-04/mistral-small-caption.png" />
-    </a>
-</div>
-<h2 id="new-ollamagenerate-endpoints">New OllamaGenerate Endpoints<a class="header-anchor" href="javascript:;" onclick="location.hash='#new-ollamagenerate-endpoints'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>To support Ollama's vision models AI Server added a new feature pipeline around
-<a href="https://github.com/ollama/ollama/blob/main/docs/api.md#generate-a-completion">Ollama's generate completion API</a>:</p>
-<ul>
-<li><a href="https://openai.servicestack.net/ui/ImageToText">ImageToText</a>
-<ul>
-<li><strong>Model</strong> - Whether to use a Vision Model for the request</li>
-<li><strong>Prompt</strong> - Prompt for the vision model</li>
-</ul>
-</li>
-<li><a href="https://openai.servicestack.net/ui/OllamaGeneration">OllamaGeneration</a>: Synchronous invocation of Ollama's Generate API</li>
-<li><a href="https://openai.servicestack.net/ui/QueueOllamaGeneration">QueueOllamaGeneration</a>: Asynchronous or Web Callback invocation of Ollama's Generate API</li>
-<li><a href="https://openai.servicestack.net/ui/GetOllamaGenerationStatus">GetOllamaGenerationStatus</a>: Get the generation status of an Ollama Generate API</li>
-</ul>
-<h2 id="online-status-indicator">Online Status Indicator<a class="header-anchor" href="javascript:;" onclick="location.hash='#online-status-indicator'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Internally AI Server tracks which enabled providers are online and which have successive failures to
-trigger taking them offline. Periodically a scheduled task checks or offline providers to test whether
-they've come back online and their status is updated accordingly.</p>
-<p>This status now has a <strong>green</strong> and <strong>red</strong> visible dot indicator in the AI Provider list and in
-the Edit form where you can manually check the online provider status:</p>
-<h3 id="ai-provider-status">AI Provider Status<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-provider-status'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p><img src="/img/posts/ai-server-2025-04/online-status.webp" alt="" /></p>
-<h3 id="media-provider-status">Media Provider Status<a class="header-anchor" href="javascript:;" onclick="location.hash='#media-provider-status'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The same feature is also available on Media Providers list and Edit page:</p>
-<p><img src="/img/posts/ai-server-2025-04/online-status-media.webp" alt="" /></p>
-<h2 id="support-for-thinking-responses">Support for Thinking Responses<a class="header-anchor" href="javascript:;" onclick="location.hash='#support-for-thinking-responses'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>With the rise and popularity of <strong>Thinking</strong> Models we've added custom rendering of <em>thinking</em> responses in a collapsible
-and scrollable container:</p>
-<p><a href="https://docs.servicestack.net/ai-server/chat"><img src="/img/posts/ai-server-2025-04/ai-server-thinking.png" alt="" /></a></p>
+                    <h3 id="sequential-async-db-access">Sequential Async DB Access<a class="header-anchor" href="javascript:;" onclick="location.hash='#sequential-async-db-access'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Async improves I/O thread utilization in multi-threaded apps like Web Servers. However, it doesn't improve the performance
+of individual API Requests that need to execute multiple independent DB Requests. These are often written to run async
+db access sequentially like this:</p>
+<pre><code class="language-csharp">var rockstars = await Db.SelectAsync&lt;Rockstar&gt;();
+var albums = await Db.SelectAsync&lt;Album&gt;();
+var departments = await Db.SelectAsync&lt;Department&gt;();
+var employees = await Db.SelectAsync&lt;Employee&gt;();
+</code></pre>
+<p>The issue being that it's not running them in parallel as each DB Request is executed sequentially with the Request for
+Albums not starting until the Request for Rockstars has completed.</p>
+<p>To run them in parallel you would need to open multiple scoped DB Connections, await them concurrently then do the
+syntax boilerplate gymnastics required to extract the generic typed results, e.g:</p>
+<pre><code class="language-csharp">var connections = await Task.WhenAll(
+    DbFactory.OpenDbConnectionAsync(),
+    DbFactory.OpenDbConnectionAsync(),
+    DbFactory.OpenDbConnectionAsync(),
+    DbFactory.OpenDbConnectionAsync()
+);
+
+using var dbRockstars = connections[0];
+using var dbAlbums = connections[1];
+using var dbDepartments = connections[2];
+using var dbEmployees = connections[3];
+
+var tasks = new List&lt;Task&gt;
+{
+    dbRockstars.SelectAsync&lt;Rockstar&gt;(),
+    dbAlbums.SelectAsync&lt;Album&gt;(),
+    dbDepartments.SelectAsync&lt;Department&gt;(),
+    dbEmployees.SelectAsync&lt;Employee&gt;()
+};
+await Task.WhenAll(tasks);
+
+var rockstars = ((Task&lt;List&lt;Rockstar&gt;&gt;)tasks[0]).Result;
+var albums = ((Task&lt;List&lt;Album&gt;&gt;)tasks[1]).Result;
+var departments = ((Task&lt;List&lt;Department&gt;&gt;)tasks[2]).Result;
+var employees = ((Task&lt;List&lt;Employee&gt;&gt;)tasks[3]).Result;
+</code></pre>
+<p>Even without Error handling, writing coding like this can quickly become tedious, less readable and error prone that
+as a result is rarely done.</p>
+<h3 id="parallel-db-requests-in-typescript">Parallel DB Requests in TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#parallel-db-requests-in-typescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This is easier to achieve in languages like TypeScript where typed ORMs like <a href="https://litdb.dev">litdb.dev</a>
+can run multiple DB Requests in parallel with just:</p>
+<pre><code class="language-csharp">const [rockstars, albums, departments, employees] = await Promise.all([
+    db.all&lt;Rockstar&gt;($.from(Rockstar)),     //= Rockstar[]
+    db.all&lt;Album&gt;($.from(Album)),           //= Album[]
+    db.all&lt;Department&gt;($.from(Department)), //= Department[]
+    db.all&lt;Employee&gt;($.from(Employee)),     //= Employee[]
+])
+</code></pre>
+<p>Which benefits from TypeScript's powerful type system that allows destructuring arrays whilst preserving their positional types,
+whilst its single threaded event loop lets you reuse the same DB Connection to run DB Requests in parallel without
+multi-threading issues.</p>
+<h2 id="ormlites-new-async-tasks-builder">OrmLite's new Async Tasks Builder<a class="header-anchor" href="javascript:;" onclick="location.hash='#ormlites-new-async-tasks-builder'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>OrmLite's new <code>AsyncDbTasksBuilder</code> provides a similar benefit of making it effortless to run multiple async DB Requests
+in parallel, which looks like:</p>
+<pre><code class="language-csharp">var results = await DbFactory.AsyncDbTasksBuilder()
+    .Add(db =&gt; db.SelectAsync&lt;Album&gt;())
+    .Add(db =&gt; db.SelectAsync&lt;Rockstar&gt;())
+    .Add(db =&gt; db.SelectAsync&lt;Employee&gt;())
+    .Add(db =&gt; db.SelectAsync&lt;Department&gt;())
+    .RunAsync();
+var (albums, rockstars, employees, departments) = results;
+</code></pre>
+<p>Which just like TypeScript's destructuring returns a positionally typed tuple of the results which can be destructured back
+into their typed variables, e.g:</p>
+<pre><code class="language-csharp">(List&lt;Album&gt; albums,
+ List&lt;Rockstar&gt; rockstars, 
+ List&lt;Employee&gt; employees,
+ List&lt;Department&gt; departments) = results;
+</code></pre>
+<h3 id="supports-up-to-8-tasks">Supports up to 8 Tasks<a class="header-anchor" href="javascript:;" onclick="location.hash='#supports-up-to-8-tasks'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>It allows chaining up to <strong>8 async Tasks in parallel</strong> as C#'s Type System doesn't allow for preserving different
+positional generic types in an unbounded collection. Instead each Task returns a new Generic Type builder which preserves
+the positional types before it.</p>
+<h3 id="supports-both-async-taskt-and-task-apis">Supports both Async <code>Task&lt;T&gt;</code> and <code>Task</code> APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#supports-both-async-taskt-and-task-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Where <code>Task&lt;T&gt;</code> and <code>Task</code> APIs can be mixed and matched interchangeably:</p>
+<pre><code class="language-csharp">var builder = DbFactory.AsyncDbTasksBuilder()
+    .Add(db =&gt; db.InsertAsync(rockstars[0],rockstars[1]))
+    .Add(db =&gt; db.SelectAsync&lt;Rockstar&gt;())
+    .Add(db =&gt; db.InsertAsync(albums[2],albums[3]))
+    .Add(db =&gt; db.SelectAsync&lt;Album&gt;())
+    .Add(db =&gt; db.InsertAsync([department]))
+    .Add(db =&gt; db.SelectAsync&lt;Department&gt;())
+    .Add(db =&gt; db.InsertAsync([employee]))
+    .Add(db =&gt; db.SelectAsync&lt;Employee&gt;());
+</code></pre>
+<p>Where to preserve the results chain, <code>Task</code> APIs return <code>bool</code> results, e.g:</p>
+<pre><code class="language-csharp">(bool r1, 
+ List&lt;Rockstar&gt; r2, 
+ bool r3, 
+ List&lt;RockstarAlbum&gt; r4, 
+ bool r5, 
+ List&lt;Department&gt; r6, 
+ bool r7, 
+ List&lt;Employee&gt; r8) = await builder.RunAsync();
+</code></pre>
+<h3 id="error-handling">Error Handling<a class="header-anchor" href="javascript:;" onclick="location.hash='#error-handling'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst tasks are executed in parallel when they're added, any Exceptions are only thrown when the task is awaited:</p>
+<pre><code class="language-csharp">using var Db = await OpenDbConnectionAsync();
+
+var builder = DbFactory.AsyncDbTasksBuilder()
+    .Add(db =&gt; db.InsertAsync(rockstars[0]))
+    .Add(db =&gt; db.InsertAsync(rockstars[0])); // &lt;-- Duplicate PK Exception
+
+// Exceptions are not thrown until the task is awaited
+try
+{
+    var task = builder.RunAsync();
+}
+catch (Exception e)
+{
+    throw;
+}
+</code></pre>
 
                 </div>
             </div>
@@ -361,47 +346,6 @@ and scrollable container:</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/ormlite-async-task-builder">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-async-task-builder/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/ormlite-async-task-builder" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="RDBMS Async Tasks Builder">
-                                                    RDBMS Async Tasks Builder
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Effortlessly run multiple async DB Requests in parallel with OrmLite&#x27;s new Async Tasks Builder</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="RDBMS Async Tasks Builder background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-10-20T00:00:00.0000000">October 20, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>4 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -518,6 +462,47 @@ and scrollable container:</p>
                                                     <time datetime="2025-09-25T00:00:00.0000000">September 25, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/text-to-blazor-upgraded">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/text-to-blazor-upgraded/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/text-to-blazor-upgraded" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Text to Blazor CRUD upgraded to use best LLMs">
+                                                    Text to Blazor CRUD upgraded to use best LLMs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Discover how to quickly generate Blazor Admin CRUD Apps from a text description using the new okai tool</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="Text to Blazor CRUD upgraded to use best LLMs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-09-02T00:00:00.0000000">September 2, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
                                                 </div>
                                             </div>
                                         </div>
