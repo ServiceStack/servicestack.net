@@ -156,3 +156,6 @@ catch (Exception e)
 }
 ```
 
+---
+
+👈 [OrmLite's new Configuration Model](/posts/ormlite-new-configuration)

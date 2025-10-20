@@ -475,3 +475,9 @@ When executed in PostgreSQL it would generate:
 SELECT TO_CHAR("CreatedDate", 'YYYY-MM'), 'Prefix' || CHR(10) || "CreatedDate" 
 FROM "CompletedJob"
 ```
+
+--- 
+
+:::{.float-right}
+[OrmLite's Async Task Builder](/posts/ormlite-async-task-builder) 👉
+:::
