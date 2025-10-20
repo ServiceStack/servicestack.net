@@ -151,6 +151,10 @@ catch (Exception e)
 }
 ```
 
+---
+
+👈 [OrmLite's new Configuration Model](/posts/ormlite-new-configuration)
+
 
 # OrmLite new Configuration Model and Defaults
 Source: https://servicestack.net/posts/ormlite-new-configuration
@@ -624,6 +628,12 @@ When executed in PostgreSQL it would generate:
 SELECT TO_CHAR("CreatedDate", 'YYYY-MM'), 'Prefix' || CHR(10) || "CreatedDate" 
 FROM "CompletedJob"
 ```
+
+--- 
+
+:::{.float-right}
+[OrmLite's Async Task Builder](/posts/ormlite-async-task-builder) 👉
+:::
 
 
 # llms.py gets a UI 🚀
