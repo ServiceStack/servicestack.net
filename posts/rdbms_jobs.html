@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Simple C# Background Jobs &amp; Recurring Tasks for .NET 8 - ServiceStack</title>
+    <title>RDBMS Background Jobs - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,9 +38,9 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Introducing C# Background Jobs for managing background jobs and scheduled tasks" />
-    <meta property="og:url" content="https://servicestack.net/posts/background-jobs" />
-    <meta property="og:title" content="Simple C# Background Jobs &amp; Recurring Tasks for .NET 8" />
+    <meta property="og:description" content="Run Background Jobs and Scheduled Tasks in PostgreSQL, SQL Server or MySQL" />
+    <meta property="og:url" content="https://servicestack.net/posts/rdbms_jobs" />
+    <meta property="og:title" content="RDBMS Background Jobs" />
     <meta property="og:image" content="./img/posts/background-jobs/bg.webp" />
 
 
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Simple C# Background Jobs &amp; Recurring Tasks for .NET 8
+                RDBMS Background Jobs
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -139,28 +139,28 @@ mountAll()
                     </div>
                 </div>
                         <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'background-jobs', title:'C# Background Jobs', src:'https://media.servicestack.com/podcasts/background-jobs.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=background-jobs&amp;source=post&amp;version=8.9.1', variant:'compact' }"
+                             data-props="{ id:'rdbms_jobs', title:'RDBMS Background Jobs', src:'https://media.servicestack.com/podcasts/rdbms_jobs.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=rdbms_jobs&amp;source=post&amp;version=8.9.1', variant:'compact' }"
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/background-jobs/bg.webp" alt="Simple C# Background Jobs &amp; Recurring Tasks for .NET 8 Background" class="shadow-small">
+                    <img src="./img/posts/background-jobs/bg.webp" alt="RDBMS Background Jobs Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/workers" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">workers</a>
-                        <a href="posts/tagged/commands" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">commands</a>
-                        <a href="posts/tagged/net8" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">.net8</a>
+                        <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
+                        <a href="posts/tagged/ormlite" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ormlite</a>
+                        <a href="posts/tagged/jobs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">jobs</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2024-09-11T00:00:00.0000000">September 11, 2024</time>
+                                <time datetime="2025-10-23T00:00:00.0000000">October 23, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>20 min read</span>
+                                <span>23 min read</span>
                             </div>
                         </div>
                 </div>
@@ -173,115 +173,172 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>We're excited to announce <strong>Background Jobs</strong> our effortless solution for queueing and managing
-background jobs and scheduled tasks in any .NET 8 C# App, implemented in true ServiceStack fashion
-where it seamlessly integrates into existing Apps and call existing APIs and sports a
-<a href="/auto-ui">built-in</a> Management UI to provide real-time monitoring, inspection and management of background jobs.</p>
+                    <p>We're excited to announce that we've ported our much loved <a href="https://docs.servicestack.net/background-jobs">Background Jobs</a>
+feature to the popular <strong>PostgreSQL</strong>, <strong>SQL Server</strong> and <strong>MySQL</strong> RDBMS's!</p>
+<p>Since launching <a href="https://servicestack.net/posts/background-jobs">Background Jobs</a> in September 2024, it's become
+one of our most popular features - providing a simple, infrastructure-free solution for managing background jobs
+and scheduled tasks in .NET 8+ Apps. The original implementation used SQLite for its durability, which worked
+beautifully for many use cases thanks to SQLite's low latency, fast disk persistence, and zero infrastructure requirements.</p>
+<p>However, we recognize that many of our customers need the features and scalability of industrial-strength RDBMS systems.
+Whether it's for leveraging existing database infrastructure, meeting enterprise requirements, or utilizing advanced
+database features like native table partitioning - we wanted to ensure Background Jobs could work seamlessly with
+your preferred database platform.</p>
+<h2 id="introducing-databasejobsfeature">Introducing DatabaseJobsFeature<a class="header-anchor" href="javascript:;" onclick="location.hash='#introducing-databasejobsfeature'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The new <strong>DatabaseJobsFeature</strong> is a purpose-built implementation for PostgreSQL, SQL Server, and MySQL that's
+a drop-in replacement for SQLite's <strong>BackgroundsJobFeature</strong>. It maintains the same simple API, data models,
+and service contracts - making migration from SQLite straightforward while unlocking the power of enterprise RDBMS platforms.</p>
+<p>Best of all, it can be added to an existing .NET 8+ project with a single command using our
+<a href="https://docs.servicestack.net/mix-tool">mix tool</a>:</p>
+<h2 id="quick-start">Quick Start<a class="header-anchor" href="javascript:;" onclick="location.hash='#quick-start'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="for-identity-auth-projects">For Identity Auth Projects<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-identity-auth-projects'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you're using <a href="https://servicestack.net/start">ServiceStack ASP.NET Identity Auth</a> templates, simply run:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mix db-identity</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>This replaces both <code>Configure.BackgroundJobs.cs</code> and <code>Configure.RequestLogs.cs</code> with RDBMS-compatible versions
+that use <code>DatabaseJobsFeature</code> for background jobs and <code>DbRequestLogger</code> for API request logging.</p>
+<h3 id="for-other.net-8-apps">For Other .NET 8+ Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-other.net-8-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>For all other ServiceStack applications, use:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mix db-jobs</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>This replaces <code>Configure.BackgroundJobs.cs</code> to use the new <code>DatabaseJobsFeature</code>:</p>
+<pre><code class="language-csharp">public class ConfigureBackgroundJobs : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices(services =&gt; {
+            services.AddPlugin(new CommandsFeature());
+            services.AddPlugin(new DatabaseJobsFeature {
+                // Optional: Use a separate named connection
+                // NamedConnection = &quot;jobs&quot;
+            });
+            services.AddHostedService&lt;JobsHostedService&gt;();
+         }).ConfigureAppHost(afterAppHostInit: appHost =&gt; {
+            var services = appHost.GetApplicationServices();
+            var jobs = services.GetRequiredService&lt;IBackgroundJobs&gt;();
+            // Example: Register recurring jobs to run on a schedule
+            // jobs.RecurringCommand&lt;MyCommand&gt;(Schedule.Hourly);
+        });
+}
+
+public class JobsHostedService(ILogger&lt;JobsHostedService&gt; log, IBackgroundJobs jobs)
+    : BackgroundService
+{
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        await jobs.StartAsync(stoppingToken);
+
+        using var timer = new PeriodicTimer(TimeSpan.FromSeconds(3));
+        while (!stoppingToken.IsCancellationRequested &amp;&amp;
+               await timer.WaitForNextTickAsync(stoppingToken))
+        {
+            await jobs.TickAsync();
+        }
+    }
+}
+</code></pre>
+<h2 id="seamless-migration-from-sqlite">Seamless Migration from SQLite<a class="header-anchor" href="javascript:;" onclick="location.hash='#seamless-migration-from-sqlite'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We've maintained the same <code>IBackgroundJobs</code> interface, data models, and API service contracts, which means:</p>
+<ul>
+<li><strong>Zero code changes</strong> to your existing job enqueueing logic</li>
+<li><strong>Same Admin UI</strong> for monitoring and managing jobs</li>
+<li><strong>Compatible APIs</strong> - all your existing commands and job configurations work as-is</li>
+</ul>
+<p>The only change needed is swapping <code>BackgroundsJobFeature</code> for <code>DatabaseJobsFeature</code> in your configuration!</p>
+<p>Watch our video introduction to Background Jobs to see it in action:</p>
 <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="2Cza_a_rrjA" playlabel="Durable C# Background Jobs and Scheduled Tasks for .NET" style="background-image:url('https://img.youtube.com/vi/2Cza_a_rrjA/maxresdefault.jpg')"></lite-youtube>
-<h3 id="durable-and-infrastructure-free">Durable and Infrastructure-Free<a class="header-anchor" href="javascript:;" onclick="location.hash='#durable-and-infrastructure-free'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Prior to Background Jobs we've been using <a href="https://docs.servicestack.net/background-mq">Background MQ</a> for executing
-our background tasks which lets you queue any Request DTO to execute its API in a background worker.
-It's been our preferred choice as it didn't require any infrastructure dependencies since its concurrent
-queues are maintained in memory, this also meant they were non-durable that didn't survive across App restarts.
-Whilst <a href="https://docs.servicestack.net/messaging">ServiceStack MQ</a> enables an additional endpoint for your APIs our main use-case for using
-it was for executing background tasks which would be better suited by purpose-specific software
-designed for the task.</p>
-<h4 id="sqlite-persistence">SQLite Persistence<a class="header-anchor" href="javascript:;" onclick="location.hash='#sqlite-persistence'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>It uses SQLite as the backing store for its durability since it's low latency,
-<a href="https://www.sqlite.org/fasterthanfs.html">fast disk persistence</a> and embeddable file-based
-database makes it ideally suited for the task which allows creation of naturally partition-able
-and archivable monthly databases on-the-fly without any maintenance overhead or infrastructure
-dependencies making it easy to add to any .NET App without impacting or adding increased load to
-their existing configured databases.</p>
-<h3 id="queue-apis-or-commands">Queue APIs or Commands<a class="header-anchor" href="javascript:;" onclick="location.hash='#queue-apis-or-commands'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>For even greater reuse you're able to queue your existing ServiceStack APIs
-as a Background Job in addition to <a href="https://docs.servicestack.net/commands">Commands</a> added in the
-<a href="https://docs.servicestack.net/releases/v8_03">last v8.3 release</a> for encapsulating units of logic
-into internal invokable, inspectable and auto-retryable building blocks.</p>
+<h2 id="smart-rdbms-optimizations">Smart RDBMS Optimizations<a class="header-anchor" href="javascript:;" onclick="location.hash='#smart-rdbms-optimizations'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>One of the key benefits of SQLite Background Jobs was the ability to maintain completed and failed job history in
+separate <strong>monthly databases</strong> (e.g., <code>jobs_2025-01.db</code>, <code>jobs_2025-02.db</code>). This prevented unbounded database growth
+and made it easy to archive or delete old job history.</p>
+<p>For <code>DatabaseJobsFeature</code>, we've replicated this monthly partitioning strategy using <strong>monthly partitioned tables</strong>
+for the <code>CompletedJob</code> and <code>FailedJob</code> archive tables - but the implementation varies by database platform to leverage
+each RDBMS's strengths.</p>
+<h3 id="postgresql-native-table-partitioning">PostgreSQL - Native Table Partitioning<a class="header-anchor" href="javascript:;" onclick="location.hash='#postgresql-native-table-partitioning'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>PostgreSQL provides native support for table partitioning, allowing us to automatically create monthly partitions using
+<code>PARTITION BY RANGE</code> on the <code>CreatedDate</code> column. The <code>DatabaseJobFeature</code> automatically creates new monthly partitions
+as needed, maintaining the same logical separation as SQLite's monthly .db's while keeping everything within a single
+Postgres DB:</p>
+<pre><code class="language-sql">CREATE TABLE CompletedJob (
+    -- columns...
+    CreatedDate TIMESTAMP NOT NULL,
+    PRIMARY KEY (&quot;Id&quot;,&quot;CreatedDate&quot;)
+) PARTITION BY RANGE (&quot;CreatedDate&quot;);
+
+-- Monthly partitions are automatically created, e.g.:
+CREATE TABLE CompletedJob_2025_01 PARTITION OF CompletedJob
+    FOR VALUES FROM ('2025-01-01') TO ('2025-02-01');
+</code></pre>
+<p>This provides excellent query performance since PostgreSQL can use partition pruning to only scan relevant monthly partitions
+when filtering by <code>CreatedDate</code>.</p>
+<h3 id="sqlserver-mysql-manual-partition-management">SQLServer / MySQL - Manual Partition Management<a class="header-anchor" href="javascript:;" onclick="location.hash='#sqlserver-mysql-manual-partition-management'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>For <strong>SQL Server</strong> and <strong>MySQL</strong>, monthly partitioned tables need to be created <strong>out-of-band</strong>
+(either manually or via cronjob scripts) since they don't support the same level of automatic
+partition management as PostgreSQL. However, this still works well in practice as it uses:</p>
+<ol>
+<li><p><strong>Write-Only Tables</strong> - The <code>CompletedJob</code> and <code>FailedJob</code> tables are write-only append tables. Jobs are never updated after completion or failure, only inserted.</p>
+</li>
+<li><p><strong>CreatedDate Index</strong> - All queries against these tables use the <code>CreatedDate</code> indexed column for filtering and sorting, ensuring efficient access patterns even as the tables grow.</p>
+</li>
+</ol>
+<p>The indexed <code>CreatedDate</code> column ensures that queries remain performant regardless of table size, and the write-only
+nature means there's no complex update logic to manage across partitions.</p>
+<p>This approach maintains the same benefits as SQLite's monthly databases - easy archival, manageable table sizes,
+and efficient queries - while leveraging the scalability and features of enterprise RDBMS systems.</p>
+<h3 id="separate-jobs-database">Separate Jobs Database<a class="header-anchor" href="javascript:;" onclick="location.hash='#separate-jobs-database'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Or if preferred, you can maintain background jobs in a <strong>separate database</strong> from your main application database.
+This separation keeps the write-heavy job processing load off your primary database, allowing you to optimize
+each database independently for its specific workload patterns like maintaining different backup strategies
+for your critical application data vs. job history.</p>
+<pre><code class="language-csharp">// Configure.Db.cs
+services.AddOrmLite(options =&gt; options.UsePostgres(connectionString))
+        .AddPostgres(&quot;jobs&quot;, jobsConnectionString);
+
+// Configure.BackgroundJobs.cs
+services.AddPlugin(new DatabaseJobFeature {
+    NamedConnection = &quot;jobs&quot;
+});
+</code></pre>
 <h3 id="real-time-admin-ui">Real Time Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#real-time-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The Background Jobs Admin UI provides a real time view into the status of all background jobs including
-their progress, completion times, Executed, Failed and Cancelled Jobs, etc. which is useful for monitoring
-and debugging purposes.</p>
-<p><img src="/img/posts/background-jobs/jobs-dashboard.webp" alt="" /></p>
+<p>The Jobs Admin UI provides a real time view into the status of all background jobs including their progress, completion times,
+Executed, Failed, and Cancelled Jobs, etc. which is useful for monitoring and debugging purposes.</p>
+<p><a href="/img/posts/background-jobs/jobs-dashboard.webp"><img src="/img/posts/background-jobs/jobs-dashboard.webp" alt="" /></a></p>
 <p>View Real-time progress of queued Jobs</p>
-<p><img src="/img/posts/background-jobs/jobs-queue.webp" alt="" /></p>
+<p><a href="/img/posts/background-jobs/jobs-queue.webp"><img src="/img/posts/background-jobs/jobs-queue.webp" alt="" /></a></p>
 <p>View real-time progress logs of executing Jobs</p>
-<p><img src="/img/posts/background-jobs/jobs-logs.webp" alt="" /></p>
+<p><a href="/img/posts/background-jobs/jobs-logs.webp"><img src="/img/posts/background-jobs/jobs-logs.webp" alt="" /></a></p>
 <p>View Job Summary and Monthly Databases of Completed and Failed Jobs</p>
-<p><img src="/img/posts/background-jobs/jobs-completed.webp" alt="" /></p>
+<p><a href="/img/posts/background-jobs/jobs-completed.webp"><img src="/img/posts/background-jobs/jobs-completed.webp" alt="" /></a></p>
 <p>View full state and execution history of each Job</p>
-<p><img src="/img/posts/background-jobs/jobs-failed.webp" alt="" /></p>
+<p><a href="/img/posts/background-jobs/jobs-failed.webp"><img src="/img/posts/background-jobs/jobs-failed.webp" alt="" /></a></p>
 <p>Cancel Running jobs and Requeue failed jobs</p>
-<h3 id="feature-overview">Feature Overview<a class="header-anchor" href="javascript:;" onclick="location.hash='#feature-overview'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Even in its v1 release it packs all the features we wanted in a Background Jobs solution:</p>
-<ul>
-<li>No infrastructure dependencies
-<ul>
-<li>Monthly archivable rolling Databases with full Job Execution History</li>
-</ul>
-</li>
-<li>Execute existing APIs or versatile Commands
-<ul>
-<li>Commands auto registered in IOC</li>
-</ul>
-</li>
-<li>Scheduled Reoccurring Tasks
-<ul>
-<li>Track Last Job Run</li>
-</ul>
-</li>
-<li>Serially execute jobs with the same named Worker</li>
-<li>Queue Jobs dependent on successful completion of parent Job</li>
-<li>Queue Jobs to be executed after a specified Date</li>
-<li>Execute Jobs within the context of an Authenticated User</li>
-<li>Auto retry failed jobs on a default or per-job limit</li>
-<li>Timeout Jobs on a default or per-job limit</li>
-<li>Cancellable Jobs</li>
-<li>Requeue Failed Jobs</li>
-<li>Execute custom callbacks on successful execution of Job</li>
-<li>Maintain Status, Logs and Progress of Executing Jobs</li>
-<li>Execute transitive (i.e. non-durable) jobs using named workers</li>
-<li>Attach optional <code>Tag</code>, <code>BatchId</code>, <code>CreatedBy</code>, <code>ReplyTo</code> and <code>Args</code> with Jobs</li>
-</ul>
-<p>Please <a href="https://servicestack.net/ideas">let us know</a> of any other missing features you'd love to see implemented.</p>
-<h2 id="install">Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>As it's more versatile and better suited, we've replaced the usage of Background MQ with
-<strong>ServiceStack.Jobs</strong> in all <strong>.NET 8 Identity Auth Templates</strong> for sending Identity Auth Confirmation
-Emails when SMTP is enabled. So the easiest way to get started with ServiceStack.Jobs is to
-<a href="https://servicestack.net/start">create a new Identity Auth Project</a>, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new blazor-vue MyApp</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h3 id="exiting.net-8-templates">Exiting .NET 8 Templates<a class="header-anchor" href="javascript:;" onclick="location.hash='#exiting.net-8-templates'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Existing .NET 8 Projects can configure their app to use <strong>ServiceStack.Jobs</strong> by mixing in:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mix jobs</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Which adds the <code>Configure.BackgroundJobs.cs</code> <a href="https://docs.servicestack.net/modular-startup">Modular Startup</a>
-configuration and a <strong>ServiceStack.Jobs</strong> NuGet package reference to your project.</p>
 <h2 id="usage">Usage<a class="header-anchor" href="javascript:;" onclick="location.hash='#usage'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>For even greater reuse of your APIs you're able to queue your existing ServiceStack Request DTOs
+as a Background Job in addition to <a href="https://docs.servicestack.net/commands">Commands</a>
+for encapsulating units of logic into internal invokable, inspectable and auto-retryable building blocks.</p>
+<h3 id="queue-commands">Queue Commands<a class="header-anchor" href="javascript:;" onclick="location.hash='#queue-commands'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Any API, Controller or Minimal API can execute jobs with the <code>IBackgroundJobs</code> dependency, e.g.
 here's how you can run a background job to send a new email when an API is called in
 any new Identity Auth template:</p>
@@ -304,6 +361,7 @@ any new Identity Auth template:</p>
 <p>Which records and immediately executes a worker to execute the <code>SendEmailCommand</code> with the specified
 <code>SendEmail</code> Request argument. It also returns a reference to a Job which can be used later to query
 and track the execution of a job.</p>
+<h3 id="queue-apis">Queue APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#queue-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Alternatively a <code>SendEmail</code> API could be executed with just the Request DTO:</p>
 <pre><code class="language-csharp">var jobRef = jobs.EnqueueApi(new SendEmail {
     To = &quot;my@email.com&quot;,
@@ -315,7 +373,7 @@ and track the execution of a job.</p>
 });
 </code></pre>
 <p>Although Sending Emails is typically not an API you want to make externally available and would
-want to either <a href="https://docs.servicestack.net/auth/restricting-services">Restrict access</a> or <a href="https://docs.servicestack.net/auth/identity-auth#declarative-validation-attributes">limit usage to specified users</a>.</p>
+want to <a href="https://docs.servicestack.net/auth/restricting-services">Restrict access</a> or <a href="https://docs.servicestack.net/auth/identity-auth#declarative-validation-attributes">limit usage to specified users</a>.</p>
 <p>In both cases the <code>SendEmail</code> Request is persisted into the Jobs SQLite database for durability
 that gets updated as it progresses through the queue.</p>
 <p>For execution the API or command is resolved from the IOC before being invoked with the Request.
@@ -344,6 +402,34 @@ the following options:</p>
 <li><code>ReplyTo</code> - Optional field for capturing where to send notification for completion of a Job</li>
 <li><code>Args</code> - Optional String Dictionary of Arguments that can be attached to a Job</li>
 </ul>
+<h3 id="feature-overview">Feature Overview<a class="header-anchor" href="javascript:;" onclick="location.hash='#feature-overview'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>It packs most features needed in a Background Jobs solution including:</p>
+<ul>
+<li>Use your App's existing RDBMS (no other infrastructure dependencies)</li>
+<li>Execute existing APIs or versatile Commands
+<ul>
+<li>Commands auto registered in IOC</li>
+</ul>
+</li>
+<li>Scheduled Reoccurring Tasks
+<ul>
+<li>Track Last Job Run</li>
+</ul>
+</li>
+<li>Serially execute jobs with the same named Worker</li>
+<li>Queue Jobs dependent on successful completion of parent Job</li>
+<li>Queue Jobs to be executed after a specified Date</li>
+<li>Execute Jobs within the context of an Authenticated User</li>
+<li>Auto retry failed jobs on a default or per-job limit</li>
+<li>Timeout Jobs on a default or per-job limit</li>
+<li>Cancellable Jobs</li>
+<li>Requeue Failed Jobs</li>
+<li>Execute custom callbacks on successful execution of Job</li>
+<li>Maintain Status, Logs, and Progress of Executing Jobs</li>
+<li>Execute transitive (i.e. non-durable) jobs using named workers</li>
+<li>Attach optional <code>Tag</code>, <code>BatchId</code>, <code>CreatedBy</code>, <code>ReplyTo</code> and <code>Args</code> with Jobs</li>
+</ul>
+<p>Please <a href="https://servicestack.net/ideas">let us know</a> of any other missing features you'd love to see implemented.</p>
 <h2 id="schedule-recurring-tasks">Schedule Recurring Tasks<a class="header-anchor" href="javascript:;" onclick="location.hash='#schedule-recurring-tasks'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>In addition to queueing jobs to run in the background, it also supports scheduling recurring tasks
 to execute APIs or Commands at fixed intervals.</p>
@@ -438,6 +524,23 @@ jobs.RecurringApi(Schedule.Interval(TimeSpan.FromMinutes(1)), new CheckUrls {
 <div class="info custom-block">
             <p class="custom-block-title">INFO</p><p>If no name is provided, the Command's Name or APIs Request DTO will be used</p>
 </div>
+<h2 id="interned-cronos">Interned Cronos<a class="header-anchor" href="javascript:;" onclick="location.hash='#interned-cronos'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>A major source of friction in .NET Libraries and most Frameworks from all platforms in general is dependency conflicts.
+E.g. Conflicting versions of JSON.NET have plagued many a .NET library and framework for several years, something that
+never impacted ServiceStack Apps since we maintain our own fast/flexible JSON Serializer and have never had a dependency
+to JSON.NET.</p>
+<p>As supply chain attacks from external OSS libraries have become more common, it's even more important to avoid
+taking dependencies on external libraries where possible.</p>
+<p>As we now have multiple packages that referenced
+<a href="https://github.com/HangfireIO/Cronos">Hangfire's Cronos</a> library we've decided to intern it in ServiceStack,
+removing the previous dependency <strong>ServiceStack.Jobs</strong> had to Cronos. The only issue was that
+<a href="https://github.com/HangfireIO/Cronos/blob/main/src/Cronos/CronParser.cs">CronParser.cs</a> uses unsafe parsing and we
+don't allow <code>&lt;AllowUnsafeBlocks&gt;</code> in any ServiceStack package, so it was rewritten to use Spans in our interned
+<a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Common/Cronos/CronParser.cs">CronParser.cs</a>
+implementation.</p>
+<p>It's released under the same MIT License as Cronos so anyone else is welcome to use it, as is our port of their
+<a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/tests/ServiceStack.Common.Tests/CronExpressionTests.cs">CronExpressionTests.cs</a>
+to NUnit.</p>
 <h3 id="idempotent-registration">Idempotent Registration<a class="header-anchor" href="javascript:;" onclick="location.hash='#idempotent-registration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Scheduled Tasks are idempotent where the same registration with the same name will
 either create or update the scheduled task registration without losing track of the
@@ -447,12 +550,9 @@ Scheduled Tasks on Startup:</p>
 {
    public void Configure(IWebHostBuilder builder) =&gt; builder
      .ConfigureServices((context,services) =&gt; {
-         services.AddPlugin(new CommandsFeature());
-         services.AddPlugin(new BackgroundsJobFeature());
-         services.AddHostedService&lt;JobsHostedService&gt;();
+         //...
      }).ConfigureAppHost(afterAppHostInit: appHost =&gt; {
          var services = appHost.GetApplicationServices();
-
          var jobs = services.GetRequiredService&lt;IBackgroundJobs&gt;();
          
          // App's Scheduled Tasks Registrations:
@@ -462,7 +562,7 @@ Scheduled Tasks on Startup:</p>
 </code></pre>
 <h3 id="background-jobs-admin-ui">Background Jobs Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#background-jobs-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>The last job the Recurring Task ran is also viewable in the Jobs Admin UI:</p>
-<p><img src="/img/posts/background-jobs/jobs-scheduled-tasks-last-job.webp" alt="" /></p>
+<p><a href="/img/posts/background-jobs/jobs-scheduled-tasks-last-job.webp"><img src="/img/posts/background-jobs/jobs-scheduled-tasks-last-job.webp" alt="" /></a></p>
 <h3 id="executing-non-durable-jobs">Executing non-durable jobs<a class="header-anchor" href="javascript:;" onclick="location.hash='#executing-non-durable-jobs'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p><code>IBackgroundJobs</code> also supports <code>RunCommand*</code> methods for executing background jobs transiently
 (i.e. non-durable), which is useful for commands that want to be serially executed by a named worker
@@ -532,7 +632,7 @@ jobs.EnqueueCommand&lt;GenerateExpenseReportCommand&gt;(new () {
 </code></pre>
 <p>Inside your command you can get a reference to your current job with <code>Request.GetBackgroundJob()</code>
 which will have its <code>ParentId</code> populated with the parent job Id and <code>job.ParentJob</code> containing
-a reference to the completed Parent Job where you can access its Request, Results and other job
+a reference to the completed Parent Job where you can access its Request, Results, and other job
 information:</p>
 <pre><code class="language-csharp">public class GenerateSalesReportCommand(ILogger&lt;MyCommandNoArgs&gt; log) 
     : SyncCommand
@@ -679,8 +779,8 @@ full information about a job depending on where it's located:</p>
 }
 </code></pre>
 <h3 id="job-execution-limits">Job Execution Limits<a class="header-anchor" href="javascript:;" onclick="location.hash='#job-execution-limits'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Default Retry and Timeout Limits can be configured on the Backgrounds Job plugin:</p>
-<pre><code class="language-csharp">services.AddPlugin(new BackgroundsJobFeature
+<p>Default Retry and Timeout Limits can be configured on the <code>DatabaseJobFeature</code>:</p>
+<pre><code class="language-csharp">services.AddPlugin(new DatabaseJobFeature
 {
    DefaultRetryLimit = 2,
    DefaultTimeout = TimeSpan.FromMinutes(10),
@@ -820,21 +920,99 @@ Callback URL and the Result DTO it should be called with:</p>
 Content-Type. Typically URLs will contain a reference Id so external clients can correlate a callback
 with the internal process that initiated the job. If the callback API is publicly available you'll
 want to use an internal Id that can't be guessed so the callback can't be spoofed, like a Guid, e.g:</p>
-<p><code>$&quot;https://api.example.com?refId={RefId}&quot;</code></p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>https://api.example.com?refId={RefId}</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>If needed the callback URL can be customized on how the HTTP Request callback is sent.</p>
-<p>If the URL contains a space, the text before the space is treated as the HTTP method:</p>
-<p><code>&quot;PUT https://api.example.com&quot;</code></p>
+<p>You can change the HTTP Method used by including it before the URL:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>PUT https://api.example.com</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>If the auth part contains a colon <code>:</code> it's treated as Basic Auth:</p>
-<p><code>&quot;username:password@https://api.example.com&quot;</code></p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>username:password@https://api.example.com</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>If name starts with <code>http.</code> sends a HTTP Header</p>
-<p><code>&quot;http.X-API-Key:myApiKey@https://api.example.com&quot;</code></p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>http.X-API-Key:myApiKey@https://api.example.com</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>Otherwise it's sent as a Bearer Token:</p>
-<p><code>&quot;myToken123@https://api.example.com&quot;</code></p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>myToken123@https://api.example.com</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 <p>Bearer Token or HTTP Headers starting with <code>$</code> is substituted with Environment Variable if exists:</p>
-<p><code>&quot;$API_TOKEN@https://api.example.com&quot;</code></p>
-<p>When needed headers, passwords and tokens can be URL encoded if they contain any delimiter characters.</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>$API_TOKEN@https://api.example.com</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>When needed headers, passwords, and tokens can be URL encoded if they contain any delimiter characters.</p>
 <h2 id="implementing-commands">Implementing Commands<a class="header-anchor" href="javascript:;" onclick="location.hash='#implementing-commands'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>At a minimum a command need only implement the simple <a href="https://docs.servicestack.net/commands#commands-feature">IAsyncCommand interface</a>:</p>
+<p>At a minimum a command need only implement the <a href="https://docs.servicestack.net/commands#commands-feature">IAsyncCommand interface</a>:</p>
 <pre><code class="language-csharp">public interface IAsyncCommand&lt;in T&gt;
 {
     Task ExecuteAsync(T request);
@@ -1002,47 +1180,6 @@ public class MyAsyncCommandWithArgsAndResult(ILogger&lt;MyCommandNoArgs&gt; log)
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
-                                        <a href="posts/rdbms_jobs">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/background-jobs/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/rdbms_jobs" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="RDBMS Background Jobs">
-                                                    RDBMS Background Jobs
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Run Background Jobs and Scheduled Tasks in PostgreSQL, SQL Server or MySQL</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="RDBMS Background Jobs background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-10-23T00:00:00.0000000">October 23, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>23 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
                                         <a href="posts/rdbms_analytics">
                                             <img class="h-48 w-full object-cover" src="./img/posts/analytics/bg.webp" alt="">
                                         </a>
@@ -1156,6 +1293,47 @@ public class MyAsyncCommandWithArgsAndResult(ILogger&lt;MyCommandNoArgs&gt; log)
                                                     <time datetime="2025-10-15T00:00:00.0000000">October 15, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>11 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/llms-py-ui">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/llms-py-ui/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/llms-py-ui" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="llms.py gets a UI &#x1F680;">
+                                                    llms.py gets a UI &#x1F680;
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Simple ChatGPT-like UI to access ALL Your LLMs, Locally or Remotely!</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="llms.py gets a UI &#x1F680; background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-10-01T00:00:00.0000000">October 1, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>6 min read</span>
                                                 </div>
                                             </div>
                                         </div>
