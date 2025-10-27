@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>llms.py gets a UI &#x1F680; - ServiceStack</title>
+    <title>llms.py UI - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -40,7 +40,7 @@
     <meta name="twitter:card" content="summary" />
     <meta property="og:description" content="Simple ChatGPT-like UI to access ALL Your LLMs, Locally or Remotely!" />
     <meta property="og:url" content="https://servicestack.net/posts/llms-py-ui" />
-    <meta property="og:title" content="llms.py gets a UI &#x1F680;" />
+    <meta property="og:title" content="llms.py UI" />
     <meta property="og:image" content="./img/posts/llms-py-ui/bg.webp" />
 
 
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                llms.py gets a UI &#x1F680;
+                llms.py UI
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -143,7 +143,7 @@ mountAll()
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/llms-py-ui/bg.webp" alt="llms.py gets a UI &#x1F680; Background" class="shadow-small">
+                    <img src="./img/posts/llms-py-ui/bg.webp" alt="llms.py UI Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
@@ -157,7 +157,7 @@ mountAll()
                             <div class="mb-6 text-lg text-gray-500">
                                 <time datetime="2025-10-01T00:00:00.0000000">October 1, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>6 min read</span>
+                                <span>7 min read</span>
                             </div>
                         </div>
                 </div>
@@ -170,13 +170,54 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <h1 id="chatgpt-but-local">ChatGPT, but Local 🎯<a class="header-anchor" href="javascript:;" onclick="location.hash='#chatgpt-but-local'" aria-label="Permalink">&ZeroWidthSpace;</a></h1>
-<p>Simple ChatGPT-like UI to access ALL Your LLMs, Locally or Remotely!</p>
-<p>In keeping with the simplicity and goals of <a href="https://github.com/ServiceStack/llms">llms.py</a> the new UI still only
-requires its single <strong>aiohttp</strong> python dependency for all client and server features.</p>
-<p>The <a href="https://github.com/ServiceStack/llms/tree/main/ui">/ui</a> is small, fast and lightweight and follows the
-<a href="https://servicestack.net/posts/javascript">Simple Modern JavaScript</a> approach of leveraging native JS Modules support
+                    <p><a href="https://github.com/ServiceStack/llms">llms.py</a> is a lightweight OSS CLI, API and ChatGPT-like alternative to Open WebUI
+for accessing multiple LLMs that still only requires 1 (aiohttp) dependency, entirely offline, with all data kept private in browser storage.</p>
+<h2 id="v2.0.17">v2.0.17<a class="header-anchor" href="javascript:;" onclick="location.hash='#v2.0.17'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="metrics-and-analytics">Metrics and Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#metrics-and-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>We're happy to announce the next major release of <strong>llms.py v2.0.17</strong> now includes API pricing for all premium LLMs,
+observability with detailed usage and metric insights, so you're better able to analyze and track your
+spend within the UI.</p>
+<h4 id="metrics-everywhere">Metrics everywhere<a class="header-anchor" href="javascript:;" onclick="location.hash='#metrics-everywhere'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<ul>
+<li><strong>Cost per Model</strong> - Model selector now displays the Input and Output cost per 1M token for every premium model.</li>
+<li><strong>Thread-Level Cost &amp; Token Metrics</strong> - Total cost and token count for every conversation thread, displayed in your history sidebar.</li>
+<li><strong>Per-Message Token Breakdown</strong> - Each individual message, both from you and the AI, now clearly shows its token count.</li>
+<li><strong>Thread Summaries</strong> - At the bottom of every new conversation, you'll find a consolidated summary detailing the total cost, tokens consumed (input and output), number of requests, and overall response time for that entire thread.</li>
+</ul>
+<div class="wideshot"><p><a href="/img/posts/llms-py-ui/analytics-messages.webp"><img src="/img/posts/llms-py-ui/analytics-messages.webp" alt="analytics-messages.webp" /></a></p>
+</div>
+<p>Screenshot also shows support for new <strong>Edit</strong> and <strong>Redo</strong> features that appears after hovering over any <strong>User</strong>
+message, to modify or re-run an existing prompt.</p>
+<h3 id="monthly-cost-analytics">Monthly Cost Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#monthly-cost-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The <strong>Cost Analytics</strong> page provides a comprehensive overview of the usage costs for every day within a given month.
+Clicking on a day will expand it to show a detailed breakdown of the costs that was spent per model and provider.</p>
+<div class="wideshot"><p><a href="/img/posts/llms-py-ui/analytics-costs.webp"><img src="/img/posts/llms-py-ui/analytics-costs.webp" alt="analytics-costs.webp" /></a></p>
+</div>
+<h3 id="monthly-tokens-analytics">Monthly Tokens Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#monthly-tokens-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Similarly, the <strong>Tokens Analytics</strong> page provides a comprehensive overview of the token usage for every day within a
+given month. Clicking on a day expands it to show a detailed breakdown of the tokens that was spent per model and provider.</p>
+<div class="wideshot"><p><a href="/img/posts/llms-py-ui/analytics-tokens.webp"><img src="/img/posts/llms-py-ui/analytics-tokens.webp" alt="analytics-tokens.webp" /></a></p>
+</div>
+<h3 id="monthly-activity-log">Monthly Activity Log<a class="header-anchor" href="javascript:;" onclick="location.hash='#monthly-activity-log'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The <strong>Activity Log</strong> page lets you view the individual requests that make up the daily cost and token usage,
+the page itself provides a comprehensive and granular overview of all your AI interactions and requests including:
+Model, Provider, Partial Prompt, Input &amp; Output Tokens, Cost, Response Time, Speed, Date &amp; Time.</p>
+<div class="wideshot"><p><a href="/img/posts/llms-py-ui/analytics-activity.webp"><img src="/img/posts/llms-py-ui/analytics-activity.webp" alt="analytics-activity.webp" /></a></p>
+</div>
+<p>Activity Logs are maintained independently of the Chat History so you can clear or cleanup your Chat History
+without losing the detailed Activity Logs of your AI requests. Likewise you can delete Activity Logs
+without losing your Chat History.</p>
+<h2 id="chatgpt-but-local">ChatGPT, but Local 🎯<a class="header-anchor" href="javascript:;" onclick="location.hash='#chatgpt-but-local'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In keeping with the simplicity goals of <a href="https://github.com/ServiceStack/llms">llms.py</a>, its <a href="https://github.com/ServiceStack/llms/tree/main/llms/ui">/ui</a>
+is small and fast by following the
+<a href="https://servicestack.net/posts/javascript">Simple Modern JavaScript</a> approach of leveraging JS Modules support
 in Browsers to avoid needing any npm dependencies or build tools.</p>
+<h3 id="offline-fast-and-private">Offline, Fast and Private<a class="header-anchor" href="javascript:;" onclick="location.hash='#offline-fast-and-private'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>OSS &amp; Free, no sign ups, no ads, no tracking, etc. All data is stored locally in the browser's IndexedDB that can
+be exported and imported to transfer chat histories between different browsers.</p>
+<p>A goal for <strong>llms.py</strong> is to only require a single python <strong>aiohttp</strong> dependency for minimal risk of conflicts within
+multiple Python Environments, e.g. it's an easy drop-in inside a ComfyUI Custom Node as it doesn't require any
+additional deps.</p>
 <h2 id="install">Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
@@ -216,12 +257,6 @@ Providers - for a single unified interface for accessing both local and premium 
 <a href="https://github.com/ServiceStack/llms/blob/main/llms/llms.json">llms.json</a> in <code>~/.llms/llms.json</code></p>
 <p>Whilst the <a href="https://github.com/ServiceStack/llms/blob/main/llms/ui.json">ui.json</a> configuration for the UI is maintained
 in <code>~/.llms/ui.json</code> where you can configure your preferred system prompts and other defaults.</p>
-<h3 id="fast-local-and-private">Fast, Local and Private<a class="header-anchor" href="javascript:;" onclick="location.hash='#fast-local-and-private'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>OSS &amp; Free, no sign ups, no ads, no tracking, etc. All data is stored locally in the browser's IndexedDB that can
-be exported and imported to transfer chat histories between different browsers.</p>
-<p>A goal for <strong>llms.py</strong> is to limit itself to its single python <strong>aiohttp</strong> dependency for minimal risk of
-conflicts and friction within multiple Python Environments, e.g. <code>llms.py</code> is an easy drop-in inside a
-ComfyUI Custom Node since it requires no any additional dependencies.</p>
 <h3 id="import-export">Import / Export<a class="header-anchor" href="javascript:;" onclick="location.hash='#import-export'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>All data is stored locally in the browser's IndexedDB which as it is tied to the browser's origin, you'll be
 able to maintain multiple independent conversational databases by just running the server on a different port.</p>

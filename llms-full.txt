@@ -2037,19 +2037,81 @@ FROM "CompletedJob"
 :::
 
 
-# llms.py gets a UI 🚀
+# llms.py UI
 Source: https://servicestack.net/posts/llms-py-ui
 
-# ChatGPT, but Local 🎯
+[llms.py](https://github.com/ServiceStack/llms) is a lightweight OSS CLI, API and ChatGPT-like alternative to Open WebUI 
+for accessing multiple LLMs that still only requires 1 (aiohttp) dependency, entirely offline, with all data kept private in browser storage.
 
-Simple ChatGPT-like UI to access ALL Your LLMs, Locally or Remotely!
+## v2.0.17
 
-In keeping with the simplicity and goals of [llms.py](https://github.com/ServiceStack/llms) the new UI still only 
-requires its single **aiohttp** python dependency for all client and server features. 
+### Metrics and Analytics
 
-The [/ui](https://github.com/ServiceStack/llms/tree/main/ui) is small, fast and lightweight and follows the 
-[Simple Modern JavaScript](https://servicestack.net/posts/javascript) approach of leveraging native JS Modules support 
+We're happy to announce the next major release of **llms.py v2.0.17** now includes API pricing for all premium LLMs,
+observability with detailed usage and metric insights, so you're better able to analyze and track your 
+spend within the UI.
+
+#### Metrics everywhere
+
+- **Cost per Model** - Model selector now displays the Input and Output cost per 1M token for every premium model.
+- **Thread-Level Cost & Token Metrics** - Total cost and token count for every conversation thread, displayed in your history sidebar.
+- **Per-Message Token Breakdown** - Each individual message, both from you and the AI, now clearly shows its token count.
+- **Thread Summaries** - At the bottom of every new conversation, you'll find a consolidated summary detailing the total cost, tokens consumed (input and output), number of requests, and overall response time for that entire thread.
+
+:::{.wideshot}
+[![analytics-messages.webp](/img/posts/llms-py-ui/analytics-messages.webp)](/img/posts/llms-py-ui/analytics-messages.webp)
+:::
+
+Screenshot also shows support for new **Edit** and **Redo** features that appears after hovering over any **User** 
+message, to modify or re-run an existing prompt.
+
+### Monthly Cost Analytics
+
+The **Cost Analytics** page provides a comprehensive overview of the usage costs for every day within a given month.
+Clicking on a day will expand it to show a detailed breakdown of the costs that was spent per model and provider. 
+
+:::{.wideshot}
+[![analytics-costs.webp](/img/posts/llms-py-ui/analytics-costs.webp)](/img/posts/llms-py-ui/analytics-costs.webp)
+:::
+
+### Monthly Tokens Analytics
+
+Similarly, the **Tokens Analytics** page provides a comprehensive overview of the token usage for every day within a 
+given month. Clicking on a day expands it to show a detailed breakdown of the tokens that was spent per model and provider.
+
+:::{.wideshot}
+[![analytics-tokens.webp](/img/posts/llms-py-ui/analytics-tokens.webp)](/img/posts/llms-py-ui/analytics-tokens.webp)
+:::
+
+### Monthly Activity Log
+
+The **Activity Log** page lets you view the individual requests that make up the daily cost and token usage,
+the page itself provides a comprehensive and granular overview of all your AI interactions and requests including:
+Model, Provider, Partial Prompt, Input & Output Tokens, Cost, Response Time, Speed, Date & Time.
+
+:::{.wideshot}
+[![analytics-activity.webp](/img/posts/llms-py-ui/analytics-activity.webp)](/img/posts/llms-py-ui/analytics-activity.webp)
+:::
+
+Activity Logs are maintained independently of the Chat History so you can clear or cleanup your Chat History
+without losing the detailed Activity Logs of your AI requests. Likewise you can delete Activity Logs
+without losing your Chat History.
+
+## ChatGPT, but Local 🎯
+
+In keeping with the simplicity goals of [llms.py](https://github.com/ServiceStack/llms), its [/ui](https://github.com/ServiceStack/llms/tree/main/llms/ui) 
+is small and fast by following the 
+[Simple Modern JavaScript](https://servicestack.net/posts/javascript) approach of leveraging JS Modules support 
 in Browsers to avoid needing any npm dependencies or build tools.
+
+### Offline, Fast and Private
+
+OSS & Free, no sign ups, no ads, no tracking, etc. All data is stored locally in the browser's IndexedDB that can
+be exported and imported to transfer chat histories between different browsers.
+
+A goal for **llms.py** is to only require a single python **aiohttp** dependency for minimal risk of conflicts within 
+multiple Python Environments, e.g. it's an easy drop-in inside a ComfyUI Custom Node as it doesn't require any 
+additional deps.
 
 ## Install
 
@@ -2077,15 +2139,6 @@ You can configure which OpenAI compatible providers and models you want to use b
 
 Whilst the [ui.json](https://github.com/ServiceStack/llms/blob/main/llms/ui.json) configuration for the UI is maintained 
 in `~/.llms/ui.json` where you can configure your preferred system prompts and other defaults.
-
-### Fast, Local and Private
-
-OSS & Free, no sign ups, no ads, no tracking, etc. All data is stored locally in the browser's IndexedDB that can 
-be exported and imported to transfer chat histories between different browsers.
-
-A goal for **llms.py** is to limit itself to its single python **aiohttp** dependency for minimal risk of 
-conflicts and friction within multiple Python Environments, e.g. `llms.py` is an easy drop-in inside a 
-ComfyUI Custom Node since it requires no any additional dependencies.
 
 ### Import / Export
 
