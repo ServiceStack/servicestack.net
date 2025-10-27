@@ -4,7 +4,6 @@ summary: Learn how to create ServiceStack APIs that can be protected with API Ke
 tags: [apikeys,identity-auth,auth]
 author: Demis Bellot
 image: ./img/posts/identityauth-claims-roles/bg.webp
-draft: true
 ---
 
 Modern APIs need to serve different types of clients, each with distinct authentication requirements. 
