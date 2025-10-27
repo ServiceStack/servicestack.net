@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>New Razor SSG generated docs.servicestack.net - ServiceStack</title>
+    <title>Protect same APIs with API Keys or Identity Auth - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="The new docs.servicestack.net website is now generated with Razor SSG - now with Dark Mode!" />
-    <meta property="og:url" content="https://servicestack.net/posts/new-razor-ssg-docs" />
-    <meta property="og:title" content="New Razor SSG generated docs.servicestack.net" />
-    <meta property="og:image" content="./img/posts/new-razor-ssg-docs/bg.webp" />
+    <meta property="og:description" content="Learn how to create ServiceStack APIs that can be protected with API Keys or Identity Auth" />
+    <meta property="og:url" content="https://servicestack.net/posts/apikey_auth_apis" />
+    <meta property="og:title" content="Protect same APIs with API Keys or Identity Auth" />
+    <meta property="og:image" content="./img/posts/identityauth-claims-roles/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                New Razor SSG generated docs.servicestack.net
+                Protect same APIs with API Keys or Identity Auth
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -138,26 +138,29 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'apikey_auth_apis', title:'Protect same APIs with API Keys or Identity Auth', src:'https://media.servicestack.com/podcasts/apikey_auth_apis.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=apikey_auth_apis&amp;source=post&amp;version=8.9.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/new-razor-ssg-docs/bg.webp" alt="New Razor SSG generated docs.servicestack.net Background" class="shadow-small">
+                    <img src="./img/posts/identityauth-claims-roles/bg.webp" alt="Protect same APIs with API Keys or Identity Auth Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/razor" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">razor</a>
-                        <a href="posts/tagged/ssg" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ssg</a>
-                        <a href="posts/tagged/docs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docs</a>
+                        <a href="posts/tagged/apikeys" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">apikeys</a>
+                        <a href="posts/tagged/identity-auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">identity-auth</a>
+                        <a href="posts/tagged/auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">auth</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-07-10T00:00:00.0000000">July 10, 2023</time>
+                                <time datetime="2025-10-27T00:00:00.0000000">October 27, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>4 min read</span>
                             </div>
                         </div>
                 </div>
@@ -170,101 +173,134 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>Following in the footsteps of <a href="/posts/new_razor_ssg_website">porting servicestack.net</a> website
-<a href="https://github.com/mythz/site">from Jekyll</a> to
-<a href="https://github.com/ServiceStack/servicestack.net">Razor SSG</a>, we've decided to
-also take control over our last active VitePress website and port our <a href="https://docs.servicestack.net">docs.servicestack.net</a> to
-<a href="https://razor-ssg.web-templates.io/">Razor SSG</a>, giving us complete control over its implementation allowing us to
-resolve any issues and add any features ourselves as needed, at the same time freeing us from the complexity and brittleness
-of the npm ecosystem with a more robust C# and Razor Pages SSG based implementation.</p>
-<h2 id="vitepress-issues">VitePress Issues<a class="header-anchor" href="javascript:;" onclick="location.hash='#vitepress-issues'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Our 500 page <a href="https://docs.servicestack.net">docs.servicestack.net</a> started experiencing growing pains under <a href="https://vitepress.dev">VitePress</a>
-which started experiencing rendering issues that we believe stems from VitePress's SSR/SPA hydration model that for
-maximum performance would convert the initial downloaded SSR content into an SPA to speed up navigation between pages.</p>
-<p>However several pages began to randomly show duplicate content and sometimes not display the bottom section of pages at all.
-For a while we worked around these issues by running custom JavaScript to detect and remove duplicate content from the DOM
-after the page loaded as well as moving bottom fragments of pages into separate includes and external Vue components
-for the pages with missing content.</p>
-<p>However as the time to detect and workaround these issues across all our documentation started becoming too time consuming,
-it was time to consider a more permanent and effective solution.</p>
-<h2 id="porting-to-razor-ssg">Porting to Razor SSG<a class="header-anchor" href="javascript:;" onclick="location.hash='#porting-to-razor-ssg'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Given we've already spent time &amp; effort porting docs.servicestack.net
-<a href="/posts/jekyll-to-vitepress">from Jekyll to VitePress</a> less than 2 years ago and after the success
-we had of rapidly <a href="/posts/new_razor_ssg_website">porting servicestack.net</a> to Razor SSG and rapidly creating
-<a href="https://servicestack.net/posts/vue-stable-diffusion">Vue Stable Diffusion</a> with Razor SSG in a fraction of the time it
-took to develop the equivalent <a href="https://docs.servicestack.net/blazor-diffusion">Blazor Diffusion</a>, it was clear we
-should also do the same for the new documentation website.</p>
-<p>Porting <strong>docs.servicestack.net</strong> ended up being fairly straightforward process that was completed in just a few days,
-with most of the time spent on implementing existing VitePress features we used in C# and Markdig Extensions,
-a new Responsive Tailwind Layout and adding support for Dark Mode which was previously never supported.</p>
-<p>Fortunately none of VitePress's SSR/SPA hydration issues manifested in the Razor SSG port which adopted the
-cleaner traditional architecture of generating clean HTML from Markdown and Razor Pages and enhanced on the client-side with Vue.</p>
-<p>We're extremely happy with the result, a much lighter and cleaner HTML generated site that now finally supports Dark Mode!</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net?light">
-        <img class="p-2" src="/img/posts/razor-ssg/docs.servicestack.net.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net?dark">
-        <img class="p-2" src="/img/posts/razor-ssg/docs.servicestack.net-dark.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-</div>
-<div class="my-8 flex justify-center">
-    <a class="text-3xl text-indigo-600 hover:text-indigo-800" href="https://github.com/ServiceStack/docs.servicestack.net">https://github.com/ServiceStack/docs.servicestack.net</a>
-</div>
-<h2 id="razor-pages-benefits">Razor Pages Benefits<a class="header-anchor" href="javascript:;" onclick="location.hash='#razor-pages-benefits'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>The new Razor SSG implementation now benefits from Razor Pages flexible layouts and partials where pages can be optionally
-implemented in just markdown, Razor or a hybrid mix of both. The <a href="https://docs.servicestack.net/vue/?light">Vue</a> splash page is an example of this implemented in a custom
-<a href="https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/Pages/Vue/Index.cshtml">/Vue/Index.cshtml</a> Razor Page:</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/vue/?light">
-        <img class="p-2" src="/img/posts/razor-ssg/razor-pages-vue.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-</div>
-<p>Other benefits include a new Documentation Map feature with live scroll updating, displayed on the right side of each documentation page.</p>
-<h2 id="razor-press-docs-website-template">Razor Press Docs Website Template<a class="header-anchor" href="javascript:;" onclick="location.hash='#razor-press-docs-website-template'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>We've extracted the new Documentation features into a new Razor SSG based project template optimized for creating
-documentation and content-centric websites which we'll release within the next few days after we've finished documenting it.</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://razor-press.web-templates.io">
-        <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/razor-press.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">razor-press.web-templates.io</div>
-    </a>
-</div>
-<p>In a nutshell the new <a href="https://razor-press.web-templates.io">Razor Press template</a> is a Simple, Powerful, Fast, Flexible &amp; FREE! Use Razor Pages to generate
-beautiful Tailwind static websites powered by Markdown &amp; enhanced with Vue Auto deploys to GitHub Pages to Host
-for FREE on GitHub CDN</p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="uqEa_DfFFDQ" style="background-image: url('https://img.youtube.com/vi/uqEa_DfFFDQ/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>Just like <a href="/posts/razor-ssg">our release of Razor SSG</a> it will be a free project template you can use to create beautiful
-static Tailwind websites with Razor Pages with built-in GitHub Action workflows that deploys to GitHub Pages CDN
-where it can be hosted for FREE under your own custom domain name.</p>
-<h2 id="example">Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Currently the largest website generated with Razor Press is the ServiceStack's documentation at <a href="https://docs.servicestack.net">docs.servicestack.net</a>:</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/?light">
-        <img class="p-2" src="https://servicestack.net/img/posts/razor-ssg/docs.servicestack.net.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/?dark">
-        <img class="p-2" src="https://servicestack.net/img/posts/razor-ssg/docs.servicestack.net-dark.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-</div>
-<p>A <strong>500+</strong> pages documentation website ported from VitePress, which prompted the creation of Razor Press after
-experiencing issues with VitePress's SSR/SPA model whose workaround became too time consuming to maintain.</p>
-<p>The new Razor SSG implementation now benefits from Razor Pages flexible layouts and partials where pages can be optionally
-implemented in just markdown, Razor or a hybrid mix of both. The <a href="https://docs.servicestack.net/vue/">Vue</a> splash page is an example of this implemented in a custom
-<a href="https://github.com/NetCoreTemplates/razor-press/blob/main/MyApp/Pages/Vue/Index.cshtml">/Vue/Index.cshtml</a> Razor Page.</p>
-<div class="not-prose mt-8 grid grid-cols-2 gap-4">
-    <a class="block group border dark:border-gray-800 hover:border-indigo-700 dark:hover:border-indigo-700" href="https://docs.servicestack.net/vue/">
-        <img class="p-2" src="https://docs.servicestack.net/img/pages/ssg/razor-pages-vue.png">
-        <div class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">docs.servicestack.net</div>
-    </a>
-</div>
+                    <p>Modern APIs need to serve different types of clients, each with distinct authentication requirements.
+Understanding when to use <strong>Identity Auth</strong> versus <strong>API Keys</strong> is crucial to optimize for security, performance,
+and user experience.</p>
+<h2 id="two-auth-paradigms-for-different-use-cases">Two Auth Paradigms for Different Use Cases<a class="header-anchor" href="javascript:;" onclick="location.hash='#two-auth-paradigms-for-different-use-cases'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="identity-auth-user-api">Identity Auth: User → API<a class="header-anchor" href="javascript:;" onclick="location.hash='#identity-auth-user-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><strong>Identity Auth</strong> is designed for scenarios where a <strong>human user</strong> is interacting with your API, typically through a
+web or mobile application which:</p>
+<ul>
+<li>Requires user credentials (username/password, OAuth, etc.)</li>
+<li>Establishes a user session with roles and permissions</li>
+<li>For interactive workflows like logins, password resets &amp; email confirmation</li>
+<li>Enables user-specific features like profile management and personalized UX</li>
+<li>Provides full access to user context, claims, and role-based authorization</li>
+</ul>
+<h3 id="api-keys-machine-api-user-agent-api">API Keys: Machine → API / User Agent → API<a class="header-anchor" href="javascript:;" onclick="location.hash='#api-keys-machine-api-user-agent-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><strong>API Keys</strong> are purpose-built for <strong>machine-to-machine</strong> communication or <strong>user agents</strong> accessing your
+API programmatically, without interactive user authentication. This authentication model:</p>
+<ul>
+<li>Provides simple, token-based authentication without user sessions</li>
+<li>Enables fine-grained access control through scopes and features</li>
+<li>Supports non-interactive scenarios like scripts, services, and integrations</li>
+<li>Can optionally be associated with a user but doesn't run in their context</li>
+<li>Offers superior performance by avoiding the auth workflow overhead</li>
+<li>Supports project based billing and usage metrics by API Key</li>
+</ul>
+<p><strong>Common scenarios:</strong></p>
+<ul>
+<li>Microservices communicating with each other</li>
+<li>Third-party integrations accessing your API</li>
+<li>CLI tools and scripts that need API access</li>
+<li>Mobile apps or SPAs making direct API calls without user context</li>
+<li>Webhooks and automated processes</li>
+<li>Providing API access to partners or customers with controlled permissions</li>
+</ul>
+<p>Despite serving 2 different use-cases there are a few times when you may want to serve the same API with both
+Identity Auth and API Keys.</p>
+<h3 id="supporting-both-auth-models-with-2-apis">Supporting both Auth Models with 2 APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#supporting-both-auth-models-with-2-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Previously you would've needed to maintain two separate APIs, one protected with Identity Auth and another with API Keys.
+Thanks to ServiceStack's message-based APIs and <a href="https://docs.servicestack.net/auto-mapping">built-in Auto Mapping</a>
+this is fairly easy to do:</p>
+<pre><code class="language-csharp">// For authenticated users
+[ValidateIsAuthenticated]
+public class QueryOrders : QueryDb&lt;Order&gt; { }
+
+// For API key access
+[ValidateApiKey]
+public class QueryOrdersApiKey : QueryDb&lt;Order&gt; { }
+
+public class OrderService : Service
+{
+    public List&lt;Order&gt; Get(GetOrders request)
+    {
+        var userId = Request.GetRequiredUserId();
+        // Shared business logic
+    }
+    
+    public List&lt;Order&gt; Get(GetOrdersViaApiKey request) =&gt; 
+        Get(request.ConvertTo&lt;GetOrders&gt;());
+}
+
+public static class MyExtensions
+{
+    public static string GetRequiredUserId(this IRequest? req) =&gt;
+        req.GetApiKey()?.UserAuthId ??
+        req.GetClaimsPrincipal().GetUserId() ?? 
+        throw HttpError.Unauthorized(&quot;API Key must be associated with a user&quot;);
+}
+</code></pre>
+<p>Whilst easy to implement, the biggest draw back with this approach is that it requires maintaining 2x APIs,
+2x API endpoints, and 2x API docs.</p>
+<h2 id="the-best-of-both-worlds">The Best of Both Worlds<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-best-of-both-worlds'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack's flexible <a href="https://docs.servicestack.net/auth/apikeys">API Keys feature</a> now allows you to protect
+the same APIs with <strong>both</strong> Identity Auth and API Keys, enabling you to:</p>
+<ul>
+<li>Maintain a single API surface for all clients</li>
+<li>Serve the same interactive UIs protected with Identity Auth or API Keys</li>
+<li>Provide programmatic access via API Keys</li>
+<li>Maintain all the benefits of API Keys</li>
+</ul>
+<p>To achieve this, Users will need to have a valid API Key generated for them which would then need to be added to the <code>apikey</code>
+Claim in the <code>UserClaimsPrincipalFactory</code> to be included in their Identity Auth Cookie:</p>
+<pre><code class="language-csharp">// Program.cs
+services.AddScoped&lt;IUserClaimsPrincipalFactory&lt;ApplicationUser&gt;, 
+    AdditionalUserClaimsPrincipalFactory&gt;();
+
+// AdditionalUserClaimsPrincipalFactory.cs
+/// &lt;summary&gt;
+/// Add additional claims to the Identity Auth Cookie
+/// &lt;/summary&gt;
+public class AdditionalUserClaimsPrincipalFactory(
+    UserManager&lt;ApplicationUser&gt; userManager,
+    RoleManager&lt;IdentityRole&gt; roleManager,
+    IApiKeySource apiKeySource,
+    IOptions&lt;IdentityOptions&gt; optionsAccessor)
+    : UserClaimsPrincipalFactory&lt;ApplicationUser,IdentityRole&gt;(
+        userManager, roleManager, optionsAccessor)
+{
+  public override async Task&lt;ClaimsPrincipal&gt; CreateAsync(ApplicationUser user)
+  {
+      var principal = await base.CreateAsync(user);
+      var identity = (ClaimsIdentity)principal.Identity!;
+      
+      var claims = new List&lt;Claim&gt;();
+      if (user.ProfileUrl != null)
+      {
+          claims.Add(new Claim(JwtClaimTypes.Picture, user.ProfileUrl));
+      }
+      
+      // Add Users latest valid API Key to their Auth Cookie's 'apikey' claim
+      var latestKey = (await apiKeySource.GetApiKeysByUserIdAsync(user.Id))
+          .OrderByDescending(x =&gt; x.CreatedDate)
+          .FirstOrDefault();
+      if (latestKey != null)
+      {
+          claims.Add(new Claim(JwtClaimTypes.ApiKey, latestKey.Key));
+      }
+      
+      identity.AddClaims(claims);
+      return principal;
+  }
+}
+</code></pre>
+<p>After which Authenticated Users will be able to access <code>[ValidateApiKey]</code> protected APIs where it attaches the
+API Key in the <code>apikey</code> Claim to the request - resulting in the same behavior had they sent their API Key with the request.</p>
+<pre><code class="language-csharp">// For authenticated users or API Keys
+[ValidateApiKey]
+public class QueryOrders : QueryDb&lt;Order&gt; { }
+</code></pre>
 
                 </div>
             </div>
@@ -323,47 +359,6 @@ implemented in just markdown, Razor or a hybrid mix of both. The <a href="https:
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/apikey_auth_apis">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/identityauth-claims-roles/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/apikey_auth_apis" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Protect same APIs with API Keys or Identity Auth">
-                                                    Protect same APIs with API Keys or Identity Auth
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Learn how to create ServiceStack APIs that can be protected with API Keys or Identity Auth</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="Protect same APIs with API Keys or Identity Auth background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-10-27T00:00:00.0000000">October 27, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>4 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -480,6 +475,47 @@ implemented in just markdown, Razor or a hybrid mix of both. The <a href="https:
                                                     <time datetime="2025-10-20T00:00:00.0000000">October 20, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>4 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-new-configuration">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-new-configuration/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-new-configuration" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="OrmLite new Configuration Model and Defaults">
+                                                    OrmLite new Configuration Model and Defaults
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="OrmLite new Configuration Model and Defaults background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-10-15T00:00:00.0000000">October 15, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>11 min read</span>
                                                 </div>
                                             </div>
                                         </div>
