@@ -1,6 +1,6 @@
 ---
 title: Protect same APIs with API Keys or Identity Auth
-url: https://docs.servicestack.net/auth/apikeys#protect-same-apis-with-api-keys-or-identity-auth
+url: /posts/apikey_auth_apis
 image: /img/whatsnew/v8.9/admin-ui-user-apikeys-create-dialog.webp
 order: 3
 ---
