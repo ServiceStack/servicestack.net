@@ -1,6 +1,6 @@
 ---
 title: Execute Background Jobs and Recurring Tasks in PostgreSQL, SQL Server & MySQL
-url: https://docs.servicestack.net/rdbms-background-jobs
+url: /posts/rdbms_jobs
 image: /img/whatsnew/v8.9/bg.webp
 order: 1
 ---

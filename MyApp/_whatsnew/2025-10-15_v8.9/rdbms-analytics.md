@@ -1,6 +1,6 @@
 ---
 title: In Depth and Interactive API Analytics for PostgreSQL, SQL Server & MySQL
-url: https://docs.servicestack.net/admin-ui-rdbms-analytics
+url: /posts/rdbms_analytics
 image: /img/whatsnew/v8.7/analytics-apis-splash.webp
 order: 2
 ---
