@@ -2191,11 +2191,11 @@ Source: https://servicestack.net/posts/llms-py-ui
 [llms.py](https://github.com/ServiceStack/llms) is a lightweight OSS CLI, API and ChatGPT-like alternative to Open WebUI 
 for accessing multiple LLMs that still only requires 1 (aiohttp) dependency, entirely offline, with all data kept private in browser storage.
 
-## v2.0.19
+## v2.0.24
 
 ### Metrics and Analytics
 
-We're happy to announce the next major release of **llms.py v2.0.19** now includes API pricing for all premium LLMs,
+We're happy to announce the next major release of **llms.py v2.0.24** now includes API pricing for all premium LLMs,
 observability with detailed usage and metric insights, so you're better able to analyze and track your 
 spend within the UI.
 
@@ -2244,6 +2244,32 @@ Model, Provider, Partial Prompt, Input & Output Tokens, Cost, Response Time, Spe
 Activity Logs are maintained independently of the Chat History so you can clear or cleanup your Chat History
 without losing the detailed Activity Logs of your AI requests. Likewise you can delete Activity Logs
 without losing your Chat History.
+
+### Check Providers
+
+Another feature added in this release is the ability to check the status of all configured providers to test if they're
+reachable and configured correctly and their response times for the simplest `1+1=` request:
+
+Check all models for a provider:
+
+:::sh
+llms --check groq
+:::
+
+Check specific models for a provider:
+
+:::sh
+llms --check groq kimi-k2 llama4:400b gpt-oss:120b
+:::
+
+:::{.wideshot}
+[![llms-check.webp](/img/posts/llms-py-ui/llms-check.webp)](/img/posts/llms-py-ui/llms-check.webp)
+:::
+
+As they're a good indicator for the reliability and speed you can expect from different providers we've created a 
+[test-providers.yml](https://github.com/ServiceStack/llms/actions/workflows/test-providers.yml) GitHub Action to
+test the response times for all configured providers and models, the results of which will be frequently published to
+[/checks/latest.txt](https://github.com/ServiceStack/llms/blob/main/docs/checks/latest.txt)
 
 ## ChatGPT, but Local 🎯
 

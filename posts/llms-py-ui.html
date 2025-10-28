@@ -157,7 +157,7 @@ mountAll()
                             <div class="mb-6 text-lg text-gray-500">
                                 <time datetime="2025-10-01T00:00:00.0000000">October 1, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>7 min read</span>
+                                <span>8 min read</span>
                             </div>
                         </div>
                 </div>
@@ -172,9 +172,9 @@ mountAll()
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <p><a href="https://github.com/ServiceStack/llms">llms.py</a> is a lightweight OSS CLI, API and ChatGPT-like alternative to Open WebUI
 for accessing multiple LLMs that still only requires 1 (aiohttp) dependency, entirely offline, with all data kept private in browser storage.</p>
-<h2 id="v2.0.19">v2.0.19<a class="header-anchor" href="javascript:;" onclick="location.hash='#v2.0.19'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h2 id="v2.0.24">v2.0.24<a class="header-anchor" href="javascript:;" onclick="location.hash='#v2.0.24'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <h3 id="metrics-and-analytics">Metrics and Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#metrics-and-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>We're happy to announce the next major release of <strong>llms.py v2.0.19</strong> now includes API pricing for all premium LLMs,
+<p>We're happy to announce the next major release of <strong>llms.py v2.0.24</strong> now includes API pricing for all premium LLMs,
 observability with detailed usage and metric insights, so you're better able to analyze and track your
 spend within the UI.</p>
 <h4 id="metrics-everywhere">Metrics everywhere<a class="header-anchor" href="javascript:;" onclick="location.hash='#metrics-everywhere'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
@@ -207,6 +207,45 @@ Model, Provider, Partial Prompt, Input &amp; Output Tokens, Cost, Response Time,
 <p>Activity Logs are maintained independently of the Chat History so you can clear or cleanup your Chat History
 without losing the detailed Activity Logs of your AI requests. Likewise you can delete Activity Logs
 without losing your Chat History.</p>
+<h3 id="check-providers">Check Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#check-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Another feature added in this release is the ability to check the status of all configured providers to test if they're
+reachable and configured correctly and their response times for the simplest <code>1+1=</code> request:</p>
+<p>Check all models for a provider:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>llms --check groq</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Check specific models for a provider:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>llms --check groq kimi-k2 llama4:400b gpt-oss:120b</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-check.webp"><img src="/img/posts/llms-py-ui/llms-check.webp" alt="llms-check.webp" /></a></p>
+</div>
+<p>As they're a good indicator for the reliability and speed you can expect from different providers we've created a
+<a href="https://github.com/ServiceStack/llms/actions/workflows/test-providers.yml">test-providers.yml</a> GitHub Action to
+test the response times for all configured providers and models, the results of which will be frequently published to
+<a href="https://github.com/ServiceStack/llms/blob/main/docs/checks/latest.txt">/checks/latest.txt</a></p>
 <h2 id="chatgpt-but-local">ChatGPT, but Local 🎯<a class="header-anchor" href="javascript:;" onclick="location.hash='#chatgpt-but-local'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>In keeping with the simplicity goals of <a href="https://github.com/ServiceStack/llms">llms.py</a>, its <a href="https://github.com/ServiceStack/llms/tree/main/llms/ui">/ui</a>
 is small and fast by following the
