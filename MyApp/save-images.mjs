@@ -181,9 +181,15 @@ async function main() {
         try {
           await convertToWebP(tempFilePath, outputPath, QUALITY);
           console.log(`  Successfully converted and saved to: ${outputPath}`);
-          
+
           // Clean up the temporary file
           unlinkSync(tempFilePath);
+
+          // Update the frontmatter with the new local image path
+          const relativePath = `./img/posts/${slug}/bg.webp`;
+          console.log(`  Updating ${mdFile} with new image path: ${relativePath}`);
+          const updatedContent = fileContent.replace(imageUrl, relativePath);
+          writeFileSync(mdPath, updatedContent, 'utf8');
         } catch (error) {
           console.error(`  Error converting image: ${error.message}`);
         }
