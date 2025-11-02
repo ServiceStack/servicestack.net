@@ -17,6 +17,15 @@ directly from our documentation.
 
 [![](/img/posts/typesense-ai-search/ai_search_add_servicestack_reference.webp)](https://docs.servicestack.net)
 
+#### AI Search vs Instant Typesense Search
+
+AI Search is ideal for when you need conversational answers, explanations of concepts, or help understanding 
+how different features work together. The AI excels at synthesizing information across multiple documentation pages 
+to answer complex `how do I...` questions. 
+
+Otherwise the existing instant Typesense Search is still the best option when you know exactly what you're looking for - like a 
+specific API name, configuration option, or documentation page. 
+
 ## What is Typesense AI Search?
 
 Typesense AI Search is a conversational interface that allows you to ask natural language questions about 
