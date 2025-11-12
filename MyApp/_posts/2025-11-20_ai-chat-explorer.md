@@ -237,12 +237,35 @@ and registers a link to its UI on the [Metadata Page](https://docs.servicestack.
 public class ConfigureAiChat : IHostingStartup
 {
     public void Configure(IWebHostBuilder builder) => builder
-        .ConfigureServices(services => {
-            services.AddPlugin(new ChatFeature());
+        .ConfigureServices((context, services) => {
+
+            // Docs: https://docs.servicestack.net/ai-chat-api
+            services.AddPlugin(new ChatFeature {
+                EnableProviders = [
+                    "servicestack",
+                    // "groq",
+                    // "google_free",
+                    // "openrouter_free",
+                    // "ollama",
+                    // "google",
+                    // "anthropic",
+                    // "openai",
+                    // "grok",
+                    // "qwen",
+                    // "z.ai",
+                    // "mistral",
+                    // "openrouter",
+                ]
+            });
+            
+            // Persist AI Chat History, enables analytics at /admin-ui/chat
+            services.AddSingleton<IChatStore,DbChatStore>();
+            // Or store history in monthly partitioned tables in PostgreSQL:
+            // services.AddSingleton<IChatStore, PostgresChatStore>();
              
             services.ConfigurePlugin<MetadataFeature>(feature => {
                 feature.AddPluginLink("/chat", "AI Chat");
             });
-       });
+        });
 }
 ```
