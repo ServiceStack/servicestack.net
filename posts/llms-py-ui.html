@@ -41,7 +41,7 @@
     <meta property="og:description" content="Simple ChatGPT-like UI to access ALL Your LLMs, Locally or Remotely!" />
     <meta property="og:url" content="https://servicestack.net/posts/llms-py-ui" />
     <meta property="og:title" content="llms.py UI" />
-    <meta property="og:image" content="./img/posts/llms-py-ui/bg.webp" />
+    <meta property="og:image" content="./img/posts/ai-chat/bg.webp" />
 
 
 </head>
@@ -143,7 +143,7 @@ mountAll()
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/llms-py-ui/bg.webp" alt="llms.py UI Background" class="shadow-small">
+                    <img src="./img/posts/ai-chat/bg.webp" alt="llms.py UI Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
@@ -184,30 +184,30 @@ spend within the UI.</p>
 <li><strong>Per-Message Token Breakdown</strong> - Each individual message, both from you and the AI, now clearly shows its token count.</li>
 <li><strong>Thread Summaries</strong> - At the bottom of every new conversation, you'll find a consolidated summary detailing the total cost, tokens consumed (input and output), number of requests, and overall response time for that entire thread.</li>
 </ul>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-tokens-usage.webp"><img src="/img/posts/llms-py-ui/llms-tokens-usage.webp" alt="llms-tokens-usage.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-tokens-usage.webp"><img src="/img/posts/ai-chat/llms-tokens-usage.webp" alt="llms-tokens-usage.webp" /></a></p>
 </div>
 <p>Screenshot also shows support for new <strong>Edit</strong> and <strong>Redo</strong> features that appears after hovering over any <strong>User</strong>
 message, to modify or re-run an existing prompt.</p>
 <h3 id="dark-mode">Dark Mode<a class="header-anchor" href="javascript:;" onclick="location.hash='#dark-mode'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Support for Dark Mode which inherits the browser's dark mode preference or can be toggled
 with the <strong>Dark Mode toggle</strong> in the top-right of the UI.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/dark-attach-image.webp"><img src="/img/posts/llms-py-ui/dark-attach-image.webp" alt="dark-attach-image.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/dark-attach-image.webp"><img src="/img/posts/ai-chat/dark-attach-image.webp" alt="dark-attach-image.webp" /></a></p>
 </div>
 <h3 id="monthly-cost-analytics">Monthly Cost Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#monthly-cost-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>The <strong>Cost Analytics</strong> page provides a comprehensive overview of the usage costs for every day within a given month.
 Clicking on a day will expand it to show a detailed breakdown of the costs that was spent per model and provider.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/analytics-costs.webp"><img src="/img/posts/llms-py-ui/analytics-costs.webp" alt="analytics-costs.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/analytics-costs.webp"><img src="/img/posts/ai-chat/analytics-costs.webp" alt="analytics-costs.webp" /></a></p>
 </div>
 <h3 id="monthly-tokens-analytics">Monthly Tokens Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#monthly-tokens-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Similarly, the <strong>Tokens Analytics</strong> page provides a comprehensive overview of the token usage for every day within a
 given month. Clicking on a day expands it to show a detailed breakdown of the tokens that was spent per model and provider.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/dark-analytics-tokens.webp"><img src="/img/posts/llms-py-ui/dark-analytics-tokens.webp" alt="dark-analytics-tokens.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/dark-analytics-tokens.webp"><img src="/img/posts/ai-chat/dark-analytics-tokens.webp" alt="dark-analytics-tokens.webp" /></a></p>
 </div>
 <h3 id="monthly-activity-log">Monthly Activity Log<a class="header-anchor" href="javascript:;" onclick="location.hash='#monthly-activity-log'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>The <strong>Activity Log</strong> page lets you view the individual requests that make up the daily cost and token usage,
 the page itself provides a comprehensive and granular overview of all your AI interactions and requests including:
 Model, Provider, Partial Prompt, Input &amp; Output Tokens, Cost, Response Time, Speed, Date &amp; Time.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/analytics-activity.webp"><img src="/img/posts/llms-py-ui/analytics-activity.webp" alt="analytics-activity.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/analytics-activity.webp"><img src="/img/posts/ai-chat/analytics-activity.webp" alt="analytics-activity.webp" /></a></p>
 </div>
 <p>Activity Logs are maintained independently of the Chat History so you can clear or cleanup your Chat History
 without losing the detailed Activity Logs of your AI requests. Likewise you can delete Activity Logs
@@ -245,7 +245,7 @@ configured correctly, reachable and what their response times is for the simples
                     </div>
                 </div>
             </div>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-check.webp"><img src="/img/posts/llms-py-ui/llms-check.webp" alt="llms-check.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-check.webp"><img src="/img/posts/ai-chat/llms-check.webp" alt="llms-check.webp" /></a></p>
 </div>
 <p>As they're a good indicator for the reliability and speed you can expect from different providers we've created a
 <a href="https://github.com/ServiceStack/llms/actions/workflows/test-providers.yml">test-providers.yml</a> GitHub Action to
@@ -306,7 +306,7 @@ in <code>~/.llms/ui.json</code> where you can configure your preferred system pr
 able to maintain multiple independent conversational databases by just running the server on a different port.</p>
 <p>When needed you can backup and transfer your entire chat history between different browsers using the <strong>Export</strong>
 and <strong>Import</strong> features on the home page.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-home.webp"><img src="/img/posts/llms-py-ui/llms-home.webp" alt="llms-home.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-home.webp"><img src="/img/posts/ai-chat/llms-home.webp" alt="llms-home.webp" /></a></p>
 </div>
 <p><strong>Export Request Logs</strong></p>
 <p>You can also export your request log history (used by Analytics) by holding down <code>ALT</code> while clicking the <strong>Export</strong> button,
@@ -314,7 +314,7 @@ which can also be imported with <strong>Import</strong>.</p>
 <h2 id="rich-markdown-syntax-highlighting">Rich Markdown &amp; Syntax Highlighting<a class="header-anchor" href="javascript:;" onclick="location.hash='#rich-markdown-syntax-highlighting'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>To maximize readability there's full support for Markdown and Syntax highlighting for the most popular programming
 languages.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-syntax.webp"><img src="/img/posts/llms-py-ui/llms-syntax.webp" alt="llms-syntax.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-syntax.webp"><img src="/img/posts/ai-chat/llms-syntax.webp" alt="llms-syntax.webp" /></a></p>
 </div>
 <p>To quickly and easily make use of AI Responses, <strong>Copy Code</strong> icons are readily available on hover of all messages
 and code blocks.</p>
@@ -324,11 +324,11 @@ with support for Image, Audio and File inputs.</p>
 <h3 id="image-inputs-analysis">🖼️ 1. Image Inputs &amp; Analysis<a class="header-anchor" href="javascript:;" onclick="location.hash='#image-inputs-analysis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Images can be uploaded directly into your conversations with vision-capable models for comprehensive image analysis.</p>
 <p>Visual AI Responses are highly dependent on the model used. This is a typical example of the visual analysis provided by the latest Gemini Flash of our <a href="/img/logo.png">ServiceStack Logo</a>:</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/attach-image.webp"><img src="/img/posts/llms-py-ui/attach-image.webp" alt="attach-image.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/attach-image.webp"><img src="/img/posts/ai-chat/attach-image.webp" alt="attach-image.webp" /></a></p>
 </div>
 <h3 id="audio-input-transcription">🎤 2. Audio Input &amp; Transcription<a class="header-anchor" href="javascript:;" onclick="location.hash='#audio-input-transcription'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Likewise you can upload Audio files and have them transcribed and analyzed by multi-modal models with audio capabilities.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/attach-audio.webp"><img src="/img/posts/llms-py-ui/attach-audio.webp" alt="attach-audio.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/attach-audio.webp"><img src="/img/posts/ai-chat/attach-audio.webp" alt="attach-audio.webp" /></a></p>
 </div>
 <p>Example of processing audio input. Audio files can be uploaded with system and user prompts
 to instruct the model to transcribe and summarize its content where its
@@ -345,7 +345,7 @@ capable models to extract insights, summarize content or analyze data.</p>
 <li><strong>Batch Processing</strong>: Upload multiple files for comparative analysis</li>
 </ul>
 <p>Perfect for research, document review, data analysis and content extractions.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/attach-pdf.webp"><img src="/img/posts/llms-py-ui/attach-pdf.webp" alt="attach-pdf.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/attach-pdf.webp"><img src="/img/posts/ai-chat/attach-pdf.webp" alt="attach-pdf.webp" /></a></p>
 </div>
 <h2 id="custom-ai-chat-requests">Custom AI Chat Requests<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-ai-chat-requests'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Send Custom Chat Completion requests through the settings dialog, allowing Users to fine-tune
@@ -361,7 +361,7 @@ their AI requests with advanced options including:</p>
 <li><strong>Top Logprobs</strong> <code>(0-20)</code> for token probability analysis</li>
 <li><strong>Verbosity</strong> settings</li>
 </ul>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-settings.webp"><img src="/img/posts/llms-py-ui/llms-settings.webp" alt="llms-settings.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-settings.webp"><img src="/img/posts/ai-chat/llms-settings.webp" alt="llms-settings.webp" /></a></p>
 </div>
 <h2 id="enable-disable-providers">Enable / Disable Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#enable-disable-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Dynamically manage which providers you want to enable and disable at runtime.
@@ -369,21 +369,21 @@ Providers are invoked in the order they're defined in <code>llms.json</code> tha
 If a provider fails, it tries the next available provider.</p>
 <p>By default Providers with Free tiers are enabled first, followed by local providers and then premium
 cloud providers which can all be enabled or disabled in the UI:</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-providers.webp"><img src="/img/posts/llms-py-ui/llms-providers.webp" alt="llms-providers.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-providers.webp"><img src="/img/posts/ai-chat/llms-providers.webp" alt="llms-providers.webp" /></a></p>
 </div>
 <h2 id="search-history">Search History<a class="header-anchor" href="javascript:;" onclick="location.hash='#search-history'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Quickly find past conversations with built-in search:</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-search-python.webp"><img src="/img/posts/llms-py-ui/llms-search-python.webp" alt="llms-search-python.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-search-python.webp"><img src="/img/posts/ai-chat/llms-search-python.webp" alt="llms-search-python.webp" /></a></p>
 </div>
 <h2 id="smart-autocomplete-for-models-system-prompts">Smart Autocomplete for Models &amp; System Prompts<a class="header-anchor" href="javascript:;" onclick="location.hash='#smart-autocomplete-for-models-system-prompts'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Autocomplete components are used to quickly find and select the preferred model and system prompt.</p>
 <p>Only models from enabled providers will appear in the drop down, which will be available immediately after
 providers are enabled.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-autocomplete.webp"><img src="/img/posts/llms-py-ui/llms-autocomplete.webp" alt="llms-autocomplete.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-autocomplete.webp"><img src="/img/posts/ai-chat/llms-autocomplete.webp" alt="llms-autocomplete.webp" /></a></p>
 </div>
 <h2 id="comprehensive-system-prompt-library">Comprehensive System Prompt Library<a class="header-anchor" href="javascript:;" onclick="location.hash='#comprehensive-system-prompt-library'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>Access a curated collection of 200+ professional system prompts designed for various use cases, from technical assistance to creative writing.</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-system-prompt.webp"><img src="/img/posts/llms-py-ui/llms-system-prompt.webp" alt="llms-system-prompt.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-system-prompt.webp"><img src="/img/posts/ai-chat/llms-system-prompt.webp" alt="llms-system-prompt.webp" /></a></p>
 </div>
 <p>System Prompts be can added, removed &amp; sorted in <code>~/.llms/ui.json</code></p>
 <pre><code class="language-json">{
@@ -399,7 +399,7 @@ providers are enabled.</p>
 </code></pre>
 <h3 id="reasoning">Reasoning<a class="header-anchor" href="javascript:;" onclick="location.hash='#reasoning'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Access the thinking process of advanced AI models with specialized rendering for reasoning and chain-of-thought responses:</p>
-<div class="wideshot"><p><a href="/img/posts/llms-py-ui/llms-reasoning.webp"><img src="/img/posts/llms-py-ui/llms-reasoning.webp" alt="llms-reasoning.webp" /></a></p>
+<div class="wideshot"><p><a href="/img/posts/ai-chat/llms-reasoning.webp"><img src="/img/posts/ai-chat/llms-reasoning.webp" alt="llms-reasoning.webp" /></a></p>
 </div>
 <h2 id="get-started-today">Get Started Today<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started-today'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>The new llms.py UI makes powerful AI accessible and private. Whether you're a developer, researcher or AI enthusiast,
@@ -476,47 +476,6 @@ llms --serve 8000
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/typesense-ai-search">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/typesense-ai-search/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/typesense-ai-search" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Ask ServiceStack Docs - Introducing AI Search">
-                                                    Ask ServiceStack Docs - Introducing AI Search
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="Ask ServiceStack Docs - Introducing AI Search background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-11-04T00:00:00.0000000">November 4, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>4 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -633,6 +592,47 @@ llms --serve 8000
                                                     <time datetime="2025-10-21T00:00:00.0000000">October 21, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>9 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-async-task-builder">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-async-task-builder/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-async-task-builder" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="RDBMS Async Tasks Builder">
+                                                    RDBMS Async Tasks Builder
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Effortlessly run multiple async DB Requests in parallel with OrmLite&#x27;s new Async Tasks Builder</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="RDBMS Async Tasks Builder background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-10-20T00:00:00.0000000">October 20, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>4 min read</span>
                                                 </div>
                                             </div>
                                         </div>

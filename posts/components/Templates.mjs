@@ -21,9 +21,10 @@ export const Index = [
     template('razor-pages', 'Razor Pages', 'Razor',['bootstrap']),
     template('mvcauth', 'MVC', 'Windows',['bootstrap']),
     template('script', 'MVC', 'Windows',['bootstrap']),
-    template('vue-spa', 'Vue SPA', 'Vue',['bootstrap']),
-    template('react-spa', 'React SPA', 'React',['bootstrap']),
-    template('angular-spa', 'Angular SPA', 'Angular',['bootstrap']),
+    template('vue-spa', 'Vue SPA', 'Vue',['tailwind']),
+    template('react-vite', 'React Vite', 'React',['tailwind','autoquery']),
+    template('react-spa', 'React SPA', 'React',['tailwind','autoquery']),
+    template('angular-spa', 'Angular SPA', 'Angular',['tailwind']),
     template('svelte-spa', 'Svelte SPA', 'Angular',['bootstrap']),
     template('kmp-desktop', 'Compose Desktop', 'Compose',['kotlin','desktop']),
 ].reduce((acc, template) => { acc[template.repo] = template; return acc}, {})
