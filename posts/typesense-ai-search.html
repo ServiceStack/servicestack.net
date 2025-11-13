@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Install PostgreSQL, MySql and SQL Server on Apple Silicon - ServiceStack</title>
+    <title>Ask ServiceStack Docs - Introducing AI Search - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Easiest way to install PostgreSQL, MySql and SQL Server on macOS running Apple Silicon&#x27;s M2" />
-    <meta property="og:url" content="https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon" />
-    <meta property="og:title" content="Install PostgreSQL, MySql and SQL Server on Apple Silicon" />
-    <meta property="og:image" content="./img/posts/postgres-mysql-sqlserver-on-apple-silicon/bg.webp" />
+    <meta property="og:description" content="Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs" />
+    <meta property="og:url" content="https://servicestack.net/posts/typesense-ai-search" />
+    <meta property="og:title" content="Ask ServiceStack Docs - Introducing AI Search" />
+    <meta property="og:image" content="./img/posts/typesense-ai-search/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Install PostgreSQL, MySql and SQL Server on Apple Silicon
+                Ask ServiceStack Docs - Introducing AI Search
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -143,20 +143,21 @@ mountAll()
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/postgres-mysql-sqlserver-on-apple-silicon/bg.webp" alt="Install PostgreSQL, MySql and SQL Server on Apple Silicon Background" class="shadow-small">
+                    <img src="./img/posts/typesense-ai-search/bg.webp" alt="Ask ServiceStack Docs - Introducing AI Search Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
-                        <a href="posts/tagged/dev" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">dev</a>
+                        <a href="posts/tagged/llms" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">llms</a>
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/docs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">docs</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2023-07-25T00:00:00.0000000">July 25, 2023</time>
+                                <time datetime="2025-11-12T00:00:00.0000000">November 12, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>8 min read</span>
+                                <span>4 min read</span>
                             </div>
                         </div>
                 </div>
@@ -169,359 +170,105 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>Becoming a <a href="https://twitter.com/demisbellot/status/1678256650753552384">recent owner</a> of Apple's shiny new 15&quot; Macbook Air
-was my first foray into Apple's exciting new ARM chips where they've somehow managed to package all day battery life
-with performance exceeding my primary Intel iMac 5K Desktop into the the thinnest of form factors.</p>
-<p><a href="https://www.apple.com/macbook-air/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/macbookair_2x.jpg" alt="" /></a></p>
-<p>As a .NET developer that primarily develops on Windows/WSL and deploys to Linux x86 servers I've been hesitant to
-move to Apple's new ARM hardware architecture with the potential friction and incompatibilities that might entail,
-however with more ServiceStack Customers moving to Apple's new computers it's become increasingly important to
-also ensure we can deliver a great development experience of ServiceStack on Apple Silicon.</p>
-<h3 id="everything-just-works">Everything just works<a class="header-anchor" href="javascript:;" onclick="location.hash='#everything-just-works'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>What I wasn't expecting is for all the development tools I use daily would not only work flawlessly, but to do so natively
-with all running native ARM builds:</p>
+                    <p>We're excited to announce the new Typesense-powered <strong>AI Search</strong>, a powerful new feature bringing
+conversational AI capabilities to <a href="https://docs.servicestack.net">ServiceStack Docs</a>.</p>
+<div class="not-prose">
+<div class="my-8 max-w-3xl mx-auto rounded-lg overflow-hidden shadow hover:shadow-xl"><p><a href="https://docs.servicestack.net"><img src="/img/posts/typesense-ai-search/ai-search-default.webp" alt="" /></a></p>
+</div>
+</div>
+<div><h3 id="comprehensive-docs">Comprehensive Docs<a class="header-anchor" href="javascript:;" onclick="location.hash='#comprehensive-docs'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>As ServiceStack has grown over the years, so have our docs - now spanning hundreds of pages covering everything
+from core features to advanced integrations. While comprehensive documentation is invaluable, finding the right information
+quickly can be challenging. Traditional search works well when you know what you're looking for, but what about when you
+need to understand concepts, explore solutions, or learn how different features work together? That's where <strong>AI Search</strong> comes in.</p>
+<div class="not-prose">
+<div class="my-8 max-w-2xl mx-auto"><p><a href="https://docs.servicestack.net"><img src="/img/posts/typesense-ai-search/ai-search-button.webp" alt="" /></a></p>
+</div>
+</div>
+</div>
+<div><p><strong>AI Search</strong> leverages Typesense's advanced <a href="https://typesense.org/docs/29.0/api/conversational-search-rag.html">Conversational Search API</a>
+that uses Retrieval-Augmented Generation (RAG) of our docs combined with an LLM to provide intelligent, context-aware answers
+directly from our documentation.</p>
+<div class="not-prose">
+<div class="my-8 max-w-3xl mx-auto rounded-lg overflow-hidden shadow hover:shadow-xl"><p><a href="https://docs.servicestack.net"><img src="/img/posts/typesense-ai-search/ai_search_add_servicestack_reference.webp" alt="" /></a></p>
+</div>
+</div>
+</div>
+<div><h4 id="ai-search-vs-instant-typesense-search">AI Search vs Instant Typesense Search<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-search-vs-instant-typesense-search'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p><strong>AI Search</strong> is ideal for when you need conversational answers, explanations of concepts, or help understanding
+how different features work together. The AI excels at synthesizing information across multiple documentation pages
+to answer complex <code>how do I...</code> questions.</p>
+<p>Otherwise the existing instant Typesense Search is still the best option when you know exactly what you're looking for - like a
+specific API name, configuration option, or documentation page.</p>
+<h2 id="what-is-typesense-ai-search">What is Typesense AI Search?<a class="header-anchor" href="javascript:;" onclick="location.hash='#what-is-typesense-ai-search'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Typesense AI Search is a conversational interface that allows you to ask natural language questions about
+ServiceStack and receive:</p>
 <ul>
-<li>Oh My Zsh</li>
-<li>.NET SDK</li>
-<li>Rider</li>
-<li>Node.js</li>
-<li>VS Code</li>
-<li>Docker</li>
-<li>GitHub Desktop</li>
-<li>Discord</li>
-<li>DataGrip</li>
+<li><strong>AI-Generated Answers</strong> - Intelligent responses powered by Typesense's conversational model</li>
+<li><strong>Relevant Documentation Links</strong> - Direct links to the most relevant documentation pages</li>
+<li><strong>Multi-turn Conversations</strong> - Ask follow-up questions within the same conversation context</li>
 </ul>
-<p>This has got to be the smoothest transition to a new general purpose CPU architecture in the history of computing of
-which credit should go to all involved, Apple for making new hardware so appealing to encourage mass adoption and
-all developers of these products for releasing native macOS ARM builds to support their Users on Apple Silicon.</p>
-<h3 id="installing-all-popular-rdbmss">Installing all popular RDBMS's<a class="header-anchor" href="javascript:;" onclick="location.hash='#installing-all-popular-rdbmss'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Our <a href="https://account.servicestack.net/ormlite/">OrmLite</a> multi &amp; cross-platform ORM is the first product we want to profile
-and benchmark to ensure it also has great performance on Apple Silicon. For this I wanted to have local installations
-of each supported Sqlite, PostgreSQL, MySql and SQL Server RDBMS to load test against, which as it was easier than it should be,
-I wanted to document here so that it's hopeful useful for others needing to do the same thing.</p>
-<p>Installing developer tools has not only become frictionless, but in today's world of ubiquitous Docker adoption, it's
-become much easier to run complex RDBMS software on macOS ARM, even SQL Server - the unlikeliest of combinations!</p>
-<p>First thing you'll need to install is <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> for macOS
-by clicking on their <a href="https://desktop.docker.com/mac/main/arm64/Docker.dmg">Apple Chip</a> download which will let you
-run each RDBMS in a containerized Docker App.</p>
-<p>After Docker is running, installing and running PostgreSQL and MySql can be done with a single command:</p>
-<h3 id="install-and-run-postgresql">Install and run PostgreSQL<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-postgresql'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --name postgres -e POSTGRES_PASSWORD=p@55wOrd -p 127.0.0.1:5432:5432 -d postgres</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h3 id="install-and-run-mysql">Install and run MySql<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-mysql'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=p@55wOrd -d mysql:latest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<blockquote>
-<p>Feel free to update commands to use your preferred strong password instead</p>
-</blockquote>
-<h3 id="install-and-run-sql-server">Install and run SQL Server<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-sql-server'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>SQL Server requires more resources than the popular RDBMS's and as it doesn't have a native ARM Docker Image requires
-a bit more configuration.</p>
-<p>First you'll want to ensure you have at least <strong>4GB RAM</strong> available to containers from
-the <strong>Resources</strong> Tab in Docker Settings you can open with <code>⌘,</code></p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-resources.png" alt="" /></p>
-<p>My MacBook Air's <strong>24GB RAM</strong> configuration defaulted to <strong>7.9 GB</strong>, if you have a lower configuration you'll want to ensure
-<strong>4GB</strong> is available to SQL Server.</p>
-<p>Next in the <strong>General</strong> tab you'll want to ensure <strong>Use Virtualization Framework</strong> and <strong>VirtioFS</strong> is checked which will
-allow SQL Server <strong>AMD64</strong> Image will run on Apple's new
-<a href="https://developer.apple.com/documentation/virtualization">Virtualization framework</a>:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-general.png" alt="" /></p>
-<p>After which you'll be able to install and run SQL Server with:</p>
-<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>docker run --platform=linux/amd64 --name mssql -e ACCEPT_EULA=1 -e MSSQL_SA_PASSWORD=p@55wOrd -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-sky-500 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>You'll be able to check if all Docker containers are now running by clicking on the <strong>Containers</strong> tab in Docker Desktop:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/docker-containers.png" alt="" /></p>
-<h3 id="lazydocker">lazydocker<a class="header-anchor" href="javascript:;" onclick="location.hash='#lazydocker'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>That's pretty sweet, although I'm even more excited about
-<a href="https://github.com/jesseduffield/lazydocker">lazydocker</a> as an alternative to Docker Desktop for managing
-Docker containers which can be installed with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>brew install lazydocker</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>As it's a Terminal UI it can be run everywhere where there's a Terminal, in local and remote terminals as well as
-Rider and VS Code's built-in Terminal UIs where you can quickly perform Docker tasks without breaking your development
-workflow:</p>
-<p><a href="https://github.com/jesseduffield/lazydocker"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/lazydocker.png" alt="" /></a></p>
-<h2 id="datagrip">DataGrip<a class="header-anchor" href="javascript:;" onclick="location.hash='#datagrip'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Now we can see they're all running, lets connect to them. You could use the command line tools specific to each database
-but my preference is to use <a href="https://www.jetbrains.com/datagrip/">JetBrains DataGrip</a> which lets you connect and manage
-any RDBMS from a single Desktop App, including many of the most popular NoSQL data stores.</p>
-<h3 id="connect-to-all-database-connections">Connect to all Database connections<a class="header-anchor" href="javascript:;" onclick="location.hash='#connect-to-all-database-connections'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>In <strong>Database Explorer</strong>, click on the <code>+</code> New Icon to add a new Data Source to <strong>Microsoft SQL Server</strong>, <strong>MySql</strong>
-and <strong>PostgreSQL</strong> using the passwords used to run the Docker commands (e.g.<code>p@55wOrd</code>) and the default user names
-for each RDBMS:</p>
+<h2 id="key-features">Key Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#key-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><a href="https://docs.servicestack.net"><img src="/img/posts/typesense-ai-search/ai-search-button.webp" alt="" /></a></p>
+<h3 id="conversational-interface">🤖 Conversational Interface<a class="header-anchor" href="javascript:;" onclick="location.hash='#conversational-interface'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Click the AI Search button (chat icon) in the header to open an intuitive modal dialog.
+Type your question and get instant answers without leaving the documentation.</p>
+<h3 id="retrieval-augmented-generation-rag">📚 Retrieval-Augmented Generation (RAG)<a class="header-anchor" href="javascript:;" onclick="location.hash='#retrieval-augmented-generation-rag'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The AI doesn't just generate responses - it grounds its answers in actual ServiceStack documentation.
+Each response includes:</p>
 <ul>
-<li>SQL Server: <code>sa</code></li>
-<li>MySQL: <code>root</code></li>
-<li>PostgreSQL: <code>postgres</code></li>
+<li><strong>AI-Generated Answer</strong> - Contextual explanation based on your question</li>
+<li><strong>Search Results</strong> - Up to 10 relevant documentation snippets with direct links</li>
+<li><strong>Snippets</strong> - Quick previews of relevant content to help find what you need</li>
 </ul>
-<p>After connecting to all databases you should end up with active connections to all empty databases:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-databases.png" alt="" /></a></p>
-<p>Which you can open a <strong>New &gt; Query Console</strong> or <code>⇧⌘L</code> to start executing generic queries against like <code>SELECT @@VERSION</code>
-in SQL Server to display the version of SQL Server that's running:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-mssql-version.png" alt="" /></a></p>
-<h3 id="create-test-databases">Create Test Databases<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-test-databases'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>But to do anything interesting lets create <code>test</code> database which you can create with <code>New &gt; Database</code> for SQL Server and
-PostgreSQL or <code>New &gt; Schema</code> in MySQL:</p>
-<p><a href="https://www.jetbrains.com/datagrip/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/datagrip-test.png" alt="" /></a></p>
-<h3 id="net-database-admin-ui">.NET Database Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#net-database-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Next thing to try is accessing them from the same Application, which ServiceStack .NET Apps have great
-support for with its built-in <a href="https://docs.servicestack.net/admin-ui-database">Database Admin UI</a> which lets you
-browse and query an App's configured databases:</p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="NZkeyuc_prg" style="background-image: url('https://img.youtube.com/vi/NZkeyuc_prg/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>You can easily try this out from the database-enabled <a href="https://razor.web-templates.io">razor</a> project template which
-adopts our <a href="/posts/javascript">Simple, Modern JavaScript</a> approach that uses the native
-JavaScript Modules support in modern Web Browsers to avoid any complex npm build tooling.</p>
-<p>We can create an App to test against your databases by installing the <a href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a> and
-<code>x</code> <a href="https://docs.servicestack.net/dotnet-tool">dotnet tool</a>:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>dotnet tool install --global x</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>This will let you create any <a href="/start">ServiceStack Project Template</a> with your preferred Project Name from the command-line, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new razor DatabaseTest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Which creates a new .NET App that you can open with your preferred .NET IDE or text editor, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>code DatabaseTest/DatabaseTest</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>By default the App is configured to use a local SQLite database, we can extend it to connect to different RDBMS's
-by adding the necessary RDBMS and <code>AdminDatabaseFeature</code> NuGet packages in <code>DatabaseTest.csproj</code>:</p>
-<pre><code class="language-xml">&lt;PackageReference Include=&quot;ServiceStack.OrmLite.MySql&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.PostgreSQL&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.OrmLite.SqlServer.Data&quot; Version=&quot;8.*&quot; /&gt;
-&lt;PackageReference Include=&quot;ServiceStack.Server&quot; Version=&quot;8.*&quot; /&gt;
-</code></pre>
-<p>New dependencies can be installed with VS Code's <strong>Restore</strong> popup or by explicitly running <code>dotnet restore</code>.</p>
-<p>We can then register named connections for each of our databases by replacing the existing <code>Configure.Db.cs</code> with:</p>
-<pre><code class="language-csharp">public class ConfigureDb : IHostingStartup
-{
-    public void Configure(IWebHostBuilder builder) =&gt; builder
-        .ConfigureServices((context,services) =&gt; {
-            var dbFactory = new OrmLiteConnectionFactory(
-                context.Configuration.GetConnectionString(&quot;DefaultConnection&quot;) ?? &quot;App_Data/db.sqlite&quot;,
-                SqliteDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;postgres&quot;, 
-                &quot;Server=localhost;User Id=postgres;Password=p@55wOrd;Database=test;Pooling=true;MinPoolSize=0;MaxPoolSize=200&quot;,
-                PostgreSqlDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;mysql&quot;, 
-                &quot;Server=localhost;User Id=root;Password=p@55wOrd;Database=test;Pooling=true;MinPoolSize=0;MaxPoolSize=200&quot;,
-                MySqlDialect.Provider);
-
-            dbFactory.RegisterConnection(&quot;mssql&quot;, 
-                &quot;Server=localhost;User Id=sa;Password=p@55wOrd;Database=test;MultipleActiveResultSets=True;Encrypt=False;&quot;,
-                SqlServer2012Dialect.Provider);
-
-            services.AddSingleton&lt;IDbConnectionFactory&gt;(dbFactory);
-        })
-        .ConfigureAppHost(appHost =&gt; {
-            // Enable built-in Database Admin UI at /admin-ui/database
-            appHost.Plugins.Add(new AdminDatabaseFeature());
-        });
-}
-</code></pre>
-<p>This will now let us access the <a href="https://docs.servicestack.net/ormlite/getting-started#multiple-database-connections">registered databases</a>
-in our APIs, but first lets populate the databases with some data.</p>
-<h3 id="multi-database-migrations">Multi Database Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#multi-database-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>When a new project is created it populates its default configured SQLite database with some test data, we can do the same
-for the other registered database by duplicating the App's initial <a href="https://docs.servicestack.net/ormlite/db-migrations">DB migration</a>
-to a new DB <code>Migration1001.cs</code> with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>sed &quot;s/1000/1001/&quot; ./Migrations/Migration1000.cs &gt; ./Migrations/Migration1001.cs</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Then annotating it with a <code>[NamedConnection]</code> attribute for each registered database:</p>
-<pre><code class="language-csharp">[NamedConnection(&quot;mssql&quot;)]
-[NamedConnection(&quot;mysql&quot;)]
-[NamedConnection(&quot;postgres&quot;)]
-public class Migration1001 : MigrationBase
-{
-    //...
-}
-</code></pre>
-<p>That can then be executed with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run migrate</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Where it will execute all new DB Migrations, in this case apply the same Migration to each configured database.</p>
-<p>Now that our App's databases are all populated and ready to go, we can run it with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run dev</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Then view the built-in Admin Database UI at:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>https://localhost:5001/admin-ui/database</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>and signing in with the Admin user created in <code>Configure.AuthRepository.cs</code>:</p>
+<h3 id="multi-turn-conversations">💬 Multi-turn Conversations<a class="header-anchor" href="javascript:;" onclick="location.hash='#multi-turn-conversations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Maintain context across multiple questions in a single conversation:</p>
 <ul>
-<li><code>admin@email.com</code></li>
-<li><code>p@55wOrd</code></li>
+<li>Ask initial questions about ServiceStack features</li>
+<li>Follow up with clarifications or related topics</li>
+<li>The conversation ID is automatically maintained for coherent context</li>
+<li>Start a new conversation anytime by clicking on <strong>clear</strong> links or refreshing</li>
 </ul>
-<p>Where it displays all the App's configured database tables on its home page:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-home.png" alt="" /></p>
-<p>Whose contents can be viewed by drilling down and clicking on each table:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-mssql-bookings.png" alt="" /></p>
-<p>Which displays its rows using the <a href="https://docs.servicestack.net/vue/autoquerygrid">AutoQuery Grid Vue Component</a> that
-can be sorted and filtered as needed:</p>
-<p><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/admin-db-postgres-coupons.png" alt="" /></p>
-<h2 id="vue.mjs-project-template-features">Vue .mjs project template features<a class="header-anchor" href="javascript:;" onclick="location.hash='#vue.mjs-project-template-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Whilst you have the App running, check out its other high-productivity features:</p>
-<h3 id="create-a-multi-user-booking-system-with-autoquery">Create a multi-user Booking system with AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#create-a-multi-user-booking-system-with-autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The App's Bookings APIs are built using <a href="https://docs.servicestack.net/autoquery-crud">AutoQuery CRUD</a>, allowing for
-rapid development of typed CRUD Services using only declarative POCO DTOs:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/bookings-auto">https://localhost:5001/bookings-auto</a>
+<h3 id="asking-questions">Asking Questions<a class="header-anchor" href="javascript:;" onclick="location.hash='#asking-questions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li>Type your question naturally (e.g., &quot;How do I set up authentication?&quot;)</li>
+<li>Review the AI answer and explore the suggested documentation links</li>
+</ul>
+<h3 id="following-up">Following Up<a class="header-anchor" href="javascript:;" onclick="location.hash='#following-up'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ol>
+<li>Ask related questions in the same conversation</li>
+<li>The AI maintains context from previous messages</li>
+<li>Click any documentation link to navigate to the full page</li>
+<li>Start a new conversation anytime by refreshing</li>
+</ol>
+<h2 id="technical-implementation">Technical Implementation<a class="header-anchor" href="javascript:;" onclick="location.hash='#technical-implementation'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The AI Search feature was built with:</p>
+<ul>
+<li><a href="https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/wwwroot/mjs/components/TypesenseConversation.mjs">TypesenseConversation Component</a> - AI Search UI Vue component</li>
+<li><strong>Indexing</strong> - Uses <a href="https://github.com/typesense/typesense-docsearch-scraper">typesense-docsearch-scraper</a> to index
+content and generate embeddings using custom field definitions defined in <a href="https://github.com/ServiceStack/docs.servicestack.net/blob/main/search-server/typesense-scraper/typesense-scraper-config.json">typesense-scraper-config.json</a></li>
+<li><strong>Setup</strong> - Conversational Model and Conversation History collection created in <a href="https://github.com/ServiceStack/docs.servicestack.net/blob/main/.github/workflows/setup-search-index.yml">setup-search-index.yml</a> GitHub Action</li>
+<li><strong>LLM</strong> - Typesense sends the query and relevant context to Gemini Flash 2.5 as the Conversational Model</li>
+<li><strong>Backend</strong>: Uses <a href="https://typesense.org/docs/29.0/api/conversational-search-rag.html">Typesense Conversational Search (RAG)</a> <code>multi_search</code> API</li>
+</ul>
+<h2 id="use-cases">Use Cases<a class="header-anchor" href="javascript:;" onclick="location.hash='#use-cases'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="for-developers">For Developers<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-developers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>Quick Answers</strong> - Get instant answers without searching through docs</li>
+<li><strong>Learning</strong> - Understand ServiceStack concepts through conversational explanations</li>
+<li><strong>Troubleshooting</strong> - Ask about common issues and get relevant solutions</li>
+<li><strong>Discovery</strong> - Find features you didn't know existed</li>
+</ul>
+<h3 id="for-teams">For Teams<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-teams'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li><strong>Onboarding</strong> - New team members can quickly learn ServiceStack</li>
+<li><strong>Documentation</strong> - Reduces support burden by providing instant answers</li>
+<li><strong>Knowledge Base</strong> - Conversational access to your documentation</li>
+</ul>
+<h2 id="feedback-support">Feedback &amp; Support<a class="header-anchor" href="javascript:;" onclick="location.hash='#feedback-support'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We'd love to hear your feedback! If you encounter any issues or have suggestions for improvements, please
+<a href="https://forums.servicestack.net/">let us know!</a>.</p>
 </div>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="rSFiikDjGos" style="background-image: url('https://img.youtube.com/vi/rSFiikDjGos/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>In addition, all AutoQuery APIs benefit from the built-in <a href="https://docs.servicestack.net/locode/">Locode's</a> Auto Management UI:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/locode">https://localhost:5001/locode</a>
-</div>
-<p><a href="https://docs.servicestack.net/locode/"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/db-test-locode.png" alt="" /></a></p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="hkuO_DMFXmc" style="background-image: url('https://img.youtube.com/vi/hkuO_DMFXmc/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>As well as end-to-end typed integrations with the most <a href="/service-reference">popular programming languages</a> accessible
-from the <a href="https://docs.servicestack.net/api-explorer#code-tab">code tab</a> of the built-in
-<a href="https://docs.servicestack.net/api-explorer">API Explorer</a>:</p>
-<div class="not-prose text-center">
-    <a class="text-xl text-indigo-600" href="https://localhost:5001/ui/QueryBookings?tab=code">https://localhost:5001/ui/QueryBookings?tab=code</a>
-</div>
-<p><a href="https://docs.servicestack.net/api-explorer"><img src="/img/posts/postgres-mysql-sqlserver-on-apple-silicon/db-test-ui-code.png" alt="" /></a></p>
-<div class="flex justify-center">
-    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="lUDlTMq9DHU" style="background-image: url('https://img.youtube.com/vi/lUDlTMq9DHU/maxresdefault.jpg')"></lite-youtube>
-</div>
-<p>I hope this has been an informative post and highlighted some cool products and features, any questions or feedback
-is welcome by commenting below.</p>
 
                 </div>
             </div>
@@ -624,47 +371,6 @@ is welcome by commenting below.</p>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
-                                        <a href="posts/typesense-ai-search">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/typesense-ai-search/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/typesense-ai-search" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Ask ServiceStack Docs - Introducing AI Search">
-                                                    Ask ServiceStack Docs - Introducing AI Search
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="Ask ServiceStack Docs - Introducing AI Search background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-11-12T00:00:00.0000000">November 12, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>4 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
                                         <a href="posts/apikey_auth_apis">
                                             <img class="h-48 w-full object-cover" src="./img/posts/identityauth-claims-roles/bg.webp" alt="">
                                         </a>
@@ -737,6 +443,47 @@ is welcome by commenting below.</p>
                                                     <time datetime="2025-10-23T00:00:00.0000000">October 23, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>23 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/rdbms_analytics">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/analytics/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/rdbms_analytics" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="In Depth Interactive API Analytics for PostgreSQL, SQL Server &amp; MySQL">
+                                                    In Depth Interactive API Analytics for PostgreSQL, SQL Server &amp; MySQL
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Comprehensive and Interactive RDBMS API Analytics in Admin UI, deep insights into API usage, performance, users, API Keys &amp; IPs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="In Depth Interactive API Analytics for PostgreSQL, SQL Server &amp; MySQL background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-10-21T00:00:00.0000000">October 21, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>9 min read</span>
                                                 </div>
                                             </div>
                                         </div>
