@@ -160,7 +160,7 @@ mountAll()
                             <div class="mb-6 text-lg text-gray-500">
                                 <time datetime="2025-11-13T00:00:00.0000000">November 13, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>8 min read</span>
+                                <span>9 min read</span>
                             </div>
                         </div>
                 </div>
@@ -226,17 +226,19 @@ description="A Next.js template with TypeScript and Tailwind CSS, offering serve
 <h2 id="comprehensive-react-component-library">Comprehensive React Component Library<a class="header-anchor" href="javascript:;" onclick="location.hash='#comprehensive-react-component-library'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>All three templates leverage our new <a href="https://react.servicestack.net">React Component Gallery</a>—a high-fidelity port of our proven <a href="https://docs.servicestack.net/vue/">Vue Component Library</a> and <a href="https://blazor.servicestack.net">Blazor Component Library</a>. This comprehensive collection provides everything needed to build highly productive, modern and responsive web applications.</p>
 <div class="not-prose">
-    <a href="https://react.servicestack.net" class="block shadow-lg hover:shadow-xl">
-        <img class="w-full" src="/img/posts/react/react-gallery.webp">
-    </a>
+<div class="my-8 max-w-3xl mx-auto rounded-lg overflow-hidden shadow hover:shadow-xl"><p><a href="https://react.servicestack.net"><img src="/img/posts/react/react-gallery.webp" alt="" /></a></p>
 </div>
-<p>Switch to Dark Mode to see how all components looks in Dark Mode:</p>
+</div>
+<div><p>Switch to Dark Mode to see how all components looks in Dark Mode:</p>
 <div class="not-prose">
-    <a href="https://react.servicestack.net" class="block shadow-lg hover:shadow-xl">
-        <img class="w-full" src="/img/posts/react/react-gallery-dark.webp">
-    </a>
+<div class="my-8 max-w-3xl mx-auto rounded-lg overflow-hidden shadow hover:shadow-xl"><p><a href="https://react.servicestack.net"><img src="/img/posts/react/react-gallery-dark.webp" alt="" /></a></p>
 </div>
-<p>ServiceStack's first-class React support positions your applications at the forefront of AI-assisted development. With declarative APIs, complete type safety, and minimal boilerplate, you can leverage AI code generation with confidence while maintaining the quality and maintainability your production systems demand.</p>
+</div>
+</div>
+<div><p>ServiceStack's first-class React support positions your applications at the forefront of AI-assisted development. With declarative APIs, complete type safety, and minimal boilerplate, you can leverage AI code generation with confidence while maintaining the quality and maintainability your production systems demand.</p>
+<h2 id="admin-analytics-ui-persistence">Admin Analytics UI &amp; Persistence<a class="header-anchor" href="javascript:;" onclick="location.hash='#admin-analytics-ui-persistence'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack's AI Chat now includes comprehensive chat history persistence and analytics capabilities, providing deep visibility into AI usage patterns, costs, and performance across your infrastructure. Choose between <code>DbChatStore</code> for universal RDBMS compatibility or <code>PostgresChatStore</code> for optimized PostgreSQL performance with monthly table partitioning—both ensuring consistent performance as history grows.</p>
+<p>The Admin UI Analytics dashboard delivers actionable insights through three key views: <strong>Cost Analysis</strong> tracks spending across providers and models with daily and monthly breakdowns, <strong>Token Usage</strong> monitors input and output token consumption to identify optimization opportunities, and <strong>Activity Log</strong> maintains a searchable audit trail with full conversation details. These visualizations enable data-driven decisions about provider selection, cost optimization, and help debug AI features in production by capturing every request and response flowing through AI Chat's UI, external OpenAI endpoints, and internal <code>IChatStore</code> requests.</p>
 <h2 id="typescript-data-models">TypeScript Data Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescript-data-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>As AI Models are not as adept at generating C# APIs or Migrations yet, they excel at generating TypeScript code, which our
 <a href="https://docs.servicestack.net/autoquery/okai-models">TypeScript Data Models</a> feature can take advantage of by generating all the C# AutoQuery CRUD APIs and DB Migrations needing to support it.</p>
@@ -259,12 +261,15 @@ description="A Next.js template with TypeScript and Tailwind CSS, offering serve
                     </div>
                 </div>
             </div>
+</div>
 <p>This is enough to generate a complete CRUD UI to manage Bookings
 in your React App with the <a href="https://react.servicestack.net/gallery/autoquerygrid">React AutoQueryGrid Component</a>.
 or with ServiceStack's built-in <a href="https://docs.servicestack.net/locode/">Locode UI</a>:</p>
-<div class="wideshot"><p><a href="https://docs.servicestack.net/locode/"><img src="/img/posts/react/bookings-locode.webp" alt="" /></a></p>
+<div class="not-prose">
+<div class="my-8 max-w-3xl mx-auto rounded-lg overflow-hidden shadow hover:shadow-xl"><p><a href="https://docs.servicestack.net/locode/"><img src="/img/posts/react/bookings-locode.webp" alt="" /></a></p>
 </div>
-<h3 id="cheat-sheet">Cheat Sheet<a class="header-anchor" href="javascript:;" onclick="location.hash='#cheat-sheet'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+</div>
+<div><h3 id="cheat-sheet">Cheat Sheet<a class="header-anchor" href="javascript:;" onclick="location.hash='#cheat-sheet'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>We'll quickly cover the common dev workflow for this feature.</p>
 <p>To create a new Table use <code>init &lt;Table&gt;</code>, e.g:</p>
 <div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
@@ -281,6 +286,7 @@ or with ServiceStack's built-in <a href="https://docs.servicestack.net/locode/">
                     </div>
                 </div>
             </div>
+</div>
 <p>This will generate an empty <code>MyApp.ServiceModel/&lt;Table&gt;.d.ts</code> file along with stub AutoQuery APIs and DB Migration implementations.</p>
 <h4 id="regenerate-autoquery-apis-and-db-migrations">Regenerate AutoQuery APIs and DB Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#regenerate-autoquery-apis-and-db-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <p>After modifying the TypeScript Data Model to include the desired fields, you can re-run the <code>okai</code> tool to generate the AutoQuery APIs and DB Migrations
@@ -369,8 +375,11 @@ or with ServiceStack's built-in <a href="https://docs.servicestack.net/locode/">
 <h3 id="use-github-copilot-when-creating-a-new-repository">Use GitHub Copilot when creating a new Repository<a class="header-anchor" href="javascript:;" onclick="location.hash='#use-github-copilot-when-creating-a-new-repository'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>If you're using <a href="https://copilot.github.com/">GitHub Copilot</a> you can also use it to generate a new App
 <a href="https://github.com/new?template_name=react-vite&amp;template_owner=NetCoreTemplates">from the Vite React template </a>:</p>
-<p><a href="https://github.com/new?template_name=react-vite&amp;template_owner=NetCoreTemplates"><img src="/img/posts/react/react-new-repo.webp" alt="" /></a></p>
-<p>For the example, I've started with a useful App that I've never created before, a Budget Planner App, using the prompt:</p>
+<div class="not-prose">
+<div class="my-8 max-w-3xl mx-auto rounded-lg overflow-hidden shadow hover:shadow-xl"><p><a href="https://github.com/new?template_name=react-vite&amp;template_owner=NetCoreTemplates"><img src="/img/posts/react/react-new-repo.webp" alt="" /></a></p>
+</div>
+</div>
+<div><p>For the example, I've started with a useful App that I've never created before, a Budget Planner App, using the prompt:</p>
 <h3 id="budget-planner-prompt">Budget Planner Prompt<a class="header-anchor" href="javascript:;" onclick="location.hash='#budget-planner-prompt'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <pre><code>- React 19, TypeScript, TailwindCSS v4
 - Persistence in IndexedDB/localStorage
@@ -427,9 +436,12 @@ Maintain a small local list of common keywords + categories.
 Pre-fill category in the transaction form as the user types in the Description.
 </code></pre>
 <p>Which resulted in <a href="https://github.com/mythz/budgets.apps.cafe/commit/e45a17b8dfd2b5983971554ced3e52ded6fa050e">this commit</a> which sees the feature available in the UI:</p>
-<div class="shadow"><p><img src="/img/posts/react/budget/expense-tags-dark.webp" alt="" /></p>
+<div class="not-prose">
+<div class="my-8 max-w-3xl mx-auto rounded-lg overflow-hidden shadow hover:shadow-xl"><p><img src="/img/posts/react/budget/expense-tags-dark.webp" alt="" /></p>
 </div>
-<p>Along with different seed data, tailored for Income and Expenses:</p>
+</div>
+</div>
+<div><p>Along with different seed data, tailored for Income and Expenses:</p>
 <ul>
 <li><a href="https://github.com/mythz/budgets.apps.cafe/blob/main/MyApp.Client/src/lib/categoryAutoTag.ts">categoryAutoTag.ts</a></li>
 </ul>
@@ -444,6 +456,7 @@ very likely to become the future of software development, especially for UIs. Si
 the primary authors of code, our UI choices swing from Developer preferences to UI technologies that AI models
 excel at.</p>
 <p>So whilst we have a preference for Vue given it's more readable syntax and progressive enhancement capabalities, and whilst .NET ecosystem has a strong bias towards Blazor, we're even more excited for the future of React and are committed to providing the best possible support for it.</p>
+</div>
 
                 </div>
             </div>

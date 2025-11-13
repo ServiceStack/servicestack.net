@@ -81,21 +81,27 @@ We're introducing three production-ready React templates, each optimized for dif
 
 All three templates leverage our new [React Component Gallery](https://react.servicestack.net)—a high-fidelity port of our proven [Vue Component Library](https://docs.servicestack.net/vue/) and [Blazor Component Library](https://blazor.servicestack.net). This comprehensive collection provides everything needed to build highly productive, modern and responsive web applications.
 
-<div class="not-prose">
-    <a href="https://react.servicestack.net" class="block shadow-lg hover:shadow-xl">
-        <img class="w-full" src="/img/posts/react/react-gallery.webp">
-    </a>
-</div>
+:::{.not-prose}
+:::{.my-8 .max-w-3xl .mx-auto .rounded-lg .overflow-hidden .shadow .hover:shadow-xl}
+[![](/img/posts/react/react-gallery.webp)](https://react.servicestack.net)
+:::
+:::
 
 Switch to Dark Mode to see how all components looks in Dark Mode:
 
-<div class="not-prose">
-    <a href="https://react.servicestack.net" class="block shadow-lg hover:shadow-xl">
-        <img class="w-full" src="/img/posts/react/react-gallery-dark.webp">
-    </a>
-</div>
+:::{.not-prose}
+:::{.my-8 .max-w-3xl .mx-auto .rounded-lg .overflow-hidden .shadow .hover:shadow-xl}
+[![](/img/posts/react/react-gallery-dark.webp)](https://react.servicestack.net)
+:::
+:::
 
 ServiceStack's first-class React support positions your applications at the forefront of AI-assisted development. With declarative APIs, complete type safety, and minimal boilerplate, you can leverage AI code generation with confidence while maintaining the quality and maintainability your production systems demand.
+
+## Admin Analytics UI & Persistence
+
+ServiceStack's AI Chat now includes comprehensive chat history persistence and analytics capabilities, providing deep visibility into AI usage patterns, costs, and performance across your infrastructure. Choose between `DbChatStore` for universal RDBMS compatibility or `PostgresChatStore` for optimized PostgreSQL performance with monthly table partitioning—both ensuring consistent performance as history grows.
+
+The Admin UI Analytics dashboard delivers actionable insights through three key views: **Cost Analysis** tracks spending across providers and models with daily and monthly breakdowns, **Token Usage** monitors input and output token consumption to identify optimization opportunities, and **Activity Log** maintains a searchable audit trail with full conversation details. These visualizations enable data-driven decisions about provider selection, cost optimization, and help debug AI features in production by capturing every request and response flowing through AI Chat's UI, external OpenAI endpoints, and internal `IChatStore` requests.
 
 ## TypeScript Data Models
 
@@ -116,8 +122,10 @@ This is enough to generate a complete CRUD UI to manage Bookings
 in your React App with the [React AutoQueryGrid Component](https://react.servicestack.net/gallery/autoquerygrid).
 or with ServiceStack's built-in [Locode UI](https://docs.servicestack.net/locode/):
 
-:::{.wideshot}
+:::{.not-prose}
+:::{.my-8 .max-w-3xl .mx-auto .rounded-lg .overflow-hidden .shadow .hover:shadow-xl}
 [![](/img/posts/react/bookings-locode.webp)](https://docs.servicestack.net/locode/)
+:::
 :::
 
 ### Cheat Sheet
@@ -181,7 +189,11 @@ There are a number of options for starting with an AI generated Application, wit
 If you're using [GitHub Copilot](https://copilot.github.com/) you can also use it to generate a new App 
 [from the Vite React template ](https://github.com/new?template_name=react-vite&template_owner=NetCoreTemplates):
 
+:::{.not-prose}
+:::{.my-8 .max-w-3xl .mx-auto .rounded-lg .overflow-hidden .shadow .hover:shadow-xl}
 [![](/img/posts/react/react-new-repo.webp)](https://github.com/new?template_name=react-vite&template_owner=NetCoreTemplates)
+:::
+:::
 
 For the example, I've started with a useful App that I've never created before, a Budget Planner App, using the prompt:
 
@@ -251,8 +263,10 @@ Claude Code to Implement Category Auto-Tagging with this prompt:
 
 Which resulted in [this commit](https://github.com/mythz/budgets.apps.cafe/commit/e45a17b8dfd2b5983971554ced3e52ded6fa050e) which sees the feature available in the UI:
 
-:::{.shadow}
+:::{.not-prose}
+:::{.my-8 .max-w-3xl .mx-auto .rounded-lg .overflow-hidden .shadow .hover:shadow-xl}
 ![](/img/posts/react/budget/expense-tags-dark.webp)
+:::
 :::
 
 Along with different seed data, tailored for Income and Expenses:
