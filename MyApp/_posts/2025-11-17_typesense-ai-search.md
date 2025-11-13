@@ -9,7 +9,11 @@ image: ./img/posts/typesense-ai-search/bg.webp
 We're excited to announce the new Typesense-powered **AI Search**, a powerful new feature bringing 
 conversational AI capabilities to [ServiceStack Docs](https://docs.servicestack.net). 
 
+:::{.not-prose}
+:::{.my-8 .max-w-3xl .mx-auto .rounded-lg .overflow-hidden .shadow .hover:shadow-xl}
 [![](/img/posts/typesense-ai-search/ai-search-default.webp)](https://docs.servicestack.net)
+:::
+:::
 
 ### Comprehensive Docs
 
@@ -18,14 +22,21 @@ from core features to advanced integrations. While comprehensive documentation i
 quickly can be challenging. Traditional search works well when you know what you're looking for, but what about when you
 need to understand concepts, explore solutions, or learn how different features work together? That's where **AI Search** comes in.
 
+:::{.not-prose}
+:::{.my-8 .max-w-2xl .mx-auto}
 [![](/img/posts/typesense-ai-search/ai-search-button.webp)](https://docs.servicestack.net)
-
+:::
+:::
 
 **AI Search** leverages Typesense's advanced [Conversational Search API](https://typesense.org/docs/29.0/api/conversational-search-rag.html) 
 that uses Retrieval-Augmented Generation (RAG) of our docs combined with an LLM to provide intelligent, context-aware answers 
 directly from our documentation.
 
+:::{.not-prose}
+:::{.my-8 .max-w-3xl .mx-auto .rounded-lg .overflow-hidden .shadow .hover:shadow-xl}
 [![](/img/posts/typesense-ai-search/ai_search_add_servicestack_reference.webp)](https://docs.servicestack.net)
+:::
+:::
 
 #### AI Search vs Instant Typesense Search
 

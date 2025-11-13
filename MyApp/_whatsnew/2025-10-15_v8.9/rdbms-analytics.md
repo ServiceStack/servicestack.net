@@ -1,9 +1,10 @@
 ---
 title: In Depth and Interactive API Analytics for PostgreSQL, SQL Server & MySQL
 url: /posts/rdbms_analytics
-image: /img/whatsnew/v8.7/analytics-apis-splash.webp
+image: /img/whatsnew/v8.9/analytics.webp
 order: 2
 ---
+
 
 Comprehensive **Request Logging & Analytics** is now available for **PostgreSQL**, **SQL Server**, 
 and **MySQL** with `DbRequestLogger` - a drop-in replacement unlocking deep, interactive API analytics 
