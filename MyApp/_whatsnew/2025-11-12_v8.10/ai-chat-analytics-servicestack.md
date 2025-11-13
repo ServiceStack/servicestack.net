@@ -1,6 +1,6 @@
 ---
 title: FREE Gemini, Minimax, GLM 4.6, Kimi K2 in AI Chat
-url: https://docs.servicestack.net/ai-chat-analytics
+url: https://docs.servicestack.net/ai-chat-api#free-gemini-minimax-m2-glm-4.6-kimi-k2-in-ai-chat
 image: /img/whatsnew/v8.10/ai-chat-servicestack.webp
 order: 4
 ---
