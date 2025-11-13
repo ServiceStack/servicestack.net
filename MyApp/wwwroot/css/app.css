@@ -1216,6 +1216,9 @@
   .w-\[340px\] {
     width: 340px;
   }
+  .w-\[1280px\] {
+    width: 1280px;
+  }
   .w-auto {
     width: auto;
   }
@@ -5281,6 +5284,12 @@
       text-align: left;
     }
   }
+  .md\:text-4xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-4xl);
+      line-height: var(--tw-leading, var(--text-4xl--line-height));
+    }
+  }
   .md\:text-6xl {
     @media (width >= 48rem) {
       font-size: var(--text-6xl);
@@ -5309,6 +5318,12 @@
     @media (width >= 48rem) {
       --tw-leading: 1;
       line-height: 1;
+    }
+  }
+  .md\:tracking-tighter {
+    @media (width >= 48rem) {
+      --tw-tracking: var(--tracking-tighter);
+      letter-spacing: var(--tracking-tighter);
     }
   }
   .lg\:not-sr-only {
