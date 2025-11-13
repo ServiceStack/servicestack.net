@@ -181,13 +181,18 @@ mountAll()
                                 </a>
                         </li>
                         <li class="flex [counter-increment:section]">
-                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="blazor">
-                                    Blazor
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="vue/">
+                                    Vue
                                 </a>
                         </li>
                         <li class="flex [counter-increment:section]">
-                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="vue/">
-                                    Vue
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="react/">
+                                    React
+                                </a>
+                        </li>
+                        <li class="flex [counter-increment:section]">
+                                <a class="flex w-full flex-col items-center justify-center border-b-2 before:mb-2 before:font-mono before:text-sm before:content-[counter(section,decimal-leading-zero)] border-transparent before:text-slate-500 hover:bg-blue-50/40 hover:before:text-slate-900" href="blazor">
+                                    Blazor
                                 </a>
                         </li>
                         <li class="flex [counter-increment:section]">
@@ -203,7 +208,7 @@ mountAll()
 <template id="mobile-nav-template">
     <div class="sm:hidden">
         <div class="relative flex items-center px-4 py-3 bg-white/95 shadow-sm [@supports(backdrop-filter:blur(0))]:bg-white/80 [@supports(backdrop-filter:blur(0))]:backdrop-blur">
-                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">06</span>
+                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">07</span>
                         <span class="ml-4 text-base font-medium text-slate-900">Flutter</span>
             <button v-on:click="expanded=!expanded" :class="['-mr-1 ml-auto flex h-8 w-8 items-center justify-center', expanded ? 'relative z-10' : '']" aria-label="Toggle navigation menu" type="button" aria-expanded="false">
                 <span class="absolute inset-0"></span>
@@ -225,16 +230,20 @@ mountAll()
                         <span aria-hidden="true" class="font-mono text-sm text-blue-600">03</span>
                         <span class="ml-4 text-base font-medium text-slate-900">AutoQuery</span>
                     </a>
-                    <a class="flex items-center px-4 py-1.5" href="blazor">
-                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">04</span>
-                        <span class="ml-4 text-base font-medium text-slate-900">Blazor</span>
-                    </a>
                     <a class="flex items-center px-4 py-1.5" href="vue/">
-                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">05</span>
+                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">04</span>
                         <span class="ml-4 text-base font-medium text-slate-900">Vue</span>
                     </a>
-                    <a class="flex items-center px-4 py-1.5" href="flutter">
+                    <a class="flex items-center px-4 py-1.5" href="react/">
+                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">05</span>
+                        <span class="ml-4 text-base font-medium text-slate-900">React</span>
+                    </a>
+                    <a class="flex items-center px-4 py-1.5" href="blazor">
                         <span aria-hidden="true" class="font-mono text-sm text-blue-600">06</span>
+                        <span class="ml-4 text-base font-medium text-slate-900">Blazor</span>
+                    </a>
+                    <a class="flex items-center px-4 py-1.5" href="flutter">
+                        <span aria-hidden="true" class="font-mono text-sm text-blue-600">07</span>
                         <span class="ml-4 text-base font-medium text-slate-900">Flutter</span>
                     </a>
         </div>
