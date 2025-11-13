@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>DTOs in all languages downloadable without .NET - ServiceStack</title>
+    <title>React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="ServiceStack Typed DTOs for all languages can now be downloaded and uploaded without .NET installed" />
-    <meta property="og:url" content="https://servicestack.net/posts/npx-get-dtos" />
-    <meta property="og:title" content="DTOs in all languages downloadable without .NET" />
-    <meta property="og:image" content="./img/posts/npx-get-dtos/bg.webp" />
+    <meta property="og:description" content="First-class React support optimized for AI-assisted development with new React component library &amp; project templates" />
+    <meta property="og:url" content="https://servicestack.net/posts/react" />
+    <meta property="og:title" content="React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development" />
+    <meta property="og:image" content="./img/posts/react/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                DTOs in all languages downloadable without .NET
+                React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -138,29 +138,26 @@ mountAll()
             </ul>
                     </div>
                 </div>
-                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'npx-get-dtos', title:'DTOs in all languages downloadable without .NET', src:'https://media.servicestack.com/podcasts/npx-get-dtos.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=npx-get-dtos&amp;source=post&amp;version=8.10.1', variant:'compact' }"
-                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/npx-get-dtos/bg.webp" alt="DTOs in all languages downloadable without .NET Background" class="shadow-small">
+                    <img src="./img/posts/react/bg.webp" alt="React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/api" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">api</a>
-                        <a href="posts/tagged/service-reference" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">service-reference</a>
-                        <a href="posts/tagged/js" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">js</a>
+                        <a href="posts/tagged/react" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">react</a>
+                        <a href="posts/tagged/autoquery" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">autoquery</a>
+                        <a href="posts/tagged/admin" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2024-12-04T00:00:00.0000000">December 4, 2024</time>
+                                <time datetime="2025-11-13T00:00:00.0000000">November 13, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>4 min read</span>
+                                <span>8 min read</span>
                             </div>
                         </div>
                 </div>
@@ -173,51 +170,81 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>To make it easier to consume ServiceStack APIs in any language, we've added the ability to download
-Typed DTOs from any ServiceStack API in all languages without needing .NET installed with the new <code>npx get-dtos</code> npm script.</p>
-<p>It has the same syntax and functionality as the <code>x</code> dotnet tool for adding and updating ServiceStack References where
-in most cases you can replace <code>x &lt;lang&gt;</code> with <code>npx get-dtos &lt;lang&gt;</code> to achieve the same result.</p>
-<p>Running <code>npx get-dtos</code> without any arguments will display the available options:</p>
-<pre><code>get-dtos &lt;lang&gt;                  Update all ServiceStack References in directory (recursive)
-get-dtos &lt;file&gt;                  Update existing ServiceStack Reference (e.g. dtos.cs)
-get-dtos &lt;lang&gt;     &lt;url&gt; &lt;file&gt; Add ServiceStack Reference and save to file name
-get-dtos csharp     &lt;url&gt;        Add C# ServiceStack Reference            (Alias 'cs')
-get-dtos typescript &lt;url&gt;        Add TypeScript ServiceStack Reference    (Alias 'ts')
-get-dtos javascript &lt;url&gt;        Add JavaScript ServiceStack Reference    (Alias 'js')
-get-dtos python     &lt;url&gt;        Add Python ServiceStack Reference        (Alias 'py')
-get-dtos dart       &lt;url&gt;        Add Dart ServiceStack Reference          (Alias 'da')
-get-dtos php        &lt;url&gt;        Add PHP ServiceStack Reference           (Alias 'ph')
-get-dtos java       &lt;url&gt;        Add Java ServiceStack Reference          (Alias 'ja')
-get-dtos kotlin     &lt;url&gt;        Add Kotlin ServiceStack Reference        (Alias 'kt')
-get-dtos swift      &lt;url&gt;        Add Swift ServiceStack Reference         (Alias 'sw')
-get-dtos fsharp     &lt;url&gt;        Add F# ServiceStack Reference            (Alias 'fs')
-get-dtos vbnet      &lt;url&gt;        Add VB.NET ServiceStack Reference        (Alias 'vb')
-get-dtos tsd        &lt;url&gt;        Add TypeScript Definition ServiceStack Reference
-
-Options:
-    -h, --help, ?             Print this message
-    -v, --version             Print tool version version
-        --include &lt;tag&gt;       Include all APIs in specified tag group
-        --qs &lt;key=value&gt;      Add query string to Add ServiceStack Reference URL
-        --verbose             Display verbose logging
-        --ignore-ssl-errors   Ignore SSL Errors
-</code></pre>
-<h2 id="reusable-dtos-and-reusable-clients-in-any-language">Reusable DTOs and Reusable Clients in any language<a class="header-anchor" href="javascript:;" onclick="location.hash='#reusable-dtos-and-reusable-clients-in-any-language'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>A benefit of <a href="https://docs.servicestack.net/add-servicestack-reference">Add ServiceStack Reference</a> is that only an
-API DTOs need to be generated which can then be used to call any remote instance running that API. E.g. DTOs generated
-for our deployed AI Server instance at <a href="https://openai.servicestack.net">openai.servicestack.net</a> can be used to call
-any self-hosted AI Server instance, likewise the same generic client can also be used to call any other ServiceStack API.</p>
-<h3 id="typed-open-ai-chat-ollama-apis-in-11-languages">Typed Open AI Chat &amp; Ollama APIs in 11 Languages<a class="header-anchor" href="javascript:;" onclick="location.hash='#typed-open-ai-chat-ollama-apis-in-11-languages'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>A good example of its versatility is in the <a href="/posts/typed-openai-chat-ollama-apis">Typed OpenAI Chat &amp; Ollama APIs</a>
-in which AI Server's Typed DTOs can be used to call <strong>any Open AI Chat compatible API</strong> in its 11 supported languages.</p>
-<h3 id="typescript-example">TypeScript Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescript-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>For example you can get the TypeScript DTOs for the just released <a href="/posts/ai-server">AI Server</a> by:</p>
-<ol>
-<li>Installing the <code>@servicestack/client</code> npm package:</li>
-</ol>
+                    <p>We're witnessing a fundamental shift in how applications are built. AI code generation has evolved from a novelty to a productivity multiplier that's become too significant to ignore. While AI models still require oversight for production backend systems, they excel at generating frontend UIs—compressing development timelines that once took months into days.</p>
+<h2 id="the-rise-of-vibe-coding">The Rise of Vibe Coding<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-rise-of-vibe-coding'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>AI can now generate complete, production-ready UI code. This enables an entirely new development workflow that <a href="https://en.wikipedia.org/wiki/Andrej_Karpathy">Andrej Karpathy</a> has termed <a href="https://en.wikipedia.org/wiki/Vibe_coding">&quot;Vibe Coding&quot;</a>—where developers iteratively guide AI agents to implement features through natural language instructions, where features can be iteratively prototyped, refined and improved within seconds instead of hours.</p>
+<p>This AI-first approach is rapidly maturing, with tools like <a href="https://cursor.com">Cursor</a>, <a href="https://www.claude.com/product/claude-code">Claude Code</a>, and <a href="https://chatgpt.com/features/codex/">Codex</a> becoming the preferred platforms for this new paradigm with new tools designed to get maximum effectiveness of AI models with sophisticated planning
+tools, focused models optimized for code generation and edits and agentic workflows that's able to solidifying each new feature iteration with tests, along with detailed documentation, planning, migrations and usage guides.</p>
+<h2 id="react-tailwind-the-ai-development-standard">React &amp; Tailwind: The AI Development Standard<a class="header-anchor" href="javascript:;" onclick="location.hash='#react-tailwind-the-ai-development-standard'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>React and Tailwind have emerged as the de facto standards for AI-generated UIs. Every major platform for generating applications from prompts has converged on this stack including
+<a href="https://blog.replit.com/react">Replit</a>,
+<a href="https://lovable.dev/blog/best-tailwind-css-component">Lovable</a>,
+<a href="https://aistudio.google.com">Google's AI Studio</a>,
+<a href="https://v0.app">Vercel's v0</a> and <a href="https://claude.ai/code">Claude Code Web</a>.</p>
+<h3 id="typescript">TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Whilst TypeScript is often excluded in one-prompt solutions catering to non-developers, it's still a critical part of the AI development workflow. It provides a type system that helps AI models generate more accurate and maintainable code and TypeScript's static analysis also helps identify errors in the generated code which AI Models have have become really good at correcting—as such it's an integral part in all our React templates.</p>
+<h2 id="how-servicestack-excels-in-ai-first-development">How ServiceStack Excels in AI-First Development<a class="header-anchor" href="javascript:;" onclick="location.hash='#how-servicestack-excels-in-ai-first-development'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Context is king when developing with AI models. The better the context, the higher the quality of generated code
+and ServiceStack's architecture is uniquely suited for AI-assisted development:</p>
+<h3 id="declarative-typed-apis">Declarative Typed APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#declarative-typed-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>All ServiceStack APIs follow a flat, declarative structure—The contract is explicit and consistent and LLMs don't need to guess what APIs accept or return.</p>
+<h3 id="end-to-end-type-safety">End-to-End Type Safety<a class="header-anchor" href="javascript:;" onclick="location.hash='#end-to-end-type-safety'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Context quality directly impacts generated code quality. ServiceStack's TypeScript integration provides complete static analysis of what APIs accept, return, and how to bind responses—giving AI models the full context they need.
+The static analysis feedback also directs models to identify and correct any errors in the generated code.</p>
+<h3 id="zero-ambiguity-integration">Zero-Ambiguity Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#zero-ambiguity-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>AI models thrive on consistency. ServiceStack removes guesswork with a single pattern for all API calls:</p>
+<ul>
+<li>One generic <code>JsonServiceClient</code> for all APIs</li>
+<li>Consistent methods used to send all requests</li>
+<li>Consistent Typed Request DTO → Response DTO flow</li>
+<li>Uniform error handling</li>
+</ul>
+<h3 id="intuitive-project-structure">Intuitive Project Structure<a class="header-anchor" href="javascript:;" onclick="location.hash='#intuitive-project-structure'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>ServiceStack's <a href="/physical-project-structure">physical project structure</a> provides clear separation of concerns, with the entire API surface area contained in <a href="/physical-project-structure#servicemodel-project">the ServiceModel project</a>—making codebases easy for AI models to navigate and understand.</p>
+<h3 id="minimal-code-surface">Minimal Code Surface<a class="header-anchor" href="javascript:;" onclick="location.hash='#minimal-code-surface'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Less code means fewer opportunities for errors. ServiceStack's high-productivity features minimize the code AI needs to generate:</p>
+<ul>
+<li><strong><a href="/autoquery/">AutoQuery APIs</a></strong> - Flexible, queryable APIs defined with just a Request DTO</li>
+<li><strong><a href="https://react.servicestack.net/gallery/autoquerygrid">AutoQueryGrid Component</a></strong> - Complete CRUD UIs in 1 line of code</li>
+<li><strong><a href="https://react.servicestack.net/gallery/autoform">Auto Form Components</a></strong> - Beautiful, validation-bound forms in 1 line of code</li>
+</ul>
+<p>These components are ideal for rapidly building backend management interfaces, freeing developers to focus on differentiating customer-facing features.</p>
+<h2 id="modern-react-project-templates">Modern React Project Templates<a class="header-anchor" href="javascript:;" onclick="location.hash='#modern-react-project-templates'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>We're introducing three production-ready React templates, each optimized for different use cases:</p>
+<p><react-template 
+name="react-vite" 
+description="A lightweight foundation built with React + Vite + TypeScript + Tailwind CSS—the ideal blank slate starting point for AI-generated UIs."></react-template></p>
+<p><react-template 
+name="react-spa" 
+description="A comprehensive single-page application with deep ServiceStack integration and ASP.NET Core Identity Auth, perfect for full-featured web applications."></react-template></p>
+<p><react-template 
+name="nextjs" 
+description="A Next.js template with TypeScript and Tailwind CSS, offering server-side rendering and optimized performance with complete ServiceStack integration."></react-template></p>
+<h2 id="comprehensive-react-component-library">Comprehensive React Component Library<a class="header-anchor" href="javascript:;" onclick="location.hash='#comprehensive-react-component-library'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>All three templates leverage our new <a href="https://react.servicestack.net">React Component Gallery</a>—a high-fidelity port of our proven <a href="https://docs.servicestack.net/vue/">Vue Component Library</a> and <a href="https://blazor.servicestack.net">Blazor Component Library</a>. This comprehensive collection provides everything needed to build highly productive, modern and responsive web applications.</p>
+<div class="not-prose">
+    <a href="https://react.servicestack.net" class="block shadow-lg hover:shadow-xl">
+        <img class="w-full" src="/img/posts/react/react-gallery.webp">
+    </a>
+</div>
+<p>Switch to Dark Mode to see how all components looks in Dark Mode:</p>
+<div class="not-prose">
+    <a href="https://react.servicestack.net" class="block shadow-lg hover:shadow-xl">
+        <img class="w-full" src="/img/posts/react/react-gallery-dark.webp">
+    </a>
+</div>
+<p>ServiceStack's first-class React support positions your applications at the forefront of AI-assisted development. With declarative APIs, complete type safety, and minimal boilerplate, you can leverage AI code generation with confidence while maintaining the quality and maintainability your production systems demand.</p>
+<h2 id="typescript-data-models">TypeScript Data Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#typescript-data-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>As AI Models are not as adept at generating C# APIs or Migrations yet, they excel at generating TypeScript code, which our
+<a href="https://docs.servicestack.net/autoquery/okai-models">TypeScript Data Models</a> feature can take advantage of by generating all the C# AutoQuery CRUD APIs and DB Migrations needing to support it.</p>
+<p>With just a TypeScript Definition:</p>
+<ul>
+<li><a href="https://github.com/NetCoreTemplates/react-vite/blob/main/MyApp.ServiceModel/Bookings.d.ts">Bookings.d.ts</a></li>
+</ul>
+<p>We can generate all the AutoQuery CRUD APIs and DB Migrations needed to enable a CRUD UI with:</p>
 <div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npm install @servicestack/client</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npx okai Bookings.d.ts</p>
 </div>
                     </div>
                 <div class="flex">
@@ -229,12 +256,17 @@ in which AI Server's Typed DTOs can be used to call <strong>any Open AI Chat com
                     </div>
                 </div>
             </div>
-<ol start="2">
-<li>Download AI Server's TypeScript DTOs:</li>
-</ol>
+<p>This is enough to generate a complete CRUD UI to manage Bookings
+in your React App with the <a href="https://react.servicestack.net/gallery/autoquerygrid">React AutoQueryGrid Component</a>.
+or with ServiceStack's built-in <a href="https://docs.servicestack.net/locode/">Locode UI</a>:</p>
+<div class="wideshot"><p><a href="https://docs.servicestack.net/locode/"><img src="/img/posts/react/bookings-locode.webp" alt="" /></a></p>
+</div>
+<h3 id="cheat-sheet">Cheat Sheet<a class="header-anchor" href="javascript:;" onclick="location.hash='#cheat-sheet'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>We'll quickly cover the common dev workflow for this feature.</p>
+<p>To create a new Table use <code>init &lt;Table&gt;</code>, e.g:</p>
 <div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-700">
-                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>npx get-dtos typescript https://openai.servicestack.net</code></p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npx okai init Transaction</p>
 </div>
                     </div>
                 <div class="flex">
@@ -246,92 +278,169 @@ in which AI Server's Typed DTOs can be used to call <strong>any Open AI Chat com
                     </div>
                 </div>
             </div>
-<p>Which just like the <code>x</code> tool will add the TypeScript DTOs to the <code>dtos.ts</code> file</p>
-<h3 id="calling-ollama-from-typescript">Calling Ollama from TypeScript<a class="header-anchor" href="javascript:;" onclick="location.hash='#calling-ollama-from-typescript'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Call Ollama by sending <code>OpenAiChatCompletion</code> Request DTO with JsonServiceClient:</p>
-<pre><code class="language-ts">import { JsonServiceClient } from &quot;@servicestack/client&quot;
-import { OpenAiChatCompletion } from &quot;./dtos&quot;
+<p>This will generate an empty <code>MyApp.ServiceModel/&lt;Table&gt;.d.ts</code> file along with stub AutoQuery APIs and DB Migration implementations.</p>
+<h4 id="regenerate-autoquery-apis-and-db-migrations">Regenerate AutoQuery APIs and DB Migrations<a class="header-anchor" href="javascript:;" onclick="location.hash='#regenerate-autoquery-apis-and-db-migrations'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>After modifying the TypeScript Data Model to include the desired fields, you can re-run the <code>okai</code> tool to generate the AutoQuery APIs and DB Migrations
+(which can be run anywhere within your Solution):</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npx okai Transaction.d.ts</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>After you're happy with your Data Model you can run DB Migrations to run the DB Migration and create your RDBMS Table:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npm run migrate</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h4 id="making-changes-after-first-migration">Making changes after first migration<a class="header-anchor" href="javascript:;" onclick="location.hash='#making-changes-after-first-migration'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>If you want to make further changes to your Data Model, you can re-run the <code>okai</code> tool to update the AutoQuery APIs and DB Migrations, then run the <code>rerun:last</code> npm script to drop and re-run the last migration:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npm run rerun:last</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h4 id="removing-a-data-model-and-all-generated-code">Removing a Data Model and all generated code<a class="header-anchor" href="javascript:;" onclick="location.hash='#removing-a-data-model-and-all-generated-code'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>If you changed your mind and want to get rid of the RDBMS Table you can revert the last migration:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npm run revert:last</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Which will drop the table and then you can get rid of the AutoQuery APIs, DB Migrations and TypeScript Data model with:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p>npx okai rm Transaction.d.ts</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<h2 id="ai-first-example">AI-First Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-first-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>There are a number of options for starting with an AI generated Application, with all the Instant AI App Generators like
+<a href="https://aistudio.google.com/apps">Google's App Studio</a> able to provide a great starting point. Although currently Professional Developers tend to use
+<a href="https://cursor.com/">Cursor</a>, <a href="https://www.claude.com/product/claude-code">Claude Code</a> or
+<a href="https://openai.com/codex/">Codex</a> as their day-to-day tools of choice.</p>
+<h3 id="use-github-copilot-when-creating-a-new-repository">Use GitHub Copilot when creating a new Repository<a class="header-anchor" href="javascript:;" onclick="location.hash='#use-github-copilot-when-creating-a-new-repository'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>If you're using <a href="https://copilot.github.com/">GitHub Copilot</a> you can also use it to generate a new App
+<a href="https://github.com/new?template_name=react-vite&amp;template_owner=NetCoreTemplates">from the Vite React template </a>:</p>
+<p><a href="https://github.com/new?template_name=react-vite&amp;template_owner=NetCoreTemplates"><img src="/img/posts/react/react-new-repo.webp" alt="" /></a></p>
+<p>For the example, I've started with a useful App that I've never created before, a Budget Planner App, using the prompt:</p>
+<h3 id="budget-planner-prompt">Budget Planner Prompt<a class="header-anchor" href="javascript:;" onclick="location.hash='#budget-planner-prompt'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<pre><code>- React 19, TypeScript, TailwindCSS v4
+- Persistence in IndexedDB/localStorage
+- Recharts
+- Vitest with React Testing Library
 
-const client = new JsonServiceClient(baseUrl)
+## Features
+Dashboard
+- Overview of total income, expenses, and remaining budget
+- Monthly summary chart (line graph)
+- Expense categories (pie chart)
 
-const response = await client.postToUrl(&quot;/v1/chat/completions&quot;,
-    new OpenAiChatCompletion({
-        model: &quot;mixtral:8x22b&quot;,
-        messages: [
-            { role: &quot;user&quot;, content: &quot;What's the capital of France?&quot; }
-        ],
-        max_tokens: 50
-    })
-)
+Transactions
+- Add/Edit/Delete income or expenses
+- Date filtering/sorting
 
-const answer = response.choices[0].message.content
+Budgets
+- Set monthly budget goals per category
+- Progress bars for spending vs. budget
+
+Reports
+- View past months
+- Export
 </code></pre>
-<h3 id="update-typescript-dtos">Update TypeScript DTOs<a class="header-anchor" href="javascript:;" onclick="location.hash='#update-typescript-dtos'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>And later update all TypeScript ServiceStack References in the current directory with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>npx get-dtos typescript</code></p>
+<p>The generated source code for the App was uploaded to: <a href="https://github.com/mythz/budgets.apps.cafe">github.com/mythz/budgets.apps.cafe</a></p>
+<h3 id="budgent-planner-app">Budgent Planner App<a class="header-anchor" href="javascript:;" onclick="location.hash='#budgent-planner-app'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>After a few minutes Copilot creates a PR with what we asked for, even things that we didn't specify in the prompt but could be inferred from the Project Template like <strong>Dark Mode</strong> support where it made use of the existing <code>&lt;DarkModeToggle /&gt;</code>.</p>
+<p><screenshots-gallery :images="{
+'Dashboard': '/img/posts/react/budget/dashboard.webp',
+'Dashboard - Dark Mode': '/img/posts/react/budget/dashboard-dark.webp',
+'Transactions List - Dark Mode': '/img/posts/react/budget/transactions-list-dark.webp',
+'Transactions - Add Expense': '/img/posts/react/budget/transactions-expense.webp',
+'Transactions - Add Expense - Dark Mode': '/img/posts/react/budget/transactions-expense-dark.webp',
+'Transactions - Add Income - Dark Mode': '/img/posts/react/budget/transactions-income-dark.webp',
+'Budgets - Dark Mode': '/img/posts/react/budget/budgets-dark.webp',
+'Reports': '/img/posts/react/budget/reports.webp',
+'Reports - Dark Mode': '/img/posts/react/budget/reports-dark.webp',
+}"></screenshots-gallery></p>
+<h3 id="prompt-ai-to-add-new-features">Prompt AI to add new Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#prompt-ai-to-add-new-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>AI Assistance doesn't end after the initial implementation as AI Models and tools are more than capable to
+create 100% of the React UI now, including new features, fixes and other improvements. For this example I used
+Claude Code to Implement Category Auto-Tagging with this prompt:</p>
+<pre><code>Implement Category Auto-Tagging
+
+Allow specifying tags when creating a new transaction.
+When users add a transaction, try to predict the tag from the Description, e.g:
+
+Input: “Starbucks latte” → Suggests category: Food &amp; Drinks
+Input: “Uber to work” → Suggests category: Transport
+
+Implementation:
+
+Maintain a small local list of common keywords + categories.
+Pre-fill category in the transaction form as the user types in the Description.
+</code></pre>
+<p>Which resulted in <a href="https://github.com/mythz/budgets.apps.cafe/commit/e45a17b8dfd2b5983971554ced3e52ded6fa050e">this commit</a> which sees the feature available in the UI:</p>
+<div class="shadow"><p><img src="/img/posts/react/budget/expense-tags-dark.webp" alt="" /></p>
 </div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h3 id="install-and-run-in-a-single-command">Install and Run in a single command<a class="header-anchor" href="javascript:;" onclick="location.hash='#install-and-run-in-a-single-command'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>This can be used as a more flexible alternative to the <code>x</code> tool where it's often easier to install node in CI environments
-than a full .NET SDK and easier to use npx scripts than global dotnet tools. For example you can use the <code>--yes</code> flag
-to implicitly install (if needed) and run the <code>get-dtos</code> script in a single command, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>npx --yes get-dtos typescript</code></p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<h3 id="c-example">C# Example<a class="header-anchor" href="javascript:;" onclick="location.hash='#c-example'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>As such you may want want to replace the <code>x</code> dotnet tool with <code>npx get-dtos</code> in your C#/.NET projects as well which
-can either use the language name or its more wrist-friendly shorter alias, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>npx get-dtos cs https://openai.servicestack.net</code></p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-<p>Then later update all C# DTOs in the current directory (including sub directories) with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p><code>npx get-dtos cs</code></p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+<p>Along with different seed data, tailored for Income and Expenses:</p>
+<ul>
+<li><a href="https://github.com/mythz/budgets.apps.cafe/blob/main/MyApp.Client/src/lib/categoryAutoTag.ts">categoryAutoTag.ts</a></li>
+</ul>
+<p>And 19 passing tests to verify a working implementation:</p>
+<ul>
+<li><a href="https://github.com/mythz/budgets.apps.cafe/blob/main/MyApp.Client/src/lib/categoryAutoTag.test.ts">categoryAutoTag.test.ts</a></li>
+</ul>
+<p>Combined with Vite's instant hot-reload, this creates a remarkably fluid development experience where
+we get to watch our prompts materialize into working features in real-time.</p>
+<p>All this to say that this new development model exists today, and given its significant productivity gains, it's
+very likely to become the future of software development, especially for UIs. Since developers are no longer
+the primary authors of code, our UI choices swing from Developer preferences to UI technologies that AI models
+excel at.</p>
+<p>So whilst we have a preference for Vue given it's more readable syntax and progressive enhancement capabalities, and whilst .NET ecosystem has a strong bias towards Blazor, we're even more excited for the future of React and are committed to providing the best possible support for it.</p>
 
                 </div>
             </div>
@@ -390,47 +499,6 @@ can either use the language name or its more wrist-friendly shorter alias, e.g:<
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/react">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/react/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/react" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development">
-                                                    React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">First-class React support optimized for AI-assisted development with new React component library &amp; project templates</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-11-13T00:00:00.0000000">November 13, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>8 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -554,6 +622,47 @@ can either use the language name or its more wrist-friendly shorter alias, e.g:<
                                 </div>
 
                             </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-async-task-builder">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-async-task-builder/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-async-task-builder" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="RDBMS Async Tasks Builder">
+                                                    RDBMS Async Tasks Builder
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Effortlessly run multiple async DB Requests in parallel with OrmLite&#x27;s new Async Tasks Builder</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="RDBMS Async Tasks Builder background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-10-20T00:00:00.0000000">October 20, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>4 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -570,18 +679,52 @@ init()
 <script src="js/lite-yt-embed.js"></script>
 <script src="mjs/docs.mjs" type="module"></script>
 
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
 
 <script type="module">
 import { mount } from "app.mjs"
 
-    const App = {
-        setup() {
-            function nav(url) {
-                window.open(url)
-            }
-            return { nav }
-        }
-    }
+        import App from "./posts/react.mjs" 
     mount('#post', App)
 </script>
 
