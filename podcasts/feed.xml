@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Sat, 15 Nov 2025 07:25:24 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 17 Nov 2025 13:07:14 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,22 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Ask ServiceStack Docs - Introducing AI Search</title>
+        <link>https://servicestack.net/podcasts/typesense-ai-search</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/typesense-ai-search</guid>
+        <pubDate>Mon, 17 Nov 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-11-17T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ai-chat.mp3" length="13193573" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>docs</category>
+        <description>Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs</description>
+        <itunes:summary><![CDATA[ Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs ]]></itunes:summary>
+        <itunes:duration>950</itunes:duration>
+        <itunes:keywords>llms,ai,docs</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>AI Chat - A Simple OpenAI Chat Completions API, UI &amp; Client LLM Gateway</title>
         <link>https://servicestack.net/podcasts/ai-chat</link>
@@ -859,26 +875,6 @@
         <itunes:summary><![CDATA[ ServiceStack v8.1 is here with a host of new features including full integration with Identity Auth, ASP .NET IOC, Endpoint Routing, System.Text.Json APIs, enhanced Admin UIs with JWT support, and much more! ]]></itunes:summary>
         <itunes:duration>620</itunes:duration>
         <itunes:keywords>release,identity-auth,ioc,json,openapi,swagger</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack v8.0 Release</title>
-        <link>https://servicestack.net/podcasts/v8-0-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-0-release</guid>
-        <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
-        <atom:updated>2023-11-20T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-0-release.mp3" length="2715309" type="audio/mpeg"/>
-        <category>release</category>
-        <category>.net8</category>
-        <category>docker</category>
-        <category>identity-auth</category>
-        <category>blazor</category>
-        <category>mvc</category>
-        <category>razor</category>
-        <description>ServiceStack v8 is here with all packages now including .net8.0 builds, all Project Templates upgraded to .NET 8, GitHub Actions now using .NET 8 Docker containers, new Tailwind Blazor, Razor Pages &amp; MVC Templates now using ASP .NET Identity Auth &amp; EF</description>
-        <itunes:summary><![CDATA[ ServiceStack v8 is here with all packages now including .net8.0 builds, all Project Templates upgraded to .NET 8, GitHub Actions now using .NET 8 Docker containers, new Tailwind Blazor, Razor Pages &amp; MVC Templates now using ASP .NET Identity Auth &amp; EF ]]></itunes:summary>
-        <itunes:duration>678</itunes:duration>
-        <itunes:keywords>release,.net8,docker,identity-auth,blazor,mvc,razor</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>

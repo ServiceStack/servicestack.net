@@ -203,11 +203,11 @@ The static analysis feedback also directs models to identify and correct any err
 <li>Uniform error handling</li>
 </ul>
 <h3 id="intuitive-project-structure">Intuitive Project Structure<a class="header-anchor" href="javascript:;" onclick="location.hash='#intuitive-project-structure'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>ServiceStack's <a href="/physical-project-structure">physical project structure</a> provides clear separation of concerns, with the entire API surface area contained in <a href="/physical-project-structure#servicemodel-project">the ServiceModel project</a>—making codebases easy for AI models to navigate and understand.</p>
+<p>ServiceStack's <a href="https://docs.servicestack.net/physical-project-structure">physical project structure</a> provides clear separation of concerns, with the entire API surface area contained in <a href="https://docs.servicestack.net/physical-project-structure#servicemodel-project">the ServiceModel project</a>—making codebases easy for AI models to navigate and understand.</p>
 <h3 id="minimal-code-surface">Minimal Code Surface<a class="header-anchor" href="javascript:;" onclick="location.hash='#minimal-code-surface'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Less code means fewer opportunities for errors. ServiceStack's high-productivity features minimize the code AI needs to generate:</p>
 <ul>
-<li><strong><a href="/autoquery/">AutoQuery APIs</a></strong> - Flexible, queryable APIs defined with just a Request DTO</li>
+<li><strong><a href="https://docs.servicestack.net/autoquery/">AutoQuery APIs</a></strong> - Flexible, queryable APIs defined with just a Request DTO</li>
 <li><strong><a href="https://react.servicestack.net/gallery/autoquerygrid">AutoQueryGrid Component</a></strong> - Complete CRUD UIs in 1 line of code</li>
 <li><strong><a href="https://react.servicestack.net/gallery/autoform">Auto Form Components</a></strong> - Beautiful, validation-bound forms in 1 line of code</li>
 </ul>
@@ -518,6 +518,47 @@ excel at.</p>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
+                                        <a href="posts/ai-chat">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ai-chat/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ai-chat" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="AI Chat - A Simple OpenAI Chat Completions API, UI &amp; Client LLM Gateway">
+                                                    AI Chat - A Simple OpenAI Chat Completions API, UI &amp; Client LLM Gateway
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Unlock the value of OpenAI Chat APIs using a simple, serializable ChatCompletion DTO that works everywhere</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="AI Chat - A Simple OpenAI Chat Completions API, UI &amp; Client LLM Gateway background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-11-17T00:00:00.0000000">November 17, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>16 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
                                         <a href="posts/typesense-ai-search">
                                             <img class="h-48 w-full object-cover" src="./img/posts/typesense-ai-search/bg.webp" alt="">
                                         </a>
@@ -631,47 +672,6 @@ excel at.</p>
                                                     <time datetime="2025-10-23T00:00:00.0000000">October 23, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>23 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/rdbms_analytics">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/analytics/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/rdbms_analytics" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="In Depth Interactive API Analytics for PostgreSQL, SQL Server &amp; MySQL">
-                                                    In Depth Interactive API Analytics for PostgreSQL, SQL Server &amp; MySQL
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Comprehensive and Interactive RDBMS API Analytics in Admin UI, deep insights into API usage, performance, users, API Keys &amp; IPs</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="In Depth Interactive API Analytics for PostgreSQL, SQL Server &amp; MySQL background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-10-21T00:00:00.0000000">October 21, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>9 min read</span>
                                                 </div>
                                             </div>
                                         </div>
