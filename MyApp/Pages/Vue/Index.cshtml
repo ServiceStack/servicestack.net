@@ -9,46 +9,152 @@
 @await Html.PartialAsync("VideoIncludes")
 @await Html.PartialAsync("HighlightIncludes")
 
-<section class="relative isolate overflow-hidden bg-slate-900" style="
-        background-image:radial-gradient(ellipse at bottom,#4BC298 5%,transparent 60%),
-            linear-gradient(136deg,transparent,#48B190 290%),
-            linear-gradient(115deg,#4BC298,transparent 40%),
-            linear-gradient(180deg,transparent 0,#357B73 70%),
-            radial-gradient(ellipse at -70% -180%,transparent 80%,#3EA173 0),
-            radial-gradient(ellipse at bottom,#27565C 40%,transparent 80%),
-            radial-gradient(ellipse at 5% 340%,transparent 80%,#384A60 0)">
-    <svg viewBox="0 0 1108 632" aria-hidden="true" class="absolute top-10 left-[calc(50%-4rem)] -z-10 w-[69.25rem] max-w-none transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
-        <path fill="url(#175c433f-44f6-4d59-93f0-c5c51ad5566d)" fill-opacity=".2" d="M235.233 402.609 57.541 321.573.83 631.05l234.404-228.441 320.018 145.945c-65.036-115.261-134.286-322.756 109.01-230.655C968.382 433.026 1031 651.247 1092.23 459.36c48.98-153.51-34.51-321.107-82.37-385.717L810.952 324.222 648.261.088 235.233 402.609Z"/>
-        <defs>
-            <linearGradient id="175c433f-44f6-4d59-93f0-c5c51ad5566d" x1="1220.59" x2="-85.053" y1="432.766" y2="638.714" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4DC19A"/>
-                <stop offset="1" stop-color="#2A5B5F"/>
-            </linearGradient>
-        </defs>
-    </svg>
-    <div class="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:flex lg:px-8">
-        <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
-            <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                <span class="block">ServiceStack Vue</span>
-            </h1>
-            <p class="mt-3 text-base text-gray-100 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                Preview the amazing productivity of @@servicestack/vue's beautiful, expertly designed
-                Tailwind Vue components
-            </p>
-        <div class="mt-10 align-top">
-            <lite-youtube class="max-w-xl aspect-video" videoid="YIa0w6whe2U"
-                          style="background-image: url('https://img.youtube.com/vi/YIa0w6whe2U/maxresdefault.jpg')">
-            </lite-youtube>
+<!-- ServiceStack Vue Hero Component -->
+<section class="relative w-full overflow-hidden bg-slate-900 pt-16 pb-16 lg:pt-32 lg:pb-28">
+
+    <!-- Background Glow Effects (Vue Theme Colors) -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div class="absolute -top-[20%] -left-[10%] w-[40rem] h-[40rem] rounded-full bg-[#42b883] opacity-10 blur-[80px]"></div>
+        <div class="absolute bottom-[10%] right-[0%] w-[30rem] h-[30rem] rounded-full bg-[#35495e] opacity-20 blur-[60px]"></div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            
+            <!-- LEFT COLUMN: Copy & CTAs -->
+            <div class="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+                
+                <!-- Optional Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#42b883]/10 border border-[#42b883]/20 text-[#42b883] text-sm font-medium">
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#42b883] opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#42b883]"></span>
+                    </span>
+                    <span>Vue Component Library</span>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+                    ServiceStack
+                    <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#42b883] to-[#64d2a3]">Vue</span>
+                    <br />
+                    <span class="text-2xl sm:text-4xl lg:text-5xl font-bold text-slate-400 mt-2 block">Beautifully Productive.</span>
+                </h1>
+
+                <!-- Description -->
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Experience the amazing productivity of <code class="text-[#42b883] bg-[#42b883]/10 px-1 py-0.5 rounded">@@servicestack/vue</code>.
+                    <br />
+                    A comprehensive library of expertly designed Tailwind components, fully typed end-to-end for your next SPA.
+                </p>
+
+                <!-- Buttons -->
+                <div class="sm:mt-27 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="/vue/#getting-started" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-[#42b883] hover:bg-[#3aa372] text-white font-bold transition-all shadow-[0_0_20px_-5px_rgba(66,184,131,0.4)] flex items-center justify-center gap-2">
+                        <span>Get Started</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </a>
+                    
+                    <a href="https://docs.servicestack.net/vue/autoquerygrid" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+                        Vue Components
+                    </a>
+                </div>
             </div>
-            <div class="mt-10 flex items-center gap-x-6">
-                <a href="http://docs.servicestack.net/vue/install" class="rounded-md bg-white/10 py-2.5 px-3.5 font-semibold text-white shadow-sm hover:bg-white/20">Learn more</a>
-            </div>
-        </div>
-        <div class="mx-auto mt-16 flex max-w-2xl lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
-            <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                <a href="https://blazordiffusion.com">
-                    <img src="/img/pages/vue/vue-splash.webp" alt="App screenshot" class="w-[50rem] rounded-md p-8 bg-white/5 shadow-2xl ring-1 ring-white/10">
-                </a>
+
+            <!-- RIGHT COLUMN: Layered Visuals -->
+            <div class="w-full lg:w-1/2 relative mt-8 lg:mt-0 group">
+                
+                <!-- 1. MAIN SCREENSHOT (Browser Window Style) -->
+                <!-- This acts as the background anchor -->
+                <div class="relative lg:ml-auto w-full max-w-lg lg:max-w-none">
+                    <div class="relative group perspective-1000">
+                        <!-- Glow Effect -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl opacity-20 blur-xl group-hover:opacity-40 transition duration-500"></div>
+                    
+                        <!-- The Browser Window -->
+                        <div class="relative rounded-xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden transform transition-transform duration-500 hover:scale-[1.01] hover:-rotate-1">
+                            <!-- Browser Toolbar -->
+                            <div class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-2">
+                                <div class="flex gap-1.5">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                </div>
+                                <div class="mx-auto text-xs font-mono text-slate-500 bg-slate-900 px-3 py-1 rounded-md w-full max-w-[240px] text-center border border-slate-800/50">
+                                    localhost:5173
+                                </div>
+                            </div>
+                            <!-- Content Image -->
+                            <div class="aspect-[16/10] bg-slate-950 relative">
+                                <a href="https://vue-spa.web-templates.io">
+                                    <img src="/img/pages/vue/vue-spa.webp"
+                                         alt="Vue SPA React Template"
+                                         class="object-cover w-full h-full"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. VIDEO PREVIEW (Floating Glass Card) -->
+                <!-- Positioned absolute to overlap the screenshot -->
+                <div class="absolute -bottom-6 -left-4 lg:-left-12 w-64 sm:w-72 bg-slate-900/80 backdrop-blur-md border border-slate-600 p-3 rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] transform transition hover:-translate-y-1 duration-300 z-20">
+                    <div class="flex justify-between items-center mb-2 px-1">
+                        <span class="text-[10px] font-bold text-[#42b883] tracking-wider uppercase">Video Demo</span>
+                    </div>
+                    
+                    <!-- PLACEHOLDER: Video Thumbnail -->
+                    <a href="https://youtu.be/JlUjWlVslRg?si=R4Tn2izsMWor3jjL">
+                    <div class="relative aspect-video rounded-lg overflow-hidden bg-black group cursor-pointer">
+                        
+                        <svg class="w-full h-full object-cover" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <defs>
+                                <radialGradient id="thumb-grad" cx="50%" cy="40%" r="90%">
+                                    <stop offset="0%" stop-color="#1e293b" />
+                                    <stop offset="100%" stop-color="#020617" />
+                                </radialGradient>
+                                <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="1" opacity="0.1"/>
+                                </pattern>
+                                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#thumb-grad)" />
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+
+                            <g text-anchor="middle">
+                                <!-- TOP: Text Group -->
+                                <!-- Positioned at y=150 for optical center top -->
+                                <g transform="translate(400, 150)">
+                                    <text y="0" font-family="sans-serif" font-weight="700" font-size="30" fill="#64748b" letter-spacing="4" text-transform="uppercase">
+                                        ServiceStack
+                                    </text>
+                                    <text y="78" font-family="sans-serif" font-weight="900" font-size="80" fill="#ffffff" letter-spacing="-1" filter="url(#glow)">
+                                        VUE SPA
+                                    </text>
+                                </g>
+
+                                <!-- BOTTOM: Logo Group -->
+                                <!-- Positioned at y=290 to sit tighter to the text -->
+                                <g transform="translate(400, 290) scale(2.2)">
+                                    <path d="M-35 -20 L0 40 L35 -20 L-35 -20" fill="#42b883" stroke="#020617" stroke-width="2" />
+                                    <path d="M-17.5 -20 L0 10 L17.5 -20 L-17.5 -20" fill="#35495e" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    </a>
+
+                    <div class="mt-3 px-1">
+                        <div class="text-xs font-medium text-slate-200">New Vite Vue SPA Template</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">Productive ASP.NET Core Identity Auth Template</div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -57,36 +163,60 @@
 @await Html.PartialAsync("PrimaryNav", "vue")
 
 <section id="app">
-    <div class="mx-auto max-w-5xl py-24 sm:py-32">
-        <h3 class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Exceptional support for Vue</h3>
-        <div class="w-full px-4">
-            <p class="mx-auto mt-5 text-xl text-gray-500">
-                In addition to its first-class support for the most popular JavaScript frameworks in its
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/templates-single-page-apps">Single Page App Templates</a>,
-                ServiceStack provides its best support for the highly versatile and performant 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://vuejs.org/">Vue.js</a> framework which is ideal
-                for building both complex SPA &amp; 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://jamstacks.net">JAMStack Apps</a>
-                or for enhancing 
-                <a class="text-indigo-600 hover:text-indigo-800" href="/posts/javascript">Simple, Modern JavaScript</a> Multi Page Websites. 
-            </p>
+
+    <div class="relative py-16 sm:py-24 overflow-hidden bg-white dark:bg-gray-900">
+        <div class="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        
+            <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+                <!-- Text Content -->
+                <div>
+                    <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                        Exceptional support for <span class="text-emerald-500">Vue.js</span>
+                    </h3>
+                    <p class="mt-4 text-lg text-gray-500 dark:text-gray-400">
+                        In addition to first-class support for popular frameworks in our
+                        <a class="font-medium text-emerald-600 transition duration-150 ease-in-out hover:text-emerald-500 hover:underline" href="https://docs.servicestack.net/templates-single-page-apps">Single Page App Templates</a>,
+                        ServiceStack provides its best support for the highly versatile
+                        <a class="font-medium text-emerald-600 transition duration-150 ease-in-out hover:text-emerald-500 hover:underline" href="https://vuejs.org/">Vue.js</a>.
+                    </p>
+                    <p class="mt-4 text-lg text-gray-500 dark:text-gray-400">
+                        Ideal for building complex SPAs, <a class="font-medium text-emerald-600 transition duration-150 ease-in-out hover:text-emerald-500 hover:underline" href="https://jamstacks.net">JAMStack Apps</a>,
+                        or enhancing <a class="font-medium text-emerald-600 transition duration-150 ease-in-out hover:text-emerald-500 hover:underline" href="/posts/javascript">Simple, Modern JavaScript</a> websites.
+                    </p>
+                </div>
+
+                <!-- Highlight Card -->
+                <div class="relative p-8 bg-gray-50 rounded-2xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+                    <!-- Optional Vue Logo SVG Decoration -->
+                    <div class="absolute top-4 right-4 opacity-10">
+                        <svg class="w-24 h-24" viewBox="0 0 128 128" width="24" height="24" data-v-5f26462c=""><path fill="#42b883" d="M78.8,10L64,35.4L49.2,10H0l64,110l64-110C128,10,78.8,10,78.8,10z" data-v-5f26462c=""></path><path fill="#35495e" d="M78.8,10L64,35.4L49.2,10H25.6l38.4,66l38.4-66H78.8z" data-v-5f26462c=""></path></svg>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-gray-900 dark:text-white">
+                        Powering Built-in UIs
+                    </h4>
+                    <p class="mt-3 text-gray-600 dark:text-gray-300">
+                        Vue's prowess in creating rich, reactive UIs is why it powers all of ServiceStack's <a class="text-emerald-600 hover:underline" href="/auto-ui">Built-in UIs</a>.
+                    </p>
+                
+                    <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center mb-2">
+                            <code class="px-2 py-1 mr-2 text-sm font-bold text-emerald-700 bg-emerald-100 rounded dark:bg-emerald-900 dark:text-emerald-300">@@servicestack/vue</code>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            Our comprehensive component library for rapid Tailwind CSS development. Performance, accessibility, and modern design out of the box.
+                        </p>
+                    </div>
+                </div>
+            </div>
             
-            <p class="mx-auto mt-5 text-xl text-gray-500">
-                Vue's prowess in creating rich, Reactive UIs in npm build &amp; dependency-free static websites is why 
-                it was chosen to power all of ServiceStack's 
-                <a class="text-indigo-600 hover:text-indigo-800" href="/auto-ui">Built-in UIs</a> and our investments in
-                creating the comprehensive <b>@@servicestack/vue</b> component library for rapidly developing Tailwind CSS 
-                websites where it offers a wide range of beautifully designed, highly productive components that can be 
-                easily customized to fit into Tailwind's expert design system whose deep integration with your 
-                ServiceStack APIs unlocks end-to-end productivity.
-                <br><br>
-                With a focus on performance, accessibility and modern design, this library is the perfect choice
-                for developers looking to rapidly develop fast, beautiful modern Vue.js Tailwind Web Apps and Websites.
-            </p>
+            
         </div>
+    </div>
+    
+<div class="mx-auto max-w-5xl">
         
-        
-<div id="gallery" class="mt-16 max-w-2xl mx-auto">
+<div id="gallery" class="max-w-2xl mx-auto">
     <div class="flex justify-center">
         <a href="https://docs.servicestack.net/vue/autoquerygrid" class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="w-28 h-28 sm:w-44 sm:h-44 iconify iconify--la" width="1em" height="1em" viewBox="0 0 32 32">
@@ -328,7 +458,7 @@
     </div>
 </div>        
 
-        <h3 class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 dark:text-gray-50 sm:text-4xl">
+        <h3 id="getting-started" class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 dark:text-gray-50 sm:text-4xl">
             Getting Started
         </h3>
         
@@ -638,9 +768,65 @@ mount('#app', App)
    LearnMore = "https://docs.servicestack.net/templates-overview",
 })
 
+<div class="mx-auto max-w-7xl sm:px-6 lg:px-8 pb-24">
+    <div class="relative px-6 py-16 overflow-hidden bg-slate-900 shadow-2xl isolate sm:rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24">
+        
+        <!-- Background Gradient Effects -->
+        <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
+            <circle cx="512" cy="512" r="512" fill="url(#gradient-vue)" fill-opacity="0.7" />
+            <defs>
+                <radialGradient id="gradient-vue">
+                    <stop stop-color="#34d399" /> <!-- Emerald-400 -->
+                    <stop offset="1" stop-color="#064e3b" /> <!-- Emerald-900 -->
+                </radialGradient>
+            </defs>
+        </svg>
 
-<div class="mb-20 flex items-center justify-center gap-x-6">
-    <a href="https://docs.servicestack.net/vue/install" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">ServiceStack Vue Documentation</a>
+        <!-- Content -->
+        <div class="mx-auto max-w-lg text-center lg:mx-0 lg:flex-auto lg:py-12 lg:text-left">
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Ready for modern Vue apps?
+                <div class="mt-4 text-emerald-400">Start with ServiceStack & Vue.</div>
+            </h2>
+            <p class="mt-6 text-lg leading-8 text-gray-300">
+                Experience the ultimate productivity boost. Combine the type-safety of ServiceStack with 
+                our highly productive Vue component library.
+            </p>
+            <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                <a href="/vue/#getting-started" class="rounded-md bg-emerald-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-all duration-200">
+                    Getting Started
+                </a>
+                <a href="https://docs.servicestack.net/vue/autoquerygrid" class="text-sm font-semibold leading-6 text-white hover:text-emerald-400 transition-colors duration-200">
+                    Explore Vue Components <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Optional: Abstract Visual Representation (Right Side) -->
+        <div class="relative mt-16 h-80 lg:mt-8">
+            <div class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10">
+                <!-- Mock Code Interface -->
+                <div class="flex text-xs font-mono text-gray-400 border-b border-white/10 bg-white/5 p-2">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="ml-4 text-emerald-400">App.vue</div>
+                </div>
+                <div class="p-4 text-sm font-mono text-gray-300 leading-6">
+                    <div class="flex"><span class="text-purple-400 mr-2">&lt;script</span> setup lang=<span class="text-green-300">"ts"</span><span class="text-purple-400">&gt;</span></div>
+                    <div class="pl-4">import { <span class="text-emerald-400">useClient</span> } from <span class="text-orange-300">'@@servicestack/vue'</span>;</div>
+                    <div class="pl-4">const client = <span class="text-emerald-400">useClient()</span>;</div>
+                    <div class="pl-4">const api = await client.api(new <span class="text-yellow-300">Hello</span>({ name: <span class="text-green-300">'Vue'</span> }));</div>
+                    <div class="flex"><span class="text-purple-400">&lt;/script&gt;</span></div>
+                    <div class="flex mt-2"><span class="text-purple-400">&lt;template&gt;</span></div>
+                    <div class="pl-4"><span class="text-blue-300">&lt;h1&gt;</span>{{ api.response.result }}<span class="text-blue-300">&lt;/h1&gt;</span></div>
+                    <div class="flex"><span class="text-purple-400">&lt;/template&gt;</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="module">

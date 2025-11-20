@@ -4,55 +4,151 @@
 @{
     ViewData["Title"] = "React";
     ViewData["Brand"] = "ServiceStack React";
+    // /img/posts/react/react-spa.webp
 }
 
-<section class="relative isolate overflow-hidden bg-slate-900" style="
-        background-image:radial-gradient(ellipse at bottom,#61DAFB 5%,transparent 60%),
-            linear-gradient(136deg,transparent,#58C4DC 290%),
-            linear-gradient(115deg,#61DAFB,transparent 40%),
-            linear-gradient(180deg,transparent 0,#0D47A1 70%),
-            radial-gradient(ellipse at -70% -180%,transparent 80%,#1976D2 0),
-            radial-gradient(ellipse at bottom,#1A237E 40%,transparent 80%),
-            radial-gradient(ellipse at 5% 340%,transparent 80%,#283593 0)">
-    <svg viewBox="0 0 1108 632" aria-hidden="true"
-        class="absolute top-10 left-[calc(50%-4rem)] -z-10 w-[69.25rem] max-w-none transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
-        <path fill="url(#175c433f-44f6-4d59-93f0-c5c51ad5566d)" fill-opacity=".2"
-            d="M235.233 402.609 57.541 321.573.83 631.05l234.404-228.441 320.018 145.945c-65.036-115.261-134.286-322.756 109.01-230.655C968.382 433.026 1031 651.247 1092.23 459.36c48.98-153.51-34.51-321.107-82.37-385.717L810.952 324.222 648.261.088 235.233 402.609Z" />
-        <defs>
-            <linearGradient id="175c433f-44f6-4d59-93f0-c5c51ad5566d" x1="1220.59" x2="-85.053" y1="432.766"
-                y2="638.714" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4DC19A" />
-                <stop offset="1" stop-color="#2A5B5F" />
-            </linearGradient>
-        </defs>
+<section class="relative w-full bg-slate-950 border-b border-white/10 overflow-hidden">
+    
+    <!-- 1. Full Width Background Effects -->
+    
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+        <svg class="h-full w-full" aria-hidden="true">
+            <defs>
+                <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M0 40L40 0H20L0 20M40 40V20L20 40" stroke="#0ea5e9" stroke-width="1" fill="none" opacity="0.1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hero-grid)" />
+        </svg>
+    </div>
+
+    <!-- Ambient Glows -->
+    <div class="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-blue-600/20 blur-[100px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-[100px] pointer-events-none"></div>
+
+    <!-- Spinning React Logo Watermark (Positioned absolutely to the right) -->
+    <svg class="absolute -right-20 top-20 h-[600px] w-[600px] text-cyan-500/5 animate-[spin_60s_linear_infinite] pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
+        <circle cx="12" cy="12" r="2"></circle>
+        <ellipse rx="10" ry="4.5" transform="rotate(60 12 12)"></ellipse>
+        <ellipse rx="10" ry="4.5" transform="rotate(120 12 12)"></ellipse>
+        <ellipse rx="10" ry="4.5"></ellipse>
     </svg>
-    <div class="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:flex lg:px-8">
-        <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
-            <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                <span class="block">ServiceStack React</span>
-            </h1>
-            <p class="mt-3 text-base text-gray-100 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                Preview the amazing productivity of @@servicestack/react's beautiful, expertly designed
-                Tailwind React components
-            </p>
-            <div class="mt-10 align-top">
+
+
+    <!-- 2. Main Content Container -->
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-15 pb-16 lg:pb-24">
+        
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Left: Text Content -->
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center rounded-full border border-cyan-500/30 bg-cyan-950/30 px-3 py-1 text-sm font-medium text-cyan-300 backdrop-blur-xl mb-8">
+                    <span class="flex h-2 w-2 rounded-full bg-cyan-400 mr-2 animate-pulse"></span>
+                    New React Templates Available
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+                    ServiceStack <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">React</span>
+                </h1>
+                
+                <p class="mt-6 text-lg sm:text-xl text-slate-400 leading-relaxed">
+                    Preview the amazing productivity of ServiceStack's beautiful, expertly designed Tailwind React components.
+                </p>
+                
+                <div class="mt-10 flex flex-wrap gap-4">
+                    <button class="group relative inline-flex items-center justify-center rounded-lg bg-cyan-500 px-8 py-3.5 text-base font-bold text-slate-950 shadow-[0_0_20px_-5px_rgba(6,182,212,0.6)] hover:bg-cyan-400 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.8)] transition-all duration-200">
+                        Get Started
+                        <svg class="ml-2 -mr-1 h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                    </button>
+                    <button class="inline-flex items-center justify-center rounded-lg border border-slate-700 bg-slate-800/50 px-8 py-3.5 text-base font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition-all">
+                        View Gallery
+                    </button>
+                </div>
             </div>
-            <div class="mt-10 flex items-center gap-x-6">
-                <a href="https://docs.servicestack.net/templates/react"
-                    class="rounded-md bg-white/10 py-2.5 px-3.5 font-semibold text-white shadow-sm hover:bg-white/20">Learn
-                    more</a>
-            </div>
-        </div>
-        <div
-            class="hidden lg:block mx-auto mt-16 flex max-w-2xl lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
-            <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                <a href="https://react-spa.web-templates.io">
-                    <img src="/img/posts/react/react-spa.webp" alt="App screenshot"
-                        class="w-[50rem] rounded-md p-8 bg-white/5 shadow-2xl ring-1 ring-white/10">
-                </a>
+
+            <!-- Right: Browser Image (Full Visual) -->
+            <div class="relative lg:ml-auto w-full max-w-lg lg:max-w-none">
+                <div class="relative group perspective-1000">
+                    <!-- Glow Effect -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl opacity-20 blur-xl group-hover:opacity-40 transition duration-500"></div>
+                    
+                    <!-- The Browser Window -->
+                    <div class="relative rounded-xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden transform transition-transform duration-500 hover:scale-[1.01] hover:-rotate-1">
+                        <!-- Browser Toolbar -->
+                        <div class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <div class="mx-auto text-xs font-mono text-slate-500 bg-slate-900 px-3 py-1 rounded-md w-full max-w-[240px] text-center border border-slate-800/50">
+                                localhost:3000
+                            </div>
+                        </div>
+                        <!-- Content Image -->
+                        <div class="aspect-[16/10] bg-slate-950 relative">
+                            <a href="https://nextjs.web-templates.io">
+                            <img src="/img/pages/react/nextjs.webp"
+                                 alt="Next.js React Template"
+                                 class="object-cover w-full h-full"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- 3. Feature Grid / Footer (Full Width Strip) -->
+    <div class="relative border-t border-white/5 bg-white/[0.02] backdrop-blur-sm">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <dl class="grid grid-cols-1 gap-y-8 py-10 sm:grid-cols-3 sm:gap-x-8 lg:gap-x-12">
+                
+                <!-- Feature 1 -->
+                <div class="relative pl-14">
+                    <dt class="text-base font-semibold leading-7 text-white">
+                        <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                            <span class="text-cyan-400 font-mono text-xs font-bold">01</span>
+                        </div>
+                        AI Ready
+                    </dt>
+                    <dd class="mt-2 text-base leading-7 text-slate-400">
+                        Start from well-known React templates tuned for rich, data-driven and AI-generated user interfaces.
+                    </dd>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="relative pl-14">
+                    <dt class="text-base font-semibold leading-7 text-white">
+                        <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                            <span class="text-cyan-400 font-mono text-xs font-bold">02</span>
+                        </div>
+                        End-to-end Type Safety
+                    </dt>
+                    <dd class="mt-2 text-base leading-7 text-slate-400">
+                        From C# DTOs in .NET to TypeScript DTOs in React for confident refactors without context switching.
+                    </dd>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="relative pl-14">
+                    <dt class="text-base font-semibold leading-7 text-white">
+                        <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                            <span class="text-cyan-400 font-mono text-xs font-bold">03</span>
+                        </div>
+                        Zero-Ambiguity APIs
+                    </dt>
+                    <dd class="mt-2 text-base leading-7 text-slate-400">
+                        Consistent API integrations eliminates guesswork, giving AI the perfect context to generate accurate implementations.
+                    </dd>
+                </div>
+
+            </dl>
+        </div>
+    </div>
+
 </section>
 
 @await Html.PartialAsync("PrimaryNav", "react")
@@ -452,6 +548,7 @@ import { mount } from "app.mjs"
 import { ref, computed } from "vue"
 import Templates, { template } from "/posts/components/Templates.mjs"
 import ScreenshotsGallery from "/posts/components/ScreenshotsGallery.mjs"
+import ReactCallout from "/pages/components/ReactCallout.mjs"
 
 export const Index = [
     template('react-vite', 'React Vite', 'ReactNative',['empty', 'tailwind']),
@@ -464,8 +561,10 @@ const App = {
     components: {
         Templates,
         ScreenshotsGallery,
+        ReactCallout,
     },
     template: `
+<div class="max-w-screen-lg">
     <Templates :templates="[Index['react-vite'],Index['nextjs'],Index['react-spa']]" />
 
     <h2 class="mb-20 mt-20 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
@@ -473,9 +572,12 @@ const App = {
     </h2>
 
     <ScreenshotsGallery 
-        class="-ml-20 w-[1280px]"
+        class="mx-auto"
         gridClass="grid grid-cols-1 md:grid-cols-2 gap-8"
         :images="screenshots" />
+
+    <ReactCallout />
+</div>
 `,
     setup() {
         const screenshots = {
@@ -497,12 +599,6 @@ const App = {
 mount('#templates', App)
 </script>
 
-
-<div class="mb-20 flex items-center justify-center gap-x-6">
-    <a href="https://react.servicestack.net"
-        class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">ServiceStack
-        React Documentation</a>
-</div>
 
 <script type="module">
     import { setMetadata } from "/pages/vue/data.mjs"
