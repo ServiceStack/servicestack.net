@@ -757,6 +757,7 @@ import { ref, computed } from "vue"
 import Templates, { template } from "/posts/components/Templates.mjs"
 import ScreenshotsGallery from "/posts/components/ScreenshotsGallery.mjs"
 import ReactCallout from "/pages/components/ReactCallout.mjs"
+import ReactCopilotTemplates from "/pages/components/ReactCopilotTemplates.mjs"
 
 export const Index = [
     template('react-vite', 'React Vite', 'ReactNative',['empty', 'tailwind']),
@@ -770,10 +771,13 @@ const App = {
         Templates,
         ScreenshotsGallery,
         ReactCallout,
+        ReactCopilotTemplates,
     },
     template: `
 <div class="max-w-screen-lg">
     <Templates :templates="[Index['react-vite'],Index['nextjs'],Index['react-spa']]" />
+
+    <ReactCopilotTemplates class="mt-12" />
 
     <h2 class="mb-20 mt-20 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
         Screenshots
