@@ -8,7 +8,7 @@ export default {
         {
           id: 'vite',
           name: 'React Vite',
-          description: 'Lightweight, fast development environment. Best for pure client-side apps.',
+          description: 'Empty SPA, fast development UX with Vite. Best for pure client-side apps.',
           url: 'https://github.com/new?template_name=react-vite&template_owner=NetCoreTemplates',
           // Tailwind Colors
           colorBg: 'bg-blue-500',
@@ -19,8 +19,8 @@ export default {
         },
         {
           id: 'next',
-          name: 'Next.js React',
-          description: 'Full-stack React framework with SSR, API routes, and SEO optimization built-in.',
+          name: 'Next.js ',
+          description: 'Full-stack React framework using App Router configured for SSG static exports, SEO optimization built-in.',
           url: 'https://github.com/new?template_name=nextjs&template_owner=NetCoreTemplates',
           // Tailwind Colors
           colorBg: 'bg-slate-900',
@@ -98,7 +98,8 @@ export default {
             {{ template.description }}
           </p>
 
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-sm font-semibold text-indigo-600 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-sm font-semibold opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+               :class="template.colorText">
             Use Template <span class="ml-1">&rarr;</span>
           </div>
         </a>
