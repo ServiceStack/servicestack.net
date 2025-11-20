@@ -213,7 +213,6 @@ The unprecedented productivity of AI Assisted development has transformed our ro
     <span class="ml-1 text-slate-400 transition-transform group-hover:translate-x-0.5">&rarr;</span>
     </span>
 </a>
-
 </div>
 
 <div class="not-prose -ml-[30px] w-[840px]">
