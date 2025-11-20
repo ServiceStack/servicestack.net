@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Thu, 20 Nov 2025 09:17:40 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 20 Nov 2025 09:27:35 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,22 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Replacing Legacy UIs in an AI-First world</title>
+        <link>https://servicestack.net/podcasts/replacing-legacy-uis</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/replacing-legacy-uis</guid>
+        <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-11-19T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/replacing-legacy-uis.mp3" length="10260256" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>react</category>
+        <description>Rewriting legacy UIs on modern AI-First stacks are now cheaper and faster than traditional development.</description>
+        <itunes:summary><![CDATA[ Rewriting legacy UIs on modern AI-First stacks are now cheaper and faster than traditional development. ]]></itunes:summary>
+        <itunes:duration>692</itunes:duration>
+        <itunes:keywords>llms,ai,react</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>AI Chat - A Simple OpenAI Chat Completions API, UI &amp; Client LLM Gateway</title>
         <link>https://servicestack.net/podcasts/ai-chat</link>
@@ -856,25 +872,6 @@
         <itunes:summary><![CDATA[ All about ServiceStack v8.2 Release new Vue &amp; React Vite SPA Tailwind Markdown powered Templates, integrated Identity Auth, new Kotlin Compose Multiplatform template and new Vite Press Plugin ]]></itunes:summary>
         <itunes:duration>674</itunes:duration>
         <itunes:keywords>release,vue,react,vite,markdown,kotlin</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack v8.1 Release</title>
-        <link>https://servicestack.net/podcasts/v8-1-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-1-release</guid>
-        <pubDate>Tue, 06 Feb 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-02-06T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-1-release.mp3" length="2482893" type="audio/mpeg"/>
-        <category>release</category>
-        <category>identity-auth</category>
-        <category>ioc</category>
-        <category>json</category>
-        <category>openapi</category>
-        <category>swagger</category>
-        <description>ServiceStack v8.1 is here with a host of new features including full integration with Identity Auth, ASP .NET IOC, Endpoint Routing, System.Text.Json APIs, enhanced Admin UIs with JWT support, and much more!</description>
-        <itunes:summary><![CDATA[ ServiceStack v8.1 is here with a host of new features including full integration with Identity Auth, ASP .NET IOC, Endpoint Routing, System.Text.Json APIs, enhanced Admin UIs with JWT support, and much more! ]]></itunes:summary>
-        <itunes:duration>620</itunes:duration>
-        <itunes:keywords>release,identity-auth,ioc,json,openapi,swagger</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
