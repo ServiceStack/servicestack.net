@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>llms.py - Lightweight OpenAI compatible CLI and server gateway for multiple LLMs - ServiceStack</title>
+    <title>AI Chat history persistence and Admin Analytics UI - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="Support for Text, Image and Audio generation. Seamlessly mix and match local models with premium cloud LLMs" />
-    <meta property="og:url" content="https://servicestack.net/posts/llms-py" />
-    <meta property="og:title" content="llms.py - Lightweight OpenAI compatible CLI and server gateway for multiple LLMs" />
-    <meta property="og:image" content="./img/posts/llms-py/bg.webp" />
+    <meta property="og:description" content="Maintain a persistant history of all AI Chat requests and responses" />
+    <meta property="og:url" content="https://servicestack.net/posts/ai-chat-analytics" />
+    <meta property="og:title" content="AI Chat history persistence and Admin Analytics UI" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                llms.py - Lightweight OpenAI compatible CLI and server gateway for multiple LLMs
+                AI Chat history persistence and Admin Analytics UI
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -143,7 +143,7 @@ mountAll()
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/llms-py/bg.webp" alt="llms.py - Lightweight OpenAI compatible CLI and server gateway for multiple LLMs Background" class="shadow-small">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&amp;fit=crop&amp;h=1000&amp;w=2000" alt="AI Chat history persistence and Admin Analytics UI Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
@@ -151,13 +151,15 @@ mountAll()
                     <div class="mb-4 flex flex-wrap">
                         <a href="posts/tagged/llms" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">llms</a>
                         <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
-                        <a href="posts/tagged/python" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">python</a>
+                        <a href="posts/tagged/chat" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">chat</a>
+                        <a href="posts/tagged/admin-ui" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin-ui</a>
+                        <a href="posts/tagged/analytics" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">analytics</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2025-09-25T00:00:00.0000000">September 25, 2025</time>
+                                <time datetime="2025-11-20T00:00:00.0000000">November 20, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>5 min read</span>
+                                <span>3 min read</span>
                             </div>
                         </div>
                 </div>
@@ -170,32 +172,10 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <h1 id="introducing-llms.py">Introducing llms.py 🚀<a class="header-anchor" href="javascript:;" onclick="location.hash='#introducing-llms.py'" aria-label="Permalink">&ZeroWidthSpace;</a></h1>
-<p>We're excited to announce the release of <strong><a href="https://github.com/ServiceStack/llms">llms.py</a></strong> - a super lightweight CLI tool and OpenAI-compatible server
-that acts as a <strong>configurable gateway</strong> over multiple configurable Large Language Model (LLM) providers.</p>
-<p>As part of our work in developing a new OSS AI Generation platform we were in need of a lightweight
-LLM gateway for usage within <a href="https://www.comfy.org">ComfyUI</a>. Unfortunately the popular option for Python <strong>litellm</strong>
-is anything but - requiring <a href="https://github.com/BerriAI/litellm/blob/main/requirements.txt">60 deps!</a>
-where its VC funded development sees its scope creep into Enterprise features.</p>
-<p>This is a deal breaker within an open Python plugin ecosystem like ComfyUI where every dependency has a chance to break
-a Python environment. It's also unnecessary for a simple CLI tool and server gateway where the hard work
-is already done by the LLM providers in their OpenAI-compatible APIs - a simplicity capitalized on by <code>llms.py</code>.</p>
-<h2 id="openrouter-but-local">🎯 OpenRouter but Local<a class="header-anchor" href="javascript:;" onclick="location.hash='#openrouter-but-local'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p><strong>llms.py</strong> is designed as a <strong>unified gateway</strong> that seamlessly connects you to multiple LLM providers
-through a single, consistent interface. Whether using cloud APIs or local models, <code>llms</code> provides
-intelligent routing and automatic failover to ensure your AI workflows connect to your chosen providers in your
-preferred priority - whether optimizing for cost, performance or availability.</p>
-<h3 id="ultra-lightweight-architecture">⚡ Ultra-Lightweight Architecture<a class="header-anchor" href="javascript:;" onclick="location.hash='#ultra-lightweight-architecture'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>Single File</strong>: Just one <a href="https://github.com/ServiceStack/llms/blob/main/llms/main.py">llms.py</a> file (easily customizable)</li>
-<li><strong>Single Dependency</strong>: Single <code>aiohttp</code> dependency</li>
-<li><strong>Zero Dependencies for ComfyUI</strong>: Ideal for use in ComfyUI Custom Nodes</li>
-<li><strong>No Setup</strong>: Just download and use, configure preferred LLMs in <a href="https://github.com/ServiceStack/llms/blob/main/llms/llms.json">llms.json</a></li>
-</ul>
-<h2 id="install">📦 Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+                    <p>ServiceStack's <a href="https://docs.servicestack.net/ai-chat-api">AI Chat</a> feature provides a unified API for integrating multiple AI providers into your applications. To gain visibility into usage patterns, costs, and performance across your AI infrastructure, the platform includes comprehensive chat history persistence and analytics capabilities.</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install llms-py</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mix chat</p>
 </div>
                     </div>
                 <div class="flex">
@@ -207,155 +187,47 @@ preferred priority - whether optimizing for cost, performance or availability.</
                     </div>
                 </div>
             </div>
-<h2 id="quick-start">🔧 Quick Start<a class="header-anchor" href="javascript:;" onclick="location.hash='#quick-start'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<pre><code class="language-bash"># Initialize configuration (saved in ~/.llms/llms.json)
-llms --init
-
-# Enable providers
-llms --enable openrouter_free google_free groq openai anthropic grok
-
-# List available providers and models
-llms ls
-llms ls openrouter_free groq
-
-# Start chatting
-llms &quot;Explain quantum computing in simple terms&quot;
-
-# With preferred Model
-llms -m grok-4-fast &quot;jq command to sort openai models by created&quot;
-
-# With system prompt
-llms -s &quot;You are a quantum computing expert&quot; &quot;Explain quantum computing&quot;
-
-# Use with images
-llms --image photo.jpg &quot;What's in this image?&quot;
-
-# Use with audio
-llms --audio talk.mp3 &quot;Transcribe this audio file&quot;
-
-# Use with attached file
-llms --file report.pdf &quot;Summarize this PDF&quot;
-
-# With custom request template
-llms --chat request.json &quot;Explain quantum computing in simple terms&quot;
-llms --chat image-request.json --image photo.jpg &quot;What's in this image?&quot;
-llms --chat audio-request.json --audio talk.mp3 &quot;Transcribe this audio file&quot;
-llms --chat file-request.json --file report.pdf &quot;Summarize this PDF&quot;
-
-# Set default model
-llms --default grok-4-fast
-
-# Run an Open AI Chat compatible server
-llms --serve 8000
-</code></pre>
-<p>Example client usage:</p>
-<pre><code class="language-bash">curl -X POST http://localhost:8000/v1/chat/completions \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{
-    &quot;model&quot;: &quot;kimi-k2&quot;,
-    &quot;messages&quot;: [
-      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot;}
+<p>Or by referencing the <strong>ServiceStack.AI.Chat</strong> NuGet package and adding the <code>ChatFeature</code> plugin:</p>
+<pre><code class="language-csharp">services.AddPlugin(new ChatFeature {
+    EnableProviders = [
+        &quot;servicestack&quot;,
     ]
-  }'
+});
 </code></pre>
-<h3 id="configurable-multi-provider-gateway">🌐 Configurable Multi-Provider Gateway<a class="header-anchor" href="javascript:;" onclick="location.hash='#configurable-multi-provider-gateway'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Acts as an intelligent gateway that can route requests for 160+ models across:</p>
-<h4 id="cloud-providers-with-free-tiers">Cloud Providers with Free tiers<a class="header-anchor" href="javascript:;" onclick="location.hash='#cloud-providers-with-free-tiers'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<h2 id="ai-chat-history-persistence">AI Chat History Persistence<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-chat-history-persistence'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Enabling chat history persistence allows you to maintain a complete audit trail of all AI interactions, track token consumption, monitor costs across providers and models, and analyze usage patterns over time that captures every
+request and response flowing through AI Chat's UI, external OpenAI endpoints and internal <code>IChatStore</code> requests.</p>
+<h3 id="database-storage-options">Database Storage Options<a class="header-anchor" href="javascript:;" onclick="location.hash='#database-storage-options'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>ServiceStack provides two storage implementations to suit different deployment scenarios:</p>
+<p><code>DbChatStore</code> - A universal solution that stores chat history in a single table compatible with any RDBMS
+<a href="https://docs.servicestack.net/ormlite/getting-started">supported by OrmLite</a>:</p>
+<pre><code class="language-csharp">services.AddSingleton&lt;IChatStore,DbChatStore&gt;();
+</code></pre>
+<p><code>PostgresChatStore</code> - An optimized implementation for PostgreSQL that leverages monthly table partitioning for improved query performance and data management:</p>
+<pre><code class="language-csharp">services.AddSingleton&lt;IChatStore, PostgresChatStore&gt;();
+</code></pre>
+<p>Both implementations utilize indexed queries with result limits to ensure consistent performance even as your chat history grows. The partitioned approach in PostgreSQL offers additional benefits for long-term data retention and archival strategies.</p>
+<h2 id="admin-ui-analytics">Admin UI Analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#admin-ui-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Once chat history persistence is enabled, the Admin UI provides comprehensive analytics dashboards that deliver actionable insights into your AI infrastructure. The analytics interface offers multiple views to help you understand costs, optimize token usage, and monitor activity patterns across all configured AI providers and models.</p>
+<p>The analytics dashboard includes three primary tabs:</p>
 <ul>
-<li>OpenRouter</li>
-<li>Groq</li>
-<li>Codestral</li>
-<li>Google</li>
+<li><strong>Cost Analysis</strong> - Track spending across providers and models with daily and monthly breakdowns</li>
+<li><strong>Token Usage</strong> - Monitor input and output token consumption to identify optimization opportunities</li>
+<li><strong>Activity</strong> - Review detailed request logs with full conversation history and metadata</li>
 </ul>
-<h4 id="premium-cloud-providers">Premium Cloud Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#premium-cloud-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<ul>
-<li>OpenAI</li>
-<li>Anthropic</li>
-<li>Google</li>
-<li>Grok</li>
-<li>Qwen</li>
-<li>Mistral</li>
-</ul>
-<h4 id="local-providers">Local Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#local-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<ul>
-<li>Ollama
-<ul>
-<li>Restrict access to custom models</li>
-<li>Or auto-discovery of installed models</li>
-</ul>
-</li>
-</ul>
-<h4 id="custom-providers">Custom Providers<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-providers'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
-<p>Use JSON config to add any OpenAI-compatible API endpoints and models</p>
-<h3 id="intelligent-request-routing">🔄 Intelligent Request Routing<a class="header-anchor" href="javascript:;" onclick="location.hash='#intelligent-request-routing'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>Automatic Failover</strong>: If one provider fails, automatically retry with the next available provider</li>
-<li><strong>Cost Optimization</strong>: Define free/cheap/local providers first to minimize costs</li>
-<li><strong>Model Mapping</strong>: Use unified model names that map to different provider-specific names.</li>
-</ul>
-<h2 id="key-features">🚀 Key Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#key-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<h3 id="multi-modal-support">Multi-Modal Support<a class="header-anchor" href="javascript:;" onclick="location.hash='#multi-modal-support'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>Text Generation</strong>: Chat completions with any supported model</li>
-<li><strong>Vision Models</strong>: Process images through vision-capable models (GPT-4V, Gemini Vision, etc.)</li>
-<li><strong>Audio Processing</strong>: Handle audio inputs through audio-capable models</li>
-</ul>
-<h3 id="flexible-deployment-options">Flexible Deployment Options<a class="header-anchor" href="javascript:;" onclick="location.hash='#flexible-deployment-options'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>CLI Tool</strong>: Interactive command-line interface for quick queries</li>
-<li><strong>HTTP Server</strong>: OpenAI-compatible server at <code>http://localhost:{PORT}/v1/chat/completions</code></li>
-<li><strong>Python Module</strong>: Import and use programmatically in your applications</li>
-<li><strong>ComfyUI Node</strong>: Embed directly in ComfyUI workflows</li>
-</ul>
-<h3 id="simple-and-customizable">Simple and Customizable<a class="header-anchor" href="javascript:;" onclick="location.hash='#simple-and-customizable'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>Environment Variables</strong>: Secure API key management</li>
-<li><strong>Provider Management</strong>: Easy enable/disable of providers</li>
-<li><strong>Custom Models</strong>: Define your own model aliases and mappings</li>
-<li><strong>Unified Configuration</strong>: Single <a href="https://github.com/ServiceStack/llms/blob/main/llms/llms.json">llms.json</a> to configure all providers and models</li>
-</ul>
-<h2 id="use-cases">🎯 Use Cases<a class="header-anchor" href="javascript:;" onclick="location.hash='#use-cases'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<h3 id="for-developers">For Developers<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-developers'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>API Gateway</strong>: Centralize all LLM provider access through one endpoint</li>
-<li><strong>Cost Management</strong>: Automatically route to cheapest available providers</li>
-<li><strong>Reliability</strong>: Built-in failover ensures high availability</li>
-<li><strong>Testing</strong>: Easily switch between models and providers for comparison</li>
-</ul>
-<h3 id="for-comfyui-users">For ComfyUI Users<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-comfyui-users'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>Hybrid Workflows</strong>: Combine local Ollama models with cloud APIs</li>
-<li><strong>Zero Setup</strong>: No dependency management headaches</li>
-<li><strong>Provider Flexibility</strong>: Switch providers without changing your workflow</li>
-<li><strong>Cost Control</strong>: Use free tiers and local models when possible</li>
-</ul>
-<h3 id="for-enterprises">For Enterprises<a class="header-anchor" href="javascript:;" onclick="location.hash='#for-enterprises'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<ul>
-<li><strong>Vendor Independence</strong>: Avoid lock-in to any single LLM provider</li>
-<li><strong>Scalability</strong>: Distribute load across multiple providers</li>
-<li><strong>Compliance</strong>: Keep sensitive data local while using cloud for general tasks</li>
-<li><strong>Budget Control</strong>: Intelligent routing to optimize costs</li>
-</ul>
-<h2 id="why-llms.py">🌟 Why llms.py?<a class="header-anchor" href="javascript:;" onclick="location.hash='#why-llms.py'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<ol>
-<li><strong>Simplicity</strong>: One file, one dependency, infinite possibilities</li>
-<li><strong>Flexibility</strong>: Works with any OpenAI-compatible client or framework</li>
-<li><strong>Reliability</strong>: Automatic failover ensures your workflows never break</li>
-<li><strong>Economy</strong>: Intelligent routing minimizes API costs</li>
-<li><strong>Privacy</strong>: Mix local and cloud models based on your data sensitivity</li>
-<li><strong>Future-Proof</strong>: Easily add new providers as they emerge</li>
-</ol>
-<p><strong>llms.py</strong> transforms the complexity of managing multiple LLM providers into a simple, unified experience.
-Whether you're researching capabilities of new models, building the next breakthrough AI application or just want
-reliable access to the best models available, llms.py has you covered.</p>
-<p>Get started today and avoid expensive cloud lock-ins with the freedom of provider-agnostic AI development! 🎉</p>
-<hr />
-<p><strong>Links:</strong></p>
-<ul>
-<li>📚 <a href="https://github.com/ServiceStack/llms">Documentation &amp; Examples</a></li>
-<li>📦 <a href="https://pypi.org/project/llms-py/">PyPI Package</a></li>
-<li>🔧 <a href="https://github.com/ServiceStack/llms">Source Code</a></li>
-</ul>
+<p>These visualizations enable data-driven decisions about provider selection, model usage, and cost optimization strategies.</p>
+<h3 id="cost-analysis">Cost Analysis<a class="header-anchor" href="javascript:;" onclick="location.hash='#cost-analysis'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The Cost Analysis tab provides financial visibility into your AI operations with interactive visualizations showing spending distribution across providers and models. Daily cost trends help identify usage spikes, while monthly aggregations reveal long-term patterns. Pie charts break down costs by individual models and providers, making it easy to identify your most expensive AI resources and opportunities for cost optimization.</p>
+<div class="wideshot"><p><img src="/img/posts/ai-chat-analytics/admin-chat-costs.webp" alt="" /></p>
+</div>
+<h3 id="token-usage">Token Usage<a class="header-anchor" href="javascript:;" onclick="location.hash='#token-usage'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The Token Usage tab tracks both input (prompt) and output (completion) tokens across all requests. Daily usage charts display token consumption trends over time, while model and provider breakdowns show which AI resources consume the most tokens. This granular visibility helps optimize prompt engineering, identify inefficient usage patterns, and forecast capacity requirements.</p>
+<div class="wideshot"><p><img src="/img/posts/ai-chat-analytics/admin-chat-tokens.webp" alt="" /></p>
+</div>
+<h3 id="activity-log">Activity Log<a class="header-anchor" href="javascript:;" onclick="location.hash='#activity-log'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The Activity tab maintains a searchable log of all AI chat requests, displaying timestamps, models, providers, and associated costs. Clicking any request opens a detailed view showing the complete conversation including user prompts, AI responses, token counts, duration, and the full request payload. This audit trail is invaluable for debugging, quality assurance, and understanding how your AI features are being used in production.</p>
+<div class="wideshot"><p><img src="/img/posts/ai-chat-analytics/admin-chat-activity.webp" alt="" /></p>
+</div>
 
                 </div>
             </div>
@@ -414,47 +286,6 @@ reliable access to the best models available, llms.py has you covered.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/ai-chat-analytics">
-                                            <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=80" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/ai-chat-analytics" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="AI Chat history persistence and Admin Analytics UI">
-                                                    AI Chat history persistence and Admin Analytics UI
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Maintain a persistant history of all AI Chat requests and responses</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="AI Chat history persistence and Admin Analytics UI background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-11-20T00:00:00.0000000">November 20, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>3 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -569,6 +400,47 @@ reliable access to the best models available, llms.py has you covered.</p>
                                                 </p>
                                                 <div class="flex space-x-1 text-sm text-gray-500">
                                                     <time datetime="2025-11-12T00:00:00.0000000">November 12, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>4 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/apikey_auth_apis">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/identityauth-claims-roles/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/apikey_auth_apis" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Protect same APIs with API Keys or Identity Auth">
+                                                    Protect same APIs with API Keys or Identity Auth
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Learn how to create ServiceStack APIs that can be protected with API Keys or Identity Auth</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="Protect same APIs with API Keys or Identity Auth background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-10-27T00:00:00.0000000">October 27, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>4 min read</span>
                                                 </div>
