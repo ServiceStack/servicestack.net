@@ -7,7 +7,7 @@ export default {
       templates: [
         {
           id: 'vite',
-          name: 'React Vite',
+          name: 'React Vite SPA',
           description: 'Empty SPA, fast development UX with Vite. Best for pure client-side apps.',
           url: 'https://github.com/new?template_name=react-vite&template_owner=NetCoreTemplates',
           // Tailwind Colors
@@ -19,7 +19,7 @@ export default {
         },
         {
           id: 'next',
-          name: 'Next.js ',
+          name: 'Next.js Static',
           description: 'Full-stack React framework using App Router configured for SSG static exports, SEO optimization built-in.',
           url: 'https://github.com/new?template_name=nextjs&template_owner=NetCoreTemplates',
           // Tailwind Colors
