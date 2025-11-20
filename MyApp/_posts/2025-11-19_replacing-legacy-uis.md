@@ -201,17 +201,21 @@ For organizations with legacy applications, it means **modernization is now econ
 
 ## From .NET APIs to AI First UIs
 
-Our roadmap is now firmly centered on developing the ideal .NET AI‑first development stack, powered by a growing suite of React / TypeScript / Tailwind CSS templates and components, the ultimate UX of hot-reloading npm UIs and built on our robust and highly capable & performant .NET backend APIs. 
+The unprecedented productivity of AI Assisted development has transformed our roadmap which is now firmly centered on developing the ideal .NET AI‑first development stack, powered by a growing suite of React / TypeScript / Tailwind CSS templates and components, the ultimate UX of hot-reloading npm UIs and built on our highly capable & performant .NET backend APIs. 
 
-This combination delivers true end‑to‑end type safety from database to UI, frictionless development, expressive declarative APIs that stay in sync with your contracts, enabling teams to move from idea to production‑ready AI‑driven UIs with minimal ceremony. 
 
-<div class="pt-8 not-prose flex justify-center">
+<div class="pt-12 not-prose flex justify-center">
 <a href="/react"
    class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 vithe UX Hot reloading of npm UIsa-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
-  <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
+    <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
     <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-400 shadow-[0_0_7px_rgba(56,189,248,0.7)]"></span>
     <span class="tracking-wide">ServiceStack + React</span>
     <span class="ml-1 text-slate-400 transition-transform group-hover:translate-x-0.5">&rarr;</span>
-  </span>
+    </span>
 </a>
+
+</div>
+
+<div class="-ml-[30px] w-[840px]">
+<react-callout />
 </div>

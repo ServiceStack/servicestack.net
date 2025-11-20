@@ -1,5 +1,7 @@
 import Templates, { Index } from "./components/Templates.mjs"
 import ScreenshotsGallery from "./components/ScreenshotsGallery.mjs"
+import ReactCallout from "../pages/components/ReactCallout.mjs"
+
 
 const ReactTemplate = {
     components: { Templates },
@@ -68,6 +70,7 @@ export default {
     components: {
         ReactTemplate,
         ScreenshotsGallery,
+        ReactCallout,
     },
     setup() {
         return { }

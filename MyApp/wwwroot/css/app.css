@@ -948,6 +948,18 @@
   .-ml-48 {
     margin-left: calc(var(--spacing) * -48);
   }
+  .-ml-\[25\%\] {
+    margin-left: calc(25% * -1);
+  }
+  .-ml-\[30px\] {
+    margin-left: calc(30px * -1);
+  }
+  .-ml-\[50px\] {
+    margin-left: calc(50px * -1);
+  }
+  .-ml-\[100px\] {
+    margin-left: calc(100px * -1);
+  }
   .-ml-px {
     margin-left: -1px;
   }
@@ -1351,6 +1363,18 @@
   }
   .w-\[600px\] {
     width: 600px;
+  }
+  .w-\[800px\] {
+    width: 800px;
+  }
+  .w-\[820px\] {
+    width: 820px;
+  }
+  .w-\[840px\] {
+    width: 840px;
+  }
+  .w-\[980px\] {
+    width: 980px;
   }
   .w-\[1280px\] {
     width: 1280px;
