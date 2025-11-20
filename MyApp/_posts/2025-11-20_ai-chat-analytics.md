@@ -4,6 +4,7 @@ summary: Maintain a persistant history of all AI Chat requests and responses
 tags: [llms,ai,chat,admin-ui,analytics]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&fit=crop&h=1000&w=2000
+draft: true
 ---
 
 ServiceStack's [AI Chat](https://docs.servicestack.net/ai-chat-api) feature provides a unified API for integrating multiple AI providers into your applications. To gain visibility into usage patterns, costs, and performance across your AI infrastructure, the platform includes comprehensive chat history persistence and analytics capabilities.

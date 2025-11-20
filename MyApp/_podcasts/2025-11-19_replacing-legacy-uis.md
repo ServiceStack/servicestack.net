@@ -5,6 +5,7 @@ tags: [llms,ai,react]
 author: Demis Bellot
 url: https://media.servicestack.com/podcasts/replacing-legacy-uis.mp3
 media: {size:10260256,duration:692.999546,format:mp3}
+draft: true
 ---
 
 In this episode, we explore a major inflection point in software development: modern AI tools have made it faster and cheaper to **rewrite legacy user interfaces (UIs)** than to keep patching and refactoring them. We look at how years of workarounds, outdated patterns, and accumulated **technical debt** make many legacy UIs better candidates for full replacement—especially when you take an **AI-first** approach to rebuilding them.
