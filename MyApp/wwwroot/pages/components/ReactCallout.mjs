@@ -2,7 +2,6 @@ export default {
     template:`
 <section class="not-prose py-20">
     <div class="w-full">
-        <a href="/react/">
         <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-blue-950 to-cyan-900 shadow-xl ring-1 ring-white/10">
             
             <!-- React Logo Watermark -->
@@ -69,7 +68,6 @@ export default {
                 </div>
             </div>
         </div>
-        </a>
     </div>
 </section>
     `,

@@ -216,6 +216,8 @@ The unprecedented productivity of AI Assisted development has transformed our ro
 
 </div>
 
-<div class="-ml-[30px] w-[840px]">
+<div class="not-prose -ml-[30px] w-[840px]">
+<a href="/react/">
 <react-callout />
+</a>
 </div>

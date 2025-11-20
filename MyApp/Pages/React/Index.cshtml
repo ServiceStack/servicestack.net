@@ -552,9 +552,9 @@ import ReactCallout from "/pages/components/ReactCallout.mjs"
 import ReactCopilotTemplates from "/pages/components/ReactCopilotTemplates.mjs"
 
 export const Index = [
-    template('react-vite', 'React Vite', 'ReactNative',['empty', 'tailwind']),
-    template('nextjs', 'Next.js', 'NextjsNative',['seo', 'tailwind']),
-    template('react-spa', 'React SPA', 'ReactNative',['spa','tailwind']),
+    template('react-vite', 'React Vite', 'ReactNative',['spa', 'empty']),
+    template('nextjs', 'Next.js', 'NextjsNative',['static', 'featured']),
+    template('react-spa', 'React SPA', 'ReactNative',['spa','featured']),
 ].reduce((acc, template) => { acc[template.repo] = template; return acc}, {})
 
 
