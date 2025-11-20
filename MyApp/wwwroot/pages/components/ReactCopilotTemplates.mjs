@@ -46,8 +46,8 @@ export default {
           Jumpstart your project with Copilot
         </h2>
         <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-          Select a React .NET template to instantly generate a new repository and with Copilot assistance.
-          Tell Copilot what you want to build. After creation, Copilot will open a pull request with generated files.
+          Select a React .NET template to instantly scaffold a new repository with Copilot.
+          Describe what you want to build, and Copilot will generate the initial implementation and open a pull request.
         </p>
       </div>
 
