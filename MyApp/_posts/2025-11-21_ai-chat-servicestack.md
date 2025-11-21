@@ -4,7 +4,6 @@ summary: The best OSS language models, now available for FREE in AI Chat!
 tags: [llms,ai,chat,admin-ui,analytics]
 author: Demis Bellot
 image: https://images.unsplash.com/photo-1640011655323-a14d80feac25?crop=entropy&fit=crop&h=1000&w=2000
-draft: true
 ---
 
 To give AI Chat instant utility, we're making available a free `servicestack` OpenAI Chat provider that can be enabled with:
