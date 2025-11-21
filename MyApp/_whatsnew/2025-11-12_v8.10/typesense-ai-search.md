@@ -1,6 +1,6 @@
 ---
 title: Ask ServiceStack Docs - Introducing AI Search
-url: https://docs.servicestack.net/typesense-ai-search
+url: /posts/typesense-ai-search
 image: /img/whatsnew/v8.10/typesense-ai-search.webp
 order: 3
 ---

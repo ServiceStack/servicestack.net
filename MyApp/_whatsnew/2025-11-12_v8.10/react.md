@@ -1,6 +1,6 @@
 ---
 title: React Tailwind TypeScript for AI-First Development
-url: https://docs.servicestack.net/react/
+url: /react/
 image: /img/posts/react/react-gallery-dark.webp
 order: 1
 ---
