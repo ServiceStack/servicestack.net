@@ -9,6 +9,7 @@
 @await Html.PartialAsync("VideoIncludes")
 
 <section class="relative isolate overflow-hidden bg-slate-900">
+  <!-- Background Effects (Preserved & Tweaked) -->
   <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
     <defs>
       <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
@@ -20,38 +21,83 @@
     </svg>
     <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
   </svg>
-  <svg viewBox="0 0 1108 632" aria-hidden="true" class="absolute top-10 left-[calc(50%-4rem)] -z-10 w-[69.25rem] max-w-none transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
-    <path fill="url(#175c433f-44f6-4d59-93f0-c5c51ad5566d)" fill-opacity=".2" d="M235.233 402.609 57.541 321.573.83 631.05l234.404-228.441 320.018 145.945c-65.036-115.261-134.286-322.756 109.01-230.655C968.382 433.026 1031 651.247 1092.23 459.36c48.98-153.51-34.51-321.107-82.37-385.717L810.952 324.222 648.261.088 235.233 402.609Z" />
-    <defs>
-      <linearGradient id="175c433f-44f6-4d59-93f0-c5c51ad5566d" x1="1220.59" x2="-85.053" y1="432.766" y2="638.714" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#4F46E5" />
-        <stop offset="1" stop-color="#80CAFF" />
-      </linearGradient>
-    </defs>
-  </svg>
-  <div class="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:flex lg:px-8">
-    <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
-        <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-            <span class="block">Built-in Auto UIs</span>
-        </h1>
-        <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-            Explore, discover, query, integrate and call APIs instantly with ServiceStack's built-in Auto UIs
-            dynamically generated from the rich metadata of your typed APIs declarative C# DTOs
-        </p>
-        <div class="mt-10 align-top">
-            <lite-youtube class="max-w-xl aspect-video" videoid="Qqj6W-4sSXQ"
-                          style="background-image: url('https://img.youtube.com/vi/Qqj6W-4sSXQ/maxresdefault.jpg')"></lite-youtube>
+  
+  <!-- Top Blur Blob -->
+  <div class="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]" aria-hidden="true">
+    <div class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-20" style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"></div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
+    
+    <!-- Left Column: Content -->
+    <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
+      <div class="mt-24 sm:mt-32 lg:mt-16">
+        <div class="inline-flex space-x-6">
+          <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">What's new</span>
+          <span class="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
+            <a href="https://docs.servicestack.net/ai-chat-ui">Just shipped: AI ChatGPT-like UI</a>
+          </span>
         </div>
-        <div class="mt-10 flex items-center gap-x-6">
-            <a href="https://docs.servicestack.net/auto-html-api" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Learn more</a>
-        </div>
+      </div>
+      
+      <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        Built-in <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Auto UIs</span>
+      </h1>
+      
+      <p class="mt-6 text-lg leading-8 text-gray-300">
+        Explore, discover, query, integrate and call APIs instantly with ServiceStack's built-in Auto UIs dynamically generated from the rich metadata of your typed APIs declarative C# DTOs.
+      </p>
+      
+      <div class="mt-10 flex items-center gap-x-6">
+        <!-- Primary CTA -->
+        <a href="https://docs.servicestack.net/auto-html-api" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
+          View Documentation
+        </a>
+        
+        <!-- Secondary Video CTA (Opens Modal or links to video) -->
+        <a href="https://youtu.be/hkuO_DMFXmc?si=tZe52d_V7-cA8wup" target="_blank" class="group text-sm font-semibold leading-6 text-white flex items-center gap-2">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/20 group-hover:bg-indigo-500/40 transition">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-indigo-400">
+               <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+             </svg>
+          </span>
+          Watch the video
+        </a>
+      </div>
     </div>
+
+    <!-- Right Column: Visuals -->
     <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
-        <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-            <a href="/locode">
-            <img src="/img/pages/auto-ui/gallery-contacts.png" alt="App screenshot" width="2432" height="1442" class="w-[68rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"></a>
+      <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+        <div class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+          
+          <!-- Browser Window Frame -->
+          <div class="relative rounded-xl bg-gray-800/80 shadow-2xl ring-1 ring-white/10 backdrop-blur-sm overflow-hidden">
+             <!-- Browser Header with URL -->
+             <div class="flex items-center gap-2 px-4 py-3 bg-gray-800/50 border-b border-white/5">
+                <div class="flex gap-2">
+                    <div class="h-3 w-3 rounded-full bg-red-500/80"></div>
+                    <div class="h-3 w-3 rounded-full bg-yellow-500/80"></div>
+                    <div class="h-3 w-3 rounded-full bg-green-500/80"></div>
+                </div>
+                <!-- URL Bar -->
+                <div class="ml-4 flex-1 rounded-md bg-gray-900/50 border border-white/5 py-1 px-3 text-xs text-gray-400 font-mono">
+                    https://localhost:5001/locode
+                </div>
+             </div>
+             
+             <!-- The Image -->
+             <a href="/locode" class="block group relative">
+                <img src="/img/pages/auto-ui/gallery-contacts.png" alt="App screenshot" 
+                    class="w-[50rem] rounded-b-xl bg-white/5 shadow-2xl">
+                <div class="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/5 transition duration-500"></div>
+             </a>
+          </div>
+          
         </div>
+      </div>
     </div>
+    
   </div>
 </section>
 
