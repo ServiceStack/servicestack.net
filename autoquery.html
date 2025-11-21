@@ -149,7 +149,7 @@ mountAll()
         Instant APIs from your DTOs.
       </h1>
       
-      <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+      <p class="mt-4 max-w-[640px] text-lg leading-8 text-slate-600 dark:text-slate-300">
         High performance, industrial strength, code-first APIs. Skip the boilerplate and instantly expose queryable &amp; CRUD endpoints for your databases.
       </p>
       
@@ -196,7 +196,8 @@ mountAll()
           <!-- Code Block -->
           <div class="overflow-x-auto">
             <!-- Added !bg-transparent to pre/code to prevent double background colors -->
-            <pre class="!bg-transparent text-sm leading-6 text-slate-300 font-mono"><span class="text-slate-500"> // Create Queyrable APIs from just Request DTOs</span><code><span class="text-yellow-300">[Route(</span><span class="text-green-300">"/bookings"</span><span class="text-yellow-300">)]</span>
+            <pre class="!bg-transparent text-sm leading-6 text-slate-300 font-mono"><span class="text-slate-500">// Create Queyrable APIs from just Request DTOs</span>
+<code><span class="text-yellow-300">[Route(</span><span class="text-green-300">"/bookings"</span><span class="text-yellow-300">)]</span>
 <span class="text-purple-400">public class</span> <span class="text-yellow-300">SearchBookings</span> : <span class="text-blue-400">QueryDb</span>&lt;<span class="text-green-400">Booking</span>&gt;
 {
     <span class="text-purple-400">public</span> <span class="text-blue-400">string</span>? Name { <span class="text-purple-400">get</span>; <span class="text-purple-400">set</span>; }
@@ -206,9 +207,8 @@ mountAll()
     <span class="text-purple-400">public</span> <span class="text-blue-400">DateTime</span>? FromDate { <span class="text-purple-400">get</span>; <span class="text-purple-400">set</span>; }
 }
 
-<span class="text-slate-500">/* Immediately available from:
-   GET /bookings?Name=John&AboveCost=50
-*/</span></code></pre>
+<span class="text-slate-500">// Immediately available from:
+// GET /bookings?Name=John&AboveCost=50</span></code></pre>
           </div>
         </div>
         
