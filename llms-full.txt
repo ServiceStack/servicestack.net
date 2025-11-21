@@ -77,12 +77,12 @@ Learn more about [AI Chat's UI](https://docs.servicestack.net/ai-chat-ui):
 
 ### FREE for Personal Usage
 
-To be able to maintain this as a free service we're limiting usage for development or personal assistance and research 
-by limiting usage to **60 requests /hour** which should be more than enough for most personal usage and research whilst 
+To be able to maintain this as a free service we're limiting usage for development or personal assistance and research
+by limiting usage to **60 requests /hour** which should be more than enough for most personal usage and research whilst
 deterring usage in automated tools or usage in production.
 
 :::tip info
-Rate limiting is implemented with a sliding [Token Bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket) 
+Rate limiting is implemented with a sliding [Token Bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket)
 that replenishes 1 additional request every 60s
 :::
 
@@ -136,6 +136,27 @@ var file = new ChatCompletion
     ]
 };
 ```
+
+
+## Learn more about AI Chat
+
+To dive deeper into what AI Chat can do:
+
+- Read the [AI Chat API docs](https://docs.servicestack.net/ai-chat-api) to integrate AI into your own services and apps.
+- Explore the [AI Chat UI guide](https://docs.servicestack.net/ai-chat-ui) to customize the built-in experience.
+- Use [Admin UI](https://docs.servicestack.net/ai-chat-analytics) to inspect analytics, monitor usage, and review audit history.
+
+
+<div class="pt-12 not-prose flex justify-center">
+<a href="https://docs.servicestack.net/ai-chat-api"
+   class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 vithe UX Hot reloading of npm UIsa-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
+    <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
+    <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-400 shadow-[0_0_7px_rgba(56,189,248,0.7)]"></span>
+    <span class="tracking-wide">ServiceStack AI Chat</span>
+    <span class="ml-1 text-slate-400 transition-transform group-hover:translate-x-0.5">&rarr;</span>
+    </span>
+</a>
+</div>
 
 
 # AI Chat history persistence and Admin Analytics UI
