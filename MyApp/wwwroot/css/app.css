@@ -140,6 +140,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --breakpoint-sm: 40rem;
     --breakpoint-md: 48rem;
     --breakpoint-lg: 64rem;
     --breakpoint-xl: 80rem;
@@ -1394,14 +1395,35 @@
   .max-w-7xl {
     max-width: var(--container-7xl);
   }
+  .max-w-\[8rem\] {
+    max-width: 8rem;
+  }
+  .max-w-\[10rem\] {
+    max-width: 10rem;
+  }
+  .max-w-\[12rem\] {
+    max-width: 12rem;
+  }
+  .max-w-\[20rem\] {
+    max-width: 20rem;
+  }
   .max-w-\[48\%\] {
     max-width: 48%;
+  }
+  .max-w-\[100px\] {
+    max-width: 100px;
   }
   .max-w-\[100rem\] {
     max-width: 100rem;
   }
   .max-w-\[240px\] {
     max-width: 240px;
+  }
+  .max-w-\[500px\] {
+    max-width: 500px;
+  }
+  .max-w-\[640px\] {
+    max-width: 640px;
   }
   .max-w-full {
     max-width: 100%;
@@ -1426,6 +1448,9 @@
   }
   .max-w-screen-md {
     max-width: var(--breakpoint-md);
+  }
+  .max-w-screen-sm {
+    max-width: var(--breakpoint-sm);
   }
   .max-w-sm {
     max-width: var(--container-sm);
