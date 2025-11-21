@@ -114,69 +114,118 @@ mountAll()
     <main role="main" class="pt-14">
         
 
-<div class="bg-white dark:bg-black">
 
-  <div class="relative isolate px-6 pt-14 lg:px-8">
-    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-      <svg class="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678">
-        <path fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-        <defs>
-          <linearGradient id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#9089FC" />
-            <stop offset="1" stop-color="#FF80B5" />
-          </linearGradient>
-        </defs>
-      </svg>
+<div class="relative isolate overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300 border-b">
+  
+  <!-- Technical Grid Background -->
+  <svg class="absolute inset-0 -z-10 h-full w-full stroke-slate-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)] dark:stroke-slate-800/50" aria-hidden="true">
+    <defs>
+      <pattern id="grid-pattern" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+        <path d="M100 200V.5M.5 .5H200" fill="none" />
+      </pattern>
+    </defs>
+    <svg x="50%" y="-1" class="overflow-visible fill-slate-50 dark:fill-slate-900/50">
+      <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0" />
+    </svg>
+    <rect width="100%" height="100%" stroke-width="0" fill="url(#grid-pattern)" />
+  </svg>
+
+  <!-- Content Container (Compacted) -->
+  <div class="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:flex lg:items-center lg:gap-x-12 lg:px-8 lg:py-29">
+    
+    <!-- Left Column: Copy & Logos -->
+    <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+      <!-- Badge -->
+      <div class="mb-6 flex">
+        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-slate-600 ring-1 ring-slate-900/10 hover:ring-slate-900/20 dark:text-slate-400 dark:ring-slate-50/10 dark:hover:ring-slate-50/20">
+          New: Rapid CRUD generation for existing RDBMS's. <a href="https://docs.servicestack.net/autoquery/autogen" class="font-semibold text-blue-600 dark:text-blue-400"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+      
+      <!-- Main Headline -->
+      <h1 class="mt-6 max-w-lg text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">AutoQuery</span>
+        <br>
+        Instant APIs from your DTOs.
+      </h1>
+      
+      <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+        High performance, industrial strength, code-first APIs. Skip the boilerplate and instantly expose queryable &amp; CRUD endpoints for your databases.
+      </p>
+      
+      <!-- CTAs -->
+      <div class="mt-8 flex items-center gap-x-6">
+        <a href="/start#start" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all">Get Started</a>
+        <a href="https://docs.servicestack.net/autoquery/" class="text-sm font-semibold leading-6 text-slate-900 dark:text-white flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            View Documentation <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- Logos Section (Colored & Fixed) -->
+      <div class="mt-10 border-t border-slate-200 pt-6 dark:border-slate-800">
+         <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Works seamlessly with:</p>
+         <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+             <!-- PostgreSQL -->
+             <img src="/img/pages/autoquery/postgresql.svg" class="h-12 w-auto" alt="PostgreSQL">
+             <!-- SQL Server -->
+             <img src="/img/pages/autoquery/mssql.svg" class="h-12 w-auto" alt="SQL Server">
+             <!-- SQLite -->
+             <img src="/img/pages/autoquery/sqlite.svg" class="h-12 w-auto" alt="SQLite">
+             <!-- MySQL -->
+             <img src="/img/pages/autoquery/mysql.svg" class="h-12 w-auto" alt="MySQL">
+         </div>
+      </div>
     </div>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 sm:py-39 text-center">
-        <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 dark:text-slate-50 sm:text-6xl">
-            <div class="pb-4">
-                AutoQuery
-                <span class="relative whitespace-nowrap text-blue-600">
-                    <svg aria-hidden="true" viewBox="0 0 418 42" class="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70" preserveAspectRatio="none"
-                    ><path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path></svg>
-                    <span class="relative">made simple</span>
-                </span>
-            </div>
-            <div>Instant Query & CRUD APIs</div>
-        </h1>
-        <p class="mx-auto mt-6 max-w-4xl text-xl tracking-tight text-slate-700 dark:text-slate-200">
-            High performance, Industrial strength, effortless, code-first APIs
-        </p>
-        <div class="mt-36 lg:mt-24">
-            <p class="font-display text-base text-slate-900 dark:text-slate-50">
-                Rapidly develop high-performance Queryable &amp; CRUD APIs for
-            </p>
-            <ul class="mt-8 flex flex-wrap items-center gap-x-12 gap-y-0 justify-center">
-                <li title="PostgreSQL">
-                    <img src="/img/svgs/postgresql-notext.svg" class="h-16">
-                </li>
-                <li title="Microsoft SQL Server">
-                    <img src="/img/svgs/sqlserver.svg" class="h-16 bg-white px-2">
-                </li>
-                <li title="SQLite">
-                    <img src="/img/svgs/sqlite.svg" class="h-16">
-                </li>
-                <li title="MySQL">
-                    <img src="/img/svgs/mysql.svg" class="h-16">
-                </li>
-                <li title="MariaDB">
-                    <img src="/img/svgs/mariadb.svg" class="h-16">
-                </li>
-            </ul>
-        </div>        
+
+    <!-- Right Column: Code Visual -->
+    <div class="mt-12 sm:mt-16 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+      <div class="relative mx-auto w-full max-w-lg lg:max-w-xl">
+        <!-- Abstract Glow behind code -->
+        <div class="absolute -top-10 -right-10 -z-10 h-64 w-64 rounded-full bg-purple-500/30 blur-3xl dark:bg-purple-900/30"></div>
+        <div class="absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl dark:bg-blue-900/30"></div>
+
+        <!-- Code Window -->
+        <div class="rounded-xl bg-[#0f172a] shadow-2xl ring-1 ring-white/10">
+          <!-- Window Controls -->
+          <div class="flex items-center gap-2 border-b border-white/5 px-4 py-3 bg-[#0f172a] rounded-t-xl">
+            <div class="h-3 w-3 rounded-full bg-red-500"></div>
+            <div class="h-3 w-3 rounded-full bg-amber-500"></div>
+            <div class="h-3 w-3 rounded-full bg-green-500"></div>
+            <div class="ml-2 text-xs font-medium text-slate-500">Bookings.cs</div>
+          </div>
+          <!-- Code Block -->
+          <div class="p-6 overflow-x-auto">
+            <!-- Added !bg-transparent to pre/code to prevent double background colors -->
+            <pre class="!bg-transparent text-sm leading-6 text-slate-300 font-mono"><code><span class="text-yellow-300">[Route(</span><span class="text-green-300">"/bookings"</span><span class="text-yellow-300">)]</span>
+<span class="text-purple-400">public class</span> <span class="text-yellow-300">SearchBookings</span> : <span class="text-blue-400">QueryDb</span>&lt;<span class="text-green-400">Booking</span>&gt;
+{
+    <span class="text-purple-400">public</span> <span class="text-blue-400">string</span>? Name { <span class="text-purple-400">get</span>; <span class="text-purple-400">set</span>; }
+    
+    <span class="text-purple-400">public</span> <span class="text-blue-400">int</span>? AboveCost { <span class="text-purple-400">get</span>; <span class="text-purple-400">set</span>; }
+    
+    <span class="text-purple-400">public</span> <span class="text-blue-400">DateTime</span>? FromDate { <span class="text-purple-400">get</span>; <span class="text-purple-400">set</span>; }
+}
+
+<span class="text-slate-500">/* Immediately available from:
+   GET /bookings?Name=John&AboveCost=50
+*/</span></code></pre>
+          </div>
+        </div>
         
-    </div>
-    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-      <svg class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678">
-        <path fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-        <defs>
-          <linearGradient id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#9089FC" />
-            <stop offset="1" stop-color="#FF80B5" />
-          </linearGradient>
-        </defs>
-      </svg>
+        <!-- Floating Label -->
+        <div class="absolute -bottom-6 -right-6 rounded-lg bg-white p-4 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10">
+            <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                    <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Status</p>
+                    <p class="text-sm font-bold text-slate-900 dark:text-white">API Ready</p>
+                </div>
+            </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
@@ -481,7 +530,7 @@ App, and finally reusing all your services in a custom Blazor WASM App</p>
           <p class="mt-6 text-xl leading-8">
               AutoQuery can be enabled in any ServiceStack project with a few easy steps: 
           </p>
-          <div class="mt-10 max-w-2xl">
+          <div class="mt-10 max-w-3xl">
               <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">1. Configure your preferred database</h2>
               <p class="my-4">
                   Configure your .NET App with the 
