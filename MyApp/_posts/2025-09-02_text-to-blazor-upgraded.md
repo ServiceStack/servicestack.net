@@ -18,7 +18,7 @@ Apps from just a text description.
       <img class="mx-auto h-20" src="/img/models/anthropic.svg">
       <div>
         <b class="block">Anthropic</b>
-        <span class="text-sm">Claude 4.0 Sonnet</span>
+        <span class="text-sm">Claude 4.5 Sonnet</span>
       </div>
     </div>
     <div class="mx-auto text-center">
