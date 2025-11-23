@@ -1477,5 +1477,93 @@
     "provider": "anthropic",
     "prompt": "create a little project for keep student address and mobile add update del option,",
     "groupName": "Addresses"
+  },
+  {
+    "id": "1761176535012",
+    "model": "grok-code-fast-1",
+    "timing": "9402",
+    "provider": "openrouter",
+    "prompt": "Scavenger hunt with caches that track location hidden (where they should be).  Also have a table to represent when and where they where found last.  There will be scouting users that are a member of a den which is a member of a unit. The unit is a member of a district which is a member of a council.",
+    "groupName": "Districts"
+  },
+  {
+    "id": "1761314535128",
+    "model": "gemini-2.5-pro",
+    "timing": "36093",
+    "provider": "google",
+    "prompt": "Clone of Metabase (data analysis and dashboard software) in blazor web app. User should be able to create workflows and dashboards to perform various data analysis. Find the best data analysis algorithms like statistical, outlier detection etc and add them. Support data sources like CSV, KLARF (semiconductor results format with extension 001), database, images. Think step by step, implement all the requirements and share the project as zip file. Be creative with user interfaces and the software design",
+    "groupName": "DashboardWidgets"
+  },
+  {
+    "id": "1761827882426",
+    "model": "claude-sonnet-4-0",
+    "timing": "20639",
+    "provider": "anthropic",
+    "prompt": "I am building an autonomous AI coding agent with a \"developer\" user interface.\nThe AI Agent picks up tasks assigned to it in popular task management systems like Azure DevOps and Jira.\nIt works on the coding tasks and submits a pull request.\nThe development team can use the Azure DevOps pull request interface to comment on file changes, and when done - the AI agent can continue coding to reflect the comments.\nThe user interface must show:\n\n    Live updates when a work item task is picked up and in progress\n    We need a list to show all work items and their status, number, started/completed time. We can use an HTML details/summary control.\n    when we expand a task, we see the streaming log of the interaction with the AI agent. It calls an AI model and the AI model responds with a response.\n    we need other interfaces, such as API key Management, maybe under a profile section.\n    we need a UI to start work items automatically.\n    The user interface must appeal to developers and be fancy.\n    It must be coded in ASP.NET Core with Blazor WASM.",
+    "groupName": "AutomationRules"
+  },
+  {
+    "id": "1762037436073",
+    "model": "claude-sonnet-4-0",
+    "timing": "5172",
+    "provider": "anthropic",
+    "prompt": "build an app where you create jobs and then track work done on the jobs via entries where you track the start and stop time of each entry along with an hourly rate",
+    "groupName": "TimeEntries"
+  },
+  {
+    "id": "1763054558225",
+    "model": "claude-sonnet-4-0",
+    "timing": "22061",
+    "provider": "anthropic",
+    "prompt": "Generate me a tool, with which i can track my working times in a database which can have different projects and a minimum time per project that has to be worked each month or on specific days and if the time is not met it warns you, also it should support short term tasks that don't belong to a project as well as tags for categories and statistics over a month and year with beautiful animated graphs which give useful insight into the average working time per day and pauses in between and what is worked on the most and on which days .... and so on",
+    "groupName": "TimeEntryTags"
+  },
+  {
+    "id": "1763051910632",
+    "model": "claude-sonnet-4-0",
+    "timing": "5077",
+    "provider": "anthropic",
+    "prompt": "Model  tablearticles, with fieds Id, Language, Translators Title, Body, DatetimeCreation, DateTimeLastUpdate, IsVisible.\nLanguage are forenkey \nOther table languages with Id, LaguageIso, IsActive",
+    "groupName": "Articles"
+  },
+  {
+    "id": "1763229587008",
+    "model": "claude-sonnet-4-0",
+    "timing": "13261",
+    "provider": "anthropic",
+    "prompt": "The purpose of this application is to extract time series data from different data source like Time Series Database, SQL Server or Excel files.  The user can manage projects where each project has a list a DataSet, an execution schedule and a file creation and transmission mechanism.  A dataset is a collection of Tags (name, desc, datatype, timestamp and value) the user was able to Browse from different data sources through the use of a DataSource Plugin.  Each selected Tag added to the dataset with its ReferenceId, DataSourceId, etc...",
+    "groupName": "DataSetTags"
+  },
+  {
+    "id": "1763820814000",
+    "model": "claude-sonnet-4-0",
+    "timing": "10051",
+    "provider": "anthropic",
+    "prompt": "I need an app to track employee time off, like vacation and sick days. It should have the ability to get manager approval.  It should also have a public facing dashboard for all to see.  Each employee should have a role (like: Senior Engineer, Junior Engineer, QA Analyst, BA).  It should also have the ability to assign which application each employee is a part of.",
+    "groupName": "Employees"
+  },
+  {
+    "id": "1763863421088",
+    "model": "gemini-2.5-pro",
+    "timing": "24073",
+    "provider": "google",
+    "prompt": "I want an App to manage School resources, for example, to list things I have in stock, e.g. such as laptops, hard disks, mouse, keyboard, inks, which is working and which is not working, when did these things come, what is the PO number, order and arrival date, who received it and where is it coming from, and when is it supposed to go, and if the quantity is less than 2, make a distinctive mark or Notice, if someone is going to take it, write down what date it will be received, and who will it be released for? Who will receive it or not, and will it be out of stock?",
+    "groupName": "StockItems"
+  },
+  {
+    "id": "1763863668460",
+    "model": "qwen3-coder",
+    "timing": "5365",
+    "provider": "openrouter",
+    "prompt": "A mobile-first web app that allows you to create pre-sales documents will be used by salespeople in a showroom with a tablet or smartphone. They will need to be able to create: customer records, product records, and documents with a header structure + body lines, with the requirement to name the document after a customer. There will need to be two options: the admin option that allows you to make changes to everything, while the operator mode will allow you to insert documents, customers (which will be visible to all operators) but not products. Operators will only be able to see their own documents, so they will not be able to see other operators' documents.",
+    "groupName": "DocumentLines"
+  },
+  {
+    "id": "1763863763681",
+    "model": "claude-sonnet-4-0",
+    "timing": "20244",
+    "provider": "anthropic",
+    "prompt": "An application to improve integration with TFS DevOps.",
+    "groupName": "BuildDefinitions"
   }
 ]
