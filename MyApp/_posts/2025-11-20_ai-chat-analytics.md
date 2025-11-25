@@ -9,7 +9,7 @@ image: https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&fi
 ServiceStack's [AI Chat](https://docs.servicestack.net/ai-chat-api) feature provides a unified API for integrating multiple AI providers into your applications. To gain visibility into usage patterns, costs, and performance across your AI infrastructure, the platform includes comprehensive chat history persistence and analytics capabilities.
 
 :::sh
-x mix chat
+npx add-in chat
 :::
 
 Or by referencing the **ServiceStack.AI.Chat** NuGet package and adding the `ChatFeature` plugin:

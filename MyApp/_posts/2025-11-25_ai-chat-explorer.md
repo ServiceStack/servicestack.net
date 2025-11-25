@@ -226,8 +226,11 @@ To experience [AI Chat's UI](/posts/ai-chat-ui) and its `ChatCompletion` API Exp
 AI Chat to any .NET 8+ project by installing the **ServiceStack.AI.Chat** NuGet package and configuration with:
 
 :::sh
-x mix chat
+npx add-in chat
 :::
+
+Prerequisites:
+
 
 Which drops this simple [Modular Startup](https://docs.servicestack.net/modular-startup) that adds the `ChatFeature`
 and registers a link to its UI on the [Metadata Page](https://docs.servicestack.net/metadata-page) if you want it:
