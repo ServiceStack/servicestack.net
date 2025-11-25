@@ -3,8 +3,8 @@ title: Creating a custom Explorer UI for OpenAIs Chat API
 summary: Learning how to create a customized API Explorer API UIs like ChatCompletion's UI
 tags: [llms,ai,openai,chat]
 author: Demis Bellot
-url: https://media.servicestack.com/podcasts/apikey_auth_apis.mp3
-media: {size:11945780,duration:837.328980,format:mp3}
+url: https://media.servicestack.com/podcasts/ai-chat-explorer.mp3
+media: {size:12740170,duration:898.287166,format:mp3}
 ---
 
 The episode discusses the process of **creating a custom API Explorer UI** specifically for OpenAI's Chat API, 
