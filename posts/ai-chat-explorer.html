@@ -375,7 +375,7 @@ customizations see the <a href="https://docs.servicestack.net/api-explorer">API 
 AI Chat to any .NET 8+ project by installing the <strong>ServiceStack.AI.Chat</strong> NuGet package and configuration with:</p>
 <div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
                 <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mix chat</p>
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx add-in chat</p>
 </div>
                     </div>
                 <div class="flex">
@@ -387,6 +387,7 @@ AI Chat to any .NET 8+ project by installing the <strong>ServiceStack.AI.Chat</s
                     </div>
                 </div>
             </div>
+<p>Prerequisites:</p>
 <p>Which drops this simple <a href="https://docs.servicestack.net/modular-startup">Modular Startup</a> that adds the <code>ChatFeature</code>
 and registers a link to its UI on the <a href="https://docs.servicestack.net/metadata-page">Metadata Page</a> if you want it:</p>
 <pre><code class="language-csharp">public class ConfigureAiChat : IHostingStartup

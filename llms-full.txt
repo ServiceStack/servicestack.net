@@ -221,8 +221,11 @@ To experience [AI Chat's UI](/posts/ai-chat-ui) and its `ChatCompletion` API Exp
 AI Chat to any .NET 8+ project by installing the **ServiceStack.AI.Chat** NuGet package and configuration with:
 
 :::sh
-x mix chat
+npx add-in chat
 :::
+
+Prerequisites:
+
 
 Which drops this simple [Modular Startup](https://docs.servicestack.net/modular-startup) that adds the `ChatFeature`
 and registers a link to its UI on the [Metadata Page](https://docs.servicestack.net/metadata-page) if you want it:
@@ -453,7 +456,7 @@ Source: https://servicestack.net/posts/ai-chat-analytics
 ServiceStack's [AI Chat](https://docs.servicestack.net/ai-chat-api) feature provides a unified API for integrating multiple AI providers into your applications. To gain visibility into usage patterns, costs, and performance across your AI infrastructure, the platform includes comprehensive chat history persistence and analytics capabilities.
 
 :::sh
-x mix chat
+npx add-in chat
 :::
 
 Or by referencing the **ServiceStack.AI.Chat** NuGet package and adding the `ChatFeature` plugin:
@@ -546,7 +549,7 @@ maintain your own **Fast, Local, and Private** access to AI from within your own
 AI Chat can be added to any .NET 8+ project by installing the **ServiceStack.AI.Chat** NuGet package and configuration with:
 
 :::sh
-x mix chat
+npx add-in chat
 :::
 
 Which drops this simple [Modular Startup](https://docs.servicestack.net/modular-startup) that adds the `ChatFeature`
@@ -882,7 +885,7 @@ since most of ServiceStack's functionality is designed around Request DTOs — w
 AI Chat can be added to any .NET 8+ project by installing the **ServiceStack.AI.Chat** NuGet package and configuration with:
 
 :::sh
-x mix chat
+npx add-in chat
 :::
 
 Which drops this simple [Modular Startup](https://docs.servicestack.net/modular-startup) that adds the `ChatFeature`
