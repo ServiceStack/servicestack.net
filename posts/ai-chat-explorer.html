@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>Complete Admin UI Management for Identity Claims and Roles - ServiceStack</title>
+    <title>Creating a custom Explorer UI for OpenAIs Chat API - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management" />
-    <meta property="og:url" content="https://servicestack.net/posts/identityauth-claims-roles" />
-    <meta property="og:title" content="Complete Admin UI Management for Identity Claims and Roles" />
-    <meta property="og:image" content="./img/posts/identityauth-claims-roles/bg.webp" />
+    <meta property="og:description" content="Learning how to create a customized API Explorer API UIs like ChatCompletion&#x27;s UI" />
+    <meta property="og:url" content="https://servicestack.net/posts/ai-chat-explorer" />
+    <meta property="og:title" content="Creating a custom Explorer UI for OpenAIs Chat API" />
+    <meta property="og:image" content="./img/posts/ai-chat-explorer/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                Complete Admin UI Management for Identity Claims and Roles
+                Creating a custom Explorer UI for OpenAIs Chat API
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -139,28 +139,29 @@ mountAll()
                     </div>
                 </div>
                         <div data-component="pages/podcasts/AudioPlayer.mjs" 
-                             data-props="{ id:'identityauth-claims-roles', title:'Complete Admin UI Management for Identity Claims and Roles', src:'https://media.servicestack.com/podcasts/identityauth-claims-roles.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=identityauth-claims-roles&amp;source=post&amp;version=8.10.1', variant:'compact' }"
+                             data-props="{ id:'ai-chat-explorer', title:'Creating a custom Explorer UI for OpenAIs Chat API', src:'https://media.servicestack.com/podcasts/ai-chat-explorer.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=ai-chat-explorer&amp;source=post&amp;version=8.10.1', variant:'compact' }"
                              class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/identityauth-claims-roles/bg.webp" alt="Complete Admin UI Management for Identity Claims and Roles Background" class="shadow-small">
+                    <img src="./img/posts/ai-chat-explorer/bg.webp" alt="Creating a custom Explorer UI for OpenAIs Chat API Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/identity-auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">identity-auth</a>
-                        <a href="posts/tagged/admin-ui" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin-ui</a>
-                        <a href="posts/tagged/auth" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">auth</a>
+                        <a href="posts/tagged/llms" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">llms</a>
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/openai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">openai</a>
+                        <a href="posts/tagged/chat" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">chat</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2025-04-17T00:00:00.0000000">April 17, 2025</time>
+                                <time datetime="2025-11-25T00:00:00.0000000">November 25, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>2 min read</span>
+                                <span>9 min read</span>
                             </div>
                         </div>
                 </div>
@@ -173,62 +174,273 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>The latest ServiceStack v8.7 Release completes our transition to <a href="https://docs.servicestack.net/auth/identity-auth">ASP .NET Core Identity Auth</a>
-with management APIs and Admin UIs for managing Identity Auth Roles and Claims for both Users and Roles.</p>
-<p>All ServiceStack Apps now includes a complete IdentityAuth Management Admin UI which can Add/Remove Roles from the
-new Identity <strong>Roles</strong> Admin UI:</p>
-<p><img src="/img/posts/identityauth-claims-roles/identityauth-roles.webp" alt="" /></p>
-<h3 id="custom-application-roles">Custom Application Roles<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-application-roles'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>If your App uses an extended <code>IdentityRole</code> data model, it can be configured with:</p>
-<pre><code class="language-csharp">services.AddPlugin(
-    new AuthFeature(IdentityAuth.For&lt;ApplicationUser,ApplicationRole&gt;(...)));
-</code></pre>
-<p>If it's also configured to use a different <code>PrimaryKey</code> type, it can be configured with:</p>
-<pre><code class="language-csharp">services.AddPlugin(
-    new AuthFeature(IdentityAuth.For&lt;AppUser,AppRole,int&gt;(...)));
-</code></pre>
-<h3 id="identityauth-role-claims">IdentityAuth Role Claims<a class="header-anchor" href="javascript:;" onclick="location.hash='#identityauth-role-claims'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The Edit Role Admin UI can also be configured to Add/Remove Claims to a Role, e.g:</p>
-<p><img src="/img/posts/identityauth-claims-roles/identityauth-role-claims.webp" alt="" /></p>
-<p>Any Added or Removed Claims are only applied after clicking <strong>Update Role</strong>, likewise you can exit the UI without applying any changes by clicking <strong>Cancel</strong>.</p>
-<p>Claims added to Roles have similar behavior to having Claims individually applied to all Users with that Role such that
-when a User is Authenticated they're populated with all claims assigned to their Roles in addition to their individual User Claims.</p>
-<h3 id="identityauth-user-claims">IdentityAuth User Claims<a class="header-anchor" href="javascript:;" onclick="location.hash='#identityauth-user-claims'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Whilst the new User Claim Management UI allows you to assign Claims to individual Users:</p>
-<p><img src="/img/posts/identityauth-claims-roles/identityauth-user-claims.webp" alt="" /></p>
-<h2 id="validating-claims">Validating Claims<a class="header-anchor" href="javascript:;" onclick="location.hash='#validating-claims'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>Claims are attestations or attributes about a User which we can use to restrict access to APIs to only Users who
-have been assigned that claim. We could use this to implement a permission system that restricts usage with a
-<code>todos:write</code> permission with something like:</p>
-<pre><code class="language-csharp">[ValidateHasClaim(&quot;perm&quot;, &quot;todos:write&quot;)]
-class CreateTodo {}
-</code></pre>
-<p>Normally this would result in the generic missing claims error message:</p>
-<div class="not-prose"><p><error-summary :status="{message:`perm Claim with 'todos:write' is Required`}"></error-summary></p>
-</div>
-<p>But as the <code>perm</code> claim has a customized error message:</p>
-<pre><code class="language-csharp">HasClaimValidator.ClaimErrorMessages[&quot;perm&quot;]= &quot;`${Value} Permission Required`&quot;;
-</code></pre>
-<p>It will generate that Error Response instead:</p>
-<div class="not-prose"><p><error-summary :status="{message:`'todos:write' Permission Required`}"></error-summary></p>
-</div>
-<p>Which is a good example showing how <code>HasClaimValidator.ClaimErrorMessages</code> can be used to add custom error messages
-for your own custom claim validation.</p>
-<h3 id="inspecting-claims-inside-services">Inspecting Claims inside Services<a class="header-anchor" href="javascript:;" onclick="location.hash='#inspecting-claims-inside-services'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>You can also inspect and validate a Users Claim by inspecting the Authenticated ClaimsPrincipal, e.g:</p>
-<pre><code class="language-csharp">public class TodoServices : Service
+                    <p>Anyone who's used ServiceStack's built-in <a href="https://docs.servicestack.net/api-explorer">API Explorer</a> or
+<a href="https://docs.servicestack.net/auto-html-api">Auto HTML API</a> UIs know that not all API Explorer UIs are created equal.</p>
+<p>The differences are more pronounced as APIs get larger and more complex which we can see by comparing it with
+Swagger UI for rendering <a href="/posts/ai-chat">AI Chat's</a> <code>ChatCompletion</code> API:</p>
+<p><a href="/img/posts/ai-chat-explorer/ai-chat-swagger-form.webp"><img src="/img/posts/ai-chat-explorer/ai-chat-swagger-form.webp" alt="" /></a></p>
+<p>This is just the tip of the iceberg, the <a href="/img/posts/ai-chat-explorer/ai-chat-swagger-long.webp">full-length Swagger UI Screenshot</a>
+is absurdly long, past the point of being usable.</p>
+<p>As expected from a generic UI we get very little assistance from the UI on what values are allowed, the numeric fields
+aren't number inputs and the only dropdowns we see are for <code>bool</code> properties to select from their <code>true</code> and <code>false</code> values.
+There's not going to be any chance for it to be able to show App-specific options like which models are currently enabled.</p>
+<h2 id="api-explorer-ui">API Explorer UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#api-explorer-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>By contrast here is the same API rendered with ServiceStack's <a href="https://docs.servicestack.net/api-explorer">API Explorer</a>:</p>
+<p><a href="/img/posts/ai-chat-explorer/ai-chat-form.webp"><img src="/img/posts/ai-chat-explorer/ai-chat-form.webp" alt="" /></a></p>
+<p>This is much closer to what you'd expect from a hand-crafted Application UI and far more usable.</p>
+<h4 id="properties-use-optimized-ui-components">Properties use optimized UI Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#properties-use-optimized-ui-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>It renders an optimized UI for each property, with the <strong>Model</strong>, <strong>Reasoning Effort</strong>, <strong>Service Tier</strong> and <strong>Verbosity</strong>
+properties all using a <a href="https://docs.servicestack.net/vue/combobox">Combobox</a> component for quickly searching through a
+list of supported options, or they can choose to enter a custom value.</p>
+<p><strong>Bool</strong> properties use Checkboxes whilst Numeric fields use <strong>number</strong> inputs, with integer properties only allowing
+integer values and floating point properties being able to step through fractional values.</p>
+<h4 id="ui-specific-text-hints">UI-specific text hints<a class="header-anchor" href="javascript:;" onclick="location.hash='#ui-specific-text-hints'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Each property also contains <strong>placeholder</strong> text and <strong>help</strong> text hints that's more focused and concise than the
+verbose API documentation.</p>
+<h4 id="html-client-side-validation">HTML client-side validation<a class="header-anchor" href="javascript:;" onclick="location.hash='#html-client-side-validation'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<p>Client-side HTML validation ensure properties are valid and within any configured min/max values before any request is sent.</p>
+<p><a href="/img/posts/ai-chat-explorer/ai-chat-form-completed.webp"><img src="/img/posts/ai-chat-explorer/ai-chat-form-completed.webp" alt="" /></a></p>
+<h3 id="custom-components-for-complex-properties">Custom Components for Complex Properties<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-components-for-complex-properties'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The only property that doesn't use a built-in component is <code>Messages</code> which is rendered with a custom
+<code>ChatMessages</code> component purpose-built to populate the <code>List&lt;AiMessage&gt; Messages</code> property. It uses a <strong>Markdown Editor</strong>
+for the UserPrompt, a collapsible Textarea for any System Prompt and the ability to attach <strong>image</strong>, <strong>audio</strong> &amp; <strong>file</strong>
+document attachments to the API request.</p>
+<h2 id="how-is-it-done">How is it done?<a class="header-anchor" href="javascript:;" onclick="location.hash='#how-is-it-done'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The entire UI is driven by these <a href="https://docs.servicestack.net/locode/declarative">declarative annotations</a> added on the
+<a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.AI.Chat/ChatCompletion.cs">ChatCompletion</a>
+Request DTO:</p>
+<pre><code class="language-csharp">[Description(&quot;Chat Completions API (OpenAI-Compatible)&quot;)]
+[Notes(&quot;The industry-standard, message-based interface for interfacing with Large Language Models.&quot;)]
+public class ChatCompletion : IPost, IReturn&lt;ChatResponse&gt;
 {
-    public object Any(CreateTodo request)
-    {
-        var user = Request.GetClaimsPrincipal();
-        if (!user.HasClaim(&quot;perm&quot;, &quot;todos:write&quot;))
-            throw HttpError.Forbidden(&quot;todos:write Permission Required&quot;);
-        
-        var allUserClaims = user.Claims.ToList();
-        //...
-    }
+    [DataMember(Name = &quot;messages&quot;)]
+    [Input(Type = &quot;ChatMessages&quot;, Label=&quot;&quot;), FieldCss(Field = &quot;col-span-12&quot;)]
+    public List&lt;AiMessage&gt; Messages { get; set; } = [];
+    
+    [DataMember(Name = &quot;model&quot;)]
+    [Input(Type = &quot;combobox&quot;, EvalAllowableValues = &quot;Chat.Models&quot;, Placeholder = &quot;e.g. glm-4.6&quot;, Help = &quot;ID of the model to use&quot;)]
+    public string Model { get; set; }
+
+    [DataMember(Name = &quot;reasoning_effort&quot;)]
+    [Input(Type=&quot;combobox&quot;, EvalAllowableValues = &quot;['low','medium','high','none','default']&quot;, Help = &quot;Constrains effort on reasoning for reasoning models&quot;)]
+    public string? ReasoningEffort { get; set; }
+
+    [DataMember(Name = &quot;service_tier&quot;)]
+    [Input(Type = &quot;combobox&quot;, EvalAllowableValues = &quot;['auto','default']&quot;, Help = &quot;Processing type for serving the request&quot;)]
+    public string? ServiceTier { get; set; }
+    
+    [DataMember(Name = &quot;safety_identifier&quot;)]
+    [Input(Type = &quot;text&quot;, Placeholder = &quot;e.g. user-id&quot;, Help = &quot;Stable identifier to help detect policy violations&quot;)]
+    public string? SafetyIdentifier { get; set; }
+    
+    [DataMember(Name = &quot;stop&quot;)]
+    [Input(Type = &quot;tag&quot;, Max = &quot;4&quot;, Help = &quot;Up to 4 sequences for the API to stop generating tokens&quot;)]
+    public List&lt;string&gt;? Stop { get; set; }
+    
+    [DataMember(Name = &quot;modalities&quot;)]
+    [Input(Type = &quot;tag&quot;, Max = &quot;3&quot;, Help = &quot;The output types you would like the model to generate&quot;)]
+    public List&lt;string&gt;? Modalities { get; set; }
+    
+    [DataMember(Name = &quot;prompt_cache_key&quot;)]
+    [Input(Type = &quot;text&quot;, Placeholder = &quot;e.g. my-cache-key&quot;, Help = &quot;Used by OpenAI to cache responses for similar requests&quot;)]
+    public string? PromptCacheKey { get; set; }
+    
+    [DataMember(Name = &quot;tools&quot;)]
+    public List&lt;Tool&gt;? Tools { get; set; }
+    
+    [DataMember(Name = &quot;verbosity&quot;)]
+    [Input(Type = &quot;combobox&quot;, EvalAllowableValues = &quot;['low','medium','high']&quot;, Placeholder = &quot;e.g. low&quot;, Help = &quot;Constrains verbosity of model's response&quot;)]
+    public string? Verbosity { get; set; }
+    
+    [DataMember(Name = &quot;temperature&quot;)]
+    [Input(Type = &quot;number&quot;, Step = &quot;0.1&quot;, Min = &quot;0&quot;, Max = &quot;2&quot;, Placeholder = &quot;e.g. 0.7&quot;, Help = &quot;Higher values more random, lower for more focus&quot;)]
+    public double? Temperature { get; set; }
+
+    [DataMember(Name = &quot;max_completion_tokens&quot;)]
+    [Input(Type = &quot;number&quot;, Value = &quot;2048&quot;, Step = &quot;1&quot;, Min = &quot;1&quot;, Placeholder = &quot;e.g. 2048&quot;, Help = &quot;Max tokens for completion (inc. reasoning tokens)&quot;)]
+    public int? MaxCompletionTokens { get; set; }
+
+    [DataMember(Name = &quot;top_logprobs&quot;)]
+    [Input(Type = &quot;number&quot;, Step = &quot;1&quot;, Min = &quot;0&quot;, Max = &quot;20&quot;, Placeholder = &quot;e.g. 5&quot;, Help = &quot;Number of most likely tokens to return with log probs&quot;)]
+    public int? TopLogprobs { get; set; }
+    
+    [DataMember(Name = &quot;top_p&quot;)]
+    [Input(Type = &quot;number&quot;, Step = &quot;0.1&quot;, Min = &quot;0&quot;, Max = &quot;1&quot;, Placeholder = &quot;e.g. 0.5&quot;, Help = &quot;Nucleus sampling - alternative to temperature&quot;)]
+    public double? TopP { get; set; }
+
+    [DataMember(Name = &quot;frequency_penalty&quot;)]
+    [Input(Type = &quot;number&quot;, Step = &quot;0.1&quot;, Min = &quot;0&quot;, Max = &quot;2&quot;, Placeholder = &quot;e.g. 0.5&quot;, Help = &quot;Penalize tokens based on frequency in text&quot;)]
+    public double? FrequencyPenalty { get; set; }
+    
+    [DataMember(Name = &quot;presence_penalty&quot;)]
+    [Input(Type = &quot;number&quot;, Step = &quot;0.1&quot;, Min = &quot;0&quot;, Max = &quot;2&quot;, Placeholder = &quot;e.g. 0.5&quot;, Help = &quot;Penalize tokens based on presence in text&quot;)]
+    public double? PresencePenalty { get; set; }
+    
+    [DataMember(Name = &quot;seed&quot;)]
+    [Input(Type = &quot;number&quot;, Placeholder = &quot;e.g. 42&quot;, Help = &quot;For deterministic sampling&quot;)]
+    public int? Seed { get; set; }
+    
+    [DataMember(Name = &quot;n&quot;)]
+    [Input(Type = &quot;number&quot;, Placeholder = &quot;e.g. 1&quot;, Help = &quot;How many chat choices to generate for each input message&quot;)]
+    public int? N { get; set; }
+    
+    [Input(Type = &quot;checkbox&quot;, Help = &quot;Whether or not to store the output of this chat request&quot;)]
+    [DataMember(Name = &quot;store&quot;)]
+    public bool? Store { get; set; }
+    
+    [DataMember(Name = &quot;logprobs&quot;)]
+    [Input(Type = &quot;checkbox&quot;, Help = &quot;Whether to return log probabilities of the output tokens&quot;)]
+    public bool? Logprobs { get; set; }
+    
+    [DataMember(Name = &quot;parallel_tool_calls&quot;)]
+    [Input(Type = &quot;checkbox&quot;, Help = &quot;Enable parallel function calling during tool use&quot;)]
+    public bool? ParallelToolCalls { get; set; }
+    
+    [DataMember(Name = &quot;enable_thinking&quot;)]
+    [Input(Type = &quot;checkbox&quot;, Help = &quot;Enable thinking mode for some Qwen providers&quot;)]
+    public bool? EnableThinking { get; set; }
+    
+    [DataMember(Name = &quot;stream&quot;)]
+    [Input(Type = &quot;hidden&quot;)]
+    public bool? Stream { get; set; }
 }
 </code></pre>
+<p>Which uses the <a href="https://docs.servicestack.net/locode/declarative#custom-fields-and-inputs">[Input] attribute</a>
+to control the HTML Input rendered for each property whose <code>Type</code> can reference any
+HTML Input or any <a href="https://docs.servicestack.net/vue/form-inputs">ServiceStack Vue Component</a> that's either built-in
+or registered with the Component library.</p>
+<p>In addition, you also have control to the css of the containing <strong>Field</strong>, <strong>Input</strong> and <strong>Label</strong> elements with the
+<a href="https://docs.servicestack.net/locode/declarative#field">[FieldCss] attribute</a>
+which uses <code>[FieldCss(Field=&quot;col-span-12&quot;)]</code> to render the field to span the full width of the form.</p>
+<p>The <code>[Input(Type=&quot;hidden&quot;)]</code> is used to hide the <code>Stream</code> property from the UI since it is invalid from an API Explorer UI.</p>
+<h3 id="combobox-values">Combobox Values<a class="header-anchor" href="javascript:;" onclick="location.hash='#combobox-values'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The Combobox <code>EvalAllowableValues</code> can reference any JavaScript expression which is evaluated with
+<a href="https://sharpscript.net">#Script</a> with the results embedded in the API Metadata that API Explorer uses to render its UI.</p>
+<p>All combo boxes references a static JS Array except for <code>Model</code> which uses <code>EvalAllowableValues = &quot;Chat.Models&quot;</code> to
+invoke the registered <code>Chat</code> instance <code>Models</code> property which returns an ordered list of all available models from all enabled providers:</p>
+<pre><code class="language-csharp">appHost.ScriptContext.Args[nameof(Chat)] = new Chat(this);
+
+public class Chat(ChatFeature feature)
+{
+    public List&lt;string&gt; Models =&gt; feature.Providers.Values
+        .SelectMany(x =&gt; x.Models.Keys)
+        .Distinct()
+        .OrderBy(x =&gt; x)
+        .ToList();
+}
+</code></pre>
+<h3 id="custom-chatmessages-component">Custom ChatMessages Component<a class="header-anchor" href="javascript:;" onclick="location.hash='#custom-chatmessages-component'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The only property that doesn't use a built-in component is:</p>
+<pre><code class="language-csharp">[Input(Type = &quot;ChatMessages&quot;, Label=&quot;&quot;), FieldCss(Field = &quot;col-span-12&quot;)]
+public List&lt;AiMessage&gt; Messages { get; set; } = [];
+</code></pre>
+<p>Which makes use of a custom <code>ChatMessages</code> component in
+<a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.AI.Chat/modules/ui/components/ChatMessages.mjs">/modules/ui/components/ChatMessages.mjs</a>.</p>
+<p>Custom Components can be added to API Explorer in the same way as
+<a href="https://docs.servicestack.net/locode/custom-overview#ui">overriding any built-in API Explorer</a>
+component by adding it to your local <code>/wwwroot</code> folder:</p>
+<div class="language-files"><div class="ml-6">
+  <div class="flex items-center text-base leading-8">
+    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
+    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
+    <span>modules</span>
+  </div>
+<div class="ml-6">
+  <div class="flex items-center text-base leading-8">
+    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
+    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
+    <span>ui</span>
+  </div>
+<div class="ml-6">
+  <div class="flex items-center text-base leading-8">
+    <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z"></path></svg>
+    <svg class="mr-1 text-sky-500" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z"></path></svg>
+    <span>components</span>
+  </div>
+<div>
+<div class="ml-6 flex items-center text-base leading-8">
+  <svg class="mr-1 text-slate-600 inline-block select-none align-text-bottom overflow-visible" aria-hidden="true" focusable="false" role="img" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg>
+  <span>ChatMessages.mjs</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>All components added to the <code>/components</code> folder will be automatically registered and available for use.</p>
+<p>That's all that's needed to customize the <code>ChatCompletion</code> Form UI in API Explorer, for more features and
+customizations see the <a href="https://docs.servicestack.net/api-explorer">API Explorer Docs</a>.</p>
+<h2 id="install">Install<a class="header-anchor" href="javascript:;" onclick="location.hash='#install'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To experience <a href="/posts/ai-chat-ui">AI Chat's UI</a> and its <code>ChatCompletion</code> API Explorer UI for yourself, you can add
+AI Chat to any .NET 8+ project by installing the <strong>ServiceStack.AI.Chat</strong> NuGet package and configuration with:</p>
+<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-800">
+                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x mix chat</p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-green-600 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>Which drops this simple <a href="https://docs.servicestack.net/modular-startup">Modular Startup</a> that adds the <code>ChatFeature</code>
+and registers a link to its UI on the <a href="https://docs.servicestack.net/metadata-page">Metadata Page</a> if you want it:</p>
+<pre><code class="language-csharp">public class ConfigureAiChat : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) =&gt; builder
+        .ConfigureServices((context, services) =&gt; {
+
+            // Docs: https://docs.servicestack.net/ai-chat-api
+            services.AddPlugin(new ChatFeature {
+                EnableProviders = [
+                    &quot;servicestack&quot;,
+                    // &quot;groq&quot;,
+                    // &quot;google_free&quot;,
+                    // &quot;openrouter_free&quot;,
+                    // &quot;ollama&quot;,
+                    // &quot;google&quot;,
+                    // &quot;anthropic&quot;,
+                    // &quot;openai&quot;,
+                    // &quot;grok&quot;,
+                    // &quot;qwen&quot;,
+                    // &quot;z.ai&quot;,
+                    // &quot;mistral&quot;,
+                    // &quot;openrouter&quot;,
+                ]
+            });
+            
+            // Persist AI Chat History, enables analytics at /admin-ui/chat
+            services.AddSingleton&lt;IChatStore,DbChatStore&gt;();
+            // Or store history in monthly partitioned tables in PostgreSQL:
+            // services.AddSingleton&lt;IChatStore, PostgresChatStore&gt;();
+             
+            services.ConfigurePlugin&lt;MetadataFeature&gt;(feature =&gt; {
+                feature.AddPluginLink(&quot;/chat&quot;, &quot;AI Chat&quot;);
+            });
+        });
+}
+</code></pre>
+<h2 id="learn-more-about-ai-chat">Learn more about AI Chat<a class="header-anchor" href="javascript:;" onclick="location.hash='#learn-more-about-ai-chat'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>To dive deeper into what AI Chat can do:</p>
+<ul>
+<li>Read the <a href="https://docs.servicestack.net/ai-chat-api">AI Chat API docs</a> to integrate AI into your own services and apps.</li>
+<li>Explore the <a href="https://docs.servicestack.net/ai-chat-ui">AI Chat UI guide</a> to customize the built-in experience.</li>
+<li>Use <a href="https://docs.servicestack.net/ai-chat-analytics">Admin UI</a> to inspect analytics, monitor usage, and review audit history.</li>
+</ul>
+<div class="pt-12 not-prose flex justify-center">
+<a href="https://docs.servicestack.net/ai-chat-api"
+   class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 vithe UX Hot reloading of npm UIsa-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
+    <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
+    <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-400 shadow-[0_0_7px_rgba(56,189,248,0.7)]"></span>
+    <span class="tracking-wide">ServiceStack AI Chat</span>
+    <span class="ml-1 text-slate-400 transition-transform group-hover:translate-x-0.5">&rarr;</span>
+    </span>
+</a>
+</div>
 
                 </div>
             </div>
@@ -287,47 +499,6 @@ for your own custom claim validation.</p>
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/ai-chat-explorer">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/ai-chat-explorer/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/ai-chat-explorer" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Creating a custom Explorer UI for OpenAIs Chat API">
-                                                    Creating a custom Explorer UI for OpenAIs Chat API
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">Learning how to create a customized API Explorer API UIs like ChatCompletion&#x27;s UI</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="Creating a custom Explorer UI for OpenAIs Chat API background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-11-25T00:00:00.0000000">November 25, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>9 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -444,6 +615,47 @@ for your own custom claim validation.</p>
                                                     <time datetime="2025-11-17T00:00:00.0000000">November 17, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>16 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/react">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/react/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/react" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development">
+                                                    React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">First-class React support optimized for AI-assisted development with new React component library &amp; project templates</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="React &#x2B; Tailwind &#x2B; TypeScript for AI-First Development background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-11-13T00:00:00.0000000">November 13, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>9 min read</span>
                                                 </div>
                                             </div>
                                         </div>
