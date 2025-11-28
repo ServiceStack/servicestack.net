@@ -609,18 +609,61 @@ mount('#projects', App)
 </div>
 
 
-<div class="buttons my-8 flex text-center justify-center">
-    <a href="https://servicestack.net/free" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
-        Free for Individuals & OSS
-    </a>
-    <span class="mx-1"></span>
-    <a href="https://servicestack.net/trial" class="cursor-pointer text-2xl font-normal bg-blue-500 hover:bg-blue-600 text-white hover:text-white shadow-xl px-6 py-3 inline-block text-blue-100 rounded">
-        30 Day Free Trial
-    </a>
-</div>
+<div class="relative max-w-4xl mx-auto mt-60 mb-30 rounded-3xl overflow-hidden bg-slate-950 border border-white/10 shadow-2xl">
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+        <svg class="h-full w-full" aria-hidden="true">
+            <defs>
+                <pattern id="pricing-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M0 40L40 0H20L0 20M40 40V20L20 40" stroke="#0ea5e9" stroke-width="1" fill="none"
+                        opacity="0.1" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#pricing-grid)" />
+        </svg>
+    </div>
 
-<div class="text-center mb-8 pb-8 text-2xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-100">
-    <a href="https://servicestack.net/pricing">See Pricing</a>
+    <div class="absolute top-0 left-1/4 h-64 w-64 rounded-full bg-blue-600/20 blur-[80px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] pointer-events-none">
+    </div>
+
+    <div class="relative z-10 p-10 text-center">
+        <h3 class="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight">
+            Simple, Transparent Pricing
+        </h3>
+
+        <div class="py-12">
+            <a href="https://servicestack.net/pricing"
+                class="inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-slate-900 transition-all duration-200 bg-cyan-400 rounded-full hover:bg-cyan-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400">
+                View Perpetual Pricing
+                <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                    </path>
+                </svg>
+            </a>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-center max-w-3xl mx-auto">
+            <a href="https://servicestack.net/free"
+                class="group flex-1 space-y-2 p-4 rounded-xl hover:bg-white/5 transition-colors">
+                <div class="text-xl font-medium text-slate-400 group-hover:text-cyan-400 transition-colors">Individuals
+                    & OSS</div>
+                <div class="text-4xl font-bold text-white tracking-tight">Free</div>
+                <p class="text-sm text-slate-500 group-hover:text-slate-300 transition-colors">Forever free for personal
+                    & open source</p>
+            </a>
+
+            <div class="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-slate-700 to-transparent"></div>
+
+            <a href="https://servicestack.net/trial"
+                class="group flex-1 space-y-2 p-4 rounded-xl hover:bg-white/5 transition-colors">
+                <div class="text-xl font-medium text-slate-400 group-hover:text-cyan-400 transition-colors">Commercial
+                </div>
+                <div class="text-4xl font-bold text-white tracking-tight">30 Day</div>
+                <p class="text-sm text-slate-500 group-hover:text-slate-300 transition-colors">Risk-free trial for
+                    businesses</p>
+            </a>
+        </div>
+    </div>
 </div>
 
     </main>
