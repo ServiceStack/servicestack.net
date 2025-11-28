@@ -1565,5 +1565,45 @@
     "provider": "anthropic",
     "prompt": "An application to improve integration with TFS DevOps.",
     "groupName": "BuildDefinitions"
+  },
+  {
+    "id": "1763970606280",
+    "model": "claude-sonnet-4-5",
+    "timing": "3614",
+    "provider": "openrouter",
+    "prompt": "create application to manage contacts id name and phone",
+    "groupName": "Contacts"
+  },
+  {
+    "id": "1763977993619",
+    "model": "claude-sonnet-4-5",
+    "timing": "3438",
+    "provider": "openrouter",
+    "prompt": "create api interface for the below database entity : [AccountID] [int] NOT NULL,\n\t[Username] [nvarchar](255) NOT NULL,\n\t[Password] [nvarchar](255) NOT NULL,\n\t[Email] [nvarchar](255) NOT NULL,\n\t[FirstName] [nvarchar](255) NOT NULL,\n\t[LastName] [nvarchar](255) NOT NULL,",
+    "groupName": "Accounts"
+  },
+  {
+    "id": "1764063550237",
+    "model": "claude-sonnet-4-5",
+    "timing": "22453",
+    "provider": "openrouter",
+    "prompt": "Create a Job Board",
+    "groupName": "JobSeekerSkills"
+  },
+  {
+    "id": "1764231279341",
+    "model": "claude-sonnet-4-5",
+    "timing": "11500",
+    "provider": "openrouter",
+    "prompt": "Paddle Tournament Website – Short Functional Description\n\nA web application for managing padel/paddle tournaments with three user roles: Admin, Tournament Manager, and Participant.\n\nCore Features\n\t•\tUser registration, login, profile management, and password changes.\n\t•\tAdmins manage all users (create, edit, deactivate, change roles) and all tournaments.\n\t•\tTournament Managers create, edit, and delete their own tournaments, manage registrations, and view participants.\n\t•\tParticipants browse tournaments, view details, register/unregister, and see “My Tournaments.”\n\nTournaments\nEach tournament has: name, description, location, start/end, registration window, category, max participants, status, and creator.\nRegistrations ensure uniqueness (one user per tournament) and enforce rules (capacity, open dates, status).\n\nPublic Pages\n\t•\tHome with upcoming tournaments\n\t•\tTournament list (filter/search)\n\t•\tTournament details\n\t•\tLogin and sign-up\n\nAuthenticated Pages\n\t•\tProfile + change password\n\t•\tMy Tournaments\n\t•\tTournament creation/edit (Manager/Admin)\n\t•\tTournament participants (Manager/Admin)\n\t•\tUser management pages for Admin\n\nValidation\n\t•\tUnique email, secure passwords\n\t•\tTournament date logic (start < end, registration window valid)\n\t•\tRegistration only when open and not full\n\nNon-Functional\n\t•\tSecure authentication (password hashing)\n\t•\tRole-based access control\n\t•\tServer-side validation\n\t•\tTimestamping for auditability",
+    "groupName": "Registrations"
+  },
+  {
+    "id": "1764335731081",
+    "model": "claude-sonnet-4-5",
+    "timing": "6961",
+    "provider": "openrouter",
+    "prompt": "Table to store Customer Stripe Subscriptions",
+    "groupName": "CustomerStripeSubscriptions"
   }
 ]
