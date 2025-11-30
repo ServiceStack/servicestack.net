@@ -9,7 +9,7 @@ export default {
           id: 'vite',
           name: 'React Vite SPA',
           description: 'Empty SPA, fast development UX with Vite. Best for pure client-side apps.',
-          url: 'https://github.com/new?template_name=react-vite&template_owner=NetCoreTemplates',
+          url: 'https://github.com/new?template_name=react-static&template_owner=NetCoreTemplates',
           // Tailwind Colors
           colorBg: 'bg-blue-500',
           colorText: 'text-blue-500',
