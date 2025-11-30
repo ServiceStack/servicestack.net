@@ -568,9 +568,9 @@ import ReactCallout from "/pages/components/ReactCallout.mjs"
 import ReactCopilotTemplates from "/pages/components/ReactCopilotTemplates.mjs"
 
 export const Index = [
-    template('react-vite', 'React Vite', 'ReactNative',['spa', 'empty']),
-    template('nextjs', 'Next.js', 'NextjsNative',['static', 'featured']),
-    template('react-spa', 'React SPA', 'ReactNative',['spa','featured']),
+    template('react-static', 'React Static', 'ReactNative',['vite', 'static'], "react-static.react-templates.net"),
+    template('nextjs', 'Next.js', 'NextjsNative',['static', 'featured'], "nextjs.react-templates.net"),
+    template('react-spa', 'React SPA', 'ReactNative',['spa','featured'], "react-spa.react-templates.net"),
 ].reduce((acc, template) => { acc[template.repo] = template; return acc}, {})
 
 
@@ -583,7 +583,7 @@ const App = {
     },
     template: `
 <div class="max-w-screen-lg">
-    <Templates :templates="[Index['react-vite'],Index['nextjs'],Index['react-spa']]" />
+    <Templates :templates="[Index['react-static'],Index['nextjs'],Index['react-spa']]" />
 
     <ReactCopilotTemplates class="mt-12" />
 
@@ -601,8 +601,8 @@ const App = {
 `,
     setup() {
         const screenshots = {
-            'React Vite - Light Mode': '/img/posts/react/react-vite.webp',
-            'React Vite - Dark Mode': '/img/posts/react/react-vite-dark.webp',
+            'React Static - Light Mode': '/img/posts/react/react-static.webp',
+            'React Static - Dark Mode': '/img/posts/react/react-static-dark.webp',
             'React SPA - Light Mode': '/img/posts/react/react-spa.webp',
             'React SPA - Dark Mode': '/img/posts/react/react-spa-dark.webp',
             'Next.js - Light Mode': '/img/posts/react/nextjs.webp',

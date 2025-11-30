@@ -139,7 +139,6 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
-    --breakpoint-sm: 40rem;
     --breakpoint-md: 48rem;
     --breakpoint-lg: 64rem;
     --breakpoint-xl: 80rem;
@@ -913,9 +912,6 @@
   }
   .mb-32 {
     margin-bottom: calc(var(--spacing) * 32);
-  }
-  .mb-40 {
-    margin-bottom: calc(var(--spacing) * 40);
   }
   .mb-\[-2px\] {
     margin-bottom: -2px;
