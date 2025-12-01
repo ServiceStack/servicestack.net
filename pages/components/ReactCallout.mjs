@@ -61,7 +61,7 @@ export default {
                        class="inline-flex items-center justify-center rounded-md bg-cyan-500 px-4 py-2 text-sm font-bold text-blue-950 shadow-sm hover:bg-cyan-400 transition-colors">
                         React Component Gallery
                     </a>
-                    <a href="https://docs.servicestack.net/templates/react"
+                    <a href="https://react-templates.net/docs"
                        class="inline-flex items-center justify-center rounded-md bg-blue-950/50 px-4 py-2 text-sm font-semibold text-cyan-100 ring-1 ring-inset ring-cyan-500/30 hover:bg-blue-900 hover:ring-cyan-500/50 transition-all">
                         Read the Docs
                     </a>
