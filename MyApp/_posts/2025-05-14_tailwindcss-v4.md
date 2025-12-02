@@ -76,17 +76,12 @@ The latest TailwindCSS v4 Standalone CLI is now used in all ServiceStack's Blazo
 </project-creator>
 
 - **Blazor** - Identity Auth [Blazor Server Template](/posts/net8-blazor-template)
-- **Blazor WASM** - Identity Auth [Blazor WASM](/posts/blazor-8-admin) and Interactive Auto Template
 - **Blazor Vue** - No compromises, Identity Auth [statically-rendered Blazor](/posts/net8-best-blazor)
 
 <div class="not-prose my-8 grid grid-cols-3 gap-4">
  <a class="block group border hover:border-indigo-700" href="https://blazor.web-templates.io">
      <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor.png">
      <div class="bg-gray-50 text-gray-600 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor</div>
- </a>
- <a class="block group border hover:border-indigo-700" href="https://blazor-wasm.web-templates.io">
-     <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor-wasm.png">
-     <div class="bg-gray-50 text-gray-600 font-semibold group-hover:bg-indigo-700 group-hover:text-white text-center py-2">blazor-wasm</div>
  </a>
  <a class="block group border hover:border-indigo-700" href="https://blazor-vue.web-templates.io">
      <img class="p-2" src="https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor-vue.png">

@@ -22,7 +22,7 @@ Like old buildings, legacy UIs accumulate years of technical debt that makes ren
 
 Traditional renovation means dealing with all these nuances. Each new feature requires understanding why things were done a certain way, working around old limitations, and maintaining compatibility with outdated patterns. It's like trying to add a second floor to your house whilst still living in it, technically possible, but an expensive, delicate, and compromised endeavor that's rarely done.
 
-## AI-First Development Changes Everything
+## AI-Powered UI Transformation
 
 Modern AI models have transformed UI development from a time-intensive rewrite into a rapid transformation process. By utilizing an AI-first development approach (aka Vibe Coding) we can now leverage existing codebases as detailed specifications they can use as a blueprint, telling them exactly what to build.
 
@@ -30,8 +30,7 @@ Something AI Models excel at is code transformations, they are remarkable at und
 
 #### Context is King
 
-With AI code generation, the more details and context you provide, the closer the output matches your intent. With existing
-code-bases there is no ambiguity, the AI gets to know exactly what features it needs to build and how they work.
+With AI code generation, the more details and context you provide, the closer the output matches your intent. With existing code-bases there is no ambiguity, the AI gets to know exactly what features it needs to build and how they work.
 
 ### What Makes This Possible
 
@@ -47,10 +46,7 @@ With just an existing code-base and a detailed migration plan, AI models can tra
 
 ### What Framework to Choose?
 
-Up until now, the framework to choose was mostly up to developers personal preferences; in our case we preferred Vue,
-given its readability and progressive enhancement capabilities. But with an AI-first development model, you're no longer
-writing the code directly, you're task becomes feeding AI Models text prompts and context on what features to implement, 
-so it's more important to choose a framework that AI Models understand well. Currently, that's:
+Up until now, the framework to choose was mostly up to developers personal preferences; in our case we preferred Vue, given its readability and progressive enhancement capabilities. But with an AI-first development model, you're no longer writing the code directly, you're task becomes feeding AI Models text prompts and context on what features to implement, so it's more important to choose a framework that AI Models understand well. Currently, that's:
 
 ### The Optimal Stack for AI Development
 
@@ -65,16 +61,22 @@ This stack represents the sweet spot where AI models have the most training data
 
 ## A Real-World Example: TechStacks
 
+<screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4" 
+  :images="{
+    'Old Home': 'https://docs.servicestack.net/img/pages/react/replacing-legacy-uis/vuetify-home.webp',
+    'New Home': 'https://docs.servicestack.net/img/pages/react/replacing-legacy-uis/react-home.webp',
+}"></screenshots-gallery>
+
 Whilst the TechStacks C# ServiceStack backend is over a decade old, its UI has undergone multiple migrations, 
 with the last version rewritten 7 years ago. 
 
 - **v1**: [Angular 1 + Bootstrap](https://github.com/ServiceStackApps/TechStacks)
 - **v2**: [Nuxt.js 1.4 + Vuetify 1](https://github.com/NetCoreApps/TechStacks)
+- **v3**: [Next.js 16 + React 19 + Tailwindcss v4](https://github.com/NetCoreApps/techstacks.io) (Vibe Coded UI / Preserved backend .NET APIs)
 
-The previous migration from **Angular 1 / Bootstrap** to **Nuxt.js / Vuetify** was done over **several weeks** whilst
-the last AI completed migration to **React / Tailwindcss** was done within a couple of days. 
+The previous migration from **Angular 1 / Bootstrap** to **Nuxt.js / Vuetify** was done over **several weeks** whilst the last AI completed migration to **React / Tailwindcss** was done within a couple of days. 
 
-The actual migration and Vibe coded walkthrough itself only took a few hours, as the majority of the time was spent moving the existing deployment from an AWS ECS / RDS setup to a much less expensive Hetzner + PostgreSQL setup, [deployed using GitHub Actions](https://github.com/NetCoreApps/techstacks.io/tree/main/.github/workflows) and [Kamal](https://kamal-deploy.org).
+The actual migration and Vibe coded walkthrough itself **only took a few hours**, as the majority of the time was spent moving the existing deployment from an AWS ECS / RDS setup to a much less expensive Hetzner + PostgreSQL setup, [deployed using GitHub Actions](https://github.com/NetCoreApps/techstacks.io/tree/main/.github/workflows) and [Kamal](https://kamal-deploy.org).
 
 ### Migration Scope
 
@@ -97,13 +99,20 @@ As it's a vital part of AI Assisted development, most AI Tools have planning too
 free credits to their [Claude Code on the web](https://www.claude.com/blog/claude-code-on-the-web) we used it to create 
 the Migration plan:
 
-> Create a detailed plan for completely rewriting this old Nuxt.js Vuetify website into a new modern beautiful Next.js 16 Web App utilizing the existing C# ServiceStack back-end.
+```txt
+Create a detailed plan for completely rewriting this old Nuxt.js Vuetify website into a 
+new modern beautiful Next.js 16 Web App utilizing the existing C# ServiceStack back-end.
     
-> The entire UI can be erased to make way for a modern, visually stunning React 19, TypeScript and Tailwindcss v4 App.
+The entire UI can be erased to make way for a modern, visually stunning React 19, 
+TypeScript and Tailwindcss v4 App.
     
-> Use the existing Nuxt Vuetify pages to learn how to call its C# ServiceStack APIs with the TypeScript JsonServiceClient and Typed DTOs in ./TechStacks/src/shared/dtos.ts.
+Use the existing Nuxt Vuetify pages to learn how to call its C# ServiceStack APIs with 
+the TypeScript JsonServiceClient and Typed DTOs in ./TechStacks/src/shared/dtos.ts.
     
-> Do not generate code, only generate a comprehensive detailed plan for how to rewrite the UI layer for the existing C# back-end APIs. All Data is already available in the existing C# APIs.
+Do not generate code, only generate a comprehensive detailed plan for how to rewrite 
+the UI layer for the existing C# back-end APIs. All Data is already available in the 
+existing C# APIs.
+```
 
 The result of which was the [NEXTJS_MIGRATION_PLAN.md](https://github.com/NetCoreApps/techstacks.io/blob/main/NEXTJS_MIGRATION_PLAN.md).
 
@@ -113,7 +122,9 @@ After reviewing the plan and making the necessary changes to match what you want
 
 We took a copy of the existing **Nuxt.js / Vuetify code-base** with the **migration plan** and instructed Claude Code to execute the migration with the prompt: 
 
-> Implement the NEXTJS_MIGRATION_PLAN.md
+```
+Implement the NEXTJS_MIGRATION_PLAN.md
+```
 
 With access to both the Migration Plan and existing code-base, Claude Code was able to generate the entire new Next.js UI within 10-20 minutes, for less than $10 (in free credits).
 
@@ -121,8 +132,7 @@ The initial AI-generated code wasn't perfect, but it generated an excellent star
 
 ### Vibe Code the rest
 
-The most time consuming part of the mgiration is walking through the entire Application, in tandem with your existing App to test that everything functions as it did before. Fortunately you never need to take the reins to get it over the line,
-as now that we have a modern AI-friendly Next.js/React/Tailwind UI we can just use Vibe Coding to prompt the AI Models to implement any missing features or fix any issues that you find along the way.
+The most time consuming part of the mgiration is walking through the entire Application, in tandem with your existing App to test that everything functions as it did before. Fortunately you never need to take the reins to get it over the line, as now that we have a modern AI-friendly Next.js/React/Tailwind UI we can just use Vibe Coding to prompt the AI Models to implement any missing features or fix any issues that you find along the way.
 
 If this is your first time using AI Models for all development, it can seem like unrealistic magic from the future. 
 But not only is it possible, it's the most productive development model we've ever experienced, and is all likely to be the future of software development.
@@ -170,7 +180,7 @@ Start fresh without inheriting:
 - State management patterns designed before modern solutions existed
 - Build configurations accumulated over years of framework updates
 
-**4. Modern Frameworks Are Better**
+**4. Better Modern Frameworks**
 Today's frameworks solve problems that required custom code in legacy stacks:
 - Server Components eliminate entire categories of client-side state management
 - Modern CSS (Grid, Flexbox, Container Queries) replaces brittle layout hacks
@@ -205,7 +215,7 @@ The unprecedented productivity of AI Assisted development has transformed our ro
 
 
 <div class="pt-12 not-prose flex justify-center">
-<a href="/react"
+<a href="https://react-templates.net"
    class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 vithe UX Hot reloading of npm UIsa-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
     <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
     <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-400 shadow-[0_0_7px_rgba(56,189,248,0.7)]"></span>
@@ -216,7 +226,7 @@ The unprecedented productivity of AI Assisted development has transformed our ro
 </div>
 
 <div class="not-prose -ml-[30px] w-[840px]">
-<a href="/react/">
+<a href="https://react-templates.net">
 <react-callout />
 </a>
 </div>
