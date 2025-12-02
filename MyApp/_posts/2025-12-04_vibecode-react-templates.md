@@ -4,7 +4,6 @@ summary: Exploring the new Vibe Codable .NET 10 React Templates and their NodePr
 tags: [react,ai,autoquery]
 author: Demis Bellot
 image: ./img/posts/vibecode-react-templates/bg.webp
-draft: true
 ---
 
 Over the last few months our primary focus has been on enabling first-class support for React, this is a contrast from our own decade-long personal preference for Vue which has better affinity with HTML and its support for progressive enhancement enabling a [Simple, Modern JavaScript](https://servicestack.net/posts/javascript) development workflow without requiring npm or any build tools and why it was chosen for all of ServiceStack's [built-in UIs](https://servicestack.net/auto-ui). Whilst our [focus for Blazor](https://servicestack.net/blazor) was driven by .NET's preference for Blazor given it's primary positioning by the .NET team.
@@ -127,3 +126,47 @@ In addition to the minimal starting templates above, we've also created 2 full-f
 All deployments include the GitHub Action workflows to deploy your App to [any Linux Server with Kamal](https://react-templates.net/docs/deployments) using Docker, SSH and GitHub Container Registry (ghcr).
 
 Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can delpoy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
+
+## AI-Assisted Development with CLAUDE.md
+
+As part of our objectives of improving developer experience and embracing modern AI-assisted development workflows - all new .NET React templates include a comprehensive `AGENTS.md` file designed to optimize AI-assisted development workflows.
+
+### What is CLAUDE.md?
+
+`CLAUDE.md` and [AGENTS.md](https://agents.md) onboards Claude (and other AI assistants) to your codebase by using a structured documentation file that provides it with complete context about your project's architecture, conventions, and technology choices. This enables more accurate code generation, better suggestions, and faster problem-solving.
+
+### What's Included
+
+Each template's `AGENTS.md` contains:
+
+- **Project Architecture Overview** - Technology stack, design patterns, and key architectural decisions
+- **Project Structure** - Gives Claude a map of the codebase
+- **ServiceStack Conventions** - DTO patterns, Service implementation, AutoQuery, Authentication, and Validation
+- **React Integration** - TypeScript DTO generation, API client usage, component patterns, and form handling
+- **Database Patterns** - OrmLite setup, migrations, and data access patterns
+- **Common Development Tasks** - Step-by-step guides for adding APIs, implementing features, and extending functionality
+- **Testing & Deployment** - Test patterns and deployment workflows
+
+### Extending with Project-Specific Details
+
+The existing `CLAUDE.md` serves as a solid foundation, but for best results, you should extend it with project-specific details like the purpose of the project, key parts and features of the project and any unique conventions you've adopted.
+
+### Benefits
+
+- **Faster Onboarding** - New developers (and AI assistants) understand project conventions immediately
+- **Consistent Code Generation** - AI tools generate code following your project's patterns
+- **Better Context** - AI assistants can reference specific ServiceStack patterns and conventions
+- **Reduced Errors** - Clear documentation of framework-specific conventions
+- **Living Documentation** - Keep it updated as your project evolves
+
+### How to Use
+
+Claude Code and most AI Assistants already support automatically referencing `CLAUDE.md` and `AGENTS.md` files, for others you can just include it in your prompt context when asking for help, e.g:
+
+> Using my project's AGENTS.md, can you help me add a new AutoQuery API for managing Products?
+
+The AI will understand your App's ServiceStack conventions, React setup, and project structure, providing more accurate and contextual assistance.
+
+### Getting Started
+
+All new [react-templates.net](https://react-templates.net) include [AGENTS.md](https://github.com/NetCoreTemplates/react-static/blob/main/AGENTS.md) by default. For existing projects, you can adapt the template to document your App's conventions, patterns and technology choices.
