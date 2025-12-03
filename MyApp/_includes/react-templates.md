@@ -2,7 +2,7 @@
 
 We're excited to announce our new collection of React Templates specifically optimized for AI-first development, designed to accelerate your development workflow with modern tooling and best practices.
 
-[![](./img/pages/react-templates.webp)](https://react-templates.net)
+[![](./img/pages/react/react-templates.webp)](https://react-templates.net)
 
 <div class="pt-8 not-prose flex justify-center">
 <a href="https://react-templates.net"
