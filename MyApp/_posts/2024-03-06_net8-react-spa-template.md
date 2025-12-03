@@ -6,6 +6,8 @@ image: ./img/posts/net8-react-spa-template/bg.webp
 author: Demis Bellot
 ---
 
+::include react-templates.md::
+
 ## ServiceStack React SPA Template
 
 Just as we've enhanced the built-in ASP.NET Core React SPA template with the new [ServiceStack Vue SPA template](/posts/net8-vue-spa-template)
