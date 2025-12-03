@@ -1,5 +1,5 @@
 ---
-title: .NET 10 LTS and new OpenAPI Scalar + Swagger UIs
+title: .NET 10's new OpenAPI Scalar + Swagger UIs
 url: /posts/openapi-net10
 image: /img/posts/openapi-net10/bg.webp
 order: 1
