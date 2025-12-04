@@ -153,25 +153,161 @@
 
 @await Html.PartialAsync("PrimaryNav", "react")
 
-<section style="margin-top:-100px">
-    <div class="mx-auto max-w-5xl py-24 sm:py-32">
+<section class="my-32">
+    <div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
+
+        <h2 class="mb-12 mt-16 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
+            Perfect fusion of .NET APIs, Razor Pages and React UIs
+        </h2>
+
+        <ul class="text-lg text-slate-600 max-w-2xl mx-auto mb-12 list-disc list-inside space-y-2">
+            <li>Mix .NET Razor Pages and React UIs in the same application</li>
+            <li>Includes <a href="https://github.com/NetCoreTemplates/react-static/tree/main/MyApp/Areas/Identity/Pages" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">Tailwind Identity Auth Razor Pages</a> from the <a href="https://github.com/NetCoreTemplates/razor" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">razor</a> template</li>
+            <li>Gradual migration strategy for modernizing legacy ASP.NET websites</li>
+            <li>Progressively replace pages or sections without complete rewrites</li>
+        </ul>
+
+        <h2 class="mb-12 mt-16 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
+            Simplified .NET + React Development Workflow
+        </h2>
+
+        <ul class="text-lg text-slate-600 max-w-2xl mx-auto mb-8 list-disc list-inside space-y-2">
+            <li>ASP.NET Core proxies requests to Next.js or Vite dev server</li>
+            <li>Hot Module Replacement (HMR) support for instant UI updates</li>
+            <li>WebSocket proxying for Next.js/Vite HMR functionality</li>
+        </ul>
+
+        <img class="my-12 mx-auto rounded-lg shadow-lg" src="https://docs.servicestack.net/img/pages/react/info/react-static-dev.svg">
+
+        <h2 class="mb-12 mt-16 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
+            .NET React Templates with Static Exports
+        </h2>
+
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+            <b>4 out of 5 .NET React Templates</b> use <b>static exports</b>, where a production build of the Node App is generated at deployment and published together with the .NET App in its <em>/wwwroot</em> folder, utilizing static file serving to render its UI:
+        </p>
+
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-12">
+            This includes the minimal <em>react-static</em> and <em>next-static</em> starting templates, perfect for your next Vibe Coding project, beginning with the simplest:
+        </p>
+
+        <img class="my-12 mx-auto rounded-lg shadow-lg" src="https://docs.servicestack.net/img/pages/react/info/react-static-prod.svg">
+    </div>
+
+    <div class="mx-auto max-w-5xl">
+        <div>
+            <div>
+                <h3 id="start" class="mt-16 mb-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
+                    Getting Started
+                </h3>
+
+                <div class="w-full px-4">
+                    <p class="mx-auto text-xl text-gray-500">
+                        Starting with a ServiceStack React Project template is the easiest way to start developing beautiful,
+                        performant websites with React, Tailwind CSS and the 
+                        <a href="https://react.servicestack.net" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                            @@servicestack/react
+                        </a>
+                        component library:
+                    </p>
+                </div>
+            </div>
+
+            <div id="templates"></div>
+        </div>
+
+
+        <div class="mx-auto max-w-5xl">
+            <!-- React Callout -->
+            <section class="not-prose py-20">
+                <div class="w-full">
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-blue-950 to-cyan-900 shadow-xl ring-1 ring-white/10">
+                        
+                        <!-- React Logo Watermark -->
+                        <svg class="absolute -right-20 -top-20 h-[400px] w-[400px] text-cyan-500/10 animate-[spin_60s_linear_infinite]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <circle cx="12" cy="12" r="2"></circle>
+                            <ellipse rx="10" ry="4.5" transform="rotate(60 12 12)"></ellipse>
+                            <ellipse rx="10" ry="4.5" transform="rotate(120 12 12)"></ellipse>
+                            <ellipse rx="10" ry="4.5"></ellipse>
+                        </svg>
+
+                        <div class="relative px-6 py-10 sm:px-10 lg:px-12">
+                            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                                AI-Ready React templates <span class="text-cyan-400">on a robust .NET backend</span>
+                            </h2>
+                            <p class="mt-4 max-w-2xl text-blue-100/80 text-sm sm:text-base">
+                                Combine the React ecosystem with ServiceStack's feature-rich backend. 
+                                Experience end-to-end type safety and declarative APIs in a frictionless environment.
+                            </p>
+                            
+                            <dl class="mt-8 grid gap-6 sm:grid-cols-3">
+                                <!-- Item 1 -->
+                                <div class="flex flex-col bg-white/5 p-5 rounded-xl border border-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                                    <dt class="font-semibold text-white">
+                                        <span class="block text-cyan-400 font-mono text-xs mb-1 opacity-70">01</span>
+                                        AI Ready
+                                    </dt>
+                                    <dd class="mt-2 text-sm text-blue-100/70 leading-relaxed">
+                                        Start from well-known React templates tuned for rich, data-driven and AI-assisted user interfaces.
+                                    </dd>
+                                </div>
+                                
+                                <!-- Item 2 -->
+                                <div class="flex flex-col bg-white/5 p-5 rounded-xl border border-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                                    <dt class="font-semibold text-white">
+                                        <span class="block text-cyan-400 font-mono text-xs mb-1 opacity-70">02</span>
+                                        End-to-end Type Safety
+                                    </dt>
+                                    <dd class="mt-2 text-sm text-blue-100/70 leading-relaxed">
+                                        Share DTOs between .NET and React for confident refactors without context switching.
+                                    </dd>
+                                </div>
+                                
+                                <!-- Item 3 -->
+                                <div class="flex flex-col bg-white/5 p-5 rounded-xl border border-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                                    <dt class="font-semibold text-white">
+                                        <span class="block text-cyan-400 font-mono text-xs mb-1 opacity-70">03</span>
+                                        Zero-Ambiguity APIs
+                                    </dt>
+                                    <dd class="mt-2 text-sm text-blue-100/70 leading-relaxed">
+                                        Consistent API integrations eliminates guesswork, giving AI the perfect context to generate accurate features.
+                                    </dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-8 flex flex-wrap gap-3">
+                                <a href="https://react.servicestack.net"
+                                class="inline-flex items-center justify-center rounded-md bg-cyan-500 px-4 py-2 text-sm font-bold text-blue-950 shadow-sm hover:bg-cyan-400 transition-colors">
+                                    React Component Gallery
+                                </a>
+                                <a href="https://react-templates.net/docs"
+                                class="inline-flex items-center justify-center rounded-md bg-blue-950/50 px-4 py-2 text-sm font-semibold text-cyan-100 ring-1 ring-inset ring-cyan-500/30 hover:bg-blue-900 hover:ring-cyan-500/50 transition-all">
+                                    Read the Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
         <div id="gallery" class="mt-16 max-w-2xl mx-auto">
 
-            <div class="relative overflow-hidden bg-slate-50 dark:bg-gray-900 border-b border-slate-200 dark:border-gray-800">
+            <div class="relative overflow-hidden bg-slate-50 dark:bg-gray-900 border-b border-slate-200 dark:border-gray-800 mb-8">
                 <!-- Decorative background glow (Matches Vue Green/Tailwind Blue) -->
                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-teal-100/60 to-blue-100/60 dark:from-teal-900/30 dark:to-blue-900/30 blur-3xl rounded-full pointer-events-none"></div>
 
-                <div class="relative z-10 px-6 py-16 flex flex-col items-center text-center">
-                    
+                <div class="relative z-10 px-6 py-20 flex flex-col items-center text-center">
+
                     <!-- Logos Container -->
-                    <div class="flex items-center justify-center space-x-10 sm:space-x-14 mb-8">
+                    <div class="flex items-center justify-center space-x-10 sm:space-x-14 mb-10">
                         <!-- ServiceStack Logo -->
                         <a href="https://docs.servicestack.net/vue/autoquerygrid" class="transition-transform duration-300 hover:scale-110">
                             <svg class="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-sm text-gray-800 dark:text-white" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"></path>
                             </svg>
                         </a>
-                        
+
                         <!-- React Logo -->
                         <div class="transition-transform duration-300 hover:scale-110">
 
@@ -194,7 +330,7 @@
                     </div>
 
                     <!-- Text Content -->
-                    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl mb-4">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl mb-6">
                         Component Gallery
                     </h1>
                     <p class="text-lg text-slate-600 dark:text-slate-400 font-medium max-w-2xl mx-auto">
@@ -203,11 +339,11 @@
                 </div>
             </div>
 
-            <div class="pb-16">
+            <div class="py-8">
                 <div class="mx-auto max-w-2xl not-prose">
                     <div>
                         <ul role="list"
-                            class="divide-y divide-gray-200 dark:divide-gray-800 border-t border-b border-gray-200 dark:border-gray-800">
+                            class="divide-y divide-gray-200 dark:divide-gray-800 border-t border-b border-gray-200 dark:border-gray-800 mb-8">
                             <li class="relative flex items-start space-x-4 py-6">
                                 <div class="flex-shrink-0">
                                     <span
@@ -538,23 +674,6 @@
                 </div>
             </div>
         </div>
-
-        <div>
-            <div class="mb-8">
-                <h3 id="start" class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 dark:text-gray-50 sm:text-4xl">
-                    Getting Started
-                </h3>
-
-                <div class="w-full px-4">
-                    <p class="mx-auto mt-5 text-xl text-gray-500">
-                        Starting with a ServiceStack React Project template is the easiest way to start developing beautiful,
-                        performant websites with React, Tailwind CSS and the <b>@@servicestack/react</b> component library:
-                    </p>
-                </div>
-            </div>
-
-            <div id="templates"></div>
-        </div>
     </div>
 </section>
 
@@ -562,56 +681,106 @@
 <script type="module">
 import { mount } from "app.mjs"
 import { ref, computed } from "vue"
-import Templates, { template } from "/posts/components/Templates.mjs"
-import ScreenshotsGallery from "/posts/components/ScreenshotsGallery.mjs"
+import VibeTemplate from "/pages/components/VibeTemplate.mjs"
+import ScreenshotsGallery from "/pages/components/ScreenshotsGallery.mjs"
 import ReactCallout from "/pages/components/ReactCallout.mjs"
-import ReactCopilotTemplates from "/pages/components/ReactCopilotTemplates.mjs"
-
-export const Index = [
-    template('react-static', 'React Static', 'ReactNative',['vite', 'static'], "react-static.react-templates.net"),
-    template('nextjs', 'Next.js', 'NextjsNative',['static', 'featured'], "nextjs.react-templates.net"),
-    template('react-spa', 'React SPA', 'ReactNative',['spa','featured'], "react-spa.react-templates.net"),
-].reduce((acc, template) => { acc[template.repo] = template; return acc}, {})
-
 
 const App = {
     components: {
-        Templates,
+        VibeTemplate,
         ScreenshotsGallery,
         ReactCallout,
-        ReactCopilotTemplates,
     },
     template: `
 <div class="max-w-screen-lg">
-    <Templates :templates="[Index['react-static'],Index['nextjs'],Index['react-spa']]" />
 
-    <ReactCopilotTemplates class="mt-12" />
-
-    <h2 class="mb-20 mt-20 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
-        Screenshots
+    <h2 class="mb-12 mt-20 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
+        .NET React Templates for AI Assisted Apps
     </h2>
 
-    <ScreenshotsGallery 
-        class="mx-auto"
-        gridClass="grid grid-cols-1 md:grid-cols-2 gap-8"
-        :images="screenshots" />
+    <div class="mb-12">
+        <vibe-template
+            template="react-static"
+            title="React Static"
+            description="Minimal foundation for a classic Single Page Application (SPA) statically generated by Vite. Perfect for dashboards, internal tools, admin panels, and highly interactive apps where SEO isn't a priority."
+            href="https://react-templates.net/docs/templates/react-static"
+            screenshot="https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/wwwroot/img/pages/react/react-static.webp?raw=true"
+            github-template="https://github.com/new?template_name=react-static&template_owner=NetCoreTemplates"></vibe-template>
+    </div>
 
-    <ReactCallout />
+    <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-12">
+        When your App needs the features from a full-featured Web Framework like Next.js with file-based routing and SEO you choose from the Next.js templates starting with:
+    </p>
+
+    <div class="mb-12">
+        <vibe-template
+            template="next-static"
+            title="Next.js Static"
+            description="The ultimate solution for public-facing websites. Combines the SEO and performance of Static Site Generation (SSG) with a dynamic .NET API. Ideal for marketing sites, landing pages, blogs, and content-focused sites that benefit from SEO."
+            href="https://react-templates.net/docs/templates/next-static"
+            screenshot="https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/wwwroot/img/pages/react/next-static.webp?raw=true"
+            github-template="https://github.com/new?template_name=next-static&template_owner=NetCoreTemplates"></vibe-template>
+    </div>
+
+    <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-12">
+        Like React Static, Next.js Static is a static export of a Next.js App, but what about when you need the full power of Next.js? For that you can use:
+    </p>
+
+    <div class="mb-12">
+        <vibe-template
+            template="next-rsc"
+            title="Next.js RSC"
+            description="The cutting edge of React. Leverage the full uncompromising power of Next.js React Server Components to access .NET APIs directly on the server, reducing bundle size and improving performance."
+            href="https://react-templates.net/docs/templates/next-rsc"
+            screenshot="/img/pages/react/next-rsc.webp"
+            github-template="https://github.com/new?template_name=next-rsc&template_owner=NetCoreTemplates"></vibe-template>
+    </div>
+
+    <h2 class="mb-12 mt-20 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
+        Next.js in Production
+    </h2>
+
+    <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+        Using full Next.js does mean we also need to have a Next.js runtime at production, which looks like:
+    </p>
+
+    <img class="my-12 mx-auto rounded-lg shadow-lg" src="https://docs.servicestack.net/img/pages/react/info/next-rsc-prod.svg">
+
+    <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-12">
+        Fortunately Docker simplifies managing both .NET and Node servers as a single deployable unit, with the next-rsc custom
+        <a href="https://github.com/NetCoreTemplates/next-rsc/blob/main/Dockerfile">Dockerfile</a>
+        handling the orchestration.
+    </p>
+
+    <h2 class="mb-12 mt-20 text-center text-3xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight text-gray-900 dark:text-gray-100">
+        Full-Featured React Templates
+    </h2>
+
+    <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-12">
+        In addition to the minimal starting templates above, we've also created 2 full-featured React Templates providing a good reference implementation for integrating several React features including Blog, MDX, Todos and shadcn/ui components alongside .NET features like API Keys, AI Chat & Swagger UI.
+    </p>
+
+    <div class="mb-12">
+        <vibe-template
+            template="react-spa"
+            title="React SPA"
+            description="A feature-rich React Single Page Application powered by Vite. Includes Blog functionality, Todos, shadcn/ui components, API Keys management, AI Chat capabilities, and Swagger UI - all integrated with a robust .NET backend."
+            href="https://react-templates.net/docs/templates/react-spa"
+            screenshot="https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/wwwroot/img/pages/react/react-spa.webp?raw=true"></vibe-template>
+    </div>
+
+    <div class="mb-12">
+        <vibe-template
+            template="nextjs"
+            title="Next.js"
+            description="A comprehensive Next.js template showcasing the full power of integrating React with .NET. Features a complete Blog with MDX, Todos implementation, shadcn/ui components, API Keys management, AI Chat integration, and Swagger UI for API exploration."
+            href="/docs/templates/nextjs"
+            screenshot="https://github.com/ServiceStack/docs.servicestack.net/blob/main/MyApp/wwwroot/img/pages/react/nextjs.webp?raw=true"></vibe-template>
+    </div>
 </div>
 `,
     setup() {
-        const screenshots = {
-            'React Static - Light Mode': '/img/posts/react/react-static.webp',
-            'React Static - Dark Mode': '/img/posts/react/react-static-dark.webp',
-            'React SPA - Light Mode': '/img/posts/react/react-spa.webp',
-            'React SPA - Dark Mode': '/img/posts/react/react-spa-dark.webp',
-            'Next.js - Light Mode': '/img/posts/react/nextjs.webp',
-            'Next.js - Dark Mode': '/img/posts/react/nextjs-dark.webp',
-        }
-
         return {
-            Index,
-            screenshots,
         }
     }
 }
