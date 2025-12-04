@@ -159,7 +159,7 @@ mountAll()
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2024-03-06T00:00:00.0000000">March 6, 2024</time>
+                                <time datetime="2025-12-01T00:00:00.0000000">December 1, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
                                 <span>11 min read</span>
                             </div>
@@ -222,20 +222,6 @@ HMR (Hot Module Reload), TypeScript support with TSX enabling development of con
 <h3 id="minimal-api-integration">Minimal API integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#minimal-api-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Whilst a great starting point, it's still only a basic template configured with a bare-bones React Vite App that's modified
 to show an example of calling a Minimal API.</p>
-<h3 id="built-in-api-integration">Built-in API Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-in-api-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Although the approach used isn't very scalable, with a proxy rule needed for every user-defined API route:</p>
-<pre><code class="language-ts">export default defineConfig({
-    //...
-    server: {
-        proxy: {
-            '^/weatherforecast': {
-                target,
-                secure: false
-            }
-        },
-    }
-})
-</code></pre>
 <p>And the need for hand maintained Types to describe the shape of the API responses with <a href="https://wiki.c2.com/?StringlyTyped">Stringly Typed</a>
 fetch API calls referencing <strong>string</strong> routes:</p>
 <pre><code class="language-ts">interface Forecast {
