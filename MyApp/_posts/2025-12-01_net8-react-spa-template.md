@@ -53,24 +53,6 @@ HMR (Hot Module Reload), TypeScript support with TSX enabling development of con
 Whilst a great starting point, it's still only a basic template configured with a bare-bones React Vite App that's modified
 to show an example of calling a Minimal API.
 
-### Built-in API Integration
-
-Although the approach used isn't very scalable, with a proxy rule needed for every user-defined API route:
-
-```ts
-export default defineConfig({
-    //...
-    server: {
-        proxy: {
-            '^/weatherforecast': {
-                target,
-                secure: false
-            }
-        },
-    }
-})
-```
-
 And the need for hand maintained Types to describe the shape of the API responses with [Stringly Typed](https://wiki.c2.com/?StringlyTyped)
 fetch API calls referencing **string** routes:
 
