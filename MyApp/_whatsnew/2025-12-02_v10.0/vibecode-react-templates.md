@@ -1,11 +1,11 @@
 ---
-title: New .NET 10 React Templates for AI-Assisted Development
+title: New React Templates for AI-Assisted Development
 url: https://react-templates.net
 image: ./img/posts/vibecode-react-templates/bg.webp
 order: 2
 ---
 
-We're excited to announce [react-templates.net](https://react-templates.net) - a new collection of 5 React templates optimized for AI-assisted development with .NET 10. As AI Models become proficient enough to build features in minutes and rewrite UIs in hours, we've focused on the stack where AI excels: **React 19**, **Next.js 16**, **TypeScript**, and **Tailwind CSS v4**.
+We're excited to announce [react-templates.net](https://react-templates.net) - a new collection of 5 React templates optimized for AI-assisted development with **.NET 10**. As AI Models become proficient enough to build features in minutes and rewrite UIs in hours, we've focused on the stack where AI excels: **React 19**, **Next.js 16**, **TypeScript**, and **Tailwind CSS v4**.
 
 The new templates feature a new **NodeProxy architecture** that eliminates the complexity of managing separate dev servers. Simply run `dotnet watch` to access your React App at `https://localhost:5001` with full HMR support:
 
