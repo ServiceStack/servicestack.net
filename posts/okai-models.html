@@ -181,20 +181,30 @@ except it's a local tool that can add additional functionality to an existing pr
 <p><ascii-cinema src="/img/posts/okai-models/okai-prompt-jobs.cast"
 loop="true" poster="npt:00:20" theme="dracula" rows="24" /></p>
 <p>The syntax for adding a new feature to your Web App is <code>npx okai &lt;prompt&gt;</code>, e.g:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai &quot;The kind of Feature you would like to add&quot;</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>npx okai &quot;The kind of Feature you would like to add&quot;</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Where it will generate the Data Models, AutoQuery CRUD APIs, DB Migrations and Admin UI for the
 selected feature which you'll see after selecting the LLM Data Models you want to use, e.g:</p>
 <pre><code class="language-sh">Selected 'deepseek-r1:70b' data models
@@ -226,20 +236,30 @@ $ okai Jobs.d.ts
 </li>
 </ul>
 <p>Then to apply the migration and create the tables you can run:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npm run migrate</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>npm run migrate</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <h2 id="declarative-ai-powered-features">Declarative AI powered Features<a class="header-anchor" href="javascript:;" onclick="location.hash='#declarative-ai-powered-features'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>The approach okai uses is very different from most AI tools which instead of using AI to generate an
 entire App or source code for a feature it's only used to generate the initial Data Models within
@@ -254,20 +274,30 @@ on the template used.</p>
 <h3 id="generated-admin-ui">Generated Admin UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#generated-admin-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>To have okai generate an Admin UI you'll need to use it within a new Blazor Admin project or
 Blazor Vue (<a href="https://blazor-vue.web-templates.io">blazor-vue</a>) project:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>x new blazor-admin Acme</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>x new blazor-admin Acme</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Which both support a &quot;Modular no-touch&quot; Admin UI which will appear under a new group in the Admin Sidebar:</p>
 <p><img src="/img/posts/text-to-blazor/okai-blazor-admin.webp" alt="" /></p>
 <h2 id="customize-data-models">Customize Data Models<a class="header-anchor" href="javascript:;" onclick="location.hash='#customize-data-models'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
@@ -275,20 +305,30 @@ Blazor Vue (<a href="https://blazor-vue.web-templates.io">blazor-vue</a>) projec
 generation of the Data Models, APIs, DB Migrations and Admin UIs.</p>
 <p>This can be further customized by editing the TypeScript Declaration file and re-running the <code>okai</code> tool
 with the name of the TypeScript Declaration file, e.g. <code>Jobs.d.ts</code>:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai Jobs.d.ts</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>npx okai Jobs.d.ts</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Which will re-generate the Data Models, APIs, DB Migrations and Admin UIs based on the updated Data Models.</p>
 <p><img src="/img/posts/text-to-blazor/okai-Employees.webp" alt="" /></p>
 <div class="tip custom-block">
@@ -298,20 +338,30 @@ anywhere within your .NET solution</p>
 <h3 id="live-code-generation">Live Code Generation<a class="header-anchor" href="javascript:;" onclick="location.hash='#live-code-generation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>If you'd prefer to see the generated code in real-time you can add the <code>--watch</code> flag to watch the
 TypeScript Declaration file for changes and automatically re-generate the generated files on Save:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>npx okai Jobs.d.ts --watch</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>npx okai Jobs.d.ts --watch</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <video autoplay="autoplay" loop="loop" controls>
     <source src="https://media.servicestack.com/videos/okai-watch.mp4" type="video/mp4">
 </video>

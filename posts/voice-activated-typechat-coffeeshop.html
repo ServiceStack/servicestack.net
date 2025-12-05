@@ -799,20 +799,30 @@ TypeScript Schema validation errors is likely preferred.</p>
 <p>As we're not able to achieve a successful response from this problematic request from GPT-3.5, would ChatGPT 4 fair
 any better?</p>
 <p>Lets try by setting the <code>OPENAI_MODEL</code> Environment Variable to <strong>gpt-4</strong> in your shell:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>set OPENAI_MODEL=gpt-4</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>set OPENAI_MODEL=gpt-4</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Then retry the same request:</p>
 <div class="shadow rounded-sm"><p><a href="/img/posts/building-typechat-coffeeshop-modelling/typechat-success-vanilla-latte-macchiato.png"><img src="/img/posts/building-typechat-coffeeshop-modelling/typechat-success-vanilla-latte-macchiato.png" alt="" /></a></p>
 </div>
@@ -834,20 +844,30 @@ our .NET App.</p>
 <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/CoffeeShop/typechat.mjs">typechat.mjs</a> wrapper around TypeChat's
 functionality to invoke it and return any error responses in a structured <code>ResponseStatus</code> format that our .NET App
 can understand, which you can also invoke manually from the command line with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>node typechat.mjs json gpt\coffeeshop\schema.ts &quot;i wanna latte macchiato with vanilla&quot;</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>node typechat.mjs json gpt\coffeeshop\schema.ts &quot;i wanna latte macchiato with vanilla&quot;</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Lets test this out this with an <code>OPENAI_MODEL=gpt-4</code> Environment Variable so we can see the above problematic prompt
 working in our App:</p>
 <div class="shadow rounded-sm"><p><a href="/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-nodegpt4-vanilla-latte-macchiato.png"><img src="/img/posts/building-typechat-coffeeshop-modelling/coffeeshop-nodegpt4-vanilla-latte-macchiato.png" alt="" /></a></p>
@@ -915,20 +935,30 @@ browsers natively, i.e. <code>audio/webm</code>.</p>
 on Windows APIs to perform the conversion.</p>
 <p>Luckily this is pretty easy to do with the amazingly versatile <a href="https://ffmpeg.org">ffmpeg</a> - that can be installed on macOS with
 <a href="https://brew.sh">Homebrew</a>:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>brew install ffmpeg</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>brew install ffmpeg</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Whilst CoffeeShop's Ubuntu 22.04 <a href="https://github.com/NetCoreApps/CoffeeShop/blob/main/Dockerfile">Dockerfile</a> it uses
 to deploy to Linux installs it with:</p>
 <pre><code class="language-dockerfile">RUN apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get upgrade -y \
@@ -987,20 +1017,30 @@ the external <strong>ffmpeg</strong> process, the converted file is then returne
 </code></pre>
 <p>In the terminal this simply done by specifying the <strong>file.mp4</strong> input file and the output file extension and format
 you want it converted to:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>ffmpeg -i file.mp4 file.webm</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>ffmpeg -i file.mp4 file.webm</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>With this finishing touch CoffeeShop is now accepting Customer Orders from all modern browsers in all major Operating Systems at:</p>
 <h3 class="not-prose text-center pb-8">
     <a class="text-4xl text-blue-600 hover:underline" href="https://coffeeshop.netcore.io">https://coffeeshop.netcore.io</a>
@@ -1010,35 +1050,55 @@ you want it converted to:</p>
 which has been surprisingly <a href="https://servicestack.net/posts/postgres-mysql-sqlserver-on-apple-silicon">effortless on Apple Silicon</a>
 whose great specs and popularity amongst developers means a lot of the new GPT projects are well supported on my new M2 Macbook Air.</p>
 <p>As we already have <strong>ffmpeg</strong> installed, installing <a href="https://github.com/openai/whisper">OpenAI's Whisper</a> can be done with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install -U openai-whisper</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>pip install -U openai-whisper</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Where you'll then be able to transcribe Audio recordings that's as easy as specifying the recording you want a transcription of:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>whisper recording.webm</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>whisper recording.webm</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <h4 id="usage-notes">Usage Notes<a class="header-anchor" href="javascript:;" onclick="location.hash='#usage-notes'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
 <ul>
 <li>The <code>--language</code> flag helps speed up transcriptions by avoiding needing to run auto language detection</li>
@@ -1078,35 +1138,55 @@ an external API and infrastructure dependency, will it also be possible to run L
 <p>Thanks to tools like <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> we're able to run popular Open Source LLMs
 from our laptops. An easy way to easily download and evaluate different LLMs is using the <a href="https://llm.datasette.io">llm</a>
 Python utility that can be installed with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>pip install llm</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>pip install llm</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>That you can use to install the <strong>llama.cpp</strong> plugin with:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>llm install llm-llama-cpp</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>llm install llm-llama-cpp</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Then use that it to download the popular Llama2 7B model with:</p>
 <pre><code class="language-bash">llm llama-cpp download-model \
 https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/resolve/main/llama-2-7b-chat.ggmlv3.q8_0.bin \
@@ -1114,20 +1194,30 @@ https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/resolve/main/llama-2-7b-cha
 </code></pre>
 <p>Which lets us ask our local LLama2 model what we want, a great list used to measure the effectiveness of
 different LLMs can be found at <a href="https://benchmarks.llmonitor.com">benchmarks.llmonitor.com</a>:</p>
-<div class="not-prose sh-copy cp flex cursor-pointer mb-3" onclick="copy(this)">
-                <div class="flex-grow bg-gray-800">
-                    <div class="pl-4 py-1 pb-1.5 align-middle whitespace-pre text-base text-gray-100"><p>llm -m l2c 'Argue for and against the use of kubernetes in the style of a haiku.'</p>
-</div>
-                    </div>
-                <div class="flex">
-                    <div class="bg-green-600 text-white p-1.5 pb-0">
-                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
-                        </svg>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>llm -m l2c 'Argue for and against the use of kubernetes in the style of a haiku.'</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+</div>
 <p>Which our Llama2 took <strong>64.51s</strong> to responded with:</p>
 <pre><code>Sure, I can provide a haiku argument for and against the use of Kubernetes:
 
