@@ -2,7 +2,7 @@
 title: Rewriting Legacy UIs in an AI-First World
 url: https://react-templates.net/docs/vibe-coding/rewrite-legacy-uis
 image: ./img/posts/replacing-legacy-uis/bg.webp
-order: 3
+order: 4
 ---
 
 Software development has reached an inflection point where rewriting complete application UIs now takes hours instead of months. With AI models excelling at code transformations, **your existing codebase becomes the perfect specification** - defining all features, workflows, edge cases, and business logic with zero ambiguity.
