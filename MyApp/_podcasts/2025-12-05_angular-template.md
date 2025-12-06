@@ -4,7 +4,7 @@ summary: Introducing our new Angular 21 IdentityAuth Tailwind Template with Dark
 tags: [angular,templates,identity-auth,autoquery]
 author: Demis Bellot
 url: https://media.servicestack.com/podcasts/angular-template.mp3
-media: {size:8399660,duration:802.968000,format:mp3}
+media: {size:13070136,duration:927.172789,format:mp3}
 ---
 
 In this episode, we introduce our **new full-stack Single Page Application (SPA) template** built for high-performance web development. 
