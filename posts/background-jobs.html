@@ -314,7 +314,7 @@ any new Identity Auth template:</p>
             Subject = $&quot;Received New Order {request.Id}&quot;,
             BodyText = $&quot;&quot;&quot;
                        Order Details:
-                       {request.OrderDetails.DumptTable()}
+                       {request.OrderDetails.DumpTable()}
                        &quot;&quot;&quot;,
         });
         //...
@@ -330,7 +330,7 @@ and track the execution of a job.</p>
     Subject = $&quot;Received New Order {request.Id}&quot;,
     BodyText = $&quot;&quot;&quot;
                Order Details:
-               {request.OrderDetails.DumptTable()}
+               {request.OrderDetails.DumpTable()}
                &quot;&quot;&quot;,
 });
 </code></pre>

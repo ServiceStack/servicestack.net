@@ -357,7 +357,7 @@ Executed, Failed, and Cancelled Jobs, etc. which is useful for monitoring and de
 <h2 id="usage">Usage<a class="header-anchor" href="javascript:;" onclick="location.hash='#usage'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>For even greater reuse of your APIs you're able to queue your existing ServiceStack Request DTOs
 as a Background Job in addition to <a href="https://docs.servicestack.net/commands">Commands</a>
-for encapsulating units of logic into internal invokable, inspectable and auto-retryable building blocks.</p>
+for encapsulating units of logic into internal invocable, inspectable and auto-retryable building blocks.</p>
 <h3 id="queue-commands">Queue Commands<a class="header-anchor" href="javascript:;" onclick="location.hash='#queue-commands'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
 <p>Any API, Controller or Minimal API can execute jobs with the <code>IBackgroundJobs</code> dependency, e.g.
 here's how you can run a background job to send a new email when an API is called in
@@ -371,7 +371,7 @@ any new Identity Auth template:</p>
             Subject = $&quot;Received New Order {request.Id}&quot;,
             BodyText = $&quot;&quot;&quot;
                        Order Details:
-                       {request.OrderDetails.DumptTable()}
+                       {request.OrderDetails.DumpTable()}
                        &quot;&quot;&quot;,
         });
         //...
@@ -388,7 +388,7 @@ and track the execution of a job.</p>
     Subject = $&quot;Received New Order {request.Id}&quot;,
     BodyText = $&quot;&quot;&quot;
                Order Details:
-               {request.OrderDetails.DumptTable()}
+               {request.OrderDetails.DumpTable()}
                &quot;&quot;&quot;,
 });
 </code></pre>

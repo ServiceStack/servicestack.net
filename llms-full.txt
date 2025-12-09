@@ -122,11 +122,11 @@ Implement the NEXTJS_MIGRATION_PLAN.md
 
 With access to both the Migration Plan and existing code-base, Claude Code was able to generate the entire new Next.js UI within 10-20 minutes, for less than $10 (in free credits).
 
-The initial AI-generated code wasn't perfect, but it generated an excellent starting point that converted most of the existing Nust/Vuetify implementation into a modern Next.js App, with its preferred project structure.
+The initial AI-generated code wasn't perfect, but it generated an excellent starting point that converted most of the existing Nuxt/Vuetify implementation into a modern Next.js App, with its preferred project structure.
 
 ### Vibe Code the rest
 
-The most time consuming part of the mgiration is walking through the entire Application, in tandem with your existing App to test that everything functions as it did before. Fortunately you never need to take the reins to get it over the line, as now that we have a modern AI-friendly Next.js/React/Tailwind UI we can just use Vibe Coding to prompt the AI Models to implement any missing features or fix any issues that you find along the way.
+The most time consuming part of the migration is walking through the entire Application, in tandem with your existing App to test that everything functions as it did before. Fortunately you never need to take the reins to get it over the line, as now that we have a modern AI-friendly Next.js/React/Tailwind UI we can just use Vibe Coding to prompt the AI Models to implement any missing features or fix any issues that you find along the way.
 
 If this is your first time using AI Models for all development, it can seem like unrealistic magic from the future. 
 But not only is it possible, it's the most productive development model we've ever experienced, and is all likely to be the future of software development.
@@ -210,7 +210,7 @@ The unprecedented productivity of AI Assisted development has transformed our ro
 
 <div class="pt-12 not-prose flex justify-center">
 <a href="https://react-templates.net"
-   class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 vithe UX Hot reloading of npm UIsa-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
+   class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
     <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
     <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-400 shadow-[0_0_7px_rgba(56,189,248,0.7)]"></span>
     <span class="tracking-wide">ServiceStack + React</span>
@@ -398,7 +398,7 @@ GitHub Actions workflows included for:
 
 All deployments include the GitHub Action workflows to deploy your App to [any Linux Server with Kamal](https://docs.servicestack.net/kamal-deploy) using Docker, SSH and GitHub Container Registry (ghcr).
 
-Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can delpoy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
+Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can deploy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
 
 ## AI-Assisted Development with CLAUDE.md
 
@@ -868,7 +868,7 @@ Over the last few months our primary focus has been on enabling first-class supp
 
 ### Software Development has changed forever
 
-Software Development has reached an inflection point where AI Models and tools are now good enough to build featuers in minutes, not hours and rewrite mid-sized application UIs in hours, not months. This fundamentally changes the economics of Software Development.
+Software Development has reached an inflection point where AI Models and tools are now good enough to build features in minutes, not hours and rewrite mid-sized application UIs in hours, not months. This fundamentally changes the economics of Software Development.
 
 Whatever our developer preferences were have become significantly less important in the age of AI where the most important factor is now which frameworks AI Models are most proficient in.
 
@@ -983,7 +983,7 @@ In addition to the minimal starting templates above, we've also created 2 full-f
 
 All deployments include the GitHub Action workflows to deploy your App to [any Linux Server with Kamal](https://react-templates.net/docs/deployments) using Docker, SSH and GitHub Container Registry (ghcr).
 
-Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can delpoy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
+Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can deploy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
 
 ## AI-Assisted Development with CLAUDE.md
 
@@ -1223,7 +1223,7 @@ function App() {
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See 
             <a href="https://aka.ms/jspsintegrationreact">jsps</a> for more details.
             </em></p>
-        : <table className="table table-striped" aria-labelledby="tabelLabel">
+        : <table className="table table-striped" aria-labelledby="tableLabel">
             <thead>
             <tr>
                 <th>Date</th>
@@ -2993,7 +2993,7 @@ Reports
 
 The generated source code for the App was uploaded to: [github.com/mythz/budgets.apps.cafe](https://github.com/mythz/budgets.apps.cafe)
 
-### Budgent Planner App
+### Budget Planner App
 
 After a few minutes Copilot creates a PR with what we asked for, even things that we didn't specify in the prompt but could be inferred from the Project Template like **Dark Mode** support where it made use of the existing `<DarkModeToggle />`.
 
@@ -3051,7 +3051,7 @@ very likely to become the future of software development, especially for UIs. Si
 the primary authors of code, our UI choices swing from Developer preferences to UI technologies that AI models
 excel at.
 
-So whilst we have a preference for Vue given it's more readable syntax and progressive enhancement capabalities, and despite the .NET ecosystem having a strong bias towards Blazor, we're even more excited for the future of React and are committed to providing the best possible support for it.
+So whilst we have a preference for Vue given it's more readable syntax and progressive enhancement capabilities, and despite the .NET ecosystem having a strong bias towards Blazor, we're even more excited for the future of React and are committed to providing the best possible support for it.
 
 ::include react-templates.md::
 
@@ -3523,7 +3523,7 @@ Cancel Running jobs and Requeue failed jobs
 
 For even greater reuse of your APIs you're able to queue your existing ServiceStack Request DTOs
 as a Background Job in addition to [Commands](https://docs.servicestack.net/commands) 
-for encapsulating units of logic into internal invokable, inspectable and auto-retryable building blocks.
+for encapsulating units of logic into internal invocable, inspectable and auto-retryable building blocks.
 
 ### Queue Commands
 
@@ -3541,7 +3541,7 @@ class MyService(IBackgroundJobs jobs) : Service
             Subject = $"Received New Order {request.Id}",
             BodyText = $"""
                        Order Details:
-                       {request.OrderDetails.DumptTable()}
+                       {request.OrderDetails.DumpTable()}
                        """,
         });
         //...
@@ -3563,7 +3563,7 @@ var jobRef = jobs.EnqueueApi(new SendEmail {
     Subject = $"Received New Order {request.Id}",
     BodyText = $"""
                Order Details:
-               {request.OrderDetails.DumptTable()}
+               {request.OrderDetails.DumpTable()}
                """,
 });
 ```
@@ -10737,7 +10737,7 @@ class MyService(IBackgroundJobs jobs) : Service
             Subject = $"Received New Order {request.Id}",
             BodyText = $"""
                        Order Details:
-                       {request.OrderDetails.DumptTable()}
+                       {request.OrderDetails.DumpTable()}
                        """,
         });
         //...
@@ -10757,7 +10757,7 @@ var jobRef = jobs.EnqueueApi(new SendEmail {
     Subject = $"Received New Order {request.Id}",
     BodyText = $"""
                Order Details:
-               {request.OrderDetails.DumptTable()}
+               {request.OrderDetails.DumpTable()}
                """,
 });
 ```
