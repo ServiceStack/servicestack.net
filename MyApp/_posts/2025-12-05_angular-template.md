@@ -42,7 +42,7 @@ To switch from SQLite to PostgreSQL/SQL Server/MySQL:
 npx add-in ef-postgres
 :::
 
-2. Install `db-identity` to also switch to use this RDBMS for [Background Jobs](/rdbms-background-jobs) and [Request Logs Analytics](/admin-ui-rdbms-analytics):
+2. Install `db-identity` to also switch to use this RDBMS for [Background Jobs](https://docs.servicestack.net/rdbms-background-jobs) and [Request Logs Analytics](https://docs.servicestack.net/admin-ui-rdbms-analytics):
 
 :::sh {.mb-8}
 npx add-in db-identity
@@ -78,7 +78,7 @@ Full authentication system with beautifully styled Tailwind CSS pages:
 
 ### ⚡ Rapid AutoQuery CRUD dev workflow
 
-Quickly generate complete C# [CRUD APIs](/autoquery/crud) and [DB Migrations](/ormlite/db-migrations) from simple [TypeScript data models](https://localhost:5002/autoquery/okai-models):
+Quickly generate complete C# [CRUD APIs](https://docs.servicestack.net/autoquery/crud) and [DB Migrations](https://docs.servicestack.net/ormlite/db-migrations) from simple [TypeScript data models](https://localhost:5002/autoquery/okai-models):
 
 1. Create a new feature
 
@@ -173,7 +173,7 @@ GitHub Actions workflows included for:
 
 ### Kamal Deployments
 
-All deployments include the GitHub Action workflows to deploy your App to [any Linux Server with Kamal](/kamal-deploy) using Docker, SSH and GitHub Container Registry (ghcr).
+All deployments include the GitHub Action workflows to deploy your App to [any Linux Server with Kamal](https://docs.servicestack.net/kamal-deploy) using Docker, SSH and GitHub Container Registry (ghcr).
 
 Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can delpoy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
 
