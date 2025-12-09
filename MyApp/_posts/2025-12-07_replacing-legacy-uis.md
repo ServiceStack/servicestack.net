@@ -4,7 +4,6 @@ summary: Rewriting legacy UIs on modern AI-First stacks are now cheaper and fast
 tags: [llms,ai,react]
 author: Demis Bellot
 image: ./img/posts/replacing-legacy-uis/bg.webp
-draft: true
 ---
 
 Software Development has reached an inflection point where AI Models and tools are now good enough to rebuild complete application UIs in hours, not months. 
