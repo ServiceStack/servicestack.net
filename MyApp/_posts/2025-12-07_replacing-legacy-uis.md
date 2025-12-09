@@ -127,11 +127,11 @@ Implement the NEXTJS_MIGRATION_PLAN.md
 
 With access to both the Migration Plan and existing code-base, Claude Code was able to generate the entire new Next.js UI within 10-20 minutes, for less than $10 (in free credits).
 
-The initial AI-generated code wasn't perfect, but it generated an excellent starting point that converted most of the existing Nust/Vuetify implementation into a modern Next.js App, with its preferred project structure.
+The initial AI-generated code wasn't perfect, but it generated an excellent starting point that converted most of the existing Nuxt/Vuetify implementation into a modern Next.js App, with its preferred project structure.
 
 ### Vibe Code the rest
 
-The most time consuming part of the mgiration is walking through the entire Application, in tandem with your existing App to test that everything functions as it did before. Fortunately you never need to take the reins to get it over the line, as now that we have a modern AI-friendly Next.js/React/Tailwind UI we can just use Vibe Coding to prompt the AI Models to implement any missing features or fix any issues that you find along the way.
+The most time consuming part of the migration is walking through the entire Application, in tandem with your existing App to test that everything functions as it did before. Fortunately you never need to take the reins to get it over the line, as now that we have a modern AI-friendly Next.js/React/Tailwind UI we can just use Vibe Coding to prompt the AI Models to implement any missing features or fix any issues that you find along the way.
 
 If this is your first time using AI Models for all development, it can seem like unrealistic magic from the future. 
 But not only is it possible, it's the most productive development model we've ever experienced, and is all likely to be the future of software development.
@@ -215,7 +215,7 @@ The unprecedented productivity of AI Assisted development has transformed our ro
 
 <div class="pt-12 not-prose flex justify-center">
 <a href="https://react-templates.net"
-   class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 vithe UX Hot reloading of npm UIsa-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
+   class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
     <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
     <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-400 shadow-[0_0_7px_rgba(56,189,248,0.7)]"></span>
     <span class="tracking-wide">ServiceStack + React</span>

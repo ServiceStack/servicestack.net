@@ -198,7 +198,7 @@ Cancel Running jobs and Requeue failed jobs
 
 For even greater reuse of your APIs you're able to queue your existing ServiceStack Request DTOs
 as a Background Job in addition to [Commands](https://docs.servicestack.net/commands) 
-for encapsulating units of logic into internal invokable, inspectable and auto-retryable building blocks.
+for encapsulating units of logic into internal invocable, inspectable and auto-retryable building blocks.
 
 ### Queue Commands
 
@@ -216,7 +216,7 @@ class MyService(IBackgroundJobs jobs) : Service
             Subject = $"Received New Order {request.Id}",
             BodyText = $"""
                        Order Details:
-                       {request.OrderDetails.DumptTable()}
+                       {request.OrderDetails.DumpTable()}
                        """,
         });
         //...
@@ -238,7 +238,7 @@ var jobRef = jobs.EnqueueApi(new SendEmail {
     Subject = $"Received New Order {request.Id}",
     BodyText = $"""
                Order Details:
-               {request.OrderDetails.DumptTable()}
+               {request.OrderDetails.DumpTable()}
                """,
 });
 ```

@@ -175,7 +175,7 @@ GitHub Actions workflows included for:
 
 All deployments include the GitHub Action workflows to deploy your App to [any Linux Server with Kamal](https://docs.servicestack.net/kamal-deploy) using Docker, SSH and GitHub Container Registry (ghcr).
 
-Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can delpoy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
+Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can deploy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
 
 ## AI-Assisted Development with CLAUDE.md
 

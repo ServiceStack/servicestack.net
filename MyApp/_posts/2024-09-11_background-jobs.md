@@ -130,7 +130,7 @@ class MyService(IBackgroundJobs jobs) : Service
             Subject = $"Received New Order {request.Id}",
             BodyText = $"""
                        Order Details:
-                       {request.OrderDetails.DumptTable()}
+                       {request.OrderDetails.DumpTable()}
                        """,
         });
         //...
@@ -150,7 +150,7 @@ var jobRef = jobs.EnqueueApi(new SendEmail {
     Subject = $"Received New Order {request.Id}",
     BodyText = $"""
                Order Details:
-               {request.OrderDetails.DumptTable()}
+               {request.OrderDetails.DumpTable()}
                """,
 });
 ```

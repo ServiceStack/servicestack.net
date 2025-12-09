@@ -1,6 +1,6 @@
 ---
 title: AI Chat history persistence and Admin Analytics UI
-summary: Maintain a persistant history of all AI Chat requests and responses
+summary: Maintain a persistent history of all AI Chat requests and responses
 tags: [llms,ai,chat,admin-ui,analytics]
 author: Demis Bellot
 image: ./img/posts/ai-chat-analytics/bg.webp

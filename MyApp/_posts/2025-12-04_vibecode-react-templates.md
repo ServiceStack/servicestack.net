@@ -10,7 +10,7 @@ Over the last few months our primary focus has been on enabling first-class supp
 
 ### Software Development has changed forever
 
-Software Development has reached an inflection point where AI Models and tools are now good enough to build featuers in minutes, not hours and rewrite mid-sized application UIs in hours, not months. This fundamentally changes the economics of Software Development.
+Software Development has reached an inflection point where AI Models and tools are now good enough to build features in minutes, not hours and rewrite mid-sized application UIs in hours, not months. This fundamentally changes the economics of Software Development.
 
 Whatever our developer preferences were have become significantly less important in the age of AI where the most important factor is now which frameworks AI Models are most proficient in.
 
@@ -125,7 +125,7 @@ In addition to the minimal starting templates above, we've also created 2 full-f
 
 All deployments include the GitHub Action workflows to deploy your App to [any Linux Server with Kamal](https://react-templates.net/docs/deployments) using Docker, SSH and GitHub Container Registry (ghcr).
 
-Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can delpoy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
+Where you can host it on a [Hetzner US Cloud](https://www.hetzner.com/cloud) VM for as low as **$5 per month** or if you have multiple Apps you can deploy them all to a single VM which we're doing for our .NET Template Live Demos which runs **30 Docker Apps** on a **8GB RAM/80GB SSD** dedicated VM for **$15 /month**.
 
 ## AI-Assisted Development with CLAUDE.md
 
