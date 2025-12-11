@@ -687,8 +687,7 @@ const App = {
 
         <div class="mt-12 text-gray-500 flex flex-col items-center">
             <p class="my-4 text-center">
-                Alternatively create & restore this new custom Web App with the 
-                <a class="text-indigo-600" href="https://docs.servicestack.net/dotnet-new">x dotnet tool</a>:            
+                Alternatively create & restore this new custom Web App with:
             </p>
             <CopyLine :text="mixTool" />
         </div>
@@ -728,7 +727,7 @@ const App = {
         }
         
         const mixTool = computed(() => 
-            `x new web ${name.value||'MyApp'} && cd ${name.value||'MyApp'}${mixTags.value.length > 0 ? ' && x mix -f ' + mixTags.value.join(' ') : ''}`)
+            `npx create-net web ${name.value||'MyApp'} && cd ${name.value||'MyApp'}${mixTags.value.length > 0 ? ' && npx add-in -f ' + mixTags.value.join(' ') : ''}`)
         
         watch([name, mixModel], () => {
             const args = { Name: name.value || undefined, Mix: mixTags.value.length ? mixTags.value.join(',') : undefined }
