@@ -2,7 +2,6 @@
 title: New Vibe Codable .NET 10 React Templates
 summary: Exploring the new Vibe Codable .NET 10 React Templates and their NodeProxy architecture
 tags: [react,ai,autoquery]
-author: Demis Bellot
 url: https://media.servicestack.com/podcasts/vibecode-react-templates.mp3
 media: {size:11513967,duration:792.079093,format:mp3}
 ---
