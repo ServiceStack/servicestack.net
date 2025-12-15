@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg" href="img/logo.svg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
-    <title>FREE Gemini, Minimax M2, GLM 4.6, Kimi K2 - ServiceStack</title>
+    <title>Next.js React Server Components - Secure Design - ServiceStack</title>
     <base href="/" />
     <script>
     if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
@@ -38,10 +38,10 @@
     <meta name="twitter:site" content="@ServiceStack" />
     <meta name="twitter:creator" content="@demisbellot" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:description" content="The best OSS language models, now available for FREE in AI Chat!" />
-    <meta property="og:url" content="https://servicestack.net/posts/ai-chat-servicestack" />
-    <meta property="og:title" content="FREE Gemini, Minimax M2, GLM 4.6, Kimi K2" />
-    <meta property="og:image" content="./img/posts/ai-chat-servicestack/bg.webp" />
+    <meta property="og:description" content="How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security" />
+    <meta property="og:url" content="https://servicestack.net/posts/nextjs-rsc-secure-design" />
+    <meta property="og:title" content="Next.js React Server Components - Secure Design" />
+    <meta property="og:image" content="./img/posts/nextjs-rsc-secure-design/bg.webp" />
 
 
 </head>
@@ -101,7 +101,7 @@ mountAll()
 <div class="container px-5 mb-32 mx-auto">
         <article class="mt-20">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-                FREE Gemini, Minimax M2, GLM 4.6, Kimi K2
+                Next.js React Server Components - Secure Design
             </h1>
             <div class="flex flex-wrap justify-between">
                 <div class="md:mb-12 flex items-center">
@@ -138,28 +138,29 @@ mountAll()
             </ul>
                     </div>
                 </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'nextjs-rsc-secure-design', title:'Next.js React Server Components - Secure Design', src:'https://media.servicestack.com/podcasts/nextjs-rsc-secure-design.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=nextjs-rsc-secure-design&amp;source=post&amp;version=8.10.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
                 <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
             </div>
             
             <div class="mb-8 md:mb-16 sm:mx-0">
                 <div class="sm:mx-0">
-                    <img src="./img/posts/ai-chat-servicestack/bg.webp" alt="FREE Gemini, Minimax M2, GLM 4.6, Kimi K2 Background" class="shadow-small">
+                    <img src="./img/posts/nextjs-rsc-secure-design/bg.webp" alt="Next.js React Server Components - Secure Design Background" class="shadow-small">
                 </div>
             </div>
             <div class="flex max-w-3xl mx-auto justify-between">
                 <div>
                     <div class="mb-4 flex flex-wrap">
-                        <a href="posts/tagged/llms" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">llms</a>
-                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
-                        <a href="posts/tagged/chat" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">chat</a>
-                        <a href="posts/tagged/admin-ui" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">admin-ui</a>
-                        <a href="posts/tagged/analytics" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">analytics</a>
+                        <a href="posts/tagged/react" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">react</a>
+                        <a href="posts/tagged/nextjs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">nextjs</a>
+                        <a href="posts/tagged/security" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">security</a>
                     </div>
                         <div class="max-w-3xl mx-auto">
                             <div class="mb-6 text-lg text-gray-500">
-                                <time datetime="2025-11-21T00:00:00.0000000">November 21, 2025</time>
+                                <time datetime="2025-12-15T00:00:00.0000000">December 15, 2025</time>
                                 <span aria-hidden="true">&middot;</span>
-                                <span>4 min read</span>
+                                <span>10 min read</span>
                             </div>
                         </div>
                 </div>
@@ -172,136 +173,442 @@ mountAll()
             </div>
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
-                    <p>To give AI Chat instant utility, we're making available a free <code>servicestack</code> OpenAI Chat provider that can be enabled with:</p>
-<pre><code class="language-csharp">services.AddPlugin(new ChatFeature {
-    EnableProviders = [
-        &quot;servicestack&quot;,
-        // &quot;groq&quot;,
-        // &quot;google_free&quot;,
-        // &quot;openrouter_free&quot;,
-        // &quot;ollama&quot;,
-        // &quot;google&quot;,
-        // &quot;anthropic&quot;,
-        // &quot;openai&quot;,
-        // &quot;grok&quot;,
-        // &quot;qwen&quot;,
-        // &quot;z.ai&quot;,
-        // &quot;mistral&quot;,
-        // &quot;openrouter&quot;,
-    ]
-});
+                    <p>In the face of recent back-to-back critical vulnerabilities that have plagued Next.js React Server Components - including three CVEs with severity scores reaching the maximum CVSS 10.0 - we felt it essential to explain how our only template that utilizes React Server Components, <a href="https://react-templates.net/docs/templates/next-rsc">Next.js RSC</a> was architected to be <strong>secure by design</strong> by employing a <strong>defense-in-depth architecture</strong> that makes entire classes of attacks like these CVEs physically impossible.</p>
+<div class="info custom-block">
+            <p class="custom-block-title">INFO</p><p>All other <a href="https://react-templates.net">React and Next.js templates</a> utilize static rendering and doesn't use a Node runtime in production at all</p>
+</div>
+<p>The <a href="https://react-templates.net/docs/templates/next-rsc">Next.js RSC</a> template leverages Next.js React Server Components as a <strong>pure rendering layer</strong>, gaining the benefits of server-side rendering: improved performance, SEO, and reduced client bundle sizes - without the security risks inherent to fullstack Next.js applications.</p>
+<p>Unlike traditional fullstack Next.js apps that use (<code>'use server'</code>) Server Functions to directly handle data operations, the <a href="https://next-rsc.react-templates.net">next-rsc</a> template routes all data access through type-safe <strong>ServiceStack .NET APIs</strong>. Next.js serves exclusively as the presentation layer, never touching databases, secrets, or business logic directly.</p>
+<p>This architectural decision makes the template <strong>immune to React Server Components vulnerabilities</strong>. Since it doesn't use the vulnerable Server Functions feature, the primary attack vector doesn't exist. Combined with process-level isolation between the Node.js and .NET layers, even future vulnerabilities in Next.js cannot compromise your application's data or infrastructure.</p>
+<h2 id="security-by-design">Security by Design<a class="header-anchor" href="javascript:;" onclick="location.hash='#security-by-design'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This document details how the <a href="https://react-templates.net/docs/templates/next-rsc">Next.js RSC</a> project template is architected to be <strong>immune to React Server Components vulnerabilities</strong> through:</p>
+<ol>
+<li><strong>No Server Functions</strong> - The primary attack vector doesn't exist</li>
+<li><strong>Process Isolation</strong> - Node.js runs as unprivileged user with no access to .NET resources</li>
+<li><strong>File System Permissions</strong> - .NET configuration and code cannot be read or modified</li>
+<li><strong>Environment Separation</strong> - Secrets never reach the Node.js process</li>
+<li><strong>Automated Testing</strong> - Security boundaries are continuously verified</li>
+</ol>
+<p>Even if you accidentally introduce Server Functions or a new vulnerability is discovered, the infrastructure limits the damage. An attacker with full code execution in Node.js still cannot:</p>
+<ul>
+<li>Read database credentials</li>
+<li>Access configuration files</li>
+<li>Steal API keys or licenses</li>
+<li>Modify .NET code</li>
+<li>Persist backdoors</li>
+</ul>
+<p>This <strong>security by design</strong> architecture physically prevents entire classes of attacks, making your application resilient against both known and future vulnerabilities.</p>
+<h2 id="critical-vulnerabilities-in-react-server-components">Critical Vulnerabilities in React Server Components<a class="header-anchor" href="javascript:;" onclick="location.hash='#critical-vulnerabilities-in-react-server-components'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In December 2025, React disclosed three critical vulnerabilities in React Server Components with severity scores reaching CVSS 10.0 - the highest possible rating. These vulnerabilities enable remote code execution, denial of service, and source code exposure in applications using React Server Functions.</p>
+<ul>
+<li><a href="https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components">Denial of Service and Source Code Exposure in React Server Components</a></li>
+<li><a href="https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">Critical Security Vulnerability in React Server Components</a></li>
+</ul>
+<p>This Next.js + .NET template is <strong>architected to be immune to these vulnerabilities</strong> through a combination of secure design patterns and infrastructure-level isolation. Even if similar vulnerabilities are discovered in the future, the blast radius is minimized by design.</p>
+<h2 id="understanding-the-vulnerabilities">Understanding the Vulnerabilities<a class="header-anchor" href="javascript:;" onclick="location.hash='#understanding-the-vulnerabilities'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The React Server Components vulnerabilities exploit a fundamental weakness: <strong>Server Functions</strong> (<code>'use server'</code>) that deserialize untrusted client input can be manipulated to:</p>
+<ul>
+<li><a href="https://www.cve.org/CVERecord?id=CVE-2025-55182">CVE-2025-55182 (CVSS 10.0)</a>: Execute arbitrary code on the server</li>
+<li><a href="https://www.cve.org/CVERecord?id=CVE-2025-55184">CVE-2025-55184/67779 (CVSS 7.5)</a>: Cause infinite loops that hang the server</li>
+<li><a href="https://www.cve.org/CVERecord?id=CVE-2025-55183">CVE-2025-55183 (CVSS 5.3)</a>: Leak source code and potentially hardcoded secrets</li>
+</ul>
+<p>The attack requires no authentication and can be triggered by a single malicious HTTP request.</p>
+<h2 id="two-layers-of-protection">Two Layers of Protection<a class="header-anchor" href="javascript:;" onclick="location.hash='#two-layers-of-protection'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>This template employs a <strong>defense-in-depth approach</strong> with two independent security layers:</p>
+<h3 id="primary-defense-no-server-functions">Primary Defense: No Server Functions<a class="header-anchor" href="javascript:;" onclick="location.hash='#primary-defense-no-server-functions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The template <strong>does not use React Server Functions</strong> at all, eliminating the primary attack vector. Instead, all data operations flow through type-safe ServiceStack APIs:</p>
+<pre><code class="language-typescript">// ❌ Vulnerable pattern (not used in this template)
+'use server'
+export async function createBooking(data: Booking) {
+  const db = await getDatabase()  // Direct database access from React
+  return db.bookings.create(data)
+}
 </code></pre>
-<p>The <code>servicestack</code> provider is configured with a default <code>llms.json</code> which enables access to Gemini and the
-best value OSS models for FREE:</p>
-<pre><code class="language-json">{
-  &quot;providers&quot;: {
-    &quot;servicestack&quot;: {
-      &quot;enabled&quot;: false,
-      &quot;type&quot;: &quot;OpenAiProvider&quot;,
-      &quot;base_url&quot;: &quot;http://okai.servicestack.com&quot;,
-      &quot;api_key&quot;: &quot;$SERVICESTACK_LICENSE&quot;,
-      &quot;models&quot;: {
-        &quot;gemini-flash-latest&quot;: &quot;gemini-flash-latest&quot;,
-        &quot;gemini-flash-lite-latest&quot;: &quot;gemini-flash-lite-latest&quot;,
-        &quot;kimi-k2&quot;: &quot;kimi-k2&quot;,
-        &quot;kimi-k2-thinking&quot;: &quot;kimi-k2-thinking&quot;,
-        &quot;minimax-m2&quot;: &quot;minimax-m2&quot;,
-        &quot;glm-4.6&quot;: &quot;glm-4.6&quot;,
-        &quot;gpt-oss:20b&quot;: &quot;gpt-oss:20b&quot;,
-        &quot;gpt-oss:120b&quot;: &quot;gpt-oss:120b&quot;,
-        &quot;llama4:400b&quot;: &quot;llama4:400b&quot;,
-        &quot;mistral-small3.2:24b&quot;: &quot;mistral-small3.2:24b&quot;
-      }
-    }
+<pre><code class="language-typescript">// ✅ Secure pattern (how this template works)
+import { client } from '@/lib/gateway'
+import { CreateBooking } from '@/lib/dtos'
+
+export async function createBooking(data: Booking) {
+  // Type-safe API call to .NET backend
+  return await client.api(new CreateBooking(data))
+}
+</code></pre>
+<p>All mutations and data access happen in .NET ServiceStack APIs with proper authentication, validation, and authorization - never directly in React components.</p>
+<h3 id="secondary-defense-process-isolation">Secondary Defense: Process Isolation<a class="header-anchor" href="javascript:;" onclick="location.hash='#secondary-defense-process-isolation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Even if Server Functions were accidentally introduced or a new vulnerability discovered, the template's infrastructure limits the damage through <strong>container-level isolation</strong>:</p>
+<p><img src="https://docs.servicestack.net/img/pages/react/info/next-rsc-security.svg" alt="" /></p>
+<p>The Node.js process runs as an unprivileged user (<code>nextjs</code>) with no access to .NET resources. Even with full code execution in Node.js, an attacker <strong>cannot</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Node.js Access</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database Connection String</td>
+<td>❌ No access</td>
+<td>✅ Protected</td>
+</tr>
+<tr>
+<td><code>appsettings.json</code></td>
+<td>❌ Permission denied</td>
+<td>✅ Protected</td>
+</tr>
+<tr>
+<td>.NET Assembly Files</td>
+<td>❌ Permission denied</td>
+<td>✅ Protected</td>
+</tr>
+<tr>
+<td><code>App_Data</code> Directory</td>
+<td>❌ Permission denied</td>
+<td>✅ Protected</td>
+</tr>
+<tr>
+<td>Confidential Environment Variables</td>
+<td>❌ Not in environment</td>
+<td>✅ Protected</td>
+</tr>
+<tr>
+<td>.NET Process Memory</td>
+<td>❌ Separate process</td>
+<td>✅ Protected</td>
+</tr>
+<tr>
+<td>API Endpoints</td>
+<td>✅ Can Call via HTTP</td>
+<td>⚠️ By Design</td>
+</tr>
+<tr>
+<td>RSC Render Data</td>
+<td>✅ Can Access</td>
+<td>⚠️ By Design</td>
+</tr>
+</tbody>
+</table>
+<h2 id="react-server-components-vulnerability-analysis">React Server Components Vulnerability Analysis<a class="header-anchor" href="javascript:;" onclick="location.hash='#react-server-components-vulnerability-analysis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="recent-critical-vulnerabilities">Recent Critical Vulnerabilities<a class="header-anchor" href="javascript:;" onclick="location.hash='#recent-critical-vulnerabilities'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ol>
+<li><strong>CVE-2025-55182</strong> - Remote Code Execution (CVSS 10.0)</li>
+<li><strong>CVE-2025-55184 / CVE-2025-67779</strong> - Denial of Service (CVSS 7.5)</li>
+<li><strong>CVE-2025-55183</strong> - Source Code Exposure (CVSS 5.3)</li>
+</ol>
+<h3 id="primary-protection-no-server-functions">Primary Protection: No Server Functions<a class="header-anchor" href="javascript:;" onclick="location.hash='#primary-protection-no-server-functions'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>This template <strong>does NOT use React Server Functions</strong> (<code>'use server'</code>), eliminating the primary attack vector.</p>
+<pre><code class="language-typescript">// ❌ Don't use server functions - Creates a potential vulnerability surface
+'use server'
+export async function createUser(name: string) {
+  const db = await getDatabase()  // Vulnerable!
+  return db.users.create({ name })
+}
+</code></pre>
+<pre><code class="language-typescript">// ✅ Instead use .NET APIs for any access to data or resources
+import { client } from '@/lib/gateway'
+import { CreateUser } from '@/lib/dtos'
+
+export async function createUser(name: string) {
+  return await client.api(new CreateUser({ name }))
+}
+</code></pre>
+<h3 id="secondary-protection-process-isolation-defense-in-depth">Secondary Protection: Process Isolation (Defense in Depth)<a class="header-anchor" href="javascript:;" onclick="location.hash='#secondary-protection-process-isolation-defense-in-depth'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Even if Server Functions were accidentally added or a new vulnerability discovered:</p>
+<p><strong>CVE-2025-55182 (RCE) Impact:</strong></p>
+<ul>
+<li>✅ Attacker cannot read database credentials</li>
+<li>✅ Attacker cannot access .NET configuration</li>
+<li>✅ Attacker cannot modify .NET code</li>
+<li>⚠️ Attacker can make API calls (must secure APIs with authentication)</li>
+</ul>
+<p><strong>CVE-2025-55183 (Source Exposure) Impact:</strong></p>
+<ul>
+<li>✅ No database credentials in source code to leak</li>
+<li>✅ No ServiceStack license in environment to expose</li>
+<li>✅ No .NET secrets accessible to Node.js</li>
+</ul>
+<p><strong>CVE-2025-55184/67779 (DoS) Impact:</strong></p>
+<ul>
+<li>⚠️ Node.js process can hang (UI unavailable)</li>
+<li>✅ .NET process unaffected (APIs remain functional)</li>
+<li>✅ Cannot consume .NET CPU/memory</li>
+</ul>
+<h2 id="implementation-details">Implementation Details<a class="header-anchor" href="javascript:;" onclick="location.hash='#implementation-details'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="file-system-isolation">1. File System Isolation<a class="header-anchor" href="javascript:;" onclick="location.hash='#file-system-isolation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><strong>Dockerfile Configuration:</strong></p>
+<pre><code class="language-dockerfile"># Create unprivileged user for Next.js
+RUN groupadd -r nextjs &amp;&amp; useradd -r -g nextjs -s /bin/bash nextjs
+
+# .NET files: owned by root, mode 700 (rwx------)
+COPY --from=dotnet-build /src/MyApp/bin/Release/net10.0/publish ./dotnet
+RUN chmod -R 700 ./dotnet &amp;&amp; chown -R root:root ./dotnet
+
+# Node.js files: owned by nextjs user, mode 500 (r-x------)
+COPY --from=dotnet-build /src/MyApp.Client ./nextjs
+RUN chown -R nextjs:nextjs ./nextjs &amp;&amp; chmod -R 500 ./nextjs
+
+# Temporary directory for Next.js cache
+RUN mkdir -p /tmp &amp;&amp; chmod 1777 /tmp
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-bash"># Inside container as nextjs user
+cat /app/dotnet/appsettings.json
+# Permission denied 
+
+cat /app/nextjs/package.json
+# Success 
+</code></pre>
+<h3 id="environment-variable-isolation">2. Environment Variable Isolation<a class="header-anchor" href="javascript:;" onclick="location.hash='#environment-variable-isolation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><strong>Entrypoint Configuration:</strong></p>
+<pre><code class="language-bash"># Start Node.js with minimal environment using su
+cd /app/nextjs &amp;&amp; su nextjs -s /bin/bash -c &quot;
+export HOME=/tmp
+export NODE_ENV=production
+export NEXT_PORT=${NEXT_PORT}
+export INTERNAL_API_URL=${INTERNAL_API_URL:-http://127.0.0.1:8080}
+export KAMAL_DEPLOY_HOST=${KAMAL_DEPLOY_HOST}
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+cd /app/nextjs
+npm run start -- --port ${NEXT_PORT}
+&quot; &amp;
+</code></pre>
+<p><strong>Environment Variables Available to Node.js:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Value</th>
+<th>Safe?</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NODE_ENV</code></td>
+<td><code>production</code></td>
+<td>✅ Yes</td>
+<td>Next.js mode</td>
+</tr>
+<tr>
+<td><code>NEXT_PORT</code></td>
+<td><code>3000</code></td>
+<td>✅ Yes</td>
+<td>Port number</td>
+</tr>
+<tr>
+<td><code>INTERNAL_API_URL</code></td>
+<td><code>http://127.0.0.1:8080</code></td>
+<td>✅ Yes</td>
+<td>API endpoint</td>
+</tr>
+<tr>
+<td><code>KAMAL_DEPLOY_HOST</code></td>
+<td>Public hostname</td>
+<td>✅ Yes</td>
+<td>Public info</td>
+</tr>
+<tr>
+<td><code>PATH</code></td>
+<td>Standard paths</td>
+<td>✅ Yes</td>
+<td>Binary paths</td>
+</tr>
+<tr>
+<td><code>HOME</code></td>
+<td><code>/tmp</code></td>
+<td>✅ Yes</td>
+<td>Temp directory</td>
+</tr>
+</tbody>
+</table>
+<p>Only the allowlisted variables above are exported; <strong>no other confidential environment variables are available to Next.js</strong>.</p>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-bash"># Check Node.js process environment
+NODE_PID=$(pgrep -f &quot;npm run start&quot;)
+cat /proc/$NODE_PID/environ | tr '\0' '\n'
+
+# Expected output:
+# HOME=/tmp
+# NODE_ENV=production
+# NEXT_PORT=3000
+# INTERNAL_API_URL=http://127.0.0.1:8080
+# ...
+# (NO SERVICESTACK_LICENSE) 
+</code></pre>
+<h3 id="process-user-isolation">3. Process User Isolation<a class="header-anchor" href="javascript:;" onclick="location.hash='#process-user-isolation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<pre><code class="language-bash"># .NET runs as root with full privileges
+ASPNETCORE_CONTENTROOT=&quot;/app/dotnet&quot; dotnet /app/dotnet/MyApp.dll &amp;
+
+# Node.js runs as nextjs user with restricted privileges
+su -s /bin/bash nextjs -c &quot;npm run start ...&quot; &amp;
+</code></pre>
+<p><strong>Process Verification:</strong></p>
+<pre><code class="language-bash">ps aux | grep -E &quot;dotnet|node&quot;
+# root    123  ... dotnet /app/dotnet/MyApp.dll
+# nextjs  456  ... npm run start
+</code></pre>
+<h3 id="read-only-application-files">4. Read-Only Application Files<a class="header-anchor" href="javascript:;" onclick="location.hash='#read-only-application-files'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The <code>/app/nextjs</code> directory is mounted with <code>r-x</code> (500) permissions, preventing:</p>
+<ul>
+<li>Modification of application code</li>
+<li>Writing malicious payloads to disk</li>
+<li>Persisting backdoors across restarts</li>
+</ul>
+<pre><code class="language-bash"># As nextjs user
+echo &quot;malicious&quot; &gt; /app/nextjs/backdoor.js
+# Permission denied 
+</code></pre>
+<h2 id="verified-security">Verified Security<a class="header-anchor" href="javascript:;" onclick="location.hash='#verified-security'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The template includes an <a href="https://github.com/NetCoreTemplates/next-rsc/blob/main/test-isolation.sh">automated security test suite</a> that verifies all isolation guarantees:</p>
+<pre><code class="language-bash"># Build and start container
+docker build -t next-rsc .
+docker run -d -p 5001:8080 --name next-rsc-test next-rsc
+
+# Run security tests
+./test-isolation.sh
+</code></pre>
+<p><strong>Test Coverage:</strong></p>
+<ol>
+<li>File system isolation (<strong>nextjs</strong> user cannot read <code>/app/dotnet</code>)</li>
+<li>Environment variable isolation (sensitive vars not exposed)</li>
+<li>Process user isolation (different UIDs)</li>
+<li>Write protection (cannot modify files)</li>
+</ol>
+<h3 id="manual-testing">Manual Testing<a class="header-anchor" href="javascript:;" onclick="location.hash='#manual-testing'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<pre><code class="language-bash">CONTAINER=$(docker ps -q -f &quot;name=next-rsc-test&quot;)
+
+# Test 1: File access
+docker exec -u nextjs $CONTAINER cat /app/dotnet/appsettings.json
+# Expected: Permission denied
+
+# Test 2: Directory listing
+docker exec -u nextjs $CONTAINER ls /app/dotnet
+# Expected: Permission denied
+
+# Test 3: Environment variables
+NODE_PID=$(docker exec $CONTAINER pgrep -f &quot;npm run start&quot; | head -1)
+docker exec $CONTAINER cat /proc/$NODE_PID/environ | tr '\0' '\n' | grep SERVICESTACK
+# Expected: No output (not present)
+
+# Test 4: Write attempt
+docker exec -u nextjs $CONTAINER sh -c 'echo &quot;test&quot; &gt; /app/dotnet/malicious.txt'
+# Expected: Permission denied
+
+# Test 5: Own files accessible
+docker exec -u nextjs $CONTAINER cat /app/nextjs/package.json
+# Expected: Success
+</code></pre>
+<h2 id="best-practices">Best Practices<a class="header-anchor" href="javascript:;" onclick="location.hash='#best-practices'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="development-guidelines">Development Guidelines<a class="header-anchor" href="javascript:;" onclick="location.hash='#development-guidelines'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<h4 id="do">DO<a class="header-anchor" href="javascript:;" onclick="location.hash='#do'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<ol>
+<li><p><strong>Keep all data operations in ServiceStack APIs</strong></p>
+<pre><code class="language-typescript">// Good: API call from React component
+const api = await client.api(new CreateBooking({ ... }))
+</code></pre>
+</li>
+<li><p><strong>Use typed ServiceStack client</strong></p>
+<pre><code class="language-typescript">import { client } from '@/lib/gateway'
+import { QueryBookings } from '@/lib/dtos'
+</code></pre>
+</li>
+<li><p><strong>Protect APIs with authentication</strong></p>
+<pre><code class="language-csharp">[ValidateIsAuthenticated]
+[ValidateHasRole(&quot;Employee&quot;)]
+public class CreateBooking : ICreateDb&lt;Booking&gt; { }
+</code></pre>
+</li>
+<li><p><strong>Store secrets in .NET configuration</strong></p>
+<pre><code class="language-csharp">// In Configure.Db.cs - NOT accessible to Node.js
+var connStr = Configuration.GetConnectionString(&quot;DefaultConnection&quot;);
+</code></pre>
+</li>
+<li><p><strong>Use environment variables for deployment secrets</strong></p>
+<pre><code class="language-yaml"># config/deploy.yml
+env:
+  secret:
+    - SERVICESTACK_LICENSE
+</code></pre>
+</li>
+</ol>
+<h4 id="dont">❌ DON'T<a class="header-anchor" href="javascript:;" onclick="location.hash='#dont'" aria-label="Permalink">&ZeroWidthSpace;</a></h4>
+<ol>
+<li><p><strong>Never use React Server Functions</strong></p>
+<pre><code class="language-typescript">// NEVER DO THIS
+'use server'
+export async function serverAction() { }
+</code></pre>
+</li>
+<li><p><strong>Never commit secrets to git</strong></p>
+<pre><code class="language-json">// ❌ Bad: Committed to repo in git
+// MyApp/appsettings.json
+{
+  &quot;ConnectionStrings&quot;: {
+    &quot;DefaultConnection&quot;: &quot;Server=prod;Password=secret123&quot;
   }
 }
 </code></pre>
-<h2 id="clean-lightweight-flexible-ai-integration">Clean, Lightweight &amp; Flexible AI Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#clean-lightweight-flexible-ai-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>ServiceStack's AI Chat delivers a production-ready solution for integrating AI capabilities into your applications with minimal overhead and maximum flexibility. The <a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.AI.Chat/chat/llms.json">llms.json</a> configuration approach provides several key advantages:</p>
-<h3 id="unified-provider-abstraction">Unified Provider Abstraction<a class="header-anchor" href="javascript:;" onclick="location.hash='#unified-provider-abstraction'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Define the exact models you want your application to use through a single, declarative configuration file. This thin abstraction layer eliminates vendor lock-in and allows seamless switching between providers without code changes, enabling you to:</p>
-<ul>
-<li><strong>Optimize for cost</strong> - Route requests to the most economical provider for each use case</li>
-<li><strong>Maximize performance</strong> - Leverage faster models for latency-sensitive operations while using more capable models for complex tasks</li>
-<li><strong>Ensure reliability</strong> - Configure automatic failover between providers to maintain service availability</li>
-<li><strong>Control access</strong> - Specify which models are available to users in your preferred priority order</li>
-</ul>
-<h3 id="hybrid-deployment-flexibility">Hybrid Deployment Flexibility<a class="header-anchor" href="javascript:;" onclick="location.hash='#hybrid-deployment-flexibility'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>Mix and match local and cloud providers to meet your specific requirements. Deploy privacy-sensitive workloads on local models while leveraging cloud providers for scale, or combine premium models for critical features with cost-effective alternatives for routine tasks.</p>
-<h3 id="zero-dependency-architecture">Zero-Dependency Architecture<a class="header-anchor" href="javascript:;" onclick="location.hash='#zero-dependency-architecture'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>The lightweight implementation adds minimal footprint to your application while providing enterprise-grade AI capabilities. No heavy SDKs or framework dependencies required—just clean, direct performant integrations.</p>
-<p>The <code>servicestack</code> provider requires the <code>SERVICESTACK_LICENSE</code> Environment Variable, although any ServiceStack License Key can be used, including expired and Free ones.</p>
-<p>Learn more about <a href="https://docs.servicestack.net/ai-chat-ui">AI Chat's UI</a>:</p>
-<p><a href="https://docs.servicestack.net/ai-chat-ui"><img src="/img/posts/ai-chat/llms-syntax.webp" alt="" /></a></p>
-<h3 id="free-for-personal-usage">FREE for Personal Usage<a class="header-anchor" href="javascript:;" onclick="location.hash='#free-for-personal-usage'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
-<p>To be able to maintain this as a free service we're limiting usage for development or personal assistance and research
-by limiting usage to <strong>60 requests /hour</strong> which should be more than enough for most personal usage and research whilst
-deterring usage in automated tools or usage in production.</p>
-<div class="tip custom-block">
-            <p class="custom-block-title">info</p><p>Rate limiting is implemented with a sliding <a href="https://en.wikipedia.org/wiki/Token_bucket">Token Bucket algorithm</a>
-that replenishes 1 additional request every 60s</p>
-</div>
-<h2 id="effortless-ai-integration">Effortless AI Integration<a class="header-anchor" href="javascript:;" onclick="location.hash='#effortless-ai-integration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>In addition of providing UI and ChatGPT-like features, it also makes it trivially simple to access AI Features from within your own App that's as simple as sending a populated <code>ChatCompletion</code> Request DTO with the <code>IChatClient</code> dependency:</p>
-<pre><code class="language-csharp">class MyService(IChatClient client)
-{
-    public async Task&lt;object&gt; Any(DefaultChat request)
-    {
-        return await client.ChatAsync(new ChatCompletion {
-            Model = &quot;glm-4.6&quot;,
-            Messages = [
-                Message.Text(request.UserPrompt)
-            ],
-        });
-    }
-}
+<p>Use GitHub Secrets, environment variables, or secret managers instead, see <a href="#secret-management">Secret Management</a>.</p>
+</li>
+<li><p><strong>Never expose sensitive data via environment variables to Node.js</strong></p>
+<pre><code class="language-bash"># ❌ Bad: Would expose to Node.js
+env -i ... DATABASE_PASSWORD=&quot;${DATABASE_PASSWORD}&quot; ...
 </code></pre>
-<p>It's also makes it easy to send Image, Audio &amp; Document inputs to AI Models that support it, e.g:</p>
-<pre><code class="language-csharp">var image = new ChatCompletion
-{
-    Model = &quot;qwen2.5vl&quot;,
-    Messages = [
-        Message.Image(imageUrl:&quot;https://example.org/image.webp&quot;,
-            text:&quot;Describe the key features of the input image&quot;),
-    ]
-}
-
-var audio = new ChatCompletion
-{
-    Model = &quot;gpt-4o-audio-preview&quot;,
-    Messages = [
-        Message.Audio(data:&quot;https://example.org/speaker.mp3&quot;,
-            text:&quot;Please transcribe and summarize this audio file&quot;),
-    ]
-};
-
-var file = new ChatCompletion
-{
-    Model = &quot;gemini-flash-latest&quot;,
-    Messages = [
-        Message.File(
-            fileData:&quot;https://example.org/order.pdf&quot;,
-            text:&quot;Please summarize this document&quot;),
-    ]
-};
+</li>
+<li><p><strong>Never disable isolation &quot;for convenience&quot;</strong></p>
+<pre><code class="language-dockerfile"># ❌ Bad: Removes security
+# RUN chmod 777 /app/dotnet
 </code></pre>
-<h2 id="learn-more-about-ai-chat">Learn more about AI Chat<a class="header-anchor" href="javascript:;" onclick="location.hash='#learn-more-about-ai-chat'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
-<p>To dive deeper into what AI Chat can do:</p>
-<ul>
-<li>Read the <a href="https://docs.servicestack.net/ai-chat-api">AI Chat API docs</a> to integrate AI into your own services and apps.</li>
-<li>Explore the <a href="https://docs.servicestack.net/ai-chat-ui">AI Chat UI guide</a> to customize the built-in experience.</li>
-<li>Use <a href="https://docs.servicestack.net/ai-chat-analytics">Admin UI</a> to inspect analytics, monitor usage, and review audit history.</li>
+</li>
+</ol>
+<h3 id="code-review-checklist">Code Review Checklist<a class="header-anchor" href="javascript:;" onclick="location.hash='#code-review-checklist'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Before merging code:</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> No <code>'use server'</code> directives anywhere in codebase</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> All data mutations use ServiceStack APIs</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> <strong>No secrets committed to git</strong> (use GitHub Secrets or environment variables)</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> No secrets passed to Node.js environment</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> API endpoints have proper authentication</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> Tests verify isolation is working</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> Production secrets managed via GitHub Secrets, environment variables, or secret manager</li>
 </ul>
-<div class="pt-12 not-prose flex justify-center">
-<a href="https://docs.servicestack.net/ai-chat-api"
-   class="group relative inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 vithe UX Hot reloading of npm UIsa-cyan-400 to-emerald-400 p-[1.5px] shadow-md">
-    <span class="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 transition group-hover:bg-slate-50">
-    <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-cyan-400 shadow-[0_0_7px_rgba(56,189,248,0.7)]"></span>
-    <span class="tracking-wide">ServiceStack AI Chat</span>
-    <span class="ml-1 text-slate-400 transition-transform group-hover:translate-x-0.5">&rarr;</span>
-    </span>
-</a>
-</div>
+<h2 id="secret-management">Secret Management<a class="header-anchor" href="javascript:;" onclick="location.hash='#secret-management'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The template includes built-in support for managing production App settings whilst maintaining the Node.js isolation guarantees:</p>
+<h3 id="workflow-development-to-production">Workflow: Development to Production<a class="header-anchor" href="javascript:;" onclick="location.hash='#workflow-development-to-production'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Run the <code>secret:prod</code> npm script to securely store your production configuration in GitHub Actions:</p>
+<pre><code class="language-bash">npm run secret:prod
+</code></pre>
+<p>This uses the GitHub CLI to add your <code>appsettings.Production.json</code> to your GitHub repository's Action secrets:</p>
+<pre><code class="language-bash">gh secret set APPSETTINGS_JSON &lt; appsettings.Production.json
+</code></pre>
+<p><strong>How It Works:</strong></p>
+<ol>
+<li><strong>Development</strong> - Create <code>appsettings.Production.json</code> locally with your production configuration</li>
+<li><strong>Upload</strong> - Run <code>npm run secret:prod</code> to store it as a GitHub Action secret (never committed to git)</li>
+<li><strong>Deployment</strong> - GitHub Actions injects the secret as the <code>APPSETTINGS_JSON_BASE64</code> environment variable</li>
+<li><strong>Runtime</strong> - The container startup script decodes and writes it to <code>/app/dotnet/appsettings.Production.json</code></li>
+<li><strong>Isolation</strong> - The file is written with root-only permissions, preventing Node.js access</li>
+</ol>
+<p>Configuration in <a href="https://github.com/NetCoreTemplates/next-rsc/blob/main/config/deploy.yml">config/deploy.yml</a>:</p>
+<pre><code class="language-yaml"># config/deploy.yml
+env:
+  secret:
+    - APPSETTINGS_JSON_BASE64  # Base64-encoded production config
+</code></pre>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Secrets never committed to git repository</li>
+<li>Secrets never baked into Docker image layers</li>
+<li>Same Docker image can be used across all environments</li>
+<li>Production configuration remains isolated from Node.js process</li>
+</ul>
+<hr />
+<h3 id="learn-more">Learn More<a class="header-anchor" href="javascript:;" onclick="location.hash='#learn-more'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<ul>
+<li>Run the <a href="https://github.com/NetCoreTemplates/next-rsc/blob/main/test-isolation.sh">Automated Security Test Suite</a></li>
+<li>Explore the <a href="https://github.com/NetCoreTemplates/next-rsc">next-rsc GitHub Repository</a></li>
+</ul>
 
                 </div>
             </div>
@@ -360,47 +667,6 @@ var file = new ChatCompletion
                         More from Demis Bellot
                     </div>
                     <div class="grid grid-cols-2 gap-8">
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/nextjs-rsc-secure-design">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/nextjs-rsc-secure-design/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/nextjs-rsc-secure-design" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Next.js React Server Components - Secure Design">
-                                                    Next.js React Server Components - Secure Design
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis Bellot</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt="Next.js React Server Components - Secure Design background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-12-15T00:00:00.0000000">December 15, 2025</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>10 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
@@ -517,6 +783,47 @@ var file = new ChatCompletion
                                                     <time datetime="2025-12-04T00:00:00.0000000">December 4, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>8 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/openapi-net10">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/openapi-net10/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/openapi-net10" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title=".NET 10&#x27;s new OpenAPI Scalar &#x2B; Swagger UIs">
+                                                    .NET 10&#x27;s new OpenAPI Scalar &#x2B; Swagger UIs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10 adds first-class .NET 10 support and new OpenAPI for Swagger and Scalar UIs.</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis Bellot</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.webp" alt=".NET 10&#x27;s new OpenAPI Scalar &#x2B; Swagger UIs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis-bellot" class="hover:underline">Demis Bellot</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-12-03T00:00:00.0000000">December 3, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>4 min read</span>
                                                 </div>
                                             </div>
                                         </div>

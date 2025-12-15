@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Sun, 14 Dec 2025 16:56:45 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 15 Dec 2025 14:37:01 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,38 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Next.js React Server Components - Secure Design</title>
+        <link>https://servicestack.net/podcasts/nextjs-rsc-secure-design</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/nextjs-rsc-secure-design</guid>
+        <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-12-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/nextjs-rsc-secure-design.mp3" length="14481702" type="audio/mpeg"/>
+        <category>react</category>
+        <category>nextjs</category>
+        <category>security</category>
+        <description>How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security</description>
+        <itunes:summary><![CDATA[ How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security ]]></itunes:summary>
+        <itunes:duration>984</itunes:duration>
+        <itunes:keywords>react,nextjs,security</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Replacing Legacy UIs in an AI-First world</title>
+        <link>https://servicestack.net/podcasts/replacing-legacy-uis</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/replacing-legacy-uis</guid>
+        <pubDate>Sun, 07 Dec 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-12-07T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/replacing-legacy-uis.mp3" length="10260256" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>react</category>
+        <description>Rewriting legacy UIs on modern AI-First stacks are now cheaper and faster than traditional development.</description>
+        <itunes:summary><![CDATA[ Rewriting legacy UIs on modern AI-First stacks are now cheaper and faster than traditional development. ]]></itunes:summary>
+        <itunes:duration>692</itunes:duration>
+        <itunes:keywords>llms,ai,react</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>New .NET 10 &#x2B; Angular 21 Identity Auth Tailwind SPA Template</title>
         <link>https://servicestack.net/podcasts/angular-template</link>
@@ -839,39 +871,6 @@
         <itunes:summary><![CDATA[ A tour of the features in the new enhanced Vite TypeScript React SPA template for .NET 8 ]]></itunes:summary>
         <itunes:duration>682</itunes:duration>
         <itunes:keywords>template,react,.net8,autoquery</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>New Vue SPA Template</title>
-        <link>https://servicestack.net/podcasts/net8-vue-spa-template</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/net8-vue-spa-template</guid>
-        <pubDate>Tue, 05 Mar 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-03-05T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/net8-vue-spa-template.mp3" length="1414413" type="audio/mpeg"/>
-        <category>template</category>
-        <category>vue</category>
-        <category>.net8</category>
-        <category>autoquery</category>
-        <description>Getting to know the advanced features and capabilities of the enhanced Vite TypeScript Vue SPA template for .NET 8</description>
-        <itunes:summary><![CDATA[ Getting to know the advanced features and capabilities of the enhanced Vite TypeScript Vue SPA template for .NET 8 ]]></itunes:summary>
-        <itunes:duration>353</itunes:duration>
-        <itunes:keywords>template,vue,.net8,autoquery</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Vite Press Plugin</title>
-        <link>https://servicestack.net/podcasts/vite-press-plugin</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/vite-press-plugin</guid>
-        <pubDate>Mon, 04 Mar 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-03-04T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/vite-press-plugin.mp3" length="727341" type="audio/mpeg"/>
-        <category>template</category>
-        <category>docs</category>
-        <category>markdown</category>
-        <description>Introducing the Universal Vite Press Plugin for Vite Vue &amp; React Apps and its unique compatibility with .NET 8 Apps utilizing Markdig</description>
-        <itunes:summary><![CDATA[ Introducing the Universal Vite Press Plugin for Vite Vue &amp; React Apps and its unique compatibility with .NET 8 Apps utilizing Markdig ]]></itunes:summary>
-        <itunes:duration>181</itunes:duration>
-        <itunes:keywords>template,docs,markdown</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
