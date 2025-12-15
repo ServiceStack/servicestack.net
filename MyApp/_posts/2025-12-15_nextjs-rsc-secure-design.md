@@ -4,7 +4,6 @@ summary: How the Next.js RSC template architecture protects against React Server
 tags: [react,nextjs,security]
 author: Demis Bellot
 image: ./img/posts/nextjs-rsc-secure-design/bg.webp
-draft: true
 ---
 
 In the face of recent back-to-back critical vulnerabilities that have plagued Next.js React Server Components - including three CVEs with severity scores reaching the maximum CVSS 10.0 - we felt it essential to explain how our only template that utilizes React Server Components, [Next.js RSC](https://react-templates.net/docs/templates/next-rsc) was architected to be **secure by design** by employing a **defense-in-depth architecture** that makes entire classes of attacks like these CVEs physically impossible. 

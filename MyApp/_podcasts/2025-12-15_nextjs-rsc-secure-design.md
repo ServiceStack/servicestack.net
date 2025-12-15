@@ -4,7 +4,6 @@ summary: How the Next.js RSC template architecture protects against React Server
 tags: [react,nextjs,security]
 url: https://media.servicestack.com/podcasts/nextjs-rsc-secure-design.mp3
 media: {size:14481702,duration:984.131338,format:mp3}
-draft: true
 ---
 
 In this episode, we dive into React Server Components security after three critical vulnerabilities hit Next.js in December 2025 - including one with a perfect CVSS 10.0 score. We'll walk through how the Next.js RSC template achieves security by design through a defense-in-depth architecture that makes entire classes of attacks physically impossible.
