@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Mon, 15 Dec 2025 14:37:01 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Feb 2026 14:16:42 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -162,6 +162,22 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
+        <title>Ask ServiceStack Docs - Introducing AI Search</title>
+        <link>https://servicestack.net/podcasts/typesense-ai-search</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/typesense-ai-search</guid>
+        <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-11-12T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ai-chat.mp3" length="13193573" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>docs</category>
+        <description>Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs</description>
+        <itunes:summary><![CDATA[ Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs ]]></itunes:summary>
+        <itunes:duration>950</itunes:duration>
+        <itunes:keywords>llms,ai,docs</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>ServiceStack v8.10 Release</title>
         <link>https://servicestack.net/podcasts/v8-10-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v8-10-release</guid>
@@ -178,22 +194,6 @@
         <itunes:summary><![CDATA[ Latest features in ServiceStack v8.10 including 1st class React &amp; Tailwind CSS support, AI Chat, AI Search and more! ]]></itunes:summary>
         <itunes:duration>1045</itunes:duration>
         <itunes:keywords>release,react,tailwind,typescript,admin-ui,ai</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Ask ServiceStack Docs - Introducing AI Search</title>
-        <link>https://servicestack.net/podcasts/typesense-ai-search</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/typesense-ai-search</guid>
-        <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-11-12T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/ai-chat.mp3" length="13193573" type="audio/mpeg"/>
-        <category>llms</category>
-        <category>ai</category>
-        <category>docs</category>
-        <description>Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs</description>
-        <itunes:summary><![CDATA[ Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs ]]></itunes:summary>
-        <itunes:duration>950</itunes:duration>
-        <itunes:keywords>llms,ai,docs</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -399,23 +399,6 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
-        <title>ServiceStack v8.7 Release</title>
-        <link>https://servicestack.net/podcasts/v8-7-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-7-release</guid>
-        <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-04-15T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-7-release.mp3" length="15698876" type="audio/mpeg"/>
-        <category>release</category>
-        <category>identity-auth</category>
-        <category>admin-ui</category>
-        <category>angular</category>
-        <description>Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs</description>
-        <itunes:summary><![CDATA[ Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs ]]></itunes:summary>
-        <itunes:duration>1493</itunes:duration>
-        <itunes:keywords>release,identity-auth,admin-ui,angular</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
         <title>In Depth and Interactive API Analytics available to all ServiceStack Apps</title>
         <link>https://servicestack.net/podcasts/analytics</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/analytics</guid>
@@ -430,6 +413,23 @@
         <itunes:summary><![CDATA[ Comprehensive and Interactive API Analytics in Admin UI offering deep insights into API usage, performance, users, API Keys &amp; IPs. ]]></itunes:summary>
         <itunes:duration>411</itunes:duration>
         <itunes:keywords>analytics,admin-ui,apis,sqlite</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ServiceStack v8.7 Release</title>
+        <link>https://servicestack.net/podcasts/v8-7-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-7-release</guid>
+        <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-04-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v8-7-release.mp3" length="15698876" type="audio/mpeg"/>
+        <category>release</category>
+        <category>identity-auth</category>
+        <category>admin-ui</category>
+        <category>angular</category>
+        <description>Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs</description>
+        <itunes:summary><![CDATA[ Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs ]]></itunes:summary>
+        <itunes:duration>1493</itunes:duration>
+        <itunes:keywords>release,identity-auth,admin-ui,angular</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>

@@ -882,8 +882,13 @@ app.start()
 
 <script>
 /* DOWNLOAD COUNTER https://pqina.nl/flip/ */
+let counter = 0;
 function handleTickInit(tick) {
     Tick.helper.interval(function () {
+        // Stop after 100 checks to prevent endless requests from idle tabs
+        if (counter++ > 100) {
+            return
+        }
         fetch('https://account.servicestack.net/stats/live/servicestack.json')
             .then(function (r) { return r.json() })
             .then(function(stats) {
