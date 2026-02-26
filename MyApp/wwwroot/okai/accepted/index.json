@@ -1599,19 +1599,19 @@
     "groupName": "Registrations"
   },
   {
-    "id": "1764335731081",
-    "model": "claude-sonnet-4-5",
-    "timing": "6961",
-    "provider": "openrouter",
-    "prompt": "Table to store Customer Stripe Subscriptions",
-    "groupName": "CustomerStripeSubscriptions"
-  },
-  {
     "id": "1764337230546",
     "model": "claude-sonnet-4-5",
     "timing": "12833",
     "provider": "openrouter",
     "prompt": "Manage Customer Stripe Subscriptions",
     "groupName": "CustomerSubscriptions"
+  },
+  {
+    "id": "1765119822667",
+    "model": "claude-sonnet-4-5",
+    "timing": "14301",
+    "provider": "openrouter",
+    "prompt": "sua aplicação terá a seguinte função, será o cadastro de compras e vendas, basicamente receita e debito, entrada e saida com classificações de cada movimentação. sua aplicação terá os padrões de projeto mais utilizados no mercado para razor/blazor, pra estilização utilizará o bootstrap.",
+    "groupName": "Transactions"
   }
 ]
