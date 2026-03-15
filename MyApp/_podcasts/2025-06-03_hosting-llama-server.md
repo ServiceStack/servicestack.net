@@ -2,7 +2,7 @@
 title: Using llama.cpp to self-host Large Language Models in Production 
 summary: A practical guide to self-hosting LLMs in production using llama.cpp's llama-server with Docker compose and Systemd
 tags: [ai-server,ai,gpt]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/hosting-llama-server.mp3
 media: {size:9138932,duration:863.928000,format:mp3}
 ---

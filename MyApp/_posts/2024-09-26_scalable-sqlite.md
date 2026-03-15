@@ -2,7 +2,7 @@
 title: Scalable Server SQLite Apps
 summary: Learn how to build concurrent, safe scalable SQLite .NET Apps in C#
 tags: [sqlite,.net8]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/scalable-sqlite/bg.webp
 ---
 

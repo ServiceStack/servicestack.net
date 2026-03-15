@@ -2,7 +2,7 @@
 title: Replacing Legacy UIs in an AI-First world
 summary: Rewriting legacy UIs on modern AI-First stacks are now cheaper and faster than traditional development.
 tags: [llms,ai,react]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/replacing-legacy-uis/bg.webp
 ---
 

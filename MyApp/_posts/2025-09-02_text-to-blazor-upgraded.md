@@ -2,7 +2,7 @@
 title: Text to Blazor CRUD upgraded to use best LLMs
 summary: Discover how to quickly generate Blazor Admin CRUD Apps from a text description using the new okai tool
 tags: [okai,ai,autoquery,blazor,vue]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/text-to-blazor-upgraded/bg.webp
 ---
 

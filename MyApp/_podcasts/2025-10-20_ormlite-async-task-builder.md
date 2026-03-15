@@ -2,7 +2,7 @@
 title: OrmLite new Configuration Model and Defaults
 summary: Learn about OrmLite's new fluent Configuration Model, new defaults & features
 tags: [db,ormlite]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/ormlite-async-task-builder.mp3
 media: {size:10311918,duration:725.028571,format:mp3}
 ---

@@ -3,7 +3,7 @@ title: Docker Containerization in .NET 8
 summary: .NET 8 Docker Containers and GitHub Actions Deployments in new Project Templates
 tags: [dotnet, github-actions, hosting, devops]
 image: ./img/posts/net8-docker-containers/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 ### All .NET Project Templates upgraded to .NET 8

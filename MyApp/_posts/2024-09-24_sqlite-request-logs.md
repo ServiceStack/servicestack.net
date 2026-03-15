@@ -2,7 +2,7 @@
 title: SQLite C# Request Logs 
 summary: Maintain C# Request Log History in rolling Monthly SQLite databases 
 tags: [sqlite,.net8]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/sqlite-request-logs/bg.webp
 ---
 

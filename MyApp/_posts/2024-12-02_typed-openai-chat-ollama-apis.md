@@ -2,7 +2,7 @@
 title: Typed Open AI Chat & Ollama APIs in 11 Languages
 summary: Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs
 tags: [ai-server,ai,gpt,service-reference,c#,js]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/typed-openai-chat-ollama-apis/bg.webp
 ---
 

@@ -3,7 +3,7 @@ title: Built-In Identity Auth Admin UI
 summary: Explore the new Identity Auth Admin UI for creating and managing Identity Auth users in .NET 8
 tags: [.net8,identity-auth,admin-ui]
 image: ./img/posts/identity-auth-admin-ui/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 With ServiceStack now [deeply integrated into ASP.NET Core Apps](/posts/servicestack-endpoint-routing) we're back to

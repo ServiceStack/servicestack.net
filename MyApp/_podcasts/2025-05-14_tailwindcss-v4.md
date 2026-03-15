@@ -2,7 +2,7 @@
 title: Tailwind CSS v4.0 is here! 
 summary: All ASP .NET Core Identity Auth Tailwind Templates upgraded to Tailwind CSS v4
 tags: [templates,tailwind,vue,react]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/tailwindcss-v4.mp3
 media: {size:5941244,duration:574.608000,format:mp3}
 ---

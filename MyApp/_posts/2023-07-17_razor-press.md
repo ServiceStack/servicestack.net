@@ -3,7 +3,7 @@ title: Introducing Razor Press
 summary: Markdown & Razor Pages Static Site Generator for beautiful fast Content & Documentation
 tags: [razor, markdown, blog, dev]
 image: ./img/posts/razor-press/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 In a nutshell the new [Razor Press template](https://razor-press.web-templates.io) is a Simple, Powerful, Fast, Flexible & FREE! Use Razor Pages to generate 

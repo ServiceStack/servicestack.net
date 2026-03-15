@@ -2,7 +2,7 @@
 title: RDBMS Background Jobs
 summary: Run Background Jobs and Scheduled Tasks in PostgreSQL, SQL Server or MySQL
 tags: [db,ormlite,jobs]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/rdbms_jobs.mp3
 media: {size:13145337,duration:936.071837,format:mp3}
 ---

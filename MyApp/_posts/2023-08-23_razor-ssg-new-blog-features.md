@@ -3,7 +3,7 @@ title: New Blogging features in Razor SSG
 summary: Explore the new Blogging Features in Razor SSG
 tags: [razor, markdown, blog, dev]
 image: ./img/posts/razor-ssg-new-blog-features/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 ## New Blogging features in Razor SSG

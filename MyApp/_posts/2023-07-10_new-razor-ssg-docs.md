@@ -3,7 +3,7 @@ title: New Razor SSG generated docs.servicestack.net
 summary: The new docs.servicestack.net website is now generated with Razor SSG - now with Dark Mode!
 tags: [razor, ssg, docs]
 image: ./img/posts/new-razor-ssg-docs/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 Following in the footsteps of [porting servicestack.net](/posts/new_razor_ssg_website) website 

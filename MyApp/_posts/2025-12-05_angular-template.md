@@ -2,7 +2,7 @@
 title: New .NET 10 + Angular 21 ASP.NET Identity Auth Tailwind SPA Template 
 summary: Introducing our new Angular 19 IdentityAuth Tailwind Template with DarkMode and support for RxJS and Signals dev models
 tags: [angular,templates,identity-auth,autoquery]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/angular-spa/bg.webp
 ---
 

@@ -2,7 +2,7 @@
 title: In Depth and Interactive API Analytics available to all ServiceStack Apps
 summary: Comprehensive and Interactive API Analytics in Admin UI offering deep insights into API usage, performance, users, API Keys & IPs.
 tags: [analytics,admin-ui,apis,sqlite]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/analytics.mp3
 media: {size:4088060,duration:411.216000,format:mp3}
 ---

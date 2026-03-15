@@ -3,7 +3,7 @@ title: Which RDBMS has the fastest .NET Bulk Insert implementation?
 summary: Measuring the different performance of RDBMS Bulk Insert implementations
 tags: [db, dev, dotnet]
 image: ./img/posts/bulk-insert-performance/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 The Bulk Insert support in the latest release of [OrmLite](https://docs.servicestack.net/ormlite/) enables accessing 

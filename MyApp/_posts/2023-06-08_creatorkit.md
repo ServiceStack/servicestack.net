@@ -3,7 +3,7 @@ title: Introducing CreatorKit
 summary: Exploring CreatorKit - an OSS Self-Hosting alternative to Mailchimp and Disqus
 tags: [creatorkit, marketing, publishing]
 image: ./img/posts/creatorkit/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 [![](/img/pages/creatorkit/creatorkit-brand.svg)](/creatorkit/)

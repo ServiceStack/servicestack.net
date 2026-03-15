@@ -2,7 +2,7 @@
 title: New okai tool for Rapid App Development
 summary: Explore the new okai tool and workflow for rapidly developing Blazor Vue Crud Apps with AI and TypeScript Data Models
 tags: [okai,ai,autoquery,blazor,vue]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/okai-models/bg.webp
 ---
 

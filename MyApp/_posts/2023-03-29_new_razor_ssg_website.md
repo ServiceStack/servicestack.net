@@ -3,7 +3,7 @@ title: New Razor SSG generated servicestack.net
 summary: Celebrating 150M Downloads with a new Razor SSG generated Website
 tags: [razor, ssg, website]
 image: ./img/posts/new_razor_ssg_website/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 ## Celebrating 150M Total Downloads

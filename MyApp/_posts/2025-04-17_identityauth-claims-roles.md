@@ -2,7 +2,7 @@
 title: Complete Admin UI Management for Identity Claims and Roles
 summary: With support for adding Roles and User and Role Claims, the built-in Admin UI now offers complete Identity Auth management
 tags: [identity-auth,admin-ui,auth]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/identityauth-claims-roles/bg.webp
 ---
 

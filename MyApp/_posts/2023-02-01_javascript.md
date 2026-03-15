@@ -3,7 +3,7 @@ title: Simple, Modern JavaScript
 summary: Learn about JS Modules, Vue 3 and available rich UI Components
 tags: [js, dev]
 image: ./img/posts/javascript/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 <svg class="sm:float-left mr-8 w-24 h-24" style="margin-top:0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630">

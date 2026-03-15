@@ -2,7 +2,7 @@
 title: Podcasts now in Razor SSG
 summary: Razor SSG now includes support for Podcasts
 tags: [razor,ssg,markdown]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/razor-ssg-podcasts/bg.webp
 ---
 

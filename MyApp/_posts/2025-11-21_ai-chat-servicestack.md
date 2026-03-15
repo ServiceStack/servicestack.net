@@ -2,7 +2,7 @@
 title: FREE Gemini, Minimax M2, GLM 4.6, Kimi K2
 summary: The best OSS language models, now available for FREE in AI Chat!
 tags: [llms,ai,chat,admin-ui,analytics]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/ai-chat-servicestack/bg.webp
 ---
 

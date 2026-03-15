@@ -3,7 +3,7 @@ title: All of TypeScript's TypeChat Examples in .NET
 summary: Guide to implementing Voice Transcriptions and TypeChat GPT in .NET    
 tags: [autoquery, c#, dev, servicestack]
 image: ./img/posts/typescript-typechat-examples/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 To explore how best to add AI features to .NET Apps we first looked at harnessing the reasoning capabilities of

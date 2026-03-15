@@ -2,7 +2,7 @@
 title: DTOs in all languages downloadable without .NET
 summary: ServiceStack Typed DTOs for all languages can now be downloaded and uploaded without .NET installed
 tags: [api,service-reference,js]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/npx-get-dtos/bg.webp
 ---
 

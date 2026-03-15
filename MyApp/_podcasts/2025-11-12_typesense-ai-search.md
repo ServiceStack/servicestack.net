@@ -2,7 +2,7 @@
 title: Ask ServiceStack Docs - Introducing AI Search
 summary: Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs
 tags: [llms,ai,docs]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/ai-chat.mp3
 media: {size:13193573,duration:950.256327,format:mp3}
 ---

@@ -3,7 +3,7 @@ title: Vue Stable Diffusion
 summary: Rewriting Blazor Diffusion image generation & album catalog in Vue & Razor SSG  
 tags: [vue, tailwind]
 image: ./img/posts/vue-stable-diffusion/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 Just as [blazordiffusion.com](https://blazordiffusion.com) was created to showcase ServiceStack's

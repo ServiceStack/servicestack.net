@@ -2,7 +2,7 @@
 title: Next.js React Server Components - Secure Design
 summary: How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security
 tags: [react,nextjs,security]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/nextjs-rsc-secure-design/bg.webp
 ---
 

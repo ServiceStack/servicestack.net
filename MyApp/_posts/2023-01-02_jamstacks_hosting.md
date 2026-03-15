@@ -4,7 +4,7 @@ summary: Exploring cost & scalability benefits of hybrid CDN & .NET Apps
 date: 2021-12-04
 image: ./img/posts/jamstacks_hosting/bg.webp
 tags: [dev, hosting, devops]
-author: Demis Bellot
+author: Demis
 ---
 
 <a href="https://jamstack.org">

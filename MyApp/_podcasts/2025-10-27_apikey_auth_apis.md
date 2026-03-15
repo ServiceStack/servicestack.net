@@ -2,7 +2,7 @@
 title: Protect same APIs with API Keys or Identity Auth
 summary: Learn how to create ServiceStack APIs that can be protected with API Keys or Identity Auth
 tags: [apikeys,identity-auth,auth]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/apikey_auth_apis.mp3
 media: {size:10636765,duration:719.203265,format:mp3}
 ---

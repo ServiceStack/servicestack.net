@@ -2,7 +2,7 @@
 title: Support for RHEL 9's hardened cryptography policy
 summary: Regenerate your License Key to support RedHat Enterprise Linux 9 Default Cryptography Policy
 tags: [.net8,servicestack,licensing]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/rhel9-cryptography/bg.webp
 ---
 

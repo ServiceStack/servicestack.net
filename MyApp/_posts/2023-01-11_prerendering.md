@@ -3,7 +3,7 @@ title: Prerendering Razor Pages
 summary: Improving Blog Performance with Prerendering
 tags: [c#, dev, markdown]
 image: ./img/posts/prerendering/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 Prerendering static content is a popular technique used by [JAMStack](https://jamstack.org) Apps to improve the

@@ -3,7 +3,7 @@ title: Vite Press Plugin
 summary: Introducing the Vite Press Plugin for Vite Vue & React Apps
 tags: [docs, markdown]
 image: ./img/posts/vite-press-plugin/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 The Vite Press Plugin is an alternative to [VitePress](https://vitepress.dev) for adding Markdown features 

@@ -2,7 +2,7 @@
 title: Utilize C# Commands to build more robust and observable systems
 summary: Learn how to build testable, robust observable systems with the new Commands Feature
 tags: [commands,.net8]
-author: Demis Bellot
+author: Demis
 image: ./img/posts/commands-feature/bg.webp
 ---
 

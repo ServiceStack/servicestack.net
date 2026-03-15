@@ -2,7 +2,7 @@
 title: Text to Blazor upgraded to use best coding LLMs
 summary: Text to Blazor now generates CRUD Apps using best coding models from Google, Anthropic, Meta, DeepSeek & Mistral
 tags: [okai,ai,autoquery,blazor,vue]
-author: Demis Bellot
+author: Demis
 url: https://media.servicestack.com/podcasts/text-to-blazor-premium.mp3
 media: {size:7818860,duration:779.808000,format:mp3}
 ---

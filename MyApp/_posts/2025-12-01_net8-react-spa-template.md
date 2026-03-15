@@ -3,7 +3,7 @@ title: New React SPA Template
 summary: Explore the new enhanced Vite TypeScript React SPA template for .NET 8
 tags: [react,.net8,autoquery,admin]
 image: ./img/posts/net8-react-spa-template/bg.webp
-author: Demis Bellot
+author: Demis
 ---
 
 ::include react-templates.md::
