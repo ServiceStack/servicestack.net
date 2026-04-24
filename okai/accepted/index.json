@@ -1607,11 +1607,155 @@
     "groupName": "CustomerSubscriptions"
   },
   {
-    "id": "1765119822667",
+    "id": "1766435218694",
     "model": "claude-sonnet-4-5",
-    "timing": "14301",
+    "timing": "17494",
     "provider": "openrouter",
-    "prompt": "sua aplicação terá a seguinte função, será o cadastro de compras e vendas, basicamente receita e debito, entrada e saida com classificações de cada movimentação. sua aplicação terá os padrões de projeto mais utilizados no mercado para razor/blazor, pra estilização utilizará o bootstrap.",
-    "groupName": "Transactions"
+    "prompt": "create a tennis courts booking ui, for multiple tennis courts, to display a smart and attractive planning board",
+    "groupName": "PlanningBoardSlots"
+  },
+  {
+    "id": "1767907793382",
+    "model": "claude-sonnet-4-5",
+    "timing": "6988",
+    "provider": "openrouter",
+    "prompt": "A task management app with projects, tasks, and users",
+    "groupName": "ProjectTasks"
+  },
+  {
+    "id": "1769003361401",
+    "model": "claude-sonnet-4-5",
+    "timing": "2527",
+    "provider": "openrouter",
+    "prompt": "Create an application to track my customers.",
+    "groupName": "Customers"
+  },
+  {
+    "id": "1769125310077",
+    "model": "grok-code-fast-1",
+    "timing": "10952",
+    "provider": "openrouter",
+    "prompt": "The application is a warehouse management and inventory transaction layer that sits on top of an AS2/EDI gateway integrating a large manufacturer with a 3PL, and its data model must support both master data and fully auditable transactions. Core master tables include Personnel/User linked to Department and Role/Permission, BusinessPartner (manufacturer, 3PL, supplier, customer) with related ShipFromLocation and ShipToLocation, and an optional Warehouse → Zone → Bin storage hierarchy. Logistics configuration tables such as ShippingMethod, Carrier, TruckType, ContainerType, and PackageType are referenced by operational documents. Inbound and outbound operations are modeled using header/line tables: Shipment → ShipmentLine and Receipt → ReceiptLine, each linked to partners, locations, and an EDIMessage record capturing AS2 metadata (document type, control numbers, status, timestamps, payload reference). Inventory is defined by Item with optional UOM, Lot, and Serial, with on-hand quantities stored in InventoryBalance (Item + Location) and all movement recorded in an immutable InventoryTransaction ledger that references a transaction type, source document/line, from/to locations, quantity, user, and timestamp. Exception workflows—InventoryAdjustment, ExtraOrderRequest, ScrapRequest, QualityHold, and NonConformance—link back to items, documents, and transactions, include status and approval tracking, and post changes through the inventory ledger. Operationally, the app translates AS2/EDI events into warehouse documents, supports user-driven exception and approval workflows, and relies on the transaction ledger as the system of record for reconciliation, reporting, and audit.",
+    "groupName": "Shipments"
+  },
+  {
+    "id": "1769726077253",
+    "model": "kimi-k2",
+    "timing": "2078",
+    "provider": "groq",
+    "prompt": "I want a CRM tool that handles sales, leads, and statuses from bid to closing a deal and allows tracking comments, and everything else including uplaoding documents/etc. Should have notifications via email (put placeholder text) and task tracking for users. user types are admin, salesperson, client based on their company.\n\nUse blazor server and tailwind for ui. All tables should be standardized in look and feel and support a search term, column sorting.\n\nUse sqlite for the db with migrations.",
+    "groupName": "Leads"
+  },
+  {
+    "id": "1770674547746",
+    "model": "claude-sonnet-4-5",
+    "timing": "6765",
+    "provider": "openrouter",
+    "prompt": "I want a data model for an app that takes text and generates an app.",
+    "groupName": "GeneratedApps"
+  },
+  {
+    "id": "1770815908024",
+    "model": "grok-code-fast-1",
+    "timing": "7778",
+    "provider": "openrouter",
+    "prompt": "i want to Create Blog Application with the Proper proffesional News Blog Site",
+    "groupName": "Posts"
+  },
+  {
+    "id": "1771174985434",
+    "model": "claude-sonnet-4-5",
+    "timing": "28019",
+    "provider": "openrouter",
+    "prompt": "Manage AS2 inventory transactions between in house ERP software and third party logistics systems. Will need multiple system connectors and dashboards of transaction statuses",
+    "groupName": "SystemConnectors"
+  },
+  {
+    "id": "1771976479070",
+    "model": "claude-sonnet-4-5",
+    "timing": "10738",
+    "provider": "openrouter",
+    "prompt": "LAN party game management so we can track who has what games installed how many players they support what platform they are on eg. Steam along with store/download links",
+    "groupName": "UserGameInstallations"
+  },
+  {
+    "id": "1772102797203",
+    "model": "claude-sonnet-4-5",
+    "timing": "2401",
+    "provider": "openrouter",
+    "prompt": "I need a blazor App to be able to Manage A list of students. They have a first name, last name, sex (M/F), date of birtth, photo. Start with that and let me see what you produce",
+    "groupName": "Students"
+  },
+  {
+    "id": "1772693684337",
+    "model": "claude-sonnet-4-5",
+    "timing": "20946",
+    "provider": "openrouter",
+    "prompt": "\"Create a professional POS (Point of Sale) System using Blazor WebAssembly and ASP.NET Core Web API. Use MudBlazor for the UI components. The system should include:\n\nProduct Management: Add/Edit/Delete products with SKU, Price, and Stock Quantity.\n\nSales Screen: A searchable product list (left side) and a Shopping Cart (right side) to add items.\n\nCheckout Logic: Calculate Total, GST (18%), and Discount. Generate a simple receipt layout.\n\nDatabase: Use Entity Framework Core for SQL Server.\n\nClean Code: Please separate the Business Logic from the UI. Create a generic Repository pattern for Data Access.\n\nNote: I want a modern dark theme UI and I don't want to write manual HTML/CSS. Just provide the C# and Razor components using MudBlazor.\"",
+    "groupName": "SaleItems"
+  },
+  {
+    "id": "1773146814940",
+    "model": "claude-sonnet-4-5",
+    "timing": "9722",
+    "provider": "openrouter",
+    "prompt": "Company, Product, ProductUom, Order, OrderItem, OrderItemUOM",
+    "groupName": "OrderItems"
+  },
+  {
+    "id": "1773672085930",
+    "model": "claude-sonnet-4-5",
+    "timing": "7853",
+    "provider": "openrouter",
+    "prompt": "I want to make a scavenger hunt with cache objects.  For each cache I want to track the GPS lat long, name, and points.  I want to have a bsa structure with a council that has units that has sub units that has scouts.  I want to track cache finding including where it was found and I need a way to have a qr code for a cache scan.",
+    "groupName": "CacheFinds"
+  },
+  {
+    "id": "1775658238574",
+    "model": "claude-sonnet-4-5",
+    "timing": "15070",
+    "provider": "openrouter",
+    "prompt": "create a user interface for a professional vending or coffee machine including point of sale with product pictures, prices and options.",
+    "groupName": "CartItemOptions"
+  },
+  {
+    "id": "1775918538631",
+    "model": "claude-sonnet-4-5",
+    "timing": "5108",
+    "provider": "openrouter",
+    "prompt": "CREATE TABLE [dbo].[ToolSlotConfigurations]( [CID] [int] IDENTITY(1,1) NOT NULL, [FAMILY] [nvarchar](255) NULL, [MT_CODE] [nvarchar](255) NULL, [DESTINATION] [nvarchar](255) NULL, [FCL1] [nvarchar](255) NULL, [FCL2] [nvarchar](255) NULL, [FCR1] [nvarchar](255) NULL, [FFL1] [nvarchar](255) NULL, [FFL2] [nvarchar](255) NULL, [FFR1] [nvarchar](255) NULL, [FFR2] [nvarchar](255) NULL, [FFR3] [nvarchar](255) NULL, [FFR4] [nvarchar](255) NULL, [RCL1] [nvarchar](255) NULL, [RCR1] [nvarchar](255) NULL, [RCR2] [nvarchar](255) NULL, [RFL1] [nvarchar](255) NULL, [RFR1] [nvarchar](255) NULL, [RFR2] [nvarchar](255) NULL, [IsActive] [bit] NOT NULL",
+    "groupName": "ToolSlotConfigurations"
+  },
+  {
+    "id": "1776024155269",
+    "model": "claude-sonnet-4-5",
+    "timing": "23732",
+    "provider": "openrouter",
+    "prompt": "this app will be used for prediction and forecasting for various datasets and tournaments of forecast methods and analysis.",
+    "groupName": "Analyses"
+  },
+  {
+    "id": "1776024725487",
+    "model": "claude-sonnet-4-5",
+    "timing": "14135",
+    "provider": "openrouter",
+    "prompt": "create app to manage forecast and prediction methods",
+    "groupName": "Forecasts"
+  },
+  {
+    "id": "1776497588855",
+    "model": "claude-sonnet-4-5",
+    "timing": "3489",
+    "provider": "openrouter",
+    "prompt": "Add a Rockstar object",
+    "groupName": "Rockstars"
+  },
+  {
+    "id": "1776109218564",
+    "model": "claude-sonnet-4-5",
+    "timing": "12748",
+    "provider": "openrouter",
+    "prompt": "I need an app to maintain a list of project, datasource, dataset, endpoint and schedule.\nEach project will have one schedule, one dataset and multiple endpoints.\nEach schedule supports Cron Expression and/or basic scheduling based on simple intervals of time.\nEach dataset can have one or many datasources.  A dataset is composed of one or many tags.  Each tag comes from a specific DataSource.\nEach project can have one or many endpoints (local folder, URL, Email, etc...)\nWhen a project is executed from its schedule or ad-hoc, it will gather all values of all tags inside its dataset, meaning it will connect to all datasources in parallel and create one list of all tag values and timestamps.  It will then output the results to all its endpoints",
+    "groupName": "Projects"
   }
 ]
