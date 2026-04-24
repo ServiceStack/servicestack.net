@@ -1757,5 +1757,13 @@
     "provider": "openrouter",
     "prompt": "I need an app to maintain a list of project, datasource, dataset, endpoint and schedule.\nEach project will have one schedule, one dataset and multiple endpoints.\nEach schedule supports Cron Expression and/or basic scheduling based on simple intervals of time.\nEach dataset can have one or many datasources.  A dataset is composed of one or many tags.  Each tag comes from a specific DataSource.\nEach project can have one or many endpoints (local folder, URL, Email, etc...)\nWhen a project is executed from its schedule or ad-hoc, it will gather all values of all tags inside its dataset, meaning it will connect to all datasources in parallel and create one list of all tag values and timestamps.  It will then output the results to all its endpoints",
     "groupName": "Projects"
+  },
+  {
+    "id": "1777031250852",
+    "model": "qwen3.6-plus",
+    "timing": "81245",
+    "provider": "openrouter",
+    "prompt": "An app to manage Rockstar concert performances",
+    "groupName": "Concerts"
   }
 ]
