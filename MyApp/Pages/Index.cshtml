@@ -264,6 +264,26 @@
 .hljs-comment, .hljs-quote {
   color: rgb(148 163 184); /*text-slate-400*/
 }
+/* code panels scroll with a scrollbar that matches their background */
+.hljs, .hljs pre, pre:has(> .hljs) {
+  scrollbar-width: thin;
+  scrollbar-color: #45455e #1e1e2e;
+}
+.hljs::-webkit-scrollbar, pre:has(> .hljs)::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.hljs::-webkit-scrollbar-track, pre:has(> .hljs)::-webkit-scrollbar-track {
+  background-color: #1e1e2e;
+}
+.hljs::-webkit-scrollbar-thumb, pre:has(> .hljs)::-webkit-scrollbar-thumb {
+  background-color: #45455e;
+  border: 2px solid #1e1e2e;
+  border-radius: 6px;
+}
+.hljs::-webkit-scrollbar-thumb:hover, pre:has(> .hljs)::-webkit-scrollbar-thumb:hover {
+  background-color: #5a5a78;
+}
 </style>
 <script type="module">
 import { createApp, ref, reactive } from "vue"
@@ -295,14 +315,14 @@ const OpenAiChat = {
     <OpenAiChatLangs baseUrl="https://openai.servicestack.net" :routes="routes">
         <div class="lg:max-w-lg">
           <h2 class="text-base font-semibold leading-7 text-indigo-600">Developer APIs</h2>
-          <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Open AI Chat</p>
+          <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">AI Chat</p>
           <p class="mt-6 text-lg leading-8 text-gray-600">
             ServiceStack's end-to-end typed APIs enable you to write your APIs once and take advantage of 
             native typed integrations for all popular languages used in Web, Mobile and Desktop platforms.
           </p>
           <p class="mt-6 text-lg leading-8 text-gray-600">
             Example of calling an 
-            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ai-server/openai-chat-all-languages">Open AI compatible Chat API</a>. 
+            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ai-chat-api">OpenAI compatible Chat API</a>. 
             ServiceStack APIs are executed using the same generic JSON Service Client and the native Typed DTOs generated in each language.
           </p>
           <dl class="mt-10 max-w-xl space-y-4 text-base leading-7 text-gray-600 lg:max-w-none">
