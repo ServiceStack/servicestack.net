@@ -1,4 +1,5 @@
 
+import { ref, computed } from "vue"
 import { marked } from "../markdown.mjs"
 import hljs from "highlight.mjs"
 
@@ -72,65 +73,139 @@ aliases:["fs","f#"],keywords:s,illegal:/\/\*/,classNameAliases:{
 },c,l,y,{scope:"meta",begin:/\[</,end:/>\]/,relevance:2,contains:[l,S,A,w,k,v]
 },h,g,E,_,v,p,d]}}})();
 
+/*! `zig` grammar, Zig isn't included in the highlight.js bundle */
+const hljsZig = e => ({
+    name: "Zig",
+    aliases: ["zig"],
+    keywords: {
+        keyword: "addrspace align allowzero and anyframe anytype asm async await break callconv catch comptime const continue defer else enum errdefer error export extern fn for if inline linksection noalias noinline nosuspend opaque or orelse packed pub resume return struct suspend switch test threadlocal try union unreachable usingnamespace var volatile while",
+        type: "bool void noreturn type anyerror anyopaque comptime_int comptime_float f16 f32 f64 f80 f128 i8 u8 i16 u16 i32 u32 i64 u64 i128 u128 isize usize c_char c_short c_ushort c_int c_uint c_long c_ulong c_longlong c_ulonglong c_longdouble",
+        literal: "true false null undefined",
+    },
+    contains: [
+        e.COMMENT("//", "$", { contains: [{ scope: "doctag", begin: "//[!/]" }] }),
+        { scope: "string", begin: /\\\\/, end: /$/ },
+        e.QUOTE_STRING_MODE,
+        { scope: "string", begin: /'/, end: /'/, illegal: /\n/, contains: [e.BACKSLASH_ESCAPE] },
+        { scope: "built_in", begin: /@[a-zA-Z_]\w*/ },
+        e.C_NUMBER_MODE,
+        { scope: "title.function", begin: /\bfn\s+/, end: /[\s(]/, excludeBegin: true, excludeEnd: true },
+        { scope: "type", begin: /\b[A-Z]\w*/, relevance: 0 },
+    ],
+})
+
+/** Languages ServiceStack generates typed DTOs and native API integrations for */
 export const langs = {
     csharp:     'C#',
+    fsharp:     'F#',
+    vbnet:      'VB.NET',
     typescript: 'TypeScript',
     mjs:        'JS',
     python:     'Python',
-    dart:       'Dart',
     php:        'PHP',
+    ruby:       'Ruby',
+    swift:      'Swift',
     java:       'Java',
     kotlin:     'Kotlin',
-    swift:      'Swift',
-    fsharp:     'F#',
-    vbnet:      'VB.NET',
+    dart:       'Dart',
+    go:         'Go',
+    rust:       'Rust',
+    zig:        'Zig',
+}
+
+/** The languages of each platform, in the order they're displayed */
+export const langGroups = [
+    { name: '.NET',      langs: ['csharp','fsharp','vbnet'] },
+    { name: 'Web',       langs: ['typescript','mjs','python','php','ruby'] },
+    { name: 'Mobile',    langs: ['swift','java','kotlin','dart'] },
+    { name: 'Systems',   langs: ['go','rust','zig'] },
+]
+
+/** Every language, ordered so each platform's languages sit next to each other */
+export const allLangs = langGroups.flatMap(x => x.langs)
+
+/** Logos with dark ink, inverted so they stay legible on dark backgrounds */
+export const monoIcons = []
+
+/** The source file each example is shown in */
+export const langFiles = {
+    csharp:     'Program.cs',
+    fsharp:     'Program.fs',
+    vbnet:      'Program.vb',
+    typescript: 'main.ts',
+    mjs:        'main.mjs',
+    python:     'main.py',
+    php:        'index.php',
+    ruby:       'main.rb',
+    swift:      'main.swift',
+    java:       'Main.java',
+    kotlin:     'Main.kt',
+    dart:       'main.dart',
+    go:         'main.go',
+    rust:       'main.rs',
+    zig:        'main.zig',
 }
 
 const csharp = `
 using ServiceStack;
+using MyApp.ServiceModel;
 
 var client = new JsonApiClient(baseUrl);
 client.BearerToken = apiKey;
 
-var api = await client.ApiAsync(new OpenAiChatCompletion {
-    Model = "mixtral:8x22b",
+var api = await client.ApiAsync(new ChatCompletion {
+    Model = "openai/gpt-oss-120b",
     Messages = [
         new() {
             Role = "user",
-            Content = "What's the capital of France?"
+            Content = [
+                new AiTextContent { 
+                    Type = "text", 
+                    Text = "Capital of France?" 
+                }
+            ]
         }
-    ],
-    MaxTokens = 50
+    ]
 });
 `
 const typescript = `
 import { JsonServiceClient } from "@servicestack/client"
-import { OpenAiChatCompletion } from "./dtos"
+import { ChatCompletion, AiMessage, AiTextContent } from "./dtos"
 
 const client = new JsonServiceClient(baseUrl)
 client.bearerToken = apiKey
 
-const api = await client.api(new OpenAiChatCompletion({
-    model: "mixtral:8x22b",
-    messages: [
-      { role:"user", content:"What's the capital of France?" }
-    ],
-    maxTokens: 50,
+const api = await client.api(new ChatCompletion({
+    model: "openai/gpt-oss-120b",
+    messages: [new AiMessage({
+        role: "user",
+        content: [
+            new AiTextContent({ 
+                type: "text", 
+                text: "Capital of France?" 
+            })
+        ]
+    })]
 }))
 `
 const mjs = `
 import { JsonServiceClient } from "@servicestack/client"
-import { OpenAiChatCompletion } from "./dtos.mjs"
+import { ChatCompletion, AiMessage, AiTextContent } from "./dtos.mjs"
 
 const client = new JsonServiceClient(baseUrl)
 client.bearerToken = apiKey
 
-const api = await client.api(new OpenAiChatCompletion({
-    model: "mixtral:8x22b",
-    messages: [
-      { role:"user", content:"What's the capital of France?" }
-    ],
-    maxTokens: 50,
+const api = await client.api(new ChatCompletion({
+    model: "openai/gpt-oss-120b",
+    messages: [new AiMessage({
+        role: "user",
+        content: [
+            new AiTextContent({ 
+                type: "text", 
+                text: "Capital of France?" 
+            })
+        ]
+    })]
 }))
 `
 const python = `
@@ -140,66 +215,69 @@ from my_app.dtos import *
 client = JsonServiceClient(base_url)
 client.bearer_token = api_key
 
-response = client.send(OpenAiChatCompletion(
-    model="mixtral:8x22b",
-    messages=[
-        OpenAiMessage(
-            "role": "user",
-            "content": "What's the capital of France?"
-        )
-    ],
-    max_tokens=50
+response = client.send(ChatCompletion(
+    model="openai/gpt-oss-120b",
+    messages=[AiMessage(
+        role="user",
+        content=[AiTextContent(type="text", text="Capital of France?")]
+    )]
 ))
 `
 const dart = `
-import 'dart:io';
-import 'dart:typed_data';
 import 'package:servicestack/client.dart';
 
 var client = ClientFactory.api(baseUrl);
 
-var response = await client.send(OpenAiChatCompletion(
-    ..model = "mixtral:8x22b",
+var response = await client.send(ChatCompletion()
+    ..model = "openai/gpt-oss-120b"
     ..messages = [
-        OpenAiMessage()
-            ..role="user"
-            ..content="What's the capital of France?"
-    ],
-    ..max_tokens = 50
-));
+        AiMessage()
+          ..role = "user"
+          ..content = [
+              AiTextContent(text: "Capital of France?")..type = "text"
+          ]
+    ]);
 `
 const php = `
 use ServiceStack\\JsonServiceClient;
-use dtos\\OpenAiChatCompletion;
-use dtos\\OpenAiMessage;
+use dtos\\ChatCompletion;
+use dtos\\AiMessage;
+use dtos\\AiTextContent;
 
 $client = new JsonServiceClient(baseUrl);
 $client->bearerToken = apiKey;
 
-/** @var {OpenAiChatCompletionResponse} $response */
-$response = $client->send(new OpenAiChatCompletion(
-    model: "mixtral:8x22b",
-    messages: [
-        new OpenAiMessage(
-            role: "user",
-            content: "What's the capital of France?"
-        )
-    ],
-    max_tokens: 50
+/** @var {ChatResponse} $response */
+$response = $client->send(new ChatCompletion(
+    model: "openai/gpt-oss-120b",
+    messages: [new AiMessage(
+        role: "user",
+        content: [
+            new AiTextContent(
+                type: "text", text: "Capital of France?")
+        ]
+    )]
 ));
 `
 const java = `
 import net.servicestack.client.*;
-import java.util.Collections;
 
-var request = new OpenAiChatCompletion();
-request.setModel("mixtral:8x22b")
-    .setMaxTokens(50)
-    .setMessages(Utils.createList(new OpenAiMessage()
-        .setRole("user")
-        .setContent("What's the capital of France?")
-    ));
-OpenAiChatResponse response = client.send(request);
+var client = new JsonServiceClient(baseUrl);
+client.setBearerToken(apiKey);
+
+var content = new AiTextContent();
+content.setType("text");
+content.setText("Capital of France?");
+
+var message = new AiMessage();
+message.setRole("user");
+message.setContent(Utils.createList(content));
+
+var request = new ChatCompletion();
+request.setModel("openai/gpt-oss-120b");
+request.setMessages(Utils.createList(message));
+
+ChatResponse response = client.send(request);
 `
 const kotlin = `
 package myapp
@@ -208,14 +286,16 @@ import net.servicestack.client.*
 val client = JsonServiceClient(baseUrl)
 client.bearerToken = apiKey
 
-val response = client.send(OpenAiChatCompletion().apply {
-    model = "mixtral:8x22b"
-    messages = arrayListOf(OpenAiMessage().apply {
+val response = client.send(ChatCompletion().apply {
+    model = "openai/gpt-oss-120b"
+    messages = arrayListOf(AiMessage().apply {
         role = "user"
-        content = "What's the capital of France?"
+        content = arrayListOf<AiContent>(AiTextContent().apply {
+            Type = "text"
+            text = "Capital of France?"
+        })
     })
-    maxTokens = 50
-});
+})
 `
 const swift = `
 import Foundation
@@ -224,165 +304,293 @@ import ServiceStack
 let client = JsonServiceClient(baseUrl:baseUrl)
 client.bearerToken = apiKey
 
-let request = OpenAiChatCompletion()
-request.model = "mixtral:8x22b"
-let msg = OpenAiMessage()
-msg.role = "user"
-msg.content = "What's the capital of France?"
-request.messages = [msg]
-request.max_tokens = 50
+let content = AiTextContent()
+content.type = "text"
+content.text = "Capital of France?"
+
+let message = AiMessage()
+message.role = "user"
+message.content = [content]
+
+let request = ChatCompletion()
+request.model = "openai/gpt-oss-120b"
+request.messages = [message]
 
 let response = try client.send(request)
 `
 const fsharp = `
 open ServiceStack
-open ServiceStack.Text
 
 let client = new JsonApiClient(baseUrl)
 client.BearerToken <- apiKey
 
-let response = client.Send(new OpenAiChatCompletion(
-    Model = "mixtral:8x22b",
+let response = client.Send(new ChatCompletion(
+    Model = "openai/gpt-oss-120b",
     Messages = ResizeArray [
-        OpenAiMessage(
+        AiMessage(
             Role = "user",
-            Content = "What's the capital of France?"
+            Content = ResizeArray<AiContent> [
+                AiTextContent(
+                    Type = "text", 
+                    Text = "Capital of France?") :> AiContent
+            ]
         )
-    ],
-    MaxTokens = 50))
+    ]))
 `
 const vbnet = `
 Imports ServiceStack
-Imports ServiceStack.Text
 
 Dim client = New JsonApiClient(baseUrl)
 client.BearerToken = apiKey
 
-Dim api = Await client.ApiAsync(New OpenAiChatCompletion() 
-    With {
-        .Model = "mixtral:8x22b",
-        .Messages = New List(Of OpenAiMessage) From {
-            New OpenAiMessage With {
-                .Role = "user",
-                .Content = "What's the capital of France?"
+Dim api = Await client.ApiAsync(New ChatCompletion() With {
+    .Model = "openai/gpt-oss-120b",
+    .Messages = New List(Of AiMessage) From {
+        New AiMessage With {
+            .Role = "user",
+            .Content = New List(Of AiContent) From {
+                New AiTextContent With {
+                    .Type = "text",
+                    .Text = "Capital of France?"
+                }
             }
-        },
-        .MaxTokens = 50
-    })
+        }
+    }
+})
+`
+const go = `
+import (
+    ss "github.com/ServiceStack/servicestack-go"
+    "myapp/dtos"
+)
+
+client := ss.NewClient(baseUrl)
+client.SetBearerToken(apiKey)
+
+res, err := ss.Send(client, dtos.ChatCompletion{
+    Model: "openai/gpt-oss-120b",
+    Messages: []dtos.AiMessage{{
+        Role: "user",
+        Content: []any{dtos.AiTextContent{
+            AiContent: dtos.AiContent{Type: "text"},
+            Text:      "Capital of France?",
+        }},
+    }},
+})
+`
+const rust = `
+use servicestack::JsonServiceClient;
+use dtos::*;
+
+let mut client = JsonServiceClient::new(base_url);
+client.set_bearer_token(api_key);
+
+let res = client.send(&ChatCompletion {
+    model: "openai/gpt-oss-120b".to_string(),
+    messages: vec![AiMessage {
+        role: "user".to_string(),
+        content: Some(vec![serde_json::to_value(AiTextContent {
+            ai_content: AiContent { r#type: "text".to_string() },
+            text: "Capital of France?".to_string(),
+        })?]),
+        ..Default::default()
+    }],
+    ..Default::default()
+}).await?;
+`
+const zig = `
+const ss = @import("servicestack");
+const dtos = @import("dtos.zig");
+
+var client = try ss.JsonServiceClient.init(allocator, base_url);
+defer client.deinit();
+client.setBearerToken(api_key);
+
+var content = std.json.ObjectMap.init(allocator);
+defer content.deinit();
+try content.put("type", .{ .string = "text" });
+try content.put("text", .{ .string = "Capital of France?" });
+
+const parts = [_]std.json.Value{.{ .object = content }};
+const messages = [_]dtos.AiMessage{.{ 
+    .role = "user", 
+    .content = parts[0..] 
+}};
+
+var res = try client.send(dtos.ChatCompletion{
+    .model = "openai/gpt-oss-120b",
+    .messages = messages[0..],
+});
+defer res.deinit();
+`
+const ruby = `
+require 'servicestack'
+require_relative 'dtos'
+
+client = ServiceStack::JsonServiceClient.new(base_url)
+client.bearer_token = api_key
+
+response = client.send(ChatCompletion.new(
+  model: 'openai/gpt-oss-120b',
+  messages: [AiMessage.new(
+    role: 'user',
+    content: [
+        AiTextContent.new(
+            type: 'text', 
+            text: "Capital of France?")
+    ]
+  )]
+))
 `
 
 export const openAi = (() => {
     hljs.registerLanguage('dart', hljsDart)
     hljs.registerLanguage('fsharp', hljsFsharp)
-    
+    hljs.registerLanguage('zig', hljsZig)
+
     const ret = {
         code: {
             csharp,
+            fsharp,
+            vbnet,
             typescript,
             mjs,
             python,
-            dart,
             php,
+            ruby,
+            swift,
             java,
             kotlin,
-            swift,
-            fsharp,
-            vbnet,
+            dart,
+            go,
+            rust,
+            zig,
         },
         html: {}
     }
-    
+
     Object.keys(ret.code).forEach(lang => {
         ret.html[lang] = marked.parse(
         '```' + lang + '\n'
             + ret.code[lang]
         + '\n```')
     })
-    
+
     return ret
 })()
 
 export default {
     template:`
-
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-    <div class="mb-4">
-      <div class="sm:hidden">
-        <label for="tabs" class="sr-only">Select a tab</label>
-        <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-        <select id="tabs" name="tabs" @change="routes.to({ lang:$event.target.value })" 
-            class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-          <option v-for="(label,lang) in langs" :value="lang">{{label}}</option>
-        </select>
-      </div>
-      <div class="hidden sm:block">
-        <div class="border-b border-gray-200">
-          <nav class="-mb-px flex" aria-label="Tabs">
-            <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <div v-for="(label,lang) in langs" v-href="{ lang }" 
-                :class="['cursor-pointer w-1/4 border-b-2 px-1 py-2 text-center text-sm font-medium text-gray-500', lang == (routes.lang || 'csharp') ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700']">
-                <div class="flex flex-col justify-center items-center">
-                    <img :src="'/img/langs/' + lang + '.svg'" class="w-8 h-8">
-                    <span class="mt-3">{{label}}</span>
-                </div>
-            </div>
-          </nav>
+    <p class="mx-auto max-w-3xl text-balance text-center text-xl leading-8 text-gray-600 dark:text-gray-300 sm:text-2xl">
+      <b class="text-gray-900 dark:text-gray-100">{{langCount}} languages</b>, one API.
+      End-to-end typed APIs for the world's most popular languages
+    </p>
+
+    <div class="mx-auto mt-14 flex flex-wrap justify-center gap-x-12 gap-y-10">
+      <div v-for="group in langGroups" :key="group.name" class="flex flex-col gap-y-3">
+        <div class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+          {{group.name}}
+        </div>
+        <div class="flex flex-wrap justify-center gap-3">
+          <div v-for="lang in group.langs" :key="lang" v-href="{ lang }" :title="'Usage from ' + langs[lang]"
+              :class="['group flex w-30 cursor-pointer select-none flex-col items-center justify-center gap-y-3 rounded-xl px-2 py-5 ring-1 transition',
+                lang == selectedLang
+                  ? 'bg-indigo-50 text-indigo-700 ring-2 ring-indigo-600 dark:bg-indigo-950 dark:text-indigo-200'
+                  : 'bg-white text-gray-600 ring-gray-200 hover:text-gray-900 hover:ring-indigo-400 dark:bg-gray-900 dark:text-gray-300 dark:ring-gray-800 dark:hover:ring-indigo-400']">
+            <img :src="'/img/langs/' + lang + '.svg'" :alt="langs[lang]" :class="iconClass(lang, lang == selectedLang, 'h-10')">
+            <span class="text-sm font-semibold">{{langs[lang]}}</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-      <div class="lg:pr-8 lg:pt-4">
-        
+    <p class="mt-8 text-center text-base text-gray-500 dark:text-gray-400">
+      Feature-rich JSON Client library utilizing Native Typed DTOs for each language - a consistent API across all platforms.
+    </p>
+
+    <div class="mx-auto mt-20 grid max-w-2xl grid-cols-1 items-start gap-x-12 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-12">
+      <div class="lg:col-span-5 lg:pr-4 lg:pt-4">
+
         <slot></slot>
-        
+
       </div>
-      <div>
-          <div class="flex items-center pt-20">
-            <div v-html="openAi.html[routes.lang || 'csharp']"></div>
+      <div class="lg:col-span-7">
+
+        <nav class="mt-6 mb-4 flex" aria-label="Breadcrumb">
+          <ol role="list" class="flex flex-wrap items-center gap-y-2 space-x-4">
+            <li>
+              <div>
+                <a :href="(baseUrl ?? '') + '/ui/ChatCompletion?tab=code&lang=' + selectedLang" class="text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page">
+                    Usage from {{langs[selectedLang]}}
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <a :href="(baseUrl ?? '') + '/ui/ChatCompletion?tab=details'" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+                    API Explorer Docs
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <a href="https://docs.servicestack.net/ai-server/chat" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+                    About Open AI Chat API
+                </a>
+              </div>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="overflow-hidden rounded-xl bg-[#1e1e2e] shadow-2xl ring-1 ring-gray-900/10 dark:ring-white/10">
+          <div class="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+            <div class="flex items-center gap-x-2">
+              <img :src="'/img/langs/' + selectedLang + '.svg'" :alt="langs[selectedLang]" :class="iconClass(selectedLang, true, 'h-4')">
+              <span class="text-xs font-semibold text-gray-200">{{langs[selectedLang]}}</span>
+              <span class="font-mono text-xs text-gray-500">{{langFiles[selectedLang]}}</span>
+            </div>
+            <button type="button" @click="copy" class="rounded px-1.5 py-0.5 text-xs font-medium text-gray-400 hover:text-gray-200">
+              {{copied ? 'Copied' : 'Copy'}}
+            </button>
           </div>
-            
-            <nav class="flex" aria-label="Breadcrumb">
-              <ol role="list" class="flex items-center space-x-4">
-                <li>
-                  <div>
-                    <a :href="(baseUrl ?? '') + '/ui/OpenAiChatCompletion?tab=code&detailSrc=OpenAiChat&lang=' + (routes.lang || 'csharp')" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page">
-                        Usage from {{langs[routes.lang || 'csharp']}}
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div class="flex items-center">
-                    <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-                    </svg>
-                    <a :href="(baseUrl ?? '') + '/ui/OpenAiChatCompletion?tab=details'" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                        API Explorer Docs
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div class="flex items-center">
-                    <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-                    </svg>
-                    <a href="https://docs.servicestack.net/ai-server/chat" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                        About Open AI Chat API
-                    </a>
-                  </div>
-                </li>
-              </ol>
-            </nav>
-      </div>
+          <div v-html="openAi.html[selectedLang]"></div>
+        </div>
+
+        </div>
     </div>
-    
+
   </div>`,
     props: {
         baseUrl:String,
         routes:Object,
     },
-    setup() {
-        return { langs, openAi, }
+    setup(props) {
+        const copied = ref(false)
+        const selectedLang = computed(() => langs[props.routes?.lang] ? props.routes.lang : 'csharp')
+
+        async function copy() {
+            await navigator.clipboard.writeText(openAi.code[selectedLang.value].trim())
+            copied.value = true
+            setTimeout(() => copied.value = false, 2000)
+        }
+
+        // The Go logo is a wide wordmark, the rest of the logos are square
+        function iconClass(lang, onDark, size) {
+            const h = size ?? 'h-10'
+            const w = h === 'h-4' ? (lang === 'go' ? 'w-6' : 'w-4') : (lang === 'go' ? 'w-14' : 'w-10')
+            return ['object-contain', h, w,
+                monoIcons.includes(lang) ? (onDark ? 'invert' : 'dark:invert') : '']
+        }
+
+        return { langs, langGroups, langFiles, langCount:Object.keys(langs).length,
+                 openAi, selectedLang, copied, copy, iconClass }
     }
 }

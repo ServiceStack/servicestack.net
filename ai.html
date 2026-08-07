@@ -1,0 +1,1551 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>AI Chat and APIs - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack.AI</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/whatsnew" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    What's New
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://docs.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Docs
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0 hidden lg:block">
+                                <a href="https://forums.servicestack.net" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Forums
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/free" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Free
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/trial" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Trial
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/pricing" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Pricing
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/account/subscription" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400 text-gray-50 sm:text-slate-700 dark:text-gray-50">
+                                    Sign In
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+<style>
+    /* Gateway board - the request's path from a signed-in user out to a provider.
+       Rails are CSS gradients with a travelling packet; disabled under reduced motion. */
+    .rail { position: relative; overflow: hidden; }
+    .rail::before {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(90deg, transparent, rgb(56 189 248 / .55), transparent);
+        background-size: 200% 100%;
+        animation: rail-flow 3.2s linear infinite;
+    }
+    .rail-2::before { animation-delay: .55s }
+    @keyframes rail-flow {
+        from { background-position: 200% 0 }
+        to   { background-position: -100% 0 }
+    }
+    @media (max-width: 1023px) {
+        .rail::before {
+            background: linear-gradient(180deg, transparent, rgb(56 189 248 / .55), transparent);
+            background-size: 100% 200%;
+            animation-name: rail-flow-y;
+        }
+        @keyframes rail-flow-y {
+            from { background-position: 0 200% }
+            to   { background-position: 0 -100% }
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .rail::before { animation: none; background: rgb(56 189 248 / .35) }
+    }
+    /* Deny row reads as struck-through as well as red, so it survives a colour-blind read */
+    .denied { text-decoration: line-through; text-decoration-thickness: 1px }
+
+    /* ── Lightbox ──
+       Plain CSS rather than utilities so it doesn't depend on class generation, and
+       progressive: the affordance classes are only applied once the script runs. */
+    .zoomable { cursor: zoom-in; transition: opacity .15s ease }
+    .zoomable:hover { opacity: .92 }
+    .zoomable:focus-visible { outline: 2px solid rgb(14 165 233); outline-offset: 3px }
+
+    .lb { position: fixed; inset: 0; z-index: 100; display: none }
+    .lb[open] { display: flex; align-items: center; justify-content: center }
+    .lb-backdrop { position: absolute; inset: 0; background: rgb(2 6 23 / .92); backdrop-filter: blur(4px) }
+    .lb-fig {
+        position: relative; margin: 0; display: flex; flex-direction: column;
+        align-items: center; gap: .75rem; max-width: 94vw; max-height: 94vh;
+    }
+    .lb-img {
+        max-width: 94vw; max-height: 82vh; width: auto; height: auto; object-fit: contain;
+        /* no backing plate: the screenshots are opaque, and a white one framed the dark themes wrongly */
+        border-radius: .5rem; box-shadow: 0 25px 50px -12px rgb(0 0 0 / .6);
+    }
+    .lb-cap {
+        color: rgb(203 213 225); font-size: .8125rem; line-height: 1.4;
+        text-align: center; max-width: 62ch; text-wrap: balance;
+    }
+    .lb-count { color: rgb(100 116 139); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .75rem }
+    .lb-btn {
+        position: absolute; z-index: 1; display: flex; align-items: center; justify-content: center;
+        width: 2.75rem; height: 2.75rem; border-radius: 9999px; border: 0; cursor: pointer;
+        background: rgb(255 255 255 / .1); color: #fff; transition: background .15s ease;
+    }
+    .lb-btn:hover { background: rgb(255 255 255 / .2) }
+    .lb-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px }
+    .lb-close { top: 1rem; right: 1rem; position: fixed }
+    .lb-prev { left: 1rem; position: fixed; top: 50%; margin-top: -1.375rem }
+    .lb-next { right: 1rem; position: fixed; top: 50%; margin-top: -1.375rem }
+    .lb-hidden { display: none }
+    @media (max-width: 640px) {
+        .lb-prev { left: .25rem } .lb-next { right: .25rem }
+        .lb-img { max-height: 74vh }
+    }
+    body.lb-open { overflow: hidden }
+
+    /* ── Language switcher ──
+       The site's highlight.css is a light (vs.css) theme, so rather than load it and fight it,
+       the hljs tokens are given a dark palette here matching the hand-rolled code windows above.
+       Scoped to #ai-langs so nothing else on the site is affected. */
+    .lang-btn {
+        display: inline-flex; align-items: center; gap: .5rem;
+        padding: .375rem .625rem; border-radius: .5rem; border: 1px solid transparent;
+        font-size: .8125rem; line-height: 1.25rem; cursor: pointer;
+        color: rgb(71 85 105); background: transparent; transition: background .15s, border-color .15s;
+    }
+    .lang-btn img { height: 1.25rem; width: auto; max-width: 2.25rem; object-fit: contain }
+    .lang-btn:hover { background: rgb(241 245 249) }
+    .lang-btn[aria-pressed="true"] {
+        border-color: rgb(14 165 233); background: rgb(14 165 233 / .08); color: rgb(2 132 199); font-weight: 600;
+    }
+    .lang-btn:focus-visible { outline: 2px solid rgb(14 165 233); outline-offset: 2px }
+    :root.dark .lang-btn { color: rgb(148 163 184) }
+    :root.dark .lang-btn:hover { background: rgb(255 255 255 / .06) }
+    :root.dark .lang-btn[aria-pressed="true"] { color: rgb(56 189 248) }
+
+    #ai-lang-code pre { margin: 0; background: transparent }
+    #ai-lang-code .hljs { background: transparent; color: rgb(203 213 225); padding: 0; display: block }
+    #ai-lang-code .hljs-comment, #ai-lang-code .hljs-quote { color: rgb(100 116 139); font-style: italic }
+    #ai-lang-code .hljs-keyword, #ai-lang-code .hljs-selector-tag, #ai-lang-code .hljs-literal,
+    #ai-lang-code .hljs-meta { color: rgb(192 132 252) }
+    #ai-lang-code .hljs-string, #ai-lang-code .hljs-template-string, #ai-lang-code .hljs-regexp,
+    #ai-lang-code .hljs-addition { color: rgb(252 211 77) }
+    #ai-lang-code .hljs-title, #ai-lang-code .hljs-name, #ai-lang-code .hljs-type,
+    #ai-lang-code .hljs-class, #ai-lang-code .hljs-built_in { color: rgb(110 231 183) }
+    #ai-lang-code .hljs-number, #ai-lang-code .hljs-symbol, #ai-lang-code .hljs-bullet { color: rgb(249 168 212) }
+    #ai-lang-code .hljs-attr, #ai-lang-code .hljs-attribute, #ai-lang-code .hljs-property,
+    #ai-lang-code .hljs-variable, #ai-lang-code .hljs-params { color: rgb(125 211 252) }
+    #ai-lang-code .hljs-emphasis { font-style: italic }
+    #ai-lang-code .hljs-strong { font-weight: 700 }
+</style>
+
+<!-- ───────────────────────── Hero ───────────────────────── -->
+<div class="relative isolate overflow-hidden border-b bg-white dark:bg-slate-950">
+
+    <svg class="absolute inset-0 -z-10 h-full w-full stroke-slate-200 [mask-image:radial-gradient(90%_70%_at_top,white,transparent)] dark:stroke-slate-800/60" aria-hidden="true">
+        <defs>
+            <pattern id="ai-grid" width="120" height="120" x="50%" y="-1" patternUnits="userSpaceOnUse">
+                <path d="M60 120V.5M.5 .5H120" fill="none" />
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" stroke-width="0" fill="url(#ai-grid)" />
+    </svg>
+
+    <div class="mx-auto max-w-7xl px-6 pt-16 pb-12 sm:pt-20 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+            <div class="flex justify-center">
+                <div class="rounded-full px-3 py-1 font-mono text-xs tracking-tight text-slate-600 ring-1 ring-slate-900/10 dark:text-slate-400 dark:ring-white/10">
+                    ServiceStack.AI.Chat
+                </div>
+            </div>
+
+            <h1 class="mt-6 text-4xl font-black tracking-tight text-slate-900 sm:text-6xl dark:text-white">
+                <span class="mb-4 block">Your organization's own</span>
+                <span class="bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent dark:from-sky-400 dark:to-indigo-400">OpenRouter</span>
+                <span class="mt-4 block">running in your .NET App</span>
+            </h1>
+
+            <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+                One plugin turns any ServiceStack App into a private AI gateway - one set of provider accounts and one
+                bill for the whole organization, reaching only the models you've approved, behind the ASP.NET Identity
+                Auth you already have.
+            </p>
+
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                <a href="https://docs.servicestack.net/ai-chat-api" class="rounded-md bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-sky-500">
+                    Get Started
+                </a>
+                <a href="/ai#pdf-studio" class="text-sm font-semibold leading-6 text-slate-900 transition-colors hover:text-sky-600 dark:text-white dark:hover:text-sky-400">
+                    See PDF Studio <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="mx-auto mt-10 max-w-2xl overflow-hidden rounded-xl bg-slate-900 text-left shadow-2xl ring-1 ring-white/10">
+                <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+                    <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                    <div class="ml-2 font-mono text-xs text-slate-500">MyApp.csproj</div>
+                </div>
+                <pre class="!bg-transparent overflow-x-auto px-4 py-4 font-mono text-sm leading-6 text-slate-300"><code><span class="text-emerald-300">&lt;PackageReference</span> <span class="text-sky-300">Include</span>=<span class="text-amber-300">"ServiceStack.AI.Chat"</span> <span class="text-sky-300">Version</span>=<span class="text-amber-300">"10.*"</span> <span class="text-emerald-300">/&gt;</span></code></pre>
+                <div class="border-t border-white/5 px-4 py-2.5 font-mono text-xs text-slate-500">Configure.AI.cs</div>
+                <pre class="!bg-transparent overflow-x-auto px-4 py-4 font-mono text-sm leading-6 text-slate-300"><code>services.<span class="text-sky-400">AddPlugin</span>(<span class="text-purple-400">new</span> <span class="text-emerald-300">ChatFeature</span>());</code></pre>
+                <div class="border-t border-white/5 px-4 py-2.5 font-mono text-xs text-slate-500">
+                    → browse to <span class="text-slate-300">/chat</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Signature: the gateway board ── -->
+    <div class="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-6 sm:p-10 dark:border-slate-800 dark:bg-slate-900/40">
+
+            <div class="grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr_auto_1fr]">
+
+                <!-- Who's asking -->
+                <div>
+                    <div class="mb-3 font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400">Your users</div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
+                            <span class="font-mono text-xs text-slate-700 dark:text-slate-300">alex</span>
+                            <span class="rounded bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-700 dark:text-emerald-400">Admin</span>
+                        </div>
+                        <div class="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-900">
+                            <span class="font-mono text-xs text-slate-700 dark:text-slate-300">sam</span>
+                            <span class="rounded bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-700 dark:text-emerald-400">Staff</span>
+                        </div>
+                        <div class="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 opacity-60 dark:border-slate-700 dark:bg-slate-900">
+                            <span class="denied font-mono text-xs text-slate-500 dark:text-slate-500">contractor</span>
+                            <span class="rounded bg-rose-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-rose-700 dark:text-rose-400">no role</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rail mx-auto h-8 w-px bg-slate-200 lg:h-px lg:w-16 dark:bg-slate-700" aria-hidden="true"></div>
+
+                <!-- The gate -->
+                <div class="rounded-xl border-2 border-sky-500/30 bg-white p-4 shadow-sm dark:bg-slate-900">
+                    <div class="mb-3 flex items-center gap-2">
+                        <svg class="h-4 w-4 text-sky-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <span class="font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400">Identity Auth</span>
+                    </div>
+                    <div class="space-y-1.5 font-mono text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-400 dark:text-slate-500">RequireAuth</span>
+                            <span class="text-emerald-600 dark:text-emerald-400">true</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-400 dark:text-slate-500">RequiredRole</span>
+                            <span class="text-emerald-600 dark:text-emerald-400">"Staff"</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 border-t border-slate-200 pt-3 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-400">
+                        2 allowed · 1 rejected
+                    </div>
+                </div>
+
+                <div class="rail rail-2 mx-auto h-8 w-px bg-slate-200 lg:h-px lg:w-16 dark:bg-slate-700" aria-hidden="true"></div>
+
+                <!-- Fan-out -->
+                <div>
+                    <div class="mb-3 font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400">Approved models</div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="rounded border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">claude-opus-5</span>
+                        <span class="rounded border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">gpt-5</span>
+                        <span class="rounded border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">gemini-3-pro</span>
+                        <span class="rounded border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">llama-4</span>
+                        <span class="rounded border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">+526 more</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2">
+                        <svg class="h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 9v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="font-mono text-[11px] text-amber-800 dark:text-amber-300">centralized provider keys &amp; billing</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-8 border-t border-slate-200 pt-5 text-center text-sm text-slate-600 dark:border-slate-800 dark:text-slate-400">
+                No second user directory. No SSO integration project. The people who can already sign into your App
+                are the people who can use it - and the ones who can't, can't.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── Identity Auth ───────────────────────── -->
+<div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+        <p class="font-mono text-xs font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">Governed by your App</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+            It's already your users
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+            ChatFeature authenticates against the App it's hosted in. Signing in, roles, locking an account, revoking a
+            key - all of it keeps working exactly as it does everywhere else in your App.
+        </p>
+    </div>
+
+    <div class="mt-14 grid gap-8 lg:grid-cols-2">
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-xl dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/auth/signin.webp" alt="Signing in to the Chat UI with an Identity Auth account" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-xl dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/auth/manage-users.webp" alt="Managing users from the Admin UI" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+            <h3 class="font-semibold text-slate-900 dark:text-white">Restrict who gets in</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                Set <code class="font-mono text-xs text-sky-700 dark:text-sky-400">RequiredRole</code> and only users
+                holding that role reach the UI or any of its APIs. Everyone else is rejected at the door.
+            </p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+            <h3 class="font-semibold text-slate-900 dark:text-white">Keys for programmatic clients</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                With <code class="font-mono text-xs text-sky-700 dark:text-sky-400">ApiKeysFeature</code> registered,
+                <code class="font-mono text-xs text-sky-700 dark:text-sky-400">/v1/chat/completions</code> also accepts a
+                Bearer key - so scripts and services keep working alongside browser sign-in.
+            </p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+            <h3 class="font-semibold text-slate-900 dark:text-white">Multi-user from the start</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                Everyone gets their own workspace. Chat history, uploads and gallery, agent profiles, projects,
+                skills, themes and PDF templates are all partitioned per user - on top of whatever you publish to
+                the whole organization.
+            </p>
+        </div>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-3xl overflow-hidden rounded-xl bg-slate-900 shadow-2xl ring-1 ring-white/10">
+        <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+            <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+            <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+            <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+            <div class="ml-2 font-mono text-xs text-slate-500">Configure.AI.cs</div>
+        </div>
+        <pre class="!bg-transparent overflow-x-auto px-5 py-4 font-mono text-sm leading-6 text-slate-300"><code>services.<span class="text-sky-400">AddPlugin</span>(<span class="text-purple-400">new</span> <span class="text-emerald-300">ChatFeature</span> {
+    RequireAuth  = <span class="text-purple-400">true</span>,
+    RequiredRole = <span class="text-amber-300">"Staff"</span>,       <span class="text-slate-500">// only Staff can use it</span>
+    RoutePrefix  = <span class="text-amber-300">"/chat"</span>,
+    EnableProviders = [<span class="text-amber-300">"openai"</span>, <span class="text-amber-300">"anthropic"</span>, <span class="text-amber-300">"google"</span>],
+});</code></pre>
+    </div>
+</div>
+
+<!-- ───────────────────────── Models & Profiles ───────────────────────── -->
+<div class="border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+            <p class="font-mono text-xs font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">One endpoint, every model</p>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+                530+ models. 24 providers. Your rules.
+            </h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+                Give your organization one OpenAI-compatible endpoint that reaches every major provider - then decide
+                which models it's allowed to reach, and who gets which ones.
+            </p>
+        </div>
+
+        <div class="mt-14 grid gap-8 lg:grid-cols-2">
+            <div class="overflow-hidden rounded-xl border border-slate-200 shadow-xl dark:border-slate-700 dark:bg-white">
+                <img src="/img/pages/ai/models/model-selector-providers.webp" alt="Choosing between models grouped by provider" class="h-auto w-full" loading="lazy">
+            </div>
+            <div class="overflow-hidden rounded-xl border border-slate-200 shadow-xl dark:border-slate-700 dark:bg-white">
+                <img src="/img/pages/ai/models/model-selector.webp" alt="The model selector filtered by capability" class="h-auto w-full" loading="lazy">
+            </div>
+        </div>
+
+        <div class="mx-auto mt-16 max-w-2xl text-center">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Profiles tailored per team</h3>
+            <p class="mt-3 text-slate-600 dark:text-slate-400">
+                A profile bundles a system prompt, an allowed model list, its tools and a theme. Publish a read-only
+                profile to the whole organization, or let each team shape its own.
+            </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+            <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+                <img src="/img/pages/ai/profiles/profiles-menu.webp" alt="Switching between agent profiles" class="h-auto w-full" loading="lazy">
+            </div>
+            <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+                <img src="/img/pages/ai/profiles/profile-models.webp" alt="Restricting a profile to an approved model list" class="h-auto w-full" loading="lazy">
+            </div>
+            <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+                <img src="/img/pages/ai/profiles/readonly-profile.webp" alt="A read-only profile published to the organization" class="h-auto w-full" loading="lazy">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── Cost accounting ───────────────────────── -->
+<div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+            <p class="font-mono text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">Accounted for, and kept</p>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+                Know your costs, and who spent it
+            </h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+                Every completion is recorded against the user who made it - model, provider, input and output tokens,
+                and cost. It's a row in your own database, so you can bill a department, find a runaway agent, or answer
+                "what are we spending on AI" without asking a vendor.
+            </p>
+            <ul class="mt-6 space-y-3">
+                <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                    <span>Cost broken down by model and by provider</span>
+                </li>
+                <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                    <span>Daily totals, token usage and activity over time</span>
+                </li>
+                <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                    <span>Stored in your RDBMS via OrmLite - query it however you like</span>
+                </li>
+                <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                    <span>Kept - every request stays queryable, not just this month's</span>
+                </li>
+            </ul>
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-2xl dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/analytics/analytics-costs.webp" alt="Cost analysis showing total spend broken down by model and provider" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/analytics/analytics-tokens.webp" alt="Token usage over time" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/analytics/analytics-activity.webp" alt="Request activity over time" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+
+    <!-- ── Admin: across every user ── -->
+    <div class="mx-auto mt-16 max-w-2xl text-center">
+        <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Admins see across every user</h3>
+    </div>
+
+    <ul class="mx-auto mt-8 grid max-w-4xl gap-x-10 gap-y-4 sm:grid-cols-2">
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Searchable user filter</strong> - point
+                cost, tokens and activity at one user or all of them</span>
+        </li>
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Users tab</strong> - requests, cost,
+                input/output/total tokens and last active, per user</span>
+        </li>
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Sort by any column</strong> - find the
+                heaviest spender or who's gone quiet</span>
+        </li>
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Open any transcript</strong> - read the
+                conversation behind a request, straight from the activity log</span>
+        </li>
+    </ul>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/analytics/analytics-users-filter.webp" alt="Searchable user selector filtering analytics to one user" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/analytics/analytics-users-page.webp" alt="Users tab breaking down requests, cost and tokens for every user" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── API Tools + MCP ───────────────────────── -->
+<div class="border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+            <p class="font-mono text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">API Tools &amp; MCP</p>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+                Point that intelligence at your own APIs
+            </h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+                A model that can only talk is a demo. Let it call the APIs your App already exposes and it can answer
+                questions about your business - then hand the same tools to the AI Assistant your developers already use.
+            </p>
+        </div>
+
+        <div class="mt-14 grid gap-8 lg:grid-cols-2">
+
+            <!-- Inward -->
+            <div class="rounded-2xl border border-slate-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-900">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-500">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Inside the Chat UI</h3>
+                </div>
+                <p class="mt-4 leading-7 text-slate-600 dark:text-slate-400">
+                    Opt an API in with <code class="font-mono text-xs text-indigo-700 dark:text-indigo-400">[Tool]</code>
+                    - or whole groups of them by <code class="font-mono text-xs text-indigo-700 dark:text-indigo-400">[Tag]</code> -
+                    and the assistant can find it, read its schema and call it.
+                </p>
+                <p class="mt-4 leading-7 text-slate-600 dark:text-slate-400">
+                    It runs <strong class="font-semibold text-slate-900 dark:text-white">as the signed-in user</strong>,
+                    so it can only ever do what that person is already allowed to do.
+                </p>
+                <div class="mt-6 rounded-lg bg-slate-900 p-4 font-mono text-xs leading-6 text-slate-300">
+                    <div><span class="text-sky-400">api_search</span> <span class="text-slate-500">- find an API by keyword or tag</span></div>
+                    <div><span class="text-sky-400">api_describe</span> <span class="text-slate-500">- get its JSON Schema</span></div>
+                    <div><span class="text-sky-400">api_call</span> <span class="text-slate-500">- run it, return the JSON</span></div>
+                </div>
+                <p class="mt-4 text-sm leading-6 text-slate-500 dark:text-slate-400">
+                    Three tools rather than one per API - a 270-API surface is about 156K tokens of schema, so only the
+                    APIs an agent actually uses ever cost it context.
+                </p>
+            </div>
+
+            <!-- Outward -->
+            <div class="rounded-2xl border border-slate-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-900">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5m6.5-6.5l1.5-1.5a4 4 0 115.656 5.656l-3 3a4 4 0 01-5.656 0" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">From any MCP Client</h3>
+                </div>
+                <p class="mt-4 leading-7 text-slate-600 dark:text-slate-400">
+                    Expose the same tools as an MCP Server at
+                    <code class="font-mono text-xs text-emerald-700 dark:text-emerald-400">/chat/mcp</code> and external
+                    assistants - Claude Code, Cursor, VS Code - can work against your APIs directly.
+                </p>
+                <p class="mt-4 leading-7 text-slate-600 dark:text-slate-400">
+                    Clients authenticate with a Bearer API Key and tools run
+                    <strong class="font-semibold text-slate-900 dark:text-white">as that key's user</strong>, not as the
+                    App. Nothing is exposed until you name it.
+                </p>
+                <div class="mt-6 overflow-hidden rounded-lg bg-slate-900">
+                    <pre class="!bg-transparent overflow-x-auto p-4 font-mono text-xs leading-6 text-slate-300"><code><span class="text-purple-400">new</span> <span class="text-emerald-300">ChatFeature</span> {
+    ToolsConfig = <span class="text-purple-400">new</span>() { EnableApiTools = <span class="text-purple-400">true</span> },
+    Mcp = <span class="text-purple-400">new</span>() {
+        ToolGroups = [<span class="text-amber-300">"api_tools"</span>],
+    },
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+            <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+                <img src="/img/pages/ai/tools/llm-tool-call.webp" alt="A model calling a tool and showing the result inline" class="h-auto w-full" loading="lazy">
+            </div>
+            <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+                <img src="/img/pages/ai/tools/mcp-servers.webp" alt="Configured MCP servers" class="h-auto w-full" loading="lazy">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── Gemini File Search / RAG ───────────────────────── -->
+<div class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+        <p class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">Gemini File Search</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+            Answers from your own documents
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+            Upload the documents your organization actually runs on and Gemini answers out of them - grounded in what
+            you uploaded, not in what it read on the internet. No vector database to stand up.
+        </p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-2">
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">employee handbook</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">contracts</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">runbooks</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">product specs</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">compliance policies</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">support history</span>
+    </div>
+
+    <div class="mt-12 overflow-hidden rounded-xl border border-slate-200 shadow-2xl dark:border-slate-700 dark:bg-white">
+        <img src="/img/pages/ai/gemini/gemini-filestores-upload-folder.webp" alt="Uploading a folder of documents into a file store, organized by category" class="h-auto w-full" loading="lazy">
+    </div>
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-2">
+        <div class="flex gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-500">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Drop in a folder, not a pipeline</h3>
+                <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                    No embedding job to run, no chunking strategy to tune, no index to operate. Upload a folder and it's
+                    searchable - Google hosts the store, you keep the catalogue.
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-500">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Narrow the question</h3>
+                <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                    Ground a conversation on an entire store, on one category, or on a single document - so an answer
+                    about last year's policy can't be contaminated by this year's.
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-500">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Uploaded once, kept honest</h3>
+                <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                    Documents are deduplicated by content hash and uploaded by a background worker. A sync reconciles
+                    your catalogue against the store and records anything that didn't line up.
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-500">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Behind the same front door</h3>
+                <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                    Stores are reached through the same Identity Auth as everything else, and catalogued in your own
+                    RDBMS - so who can ask your knowledge base a question is a role, not a separate product's setting.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/gemini/gemini-search-all.webp" alt="Grounding a conversation on an entire document store" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/gemini/gemini-search-category.webp" alt="Narrowing the search to a single category" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/gemini/gemini-search-document.webp" alt="Asking a question against one document" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/gemini/gemini-filestores.webp" alt="Managing document stores" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/gemini/gemini-sync.webp" alt="Syncing a store and reviewing each document's state" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+
+    <p class="mx-auto mt-10 max-w-3xl text-center text-sm leading-6 text-slate-500 dark:text-slate-400">
+        Set <code class="font-mono text-xs text-cyan-700 dark:text-cyan-400">GEMINI_API_KEY</code> and the extension
+        turns itself on; leave it unset and it disables itself. Stores and documents are recorded in the
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-400">ChatFilestore</code> and
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-400">ChatDocument</code> tables.
+    </p>
+</div>
+
+<!-- ───────────────────────── PDF Studio ───────────────────────── -->
+<div id="pdf-studio" class="scroll-mt-16 border-t border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/40">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+        <p class="font-mono text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">PDF Studio</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+            Design and edit PDF templates with AI.<br>
+            Render it with your own data, fast.
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+            Many Apps eventually have to produce a real PDF. Design it with AI against a live preview, and get back a
+            data-driven template your App fills with its own data - rendered by
+            <a href="https://typst.app" class="text-sky-600 hover:underline dark:text-sky-400">typst</a>.
+        </p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-2">
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">invoices</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">quotes</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">statements</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">packing slips</span>
+        <span class="rounded-full border border-slate-200 px-3 py-1 font-mono text-xs text-slate-600 dark:border-slate-700 dark:text-slate-400">certificates</span>
+    </div>
+
+    <div class="mt-12 overflow-hidden rounded-xl border border-slate-200 shadow-2xl dark:border-slate-700 dark:bg-white">
+        <img src="/img/pages/ai/pdf/designer-overview.webp" alt="PDF Studio: file explorer, Typst template, live preview and AI prompt" class="h-auto w-full" loading="lazy">
+    </div>
+
+    <div class="mt-12 grid gap-x-10 gap-y-8 lg:grid-cols-2">
+        <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Rendered by typst</h3>
+            <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                Templates are plain-text <a href="https://typst.app" class="text-sky-600 hover:underline dark:text-sky-400">typst</a>
+                you can diff and review, compiled by a single fast Rust binary. No headless browser rendering
+                differently on every machine, no Windows-only report designer.
+            </p>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Data-driven, not baked in</h3>
+            <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                The data lives separately from the document. One template renders every invoice you'll ever send -
+                your App supplies the data, so PDFs can be generated on the fly instead of designed one at a time.
+            </p>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Typed end to end</h3>
+            <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                Publishing generates C# classes for the template's data, so rendering a PDF in an API - or attaching
+                one to an email - is type-checked at compile time rather than hand-built JSON and a hope that the keys
+                match.
+            </p>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">A shared lib for common elements</h3>
+            <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                Letterhead, footers and house styling live in a shared
+                <code class="font-mono text-xs text-sky-700 dark:text-sky-400">lib</code> template every document can
+                pull from - so rebranding is one edit, not one per document.
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/data-form.webp" alt="A template's data edited through a generated form" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/data-code.webp" alt="The same data edited as JSON" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/generated-types-csharp.webp" alt="C# classes generated from a published template" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/lib-preview.webp" alt="The shared lib template holding letterhead and footer elements" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+
+    <!-- ── Edit with AI ── -->
+    <div class="mx-auto mt-16 max-w-3xl text-center">
+        <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Edit with AI</h3>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">
+            Rebuild an existing document as a typst template, or start from nothing - then keep refining in place.
+        </p>
+    </div>
+
+    <ul class="mx-auto mt-8 grid max-w-4xl gap-x-10 gap-y-4 sm:grid-cols-2">
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Recreate what you already send</strong> -
+                attach a screenshot or an existing PDF and get a template back</span>
+        </li>
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Or start from scratch</strong> -
+                describe the document you want in plain English</span>
+        </li>
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Keep refining</strong> - each edit is
+                another prompt against the live preview, not a rewrite</span>
+        </li>
+        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500"></span>
+            <span><strong class="font-semibold text-slate-900 dark:text-white">Bring a better model</strong> - it's your
+                gateway, so point it at the strongest one you have</span>
+        </li>
+    </ul>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/ai-attachment-new.webp" alt="Attaching a screenshot of an existing document to rebuild it as a template" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/edit-with-ai-before.webp" alt="The template before an AI edit" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/edit-with-ai-after.webp" alt="The same template after the AI applied the requested change" class="h-auto w-full" loading="lazy">
+        </div>
+        <div class="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-700 dark:bg-white">
+            <img src="/img/pages/ai/pdf/page-setup.webp" alt="Page setup for size, orientation and margins" class="h-auto w-full" loading="lazy">
+        </div>
+    </div>
+
+    <p class="mx-auto mt-10 max-w-3xl text-center text-sm leading-6 text-slate-500 dark:text-slate-400">
+        Authoring is <code class="font-mono text-xs">ChatFeature</code>; rendering is
+        <code class="font-mono text-xs">PdfFeature</code>, and it stands alone - deploy the renderer with no API key,
+        no model and no designer.
+    </p>
+
+    <!-- ── Two deliveries from one template ── -->
+    <div class="mx-auto mt-16 max-w-2xl text-center">
+        <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">From template to inbox</h3>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">
+            The generated model is the whole integration. Populate it from your own tables, then either hand the bytes
+            back as a download or attach them to an email - same template, same model, two lines apart.
+        </p>
+    </div>
+
+    <div class="mt-10 grid items-start gap-6 lg:grid-cols-2">
+
+        <!-- Serve it -->
+        <div>
+            <div class="mb-3 flex items-center gap-2">
+                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                </span>
+                <h4 class="font-semibold text-slate-900 dark:text-white">Serve it as a download</h4>
+            </div>
+            <div class="overflow-hidden rounded-xl bg-slate-900 shadow-xl ring-1 ring-white/10">
+                <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+                    <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                    <div class="ml-2 font-mono text-xs text-slate-500">InvoiceServices.cs</div>
+                </div>
+                <pre class="!bg-transparent overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 text-slate-300"><code><span class="text-purple-400">public async</span> <span class="text-blue-400">Task</span>&lt;<span class="text-blue-400">object</span>&gt; <span class="text-yellow-300">Get</span>(<span class="text-emerald-300">DownloadInvoice</span> request)
+{
+    <span class="text-purple-400">var</span> order = <span class="text-purple-400">await</span> Db.<span class="text-sky-400">LoadSingleByIdAsync</span>&lt;<span class="text-emerald-300">Order</span>&gt;(request.Id);
+    <span class="text-purple-400">var</span> invoice = order.<span class="text-sky-400">MapToInvoice</span>();
+
+    <span class="text-purple-400">return await</span> pdf.<span class="text-sky-400">PdfResultAsync</span>(invoice,
+        <span class="text-amber-300">$"Invoice-{order.InvoiceNo}.pdf"</span>);
+}</code></pre>
+                <div class="border-t border-white/5 px-5 py-3 font-mono text-[11px] leading-5 text-slate-500">
+                    Content-Type: application/pdf<br>
+                    Content-Disposition: attachment; filename="Invoice-INV-2026-042.pdf"
+                </div>
+            </div>
+        </div>
+
+        <!-- Mail it -->
+        <div>
+            <div class="mb-3 flex items-center gap-2">
+                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400">
+                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </span>
+                <h4 class="font-semibold text-slate-900 dark:text-white">Attach it to an email</h4>
+            </div>
+            <div class="overflow-hidden rounded-xl bg-slate-900 shadow-xl ring-1 ring-white/10">
+                <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+                    <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                    <div class="ml-2 font-mono text-xs text-slate-500">SendInvoiceEmailCommand.cs</div>
+                </div>
+                <pre class="!bg-transparent overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 text-slate-300"><code><span class="text-yellow-300">[Worker(</span><span class="text-amber-300">"smtp"</span><span class="text-yellow-300">)]</span>
+<span class="text-purple-400">public class</span> <span class="text-emerald-300">SendInvoiceEmailCommand</span>(<span class="text-emerald-300">IPdfRenderer</span> pdf,
+    <span class="text-emerald-300">SmtpConfig</span> config, <span class="text-emerald-300">IDbConnectionFactory</span> dbFactory)
+    : <span class="text-blue-400">AsyncCommand</span>&lt;<span class="text-emerald-300">SendInvoiceEmail</span>&gt;
+{
+    <span class="text-purple-400">protected override async</span> <span class="text-blue-400">Task</span> <span class="text-yellow-300">RunAsync</span>(
+        <span class="text-emerald-300">SendInvoiceEmail</span> request, <span class="text-blue-400">CancellationToken</span> token)
+    {
+        <span class="text-purple-400">using var</span> db = <span class="text-purple-400">await</span> dbFactory.<span class="text-sky-400">OpenAsync</span>(token: token);
+        <span class="text-purple-400">var</span> order = <span class="text-purple-400">await</span> db.<span class="text-sky-400">LoadSingleByIdAsync</span>&lt;<span class="text-emerald-300">Order</span>&gt;(
+            request.OrderId, token: token);
+
+        <span class="text-slate-500">// same model, rendered to bytes instead</span>
+        <span class="text-purple-400">var</span> pdfBytes = <span class="text-purple-400">await</span> pdf.<span class="text-sky-400">RenderPdfAsync</span>(
+            order.<span class="text-sky-400">MapToInvoice</span>(), token);
+
+        <span class="text-purple-400">using var</span> msg = <span class="text-purple-400">new</span> <span class="text-emerald-300">MailMessage</span>(config.FromEmail, request.To) {
+            Subject = request.Subject,
+            Body    = request.BodyText,
+        };
+        msg.Attachments.<span class="text-sky-400">Add</span>(<span class="text-purple-400">new</span> <span class="text-emerald-300">Attachment</span>(
+            <span class="text-purple-400">new</span> <span class="text-emerald-300">MemoryStream</span>(pdfBytes), <span class="text-amber-300">"invoice.pdf"</span>, MimeTypes.Pdf));
+
+        <span class="text-purple-400">using var</span> client = <span class="text-purple-400">new</span> <span class="text-emerald-300">SmtpClient</span>(config.Host, config.Port);
+        <span class="text-purple-400">await</span> client.<span class="text-sky-400">SendMailAsync</span>(msg, token);
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 grid items-start gap-6 lg:grid-cols-2">
+        <div class="overflow-hidden rounded-xl bg-slate-900 shadow-xl ring-1 ring-white/10">
+            <div class="border-b border-white/5 px-4 py-2.5 font-mono text-xs text-slate-500">Queue it like any other Command</div>
+            <pre class="!bg-transparent overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 text-slate-300"><code>jobs.<span class="text-sky-400">EnqueueCommand</span>&lt;<span class="text-emerald-300">SendInvoiceEmailCommand</span>&gt;(<span class="text-purple-400">new</span>() {
+    To      = order.Email,
+    Subject = <span class="text-amber-300">$"Your invoice {order.InvoiceNo}"</span>,
+    OrderId = order.Id,
+});</code></pre>
+        </div>
+        <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5">
+            <div class="flex items-center gap-2">
+                <svg class="h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M5.07 19h13.86a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.33 16a2 2 0 001.74 3z" />
+                </svg>
+                <h4 class="font-semibold text-slate-900 dark:text-white">Queue the id, not the bytes</h4>
+            </div>
+            <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                Job arguments are persisted, so passing the rendered PDF into the queue writes it into your jobs table.
+                Pass the <code class="font-mono text-xs text-amber-700 dark:text-amber-300">OrderId</code> and render
+                inside the worker - SMTP is slow and flaky, which is exactly why it belongs in a background job that
+                can retry.
+            </p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────── Themes ───────────────────────── -->
+<div class="border-t border-slate-200 bg-white py-16 dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">Beautiful themes</h2>
+            <p class="mt-3 text-slate-600 dark:text-slate-400">
+                Eight handcrafted themes ship with it, and a profile can carry its own - so a team's workspace looks
+                like theirs. Pick one to see it full size.
+            </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/nord.webp" alt="Nord theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Nord</figcaption>
+            </figure>
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/matrix.webp" alt="Matrix theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Matrix</figcaption>
+            </figure>
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/blue_smoke.webp" alt="Blue Smoke theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Blue Smoke</figcaption>
+            </figure>
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/dark.webp" alt="Dark theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Dark</figcaption>
+            </figure>
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/light_slate.webp" alt="Light Slate theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Light Slate</figcaption>
+            </figure>
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/soft_pink.webp" alt="Soft Pink theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Soft Pink</figcaption>
+            </figure>
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/light_sky.webp" alt="Light Sky theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Light Sky</figcaption>
+            </figure>
+            <figure class="group m-0">
+                <div class="overflow-hidden rounded-lg border border-slate-200 shadow-md dark:border-slate-700">
+                    <img src="/img/pages/ai/themes/light.webp" alt="Light theme" class="h-auto w-full" loading="lazy">
+                </div>
+                <figcaption class="mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">Light</figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── Typed APIs ───────────────────────── -->
+<div class="border-t border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+            <p class="font-mono text-xs font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">Typed APIs</p>
+            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+                The same gateway, from your own code
+            </h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+                The providers, keys and approved models you configured for the Chat UI are the same ones your App calls -
+                in-process from C#, or over the OpenAI-compatible endpoint from any language.
+            </p>
+        </div>
+
+        <!-- In-process: copy left, code right -->
+        <div class="mt-14 grid items-start gap-10 lg:grid-cols-2">
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">In-process, no HTTP</h3>
+                <p class="mt-2 leading-7 text-slate-600 dark:text-slate-400">
+                    Inject <code class="font-mono text-xs text-sky-700 dark:text-sky-400">IChatClient</code> and your
+                    code runs through the very same pipeline the Chat UI does:
+                </p>
+                <ul class="mt-4 space-y-2">
+                    <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"></span>
+                        <span>Provider selection, retry and failover</span>
+                    </li>
+                    <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"></span>
+                        <span>The tool-execution loop</span>
+                    </li>
+                    <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"></span>
+                        <span>Usage and cost accounting, in the same tables</span>
+                    </li>
+                    <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"></span>
+                        <span>One place to rotate a key or approve a model</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="overflow-hidden rounded-xl bg-slate-900 shadow-xl ring-1 ring-white/10">
+                    <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+                        <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                        <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+                        <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                        <div class="ml-2 font-mono text-xs text-slate-500">SupportServices.cs</div>
+                    </div>
+                    <pre class="!bg-transparent overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 text-slate-300"><code><span class="text-purple-400">public class</span> <span class="text-emerald-300">SupportServices</span>(<span class="text-emerald-300">IChatClient</span> chat) : <span class="text-emerald-300">Service</span>
+{
+    <span class="text-purple-400">public async</span> <span class="text-blue-400">Task</span>&lt;<span class="text-blue-400">object</span>&gt; <span class="text-yellow-300">Any</span>(<span class="text-emerald-300">SummarizeTicket</span> request)
+    {
+        <span class="text-purple-400">var</span> api = <span class="text-purple-400">await</span> chat.<span class="text-sky-400">ChatAsync</span>(<span class="text-purple-400">new</span>() {
+            Model = <span class="text-amber-300">"claude-opus-5"</span>,
+            Messages = [
+                <span class="text-purple-400">new</span>() { Role = <span class="text-amber-300">"user"</span>, Content = [
+                    <span class="text-purple-400">new</span> <span class="text-emerald-300">AiTextContent</span> {
+                        Type = <span class="text-amber-300">"text"</span>,
+                        Text = <span class="text-amber-300">$"Summarize: {request.Body}"</span>,
+                    }
+                ]}
+            ]
+        });
+
+        <span class="text-purple-400">return new</span> <span class="text-emerald-300">SummarizeTicketResponse</span> {
+            Summary = api.Choices[<span class="text-amber-300">0</span>].Message.Content
+        };
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Over the wire: sits directly above the language examples it introduces -->
+        <div class="mt-16 grid items-start gap-x-10 gap-y-4 lg:grid-cols-2">
+            <h3 class="text-xl font-bold text-slate-900 lg:col-span-2 dark:text-white">Or over the wire, from anywhere</h3>
+            <p class="leading-7 text-slate-600 dark:text-slate-400">
+                The gateway speaks OpenAI's wire format at
+                <code class="font-mono text-xs text-sky-700 dark:text-sky-400">/v1/chat/completions</code>, so existing
+                clients just work. And because the request is a ServiceStack API,
+                <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-sky-600 hover:underline dark:text-sky-400">Add ServiceStack Reference</a>
+                generates typed DTOs for it - no hand-written JSON, in 15 languages.
+            </p>
+            <p class="leading-7 text-slate-600 dark:text-slate-400">
+                Same Bearer API Key as the Chat UI, so a script gets the same approved models and lands in the same
+                accounting as everyone else.
+            </p>
+        </div>
+
+        <!-- ── Pick a language, see the call ── -->
+        <div id="ai-langs" class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex flex-wrap gap-x-10 gap-y-6">
+                <div>
+                    <div class="mb-3 font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400">.NET</div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" class="lang-btn" data-lang="csharp"><img src="/img/langs/csharp.svg" alt=""><span>C#</span></button>
+                        <button type="button" class="lang-btn" data-lang="fsharp"><img src="/img/langs/fsharp.svg" alt=""><span>F#</span></button>
+                        <button type="button" class="lang-btn" data-lang="vbnet"><img src="/img/langs/vbnet.svg" alt=""><span>VB.NET</span></button>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3 font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400">Web</div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" class="lang-btn" data-lang="typescript"><img src="/img/langs/typescript.svg" alt=""><span>TypeScript</span></button>
+                        <button type="button" class="lang-btn" data-lang="mjs"><img src="/img/langs/mjs.svg" alt=""><span>JS</span></button>
+                        <button type="button" class="lang-btn" data-lang="python"><img src="/img/langs/python.svg" alt=""><span>Python</span></button>
+                        <button type="button" class="lang-btn" data-lang="php"><img src="/img/langs/php.svg" alt=""><span>PHP</span></button>
+                        <button type="button" class="lang-btn" data-lang="ruby"><img src="/img/langs/ruby.svg" alt=""><span>Ruby</span></button>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3 font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400">Mobile</div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" class="lang-btn" data-lang="swift"><img src="/img/langs/swift.svg" alt=""><span>Swift</span></button>
+                        <button type="button" class="lang-btn" data-lang="java"><img src="/img/langs/java.svg" alt=""><span>Java</span></button>
+                        <button type="button" class="lang-btn" data-lang="kotlin"><img src="/img/langs/kotlin.svg" alt=""><span>Kotlin</span></button>
+                        <button type="button" class="lang-btn" data-lang="dart"><img src="/img/langs/dart.svg" alt=""><span>Dart</span></button>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3 font-mono text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400">Systems</div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" class="lang-btn" data-lang="go"><img src="/img/langs/go.svg" alt=""><span>Go</span></button>
+                        <button type="button" class="lang-btn" data-lang="rust"><img src="/img/langs/rust.svg" alt=""><span>Rust</span></button>
+                        <button type="button" class="lang-btn" data-lang="zig"><img src="/img/langs/zig.svg" alt=""><span>Zig</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 overflow-hidden rounded-xl bg-slate-900 shadow-xl ring-1 ring-white/10">
+                <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+                    <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+                    <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                    <div id="ai-lang-file" class="ml-2 font-mono text-xs text-slate-500">Program.cs</div>
+                    <button type="button" id="ai-lang-copy"
+                        class="ml-auto rounded px-2 py-1 font-mono text-[11px] text-slate-400 transition-colors hover:bg-white/10 hover:text-slate-200">
+                        Copy
+                    </button>
+                </div>
+                <div id="ai-lang-code" class="overflow-x-auto px-5 py-4 text-[13px] leading-6">
+                    <p class="font-mono text-xs text-slate-500">Loading examples&hellip;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── Everything else ───────────────────────── -->
+<div class="border-t border-slate-200 bg-white py-20 dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">And the rest of it</h2>
+            <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">
+                The same Chat UX as <a href="https://llmspy.org" class="text-sky-600 hover:underline dark:text-sky-400">llms.py</a>,
+                re-implemented as a ServiceStack plugin on Identity Auth, OrmLite and your App_Data folder.
+            </p>
+        </div>
+
+        <div class="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Text, image &amp; audio</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Chat, generate images, synthesize and transcribe speech - from whichever providers you've enabled.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Agents &amp; system prompts</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Purpose-built agent profiles and a library of system prompts, editable per user.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Skills</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Anthropic-style skill packages, installable per user or shared across the organization.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Gemini File Search</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Build document stores and ground answers on them - RAG without standing up a vector database.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Projects</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Per-user working folders that the filesystem tools are sandboxed to while a project is active.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Code execution, opt-in</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Python, TypeScript, JavaScript and C# run in a temp directory with a stripped environment - off by default.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Media gallery</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Everything uploaded or generated, deduplicated by content hash and browsable per user.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">OpenAI-compatible API</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Existing clients point at <code class="font-mono text-xs">/v1/chat/completions</code> and keep working.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900 dark:text-white">Your database</h3>
+                <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-400">Threads and accounting persist through OrmLite to any supported RDBMS. Schema updates apply on startup.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── CTA ───────────────────────── -->
+<div class="border-t border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/40">
+    <div class="mx-auto max-w-3xl px-6 text-center lg:px-8">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+            Add it to an App you already run
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+            Add the package, register the plugin, set the provider API keys you want to use, and browse to
+            <code class="font-mono text-sky-700 dark:text-sky-400">/chat</code>.
+        </p>
+        <div class="mt-8 flex justify-center">
+            <a href="https://docs.servicestack.net/ai-chat" class="rounded-md bg-sky-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-sky-500">
+                Read the Docs
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ───────────────────────── Lightbox ───────────────────────── -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+    <div class="lb-backdrop" data-lb-dismiss></div>
+    <button type="button" class="lb-btn lb-close" data-lb-dismiss aria-label="Close (Esc)">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+    <button type="button" class="lb-btn lb-prev" data-lb-prev aria-label="Previous screenshot">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button type="button" class="lb-btn lb-next" data-lb-next aria-label="Next screenshot">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+    <figure class="lb-fig">
+        <img class="lb-img" id="lb-img" src="" alt="">
+        <figcaption class="lb-cap" id="lb-cap"></figcaption>
+        <div class="lb-count" id="lb-count"></div>
+    </figure>
+</div>
+
+<script>
+(function () {
+    // Every screenshot on the page, matched by path so new ones are picked up automatically
+    var shots = Array.prototype.slice.call(
+        document.querySelectorAll('img[src^="/img/pages/ai/"]'));
+    if (!shots.length) return;
+
+    var lb = document.getElementById('lightbox'),
+        img = document.getElementById('lb-img'),
+        cap = document.getElementById('lb-cap'),
+        count = document.getElementById('lb-count'),
+        prevBtn = lb.querySelector('[data-lb-prev]'),
+        nextBtn = lb.querySelector('[data-lb-next]'),
+        closeBtn = lb.querySelector('.lb-close'),
+        index = 0, lastFocus = null;
+
+    // Progressive enhancement: only make them look and behave clickable once JS is running
+    shots.forEach(function (el, i) {
+        el.classList.add('zoomable');
+        el.setAttribute('role', 'button');
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('aria-label', 'View larger: ' + (el.alt || 'screenshot'));
+        el.addEventListener('click', function () { open(i); });
+        el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+    });
+
+    function show(i) {
+        index = (i + shots.length) % shots.length;
+        var el = shots[index];
+        img.src = el.currentSrc || el.src;
+        img.alt = el.alt || '';
+        cap.textContent = el.alt || '';
+        count.textContent = (index + 1) + ' / ' + shots.length;
+    }
+
+    function open(i) {
+        lastFocus = document.activeElement;
+        show(i);
+        lb.setAttribute('open', '');
+        document.body.classList.add('lb-open');
+        closeBtn.focus();
+    }
+
+    function close() {
+        lb.removeAttribute('open');
+        document.body.classList.remove('lb-open');
+        img.src = '';
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    var single = shots.length < 2;
+    if (single) {
+        prevBtn.classList.add('lb-hidden');
+        nextBtn.classList.add('lb-hidden');
+    }
+
+    Array.prototype.forEach.call(lb.querySelectorAll('[data-lb-dismiss]'), function (el) {
+        el.addEventListener('click', close);
+    });
+    prevBtn.addEventListener('click', function () { show(index - 1); });
+    nextBtn.addEventListener('click', function () { show(index + 1); });
+
+    document.addEventListener('keydown', function (e) {
+        if (!lb.hasAttribute('open')) return;
+        if (e.key === 'Escape') { e.preventDefault(); close(); }
+        else if (e.key === 'ArrowLeft' && !single) { e.preventDefault(); show(index - 1); }
+        else if (e.key === 'ArrowRight' && !single) { e.preventDefault(); show(index + 1); }
+        else if (e.key === 'Tab') {
+            // keep focus inside the dialog while it's open
+            var focusable = Array.prototype.filter.call(
+                lb.querySelectorAll('button'),
+                function (b) { return !b.classList.contains('lb-hidden'); });
+            if (!focusable.length) return;
+            var first = focusable[0], last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+    });
+})();
+</script>
+
+<script type="module">
+// Reuses the same source examples the home page shows, so there's one copy to keep current
+import { openAi, langFiles } from "/mjs/components/OpenAiChatLangs.mjs"
+
+const root = document.getElementById('ai-langs')
+if (root) {
+    const codeEl = document.getElementById('ai-lang-code')
+    const fileEl = document.getElementById('ai-lang-file')
+    const copyBtn = document.getElementById('ai-lang-copy')
+    const buttons = Array.prototype.slice.call(root.querySelectorAll('.lang-btn'))
+    let current = 'csharp'
+
+    function select(lang) {
+        if (!openAi.html[lang]) return
+        current = lang
+        codeEl.innerHTML = openAi.html[lang]
+        fileEl.textContent = langFiles[lang] || ''
+        buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)))
+    }
+
+    buttons.forEach(b => b.addEventListener('click', () => select(b.dataset.lang)))
+
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText((openAi.code[current] || '').trim())
+            copyBtn.textContent = 'Copied'
+            setTimeout(() => copyBtn.textContent = 'Copy', 2000)
+        } catch (e) {
+            console.error('Copy failed', e)
+        }
+    })
+
+    select(current)
+}
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2024</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
