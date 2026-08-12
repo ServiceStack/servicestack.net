@@ -9,8 +9,10 @@ import VueComponentGallery from "./components/VueComponentGallery.mjs"
 import VueComponentLibrary from "./components/VueComponentLibrary.mjs"
 import ProjectTemplate from "./components/ProjectTemplate.mjs"
 import ProjectCreator from "./components/ProjectCreator.mjs"
+import TextBlock from "./components/TextBlock.mjs"
 import { PagingNav, FileLayout, ApiReference } from "./components/Docs.mjs"
 import VibeTemplate from "../posts/components/VibeTemplate.mjs"
+import Screenshot from "../posts/components/Screenshot.mjs"
 import ScreenshotsGallery from "../posts/components/ScreenshotsGallery.mjs"
 
 let client = null, Apps = []
@@ -59,10 +61,12 @@ const Components = {
     VueComponentLibrary,
     ProjectTemplate,
     ProjectCreator,
+    TextBlock,
     PagingNav,
     FileLayout,
     ApiReference,
     VibeTemplate,
+    Screenshot,
     ScreenshotsGallery,
 }
 const CustomElements = [
