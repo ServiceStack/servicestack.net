@@ -138,6 +138,10 @@ export class MetadataPropertyType {
     allowableMin;
     allowableMax;
     attributes;
+    uploadTo;
+    input;
+    format;
+    ref;
     constructor(init) { Object.assign(this, init); }
 }
 export class MetadataType {
@@ -148,6 +152,8 @@ export class MetadataType {
     implements;
     displayType;
     description;
+    notes;
+    icon;
     isNested;
     isEnum;
     isEnumInt;
@@ -163,6 +169,63 @@ export class MetadataType {
     enumDescriptions;
     meta;
     constructor(init) { Object.assign(this, init); }
+}
+export class ImageInfo {
+    svg;
+    uri;
+    alt;
+    cls;
+}
+export class InputInfo {
+    id;
+    name;
+    type;
+    value;
+    placeholder;
+    help;
+    label;
+    title;
+    size;
+    pattern;
+    readOnly;
+    required;
+    disabled;
+    autocomplete;
+    autofocus;
+    min;
+    max;
+    step;
+    minLength;
+    maxLength;
+    accept;
+    capture;
+    multiple;
+    allowableValues;
+    allowableEntries;
+    options;
+    ignore;
+    css;
+    meta;
+}
+export class FormatInfo {
+    method;
+    options;
+    locale;
+}
+export class RefInfo {
+    model;
+    selfId;
+    refId;
+    refLabel;
+}
+export class KeyValuePair {
+    key;
+    value;
+}
+export class FieldCss {
+    field;
+    input;
+    label;
 }
 export class NewInstanceResolver {
     tryResolve(ctor) {
@@ -745,8 +808,6 @@ export class JsonServiceClient {
     static toBase64;
     constructor(baseUrl = "/") {
         this.baseUrl = baseUrl;
-        this.replyBaseUrl = combinePaths(baseUrl, "json", "reply") + "/";
-        this.oneWayBaseUrl = combinePaths(baseUrl, "json", "oneway") + "/";
         this.mode = "cors";
         this.credentials = "include";
         this.headers = new Headers();
@@ -754,6 +815,7 @@ export class JsonServiceClient {
         this.manageCookies = typeof document == "undefined"; //because node-fetch doesn't
         this.cookies = {};
         this.enableAutoRefreshToken = true;
+        this.basePath = 'api';
     }
     setCredentials(userName, password) {
         this.userName = userName;
@@ -769,9 +831,6 @@ export class JsonServiceClient {
             this.oneWayBaseUrl = combinePaths(this.baseUrl, "json", "oneway") + "/";
         }
         else {
-            if (path[0] != '/') {
-                path = '/' + path;
-            }
             this.replyBaseUrl = combinePaths(this.baseUrl, path) + "/";
             this.oneWayBaseUrl = combinePaths(this.baseUrl, path) + "/";
         }
@@ -1053,7 +1112,7 @@ export class JsonServiceClient {
                     let jwtRequest = this.createRequest({ method: HttpMethods.Post, request: jwtReq, args: null, url });
                     return fetch(url, jwtRequest)
                         .then(r => this.createResponse(r, jwtReq).then(jwtResponse => {
-                        this.bearerToken = jwtResponse.accessToken || null;
+                        this.bearerToken = jwtResponse?.accessToken || null;
                         return resendRequest();
                     }))
                         .catch(res => {
@@ -1134,6 +1193,7 @@ export class JsonApiClient {
         let client = new JsonServiceClient(baseUrl).apply(c => {
             c.basePath = "/api";
             c.headers = new Headers(); //avoid pre-flight CORS requests
+            c.enableAutoRefreshToken = false; // Use JWT Cookies by default
             if (f) {
                 f(c);
             }
@@ -1142,9 +1202,9 @@ export class JsonApiClient {
     }
 }
 export function getMethod(request, method) {
-    return (method ?? typeof request.getMethod == "function")
+    return method ?? (typeof request.getMethod == "function"
         ? request.getMethod()
-        : HttpMethods.Post;
+        : HttpMethods.Post);
 }
 export function getResponseStatus(e) {
     return e.responseStatus ?? e.ResponseStatus ??
@@ -1201,7 +1261,7 @@ export function createErrorStatus(message, errorCode = 'Exception') {
 export function createFieldError(fieldName, message, errorCode = 'Exception') {
     return new ResponseStatus({ errors: [new ResponseError({ fieldName, errorCode, message })] });
 }
-export function isFormData(body) { return typeof window != "undefined" && body instanceof FormData; }
+export function isFormData(body) { return body instanceof FormData; }
 function createErrorResponse(errorCode, message, type = null) {
     const error = apply(new ErrorResponse(), e => {
         if (type != null)
@@ -1222,34 +1282,61 @@ export function createError(errorCode, message, fieldName) {
         })
     });
 }
-export function toCamelCase(s) { return !s ? s : s.charAt(0).toLowerCase() + s.substring(1); }
-export function toPascalCase(s) { return !s ? s : s.charAt(0).toUpperCase() + s.substring(1); }
-export function toKebabCase(s) { return (s || '').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(); }
+export function toPascalCase(s) {
+    if (!s)
+        return '';
+    const isAllCaps = s.match(/^[A-Z0-9_]+$/);
+    if (isAllCaps) {
+        const words = s.split('_');
+        return words.map(x => x[0].toUpperCase() + x.substring(1).toLowerCase()).join('');
+    }
+    if (s.includes('_')) {
+        return s.split('_').filter(x => x[0]).map(x => x[0].toUpperCase() + x.substring(1)).join('');
+    }
+    return s.charAt(0).toUpperCase() + s.substring(1);
+}
+export function toCamelCase(s) {
+    s = toPascalCase(s);
+    if (!s)
+        return '';
+    return s.charAt(0).toLowerCase() + s.substring(1);
+}
+export function toKebabCase(s) {
+    if (!s || s.length <= 1)
+        return s.toLowerCase();
+    return s
+        .replace(/([A-Z0-9])/g, '-$1')
+        .toLowerCase()
+        .replace(/^-/, '')
+        .replace(/-+/g, '-');
+}
 export function map(o, f) { return o == null ? null : f(o); }
+export function camelCaseAny(o) {
+    if (!o || !(o instanceof Object) || Array.isArray(o))
+        return o;
+    let to = {};
+    for (let k in o) {
+        if (o.hasOwnProperty(k)) {
+            const key = toCamelCase(k);
+            const val = o[k];
+            if (Array.isArray(val))
+                to[key] = val.map(x => camelCaseAny(x));
+            else if (val instanceof Object)
+                to[key] = camelCaseAny(val);
+            else
+                to[key] = val;
+        }
+    }
+    return to;
+}
 export function sanitize(status) {
+    if (!sanitize)
+        return sanitize;
     if (status.responseStatus)
         return status;
     if (status.errors)
         return status;
-    let to = {};
-    for (let k in status) {
-        if (status.hasOwnProperty(k)) {
-            if (status[k] instanceof Object)
-                to[toCamelCase(k)] = sanitize(status[k]);
-            else
-                to[toCamelCase(k)] = status[k];
-        }
-    }
-    to.errors = [];
-    if (status.Errors != null) {
-        for (let i = 0, len = status.Errors.length; i < len; i++) {
-            let o = status.Errors[i];
-            let err = {};
-            for (let k in o)
-                err[toCamelCase(k)] = o[k];
-            to.errors.push(err);
-        }
-    }
+    let to = camelCaseAny(status);
     return to;
 }
 export function nameOf(o) {
@@ -1362,7 +1449,11 @@ export function splitTitleCase(s) {
     to.push(s.substring(lastSplit, s.length));
     return to.filter(x => !!x);
 }
-export function humanify(s) { return !s || s.indexOf(' ') >= 0 ? s : ucFirst(splitTitleCase(s).join(' ')); }
+export function humanify(s) {
+    return !s || indexOfAny(s, [' ', ',', '.', ':', '-']) >= 0
+        ? s
+        : ucFirst(splitTitleCase(s).join(' '));
+}
 export function queryString(url) {
     if (!url || url.indexOf('?') === -1)
         return {};
@@ -1430,7 +1521,7 @@ export function appendQueryString(url, args) {
     for (let k in args) {
         if (args.hasOwnProperty(k)) {
             let val = args[k];
-            if (typeof val == 'undefined')
+            if (typeof val == 'undefined' || typeof val == 'function' || typeof val == 'symbol')
                 continue;
             url += url.indexOf("?") >= 0 ? "&" : "?";
             url += k + (val === null ? '' : "=" + qsValue(val));
@@ -1756,13 +1847,18 @@ function remClass(el, cls) {
                 ? el.className = el.className.replace(/(\s|^)someclass(\s|$)/, ' ')
                 : null;
 }
+export function isElement(el) {
+    return typeof window != "undefined" && (el instanceof window.Element || el == window.document);
+}
 export function $1(sel, el) {
     return typeof sel === "string" ? (el || document).querySelector(sel) : sel || null;
 }
 export function $$(sel, el) {
-    return typeof sel === "string"
-        ? Array.prototype.slice.call((el || document).querySelectorAll(sel))
-        : Array.isArray(sel) ? sel : [sel];
+    if (typeof sel === "string")
+        return Array.from((el || typeof document != "undefined" ? document : null)?.querySelectorAll(sel) ?? []);
+    if (Array.isArray(sel))
+        return sel.flatMap(x => $$(x, el));
+    return [sel];
 }
 export function on(sel, handlers) {
     $$(sel).forEach(e => {
@@ -2243,20 +2339,34 @@ export function safeVarName(s) {
 }
 export function pick(o, keys) {
     const to = {};
-    for (const k in o) {
-        if (o.hasOwnProperty(k) && keys.indexOf(k) >= 0) {
+    Object.keys(o).forEach(k => {
+        if (keys.indexOf(k) >= 0) {
             to[k] = o[k];
         }
-    }
+    });
     return to;
 }
 export function omit(o, keys) {
     const to = {};
-    for (const k in o) {
-        if (o.hasOwnProperty(k) && keys.indexOf(k) < 0) {
+    if (!o)
+        return to;
+    Object.keys(o).forEach(k => {
+        if (keys.indexOf(k) < 0) {
             to[k] = o[k];
         }
-    }
+    });
+    return to;
+}
+export function omitEmpty(o) {
+    const to = {};
+    if (!o)
+        return to;
+    Object.keys(o).forEach(k => {
+        const v = o[k];
+        if (v != null && v !== '') {
+            to[k] = v;
+        }
+    });
     return to;
 }
 export function apply(x, fn) {
@@ -2814,27 +2924,6 @@ export function createBus() {
     return { subscribe, publish };
 }
 export class Inspect {
-    static async vars(obj) {
-        if (typeof process != 'object')
-            return;
-        let inspectVarsPath = process.env.INSPECT_VARS;
-        if (!inspectVarsPath || !obj)
-            return;
-        // resolve dynamic path to prevent ng webpack static analysis
-        const nodeModule = (m) => 'no' + 'de:' + `${m}`;
-        await import(nodeModule('fs')).then(async (fs) => {
-            await import(nodeModule('path')).then(path => {
-                let varsPath = inspectVarsPath.replace(/\\/g, '/');
-                if (varsPath.indexOf('/') >= 0) {
-                    let dir = path.dirname(varsPath);
-                    if (!fs.existsSync(dir)) {
-                        fs.mkdirSync(dir);
-                    }
-                }
-                fs.writeFileSync(varsPath, JSON.stringify(obj));
-            });
-        });
-    }
     static dump(obj) {
         let to = JSON.stringify(obj, null, 4);
         return to.replace(/"/g, '');
