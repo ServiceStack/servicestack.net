@@ -156,20 +156,8 @@
                 </a>
             </div>
 
-            <div class="mx-auto mt-10 max-w-2xl overflow-hidden rounded-xl bg-slate-900 text-left shadow-2xl ring-1 ring-white/10">
-                <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
-                    <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
-                    <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
-                    <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
-                    <div class="ml-2 font-mono text-xs text-slate-500">MyApp.csproj</div>
-                </div>
-                <pre class="!bg-transparent overflow-x-auto px-4 py-4 font-mono text-sm leading-6 text-slate-300"><code><span class="text-emerald-300">&lt;PackageReference</span> <span class="text-sky-300">Include</span>=<span class="text-amber-300">"ServiceStack.AI.Chat"</span> <span class="text-sky-300">Version</span>=<span class="text-amber-300">"10.*"</span> <span class="text-emerald-300">/&gt;</span></code></pre>
-                <div class="border-t border-white/5 px-4 py-2.5 font-mono text-xs text-slate-500">Configure.AI.cs</div>
-                <pre class="!bg-transparent overflow-x-auto px-4 py-4 font-mono text-sm leading-6 text-slate-300"><code>services.<span class="text-sky-400">AddPlugin</span>(<span class="text-purple-400">new</span> <span class="text-emerald-300">ChatFeature</span>());</code></pre>
-                <div class="border-t border-white/5 px-4 py-2.5 font-mono text-xs text-slate-500">
-                    → browse to <span class="text-slate-300">/chat</span>
-                </div>
-            </div>
+            <div class="my-8 mx-auto max-w-lg" data-component="ShellCommand" data-props="{text:'npx add-in chat'}"></div>
+
         </div>
     </div>
 
