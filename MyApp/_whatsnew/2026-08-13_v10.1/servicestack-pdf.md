@@ -1,6 +1,6 @@
 ---
 title: PDF Studio - from AI design to production PDFs
-url: /posts/servicestack-pdf
+url: /pdf
 image: /img/posts/servicestack-pdf/bg.webp
 order: 5
 ---

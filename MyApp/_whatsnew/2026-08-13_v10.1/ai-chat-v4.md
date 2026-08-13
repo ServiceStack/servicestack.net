@@ -1,6 +1,6 @@
 ---
 title: AI Chat v4 - a complete AI platform inside your ServiceStack App
-url: /posts/ai-chat-v4
+url: /chat
 image: /img/posts/ai-chat-v4/bg.webp
 order: 1
 ---

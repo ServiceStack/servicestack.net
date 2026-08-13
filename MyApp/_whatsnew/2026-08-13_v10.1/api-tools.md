@@ -1,6 +1,6 @@
 ---
 title: API Tools - expose your ServiceStack APIs to LLMs & MCP
-url: /posts/api-tools
+url: https://docs.servicestack.net/chat/api-tools
 image: /img/posts/api-tools/bg.webp
 order: 2
 ---
