@@ -6,13 +6,13 @@ export default {
     template:`
         <div class="not-prose my-8">
             <!-- Gallery Grid -->
-            <div :class="gridClass || 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'">
+            <div :class="galleryClass">
                 <div v-for="(imageUrl, title) in images" :key="title"
                      class="flex flex-col items-center">
                     
                     <!-- Clickable Image Container -->
                     <div @click="openLightbox(imageUrl, title)"
-                         class="relative group cursor-pointer transition-transform duration-300 transform hover:scale-[1.01]">
+                         class="relative group w-full cursor-pointer transition-transform duration-300 transform hover:scale-[1.01]">
                         
                         <!-- Image -->
                         <img :src="imageUrl" 
@@ -101,6 +101,12 @@ export default {
     computed: {
         imageKeys() {
             return Object.keys(this.images || {})
+        },
+        galleryClass() {
+            if (this.gridClass) return this.gridClass
+            return this.imageKeys.length === 2
+                ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
+                : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
         }
     },
     methods: {

@@ -494,7 +494,7 @@ export default {
           {{group.name}}
         </div>
         <div class="flex flex-wrap justify-center gap-3">
-          <div v-for="lang in group.langs" :key="lang" v-href="{ lang }" :title="'Usage from ' + langs[lang]"
+          <div v-for="lang in group.langs" :key="lang" @click="selectLanguage(lang)" :title="'Usage from ' + langs[lang]"
               :class="['group flex w-30 cursor-pointer select-none flex-col items-center justify-center gap-y-3 rounded-xl px-2 py-5 ring-1 transition',
                 lang == selectedLang
                   ? 'bg-indigo-50 text-indigo-700 ring-2 ring-indigo-600 dark:bg-indigo-950 dark:text-indigo-200'
@@ -576,6 +576,18 @@ export default {
         const copied = ref(false)
         const selectedLang = computed(() => langs[props.routes?.lang] ? props.routes.lang : 'csharp')
 
+        function selectLanguage(lang) {
+            if (!langs[lang] || lang === selectedLang.value) return
+
+            // Keep the current post/whatsnew route and change only its language query.
+            // v-href resolves against the site's content route, which sends embedded
+            // whatsnew components back to the home page.
+            const url = new URL(window.location.href)
+            url.searchParams.set('lang', lang)
+            history.pushState(null, '', url)
+            if (props.routes) props.routes.lang = lang
+        }
+
         async function copy() {
             await navigator.clipboard.writeText(openAi.code[selectedLang.value].trim())
             copied.value = true
@@ -591,6 +603,6 @@ export default {
         }
 
         return { langs, langGroups, langFiles, langCount:Object.keys(langs).length,
-                 openAi, selectedLang, copied, copy, iconClass }
+                 openAi, selectedLang, copied, copy, iconClass, selectLanguage }
     }
 }
