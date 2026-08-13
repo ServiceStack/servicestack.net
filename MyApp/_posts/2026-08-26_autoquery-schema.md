@@ -9,48 +9,56 @@ draft: true
 
 ## Every AutoQuery model is now a complete App
 
-ServiceStack's [AutoQuery](/autoquery/rdbms) can create a rich, typed query API from a Request DTO and can generate complete CRUD APIs directly from your data models. It has long been one of the fastest ways to servicify an existing database or add production-ready data APIs to a new application.
-
-Now those APIs automatically power complete data management UIs. Where an [API Schema](/posts/api-schema) describes how one `/api/{RequestDto}` endpoint can be rendered and executed, an AutoQuery Schema describes the whole data capability: its Query API, returned model and every authorized Create, Update, Patch, Delete or Save API.
-
-Available in .NET 8+ ServiceStack Apps, the new schema routes and UIs are registered automatically with ServiceStack's Metadata feature.
-
-Open:
-
-```
-/auto
-```
-
-to browse every AutoQuery data model available to the current user, then select a model to open its working CRUD App:
-
-```
-/auto/{ModelName}
-```
-
-The page provides a responsive results grid, paging, column selection, sorting, advanced filters, persistent query preferences, Create and Edit forms, reference lookups and guarded Delete actions.
-
-Just as with ServiceStack's new [API Schemas](/posts/api-schema), add `.json` to retrieve the portable schema powering the UI:
-
-```
-/auto/{ModelName}.json
-```
-
-The integration is deliberately small: fetch that one document and give it to the generic `AutoQuerySchema` component. It uses the embedded `/api/{RequestDto}` definitions to query and mutate the data, rendering the grid, filters, paging, preferences, forms, lookups and guarded actions itself.
-
-Those embedded operation schemas are reusable beyond the CRUD page. They also let **AI.Chat generate editable Request previews and Approval UIs on the fly** whenever an AI proposes an AutoQuery Create, Update, Patch, Delete or Save operation—without requiring a custom Chat component for each API.
-
-```
-<AutoQuerySchema :schema="schema" />
-```
-
-No generated source files and no application-specific frontend are required. Your AutoQuery APIs and data models already contain everything needed to assemble the App.
-
-<live-auto-query-example></live-auto-query-example>
+If your App has AutoQuery APIs, open `/auto` and you already have an admin application: a searchable list of your data models, and behind each one a working CRUD app with a results grid, paging, sorting, filters, saved preferences, Create and Edit forms, reference lookups and guarded Delete actions.
 
 <screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4" :images="{
   'Searchable data model gallery': '/img/posts/autoquery-schema/auto-gallery.webp',
   'Populated Booking CRUD grid': '/img/posts/autoquery-schema/booking-grid.webp',
 }"></screenshots-gallery>
+
+No frontend project, no generated source files, no scaffolding step. Every action it offers is one the signed-in user is authorized to perform, because the page is assembled at runtime from your APIs and the current session.
+
+That changes what a data UI costs. A back-office screen that would have been a sprint of grid, form, validation, lookup and permission work is now the thing you get *before* deciding whether a bespoke UI is worth building.
+
+ServiceStack's [AutoQuery](https://docs.servicestack.net/autoquery/rdbms) has long been one of the fastest ways to servicify an existing database or add production-ready data APIs to a new application. Where an [API Schema](/posts/api-schema) describes how one `/api/{RequestDto}` endpoint can be rendered and executed, an AutoQuery Schema describes the whole data capability: its Query API, returned model and every authorized Create, Update, Patch, Delete or Save API.
+
+Available in .NET 8+ ServiceStack Apps, the new schema routes and UIs are registered automatically with ServiceStack's Metadata feature:
+
+```text
+/auto
+/auto/{ModelName}
+```
+
+Just as with ServiceStack's new [API Schemas](/posts/api-schema), add `.json` to retrieve the portable schema powering the UI:
+
+```text
+/auto/{ModelName}.json
+```
+
+The integration is deliberately small: fetch that one document and give it to the generic `AutoQuerySchema` component. It uses the embedded `/api/{RequestDto}` definitions to query and mutate the data, rendering the grid, filters, paging, preferences, forms, lookups and guarded actions itself.
+
+```html
+<AutoQuerySchema :schema="schema" />
+```
+
+Those embedded operation schemas are reusable beyond the CRUD page. Because each write operation carries its own [API Schema](/posts/api-schema), AI Chat can render an editable preview and approval form whenever a Model proposes an AutoQuery Create, Update, Patch, Delete or Save — so an assistant that can change your data still puts the exact record in front of a person first, for every model, with no per-API Chat component to write.
+
+<live-auto-query-example></live-auto-query-example>
+
+## Where this fits alongside Locode
+
+ServiceStack already ships [Locode](https://docs.servicestack.net/locode/), an Auto UI over the same AutoQuery APIs — so the obvious question is which to reach for.
+
+| | `/auto` | Locode | Custom UI |
+| --- | --- | --- | --- |
+| **Best for** | Embedding data UIs in your own App | A complete standalone admin App | Product surfaces users live in |
+| **Loads** | One model's schema at a time | The App's full metadata | Whatever you build |
+| **Customization** | Compose the Vue/React components yourself | Locode's customization model | Total |
+| **Runs where** | Built-in page *or* inside your App | Built-in page | Your App |
+
+They aren't competing and neither is going away. Locode remains the fuller standalone back-office experience. `/auto` is the schema-driven equivalent that scales to very large API surfaces and — the part that matters most — can be *taken apart*: the grid, the forms, the lookups and the field inputs are components you can drop into your own application's navigation and design system.
+
+If Locode already does what you need, keep using it.
 
 ## Browse your data APIs at `/auto`
 
@@ -78,7 +86,7 @@ An ordinary API Schema pairs one `/schema/{RequestDto}.json` description with on
 
 `/auto/Booking.json` can include:
 
-```
+```json
 {
   "name": "Booking",
   "title": "Booking",
@@ -142,7 +150,7 @@ The results grid calls the schema's Query API and provides:
 
 Query state is kept in the URL, so a filtered view can be bookmarked, refreshed or shared:
 
-```
+```text
 /auto/Booking?RoomType=Queen&orderBy=-StartDate&skip=20
 ```
 
@@ -223,7 +231,7 @@ These conventions let AutoQuery Schema work with generated CRUD APIs, hand-writt
 
 The built-in `/auto/{Model}` page is a reference host around reusable `@servicestack/vue` components. Applications can fetch the same schema and embed the full CRUD experience in their own navigation and design system:
 
-```
+```html
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { AutoQuerySchema } from '@servicestack/vue'
@@ -243,16 +251,38 @@ onMounted(async () => {
 </template>
 ```
 
-`AutoQuerySchema` deliberately renders no surrounding page chrome, leaving the host application free to provide its own title, navigation and layout. It composes `SchemaResults`, `SchemaInput` and the standard ServiceStack Vue inputs, dialogs, error summaries and confirmation controls.
+`AutoQuerySchema` deliberately renders no surrounding page chrome, leaving the host application free to provide its own title, navigation and layout. It composes `SchemaResults`, `SchemaInput` and the standard ServiceStack inputs, dialogs, error summaries and confirmation controls.
 
 As in ServiceStack's Vue templates, the host installs the `ServiceStackVue` plugin and a Vue Router instance so filters, sorting, paging and the selected row can remain synchronized with the URL.
 
-For more specialized experiences, applications can use the lower-level components independently:
+### The same App in React
+
+`@servicestack/react` ships the same components with the same names, so a React App embeds the identical CRUD experience:
+
+```tsx
+import { useEffect, useState } from 'react'
+import { AutoQuerySchema } from '@servicestack/react'
+
+export default function Bookings() {
+    const [schema, setSchema] = useState(null)
+
+    useEffect(() => {
+        fetch('/auto/Booking.json').then(r => r.json()).then(setSchema)
+    }, [])
+
+    return schema ? <AutoQuerySchema schema={schema} /> : null
+}
+```
+
+This is the payoff of publishing a portable contract instead of generating a frontend: the server didn't need to know which framework was asking. Teams on Vue and teams on React consume the same `/auto/{Model}.json` and get native components in their own ecosystem, with no second UI schema to keep in step.
+
+For more specialized experiences, both libraries expose the lower-level components independently:
 
 - `SchemaResults` for a schema-powered query grid.
 - `SchemaInput` for individual generated fields.
 - `JsonSchemaForm` for arbitrary nested JSON Schema forms.
 - `SchemaLookup` for reference pickers.
+- `SchemaGrid` and `SortableColumn` for building a custom results view.
 
 The same schema can therefore power the built-in page, a complete embedded CRUD tool or a custom workflow that only reuses selected pieces.
 
@@ -275,7 +305,7 @@ The server publishes what can be done. Clients decide how it should look.
 
 AutoQuery already makes it possible to expose an existing database with very little code. For example:
 
-```
+```csharp
 [Tag("Bookings")]
 [Route("/bookings", "GET")]
 public class QueryBookings : QueryDb<Booking> { }
@@ -329,3 +359,26 @@ Start with your data model. Add focused AutoQuery APIs. Open `/auto`.
 The App is already there.
 
 <screenshot src="/img/posts/autoquery-schema/autoquery-overview.webp" title="AutoQuery schema overview"></screenshot>
+
+## Get Started
+
+Nothing to install. `/auto` is registered with the Metadata feature, so any .NET 8+ ServiceStack App with AutoQuery APIs already serves it.
+
+Run your App and open:
+
+<text-block :rows="['/auto','/auto/{ModelName}','/auto/{ModelName}.json']"></text-block>
+
+Every model with a Query API the signed-in user can access appears immediately. To get more out of the generated App, improve the APIs rather than the UI — `[Description]`, validation attributes, `[Input]`, `[Ref]` and `[Intl]`/`[Format]` all show up in the grid and forms.
+
+To embed the components in your own App:
+
+<shell-command class="mb-2">npm install @servicestack/vue</shell-command>
+<shell-command>npm install @servicestack/react</shell-command>
+
+And to withhold the built-in pages whilst keeping the JSON schemas your own components and AI Chat consume:
+
+```csharp
+services.ConfigurePlugin<MetadataFeature>(feature => {
+    feature.DisableAutoQuerySchema = true;
+});
+```

@@ -9,11 +9,34 @@ draft: true
 
 ## Every API now comes with its own UI
 
-ServiceStack has always treated your typed Request and Response DTOs as the source of truth for your APIs. From those types it can generate routes, metadata, validation, native client DTOs, API Explorer forms and OpenAPI specifications without requiring developers to maintain parallel descriptions of the same service.
+Open `/schema` in any .NET 8+ ServiceStack App and you'll find a searchable index of every API the signed-in user can call. Open one and you get a working UI for it — form, validation, request preview, `curl` command, execution and response — with no code written and nothing installed.
 
-The new built-in **API Schema** support takes that philosophy further.
+<screenshot src="/img/posts/api-schema/api-schema-query-bookings.webp" title="A complete QueryBookings UI rendered and executed from its API Schema"></screenshot>
 
-Available in .NET 8+ ServiceStack Apps, these routes are registered with the existing Metadata feature and require no separate schema plugin or frontend project.
+The page isn't special. It fetches one small JSON document and hands it to a generic component:
+
+```html
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { ApiFormSchema } from '@servicestack/vue'
+
+const schema = ref()
+onMounted(async () =>
+    schema.value = await fetch('/schema/CreateCoffeeShopOrder.json').then(r => r.json()))
+</script>
+
+<template>
+  <ApiFormSchema v-if="schema" :schema="schema" />
+</template>
+```
+
+That's the whole integration — for that API, and every other one. The component never learns anything about `CreateCoffeeShopOrder`; the fetched schema supplies the fields, controls, validation, HTTP method and execution URL.
+
+It is also what lets **AI Chat render a trustworthy approval form for any API a Model proposes calling**, without anyone building a Chat component per Request DTO.
+
+ServiceStack has always treated your typed Request and Response DTOs as the source of truth for your APIs. From those types it can generate routes, metadata, validation, native client DTOs, API Explorer forms and OpenAPI specifications without requiring developers to maintain parallel descriptions of the same service. The new built-in **API Schema** support takes that philosophy further: the description is now portable, per-API, and enough on its own to build a UI from.
+
+These routes are registered with the existing Metadata feature and require no separate schema plugin or frontend project.
 
 :::{.not-prose .my-8 .overflow-hidden .rounded-2xl .border .border-slate-200 .bg-white .shadow-sm .dark:border-slate-700 .dark:bg-slate-900}
 <div class="border-b border-slate-200 px-5 py-4 dark:border-slate-700 sm:px-6">
@@ -40,8 +63,6 @@ These endpoints are natural complements. `/api/{RequestDto}` **executes** the AP
 
 That relationship is what makes the approach so elegant: fetch one small schema and pass it to the generic [`ApiFormSchema`](#powered-by-reusable-servicestackvue-components) component. The component can render the inputs, preview the HTTP request and `curl` command, invoke the API and display its response. The same component works for any Request DTO, so adding another API does not require adding another hand-built screen.
 
-Among other things, this is what lets **AI.Chat render trustworthy human-in-the-loop UIs on the fly for any API**. When an AI proposes an API call, it can use the Request DTO's schema to show the exact request in an editable preview and Approval UI. There is no API-specific Chat component to build: the schema supplies the fields, controls, validation and execution details needed by the same generic renderer.
-
 ### From machine-readable schema to executable UI
 
 Remove `.json` and the same endpoint becomes a complete, executable UI:
@@ -51,8 +72,6 @@ Remove `.json` and the same endpoint becomes a complete, executable UI:
 It renders a responsive form for the API, selects suitable controls for every property, validates user input, shows the exact HTTP request it will send, generates a copyable `curl` command, invokes the API and displays its response.
 
 <screenshot src="/img/posts/api-schema/api-schema-browser.webp" title="Search and discover every API available to the current user"></screenshot>
-
-<screenshot src="/img/posts/api-schema/api-schema-query-bookings.webp" title="A complete QueryBookings UI rendered and executed from its API Schema"></screenshot>
 
 No application UI needs to be written. No OpenAPI client needs to be installed. No separate schema needs to be maintained.
 
@@ -158,11 +177,7 @@ The schema is compact enough to retrieve on demand but expressive enough to powe
 
 ### The cost of loading everything up front
 
-ServiceStack's API Explorer at `/ui` was designed around the full `MetadataApp` document from `/metadata/app.json`. Loading one metadata graph for the entire application is convenient at smaller scales: the client receives every operation, Request DTO, Response DTO, data model and related type in one request, then can navigate between APIs without returning to the server.
-
-That all-or-nothing model becomes increasingly expensive in applications with thousands of APIs.
-
-The browser has to download, parse and retain metadata for every operation even when the user only wants to invoke one. The serialized metadata also needs to cross JavaScript boundaries during initialization. Customers with particularly large API surfaces could eventually hit JavaScript engine limits when large metadata strings were passed as function arguments, preventing API Explorer from loading regardless of how little of that metadata the current screen actually needed.
+ServiceStack's API Explorer at `/ui` loads the full `MetadataApp` document from `/metadata/app.json` — every operation, DTO, data model and related type — before it can show you one API. That is convenient at smaller scales and increasingly expensive at larger ones: the browser downloads, parses and retains metadata for the entire application to render a single form. Customers with particularly large API surfaces could eventually hit JavaScript engine limits during initialization, preventing API Explorer from loading at all.
 
 ### Load one focused schema at a time
 
@@ -349,6 +364,10 @@ That renders the form and its submit button. To show the request, `curl` command
 
 Nothing here is API-specific either. A page can render the full workbench, only the `curl` command, or just the form — the component computes the same values regardless of which the host chooses to display.
 
+`ApiFormSchema` also accepts a `client` for authenticated calls, `auto-execute` to run `GET` APIs on load, and `sync-url` to keep the current values in the address bar.
+
+If you want the entire workbench rather than the form, `ApiExplorerSchema` is the component the built-in `/schema/{RequestDto}` page is built from — it composes `ApiFormSchema` with the Request, Schema and Response panels shown in the screenshots above.
+
 This enables executable schema-driven forms inside your own Vue applications, portals, embedded administration screens and workflow builders. The server owns the contract; the UI decides how much surrounding experience it wants to provide.
 
 ### The same schema-driven UIs in Vue and React
@@ -531,8 +550,31 @@ An API should not require a developer to read its implementation before they can
 
 With the new schema endpoints, every ServiceStack API can explain its structure in JSON and demonstrate itself through a complete executable UI. The contract is available to code, the UI is available to people and the same schema can safely bridge AI intent into user-approved actions.
 
-Visit `/schema` in your ServiceStack App, choose an API and try it.
-
 Your existing APIs already contain the application knowledge. API Schemas make that knowledge portable.
 
 <screenshot src="/img/posts/api-schema/schema-overview.webp" title="API Schema UI overview"></screenshot>
+
+## Get Started
+
+There is nothing to install. API Schemas are part of the Metadata feature, so any .NET 8+ ServiceStack App already serves them.
+
+Run your App and open:
+
+<text-block :rows="['/schema','/schema/{RequestDto}','/schema.json','/schema/{RequestDto}.json']"></text-block>
+
+To embed the components in your own App, add the client library for your framework:
+
+<shell-command class="mb-2">npm install @servicestack/vue</shell-command>
+<shell-command>npm install @servicestack/react</shell-command>
+
+Both export `ApiFormSchema` and `JsonSchemaForm` with the same behavior, so the snippets above translate directly.
+
+If you'd rather not expose the pages in production, disable them without affecting the JSON contract used by AI Chat and your own components:
+
+```csharp
+services.ConfigurePlugin<MetadataFeature>(feature => {
+    feature.DisableApiSchema = true;
+});
+```
+
+The fastest way to see the value is to open `/schema` on an App you already have and search for an API you wrote months ago. Whatever descriptions and validation you gave it then are the UI you get now.

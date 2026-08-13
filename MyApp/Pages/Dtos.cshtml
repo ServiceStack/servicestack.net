@@ -1,0 +1,124 @@
+@page "/dtos"
+@attribute [RenderStatic]
+
+@{
+    ViewData["Title"] = "Native Types and Client Libraries for 15 Languages";
+    ViewData["Brand"] = "ServiceStack DTOs";
+}
+
+<section class="relative isolate overflow-hidden bg-slate-950 text-white">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(79,70,229,.32),transparent_32%),radial-gradient(circle_at_80%_35%,rgba(6,182,212,.2),transparent_30%)]"></div>
+    <div class="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent"></div>
+    <div class="mx-auto max-w-7xl px-6 pb-24 pt-20 lg:px-8 lg:pb-32 lg:pt-28">
+        <div class="mx-auto max-w-4xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-400/10 px-4 py-2 text-sm font-semibold text-indigo-200">
+                <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-400"></span></span>
+                Native typed APIs for every team
+            </div>
+            <h1 class="mt-8 text-balance text-5xl font-black tracking-tight sm:text-7xl lg:text-8xl">
+                One API.<br><span class="bg-gradient-to-r from-indigo-300 via-white to-cyan-300 bg-clip-text text-transparent">15 languages.</span>
+            </h1>
+            <p class="mx-auto mt-7 max-w-3xl text-pretty text-lg leading-8 text-slate-300 sm:text-xl">
+                Define your contract once. Give every developer clean native DTOs, an idiomatic feature-rich client, editor completion and compile-time confidence.
+            </p>
+            <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <a href="#quickstart" class="rounded-full bg-white px-7 py-3.5 text-base font-bold text-slate-950 shadow-xl shadow-indigo-950 transition hover:bg-cyan-50">Generate your DTOs</a>
+                <a href="#languages" class="rounded-full border border-white/20 px-7 py-3.5 text-base font-bold text-white transition hover:border-white/40 hover:bg-white/10">Explore all languages</a>
+            </div>
+        </div>
+        <div class="mx-auto mt-16 grid max-w-4xl grid-cols-1 divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[.05] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            <div class="px-6 py-5 text-center"><div class="text-3xl font-black">15</div><div class="mt-1 text-sm text-slate-400">native integrations</div></div>
+            <div class="px-6 py-5 text-center"><div class="text-3xl font-black">1</div><div class="mt-1 text-sm text-slate-400">source of truth</div></div>
+            <div class="px-6 py-5 text-center"><div class="text-3xl font-black">0</div><div class="mt-1 text-sm text-slate-400">hand-written SDKs</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white py-24 dark:bg-black sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid items-start gap-16 lg:grid-cols-2">
+            <div>
+                <p class="text-sm font-bold uppercase tracking-[.2em] text-indigo-600 dark:text-indigo-400">The contract is the product</p>
+                <h2 class="mt-4 text-balance text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">Stop rebuilding the same API for every platform.</h2>
+                <p class="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">Your ServiceStack Request DTO already knows its response type, route, HTTP method, validation and API metadata. Add ServiceStack Reference carries that intelligence into every client.</p>
+                <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">The result feels hand-built in every language: native naming and types, discoverable contracts, structured errors, authentication, AutoQuery, uploads, batch and one-way requests.</p>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-2xl border border-slate-200 p-6 dark:border-slate-800 dark:bg-slate-900/60"><div class="text-2xl">⌘</div><h3 class="mt-4 font-bold text-slate-950 dark:text-white">Native by design</h3><p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Idiomatic DTOs and clients that belong in each ecosystem.</p></div>
+                <div class="rounded-2xl border border-slate-200 p-6 dark:border-slate-800 dark:bg-slate-900/60"><div class="text-2xl">✓</div><h3 class="mt-4 font-bold text-slate-950 dark:text-white">Types end to end</h3><p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Completion while you build. Compiler feedback when contracts change.</p></div>
+                <div class="rounded-2xl border border-slate-200 p-6 dark:border-slate-800 dark:bg-slate-900/60"><div class="text-2xl">↻</div><h3 class="mt-4 font-bold text-slate-950 dark:text-white">Always in sync</h3><p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Refresh one generated file whenever the API evolves.</p></div>
+                <div class="rounded-2xl border border-slate-200 p-6 dark:border-slate-800 dark:bg-slate-900/60"><div class="text-2xl">⚡</div><h3 class="mt-4 font-bold text-slate-950 dark:text-white">Production capable</h3><p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Auth, rich errors, queries and uploads without boilerplate.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="quickstart" class="scroll-mt-20 bg-slate-50 py-24 dark:bg-slate-950 sm:py-32">
+    <div class="mx-auto max-w-6xl px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl text-center">
+            <p class="text-sm font-bold uppercase tracking-[.2em] text-cyan-600 dark:text-cyan-400">Two commands. Done.</p>
+            <h2 class="mt-4 text-balance text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">From running API to native types in under a minute.</h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">Pick your language. Install its client. Generate the complete API contract directly into your project.</p>
+        </div>
+        <div class="mt-12" data-component="/mjs/components/DtoQuickStart.mjs" data-props="{ url:'https://example.org' }"></div>
+    </div>
+</section>
+
+<section id="languages" class="scroll-mt-20 bg-white py-24 dark:bg-black sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+            <p class="text-sm font-bold uppercase tracking-[.2em] text-indigo-600 dark:text-indigo-400">A real contract, everywhere</p>
+            <h2 class="mt-4 text-balance text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">The world's most important API, in every language.</h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">Explore the same strongly typed OpenAI-compatible Chat Completions request across web, mobile, cloud and systems platforms.</p>
+        </div>
+        <div id="dtos-app" class="mt-16"><open-ai-chat></open-ai-chat></div>
+    </div>
+</section>
+
+<section class="bg-slate-950 py-24 text-white sm:py-32">
+    <div class="mx-auto max-w-5xl px-6 text-center lg:px-8">
+        <p class="text-sm font-bold uppercase tracking-[.2em] text-cyan-300">Build once. Reach everyone.</p>
+        <h2 class="mt-5 text-balance text-4xl font-black tracking-tight sm:text-6xl">Your API should speak your developer's language.</h2>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">Ship one contract to TypeScript websites, Swift and Kotlin apps, Python automations, Go services, Rust applications, Zig systems software-and everything between.</p>
+        <a href="https://docs.servicestack.net/add-servicestack-reference" class="mt-10 inline-flex rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 px-7 py-3.5 text-base font-bold text-white shadow-xl shadow-indigo-950 transition hover:brightness-110">Explore Add ServiceStack Reference <span class="ml-2" aria-hidden="true">→</span></a>
+    </div>
+</section>
+
+@await Html.PartialAsync("HighlightIncludes")
+<link rel="stylesheet" href="css/typography.css">
+
+<style>
+.hljs, .prose :where(pre):not(:where([class~="not-prose"] *)) .hljs { color:#e5e7eb!important; background:#1e1e2e!important; }
+.hljs-comment, .hljs-quote { color:rgb(148 163 184); }
+.hljs { scrollbar-width:thin; scrollbar-color:#45455e #1e1e2e; }
+</style>
+
+@section Scripts {
+<script type="module">
+import { App, usePageRoutes } from "/js/core.mjs"
+import ServiceStackVue from "@@servicestack/vue"
+import OpenAiChatLangs from "/mjs/components/OpenAiChatLangs.mjs"
+
+const app = new App()
+app.use(ServiceStackVue)
+const routes = usePageRoutes(app, { page:'dtos', queryKeys:['lang'] })
+app.component('open-ai-chat', {
+    components:{ OpenAiChatLangs },
+    template:`<OpenAiChatLangs baseUrl="https://ai.llmspy.org" :routes="routes">
+      <div class="lg:max-w-lg">
+        <p class="text-sm font-bold uppercase tracking-[.18em] text-indigo-600 dark:text-indigo-400">Typed beyond transport</p>
+        <h3 class="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white">This isn't just HTTP with nicer syntax.</h3>
+        <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">The request knows its response, route and method. The client handles serialization, authentication and structured errors. Your editor understands the entire graph.</p>
+        <ul class="mt-8 space-y-4 text-slate-700 dark:text-slate-300">
+          <li class="flex gap-3"><span class="font-bold text-cyan-500">✓</span><span><b>Native DTOs</b> with rich API metadata</span></li>
+          <li class="flex gap-3"><span class="font-bold text-cyan-500">✓</span><span><b>Generic typed clients</b> with a consistent capability set</span></li>
+          <li class="flex gap-3"><span class="font-bold text-cyan-500">✓</span><span><b>No anonymous JSON</b>, duplicated models or hand-written URLs</span></li>
+        </ul>
+      </div>
+    </OpenAiChatLangs>`,
+    setup(){ return { routes } }
+})
+app.build({ template:'<open-ai-chat></open-ai-chat>' }).mount('#dtos-app')
+app.start()
+</script>
+}

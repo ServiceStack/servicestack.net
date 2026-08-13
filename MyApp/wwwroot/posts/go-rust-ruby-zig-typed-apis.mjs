@@ -1,4 +1,5 @@
 import OpenAiChatLangs from "/mjs/components/OpenAiChatLangs.mjs"
+import DtoQuickStart from "/mjs/components/DtoQuickStart.mjs"
 import { onMounted, onUnmounted, reactive } from "vue"
 
 const OpenAiChat = {
@@ -31,5 +32,5 @@ const OpenAiChat = {
 }
 
 export default {
-    components: { OpenAiChat },
+    components: { OpenAiChat, DtoQuickStart },
 }

@@ -9,13 +9,28 @@ draft: true
 
 ## The complete PDF lifecycle for .NET Apps
 
-Generating a PDF is easy. Maintaining a production document system is not.
+Here is what we want at the end: an ordinary ServiceStack API that returns a real invoice, with no LLM anywhere near it.
 
-Invoices, statements, certificates, reports, shipping labels and contracts need precise layouts, realistic test data, reusable styles, typed application integration, predictable deployment and a safe way to evolve without breaking documents customers depend on.
+```csharp
+public class InvoiceServices(IPdfRenderer pdf) : Service
+{
+    public async Task<object> Any(GetOrderInvoice request)
+    {
+        var order = await Db.LoadSingleByIdAsync<Order>(request.Id);
+        return await pdf.PdfResultAsync(MapToInvoice(order), $"Invoice-{order.InvoiceNo}.pdf");
+    }
+}
+```
+
+And here is the part that normally takes a week: designing the document, agreeing its data contract, testing the awkward payloads, and getting a typed C# model that matches. In PDF Studio you describe the document you want — or hand a vision model a screenshot of the one you're replacing — and iterate on a live preview until it's right.
+
+[![](/img/pages/pdf/designer-overview.webp)](/img/pages/pdf/designer-overview.webp)
+
+Generating a PDF is easy. Maintaining a production document system is not. Invoices, statements, certificates, reports, shipping labels and contracts need precise layouts, realistic test data, reusable styles, typed application integration, predictable deployment and a safe way to evolve without breaking documents customers depend on.
 
 ServiceStack's new PDF support addresses the whole lifecycle:
 
-```
+```text
 AI Chat PDF Studio → Publish → Admin PDF → Generate C# → Render in your App
 ```
 
@@ -23,9 +38,20 @@ PDF Studio at `/chat/pdf` is an AI-assisted development environment for creating
 
 The result combines the speed of AI-assisted design with the deterministic runtime needed by business applications.
 
-[![](/img/pages/pdf/designer-overview.webp)](/img/pages/pdf/designer-overview.webp)
-
 <screenshot src="/img/posts/servicestack-pdf/pdf-studio.webp" title="AI Chat PDF Studio overview"></screenshot>
+
+### Two plugins, so AI never reaches production
+
+| Capability | Plugin | Runtime dependencies |
+| --- | --- | --- |
+| AI-assisted authoring and live preview | `ChatFeature` PDF extension | Typst and an AI provider |
+| Published template management and rendering | `PdfFeature` | Typst |
+
+An organization can design documents in a development environment with AI Chat, then deploy only `PdfFeature`, Typst and the published artifacts. **Production rendering does not require ChatFeature, an AI provider or an API key.**
+
+That clean boundary is fundamental: AI accelerates authoring, but does not sit in the path of every invoice your application generates.
+
+<pdf-lifecycle></pdf-lifecycle>
 
 ## Why Typst
 
@@ -33,7 +59,7 @@ ServiceStack uses Typst because it brings modern, code-first authoring to high-q
 
 A document named `invoice` normally contains:
 
-```
+```text
 invoice.typ
 invoice.json
 invoice.ui.json
@@ -52,46 +78,13 @@ Each file has one clear responsibility:
 
 This separation makes templates easier to design, test, review and integrate than documents where layout and business data are inseparable.
 
-## Install once, use throughout the lifecycle
-
-Install the Typst CLI and make it available on `PATH`, or configure `TYPST_PATH`:
-
-```
-# macOS
-brew install typst
-
-# Cargo
-cargo install --locked typst-cli
-```
-
-Register production PDF support in the ServiceStack App:
-
-```
-services.AddPlugin(new PdfFeature());
-```
-
-When `ChatFeature` is installed and Typst is available, PDF Studio is enabled at `/chat/pdf`. `PdfFeature` adds production rendering and the Admin UI.
-
-These are deliberately separate plugins:
-
-| Capability | Plugin | Runtime dependencies |
-| --- | --- | --- |
-| AI-assisted authoring and live preview | `ChatFeature` PDF extension | Typst and an AI provider |
-| Published template management and rendering | `PdfFeature` | Typst |
-
-An organization can design documents in a development environment with AI Chat, then deploy only `PdfFeature`, Typst and the published artifacts. Production rendering does not require ChatFeature, an AI provider or an API key.
-
-That clean boundary is fundamental: AI accelerates authoring, but does not sit in the path of every invoice your application generates.
-
-<pdf-lifecycle></pdf-lifecycle>
-
 ## Design in AI Chat PDF Studio
 
 PDF Studio opens with a Typst editor and a real rendered PDF preview. Edit the template or its data and the document recompiles immediately.
 
 The workspace is per user under `App_Data/chat/user/{user}/pdf`, so developers and designers can experiment independently. Nothing becomes a shared runtime template until an administrator explicitly publishes it.
 
-PDF Studio inherits AI Chat's Integrated Auth, allowing existing application users to enter with their current ServiceStack identity whilst keeping drafts, assets and experiments isolated in their own workspace. Publishing is a separate Admin-authorized boundary, so access to the designer does not imply permission to change the templates used by production.
+PDF Studio inherits [AI Chat's](/posts/ai-chat-v4) Integrated Auth, allowing existing application users to enter with their current ServiceStack identity whilst keeping drafts, assets and experiments isolated in their own workspace. Publishing is a separate Admin-authorized boundary, so access to the designer does not imply permission to change the templates used by production.
 
 The designer separates layout and content into focused panes:
 
@@ -194,7 +187,7 @@ This changes publishing from “copy whatever currently works on my machine” i
 
 One sample invoice cannot represent every production invoice. Add named fixtures beside the template:
 
-```
+```text
 invoice.fixture.empty.json
 invoice.fixture.long.json
 invoice.fixture.international.json
@@ -211,7 +204,7 @@ This is practical contract testing for documents: validate both the data and its
 
 Every successful publish creates a revision under:
 
-```
+```text
 App_Data/pdf/.versions/{template}/{revision}/
 ```
 
@@ -257,7 +250,7 @@ The `.ui.json` schema can generate strongly typed C# models directly from the Ad
 
 [![](/img/pages/pdf/generated-types-csharp.webp)](/img/pages/pdf/generated-types-csharp.webp)
 
-```
+```csharp
 public class LineItem
 {
     [JsonPropertyName("description")]
@@ -282,7 +275,7 @@ public class Invoice
 
 For all templates, configure `PdfCodeGen` and register an AppTask:
 
-```
+```csharp
 services.AddPlugin(new PdfFeature
 {
     PdfCodeGen = new()
@@ -298,7 +291,7 @@ AppTasks.Register("pdf", _ =>
 
 Then regenerate after publishing template changes:
 
-```
+```bash
 dotnet run --AppTasks=pdf
 ```
 
@@ -310,7 +303,7 @@ The Admin UI preview and AppTask use the same generator, so the code copied from
 
 Inject `IPdfRenderer`, map application data into the generated model and return the PDF:
 
-```
+```csharp
 [Route("/orders/{Id}/invoice")]
 public class GetOrderInvoice : IGet, IReturn<byte[]>
 {
@@ -365,7 +358,7 @@ Runtime rendering is deterministic:
 
 The same renderer can generate an attachment inside a ServiceStack Command:
 
-```
+```csharp
 [Worker("smtp")]
 public class SendInvoiceEmailCommand(
     IPdfRenderer pdf,
@@ -441,3 +434,48 @@ Open `/chat/pdf`, describe the document you need and publish it when it is ready
 Your ServiceStack App can take it from there.
 
 <screenshot src="/img/posts/servicestack-pdf/pdf-lifecycle.webp" title="ServiceStack PDF lifecycle"></screenshot>
+
+## Get Started
+
+**1. Install the Typst CLI** and make it available on `PATH`, or configure `TYPST_PATH`:
+
+```bash
+# macOS
+brew install typst
+
+# Cargo
+cargo install --locked typst-cli
+```
+
+**2. Add the plugins** to a .NET 8+ ServiceStack App:
+
+<shell-command>npx add-in chat</shell-command>
+
+This configures both `ChatFeature` and `PdfFeature`, so you get the PDF Studio designer and production rendering together. To deploy production rendering *without* AI Chat, register `PdfFeature` on its own:
+
+```csharp
+services.AddPlugin(new PdfFeature());
+```
+
+**3. Design a document** at `/chat/pdf`. Start from the example invoice or describe what you need and let a model draft it.
+
+**4. Publish it**, then open `/admin-ui/pdf` to test the production template with real data and copy the generated C# model.
+
+**5. Wire up code generation** so the models live in your project:
+
+```csharp
+services.AddPlugin(new PdfFeature {
+    PdfCodeGen = new() {
+        Namespace = "MyApp.ServiceModel.Pdf",
+        OutputPath = Path.Combine(contentRootPath, "../MyApp.ServiceModel/Pdf"),
+    }
+});
+
+AppTasks.Register("pdf", _ => appHost.GetPlugin<PdfFeature>().GeneratePdfs());
+```
+
+<shell-command>dotnet run --AppTasks=pdf</shell-command>
+
+**6. Inject `IPdfRenderer`** and return the document from any API, Command or background job.
+
+Before deploying, pin the Typst version and deploy the same fonts used during validation — put application fonts in `App_Data/pdf/fonts` and back up `App_Data/pdf` including `.published.json` and `.versions`.

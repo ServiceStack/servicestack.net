@@ -1,6 +1,6 @@
 ---
 title: Typed ServiceStack APIs for Go, Rust, Ruby and Zig
-summary: Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world's most popular programming languages—from websites and mobile apps to cloud services and systems software.
+summary: Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world's most popular programming languages-from websites and mobile apps to cloud services and systems software.
 tags: [servicestack, go, rust, ruby, zig]
 author: Demis
 image: ./img/posts/go-rust-ruby-zig-typed-apis/bg.webp
@@ -37,7 +37,7 @@ This is more than generating classes from JSON. Each language gets clean native 
 
 Your ServiceStack Request DTO remains the source of truth. Developers add a reference to the running API and receive the types and client integration needed to call it naturally from their chosen platform.
 
-One backend can now serve a TypeScript website, a Swift or Kotlin mobile App, a Python automation, a Ruby business system, a Go cloud service, a Rust application and Zig systems software—without maintaining a separate hand-written SDK for each one.
+One backend can now serve a TypeScript website, a Swift or Kotlin mobile App, a Python automation, a Ruby business system, a Go cloud service, a Rust application and Zig systems software-without maintaining a separate hand-written SDK for each one.
 
 ## The world's most important API, in every language
 
@@ -59,12 +59,11 @@ There are no hand-written URLs, anonymous JSON objects or duplicated response mo
 
 Traditional SDK development multiplies work. Every API change must be reflected in documentation, models and client code for each platform. Generated SDKs can reduce that work, but often introduce large toolchains, verbose output and clients that feel foreign to the language using them.
 
-Add ServiceStack Reference takes a lighter approach. It reads the rich metadata already published by your ServiceStack App and generates a single source file containing native DTOs tailored to the target language:
+Add ServiceStack Reference takes a lighter approach. It reads the rich metadata already published by your ServiceStack App and generates a single source file containing native DTOs tailored to the target language.
 
-<shell-command class="mb-2">npx get-dtos go https://api.example.com</shell-command>
-<shell-command class="mb-2">npx get-dtos rust https://api.example.com</shell-command>
-<shell-command class="mb-2">npx get-dtos ruby https://api.example.com</shell-command>
-<shell-command class="mb-2">npx get-dtos zig https://api.example.com</shell-command>
+Two steps in any language - add the client, then generate the DTOs:
+
+<dto-quick-start class="-ml-[25%] w-6xl" selected="go"></dto-quick-start>
 
 Run the same command whenever the API changes. New APIs and fields appear in the generated DTOs; removed or changed members become visible to the language's own compiler, type checker or development tools.
 
@@ -130,7 +129,7 @@ puts response.result
 
 It is implemented with Ruby's standard library and has no external runtime dependencies. The client includes structured `WebServiceException` errors, field validation details, authentication, typed AutoQuery conventions, batch calls, one-way requests, custom URLs and file uploads.
 
-Ruby keeps its natural named-argument syntax and fast feedback loop. ServiceStack adds a consistent contract, rich metadata and a client that removes repetitive integration code—bringing more confidence without making Ruby feel like another language.
+Ruby keeps its natural named-argument syntax and fast feedback loop. ServiceStack adds a consistent contract, rich metadata and a client that removes repetitive integration code-bringing more confidence without making Ruby feel like another language.
 
 ## Zig: explicit, efficient APIs for systems software
 
@@ -202,8 +201,23 @@ Supporting another platform should not require inventing another integration arc
 
 Add ServiceStack Reference turns your existing API metadata into the native contract each client needs. The new Go, Rust, Ruby and Zig libraries extend that experience to 15 languages spanning websites, mobile Apps, cloud services, automation and systems software.
 
-Start with any ServiceStack API, generate a reference, and call it with the same confidence as local code:
-
-<shell-command>npx get-dtos <language> https://your-app.example.com</shell-command>
-
 Your APIs are already typed. Now virtually every application your organization wants to build can be typed end to end as well.
+
+## Get Started
+
+Nothing needs to be installed or configured on the server. Every ServiceStack App already publishes the metadata `get-dtos` reads, so you can point it at an API you run - or one of ours - right now:
+
+<shell-command>npx get-dtos go https://vue-spa.web-templates.io</shell-command>
+
+Then add the client library for your language and make the first call:
+
+- **Go** - [servicestack-go](https://github.com/ServiceStack/servicestack-go) · [docs](https://docs.servicestack.net/go-add-servicestack-reference)
+- **Rust** - [servicestack crate](https://crates.io/crates/servicestack) · [docs](https://docs.servicestack.net/rust-add-servicestack-reference)
+- **Ruby** - [servicestack gem](https://rubygems.org/gems/servicestack) · [docs](https://docs.servicestack.net/ruby-add-servicestack-reference)
+- **Zig** - [servicestack-zig](https://github.com/ServiceStack/servicestack-zig) · [docs](https://docs.servicestack.net/zig-add-servicestack-reference)
+
+Run `npx get-dtos` with no arguments to list all 15 supported languages.
+
+---
+
+This is the first post in our latest release series. Next we look at the AI capabilities added to ServiceStack Apps in this release, starting with [AI Chat v4](/posts/ai-chat-v4).
