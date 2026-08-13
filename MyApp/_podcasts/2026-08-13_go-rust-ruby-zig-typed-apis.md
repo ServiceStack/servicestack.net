@@ -3,7 +3,7 @@ title: Typed ServiceStack APIs for Go, Rust, Ruby and Zig
 summary: Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world's most popular programming languages-from websites and mobile apps to cloud services and systems software.
 tags: [servicestack, go, rust, ruby, zig]
 url: https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3
-media: {size:4414669,duration:"305.876463,format:mp3}
+media: {size:4414669,duration:305.876463,format:mp3}
 ---
 
 ServiceStack has expanded its **Add ServiceStack Reference** feature to include **Go, Rust, Ruby, and Zig**, bringing the total number of supported programming languages to fifteen. 
