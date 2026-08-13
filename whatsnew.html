@@ -144,6 +144,140 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v10.1</h2>
+        <div class="text-center text-lg font-normal text-gray-500">August 13, 2026</div>
+            <div class="mt-2 flex justify-center">
+                <a href="podcasts/v10-1-release" class="group flex items-center gap-2 rounded-full bg-white/25 p-1.5 text-xs text-slate-900 ring-1 ring-inset ring-black/[0.08] hover:bg-white/50 hover:ring-black/[0.13]">
+                    <img src="/img/svgs/podcast.svg" alt="" class="h-8 w-8 rounded-full">
+                    <div class="pr-2">
+                        <p class="font-semibold">
+                            Listen to podcast episode
+                        </p>
+                        <p class="text-gray-600">ServiceStack v10.1 Release</p>
+                    </div>
+                </a>
+            </div>
+        <div class="mb-8"></div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/chat"><img src="/img/posts/ai-chat-v4/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/chat">AI Chat v4 - a complete AI platform inside your ServiceStack App</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p><strong>AI Chat v4</strong> is a complete rewrite that turns ServiceStack's built-in AI experience into a modular AI application platform. Register <code>ChatFeature</code> and your existing users get multi-provider chat, reasoning models, tools, skills, voice input, image and audio generation, media galleries, projects, Agent Profiles, analytics, Retrieval Augmented Generation and PDF Studio at <strong>/chat</strong> - all behind the authentication your App already uses.</p>
+<p>Every capability ships as an encapsulated extension that installs its own routes, tools, UI components and lifecycle behavior, so Apps can disable what they don't need, replace individual UI building blocks and add their own capabilities without maintaining a fork. Conversation data lives in your App's database, per-user state is scoped to the authenticated identity, and higher-risk tools like filesystem access and code execution stay off unless you enable them.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/chat" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/chat/api-tools"><img src="/img/posts/api-tools/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/chat/api-tools">API Tools - expose your ServiceStack APIs to LLMs &amp; MCP</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p><strong>API Tools</strong> let AI Models discover, learn and call your existing ServiceStack APIs through three stable tools - <code>api_search</code>, <code>api_describe</code> and <code>api_call</code> - so Models progressively find the capabilities relevant to a request instead of being handed every schema up front. There's no parallel AI schema, no bespoke function-calling gateway and no AI-specific backend: your typed Request DTOs, validation, authorization and Services remain the single source of truth.</p>
+<p>Everything executes as the <strong>authenticated user</strong>, so APIs a caller can't access can't be discovered, described or invoked. Writes and destructive operations pause and render an editable approval form generated from the API's own schema. The same capabilities are available to external AI Assistants like OpenCode, Claude Code, Cursor and VS Code through the built-in <strong>MCP Server</strong> at <code>/chat/mcp</code>.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/chat/api-tools" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/schema"><img src="/img/posts/api-schema/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/schema">API Schemas - every API now comes with its own UI</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p RequestDto="">Every ServiceStack API now publishes a portable JSON Schema at <strong>/schema/.json</strong> describing its fields, nested types, validation, authorization requirements, HTTP method and execution URL. Remove the <code>.json</code> and the same route serves a complete executable UI - a responsive form, live request preview, copyable <code>curl</code> command, execution and response panel - with no application UI to write. Browse everything available to the current user at <strong>/schema</strong>.</p>
+<p>Because each API carries its own self-contained contract, clients load one focused schema instead of the App's entire metadata graph, so an App can grow from ten APIs to ten thousand without making a single form heavier. The generic <code>ApiFormSchema</code> and <code>JsonSchemaForm</code> components are published in both <code>@servicestack/vue</code> and <code>@servicestack/react</code> for embedding in your own Apps - and they're what lets AI Chat render a trustworthy human-in-the-loop approval form for any API a Model proposes calling.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/schema" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/auto"><img src="/img/posts/autoquery-schema/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/auto">AutoQuery Schemas - instant CRUD Apps from your data models</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Open <strong>/auto</strong> in an App with AutoQuery APIs and you already have an admin application: a searchable gallery of your data models, and behind each one a working CRUD App with a results grid, server-side paging, sorting, AutoQuery's typed filters, column selection, persistent preferences, Create and Edit forms, searchable reference lookups and guarded Delete actions. No frontend project and no generated source files.</p>
+<p>The catalog and every action within it are generated for the <strong>current session</strong>, so a model only appears when its Query API is accessible and Create, Edit and Delete only appear when that user can call them. Add <code>.json</code> to get the portable schema powering it, and give it to the generic <code>AutoQuerySchema</code> component in <code>@servicestack/vue</code> or <code>@servicestack/react</code> to embed the same experience in your own App's navigation and design system.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/auto" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/pdf"><img src="/img/posts/servicestack-pdf/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/pdf">PDF Studio - from AI design to production PDFs</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack's new PDF support covers the whole document lifecycle: design <a href="https://typst.app">Typst</a> templates in <strong>PDF Studio</strong> at <code>/chat/pdf</code> with live preview and AI-assisted editing - describe changes in plain English, or attach a screenshot of an existing document for a vision model to recreate as a reusable template and JSON data contract. Publishing validates the template, checks every named fixture against its schema, compiles them all, exercises C# model generation and saves an immutable revision.</p>
+<p>Administrators manage what production can render at <strong>/admin-ui/pdf</strong>, test the exact deployed template against real data and generate strongly typed C# models. <code>IPdfRenderer</code> then renders documents from ordinary APIs, Commands and background jobs - deterministically, with <strong>no LLM in the runtime path</strong>. <code>PdfFeature</code> deploys independently of <code>ChatFeature</code>, so production rendering needs neither an AI provider nor an API key.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/pdf" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/go-rust-ruby-zig-typed-apis"><img src="/img/posts/go-rust-ruby-zig-typed-apis/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/go-rust-ruby-zig-typed-apis">Typed ServiceStack APIs for Go, Rust, Ruby and Zig</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Add ServiceStack Reference now generates end-to-end typed API integrations for <strong>15 of the world's most popular programming languages</strong> with first-class support for <strong>Go, Rust, Ruby and Zig</strong> - spanning .NET, web and scripting, mobile, and now cloud and systems software. Each language gets clean native DTOs and an idiomatic Service Client that understands the API contract: response types, HTTP methods, routes, authentication, structured errors, validation failures and AutoQuery conventions.</p>
+<p>Every client uses its language's standard library with no third-party runtime dependencies, whilst staying idiomatic - Go returns values and errors, Rust offers async and blocking clients, Ruby uses natural constructors and exceptions, and Zig makes allocation and cleanup explicit. Generate DTOs for any running API with <code>npx get-dtos &lt;language&gt; https://your-app.example.com</code>.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/go-rust-ruby-zig-typed-apis" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v10.0</h2>
         <div class="text-center text-lg font-normal text-gray-500">December 2, 2025</div>
             <div class="mt-2 flex justify-center">
