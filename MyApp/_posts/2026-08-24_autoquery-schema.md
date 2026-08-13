@@ -4,7 +4,6 @@ summary: Give AutoQuerySchema one /auto/{DataModel}.json document and it renders
 tags: [servicestack, autoquery, json-schema, vue]
 author: Demis
 image: ./img/posts/autoquery-schema/bg.webp
-draft: true
 ---
 
 ## Every AutoQuery model is now a complete App

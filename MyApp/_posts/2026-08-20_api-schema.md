@@ -4,7 +4,6 @@ summary: Every ServiceStack API now includes a portable schema that lets generic
 tags: [servicestack, json-schema, vue, ai]
 author: Demis
 image: ./img/posts/api-schema/bg.webp
-draft: true
 ---
 
 ## Every API now comes with its own UI

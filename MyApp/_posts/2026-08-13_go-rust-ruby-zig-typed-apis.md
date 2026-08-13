@@ -4,7 +4,6 @@ summary: Add ServiceStack Reference now brings end-to-end typed APIs to 15 of th
 tags: [servicestack, go, rust, ruby, zig]
 author: Demis
 image: ./img/posts/go-rust-ruby-zig-typed-apis/bg.webp
-draft: true
 ---
 
 ## 15 languages. One API.

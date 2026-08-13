@@ -4,7 +4,6 @@ summary: Design Typst PDFs with AI Chat, publish validated templates, generate t
 tags: [servicestack, ai, pdf, typst]
 author: Demis
 image: ./img/posts/servicestack-pdf/bg.webp
-draft: true
 ---
 
 ## The complete PDF lifecycle for .NET Apps
