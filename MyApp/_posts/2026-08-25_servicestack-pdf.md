@@ -8,6 +8,10 @@ image: ./img/posts/servicestack-pdf/bg.webp
 
 ## The complete PDF lifecycle for .NET Apps
 
+:::youtube BhATkVOXknE
+Turn Any PDF into a Dynamic API with AI, Typst & ServiceStack
+:::
+
 Here is what we want at the end: an ordinary ServiceStack API that returns a real invoice, with no LLM anywhere near it.
 
 ```csharp
