@@ -574,7 +574,10 @@
       </p>
 
       <!-- Thumbnails -->
-      <div class="mt-6 flex flex-wrap justify-center gap-2">
+      <div class="relative mt-8 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70 shadow-inner shadow-black/50 backdrop-blur-sm">
+        <div class="pointer-events-none absolute inset-y-px left-px z-10 w-12 rounded-l-2xl bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent sm:w-20"></div>
+        <div class="pointer-events-none absolute inset-y-px right-px z-10 w-12 rounded-r-2xl bg-gradient-to-l from-slate-950 via-slate-950/80 to-transparent sm:w-20"></div>
+        <div id="ai-gallery-strip" class="ai-gallery-strip flex items-center gap-3 overflow-x-auto py-5 [&::-webkit-scrollbar]:hidden" style="padding-left: calc(50% - 3.5rem); padding-right: calc(50% - 3.5rem); scrollbar-width: none">
         <button type="button" onclick="aiGalleryGo(0)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI Chat home"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-01-home.webp" alt=""></button>
         <button type="button" onclick="aiGalleryGo(1)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI model selector"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-02-models.webp" alt=""></button>
         <button type="button" onclick="aiGalleryGo(2)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Agent Profiles"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-03-profiles.webp" alt=""></button>
@@ -598,6 +601,7 @@
         <button type="button" onclick="aiGalleryGo(20)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="JSON Schema"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-22-code-json-schema.webp" alt=""></button>
         <button type="button" onclick="aiGalleryGo(21)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="JSON to C#"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-23-code-json-csharp.webp" alt=""></button>
         <button type="button" onclick="aiGalleryGo(22)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI calculator"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-24-calc.webp" alt=""></button>
+        </div>
       </div>
     </div>
   </div>
@@ -610,10 +614,12 @@
     const caption = document.getElementById('ai-gallery-caption')
     const url     = document.getElementById('ai-gallery-url')
     const root    = document.getElementById('ai-gallery')
+    const strip   = document.getElementById('ai-gallery-strip')
     if (shots.length < 2) return
 
-    const ON  = 'ai-thumb overflow-hidden rounded-lg border-2 transition border-emerald-400 opacity-100'
-    const OFF = 'ai-thumb overflow-hidden rounded-lg border-2 transition border-white/10 opacity-50 hover:opacity-90'
+    const BASE = 'ai-thumb h-20 w-28 shrink-0 overflow-hidden rounded-lg border-2 transition-all duration-300 [&>img]:h-full [&>img]:w-full'
+    const ON   = BASE + ' z-[1] scale-105 border-emerald-400 opacity-100 shadow-lg shadow-emerald-500/40 ring-2 ring-emerald-400/30'
+    const OFF  = BASE + ' scale-95 border-white/10 opacity-40 saturate-50 hover:scale-100 hover:border-white/30 hover:opacity-90 hover:saturate-100'
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let i = 0, timer = null, paused = reduced, visible = true
 
@@ -622,6 +628,10 @@
         thumbs.forEach((t, n) => t.className = n === i ? ON : OFF)
         if (caption) caption.textContent = shots[i].dataset.caption || ''
         if (url) url.textContent = shots[i].dataset.url || ''
+        if (strip && thumbs[i]) {
+            const left = thumbs[i].offsetLeft - (strip.clientWidth - thumbs[i].offsetWidth) / 2
+            strip.scrollTo({ left, behavior: reduced ? 'auto' : 'smooth' })
+        }
     }
     function stop() { if (timer) clearInterval(timer); timer = null }
     function start() {
