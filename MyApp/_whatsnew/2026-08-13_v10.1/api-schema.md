@@ -1,6 +1,6 @@
 ---
 title: API Schemas - every API now comes with its own UI
-url: https://docs.servicestack.net/schema
+url: https://docs.servicestack.net/api-schema
 image: /img/posts/api-schema/bg.webp
 order: 3
 ---

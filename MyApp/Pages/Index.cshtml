@@ -1,8 +1,44 @@
-﻿@page "/"
+@page "/"
 @attribute [RenderStatic]
 @inject MarkdownBlog Blog
+@inject MarkdownVideos Videos
 @{
     ViewData["Title"] = "ServiceStack";
+
+    var videoGroups = new (string Id, string Title, string Summary, string? LearnMore, string[] Groups)[]
+    {
+        ("apis",       "ServiceStack APIs", "Effortlessly create feature-rich APIs and Web Apps", null,
+            new[]{ "apis" }),
+        ("templates",  "Project Templates", "Get started quickly with your preferred stack", "https://docs.servicestack.net/templates/",
+            new[]{ "projects", "vue-projects" }),
+        ("blazor",     "Blazor",            "Beautiful, modern, productive Blazor Tailwind templates", "/blazor",
+            new[]{ "blazor" }),
+        ("vue",        "Vue",               "Vue Vite templates and Tailwind Vue components", "/vue/",
+            new[]{ "vue" }),
+        ("flutter",    "Flutter",           "Build Flutter Apps against your typed ServiceStack APIs", "/flutter",
+            new[]{ "flutter", "flutter-grpc" }),
+        ("autoquery",  "AutoQuery",         "Instant queryable & CRUD APIs over your data", "/autoquery",
+            new[]{ "autoquery", "autogen" }),
+        ("uis",        "Built-in UIs",      "Admin UIs, API Explorer and Locode in every App", "/auto-ui",
+            new[]{ "ui-admin", "ui-explorer", "ui-locode", "ui-jobs", "ui-autohtml" }),
+        ("mobile",     "Mobile Apps",       "Native typed integrations for all popular mobile languages", "https://docs.servicestack.net/clients-overview",
+            new[]{ "mobile" }),
+        ("dtos",       "Typed DTOs",        "End-to-end typed APIs that integrate with any platform", "https://docs.servicestack.net/add-servicestack-reference",
+            new[]{ "ss-ref", "node" }),
+        ("ai",         "AI",                "AI Chat, unified LLM APIs, Ollama, ComfyUI & FFmpeg", "/ai",
+            new[]{ "ai", "ai-server" }),
+        ("grpc",       "gRPC",              "Your typed Services, available over gRPC HTTP/2", "https://docs.servicestack.net/grpc",
+            new[]{ "grpc" }),
+        ("actions",    "Deployments",       "GitHub Actions templates for a variety of deployments", "https://docs.servicestack.net/github-action-templates",
+            new[]{ "actions" }),
+        ("jupyter",    "Jupyter",           "Interactive computing notebooks over your APIs", "https://docs.servicestack.net/jupyter-notebooks",
+            new[]{ "jupyter" }),
+        ("features",   "More Features",     "Other exciting features in the ServiceStack ecosystem", "/features",
+            new[]{ "features" }),
+        ("creatorkit", "CreatorKit",        "Self-hosted alternative to Mailchimp and Disqus", "/creatorkit/",
+            new[]{ "creatorkit" }),
+    };
+    var activeGroup = videoGroups[0].Id;
 }
 
 @section head {
@@ -18,77 +54,82 @@
   <link rel="preload" href="/img/pages/index/validation.webp" as="image">
   <link rel="preload" href="/img/pages/index/database.webp" as="image">
   <link rel="preload" href="/img/pages/index/redis.webp" as="image">
+  <style>
+    @@keyframes ss-drift {
+        0%   { transform: translate3d(0,0,0) }
+        50%  { transform: translate3d(24px,-24px,0) }
+        100% { transform: translate3d(0,0,0) }
+    }
+    .ss-drift { animation: ss-drift 20s ease-in-out infinite }
+    @@media (prefers-reduced-motion: reduce) { .ss-drift { animation: none !important } }
+  </style>
 }
 
+<!-- ============================================================ HERO -->
 <section class="relative isolate overflow-hidden bg-gray-900">
   <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
     <defs>
-      <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+      <pattern id="hero-grid" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
         <path d="M.5 200V.5H200" fill="none" />
       </pattern>
     </defs>
     <svg x="50%" y="-1" class="overflow-visible fill-gray-800/20">
       <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z" stroke-width="0" />
     </svg>
-    <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
+    <rect width="100%" height="100%" stroke-width="0" fill="url(#hero-grid)" />
   </svg>
-  <svg viewBox="0 0 1108 632" aria-hidden="true" class="absolute top-10 left-[calc(50%-4rem)] -z-10 w-[69.25rem] max-w-none transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
-    <path fill="url(#175c433f-44f6-4d59-93f0-c5c51ad5566d)" fill-opacity=".2" d="M235.233 402.609 57.541 321.573.83 631.05l234.404-228.441 320.018 145.945c-65.036-115.261-134.286-322.756 109.01-230.655C968.382 433.026 1031 651.247 1092.23 459.36c48.98-153.51-34.51-321.107-82.37-385.717L810.952 324.222 648.261.088 235.233 402.609Z" />
-    <defs>
-      <linearGradient id="175c433f-44f6-4d59-93f0-c5c51ad5566d" x1="1220.59" x2="-85.053" y1="432.766" y2="638.714" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#4F46E5" />
-        <stop offset="1" stop-color="#80CAFF" />
-      </linearGradient>
-    </defs>
-  </svg>
-  <div class="mx-auto max-w-7xl px-6 pt-10 pb-20 lg:flex lg:pt-28 lg:pb-40 lg:px-8">
+  <div class="ss-drift absolute -top-24 left-1/4 -z-10 h-[32rem] w-[32rem] rounded-full bg-indigo-600/20 blur-[130px]"></div>
+  <div class="ss-drift absolute top-1/3 right-1/4 -z-10 h-[28rem] w-[28rem] rounded-full bg-sky-500/20 blur-[130px]" style="animation-delay:-7s"></div>
+
+  <div class="mx-auto max-w-7xl px-6 pt-10 pb-20 lg:flex lg:pt-24 lg:pb-32 lg:px-8">
     <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
-     <a href="./"><svg class="h-16 w-16 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg></a>
-      <div class="mt-24 sm:mt-32 lg:mt-16">
-        <a href="whatsnew" class="inline-flex space-x-6">
-          <span class="rounded-full bg-indigo-500/10 dark:bg-indigo-400/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">What's new</span>
+      <a href="./"><svg class="h-16 w-16 text-indigo-500" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg></a>
+
+      <div class="mt-16 sm:mt-20 lg:mt-12">
+        <a href="whatsnew" class="inline-flex items-center space-x-4 group">
+          <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-300 ring-1 ring-inset ring-indigo-500/20">What's new</span>
           <span class="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
-            <span>Just shipped v10</span>
-            <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <span>v10.1 - 15 languages, AI Chat, Schemas &amp; PDF</span>
+            <svg class="h-5 w-5 text-gray-500 transition-transform group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
             </svg>
           </span>
         </a>
       </div>
-      <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">Simplicity at Speed</h1>
+
+      <h1 class="mt-8 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        Simplicity at Speed
+      </h1>
       <p class="mt-6 text-lg leading-8 text-gray-300">
-        One framework to power them all. Write your HTTP APIs once and
-        take advantage of end to end typed integrations for all popular Web, Mobile and Desktop platforms.
+        One framework to power them all. Write your HTTP APIs once and get end-to-end typed
+        integrations for <b class="text-white">15 languages</b>, instant Admin UIs, queryable data APIs
+        and safe AI capabilities - all generated from the same typed Request DTOs.
       </p>
-      <div class="mt-8 flex items-center gap-x-6">
-        <a href="start" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get ServiceStack</a>
-        <a href="https://docs.servicestack.net/why-servicestack" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a href="start" class="rounded-md bg-indigo-500 px-5 py-3 text-lg font-semibold text-white shadow-sm hover:bg-indigo-400">Get ServiceStack</a>
+        <a href="https://docs.servicestack.net/why-servicestack" class="rounded-md border border-white/15 bg-white/5 px-5 py-3 text-lg font-semibold text-white hover:bg-white/10">Why ServiceStack?</a>
       </div>
-      <div class="mt-24">
-        <h2 class="mb-4 text-gray-100 dark:text-gray-800">from the blog:</h2>
-        @foreach (var post in Blog.VisiblePosts.OrderByDescending(x => x.Date).Take(2))
-        {
-            <div class="border-b border-gray-700 pb-4 mb-4">
-                <div class="flex justify-between">
-                    <div class="w-1/5 flex-grow-0 mr-4">
-                        <a href="@Blog.GetPostLink(post)" class="pt-4">
-                            <img class="w-full object-cover max-h-[72px]" src="@Blog.GetSplashImage(post)" alt="">
-                        </a>
-                    </div>
-                    <div class="w-4/5">
-                        <a href="@Blog.GetPostLink(post)" class="block">
-                            <p class="text-lg font-semibold text-gray-50">@post.Title</p>
-                            <p class="mt-1 text-sm text-gray-500">@post.Summary</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        }
-      </div>
+
+      <dl class="mt-12 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
+        <div>
+          <dt class="text-2xl font-extrabold text-white">15</dt>
+          <dd class="mt-1 text-sm text-gray-400">Typed client languages</dd>
+        </div>
+        <div>
+          <dt class="text-2xl font-extrabold text-white">12+</dt>
+          <dd class="mt-1 text-sm text-gray-400">Built-in Admin UIs</dd>
+        </div>
+        <div>
+          <dt class="text-2xl font-extrabold text-white whitespace-nowrap">.NET &vert; Framework</dt>
+          <dd class="mt-1 text-sm text-gray-400">Runs everywhere .NET does</dd>
+        </div>
+      </dl>
     </div>
+
     <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
       <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-        <img src="/img/pages/index/dark-and-light-mode.png" alt="App screenshot" width="2432" height="1442" class="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10">
+        <img src="/img/pages/index/dark-and-light-mode.png" alt="ServiceStack App screenshot" width="2432" height="1442" class="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10">
       </div>
     </div>
   </div>
@@ -97,164 +138,773 @@
 
 @await Html.PartialAsync("PrimaryNav", "./")
 
-<section>
-  <div id="key-features" class="bg-white dark:bg-black py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Why ServiceStack?</h2>
-        <p class="mt-6 text-lg leading-8 text-gray-600">Simple, versatile, evolvable, resilient high-performance message-based APIs</p>
+<!-- ============================================================ FROM THE BLOG -->
+<section class="border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-3xl">Latest from the blog</h2>
+        <p class="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-400">Release announcements, deep dives and tutorials</p>
       </div>
-      <div class="relative overflow-hidden pt-16">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <a href="https://youtu.be/Vae0ALalIP0">
-            <img src="https://img.youtube.com/vi/Vae0ALalIP0/maxresdefault.jpg" alt="App screenshot" class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10" width="2432" height="1442">
-          </a>
-          <div class="relative dark:hidden" aria-hidden="true">
-            <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
+      <a href="/posts/" class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 dark:text-indigo-400">All posts <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="mt-10 grid gap-8 md:grid-cols-3">
+      @foreach (var post in Blog.VisiblePosts.OrderByDescending(x => x.Date).Take(3))
+      {
+        <a href="@Blog.GetPostLink(post)" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-black">
+          <div class="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-900">
+            <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="@Blog.GetSplashImage(post)" alt="">
+          </div>
+          <div class="flex flex-1 flex-col p-5">
+            <p class="text-lg font-semibold leading-6 text-gray-900 dark:text-gray-100">@post.Title</p>
+            <p class="mt-2 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">@post.Summary</p>
+            @if (post.Date != null)
+            {
+              <time class="mt-auto pt-4 text-xs text-gray-500" datetime="@($"{post.Date.Value:yyyy-MM-dd}")">@($"{post.Date.Value:MMMM d, yyyy}")</time>
+            }
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CORE PILLARS -->
+<section class="bg-white dark:bg-black py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-base font-semibold leading-7 text-indigo-600">Everything from one API contract</h2>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
+        Declare your APIs once, the rest is Free.
+      </p>
+      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+        Your typed Request DTOs are the single source of truth - every client, UI, schema
+        and AI capability below is generated from them, and stays in sync automatically.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+      <a href="https://docs.servicestack.net/add-servicestack-reference" class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-7 transition-all hover:-translate-y-1 hover:border-indigo-400 hover:shadow-xl hover:no-underline">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-bold text-gray-900 dark:text-gray-100">Typed APIs in 15 Languages</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
+          Native DTOs and a feature-rich Service Client for C#, TypeScript, Python, Go, Rust, Ruby,
+          Zig, Swift, Kotlin, Dart and more - no hand-written SDKs.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 dark:text-indigo-400">Add ServiceStack Reference <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="autoquery" class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-7 transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:no-underline">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2 3.6 3 8 3s8-1 8-3V7M4 7c0 2 3.6 3 8 3s8-1 8-3M4 7c0-2 3.6-3 8-3s8 1 8 3m0 5c0 2-3.6 3-8 3s-8-1-8-3"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-bold text-gray-900 dark:text-gray-100">AutoQuery</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
+          One line of C# gives you a fully queryable, paged, filterable and authorized Query &amp; CRUD
+          API over your RDBMS - then renders its own admin UI.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sky-600 dark:text-sky-400">Explore AutoQuery <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="auto-ui" class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-7 transition-all hover:-translate-y-1 hover:border-violet-400 hover:shadow-xl hover:no-underline">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM4 10h16M9 10v10"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-bold text-gray-900 dark:text-gray-100">Built-in UIs</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
+          A suite of Admin UIs, API Explorer and Locode in every App - users, roles, API keys,
+          logging, profiling, background jobs, analytics and database browsing.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-violet-600 dark:text-violet-400">See the Built-in UIs <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="https://docs.servicestack.net/chat/" class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-7 transition-all hover:-translate-y-1 hover:border-emerald-400 hover:shadow-xl hover:no-underline">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.42-4.03 8-9 8a9.9 9.9 0 01-4-.8L3 21l1.3-3.9A7.6 7.6 0 013 12c0-4.42 4.03-8 9-8s9 3.58 9 8z"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-bold text-gray-900 dark:text-gray-100">AI Chat &amp; API Tools</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
+          A complete AI application inside your App, with your existing users - and your own
+          APIs safely exposed as AI capabilities behind human approval.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-600 dark:text-emerald-400">Discover AI Chat <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="https://docs.servicestack.net/templates/" class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-7 transition-all hover:-translate-y-1 hover:border-purple-400 hover:shadow-xl hover:no-underline">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0v10l-8 4m8-14l-8 4m0 10L4 17V7m8 10V11M4 7l8 4"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-bold text-gray-900 dark:text-gray-100">Project Templates</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
+          Production-ready starting points for React, Vue, Blazor, Angular, Razor Pages, MVC and
+          Flutter - each with Identity Auth and AutoQuery pre-configured.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-purple-600 dark:text-purple-400">Browse templates <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="https://docs.servicestack.net/pdf" class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-7 transition-all hover:-translate-y-1 hover:border-rose-400 hover:shadow-xl hover:no-underline">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.6a1 1 0 01.7.3l4.4 4.4a1 1 0 01.3.7V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-bold text-gray-900 dark:text-gray-100">PDF Studio</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
+          Design documents with AI and a live preview, then render them deterministically in
+          production from an ordinary ServiceStack API - no LLM in the hot path.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-rose-600 dark:text-rose-400">See PDF Studio <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TEMPLATES CALLOUT -->
+<section class="bg-white dark:bg-black pb-24 sm:pb-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 px-6 py-16 shadow-2xl sm:px-16">
+      <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10" aria-hidden="true">
+        <defs>
+          <pattern id="tpl-callout-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M48 0H0V48" fill="none" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" stroke-width="0" fill="url(#tpl-callout-grid)" />
+      </svg>
+      <div class="ss-drift absolute -top-24 -right-16 -z-10 h-96 w-96 rounded-full bg-white/10 blur-[100px]"></div>
+
+      <div class="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-widest text-indigo-200">Start here</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Start from a template, not a blank page
+          </h2>
+          <p class="mt-5 text-lg leading-8 text-indigo-100">
+            Every template ships on .NET 10 with Identity Auth, AutoQuery, the Built-in UIs and a Docker
+            deployment pipeline already wired up - so your first commit can ship to a real server.
+          </p>
+
+          <div class="mt-8 max-w-md rounded-xl border border-white/20 bg-black/30 px-4 py-3.5 font-mono text-sm text-indigo-100 backdrop-blur-sm">
+            <span class="mr-2 select-none text-emerald-300">$</span>npx create-net ls
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="https://docs.servicestack.net/templates/"
+               class="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-base font-bold text-indigo-700 shadow-lg transition hover:bg-indigo-50 hover:no-underline">
+              Explore Project Templates
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.3 3.3a1 1 0 011.4 0l6 6a1 1 0 010 1.4l-6 6a1 1 0 01-1.4-1.4L14.6 11H3a1 1 0 110-2h11.6l-4.3-4.3a1 1 0 010-1.4z" clip-rule="evenodd"/></svg>
+            </a>
+            <a href="start" class="inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/20 hover:no-underline">
+              Customize &amp; Download
+            </a>
           </div>
         </div>
-      </div>    
-      <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        <div>
-          <dt class="font-semibold text-gray-900">Maximize Value and Reach of System APIs</dt>
-          <dd class="mt-1 text-gray-600">
-            Most features are centered around ServiceStack APIs which has become the most versatile in the world where the same APIs 
-            can be consumed from HTTP in a myriad of data formats, via popular MQ Servers whilst supporting 
-            new technologies like gRPC without sacrificing any native HTTP integrations.
-          </dd>
-        </div>
 
-        <div>
-          <dt class="font-semibold text-gray-900">Ultimate Developer Productivity</dt>
-          <dd class="mt-1 text-gray-600">
-            ServiceStack makes it as simple as possible for API Consumers to call your APIs, with native end-to-end 
-            typed integrations to 10 of the most popular languages used in creating Web, Mobile & Desktop Apps, 
-            that they can easily add/update from within their favorite IDE.
-          </dd>
+        <div class="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-3">
+          <a href="https://docs.servicestack.net/templates/react" class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm transition hover:bg-white/20 hover:no-underline">
+            <svg class="h-9 w-9" viewBox="-11 -10.13 22 20.27" fill="none"><circle r="2" fill="#fff"/><g stroke="#fff"><ellipse rx="10" ry="4.5"/><ellipse rx="10" ry="4.5" transform="rotate(60)"/><ellipse rx="10" ry="4.5" transform="rotate(120)"/></g></svg>
+            <span class="text-xs font-semibold text-white">React</span>
+          </a>
+          <a href="https://docs.servicestack.net/templates/vue" class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm transition hover:bg-white/20 hover:no-underline">
+            <svg class="h-9 w-9" viewBox="0 0 256 221"><path fill="#fff" d="M204.8 0H256L128 220.8L0 0h97.92L128 51.2L157.44 0z"/><path fill="#ffffff80" d="m0 0l128 220.8L256 0h-51.2L128 132.48L50.56 0z"/></svg>
+            <span class="text-xs font-semibold text-white">Vue</span>
+          </a>
+          <a href="https://docs.servicestack.net/templates/blazor-tailwind" class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm transition hover:bg-white/20 hover:no-underline">
+            <svg class="h-9 w-9 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1zM8.895 11.628a2.188 2.188 0 1 0 2.188 2.188v-2.042a.158.158 0 0 0-.15-.15Z"/></svg>
+            <span class="text-xs font-semibold text-white">Blazor</span>
+          </a>
+          <a href="https://docs.servicestack.net/templates/angular" class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm transition hover:bg-white/20 hover:no-underline">
+            <svg class="h-9 w-9" viewBox="0 0 256 256"><path fill="#fff" d="M128 0L6.4 43.2l18.56 160.64L128 256l102.72-52.16l18.56-160.64z" opacity=".55"/><path fill="#fff" d="M128 29.056L52.288 199.36h28.224l15.232-38.016h64l15.232 38.016h28.224zm22.144 108.928h-44.288L128 84.736z"/></svg>
+            <span class="text-xs font-semibold text-white">Angular</span>
+          </a>
+          <a href="https://docs.servicestack.net/templates/mvc" class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm transition hover:bg-white/20 hover:no-underline">
+            <svg class="h-9 w-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"/><path stroke-linecap="round" d="M4 9h16M9 9v12"/></svg>
+            <span class="text-xs font-semibold text-white">MVC</span>
+          </a>
+          <a href="https://docs.servicestack.net/templates/" class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/30 bg-white/5 p-5 backdrop-blur-sm transition hover:bg-white/15 hover:no-underline">
+            <svg class="h-9 w-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            <span class="text-xs font-semibold text-white">See all</span>
+          </a>
         </div>
-
-        <div>
-          <dt class="font-semibold text-gray-900">Remote Services Best Practices</dt>
-          <dd class="mt-1 text-gray-600">
-            ServiceStack adopts a message-based design that embraces the SOA Integration Remote Facade, DTO and 
-            Service Gateway patterns whose uniquely benefits ServiceStack as the only Services framework
-            to reuse API contracts enabling optimal end-to-end typed API integrations in .NET Apps without code-gen.
-          </dd>
-        </div>
-
-        <div>
-          <dt class="font-semibold text-gray-900">Benefits of message-based design</dt>
-          <dd class="mt-1 text-gray-600">
-            Unlike RPC, messages can be evolved, intercepted, routed & serialized with natural decoupling of an APIs coarse-grained DTO contracts allowing front & back-end developers to collaborate on an agreed high-level API design free of detail concerns for their independent implementations.
-          </dd>
-        </div>
-
-        <div>
-          <dt class="font-semibold text-gray-900">Consistent & Simplified Development Model</dt>
-          <dd class="mt-1 text-gray-600">
-            The benefit afforded by capturing an entire API boundary into impl-free Service Contracts extends to all natively supported languages who only need be concerned with generating declarative DTOs resulting in types encapsulating richer metadata beyond what's possible in other code-gen solutions.
-          </dd>
-        </div>
-
-        <div>
-          <dt class="font-semibold text-gray-900">Preserve Investments</dt>
-          <dd class="mt-1 text-gray-600">
-            ServiceStack has been consistently promoting the same remote service best-practices for over a decade, whose adoption of its time-tested patterns has survived beyond several abandoned .NET Web Service frameworks during its lifetime with any investments having failed along with them.
-          </dd>
-        </div>
-      </dl>
+      </div>
     </div>
   </div>
 </section>
 
 <div id="app">
+  <!-- ============================================================ 15 LANGUAGES -->
   <section>
     <div id="native-types" class="bg-white dark:bg-black pb-24 sm:pb-32">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="text-center ">
+        <div class="text-center">
           <h2 class="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Write once, integrate from anywhere</h2>
         </div>
         <open-ai-chat></open-ai-chat>
       </div>
     </div>
   </section>
-  
+
+  <!-- ============================================================ gRPC -->
   <section>
-    <div id="analytics" class="bg-white dark:bg-black pb-24 sm:pb-32">
+    <div id="grpc" class="scroll-mt-20 border-y border-gray-200 dark:border-gray-800 bg-white dark:bg-black py-20">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="text-center ">
-          <h2 class="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
-            Suite of Admin Management UIs in every App
-          </h2>
+        <div class="grid items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
+          <div>
+            <h2 class="text-base font-semibold leading-7 text-indigo-600">Also available over gRPC</h2>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
+              The same Services, on HTTP/2
+            </p>
+            <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+              Your existing typed Services are available from ASP.NET's gRPC endpoints without
+              rewriting them &mdash; giving you high-performance HTTP/2 APIs and generated gRPC
+              clients alongside your native HTTP integrations.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="https://docs.servicestack.net/grpc" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-indigo-500 hover:no-underline">
+                gRPC Docs
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.3 3.3a1 1 0 011.4 0l6 6a1 1 0 010 1.4l-6 6a1 1 0 01-1.4-1.4L14.6 11H3a1 1 0 110-2h11.6l-4.3-4.3a1 1 0 010-1.4z" clip-rule="evenodd"/></svg>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/csharp" class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 hover:no-underline dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-900">
+                Quick Start
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <p class="mb-5 text-sm font-semibold uppercase tracking-wider text-gray-500">Generated gRPC clients for</p>
+            <div class="grid grid-cols-5 gap-3 sm:grid-cols-5">
+              <a href="https://docs.servicestack.net/grpc/csharp" title="C#" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/csharp.svg" alt="C#">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">C#</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/python" title="Python" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/python.svg" alt="Python">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Python</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/go" title="Go" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/go.svg" alt="Go">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Go</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/java" title="Java" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/java.svg" alt="Java">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Java</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/swift" title="Swift" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/swift.svg" alt="Swift">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Swift</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/dart" title="Dart" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/dart.svg" alt="Dart">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Dart</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/flutter" title="Flutter" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/flutter.svg" alt="Flutter">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Flutter</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/android" title="Android" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/androidstudio.svg" alt="Android">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Android</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/php" title="PHP" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/php.svg" alt="PHP">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">PHP</span>
+              </a>
+              <a href="https://docs.servicestack.net/grpc/ruby" title="Ruby" class="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 transition hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-gray-950">
+                <img class="h-9 w-9" src="img/svgs/ruby.svg" alt="Ruby">
+                <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Ruby</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ ADMIN UIs -->
+  <section>
+    <div id="analytics" class="border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 py-24 sm:py-32">
       <analytics-ui></analytics-ui>
     </div>
   </section>
-  
-  <section>
-    <div id="text-to-blazor" class="bg-white dark:bg-black pb-24 sm:pb-32">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="text-center ">
-          <h1 class="text-balance text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Try Text to Blazor
-          </h1>
-          <p class="my-8 text-lg leading-8 text-gray-600">Generate instant Blazor CRUD Apps from a Text Prompt!</p>          
-        </div>
-      </div>
-      <a href="/text-to-blazor">
-      <div class="py-4 mx-auto flex justify-between items-center max-w-screen-lg">
-        <div class="mx-auto text-center">
-          <img class="mx-auto h-20" src="/img/models/anthropic.svg">
-          <div>
-            <b class="block">Anthropic</b>
-            <span class="text-sm">Claude 4.6 Sonnet</span>
-          </div>
-        </div>
-        <div class="mx-auto text-center">
-          <img class="mx-auto h-20" src="/img/models/gemini-pro.svg">
-          <div>
-            <b class="block">Google</b>
-            <span class="text-sm">Gemini 3.1 Pro</span>
-          </div>
-        </div>
-        <div class="mx-auto text-center">
-          <img class="mx-auto h-20" src="/img/models/moonshot.svg">
-          <div>
-            <b class="block">Moonshot AI</b>
-            <span class="text-sm">Kimi K2.6 (1T)</span>
-          </div>
-        </div>
-        <div class="mx-auto text-center">
-          <img class="mx-auto h-20 p-2" src="/img/models/qwen.svg">
-          <div>
-            <b class="block">Alibaba</b>
-            <span class="text-sm">Qwen3.6 Plus (480B)</span>
-          </div>
-        </div>
-        <div class="mx-auto text-center">
-          <img class="mx-auto h-20 p-2" src="/img/models/xai.svg">
-          <div>
-            <b class="block">xAI</b>
-            <span class="text-sm">Grok Code Fast</span>
-          </div>
-        </div>
-      </div>
-      </a>
-      <div class="my-8 mx-auto w-[340px]">
-        <a href="/text-to-blazor"
-           class="flex items-center rounded-full bg-white px-6 py-3 text-lg font-semibold text-green-900 shadow-sm ring-2 ring-inset ring-green-300 hover:bg-gray-50">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-4" viewBox="0 0 32 32"><path fill="currentColor" d="M19 22v-2h1v-7h-1v-2h4v2h-1v7h1v2zm-3.5 0h2L14 11h-3L7.503 22h2l.601-2h4.778zm-4.794-4l1.628-5.411l.256-.003L14.264 18zM32 4h-4V0h-2v4h-4v2h4v4h2V6h4zm-2 8h2v2h-2zM18 0h2v2h-2z"/><path fill="currentColor" d="M32 32H0V0h14v2H2v28h28V18h2z"/></svg>
-          Text to Blazor CRUD App
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ml-1" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M16.06 10.94a1.5 1.5 0 0 1 0 2.12l-5.656 5.658a1.5 1.5 0 1 1-2.121-2.122L12.879 12L8.283 7.404a1.5 1.5 0 0 1 2.12-2.122l5.658 5.657Z"/></g></svg>
-        </a>
-      </div>
-    </div>
-    </section>
 </div>
 
+<!-- ============================================================ AI BAND -->
+<section class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+  <div class="absolute inset-0 -z-10 opacity-[0.15]">
+    <svg class="h-full w-full" aria-hidden="true">
+      <defs><pattern id="ai-dots" width="56" height="56" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#818cf8"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#ai-dots)"/>
+    </svg>
+  </div>
+  <div class="ss-drift absolute top-1/2 left-1/2 -z-10 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-600/15 blur-[130px]"></div>
+
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-base font-semibold leading-7 text-emerald-400">New in v10.1</h2>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        Your existing APIs become safe AI capabilities
+      </p>
+      <p class="mt-6 text-lg leading-8 text-gray-300">
+        No second AI backend. No parallel schema. No new identity silo. AI Chat runs
+        <em class="mx-0 bg-transparent p-0 font-semibold not-italic text-emerald-300 underline decoration-emerald-400/40 decoration-2 underline-offset-4">inside</em> your App, acting as the signed-in user, with an editable approval
+        form in front of anything consequential.
+      </p>
+    </div>
+
+
+    <div class="mt-16 grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition hover:bg-white/[0.06]">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-500/15 text-emerald-300">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.42-4.03 8-9 8a9.9 9.9 0 01-4-.8L3 21l1.3-3.9A7.6 7.6 0 013 12c0-4.42 4.03-8 9-8s9 3.58 9 8z"/></svg>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-white">AI Chat v4</h3>
+        <p class="mt-3 leading-relaxed text-gray-400">
+          Register <span class="font-mono text-sm text-emerald-300">ChatFeature</span> and your users get a complete
+          AI application at <span class="font-mono text-sm">/chat</span> - every major model provider behind one
+          selector, documents, voice, images, RAG and per-user projects. All within your App boundary.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://docs.servicestack.net/chat/" class="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-bold text-gray-950 transition hover:bg-emerald-400 hover:no-underline">Explore AI Chat</a>
+          <a href="https://docs.servicestack.net/chat/overview" class="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-gray-200 transition hover:bg-white/10 hover:no-underline">Read the docs</a>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition hover:bg-white/[0.06]">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-sky-400/20 bg-sky-500/15 text-sky-300">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-white">API Tools &amp; MCP</h3>
+        <p class="mt-3 leading-relaxed text-gray-400">
+          Three stable tools - search, describe and call - give Models progressive access to your
+          live API surface, executed as the current user. Expose the same tools to any MCP-compatible
+          Assistant from a built-in MCP Server.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://docs.servicestack.net/chat/api-tools" class="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 text-sm font-bold text-gray-950 transition hover:bg-sky-400 hover:no-underline">API Tools</a>
+          <a href="https://docs.servicestack.net/chat/mcp" class="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-gray-200 transition hover:bg-white/10 hover:no-underline">MCP Server</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-3">
+      <a href="https://docs.servicestack.net/api-schema" class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-indigo-400/40 hover:bg-white/[0.07] hover:no-underline">
+        <h3 class="font-bold text-white">API Schemas</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-400">
+          Every API gets a portable JSON Schema contract that renders its own executable UI at
+          <span class="font-mono">/schema</span> - and any AI approval form.
+        </p>
+        <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-indigo-300">Learn more <span aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a href="https://docs.servicestack.net/autoquery-schema" class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-indigo-400/40 hover:bg-white/[0.07] hover:no-underline">
+        <h3 class="font-bold text-white">AutoQuery Schemas</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-400">
+          Open <span class="font-mono">/auto</span> and every AutoQuery data model already has a complete,
+          authorized CRUD App - assembled at runtime.
+        </p>
+        <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-indigo-300">Learn more <span aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a href="https://docs.servicestack.net/pdf" class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-indigo-400/40 hover:bg-white/[0.07] hover:no-underline">
+        <h3 class="font-bold text-white">PDF Studio</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-400">
+          Design documents with a vision model and a live preview, publish them as validated
+          artifacts, then render deterministically in production.
+        </p>
+        <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-indigo-300">Learn more <span aria-hidden="true">&rarr;</span></span>
+      </a>
+    </div>
+
+    <!-- Gallery -->
+    <div id="ai-gallery" class="mt-20" tabindex="0" role="group" aria-roledescription="carousel" aria-label="AI Chat and PDF Studio screenshots">
+      <div class="group relative">
+        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-r from-emerald-500 via-sky-500 to-indigo-500 opacity-20 blur-2xl"></div>
+
+        <div class="relative overflow-hidden rounded-2xl border border-white/15 bg-slate-950 shadow-2xl">
+          <div class="flex items-center gap-2 border-b border-white/10 bg-slate-900/80 px-4 py-3">
+            <div class="flex gap-1.5">
+              <div class="h-3 w-3 rounded-full bg-red-500/80"></div>
+              <div class="h-3 w-3 rounded-full bg-amber-500/80"></div>
+              <div class="h-3 w-3 rounded-full bg-green-500/80"></div>
+            </div>
+            <div id="ai-gallery-url" class="mx-auto w-full max-w-[280px] truncate rounded-md border border-slate-800 bg-slate-950 px-3 py-1 text-center font-mono text-xs text-slate-400">/chat</div>
+          </div>
+
+          <div class="relative aspect-[59/41] bg-slate-950">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-100 transition-opacity duration-700" data-url="/chat" data-caption="A complete AI Assistant inside your App, using your existing users" src="/img/pages/ai/screenshots/chat-01-home.webp" alt="AI Chat home">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Every commercial, open and local provider behind one model selector" src="/img/pages/ai/screenshots/chat-02-models.webp" alt="AI model selector">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Specialized Agent Profiles with their own tools and skills" src="/img/pages/ai/screenshots/chat-03-profiles.webp" alt="Agent Profiles">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Organize conversations and context into projects" src="/img/pages/ai/screenshots/chat-04-projects.webp" alt="Chat projects">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Your own APIs invoked as tools - as the signed-in user" src="/img/pages/ai/screenshots/chat-06-tools.webp" alt="AI tools">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Complete real tasks by calling your application's APIs" src="/img/pages/ai/screenshots/chat-07-tools-booking.webp" alt="Tool booking example">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Extend assistants with reusable, specialized skills" src="/img/pages/ai/screenshots/chat-08-skills.webp" alt="AI skills">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat/admin" data-caption="Usage, token and cost analytics for administrators" src="/img/pages/ai/screenshots/chat-09-analytics.webp" alt="AI analytics">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat/admin" data-caption="Review AI activity across your application" src="/img/pages/ai/screenshots/chat-10-analytics-activity.webp" alt="AI activity analytics">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat/admin" data-caption="Understand AI usage for every user" src="/img/pages/ai/screenshots/chat-11-analytics-users.webp" alt="AI user analytics">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat/pdf" data-caption="Design documents in PDF Studio against a live preview" src="/img/pages/ai/screenshots/chat-12-pdf.webp" alt="PDF Studio">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Use Gemini's multimodal capabilities inside your assistant" src="/img/pages/ai/screenshots/chat-13-gemini.webp" alt="Gemini assistant">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Work with pages and documents using Gemini" src="/img/pages/ai/screenshots/chat-14-gemini-pages.webp" alt="Gemini pages">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Generate and explore image galleries in chat" src="/img/pages/ai/screenshots/chat-15-gallery-images.webp" alt="Generated image gallery">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Create and run Python directly in chat" src="/img/pages/ai/screenshots/chat-16-code-python.webp" alt="Python code">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Create and run JavaScript directly in chat" src="/img/pages/ai/screenshots/chat-17-code-javascript.webp" alt="JavaScript code">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Create type-safe TypeScript directly in chat" src="/img/pages/ai/screenshots/chat-18-code-typescript.webp" alt="TypeScript code">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Create production-ready C# directly in chat" src="/img/pages/ai/screenshots/chat-19-code-csharp.webp" alt="C# code">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Inspect structured JSON responses" src="/img/pages/ai/screenshots/chat-20-code-json.webp" alt="JSON response">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Turn structured JSON into interactive forms" src="/img/pages/ai/screenshots/chat-21-code-json-form.webp" alt="JSON form">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Explore and validate JSON Schema" src="/img/pages/ai/screenshots/chat-22-code-json-schema.webp" alt="JSON Schema">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Generate C# types from structured JSON" src="/img/pages/ai/screenshots/chat-23-code-json-csharp.webp" alt="JSON to C#">
+            <img class="ai-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-700" data-url="/chat" data-caption="Solve calculations with rich, interactive results" src="/img/pages/ai/screenshots/chat-24-calc.webp" alt="AI calculator">
+          </div>
+        </div>
+
+        <!-- Prev / Next -->
+        <button type="button" onclick="aiGallery(-1)" aria-label="Previous"
+                class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-slate-900/80 p-2.5 text-white opacity-0 backdrop-blur-sm transition hover:bg-slate-800 group-hover:opacity-100 focus:opacity-100">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button type="button" onclick="aiGallery(1)" aria-label="Next"
+                class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-slate-900/80 p-2.5 text-white opacity-0 backdrop-blur-sm transition hover:bg-slate-800 group-hover:opacity-100 focus:opacity-100">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <p id="ai-gallery-caption" class="mt-6 text-center text-lg text-gray-300">
+        A complete AI Assistant inside your App, using your existing users
+      </p>
+
+      <!-- Thumbnails -->
+      <div class="mt-6 flex flex-wrap justify-center gap-2">
+        <button type="button" onclick="aiGalleryGo(0)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI Chat home"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-01-home.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(1)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI model selector"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-02-models.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(2)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Agent Profiles"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-03-profiles.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(3)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Chat projects"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-04-projects.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(4)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI tools"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-06-tools.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(5)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Tool booking example"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-07-tools-booking.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(6)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI skills"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-08-skills.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(7)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI analytics"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-09-analytics.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(8)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI activity analytics"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-10-analytics-activity.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(9)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI user analytics"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-11-analytics-users.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(10)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="PDF Studio"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-12-pdf.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(11)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Gemini assistant"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-13-gemini.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(12)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Gemini pages"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-14-gemini-pages.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(13)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Generated image gallery"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-15-gallery-images.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(14)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="Python code"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-16-code-python.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(15)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="JavaScript code"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-17-code-javascript.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(16)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="TypeScript code"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-18-code-typescript.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(17)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="C# code"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-19-code-csharp.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(18)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="JSON response"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-20-code-json.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(19)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="JSON form"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-21-code-json-form.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(20)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="JSON Schema"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-22-code-json-schema.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(21)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="JSON to C#"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-23-code-json-csharp.webp" alt=""></button>
+        <button type="button" onclick="aiGalleryGo(22)" class="ai-thumb overflow-hidden rounded-lg border-2 transition" aria-label="AI calculator"><img class="h-12 w-20 object-cover object-top" src="/img/pages/ai/screenshots/chat-24-calc.webp" alt=""></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+;(function () {
+    const shots   = Array.from(document.querySelectorAll('.ai-shot'))
+    const thumbs  = Array.from(document.querySelectorAll('.ai-thumb'))
+    const caption = document.getElementById('ai-gallery-caption')
+    const url     = document.getElementById('ai-gallery-url')
+    const root    = document.getElementById('ai-gallery')
+    if (shots.length < 2) return
+
+    const ON  = 'ai-thumb overflow-hidden rounded-lg border-2 transition border-emerald-400 opacity-100'
+    const OFF = 'ai-thumb overflow-hidden rounded-lg border-2 transition border-white/10 opacity-50 hover:opacity-90'
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let i = 0, timer = null, paused = reduced, visible = true
+
+    function render() {
+        shots.forEach((s, n) => s.style.opacity = n === i ? '1' : '0')
+        thumbs.forEach((t, n) => t.className = n === i ? ON : OFF)
+        if (caption) caption.textContent = shots[i].dataset.caption || ''
+        if (url) url.textContent = shots[i].dataset.url || ''
+    }
+    function stop() { if (timer) clearInterval(timer); timer = null }
+    function start() {
+        stop()
+        if (paused) return
+        timer = setInterval(() => { i = (i + 1) % shots.length; render() }, 5000)
+    }
+    /** any manual navigation takes over from the auto-advance for good */
+    function pause() { paused = true; stop() }
+    function go(n) { i = (n + shots.length) % shots.length; render() }
+
+    window.aiGallery   = d => { pause(); go(i + d) }
+    window.aiGalleryGo = n => { pause(); go(n) }
+
+    if (root) {
+        root.addEventListener('mouseenter', stop)
+        root.addEventListener('mouseleave', start)
+        // arrow keys only while the gallery is on screen, so they don't hijack the rest of the page
+        if ('IntersectionObserver' in window) {
+            visible = false
+            new IntersectionObserver(es => { visible = es[0].isIntersecting }, { threshold: 0.35 })
+                .observe(root)
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+            if (!visible && document.activeElement !== root && !root.contains(document.activeElement)) return
+            const t = e.target
+            if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return
+            e.preventDefault()
+            pause()
+            go(i + (e.key === 'ArrowRight' ? 1 : -1))
+        })
+    }
+    render()
+    start()
+})()
+</script>
+
+<!-- ============================================================ WHY SERVICESTACK -->
+<section id="key-features" class="bg-white dark:bg-black py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Why ServiceStack?</h2>
+      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">Simple, versatile, evolvable, resilient high-performance message-based APIs</p>
+    </div>
+
+    <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <div>
+        <dt class="font-semibold text-gray-900 dark:text-gray-100">Maximize Value and Reach of System APIs</dt>
+        <dd class="mt-1 text-gray-600 dark:text-gray-400">
+          The same APIs can be consumed from HTTP in a myriad of data formats, via popular MQ Servers
+          and over gRPC - without sacrificing any native HTTP integrations.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900 dark:text-gray-100">Ultimate Developer Productivity</dt>
+        <dd class="mt-1 text-gray-600 dark:text-gray-400">
+          Native end-to-end typed integrations for 15 of the most popular languages used to build Web,
+          Mobile &amp; Desktop Apps, added and updated from within your favorite IDE.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900 dark:text-gray-100">Remote Services Best Practices</dt>
+        <dd class="mt-1 text-gray-600 dark:text-gray-400">
+          A message-based design embracing the Remote Facade, DTO and Service Gateway patterns - the only
+          Services framework to reuse API contracts for typed integrations in .NET Apps without code-gen.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900 dark:text-gray-100">Benefits of message-based design</dt>
+        <dd class="mt-1 text-gray-600 dark:text-gray-400">
+          Unlike RPC, messages can be evolved, intercepted, routed &amp; serialized, letting front and back-end
+          developers collaborate on an agreed high-level API design free of implementation concerns.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900 dark:text-gray-100">Consistent &amp; Simplified Development Model</dt>
+        <dd class="mt-1 text-gray-600 dark:text-gray-400">
+          Capturing an entire API boundary into impl-free Service Contracts means every supported language
+          need only generate declarative DTOs - encapsulating richer metadata than other code-gen solutions.
+        </dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-gray-900 dark:text-gray-100">Preserve Investments</dt>
+        <dd class="mt-1 text-gray-600 dark:text-gray-400">
+          ServiceStack has promoted the same remote service best-practices for over a decade, outliving
+          several abandoned .NET Web Service frameworks and the investments that failed along with them.
+        </dd>
+      </div>
+    </dl>
+
+    <div class="mt-16 flex flex-wrap gap-4">
+      <a href="https://docs.servicestack.net/why-servicestack" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-indigo-500 hover:no-underline">Why ServiceStack</a>
+      <a href="features" class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 hover:no-underline dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-900">All Features</a>
+      <a href="https://docs.servicestack.net" class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 hover:no-underline dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-900">Documentation</a>
+    </div>
+  </div>
+</section>
+
+@await Html.PartialAsync("VideoIncludes")
+
+<!-- ============================================================ VIDEOS (tabbed) -->
+<section id="videos" class="scroll-mt-20 border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Watch &amp; Learn</h2>
+      <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
+        Short, focused walkthroughs covering everything from your first API to deployments.
+      </p>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="mt-12 flex flex-wrap justify-center gap-2">
+      @foreach (var g in videoGroups)
+      {
+        var count = g.Groups.Sum(x => Videos.GetVideos(x).Count);
+        if (count == 0) continue;
+        <button type="button" data-vtab="@g.Id" onclick="ssVideoTab('@g.Id')"
+                class="ss-vtab inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition">
+          @g.Title
+          <span class="rounded-full bg-black/5 px-1.5 text-xs dark:bg-white/10">@count</span>
+        </button>
+      }
+    </div>
+
+    <!-- Panels -->
+    @foreach (var g in videoGroups)
+    {
+      var videos = g.Groups.SelectMany(x => Videos.GetVideos(x)).ToList();
+      if (videos.Count == 0) continue;
+      <div data-vpanel="@g.Id" class="ss-vpanel mt-10 @(g.Id == activeGroup ? "" : "hidden")">
+        <div class="mx-auto max-w-3xl text-center">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">@g.Title</h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">
+            @g.Summary
+            @if (g.LearnMore != null)
+            {
+              <a href="@g.LearnMore" class="ml-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400">Learn more <span aria-hidden="true">&rarr;</span></a>
+            }
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          @foreach (var video in videos)
+          {
+            var videoId = video.Url.LastRightPart('/');
+            <article class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-gray-800">
+              <lite-youtube width="560" height="315" videoid="@videoId" class="block w-full"
+                            style="background-image: url('https://img.youtube.com/vi/@videoId/hqdefault.jpg')"></lite-youtube>
+              <div class="flex flex-1 flex-col bg-slate-800 p-4 dark:bg-slate-900">
+                <h4 class="text-base font-semibold leading-6 text-white">
+                  <a href="@video.Url" class="transition-colors hover:text-indigo-300">@video.Title</a>
+                </h4>
+                <div class="mt-auto flex flex-wrap items-center gap-2 pt-3 text-xs text-slate-400">
+                  @if (video.Date != null)
+                  {
+                    <time datetime="@($"{video.Date.Value:yyyy-MM-dd}")">@($"{video.Date.Value:MMMM d, yyyy}")</time>
+                  }
+                  @foreach (var tag in video.Tags.Safe().Take(2))
+                  {
+                    <span class="rounded-full bg-white/10 px-2 py-0.5 font-medium text-slate-300">@tag</span>
+                  }
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<script>
+const SS_VTAB_ON  = 'border-indigo-500 bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300'
+const SS_VTAB_OFF = 'border-gray-200 dark:border-gray-800 bg-white dark:bg-black text-gray-600 dark:text-gray-400 hover:border-indigo-300'
+function ssVideoTab(id) {
+    document.querySelectorAll('.ss-vtab').forEach(b => {
+        const on = b.dataset.vtab === id
+        b.className = 'ss-vtab inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition ' + (on ? SS_VTAB_ON : SS_VTAB_OFF)
+    })
+    document.querySelectorAll('.ss-vpanel').forEach(p => p.classList.toggle('hidden', p.dataset.vpanel !== id))
+}
+ssVideoTab('@activeGroup')
+</script>
+
+<!-- ============================================================ DEPLOY ANYWHERE -->
+<section class="bg-gray-50 dark:bg-gray-950 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-base font-semibold leading-7 text-sky-600">Deploy anywhere</h2>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
+        From your first commit to production
+      </p>
+      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+        Templates ship with GitHub Actions workflows and a Docker Compose deployment over SSH already
+        wired up &mdash; so there's no gap between building your App and running it.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+      <a href="https://docs.servicestack.net/ssh-docker-compose-deploment" class="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:no-underline dark:border-gray-800 dark:bg-black">
+        <svg class="h-10 w-10 text-[#2496ED]" viewBox="0 0 24 24" fill="currentColor"><path d="M13.98 11.08h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19h-2.12a.18.18 0 0 0-.18.18v1.9c0 .1.08.18.18.18m-2.95-5.43h2.12a.19.19 0 0 0 .18-.19V3.57a.19.19 0 0 0-.18-.18h-2.12a.18.18 0 0 0-.19.18v1.9c0 .1.09.18.19.18m0 2.71h2.12a.19.19 0 0 0 .18-.18v-1.9a.19.19 0 0 0-.18-.18h-2.12a.18.18 0 0 0-.19.18v1.9c0 .1.09.18.19.18m-2.93 0h2.12a.19.19 0 0 0 .18-.18v-1.9a.18.18 0 0 0-.18-.18H8.1a.18.18 0 0 0-.18.18v1.9c0 .1.08.18.18.18m-2.96 0h2.11a.19.19 0 0 0 .19-.18v-1.9a.18.18 0 0 0-.19-.18H5.14a.19.19 0 0 0-.19.18v1.9c0 .1.08.18.19.18m5.89 2.72h2.12a.19.19 0 0 0 .18-.19V9.01a.19.19 0 0 0-.18-.19h-2.12a.18.18 0 0 0-.19.18v1.9c0 .1.09.18.19.18m-2.93 0h2.12a.18.18 0 0 0 .18-.19V9.01a.18.18 0 0 0-.18-.19H8.1a.18.18 0 0 0-.18.18v1.9c0 .1.08.18.18.18m-2.96 0h2.11a.18.18 0 0 0 .19-.19V9.01a.18.18 0 0 0-.18-.19H5.14a.19.19 0 0 0-.19.19v1.88c0 .1.08.19.19.19m-2.92 0h2.12a.18.18 0 0 0 .18-.19V9.01a.18.18 0 0 0-.18-.19H2.22a.18.18 0 0 0-.19.18v1.9c0 .1.08.18.19.18M23.76 9.7c-.06-.05-.67-.51-1.95-.51-.34 0-.68.03-1.01.09a3.77 3.77 0 0 0-1.72-2.57l-.34-.2-.23.33a4.6 4.6 0 0 0-.6 1.43c-.24.96-.1 1.86.4 2.63a4.7 4.7 0 0 1-1.75.42H.76a.75.75 0 0 0-.75.75 11.38 11.38 0 0 0 .7 4.06 6.03 6.03 0 0 0 2.4 3.12c1.18.67 3.1 1.05 5.28 1.05a16 16 0 0 0 2.97-.27 12.3 12.3 0 0 0 3.9-1.4 10.7 10.7 0 0 0 2.66-2.17c1.26-1.42 2-3 2.55-4.41h.23c1.37 0 2.21-.55 2.68-1 .3-.3.55-.66.7-1.06l.1-.28z"/></svg>
+        <h3 class="mt-5 font-bold text-gray-900 dark:text-gray-100">Docker Compose over SSH</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Deploy to any vanilla Linux host for a few dollars a month. No orchestrator, no lock-in.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sky-600 dark:text-sky-400">Read the guide <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="https://docs.servicestack.net/github-action-templates" class="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:no-underline dark:border-gray-800 dark:bg-black">
+        <svg class="h-10 w-10 text-gray-900 dark:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <h3 class="mt-5 font-bold text-gray-900 dark:text-gray-100">GitHub Actions</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Mix in a ready-made workflow to build, test and release your App on every push.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sky-600 dark:text-sky-400">Action templates <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="litestream" class="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:no-underline dark:border-gray-800 dark:bg-black">
+        <svg class="h-10 w-10 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2 3.6 3 8 3s8-1 8-3V7M4 7c0 2 3.6 3 8 3s8-1 8-3M4 7c0-2 3.6-3 8-3s8 1 8 3"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l3 3 3-3"/></svg>
+        <h3 class="mt-5 font-bold text-gray-900 dark:text-gray-100">SQLite + Litestream</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Run on a single node with continuous streaming replication to object storage.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sky-600 dark:text-sky-400">Explore Litestream <span aria-hidden="true">&rarr;</span></span>
+      </a>
+
+      <a href="https://docs.servicestack.net/kamal-deploy" class="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 transition hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:no-underline dark:border-gray-800 dark:bg-black">
+        <svg class="h-10 w-10 text-violet-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0v10l-8 4m8-14l-8 4m0 10L4 17V7m8 10V11M4 7l8 4"/></svg>
+        <h3 class="mt-5 font-bold text-gray-900 dark:text-gray-100">Kamal</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Zero-downtime container deploys to any host you control, with rollbacks built in.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sky-600 dark:text-sky-400">Deploy with Kamal <span aria-hidden="true">&rarr;</span></span>
+      </a>
+    </div>
+
+    <!-- Cloud row -->
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <span class="text-sm font-semibold uppercase tracking-wider text-gray-500">Or your cloud of choice</span>
+      <a href="https://docs.servicestack.net/aws" class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-sky-400 hover:no-underline dark:border-gray-800 dark:bg-black dark:text-gray-300">
+        <img class="h-5 w-5" src="img/svgs/aws.svg" alt=""> AWS
+      </a>
+      <a href="https://docs.servicestack.net/azure" class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-sky-400 hover:no-underline dark:border-gray-800 dark:bg-black dark:text-gray-300">
+        <img class="h-5 w-5" src="img/svgs/azure.svg" alt=""> Azure
+      </a>
+      <a href="https://docs.servicestack.net/do-github-action-mix-deployment" class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-sky-400 hover:no-underline dark:border-gray-800 dark:bg-black dark:text-gray-300">
+        Digital Ocean
+      </a>
+      <a href="https://docs.servicestack.net/netcore-deploy-rsync" class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-sky-400 hover:no-underline dark:border-gray-800 dark:bg-black dark:text-gray-300">
+        Bare metal
+      </a>
+    </div>
+  </div>
+</section>
+
+@await Html.PartialAsync("Home/Features")
+
+@await Html.PartialAsync("Testimonials")
+
+<!-- ============================================================ TRUSTED IN PRODUCTION -->
+<section class="border-y border-gray-200 dark:border-gray-800 bg-white dark:bg-black py-20">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-base font-semibold uppercase tracking-widest text-indigo-600">Trusted in production</h2>
+      <p class="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-3xl">
+        Shipping in the world's largest organizations
+      </p>
+      <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
+        ServiceStack has been promoting the same remote service best-practices for over a decade &mdash;
+        outliving several .NET Web Service frameworks along the way.
+      </p>
+    </div>
+    <div class="mt-10">
+      @await Html.PartialAsync("BrandCustomers")
+    </div>
+  </div>
+</section>
+
+@await Html.PartialAsync("Newsletter")
+
 @await Html.PartialAsync("HighlightIncludes")
-<link rel="stylesheet" href="css/typography.css">
 
 <style>
 .hljs, .prose :where(pre):not(:where([class~="not-prose"] *)) .hljs {
@@ -286,17 +936,14 @@
 }
 </style>
 <script type="module">
-import { createApp, ref, reactive } from "vue"
+import { createApp, ref, reactive, computed } from "vue"
 import { App, usePageRoutes } from "/js/core.mjs"
 import ServiceStackVue from "@@servicestack/vue"
 import OpenAiChatLangs from "/mjs/components/OpenAiChatLangs.mjs"
 
-
 const app = new App()
 app.use(ServiceStackVue)
 app.component('RouterLink', ServiceStackVue.component('RouterLink'))
-//const client = window.client = new JsonServiceClient()
-//const events = app.events
 
 let routes = usePageRoutes(app, {
   page:'admin',
@@ -317,12 +964,12 @@ const OpenAiChat = {
           <h2 class="text-base font-semibold leading-7 text-indigo-600">Developer APIs</h2>
           <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">AI Chat</p>
           <p class="mt-6 text-lg leading-8 text-gray-600">
-            ServiceStack's end-to-end typed APIs enable you to write your APIs once and take advantage of 
+            ServiceStack's end-to-end typed APIs enable you to write your APIs once and take advantage of
             native typed integrations for all popular languages used in Web, Mobile and Desktop platforms.
           </p>
           <p class="mt-6 text-lg leading-8 text-gray-600">
-            Example of calling an 
-            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ai-chat-api">OpenAI compatible Chat API</a>. 
+            Example of calling an
+            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/chat/api">OpenAI compatible Chat API</a>.
             ServiceStack APIs are executed using the same generic JSON Service Client and the native Typed DTOs generated in each language.
           </p>
           <dl class="mt-10 max-w-xl space-y-4 text-base leading-7 text-gray-600 lg:max-w-none">
@@ -331,7 +978,7 @@ const OpenAiChat = {
                 Smart Generic Clients <span class="px-1" aria-hidden="true">·</span>
               </dt>
               <dd class="inline">
-                All languages utilize a feature-rich, idiomatic generic JSON Client that can call 
+                All languages utilize a feature-rich, idiomatic generic JSON Client that can call
                 any ServiceStack API
               </dd>
             </div>
@@ -353,7 +1000,7 @@ const OpenAiChat = {
               </dd>
             </div>
           </dl>
-        </div>            
+        </div>
     </OpenAiChatLangs>`,
   props: {},
   setup() {
@@ -363,58 +1010,44 @@ const OpenAiChat = {
 
 const AnalyticsUi = {
   template: `
-<div class="py-8">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <h1 class="text-balance text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">          
-          {{ adminUis[routes.page]?.title || adminUis.analytics.title }}
-      </h1>
-      <p class="mt-4 text-lg leading-8 text-gray-600">
-        {{ adminUis[routes.page]?.summary || adminUis.analytics.summary }}
+<div>
+  <div class="mx-auto max-w-5xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-base font-semibold leading-7 text-violet-600">Built-in UIs</h2>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
+        A suite of Admin UIs in every App
+      </p>
+      <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
+        Enabled by default and secured by your App's existing auth - nothing to install, nothing to build.
       </p>
     </div>
-    
-    <nav class="py-4 flex items-center justify-between px-4 sm:px-0">
-      <div class="-mt-px flex w-0 flex-1 select-none">
-        <a v-href="{ page:adminUiKeys[adminUiKeys.findIndex(x => x == routes.page) - 1] ?? adminUiKeys[adminUiKeys.length-1] }" class="cursor-pointer inline-flex items-center pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-          <svg class="mr-3 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-            <path fill-rule="evenodd" d="M18 10a.75.75 0 0 1-.75.75H4.66l2.1 1.95a.75.75 0 1 1-1.02 1.1l-3.5-3.25a.75.75 0 0 1 0-1.1l3.5-3.25a.75.75 0 1 1 1.02 1.1l-2.1 1.95h12.59A.75.75 0 0 1 18 10Z" clip-rule="evenodd" />
-          </svg>
-          Previous
-        </a>
-      </div>
-      <div class="hidden md:-mt-px md:flex select-none">
-        <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
-        <div>
-            <nav class="flex items-center justify-center" aria-label="Progress">
-              <ol role="list" class="ml-8 flex items-center space-x-5">
-                <li v-for="(label,id,index) in adminUis">
-                  <a v-href="{ page:id }" class="block h-2.5 w-2.5 rounded-full bg-gray-200 hover:bg-gray-400">
-                    <span class="sr-only">Step 1</span>
-                    <span v-if="(routes.page) == id" class="relative block h-2.5 w-2.5 rounded-full bg-indigo-600" aria-hidden="true"></span>
-                  </a>
-                </li>
-              </ol>
-            </nav>
-        </div>
-      </div>
-      <div class="-mt-px flex w-0 flex-1 justify-end select-none">
-        <a v-href="{ page:adminUiKeys[adminUiKeys.findIndex(x => x == routes.page) + 1] }" class="cursor-pointer inline-flex items-center pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-          Next
-          <svg class="ml-3 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-            <path fill-rule="evenodd" d="M2 10a.75.75 0 0 1 .75-.75h12.59l-2.1-1.95a.75.75 0 1 1 1.02-1.1l3.5 3.25a.75.75 0 0 1 0 1.1l-3.5 3.25a.75.75 0 1 1-1.02-1.1l2.1-1.95H2.75A.75.75 0 0 1 2 10Z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </div>
-    </nav>
-            
+
+    <div class="mt-10 flex flex-wrap justify-center gap-2">
+      <button v-for="(ui,id) in adminUis" :key="id" type="button" v-on:click="routes.to({ page:id })"
+        :class="['rounded-full border px-4 py-2 text-sm font-semibold transition',
+                 current === id
+                   ? 'border-violet-500 bg-violet-50 text-violet-700 dark:bg-violet-950/50 dark:text-violet-300'
+                   : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-black text-gray-600 dark:text-gray-400 hover:border-violet-300']">
+        {{ ui.title }}
+      </button>
+    </div>
+
+    <div class="mx-auto mt-10 max-w-3xl text-center">
+      <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">{{ adminUis[current].title }}</h3>
+      <p class="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-400">{{ adminUis[current].summary }}</p>
+      <a :href="adminUis[current].href" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-violet-600 dark:text-violet-400">
+        Read the docs <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
     <div class="mt-8 flow-root select-none">
-      <div v-on:click="onNav()" class="cursor-pointer -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-        <img :src="'/img/pages/index/'+(routes.page || 'analytics')+'.webp'" alt="Admin UI Screenshot" width="2432" height="1442" class="rounded-md shadow-2xl ring-1 ring-gray-900/10">
-      </div>
+      <a :href="adminUis[current].href" class="block -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+        <img :src="'/img/pages/index/' + current + '.webp'" alt="Admin UI Screenshot" width="2432" height="1442"
+             class="rounded-md shadow-2xl ring-1 ring-gray-900/10">
+      </a>
     </div>
   </div>
-</div>  
+</div>
   `,
   setup() {
 
@@ -430,12 +1063,12 @@ const AnalyticsUi = {
         href:'https://docs.servicestack.net/admin-ui-analytics',
       },
       'users': {
-        title:'IdentityAuth Users',
+        title:'Users',
         summary:'Customizable ASP.NET Core Identity Auth User Management',
         href:'https://docs.servicestack.net/admin-ui-identity-users',
       },
       'roles': {
-        title:'IdentityAuth Roles',
+        title:'Roles',
         summary:'Manage App ASP.NET Core Identity Auth Roles and Claims',
         href:'https://docs.servicestack.net/admin-ui-identity-roles',
       },
@@ -465,32 +1098,28 @@ const AnalyticsUi = {
         href:'https://docs.servicestack.net/background-jobs',
       },
       'validation': {
-        title:'DB Validation Rules',
+        title:'DB Validation',
         summary:'Manage dynamic Type and Property Rule Validators',
         href:'https://docs.servicestack.net/admin-ui-validation',
       },
       'database': {
-        title:'Database Browser',
+        title:'Database',
         summary:"Browse RDBMS tables of all App's configured databases",
         href:'https://docs.servicestack.net/admin-ui-database',
       },
       'redis': {
-        title:'Redis Admin',
+        title:'Redis',
         summary:"Inspect, browse and modify the App's configured Redis instance",
         href:'https://docs.servicestack.net/admin-ui-redis',
       },
     }
-    const adminUiKeys = Object.keys(adminUis)
-    
-    function onNav() {
-      location.href = adminUis[routes.page]?.href || adminUis.analytics.href
-    }
+
+    const current = computed(() => adminUis[routes.page] ? routes.page : 'analytics')
 
     return {
       routes,
       adminUis,
-      adminUiKeys,
-      onNav,
+      current,
     }
   }
 }
@@ -509,95 +1138,7 @@ app.build(Component).mount('#app')
 app.start()
 </script>
 
-@await Html.PartialAsync("Newsletter")
-
-@await Html.PartialAsync("Testimonials")
-
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "ServiceStack APIs",
-  Summary = "Effortlessly create feature-rich APIs and Web Apps with ServiceStack",
-  Group = "apis"
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "Project Templates",
-  Summary = "Get Started quickly with your preferred frameworks with our growing project templates",
-  Group = "projects",
-  LearnMore = "https://docs.servicestack.net/templates-overview",
-  Background = "bg-slate-100 dark:bg-slate-800",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "Blazor Project Templates",
-  Summary = "Beautiful, Modern, Productive Blazor Tailwind Templates",
-  Group = "blazor",
-  LearnMore = "https://servicestack.net/blazor",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "Mobile Apps",
-  Summary = "Maximize utility of your APIs with native integrations to all popular languages used in Mobile Apps",
-  Group = "mobile",
-  LearnMore = "https://docs.servicestack.net/clients-overview", 
-  Background = "bg-slate-100 dark:bg-slate-800",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
- Title = "Add ServiceStack Reference",
- Summary = "High performance end-to-end typed APIs that integrate with any platform",
- LearnMore = "https://docs.servicestack.net/add-servicestack-reference", 
- Group = "ss-ref",
-})
-
-@await Html.PartialAsync("Home/Languages")
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "gRPC",
-  Summary = "ServiceStack’s gRPC support enables a highly productive development environment for developing high-performance gRPC HTTP/2 Services by making ServiceStack’s existing typed Services available from ASP.NET’s gRPC endpoints",
-  Group = "grpc",
-  LearnMore = "https://docs.servicestack.net/grpc",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "Jupyter",
-  Summary = "Jupyter is an exciting initiative to support an open standards, interactive computing platform where it provides the ideal integrated exploratory programming environment for data science and scientific computing.",
-  Group = "jupyter",
-  LearnMore = "https://docs.servicestack.net/jupyter-notebooks",
-  Background = "bg-slate-100 dark:bg-slate-800",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "GitHub Actions & Deployments",
-  Summary = "Setup your GitHub Actions for your ServiceStack project in minutes with our GitHub Action mix templates to suit a variety of situations.",
-  Group = "actions",
-  LearnMore = "https://docs.servicestack.net/github-action-templates",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "AI Server",
-  Summary = "Unified APIs for LLM APIs, Ollama, ComfyUI & FFmpeg",
-  Group = "ai-server",
-  LearnMore = "https://servicestack.net/posts/ai-server",
-  Background = "bg-slate-100 dark:bg-slate-800",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "Features",
-  Summary = "Learn about other exciting features in the ServiceStack software ecosystem",
-  Group = "features",
-})
-
-@await Html.PartialAsync("VideoGroup", new Shared.VideoGroup {
-  Title = "CreatorKit",
-  Summary = "Open Source self-hosted alternative to Mailchimp and Disqus",
-  Group = "creatorkit",
-  LearnMore = "https://servicestack.net/creatorkit/",
-  Background = "bg-slate-100 dark:bg-slate-800",
-})
-
-@await Html.PartialAsync("Home/Features")
-
+<!-- ============================================================ CONTACT -->
 <div class="relative isolate bg-gray-900">
   <div class="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
     <div class="relative px-6 pt-24 pb-20 sm:pt-32 lg:static lg:py-48 lg:px-8">
@@ -605,19 +1146,19 @@ app.start()
         <div class="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden ring-1 ring-white/5 lg:w-1/2">
           <svg class="absolute inset-0 h-full w-full stroke-gray-700 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
             <defs>
-              <pattern id="54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2" width="200" height="200" x="100%" y="-1" patternUnits="userSpaceOnUse">
+              <pattern id="contact-grid" width="200" height="200" x="100%" y="-1" patternUnits="userSpaceOnUse">
                 <path d="M130 200V.5M.5 .5H200" fill="none" />
               </pattern>
             </defs>
             <svg x="100%" y="-1" class="overflow-visible fill-gray-800/20">
               <path d="M-470.5 0h201v201h-201Z" stroke-width="0" />
             </svg>
-            <rect width="100%" height="100%" stroke-width="0" fill="url(#54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2)" />
+            <rect width="100%" height="100%" stroke-width="0" fill="url(#contact-grid)" />
           </svg>
           <svg class="absolute top-[calc(100%-13rem)] -left-56 w-[72.1875rem] transform-gpu blur-3xl lg:top-[calc(50%-7rem)] lg:left-[max(-14rem,calc(100%-59rem))]" viewBox="0 0 1155 678" aria-hidden="true">
-            <path fill="url(#0a9a5302-e517-46c6-85f0-d826aa6a313e)" fill-opacity=".2" d="M317.219 159.025 203.852 0 0 239.659l317.219-80.634 204.172 286.402c1.307-132.337 45.083-346.658 209.733-145.248C936.936 551.942 882.053 772.234 1031.02 636.67c119.18-108.452 130.68-295.338 121.53-375.224L855 379l21.173-362.054-558.954 142.079Z" />
+            <path fill="url(#contact-gradient)" fill-opacity=".2" d="M317.219 159.025 203.852 0 0 239.659l317.219-80.634 204.172 286.402c1.307-132.337 45.083-346.658 209.733-145.248C936.936 551.942 882.053 772.234 1031.02 636.67c119.18-108.452 130.68-295.338 121.53-375.224L855 379l21.173-362.054-558.954 142.079Z" />
             <defs>
-              <linearGradient id="0a9a5302-e517-46c6-85f0-d826aa6a313e" x1="1155.49" x2="-78.208" y1="677.823" y2="203.355" gradientUnits="userSpaceOnUse">
+              <linearGradient id="contact-gradient" x1="1155.49" x2="-78.208" y1="677.823" y2="203.355" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#4F46E5" />
                 <stop offset="1" stop-color="#80CAFF" />
               </linearGradient>
@@ -626,8 +1167,8 @@ app.start()
         </div>
         <h2 class="text-3xl font-bold tracking-tight text-white">Contact sales</h2>
         <p class="mt-6 text-lg leading-8 text-gray-300">
-          If you have any Sales or Licensing questions please 
-          <a class="font-semibold text-white" href="mailto:team@servicestack.net">email us</a> 
+          If you have any Sales or Licensing questions please
+          <a class="font-semibold text-white" href="mailto:team@@servicestack.net">email us</a>
           and we will do everything we can to take care of you.
         </p>
         <dl class="mt-10 space-y-4 text-base leading-7 text-gray-300">
@@ -638,7 +1179,7 @@ app.start()
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
             </dt>
-            <dd><a class="hover:text-white" href="mailto:team@servicestack.net">team@servicestack.net</a></dd>
+            <dd><a class="hover:text-white" href="mailto:team@@servicestack.net">team@@servicestack.net</a></dd>
           </div>
         </dl>
       </div>
@@ -646,7 +1187,6 @@ app.start()
     <div id="contact"></div>
   </div>
 </div>
-
 
 <script type="module">
 import { ref } from "vue"
@@ -672,7 +1212,7 @@ const ContactUs = {
                         </g>
                     </g>
                 </svg>
-                <PrimaryButton :disabled="api.loading">Send Message</PrimaryButton>            
+                <PrimaryButton :disabled="api.loading">Send Message</PrimaryButton>
             </div>
         </div>
       </div>
@@ -684,7 +1224,7 @@ const ContactUs = {
             <div class="max-w-lg">
                 <h2 class="text-3xl font-bold tracking-tight text-white">Thank you for getting in touch!</h2>
                 <p class="mt-6 text-lg leading-8 text-gray-300">
-                    We appreciate you contacting ServiceStack. <br> 
+                    We appreciate you contacting ServiceStack. <br>
                     We will get back in touch with you soon!
                 </p>
             </div>

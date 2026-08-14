@@ -311,7 +311,7 @@ In addition, all AutoQuery APIs benefit from the built-in [Locode's](https://doc
     <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="hkuO_DMFXmc" style="background-image: url('https://img.youtube.com/vi/hkuO_DMFXmc/maxresdefault.jpg')"></lite-youtube>
 </div>
 
-As well as end-to-end typed integrations with the most [popular programming languages](/service-reference) accessible 
+As well as end-to-end typed integrations with the most [popular programming languages](https://docs.servicestack.net/add-servicestack-reference) accessible 
 from the [code tab](https://docs.servicestack.net/api-explorer#code-tab) of the built-in 
 [API Explorer](https://docs.servicestack.net/api-explorer):
 

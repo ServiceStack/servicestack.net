@@ -1,6 +1,6 @@
 ---
 title: AutoQuery Schemas - instant CRUD Apps from your data models
-url: https://docs.servicestack.net/auto
+url: https://docs.servicestack.net/autoquery-schema
 image: /img/posts/autoquery-schema/bg.webp
 order: 4
 ---
