@@ -116,87 +116,102 @@ mountAll()
 
 
 <div class="relative isolate overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300 border-b">
-  
-  <!-- Technical Grid Background -->
-  <svg class="absolute inset-0 -z-10 h-full w-full stroke-slate-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)] dark:stroke-slate-800/50" aria-hidden="true">
-    <defs>
-      <pattern id="grid-pattern" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
-        <path d="M100 200V.5M.5 .5H200" fill="none" />
-      </pattern>
-    </defs>
-    <svg x="50%" y="-1" class="overflow-visible fill-slate-50 dark:fill-slate-900/50">
-      <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0" />
+
+    <!-- Technical Grid Background -->
+    <svg class="absolute inset-0 -z-10 h-full w-full stroke-slate-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)] dark:stroke-slate-800/50"
+         aria-hidden="true">
+        <defs>
+            <pattern id="grid-pattern" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+                <path d="M100 200V.5M.5 .5H200" fill="none" />
+            </pattern>
+        </defs>
+        <svg x="50%" y="-1" class="overflow-visible fill-slate-50 dark:fill-slate-900/50">
+            <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z"
+                  stroke-width="0" />
+        </svg>
+        <rect width="100%" height="100%" stroke-width="0" fill="url(#grid-pattern)" />
     </svg>
-    <rect width="100%" height="100%" stroke-width="0" fill="url(#grid-pattern)" />
-  </svg>
 
-  <!-- Content Container (Compacted) -->
-  <div class="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:flex lg:items-center lg:gap-x-12 lg:px-8 lg:py-29">
-    
-    <!-- Left Column: Copy & Logos -->
-    <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-      <!-- Badge -->
-      <div class="mb-6 flex">
-        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-slate-600 ring-1 ring-slate-900/10 hover:ring-slate-900/20 dark:text-slate-400 dark:ring-slate-50/10 dark:hover:ring-slate-50/20">
-          New: Rapid CRUD generation for existing RDBMS's. <a href="https://docs.servicestack.net/autoquery/okai-db" class="font-semibold text-blue-600 dark:text-blue-400"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </div>
-      
-      <!-- Main Headline -->
-      <h1 class="mt-6 max-w-lg text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">AutoQuery</span>
-        <br>
-        Instant APIs from your DTOs.
-      </h1>
-      
-      <p class="mt-4 max-w-[640px] text-lg leading-8 text-slate-600 dark:text-slate-300">
-        High performance, industrial strength, code-first APIs. Skip the boilerplate and instantly expose queryable &amp; CRUD endpoints for your databases.
-      </p>
-      
-      <!-- CTAs -->
-      <div class="mt-8 flex items-center gap-x-6">
-        <a href="/start#start" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all">Get Started</a>
-        <a href="https://docs.servicestack.net/autoquery/" class="text-sm font-semibold leading-6 text-slate-900 dark:text-white flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            View Documentation <span aria-hidden="true">→</span>
-        </a>
-      </div>
+    <!-- Content Container (Compacted) -->
+    <div class="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:flex lg:items-center lg:gap-x-12 lg:px-8 lg:py-29">
 
-      <!-- Logos Section (Colored & Fixed) -->
-      <div class="mt-10 border-t border-slate-200 pt-6 dark:border-slate-800">
-         <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Works seamlessly with:</p>
-         <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
-             <!-- PostgreSQL -->
-             <img src="/img/pages/autoquery/postgresql.svg" class="h-12 w-auto" alt="PostgreSQL">
-             <!-- SQL Server -->
-             <img src="/img/pages/autoquery/mssql.svg" class="h-12 w-auto" alt="SQL Server">
-             <!-- SQLite -->
-             <img src="/img/pages/autoquery/sqlite.svg" class="h-12 w-auto" alt="SQLite">
-             <!-- MySQL -->
-             <img src="/img/pages/autoquery/mysql.svg" class="h-12 w-auto" alt="MySQL">
-         </div>
-      </div>
-    </div>
+        <!-- Left Column: Copy & Logos -->
+        <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+            <!-- Badge -->
+            <div class="mb-6 flex">
+                <div
+                    class="relative rounded-full px-3 py-1 text-sm leading-6 text-slate-600 ring-1 ring-slate-900/10 hover:ring-slate-900/20 dark:text-slate-400 dark:ring-slate-50/10 dark:hover:ring-slate-50/20">
+                    New: Rapid CRUD generation for existing RDBMS's. <a
+                    href="https://docs.servicestack.net/autoquery/okai-db"
+                    class="font-semibold text-blue-600 dark:text-blue-400"><span class="absolute inset-0"
+                                                                                 aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </div>
 
-    <!-- Right Column: Code Visual -->
-    <div class="mt-12 sm:mt-16 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-      <div class="relative mx-auto w-full max-w-lg lg:max-w-xl">
-        <!-- Abstract Glow behind code -->
-        <div class="absolute -top-10 -right-10 -z-10 h-64 w-64 rounded-full bg-purple-500/30 blur-3xl dark:bg-purple-900/30"></div>
-        <div class="absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl dark:bg-blue-900/30"></div>
+            <!-- Main Headline -->
+            <h1 class="mt-6 max-w-lg text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl">
+                <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">AutoQuery</span>
+                <br>
+                Instant APIs from your DTOs.
+            </h1>
 
-        <!-- Code Window -->
-        <div class="rounded-xl bg-[#0f172a] shadow-2xl ring-1 ring-white/10">
-          <!-- Window Controls -->
-          <div class="flex items-center gap-2 border-b border-white/5 px-4 py-3 bg-[#0f172a] rounded-t-xl">
-            <div class="h-3 w-3 rounded-full bg-red-500"></div>
-            <div class="h-3 w-3 rounded-full bg-amber-500"></div>
-            <div class="h-3 w-3 rounded-full bg-green-500"></div>
-            <div class="ml-2 text-xs font-medium text-slate-500">Bookings.cs</div>
-          </div>
-          <!-- Code Block -->
-          <div class="overflow-x-auto">
-            <!-- Added !bg-transparent to pre/code to prevent double background colors -->
-            <pre class="!bg-transparent text-sm leading-6 text-slate-300 font-mono"><span class="text-slate-500">// Create Queryable APIs from just Request DTOs</span>
+            <p class="mt-4 max-w-[640px] text-lg leading-8 text-slate-600 dark:text-slate-300">
+                High performance, industrial strength, code-first APIs. Skip the boilerplate and instantly expose
+                queryable &amp; CRUD endpoints for your databases.
+            </p>
+
+            <!-- CTAs -->
+            <div class="mt-8 flex items-center gap-x-6">
+                <a href="/start#start"
+                   class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all">Get
+                    Started</a>
+                    <a href="https://docs.servicestack.net/autoquery/"
+                       class="text-sm font-semibold leading-6 text-slate-900 dark:text-white flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                        View Documentation <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+
+                <!-- Logos Section (Colored & Fixed) -->
+                <div class="mt-10 border-t border-slate-200 pt-6 dark:border-slate-800">
+                    <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Works seamlessly with:</p>
+                    <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+                        <!-- PostgreSQL -->
+                        <img src="/img/pages/autoquery/postgresql.svg" class="h-12 w-auto" alt="PostgreSQL">
+                        <!-- SQL Server -->
+                        <img src="/img/pages/autoquery/mssql.svg" class="h-12 w-auto" alt="SQL Server">
+                        <!-- SQLite -->
+                        <img src="/img/pages/autoquery/sqlite.svg" class="h-12 w-auto" alt="SQLite">
+                        <!-- MySQL -->
+                        <img src="/img/pages/autoquery/mysql.svg" class="h-12 w-auto" alt="MySQL">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Code Visual -->
+            <div class="mt-12 sm:mt-16 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+                <div class="relative mx-auto w-full max-w-lg lg:max-w-xl">
+                    <!-- Abstract Glow behind code -->
+                    <div
+                        class="absolute -top-10 -right-10 -z-10 h-64 w-64 rounded-full bg-purple-500/30 blur-3xl dark:bg-purple-900/30">
+                    </div>
+                    <div
+                        class="absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl dark:bg-blue-900/30">
+                    </div>
+
+                    <!-- Code Window -->
+                    <div class="rounded-xl bg-[#0f172a] shadow-2xl ring-1 ring-white/10">
+                        <!-- Window Controls -->
+                        <div class="flex items-center gap-2 border-b border-white/5 px-4 py-3 bg-[#0f172a] rounded-t-xl">
+                            <div class="h-3 w-3 rounded-full bg-red-500"></div>
+                            <div class="h-3 w-3 rounded-full bg-amber-500"></div>
+                            <div class="h-3 w-3 rounded-full bg-green-500"></div>
+                            <div class="ml-2 text-xs font-medium text-slate-500">Bookings.cs</div>
+                        </div>
+                        <!-- Code Block -->
+                        <div class="overflow-x-auto">
+                            <!-- Added !bg-transparent to pre/code to prevent double background colors -->
+                            <pre class="!bg-transparent text-sm leading-6 text-slate-300 font-mono"><span class="text-slate-500">// Create Queryable APIs from just Request DTOs</span>
 <code><span class="text-yellow-300">[Route(</span><span class="text-green-300">"/bookings"</span><span class="text-yellow-300">)]</span>
 <span class="text-purple-400">public class</span> <span class="text-yellow-300">SearchBookings</span> : <span class="text-blue-400">QueryDb</span>&lt;<span class="text-green-400">Booking</span>&gt;
 {
@@ -209,28 +224,33 @@ mountAll()
 
 <span class="text-slate-500">// Immediately available from:
 // GET /bookings?Name=John&MinCost=50</span></code></pre>
-          </div>
-        </div>
-        
-        <!-- Floating Label -->
-        <div class="absolute -bottom-6 -right-6 rounded-lg bg-white p-4 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10">
-            <div class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-                    <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                </div>
-                <div>
-                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Status</p>
-                    <p class="text-sm font-bold text-slate-900 dark:text-white">API Ready</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Label -->
+                    <div
+                        class="absolute -bottom-6 -right-6 rounded-lg bg-white p-4 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                                <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Status</p>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white">API Ready</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-
-      </div>
     </div>
-  </div>
-</div>
 
-
+    
 
 <section>
     <div class="sticky top-0 z-50">
@@ -336,85 +356,107 @@ const MobileNav = {
 mount('#mobile-nav', MobileNav)
 </script>
 
-<section>
-    <div class="mx-auto max-w-5xl py-24 sm:py-32">
+    <section>
+        <div class="mx-auto max-w-5xl py-24 sm:py-32">
 
-        <h3 class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Fast, typed, code-first Queryable APIs</h3>
+            <h3 class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">Fast, typed,
+                code-first Queryable APIs</h3>
 
-        <div class="w-full px-4">
-            <p class="mx-auto mt-5 text-xl text-gray-500">
-                ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api,
-                but without its <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/why-not-odata">webservice anti-patterns</a>
-                where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API's simple flat structure by instead
-                enhancing the ideal API the developer would naturally write and completes their implementation for them!
-            </p>
+                <div class="w-full px-4">
+                    <p class="mx-auto mt-5 text-xl text-gray-500">
+                        ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's
+                        querying support for Web Api,
+                        but without its <a class="text-indigo-600 hover:text-indigo-800"
+                                           href="https://docs.servicestack.net/why-not-odata">webservice anti-patterns</a>
+                        where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API's simple
+                        flat structure by instead
+                        enhancing the ideal API the developer would naturally write and completes their implementation for them!
+                    </p>
 
-            <p class="mx-auto mt-5 text-xl text-gray-500">
-                This is the design philosophy behind AutoQuery which utilizes conventions to automate creation of intent-based self-descriptive APIs
-                that are able to specify configurable conventions and leverage extensibility options to maximize the utility of AutoQuery services.
-            </p>
-        </div>
+                    <p class="mx-auto mt-5 text-xl text-gray-500">
+                        This is the design philosophy behind AutoQuery which utilizes conventions to automate creation of
+                        intent-based self-descriptive APIs
+                        that are able to specify configurable conventions and leverage extensibility options to maximize the
+                        utility of AutoQuery services.
+                    </p>
+                </div>
 
-        <h3 class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 dark:text-gray-50 sm:text-4xl">Great alternative to OData, GraphQL or JSON:API</h3>
+                <h3
+                    class="mt-8 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 dark:text-gray-50 sm:text-4xl">
+                    Great alternative to OData, GraphQL or JSON:API</h3>
 
-        <div class="flex flex-wrap">
-            <div class="w-full sm:w-1/2 px-4">
-                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Connect to anything with data</h3>
-                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-                    Expose data from various data sources including 
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-rdbms">RDBMS</a>, 
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-memory">In Memory</a>, 
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-dynamodb">DynamoDb</a>
-                    or even 
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-service">other services </a>
-                    through consistent flexible APIs where clients can control the query details.
-                </p>
-                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Works with your favorite databases</h3>
-                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-                    <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery RDBMS</a>
-                    works with anything OrmLite can connect to, including:
-                </p>
-                <ul class="ul-circle mx-auto mt-5 max-w-prose text-xl text-gray-500">
-                    <li class="mt-2">PostgreSQL</li>
-                    <li class="mt-2">SQL Server</li>
-                    <li class="mt-2">SQLite</li>
-                    <li class="mt-2">MySQL</li>
-                    <li class="mt-2">MariaDB</li>
-                    <li class="mt-2">AWS Aurora</li>
-                </ul>
-            </div>
-            <div class="w-full sm:w-1/2 px-4">
-                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Clean REST routes, accessible from everywhere</h3>
-                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-                    Unlike OData and GraphQL, AutoQuery provides clean REST services making them easy to use from standard browsers, avoiding the requirement for complex clients.
-                </p>
-                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Unmatched client integration experience</h3>
-                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-                    Add ServiceStack Reference provides best in class client generation in a multitude of languages straight from the server you're integrating with.
-                </p>
-                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-                    Instant Client Apps can generate working native client solutions through an easy to use free web tool, only needing a base URL of a ServiceStack service.
-                </p>
-            </div>
-        </div>
+                    <div class="flex flex-wrap">
+                        <div class="w-full sm:w-1/2 px-4">
+                            <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Connect to anything
+                                with data</h3>
+                                <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                                    Expose data from various data sources including
+                                    <a class="text-indigo-600 hover:text-indigo-800"
+                                       href="https://docs.servicestack.net/autoquery-rdbms">RDBMS</a>,
+                                    <a class="text-indigo-600 hover:text-indigo-800"
+                                       href="https://docs.servicestack.net/autoquery-memory">In Memory</a>,
+                                    <a class="text-indigo-600 hover:text-indigo-800"
+                                       href="https://docs.servicestack.net/autoquery-dynamodb">DynamoDb</a>
+                                    or even
+                                    <a class="text-indigo-600 hover:text-indigo-800"
+                                       href="https://docs.servicestack.net/autoquery-service">other services </a>
+                                    through consistent flexible APIs where clients can control the query details.
+                                </p>
+                                <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Works with your
+                                    favorite databases</h3>
+                                    <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                                        <a class="text-indigo-600 hover:text-indigo-800"
+                                           href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery RDBMS</a>
+                                        works with anything OrmLite can connect to, including:
+                                    </p>
+                                    <ul class="ul-circle mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                                        <li class="mt-2">PostgreSQL</li>
+                                        <li class="mt-2">SQL Server</li>
+                                        <li class="mt-2">SQLite</li>
+                                        <li class="mt-2">MySQL</li>
+                                        <li class="mt-2">MariaDB</li>
+                                        <li class="mt-2">AWS Aurora</li>
+                                    </ul>
+                                </div>
+                                <div class="w-full sm:w-1/2 px-4">
+                                    <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Clean REST routes,
+                                        accessible from everywhere</h3>
+                                        <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                                            Unlike OData and GraphQL, AutoQuery provides clean REST services making them easy to use from
+                                            standard browsers, avoiding the requirement for complex clients.
+                                        </p>
+                                        <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900 dark:text-gray-50">Unmatched client
+                                            integration experience</h3>
+                                            <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                                                Add ServiceStack Reference provides best in class client generation in a multitude of languages
+                                                straight from the server you're integrating with.
+                                            </p>
+                                            <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                                                Instant Client Apps can generate working native client solutions through an easy to use free web
+                                                tool, only needing a base URL of a ServiceStack service.
+                                            </p>
+                                        </div>
+                                    </div>
 
-    </div>
-</section>
+                                </div>
+                            </section>
 
-<link rel="stylesheet" href="css/typography.css">
+                            <link rel="stylesheet" href="css/typography.css">
 <link rel="stylesheet" href="css/lite-yt-embed.css">
 <script src="js/lite-yt-embed.js"></script>
 
-<link rel="stylesheet" href="css/highlight.css">
+                            <link rel="stylesheet" href="css/highlight.css">
 <script src="js/highlight.js"></script>
 
-<style>
-pre, .hljs, .prose :where(pre):not(:where([class~="not-prose"] *)) .hljs {
-  background-color: #0f172a !important;
-}
-</style>
+                            <style>
+                                pre,
+                                .hljs,
+                                .prose :where(pre):not(:where([class~="not-prose"] *)) .hljs {
+                                    background-color: #0f172a !important;
+                                }
+                            </style>
 
-
+                            
 
 <!-- BSD License: https://docs.servicestack.net/BSD-LICENSE.txt -->
 <section>
@@ -527,35 +569,42 @@ App, and finally reusing all your services in a custom Blazor WASM App</p>
     </div>
 </section>
 
-<section>
-    <div class="bg-white dark:bg-black py-32 px-6 lg:px-8">
-      <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
-            <p class="text-base font-semibold leading-7 text-indigo-600">Getting Started</p>
-            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Create APIs with minimal code-first DTOs</h1>
-          <p class="mt-6 text-xl leading-8">
-              AutoQuery can be enabled in any ServiceStack project with a few easy steps: 
-          </p>
-          <div class="mt-10 max-w-3xl">
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">1. Configure your preferred database</h2>
-              <p class="my-4">
-                  Configure your .NET App with the 
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ormlite/installation">OrmLite NuGet package</a> 
-                  of the RDBMS you want to use. SQLite is a great option to evaluate AutoQuery without any external dependencies:
-              </p>
-              
-              <div data-component="CopyLine" data-props="{ text:'<PackageReference Include=&quot;ServiceStack.OrmLite.Sqlite.Data&quot; Version=&quot;8.*&quot; />' }"></div>
+                            <section>
+                                <div class="bg-white dark:bg-black py-32 px-6 lg:px-8">
+                                    <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
+                                        <p class="text-base font-semibold leading-7 text-indigo-600">Getting Started</p>
+                                        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Create APIs with minimal
+                                            code-first DTOs</h1>
+                                            <p class="mt-6 text-xl leading-8">
+                                                AutoQuery can be enabled in any ServiceStack project with a few easy steps:
+                                            </p>
+                                            <div class="mt-10 max-w-3xl">
+                                                <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">1. Configure your
+                                                    preferred database</h2>
+                                                    <p class="my-4">
+                                                        Configure your .NET App with the
+                                                        <a class="text-indigo-600 hover:text-indigo-800"
+                                                           href="https://docs.servicestack.net/ormlite/installation">OrmLite NuGet package</a>
+                                                        of the RDBMS you want to use. SQLite is a great option to evaluate AutoQuery without any external
+                                                        dependencies:
+                                                    </p>
 
-              <p class="my-4">
-                  Configure your App to use your database. We recommend using a
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/modular-startup">Modular Startup</a>
-                  configuration for the greater encapsulation and flexibility.
-              </p>
-              <p class="my-4">
-                  In this example we'll create a simple <b>Todo</b> table:
-              </p>
+                                                    <div data-component="CopyLine"
+                                                         data-props="{ text:'<PackageReference Include=&quot;ServiceStack.OrmLite.Sqlite.Data&quot; Version=&quot;8.*&quot; />' }">
+                                                    </div>
+
+                                                    <p class="my-4">
+                                                        Configure your App to use your database. We recommend using a
+                                                        <a class="text-indigo-600 hover:text-indigo-800"
+                                                           href="https://docs.servicestack.net/modular-startup">Modular Startup</a>
+                                                        configuration for the greater encapsulation and flexibility.
+                                                    </p>
+                                                    <p class="my-4">
+                                                        In this example we'll create a simple <b>Todo</b> table:
+                                                    </p>
+
               
-              
-              <pre><code class="language-csharp">// Configure.Db.cs
+                                                    <pre><code class="language-csharp">// Configure.Db.cs
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
 using ServiceStack.DataAnnotations;
@@ -591,12 +640,13 @@ public class ConfigureDb : IHostingStartup
 }
 </code></pre>
 
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">2. Configure AutoQuery</h2>
-              <p class="my-4">
-                  AutoQuery can then be enabled by registering the <b>AutoQueryFeature</b> plugin:
-              </p>
-              
-              <pre><code class="language-csharp">// Configure.AutoQuery.cs              
+                                                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">2. Configure AutoQuery
+                                                    </h2>
+                                                    <p class="my-4">
+                                                        AutoQuery can then be enabled by registering the <b>AutoQueryFeature</b> plugin:
+                                                    </p>
+
+                                                    <pre><code class="language-csharp">// Configure.AutoQuery.cs              
 using ServiceStack;
 
 [assembly: HostingStartup(typeof(MyApp.ConfigureAutoQuery))]
@@ -614,14 +664,15 @@ public class ConfigureAutoQuery : IHostingStartup
         });
 }              
 </code></pre>
-              
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Create AutoQuery APIs</h2>
-              <p class="my-4">
-                  With AutoQuery configured, we can now start creating AutoQuery APIs, a minimal working example
-                  is an empty Request DTO which we'll make available via the <b>/todos</b> route:
-              </p>
 
-              <pre><code class="language-csharp">// ServiceModel/Todos.cs
+                                                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">3. Create AutoQuery APIs
+                                                    </h2>
+                                                    <p class="my-4">
+                                                        With AutoQuery configured, we can now start creating AutoQuery APIs, a minimal working example
+                                                        is an empty Request DTO which we'll make available via the <b>/todos</b> route:
+                                                    </p>
+
+                                                    <pre><code class="language-csharp">// ServiceModel/Todos.cs
 using ServiceStack;
 
 namespace MyApp.ServiceModel;
@@ -629,86 +680,109 @@ namespace MyApp.ServiceModel;
 [Route("/todos")]
 public class QueryTodos : QueryDb&lt;Todo&gt; {}              
 </code></pre>
-              
-              <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">4. Query your API</h2>
-              <p class="my-4">
-                  That's all that's needed! From your contract-first API blueprint ServiceStack implements a fully queryable, 
-                  type safe API for the <b>Todo</b> table that you can immediately viewing the API from the <b>/todos</b>
-                  route in a browser where you can immediately benefit from the 
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/auto-html-api">Auto HTML API</a> page:
-              </p>
-              
-          </div>
-          
-          <figure class="mt-4">
-              <a href="https://docs.servicestack.net/auto-html-api"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/autoquery/todos-autohtml-preview.png" alt=""></a>
-          </figure>
 
-          <div class="max-w-2xl">
-              <p class="my-4">
-                  With links to view the API response in available formats and the API details 
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/api-explorer">API Explorer</a>:
-              </p>
-          </div>
-          
-          <figure class="mt-4">
-              <a href="https://docs.servicestack.net/api-explorer"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/autoquery/todos-ui-details.png" alt=""></a>
-          </figure>
+                                                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">4. Query your API</h2>
+                                                    <p class="my-4">
+                                                        That's all that's needed! From your contract-first API blueprint ServiceStack implements a fully
+                                                        queryable,
+                                                        type safe API for the <b>Todo</b> table that you can immediately viewing the API from the
+                                                        <b>/todos</b>
+                                                        route in a browser where you can immediately benefit from the
+                                                        <a class="text-indigo-600 hover:text-indigo-800"
+                                                           href="https://docs.servicestack.net/auto-html-api">Auto HTML API</a> page:
+                                                    </p>
 
-          <div class="max-w-2xl">
-              <p class="my-4">
-                  Or immediately query the API in a readonly 
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/vue/gallery/autoquerygrid">AutoQueryGrid</a>
-                  in 
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/locode/">Locode</a>:
-              </p>
-          </div>
-          
-          <figure class="mt-4">
-              <a href="https://docs.servicestack.net/locode/"><img class="bg-gray-50 rounded shadow hover:shadow-lg" src="/img/pages/autoquery/todos-locode.png" alt=""></a>
-          </figure>
+                                                </div>
 
-          <div class="mt-12 max-w-2xl">
-              <h2 class="my-4 text-2xl font-bold tracking-tight text-gray-900">Next Steps</h2>
-              <p class="my-4">
-                  Hopefully this simple example shows how easy it is to get up &amp; running and become
-                  immediately productive with AutoQuery. For larger projects we recommend adopting the
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/create-your-first-webservice#step-4-exploring-the-servicestack-solution">physical project structure</a>
-                  and creating RDBMS tables with OrmLite's
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/ormlite/db-migrations">Code-First DB Migrations</a>.
-              </p>
-              
-              <p class="my-4">
-                  The easiest way of which is to start from a 
-                  <a class="text-indigo-600 hover:text-indigo-800" href="start">new project template</a>
-                  with all this configured, like the  
-                  <a class="text-indigo-600 hover:text-indigo-800" href="https://razor.web-templates.io">razor.web-templates.io</a>
-                  Razor Pages template:
-              </p>
-              
-              <div class="flex">
-                  <a class="archive-url" href="https://servicestack.net/archive/NetCoreTemplates/razor">
-                      <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
-                          <div class="text-center font-extrabold flex items-center justify-center mb-2">
-                              <div class="text-4xl text-blue-400 my-3">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="#60a5fa" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
-                              </div>
-                          </div>
-                          <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor</div>
-                          <div class="flex justify-center h-8">
-                              <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span></div>
-                          </div>
-                          <span class="archive-name px-4 pb-2 text-blue-600">MyApp.zip</span>
-                      </div>
-                  </a>
-              </div>
-          </div>
+                                                <figure class="mt-4">
+                                                    <a href="https://docs.servicestack.net/auto-html-api"><img
+                                                        class="bg-gray-50 rounded shadow hover:shadow-lg"
+                                                        src="/img/pages/autoquery/todos-autohtml-preview.png" alt=""></a>
+                                                    </figure>
 
-      </div>
-    </div>    
-</section>
+                                                    <div class="max-w-2xl">
+                                                        <p class="my-4">
+                                                            With links to view the API response in available formats and the API details
+                                                            <a class="text-indigo-600 hover:text-indigo-800"
+                                                               href="https://docs.servicestack.net/api-explorer">API Explorer</a>:
+                                                        </p>
+                                                    </div>
 
+                                                    <figure class="mt-4">
+                                                        <a href="https://docs.servicestack.net/api-explorer"><img
+                                                            class="bg-gray-50 rounded shadow hover:shadow-lg"
+                                                            src="/img/pages/autoquery/todos-ui-details.png" alt=""></a>
+                                                        </figure>
 
+                                                        <div class="max-w-2xl">
+                                                            <p class="my-4">
+                                                                Or immediately query the API in a readonly
+                                                                <a class="text-indigo-600 hover:text-indigo-800"
+                                                                   href="https://docs.servicestack.net/vue/gallery/autoquerygrid">AutoQueryGrid</a>
+                                                                in
+                                                                <a class="text-indigo-600 hover:text-indigo-800"
+                                                                   href="https://docs.servicestack.net/locode/">Locode</a>:
+                                                            </p>
+                                                        </div>
+
+                                                        <figure class="mt-4">
+                                                            <a href="https://docs.servicestack.net/locode/"><img class="bg-gray-50 rounded shadow hover:shadow-lg"
+                                                                                                                     src="/img/pages/autoquery/todos-locode.png" alt=""></a>
+                                                            </figure>
+
+                                                            <div class="mt-12 max-w-2xl">
+                                                                <h2 class="my-4 text-2xl font-bold tracking-tight text-gray-900">Next Steps</h2>
+                                                                <p class="my-4">
+                                                                    Hopefully this simple example shows how easy it is to get up &amp; running and become
+                                                                    immediately productive with AutoQuery. For larger projects we recommend adopting the
+                                                                    <a class="text-indigo-600 hover:text-indigo-800"
+                                                                       href="https://docs.servicestack.net/create-your-first-webservice#step-4-exploring-the-servicestack-solution">physical
+                                                                        project structure</a>
+                                                                        and creating RDBMS tables with OrmLite's
+                                                                        <a class="text-indigo-600 hover:text-indigo-800"
+                                                                           href="https://docs.servicestack.net/ormlite/db-migrations">Code-First DB Migrations</a>.
+                                                                    </p>
+
+                                                                    <p class="my-4">
+                                                                        The easiest way of which is to start from a
+                                                                        <a class="text-indigo-600 hover:text-indigo-800" href="start">new project template</a>
+                                                                        with all this configured, like the
+                                                                        <a class="text-indigo-600 hover:text-indigo-800"
+                                                                           href="https://razor.web-templates.io">razor.web-templates.io</a>
+                                                                        Razor Pages template:
+                                                                    </p>
+
+                                                                    <div class="flex">
+                                                                        <a class="archive-url" href="https://servicestack.net/archive/NetCoreTemplates/razor">
+                                                                            <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl"
+                                                                                 style="min-width:180px">
+                                                                                <div class="text-center font-extrabold flex items-center justify-center mb-2">
+                                                                                    <div class="text-4xl text-blue-400 my-3">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                                                             viewBox="0 0 32 32">
+                                                                                            <path fill="#60a5fa"
+                                                                                                  d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z">
+                                                                                            </path>
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor</div>
+                                                                                <div class="flex justify-center h-8">
+                                                                                    <div class="mr-1"><span
+                                                                                        class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <span class="archive-name px-4 pb-2 text-blue-600">MyApp.zip</span>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </section>
+
+                                                    
 
 <!-- BSD License: https://docs.servicestack.net/BSD-LICENSE.txt -->
 <section>
@@ -786,159 +860,211 @@ ecosystem around ServiceStack Services</p>
     </div>
 </section>
 
-<section>
-<div class="bg-white dark:bg-black py-32 px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
-        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Highly versatile ServiceStack APIs</h1>
-        <p class="mt-6 text-xl leading-8">
-            Simple to create, fast to run, effortless to consume &amp; amazingly productive  
-        </p>
+                                                    <section>
+                                                        <div class="bg-white dark:bg-black py-32 px-6 lg:px-8">
+                                                            <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
+                                                                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Highly versatile ServiceStack
+                                                                    APIs</h1>
+                                                                    <p class="mt-6 text-xl leading-8">
+                                                                        Simple to create, fast to run, effortless to consume &amp; amazingly productive
+                                                                    </p>
 
-        <div class="max-w-2xl">
-            <p class="my-4">
-                AutoQuery seamlessly integrates with ServiceStack's endpoints, features and tools for maximum reuse and simplified integrations
-                where it's typed service message contracts and rich metadata are able to drive completely dynamic, capability-driven 
-                user interfaces like 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/api-explorer">API Explorer</a> and
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/locode/">Locode</a> 
-                whilst .NET Apps built using the 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://blazor-gallery.servicestack.net/gallery">ServiceStack.Blazor's</a>
-                and
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/vue/">Vue's AutoQueryGrid &amp; AutoForm</a>
-                components, enabling amazing levels of reuse.
-            </p>
-        </div>
+                                                                    <div class="max-w-2xl">
+                                                                        <p class="my-4">
+                                                                            AutoQuery seamlessly integrates with ServiceStack's endpoints, features and tools for maximum reuse
+                                                                            and simplified integrations
+                                                                            where it's typed service message contracts and rich metadata are able to drive completely dynamic,
+                                                                            capability-driven
+                                                                            user interfaces like
+                                                                            <a class="text-indigo-600 hover:text-indigo-800"
+                                                                               href="https://docs.servicestack.net/api-explorer">API Explorer</a> and
+                                                                            <a class="text-indigo-600 hover:text-indigo-800"
+                                                                               href="https://docs.servicestack.net/locode/">Locode</a>
+                                                                            whilst .NET Apps built using the
+                                                                            <a class="text-indigo-600 hover:text-indigo-800"
+                                                                               href="https://blazor-gallery.servicestack.net/gallery">ServiceStack.Blazor's</a>
+                                                                            and
+                                                                            <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/vue/">Vue's
+                                                                                AutoQueryGrid &amp; AutoForm</a>
+                                                                                components, enabling amazing levels of reuse.
+                                                                            </p>
+                                                                        </div>
 
-        <div class="mt-10 max-w-2xl">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
-                Multiple, clean data formats allows for flexible integrations
-            </h2>
-            <p class="my-4">
-                As all AutoQuery Services are pure HTTP APIs available in multiple data formats they allow for simple, 
-                rich integrations like being able to use its CSV Format to create live table data sources in Excel or easily import 
-                any query into any data store supporting 
-                <a class="text-indigo-600 hover:text-indigo-800" href="https://docs.servicestack.net/csv-format">CSV</a> imports:
-            </p>
-          </div>
-          
-          <figure class="mt-4">
-              <img class="bg-gray-50" src="/img/pages/autoquery/import-csv.png" alt="">
-          </figure>
+                                                                        <div class="mt-10 max-w-2xl">
+                                                                            <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
+                                                                                Multiple, clean data formats allows for flexible integrations
+                                                                            </h2>
+                                                                            <p class="my-4">
+                                                                                As all AutoQuery Services are pure HTTP APIs available in multiple data formats they allow for
+                                                                                simple,
+                                                                                rich integrations like being able to use its CSV Format to create live table data sources in Excel
+                                                                                or easily import
+                                                                                any query into any data store supporting
+                                                                                <a class="text-indigo-600 hover:text-indigo-800"
+                                                                                   href="https://docs.servicestack.net/csv-format">CSV</a> imports:
+                                                                            </p>
+                                                                        </div>
 
-        <div class="mt-8 max-w-2xl">
-            <p class="my-4">
-                AutoQuery's usage of simple, user-defined Clean URLs and intuitive implicit query conventions makes 
-                it easy for stakeholders to create custom Queries of their Systems Data that they can link to directly 
-                in their Excel worksheets to generate Live Reports:
-            </p>
-        </div>
-          
-          <figure class="mt-4">
-              <img class="bg-gray-50" src="/img/pages/autoquery/import-csv-table.png" alt="">
-          </figure>
-        
-    </div>
-</div>
-</section>
+                                                                        <figure class="mt-4">
+                                                                            <img class="bg-gray-50" src="/img/pages/autoquery/import-csv.png" alt="">
+                                                                        </figure>
 
-<section class="bg-slate-100 dark:bg-slate-800 py-32 px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl">
-        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl border-none text-center">
-            Leverage ServiceStack's ecosystem of features
-        </h2>
+                                                                        <div class="mt-8 max-w-2xl">
+                                                                            <p class="my-4">
+                                                                                AutoQuery's usage of simple, user-defined Clean URLs and intuitive implicit query conventions makes
+                                                                                it easy for stakeholders to create custom Queries of their Systems Data that they can link to
+                                                                                directly
+                                                                                in their Excel worksheets to generate Live Reports:
+                                                                            </p>
+                                                                        </div>
 
-        <div class="flex flex-wrap text-xl">
-            <div class="mt-5 w-full sm:w-1/2">
-                <ul class="ul-circle">
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/formats"> JSON, CSV, XML, JSV, ProtoBuf data formats</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/service-reference"> Add ServiceStack Reference</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/grpc">gRPC</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/encrypted-messaging">Encrypted Messaging</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/messaging">Message Queues</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/declarative-validation">Declarative + Fluent Validation</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/authentication-and-authorization">ServiceStack Authentication providers</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://docs.servicestack.net/caching">Caching</a></li>
-                    <li class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg"><a href="https://servicestack.net/features">And much more!</a></li>
-                </ul>
-            </div>
-            <div class="w-full sm:w-1/2">
-                <p class="mx-auto mt-5 text-xl text-gray-500">
-                    AutoQuery services are ServiceStack services, so they benefit from the ServiceStack ecosystem of features.
-                    This makes responding to changing requirements more straight forward as all these features are designed from the ground up to
-                    work together with clean consistent APIs.
-                </p>
-                <div>
-                    <h3 class="my-8 text-2xl font-bold tracking-tight text-gray-900">New App with AutoQuery or AutoGen</h3>
-                    <div class="flex justify-center">
-                      <a class="archive-url" href="https://servicestack.net/archive/NetCoreTemplates/razor">
-                          <div class="bg-white dark:bg-black px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
-                              <div class="text-center font-extrabold flex items-center justify-center mb-2">
-                                  <div class="text-blue-400 my-2">
-                                      <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="#60a5fa" d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z"></path></svg>
-                                  </div>
-                              </div>
-                              <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor</div>
-                              <div class="flex justify-center h-8">
-                                  <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span></div>
-                              </div>
-                              <span class="archive-name text-lg px-4 pb-2 text-blue-600">MyApp.zip</span>
-                          </div>
-                      </a>
-                      <a class="archive-url" href="https://servicestack.net/archive/NetCoreTemplates/web">
-                          <div class="bg-white dark:bg-black px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl" style="min-width:180px">
-                              <div class="text-center font-extrabold flex items-center justify-center mb-2">
-                                  <div class="text-4xl text-blue-400 my-2">
-                                      <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
-                                  </div>
-                              </div>
-                              <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">web</div>
-                              <div class="flex justify-center h-8">
-                                  <div class="mr-1"><span class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autogen</span></div>
-                              </div>
-                              <span class="archive-name text-lg px-4 pb-2 text-blue-600">MyApp.zip</span>
-                          </div>
-                      </a>
-                    </div>
-                    <div class="text-gray-400 text-center text-sm">
-                    or choose 
-                    <a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold text-sm" href="https://servicestack.net/start#Name=MyApp&Mix=autoquery">
-                       custom Project Template with AutoQuery
-                    </a>
-                </div>
-                </div>
-            </div>
-        </div>    
-    </div>
-</section>
+                                                                        <figure class="mt-4">
+                                                                            <img class="bg-gray-50" src="/img/pages/autoquery/import-csv-table.png" alt="">
+                                                                        </figure>
 
-<section>
-<div class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6">
-    <div class="text-center">
-        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
-            <span class="block">
-                AutoQuery Examples
-            </span>
-        </h1>
-    </div>
-</div>
+                                                                    </div>
+                                                                </div>
+                                                            </section>
 
-<div class="mt-16 mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-    <div>
-        <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
-            Database-first Example Locode App
-        </p>
-        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-            To demonstrate a database-first development workflow we've enabled 
-            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-autogen">AutoGen</a> on the <b>Northwind</b> 
-            sample database to generate 
-            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery</a> &amp; 
-            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-crud">CRUD</a> 
-            APIs whose capabilities are used to power the custom Northwind Locode App 
-        </p>
-    </div>
-</div>
+                                                            <section class="bg-slate-100 dark:bg-slate-800 py-32 px-6 lg:px-8">
+                                                                <div class="mx-auto max-w-4xl">
+                                                                    <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl border-none text-center">
+                                                                        Leverage ServiceStack's ecosystem of features
+                                                                    </h2>
 
-<div class="bg-white dark:bg-black pb-8 pb-12">
+                                                                    <div class="flex flex-wrap text-xl">
+                                                                        <div class="mt-5 w-full sm:w-1/2">
+                                                                            <ul class="ul-circle">
+                                                                                <li
+                                                                                    class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                    <a href="https://docs.servicestack.net/formats"> JSON, CSV, XML, JSV, ProtoBuf data formats</a>
+                                                                                </li>
+                                                                                <li
+                                                                                    class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                    <a href="https://docs.servicestack.net/add-servicestack-reference"> Add ServiceStack Reference</a></li>
+                                                                                    <li
+                                                                                        class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                        <a href="https://docs.servicestack.net/grpc">gRPC</a></li>
+                                                                                        <li
+                                                                                            class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                            <a href="https://docs.servicestack.net/encrypted-messaging">Encrypted Messaging</a></li>
+                                                                                            <li
+                                                                                                class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                                <a href="https://docs.servicestack.net/messaging">Message Queues</a></li>
+                                                                                                <li
+                                                                                                    class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                                    <a href="https://docs.servicestack.net/declarative-validation">Declarative + Fluent
+                                                                                                        Validation</a></li>
+                                                                                                        <li
+                                                                                                            class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                                            <a href="https://docs.servicestack.net/authentication-and-authorization">ServiceStack
+                                                                                                                Authentication providers</a></li>
+                                                                                                                <li
+                                                                                                                    class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                                                    <a href="https://docs.servicestack.net/caching">Caching</a></li>
+                                                                                                                    <li
+                                                                                                                        class="mt-2 text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold leading-8 tracking-tight text-lg">
+                                                                                                                        <a href="https://servicestack.net/features">And much more!</a></li>
+                                                                                                                    </ul>
+                                                                                                                </div>
+                                                                                                                <div class="w-full sm:w-1/2">
+                                                                                                                    <p class="mx-auto mt-5 text-xl text-gray-500">
+                                                                                                                        AutoQuery services are ServiceStack services, so they benefit from the ServiceStack ecosystem of
+                                                                                                                        features.
+                                                                                                                        This makes responding to changing requirements more straight forward as all these features are
+                                                                                                                        designed from the ground up to
+                                                                                                                        work together with clean consistent APIs.
+                                                                                                                    </p>
+                                                                                                                    <div>
+                                                                                                                        <h3 class="my-8 text-2xl font-bold tracking-tight text-gray-900">New App with AutoQuery or AutoGen
+                                                                                                                        </h3>
+                                                                                                                        <div class="flex justify-center">
+                                                                                                                            <a class="archive-url" href="https://servicestack.net/archive/NetCoreTemplates/razor">
+                                                                                                                                <div class="bg-white dark:bg-black px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl"
+                                                                                                                                     style="min-width:180px">
+                                                                                                                                    <div class="text-center font-extrabold flex items-center justify-center mb-2">
+                                                                                                                                        <div class="text-blue-400 my-2">
+                                                                                                                                            <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                                                                                                                                 height="1em" viewBox="0 0 32 32">
+                                                                                                                                                <path fill="#60a5fa"
+                                                                                                                                                      d="M23.844 27.692a16.332 16.332 0 0 1-6.645 1.3q-6.364 0-10.013-3.243a11.3 11.3 0 0 1-3.649-8.9a13.716 13.716 0 0 1 3.785-9.898A12.716 12.716 0 0 1 16.9 3.008a11.676 11.676 0 0 1 8.425 3.006a9.994 9.994 0 0 1 3.142 7.533a10.187 10.187 0 0 1-2.318 7.114a7.532 7.532 0 0 1-5.817 2.547a2.613 2.613 0 0 1-1.845-.642a2.323 2.323 0 0 1-.764-1.6a4.9 4.9 0 0 1-4.148 2.243a4.6 4.6 0 0 1-3.507-1.479a5.706 5.706 0 0 1-1.384-4.063a9.913 9.913 0 0 1 2.2-6.357q2.2-2.763 4.8-2.763a5.063 5.063 0 0 1 4.256 1.716l.311-1.338h2.405l-2.081 9.08a10.716 10.716 0 0 0-.352 2.243q0 .972.744.972a4.819 4.819 0 0 0 3.877-2.047a8.93 8.93 0 0 0 1.621-5.681a7.98 7.98 0 0 0-2.675-6.175a9.887 9.887 0 0 0-6.919-2.432a10.6 10.6 0 0 0-8.158 3.467a12.066 12.066 0 0 0-3.2 8.495a9.561 9.561 0 0 0 3.06 7.573q3.06 2.7 8.586 2.7a13.757 13.757 0 0 0 5.675-1.054ZM19.466 12.25a3.977 3.977 0 0 0-3.6-1.716q-1.824 0-3.263 2.23a8.726 8.726 0 0 0-1.439 4.824q0 3.635 2.905 3.635a3.771 3.771 0 0 0 2.651-1.183a6.309 6.309 0 0 0 1.7-3.2Z">
+                                                                                                                                                </path>
+                                                                                                                                            </svg>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">razor</div>
+                                                                                                                                    <div class="flex justify-center h-8">
+                                                                                                                                        <div class="mr-1"><span
+                                                                                                                                            class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autoquery</span>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <span class="archive-name text-lg px-4 pb-2 text-blue-600">MyApp.zip</span>
+                                                                                                                                </div>
+                                                                                                                            </a>
+                                                                                                                            <a class="archive-url" href="https://servicestack.net/archive/NetCoreTemplates/web">
+                                                                                                                                <div class="bg-white dark:bg-black px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl"
+                                                                                                                                     style="min-width:180px">
+                                                                                                                                    <div class="text-center font-extrabold flex items-center justify-center mb-2">
+                                                                                                                                        <div class="text-4xl text-blue-400 my-2">
+                                                                                                                                            <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                                                                                                                 viewBox="0 0 32 32">
+                                                                                                                                                <path fill="currentColor"
+                                                                                                                                                      d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z" />
+                                                                                                                                            </svg>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="mb-3 text-xl font-medium text-gray-700 dark:text-gray-200">web</div>
+                                                                                                                                    <div class="flex justify-center h-8">
+                                                                                                                                        <div class="mr-1"><span
+                                                                                                                                            class="px-2 h-8 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-500 text-sm">autogen</span>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <span class="archive-name text-lg px-4 pb-2 text-blue-600">MyApp.zip</span>
+                                                                                                                                </div>
+                                                                                                                            </a>
+                                                                                                                        </div>
+                                                                                                                        <div class="text-gray-400 text-center text-sm">
+                                                                                                                            or choose
+                                                                                                                            <a class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold text-sm"
+                                                                                                                               href="https://servicestack.net/start#Name=MyApp&Mix=autoquery">
+                                                                                                                                custom Project Template with AutoQuery
+                                                                                                                            </a>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </section>
+
+                                                                                                    <section>
+                                                                                                        <div class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6">
+                                                                                                            <div class="text-center">
+                                                                                                                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+                                                                                                                    <span class="block">
+                                                                                                                        AutoQuery Examples
+                                                                                                                    </span>
+                                                                                                                </h1>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="mt-16 mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+                                                                                                            <div>
+                                                                                                                <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
+                                                                                                                    Database-first Example Locode App
+                                                                                                                </p>
+                                                                                                                <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                                                                                                                    To demonstrate a database-first development workflow we've enabled
+                                                                                                                    <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-autogen">AutoGen</a> on the
+                                                                                                                    <b>Northwind</b>
+                                                                                                                    sample database to generate
+                                                                                                                    <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery</a> &amp;
+                                                                                                                    <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-crud">CRUD</a>
+                                                                                                                    APIs whose capabilities are used to power the custom Northwind Locode App
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="bg-white dark:bg-black pb-8 pb-12">
   <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
     <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
       <div>
@@ -1009,18 +1135,20 @@ ecosystem around ServiceStack Services</p>
 </div>
 
 
-<div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-    <div>
-        <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
-            Code-first Example Locode App
-        </p>
-        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-            For greater customizability we've exported AutoGen APIs of the <b>Chinook</b> sample database into typed AutoQuery APIs &amp; Data Models to unlock more flexible code-first declarative &amp; programmatic dev models that includes Custom UI components to showcase potential enhancements in Locode Apps 
-        </p>
-    </div>
-</div>
+                                                                                                        <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+                                                                                                            <div>
+                                                                                                                <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
+                                                                                                                    Code-first Example Locode App
+                                                                                                                </p>
+                                                                                                                <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                                                                                                                    For greater customizability we've exported AutoGen APIs of the <b>Chinook</b> sample database into typed
+                                                                                                                    AutoQuery APIs &amp; Data Models to unlock more flexible code-first declarative &amp; programmatic dev
+                                                                                                                    models that includes Custom UI components to showcase potential enhancements in Locode Apps
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </div>
 
-<div class="bg-white dark:bg-black pb-4">
+                                                                                                        <div class="bg-white dark:bg-black pb-4">
   <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
     <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
       <div>
@@ -1093,27 +1221,34 @@ ecosystem around ServiceStack Services</p>
 </div>
 
 
-<div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-    <div>
-        <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
-            Reuse typed APIs in Optimized UIs
-        </p>
-        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500"> 
-            AutoQuery's declarative dev model lets you focus on your new App's business requirements where its data model, 
-            API capabilities, input validation &amp; multi-user Auth restrictions can be defined simply using annotated C# POCOs.<br> 
-            This provides immense value at the start of the development cycle where functional prototypes can be quickly iterated to 
-            gather business requirements <br><br> 
-            Once requirements have been solidified, the typed AutoQuery APIs can easily be reused to develop custom UIs to optimize 
-            important workflows. <br><br>
-            <a class="text-indigo-600" href="https://github.com/NetCoreApps/TalentBlazor">Talent Blazor</a> is a new App showcasing 
-            an example of this where its entire back-office functionality can be managed through Locode whilst an optimized <b>Blazor WASM</b> 
-            App is created to optimize its unique workflow requirements which also benefits from the superior productive dev model 
-            of its Typed APIs 
-        </p>
-    </div>
-</div>
+                                                                                                        <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+                                                                                                            <div>
+                                                                                                                <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
+                                                                                                                    Reuse typed APIs in Optimized UIs
+                                                                                                                </p>
+                                                                                                                <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                                                                                                                    AutoQuery's declarative dev model lets you focus on your new App's business requirements where its data
+                                                                                                                    model,
+                                                                                                                    API capabilities, input validation &amp; multi-user Auth restrictions can be defined simply using
+                                                                                                                    annotated C# POCOs.<br>
+                                                                                                                    This provides immense value at the start of the development cycle where functional prototypes can be
+                                                                                                                    quickly iterated to
+                                                                                                                    gather business requirements <br><br>
+                                                                                                                    Once requirements have been solidified, the typed AutoQuery APIs can easily be reused to develop custom
+                                                                                                                    UIs to optimize
+                                                                                                                    important workflows. <br><br>
+                                                                                                                    <a class="text-indigo-600" href="https://github.com/NetCoreApps/TalentBlazor">Talent Blazor</a> is a new
+                                                                                                                    App showcasing
+                                                                                                                    an example of this where its entire back-office functionality can be managed through Locode whilst an
+                                                                                                                    optimized <b>Blazor WASM</b>
+                                                                                                                    App is created to optimize its unique workflow requirements which also benefits from the superior
+                                                                                                                    productive dev model
+                                                                                                                    of its Typed APIs
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </div>
 
-<div class="bg-white dark:bg-black pb-8 pb-12">
+                                                                                                        <div class="bg-white dark:bg-black pb-8 pb-12">
   <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
     <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
       <div>
@@ -1191,23 +1326,24 @@ ecosystem around ServiceStack Services</p>
   </div>
 </div>
 
-<div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-    <div>
-        <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
-            Use AutoQuery for most of your App's APIs
-        </p>
-        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500"> 
-          AutoQuery enables a highly productive platform capable of rapidly developing a majority of App's CRUD functionality 
-          to enable a hybrid development model which can benefit from using customized
-          <a class="text-purple-600" href="https://blazor-gallery.jamstacks.net/grid">AutoQueryGrid components</a>
-          to effortlessly implement the CRUD functionality to manage the Back office supporting tables, 
-          freeing up developers to focus a majority of their efforts where they 
-          add the most value - in the optimized customer-facing UI.
-        </p>
-    </div>
-</div>
+                                                                                                        <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+                                                                                                            <div>
+                                                                                                                <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight sm:text-4xl">
+                                                                                                                    Use AutoQuery for most of your App's APIs
+                                                                                                                </p>
+                                                                                                                <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                                                                                                                    AutoQuery enables a highly productive platform capable of rapidly developing a majority of App's CRUD
+                                                                                                                    functionality
+                                                                                                                    to enable a hybrid development model which can benefit from using customized
+                                                                                                                    <a class="text-purple-600" href="https://blazor-gallery.jamstacks.net/grid">AutoQueryGrid components</a>
+                                                                                                                    to effortlessly implement the CRUD functionality to manage the Back office supporting tables,
+                                                                                                                    freeing up developers to focus a majority of their efforts where they
+                                                                                                                    add the most value - in the optimized customer-facing UI.
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </div>
 
-<div class="bg-white dark:bg-black pb-8 pb-12">
+                                                                                                        <div class="bg-white dark:bg-black pb-8 pb-12">
     <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
             <div>
@@ -1300,9 +1436,9 @@ ecosystem around ServiceStack Services</p>
 </div>
 
 
-</section>
+                                                                                                    </section>
 
-<script>hljs.highlightAll();</script>
+                                                                                                    <script>hljs.highlightAll();</script>
 
     </main>
 </div>
@@ -1313,7 +1449,7 @@ ecosystem around ServiceStack Services</p>
             <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
                 <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
                 <div>
-                    <a href="https://servicestack.net/service-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
                     <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
                     <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
                     <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
@@ -1387,7 +1523,7 @@ ecosystem around ServiceStack Services</p>
                 with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
                 message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
 
-                <p class="pt-2">Copyright (c) ServiceStack Inc. 2024</p>
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
             </div>
             <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
                 <a href="https://servicestack.net/start"
