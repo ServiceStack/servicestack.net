@@ -38,6 +38,16 @@ Your ServiceStack Request DTO remains the source of truth. Developers add a refe
 
 One backend can now serve a TypeScript website, a Swift or Kotlin mobile App, a Python automation, a Ruby business system, a Go cloud service, a Rust application and Zig systems software-without maintaining a separate hand-written SDK for each one.
 
+## One contract. Native clients. No SDK sprawl.
+
+See how machine-readable metadata replaces brittle JSON parsing, hand-written routes and the ongoing cost of maintaining a bespoke SDK for every language - generating idiomatic, end-to-end typed integrations from one backend source of truth instead.
+
+<div class="not-prose mx-auto my-10 w-full max-w-4xl overflow-hidden rounded-xl border border-slate-200 shadow-2xl dark:border-slate-700">
+  <lite-youtube class="block w-full aspect-video" videoid="bzeG-oFvXPU"
+                style="max-width: none; background-image: url('https://img.youtube.com/vi/bzeG-oFvXPU/maxresdefault.jpg')">
+  </lite-youtube>
+</div>
+
 ## The world's most important API, in every language
 
 The OpenAI-compatible Chat Completions API may be the most consequential API introduced in modern software development. It has become a common interface between applications and increasingly capable AI models, powering assistants, agents, search, document intelligence, automation and entirely new product experiences.
