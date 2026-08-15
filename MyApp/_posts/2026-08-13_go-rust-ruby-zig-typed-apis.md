@@ -10,9 +10,9 @@ image: ./img/posts/go-rust-ruby-zig-typed-apis/bg.webp
 
 ServiceStack has always been built around a simple idea: define your APIs once, then make them feel native everywhere they are used.
 
-<div class="flex justify-evenly">
+<div class="-mt-8 not-prose flex items-center justify-evenly">
     <a href="https://docs.servicestack.net/go-add-servicestack-reference">
-        <img class="size-32" style="margin-top:20px" src="/img/langs/go.svg">
+        <img class="size-40" src="/img/langs/go.svg">
     </a>
     <a href="https://docs.servicestack.net/rust-add-servicestack-reference">
         <img class="size-20" src="/img/langs/rust.svg">
@@ -24,6 +24,10 @@ ServiceStack has always been built around a simple idea: define your APIs once, 
         <img class="size-20" src="/img/langs/zig.svg">
     </a>
 </div>
+
+:::youtube jG6FEFJFblA
+ServiceStack Typed APIs - Now with Go, Rust, Ruby & Zig native types
+:::
 
 With first-class support for **Go, Rust, Ruby and Zig**, Add ServiceStack Reference now generates end-to-end typed API integrations for **15 of the world's most popular programming languages**:
 
