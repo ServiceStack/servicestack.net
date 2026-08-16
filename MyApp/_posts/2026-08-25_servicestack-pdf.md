@@ -8,8 +8,8 @@ image: ./img/posts/servicestack-pdf/bg.webp
 
 ## The complete PDF lifecycle for .NET Apps
 
-:::youtube BhATkVOXknE
-Turn Any PDF into a Dynamic API with AI, Typst & ServiceStack
+:::youtube HVUnpqrV49g
+ServiceStack PDF Overview
 :::
 
 Here is what we want at the end: an ordinary ServiceStack API that returns a real invoice, with no LLM anywhere near it.
@@ -246,6 +246,10 @@ Admin PDF is the handoff point between document authors and application develope
 1. What templates can production render?
 2. Does this template render with this data?
 3. What typed code should the App use?
+
+:::youtube BhATkVOXknE
+Turn Any PDF into a Dynamic API with AI, Typst & ServiceStack
+:::
 
 ## Generate strongly typed C# contracts
 
