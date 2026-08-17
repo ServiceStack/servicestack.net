@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Sun, 16 Aug 2026 01:42:25 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2026 16:07:56 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,22 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth</title>
+        <link>https://servicestack.net/podcasts/ai-chat-v4</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ai-chat-v4</guid>
+        <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-08-17T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3" length="4389259" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>ai</category>
+        <category>llm</category>
+        <description>Multi-provider chat, RAG, PDF Studio, tools, skills, mcp, projects and agents in one App - unleashing AI intelligence on your existing APIs</description>
+        <itunes:summary><![CDATA[ Multi-provider chat, RAG, PDF Studio, tools, skills, mcp, projects and agents in one App - unleashing AI intelligence on your existing APIs ]]></itunes:summary>
+        <itunes:duration>305</itunes:duration>
+        <itunes:keywords>servicestack,ai,llm</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>ServiceStack v10.1 Release</title>
         <link>https://servicestack.net/podcasts/v10-1-release</link>
@@ -857,22 +873,6 @@
         <itunes:summary><![CDATA[ A look at how to use ASP.NET Core Output Caching and ServiceStack.Redis to cache the response of ServiceStack APIs in Redis ]]></itunes:summary>
         <itunes:duration>503</itunes:duration>
         <itunes:keywords>caching,.net8,redis</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ASP.NET Core Rate Limiter Middleware</title>
-        <link>https://servicestack.net/podcasts/asp-rate-limiter-middleware</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/asp-rate-limiter-middleware</guid>
-        <pubDate>Mon, 08 Apr 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-04-08T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/asp-rate-limiter-middleware.mp3" length="2585901" type="audio/mpeg"/>
-        <category>.net8</category>
-        <category>auth</category>
-        <category>middleware</category>
-        <description>A guide explaining how ASP.NET Core&#x27;s Rate Limiter Middleware can be used to protect ServiceStack APIs and Apps from abuse</description>
-        <itunes:summary><![CDATA[ A guide explaining how ASP.NET Core&#x27;s Rate Limiter Middleware can be used to protect ServiceStack APIs and Apps from abuse ]]></itunes:summary>
-        <itunes:duration>646</itunes:duration>
-        <itunes:keywords>.net8,auth,middleware</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
