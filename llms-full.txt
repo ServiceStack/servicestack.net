@@ -1,3 +1,450 @@
+# AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth
+Source: https://servicestack.net/posts/ai-chat-v4
+
+## Add one plugin, get a complete AI Assistant
+
+Register `ChatFeature` in an existing ServiceStack App and your users get this at `/chat`:
+
+<screenshot src="/img/pages/ai/chat-ui.webp" title="AI Chat v4 Model Selector"></screenshot>
+
+They sign in with the account they already have. They can talk to OpenAI, Anthropic, Google, Groq, xAI, Mistral, a local Ollama model or any other configured provider from one model selector. They can attach documents, dictate with their voice, generate images and audio, ask questions grounded in your organization's documents, design a PDF, and — most usefully — ask the assistant to do things with your application's own APIs, with an editable approval form in front of anything consequential.
+
+None of it leaves your application boundary. There is no second user directory, no separate AI product to buy and administer, no per-seat contract, and no vendor holding your conversation history.
+
+<text-block>/chat</text-block>
+
+AI Chat v4 is a complete rewrite of ServiceStack's built-in AI experience. Previous versions proved the value of giving every ServiceStack App a capable, self-hosted interface for working with Large Language Models. v4 expands that idea into a modular AI application platform designed for both individual creativity and enterprise workflows.
+
+<screenshot src="/img/posts/ai-chat-v4/chat-home.webp" title="AI Chat v4 home and conversation UI"></screenshot>
+
+### What this replaces
+
+Assembling the same capability from separate products usually means running — and paying for — several at once:
+
+| Capability | Typically bought as | In AI Chat v4 |
+| --- | --- | --- |
+| Chat UI for staff | Per-seat AI assistant subscription | Built in at `/chat` |
+| Multi-provider routing | Model gateway / LLM proxy service | Built-in provider config |
+| Document Q&A (RAG) | Managed vector DB + indexing pipeline | Gemini File Search extension |
+| Usage, token and cost reporting | Separate observability tooling | Analytics extension |
+| Document/PDF generation | Reporting or document service | PDF Studio + `PdfFeature` |
+| Agent access to business systems | Custom function-calling backend | API Tools over your existing APIs |
+| Assistant access for developer tools | Bespoke MCP server | Built-in MCP Server at `/chat/mcp` |
+| User accounts and permissions | A second identity silo to administer | Your App's existing auth |
+
+The point isn't that each piece is individually novel. It's that they share one identity model, one datastore, one deployment and one security boundary — so the integration work that normally sits between them doesn't exist.
+
+## Rewritten around modularity
+
+Modern AI applications evolve too quickly for a fixed collection of hard-coded screens. New model providers, tools, modalities and workflows arrive continuously. Enterprises also need to disable capabilities, replace UI, add policy and integrate their own systems without maintaining a fork.
+
+AI Chat v4 solves this with a shared extension architecture across the server and browser.
+
+Each extension can contribute only what it needs:
+
+- ServiceStack routes and APIs
+- Model tools and tool groups
+- UI components and pages
+- Sidebar and toolbar actions
+- Chat request and response filters
+- Import maps and client dependencies
+- Per-user files and preferences
+- Database tables and background workers
+- Startup and shutdown lifecycle hooks
+
+The entire UI is assembled from registered Vue components. Extensions can add new components or deliberately replace an existing building block by registering the same component name. The host App can add its own final customization extension after the built-ins have loaded, giving it a clean place to brand, rearrange or specialize the experience.
+
+On the server, features are equally isolated. Gemini File Stores owns its document catalog and upload worker. Analytics owns reporting APIs. Projects owns workspace boundaries. PDF Studio owns template authoring. API Tools owns ServiceStack API discovery and approval. Each feature can evolve independently whilst sharing authentication, persistence, providers and the chat pipeline.
+
+This is what makes v4 a platform instead of a page. Everything below ships as a separately installable extension:
+
+| Extension | What it adds |
+| --- | --- |
+| `app` | Threads, history, avatars and the core conversation UI |
+| `agents` | Agent Profiles and the Profile Manager |
+| `analytics` | Cost, token and activity reporting for admins |
+| `api_tools` | Discovery and invocation of the App's own ServiceStack APIs |
+| `computer` | Filesystem tools and `run_bash` — **off by default** |
+| `core_tools` | Utilities, math, and code execution tools |
+| `credentials` | Username/password sign-in for the Chat UI |
+| `gallery` | Browsable catalog of generated images and audio |
+| `gemini` | Gemini File Search stores for RAG |
+| `identity` | Sign-in using the host App's ASP.NET Identity users |
+| `katex` | Mathematical typesetting |
+| `mcp` | The built-in MCP Server at `/chat/mcp` |
+| `pdf` | PDF Studio at `/chat/pdf` |
+| `projects` | Per-user workspaces and directory boundaries |
+| `publish` | Sharing threads, projects and media — **off by default** |
+| `skills` | Skill management, search, install and authoring |
+| `system_prompts` | The system prompt library |
+| `tools` | The shared Tool Registry and tools panel |
+| `voice` | Voice input and transcription |
+
+Extensions can be enabled, disabled and configured from one `ChatFeature`:
+
+```csharp
+services.AddPlugin(new ChatFeature
+{
+    RequireAuth = true,
+    AuthType = ChatAuthType.Credentials,
+
+    // Remove an extension entirely - here the filesystem and run_bash tools
+    DisableExtensions = ["computer"],
+
+    Tools =
+    {
+        EnableApiTools = true,        // on by default
+        EnableFilesystemTools = false, // off by default
+        EnableCodeExecution = false,   // off by default
+    },
+});
+```
+
+Higher-risk capabilities are opt-in rather than opt-out. Filesystem access and code execution are disabled unless the host explicitly turns them on, and `DisableExtensions` removes a capability from the server and the UI together — a disabled extension registers no routes, no tools and no components.
+
+## The llms.py v4 experience, native to ServiceStack
+
+AI Chat shares its UI architecture with [llms.py](https://llmspy.org), our open, multi-provider AI application and enhances it with:
+
+- ASP.NET Core hosting
+- ServiceStack routing and Services
+- ServiceStack Identity Auth or AuthFeature credentials
+- OrmLite persistence using the App's database
+- Per-user storage under `App_Data/chat`
+- ServiceStack Admin UI
+- Native access to the App's APIs through API Tools
+- A built-in MCP Server for external AI Assistants
+
+The result is the familiarity and pace of llms.py v4 inside the security and operational boundary of an existing ServiceStack application.
+
+## Every model behind one consistent experience
+
+AI Chat normalizes leading commercial, open and locally hosted providers behind one interface. Built-in provider support includes OpenAI, Anthropic, Google, OpenRouter, Groq, xAI, Cerebras, Mistral, Fireworks, Ollama, LM Studio and other OpenAI-compatible services.
+
+The model selector makes large catalogs manageable with search, provider filters, capability filters, context sizes, pricing and favorites. Users can move between fast inexpensive models, frontier reasoning models, private local models and specialized generation models without learning a new application for each one.
+
+<screenshots-gallery class="mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4" :images="{
+    'AI Chat v4 Model Selector': '/img/pages/ai/models/model-selector.webp',
+    'AI Chat v4 Model Providers': '/img/pages/ai/models/model-selector-providers.webp',
+}"></screenshots-gallery>
+
+Streaming responses are consistent across providers, so every model begins returning useful output immediately. Conversation history, attachments, system prompts, tool calls and usage records remain in the same UI when users switch providers.
+
+This is valuable to individuals, but essential to organizations. It avoids locking the entire workforce into one model vendor and makes it practical to route different jobs to the model with the best combination of capability, latency, privacy and price.
+
+## Consumer creativity and enterprise intelligence
+
+Many AI products are designed primarily as consumer chat applications. AI Chat v4 includes the features users expect from those products:
+
+- Rich Markdown, syntax highlighting and KaTeX mathematics
+- Image and document attachments
+- Voice input and transcription
+- Image, audio and speech generation
+- Persistent conversations
+- User and Agent avatars
+- Themes
+- Media galleries
+- Compact tool-call rendering
+- Projects for AI-built applications
+- Publishing of selected creations when configured
+
+But the architecture is equally focused on enterprise requirements:
+
+- Self-hosting inside the application boundary
+- Existing user authentication and role-based access
+- Per-user data isolation
+- Central provider and credential configuration
+- Cost, token and activity analytics
+- Controlled tool availability
+- Sandboxed project directories
+- Reusable organizational skills and Agent Profiles
+- RAG over enterprise documents
+- Direct access to authorized ServiceStack APIs
+- Human approval for write and destructive operations
+- MCP access for trusted external Assistants
+- Admin-managed PDF templates and production rendering
+
+AI Chat is therefore useful before and after the novelty of a general chat box wears off. It becomes a governed interface for how an organization applies AI to real work.
+
+## Integrated Auth: your existing users, permissions and data boundaries
+
+AI Chat is installed inside your ServiceStack App, so it does not need a separate user directory, a second login experience or a new identity silo.
+
+Existing application users can access `/chat` with the authentication system the host already trusts. AI Chat supports:
+
+- ServiceStack Identity Auth cookies and the App's existing login flow.
+- AuthFeature credentials for a built-in username and password sign-in experience.
+- ServiceStack API keys for programmatic clients and MCP Assistants.
+- A required role that can limit the entire AI Chat capability to an approved user group.
+
+This is a major advantage over deploying a separate AI product beside the application. User lifecycle, password policy, roles, lockouts and account administration remain owned by the existing App.
+
+Authentication is also the boundary for AI Chat's state. User-facing features are scoped to the current identity, including:
+
+- Conversation threads and history
+- Generated images, audio and media
+- Agent Profile customizations
+- Projects and their allowed directories
+- Personal Skills and preferences
+- Gemini File Stores and document catalogs
+- PDF Studio workspaces
+- Provider and model preferences
+
+One user's working context does not become another user's prompt history or project filesystem. Shared and administrator-managed capabilities remain explicit rather than emerging from a common global workspace.
+
+Integrated Auth becomes even more valuable when AI Chat acts on the application. API Tools search and invoke ServiceStack APIs as the current user, preserving authentication, API-key requirements, roles, permissions, claims and scopes. An Assistant cannot discover or call an API merely because the server process itself could access it.
+
+Administrators gain system-wide analytics and operational visibility through role-protected Admin UIs, whilst ordinary users retain their own scoped experience. This combination—existing identity, per-user isolation and controlled administration—is what makes AI Chat suitable for adding to a real multi-user application instead of remaining a single-user AI demo.
+
+<screenshot src="/img/posts/ai-chat-v4/user-profile.webp" title="Authenticated AI Chat user workspace"></screenshot>
+
+### The boundaries, stated plainly
+
+Security questions tend to arrive early when a team proposes adding AI to a production application, so the answers are worth stating directly:
+
+| Question | Answer |
+| --- | --- |
+| Where does conversation data live? | Your App's database via OrmLite, and `App_Data/chat` on your server |
+| Who can reach `/chat`? | Whoever `RequireAuth` and `RequiredRole` allow — enforced by your existing auth |
+| Can one user see another's threads, media or projects? | No. State is scoped to the authenticated identity; admin cross-user access is explicit and role-gated |
+| What can an Agent call? | Only APIs the *signed-in user* is authorized to call — not what the server process could reach |
+| Can it write to the filesystem or run code? | Only if you enable those tools, and only within configured project directories |
+| What is exposed over MCP? | Nothing until you name tool groups; tools needing interactive approval are rejected by default |
+| Does any of it require an outbound AI provider? | Only the features you configure. Nothing calls a model you haven't set up |
+
+Which providers see your prompts remains entirely your decision — including "none outside this network" if you point AI Chat at a local Ollama or LM Studio endpoint.
+
+## Enterprise RAG with Gemini File Search
+
+The Gemini extension is one of AI Chat v4's most compelling enterprise features. It provides a complete UI for managing Google Gemini File Search Stores and using them as managed Retrieval Augmented Generation knowledge bases.
+
+Teams can create separate stores for departments, customers, products or projects, then drag and drop PDFs, Markdown, text and supported business documents into categories. Uploads are content-addressed, deduplicated and processed asynchronously by a background worker so indexing does not block the UI.
+
+<screenshots-gallery :images="{
+    'Gemini File Search stores': '/img/pages/ai/gemini/gemini-filestores.webp',
+    'Upload a document folder': '/img/pages/ai/gemini/gemini-filestores-upload-folder.webp',
+}"></screenshots-gallery>
+
+Once indexed, users can start grounded conversations at three useful scopes:
+
+- **Ask File Store** searches the complete knowledge base.
+- **Ask Category** restricts retrieval to a department, subject or folder.
+- **Ask Document** grounds the conversation in one selected document.
+
+<screenshots-gallery :images="{
+    'Ask the complete File Store': '/img/pages/ai/gemini/gemini-search-all.webp',
+    'Ask a document category': '/img/pages/ai/gemini/gemini-search-category.webp',
+    'Ask a single document': '/img/pages/ai/gemini/gemini-search-document.webp',
+}"></screenshots-gallery>
+
+Grounding sources are retained with responses so users can verify where an answer came from instead of treating fluent output as evidence.
+
+### Market-leading managed storage economics
+
+Gemini File Search is particularly attractive for enterprise document collections because Google currently charges for embeddings when documents are indexed, whilst **file storage and query-time embeddings are free**. Retrieved document tokens are billed as normal model context. Stores persist until deleted, with project capacity scaling by usage tier. See Google's current [Gemini File Search pricing and limits](https://ai.google.dev/gemini-api/docs/file-search) before deployment.
+
+That pricing model removes the recurring vector-storage charge common in managed RAG architectures. Organizations can maintain durable knowledge bases and pay primarily when content is indexed and when users actually query it.
+
+AI Chat adds the operational experience needed around Google's service:
+
+- Local document catalog and status
+- Store and category organization
+- Background upload queue
+- SHA-256 deduplication
+- Remote/local synchronization reports
+- Re-upload and delete controls
+- User-scoped management
+- One-click grounded chat creation
+
+<screenshot src="/img/pages/ai/gemini/gemini-sync.webp" title="Gemini File Search synchronization report"></screenshot>
+
+This makes managed RAG approachable without asking every ServiceStack team to design a chunking pipeline, vector database, background indexer, retrieval tool and administration UI from scratch.
+
+## Specialized Agent Profiles
+
+One system prompt cannot be ideal for every task. Agent Profiles package a model, system prompt, theme, avatar, allowed tools, allowed skills and workflow actions into a named assistant.
+
+AI Chat includes general Chat, Planner and Coder profiles. The Profile Manager can inspect built-in profiles, override their default model and theme, or create new profiles entirely from the UI.
+
+<screenshots-gallery :images="{
+    'Choose an Agent Profile': '/img/pages/ai/profiles/profiles-menu.webp',
+    'Inspect a built-in profile': '/img/pages/ai/profiles/readonly-profile.webp',
+}"></screenshots-gallery>
+
+Custom profiles can compose `SYSTEM.template` from separate Markdown files for organizational policy, user context, procedures and domain knowledge. Tools and skills can be restricted per profile, reducing both risk and model confusion.
+
+The built-in Planner → Coder workflow demonstrates how profiles cooperate. A Planner decomposes a goal and writes `PLAN.md`; the Coder receives the approved plan and implements it with the tools allowed in the selected Project.
+
+<screenshots-gallery :images="{
+    'Planner Agent Profile': '/img/pages/ai/profiles/profiles-planner.webp',
+    'Coder Agent Profile': '/img/pages/ai/profiles/profiles-coder.webp',
+}"></screenshots-gallery>
+
+For enterprises, profiles become governed job descriptions: Support Assistant, Policy Analyst, Release Planner, Sales Researcher or Finance Reviewer—each with only the context and capabilities needed for its role.
+
+## Projects create safe working boundaries
+
+Projects give each user a persistent workspace and define the directories filesystem tools may access. Switching Projects changes the active boundary for read, write, edit, search and listing operations.
+
+This allows capable coding and document Agents without granting them ambient access to the whole server. Project directories are normalized and path checked, whilst code execution and filesystem tools remain disabled unless explicitly enabled by the host.
+
+Projects can hold generated websites, games, reports, plans and source code. They are also natural collaboration units for Agent Profiles and, when publishing is configured, can be deployed as static projects.
+
+<screenshot src="/img/posts/ai-chat-v4/projects.webp" title="AI Chat project workspace selector"></screenshot>
+
+## Skills turn procedures into reusable capabilities
+
+Skills package specialized instructions, references and supporting files that Models load only when relevant. Instead of adding every procedure to every system prompt, an organization can maintain focused skills for incident response, customer onboarding, code review, compliance checks or internal systems.
+
+AI Chat includes management, search, installation, creation and editing experiences for Skills. Built-in and administrator-provided skills can be shared, whilst authenticated users maintain their own scoped additions.
+
+Profiles can restrict which skills are available, and Models load the selected skill's detailed instructions only when triggered. This progressive disclosure keeps prompts smaller and helps specialists remain specialists.
+
+<screenshot src="/img/posts/ai-chat-v4/skills.webp" title="AI Chat skills management"></screenshot>
+
+## Tools for action, not just answers
+
+AI Chat v4 has a shared Tool Registry used by chat models, custom extensions, ServiceStack Commands, API Tools and the MCP Server.
+
+Tools are described with JSON Schema, grouped for selection and rendered as compact expandable calls in conversation history. Users can inspect arguments and results without allowing verbose machine output to overwhelm the thread.
+
+The host controls whether higher-risk tools are installed:
+
+```csharp
+Tools =
+{
+    EnableApiTools = true,
+    EnableFilesystemTools = true,
+    EnableCodeExecution = false,
+}
+```
+
+Provider-hosted Server Tools can also expose capabilities such as web search, web fetch and code execution where supported by the selected provider. Their JSON Schemas dynamically generate the configuration UI shown to users and the definitions supplied to Models.
+
+<screenshot src="/img/pages/ai/tools/llm-tool-call.webp" title="AI Chat tool call configuration"></screenshot>
+
+## Turn your ServiceStack APIs into AI capabilities
+
+API Tools are where AI Chat becomes uniquely valuable to ServiceStack developers.
+
+Instead of building AI-specific functions, Models can progressively discover and invoke existing ServiceStack APIs through:
+
+- `api_search`
+- `api_describe`
+- `api_call`
+
+The same Request DTOs, validation, roles, permissions, claims, scopes and Service implementations used by every client remain authoritative. Read APIs can execute immediately; writes and destructive calls pause in AI Chat and render an editable schema-generated approval form.
+
+This enables Assistants for ordering, bookings, support, reporting, operations and administration without creating a second application backend — and it does so without a parallel AI-specific model of your domain that has to be kept in sync.
+
+This is significant enough that it gets its own post: [API Tools](/posts/api-tools), next in this series, walks through the complete CoffeeShop workflow end to end.
+
+<screenshot src="/img/posts/ai-chat-v4/api-approval.webp" title="AI Chat API approval form"></screenshot>
+
+## Make those capabilities available over MCP
+
+AI Chat can expose selected tool groups through its built-in stateless MCP Server at `/chat/mcp`. Trusted external Assistants such as OpenCode, Claude Code, Cursor and VS Code can then discover and use the same ServiceStack API Tools under an API key user's identity.
+
+```csharp
+Mcp =
+{
+    ToolGroups = ["api_tools"],
+}
+```
+
+Nothing is exposed until the host selects tool groups or explicit tools. The server publishes input schemas, output schemas, structured results and safety annotations.
+
+AI Chat's interactive approval form cannot be transported through a generic MCP client, so the MCP Server uses a configurable `ApprovalMode`. The default mode uses a Two-Phase Confirmation Token: write and destructive calls return a `requires_confirmation` response with a signed token, the assistant presents the summary for user confirmation, and then re-invokes with the token. Applications can also set `ApprovalMode = McpApprovalMode.Reject` for fail-closed read-only exposure, or `McpApprovalMode.DelegateToClient` when the MCP client has its own native confirmation dialog. API authorization and DTO validation remain enforced in all modes.
+
+AI Chat therefore works both as the organization's first-party interface and as a secure capability server for the AI clients its users already prefer.
+
+## Multi-user administration and analytics
+
+Enterprise AI needs observability. AI Chat records requests, provider, model, tokens, duration and cost so administrators can understand usage instead of discovering it only on a provider invoice.
+
+The Analytics extension provides cost analysis, token usage and activity views. Admin users can filter metrics by user, compare request and token totals, sort users by activity and inspect conversation transcripts when operational review is required.
+
+<screenshots-gallery :images="{
+    'AI usage and cost analytics': '/img/pages/ai/analytics/analytics-costs.webp',
+    'Per-user activity analytics': '/img/pages/ai/analytics/analytics-users-page.webp',
+}"></screenshots-gallery>
+
+Authentication can use ServiceStack Identity cookies, the App's credentials provider or API keys. Threads, media, profiles, projects and preferences remain scoped per user, whilst Admin UI integrations provide controlled operational visibility.
+
+This is a different product posture from a personal desktop chat client: AI Chat is designed to be operated as part of a multi-user application.
+
+## Voice, media and multimodal creation
+
+Text is only one AI modality. AI Chat supports voice-to-text input, image generation, audio generation and speech synthesis through configured providers.
+
+Generated media is stored in the App's media catalog with optimized gallery browsing. Users can revisit, download and reuse creations instead of losing them inside a transient provider response.
+
+The same modular provider system allows an organization to enable only approved vendors and models. A creative team can expose image and speech models, whilst a regulated workflow can restrict users to text models hosted within its approved boundary.
+
+<screenshot src="/img/posts/ai-chat-v4/voice-and-media.webp" title="AI Chat voice and media controls"></screenshot>
+
+## PDF Studio: from a prompt to a production document
+
+PDF Studio brings code-first document design into AI Chat at `/chat/pdf`. It combines Typst templates, live PDF preview, schema-generated data forms, visual formatting tools and AI-assisted editing.
+
+<screenshot src="/img/pages/ai/pdf/designer-overview.webp" title="PDF Studio designer overview"></screenshot>
+
+Users can describe changes in plain English or attach a screenshot or sample PDF for a vision model to recreate as a reusable template and JSON data contract. Templates remain plain-text `.typ` files, so they are versionable, reviewable and independent of the model that helped create them.
+
+PDF Studio is only the authoring half. Admins can publish validated templates into `App_Data/pdf`, generate typed C# models and render production PDFs through `IPdfRenderer` without an LLM or ChatFeature at runtime.
+
+That separation is the whole point: AI accelerates authoring, but never sits in the path of the invoices your application sends to customers. [ServiceStack PDF Studio](/posts/servicestack-pdf), later in this series, covers the complete AI Chat → Publish → Admin PDF → application rendering workflow.
+
+## Publish selected creations
+
+When configured, the Publish extension can share selected chat threads, projects, images and audio through a publishing service. Publishing is deliberately separate and disabled by default in ServiceStack AI Chat, allowing each host to decide whether content may leave its application boundary.
+
+This opt-in distinction matters. Consumer users may value instant sharing; enterprises often require retention policy, review and an approved destination. The extension boundary supports both without weakening the secure default.
+
+## One platform, shaped for each App
+
+AI Chat v4 brings together capabilities that would otherwise require separate chat, RAG, model gateway, tool, analytics, media, document and administration products.
+
+Its greatest feature is not the number of screens. It is that every screen and capability is an encapsulated module over shared infrastructure:
+
+- Providers supply intelligence.
+- Extensions supply capabilities.
+- Profiles and Skills supply specialization.
+- Projects supply boundaries.
+- Identity supplies users and authorization.
+- Analytics supplies governance.
+- API Tools supply access to the application.
+- MCP supplies access to external Assistants.
+- PDF Studio turns AI-assisted design into production artifacts.
+
+Start with the built-in experience. Disable what your users do not need. Configure the providers you trust. Add your APIs, documents, profiles and skills. Replace individual UI building blocks where your product needs its own voice.
+
+AI Chat v4 is no longer just a place to talk to a Model.
+
+It is the modular AI layer for your ServiceStack App.
+
+## Get Started
+
+Add AI Chat and PDF support to an existing .NET 8+ ServiceStack App with:
+
+<shell-command>npx add-in chat</shell-command>
+
+This configures both `ChatFeature` and `PdfFeature`, adds the `ServiceStack.AI.Chat` package and writes a starting configuration you can edit. Set an API key for at least one provider — `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY` or a local Ollama endpoint — then run your App and open:
+
+<text-block>/chat</text-block>
+
+Your existing users can sign in immediately. From there:
+
+- Choose which providers and models to expose in the model selector
+- Set `RequiredRole` if AI Chat should be limited to an approved group
+- Turn on API Tools for the tags you want Models to reach
+- Leave `EnableFilesystemTools` and `EnableCodeExecution` off unless you need them
+
+**Already running AI Chat?** v4 is a rewrite, so review the migration notes before upgrading — provider configuration moved to the models.dev format and the extension system replaces several v2-era configuration points.
+
+<screenshot src="/img/posts/ai-chat-v4/modular-overview.webp" title="AI Chat modular settings and extensions"></screenshot>
+
+
 # Typed ServiceStack APIs for Go, Rust, Ruby and Zig
 Source: https://servicestack.net/posts/go-rust-ruby-zig-typed-apis
 

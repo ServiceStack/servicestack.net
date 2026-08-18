@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Mon, 17 Aug 2026 16:19:28 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 16:28:39 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,23 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP</title>
+        <link>https://servicestack.net/podcasts/api-tools</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/api-tools</guid>
+        <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-08-18T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3" length="4591148" type="audio/mpeg"/>
+        <category>ai</category>
+        <category>llms</category>
+        <category>mcp</category>
+        <category>servicestack</category>
+        <description>Turn your existing ServiceStack APIs into safe, discoverable AI tools for AI.Chat and every MCP-compatible assistant like Claude, Cursor, and OpenCode.</description>
+        <itunes:summary><![CDATA[ Turn your existing ServiceStack APIs into safe, discoverable AI tools for AI.Chat and every MCP-compatible assistant like Claude, Cursor, and OpenCode. ]]></itunes:summary>
+        <itunes:duration>320</itunes:duration>
+        <itunes:keywords>ai,llms,mcp,servicestack</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth</title>
         <link>https://servicestack.net/podcasts/ai-chat-v4</link>
@@ -857,22 +874,6 @@
         <itunes:summary><![CDATA[ The latest features and improvements in ServiceStack v8.3 covering Commands Feature, API Keys, Integrated Admin UIs and more! ]]></itunes:summary>
         <itunes:duration>459</itunes:duration>
         <itunes:keywords>release,apikeys,admin-ui,commands,api</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ASP.NET Core Output Caching</title>
-        <link>https://servicestack.net/podcasts/redis-outputcache</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/redis-outputcache</guid>
-        <pubDate>Wed, 05 Jun 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-06-05T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/redis-outputcache.mp3" length="2012973" type="audio/mpeg"/>
-        <category>caching</category>
-        <category>.net8</category>
-        <category>redis</category>
-        <description>A look at how to use ASP.NET Core Output Caching and ServiceStack.Redis to cache the response of ServiceStack APIs in Redis</description>
-        <itunes:summary><![CDATA[ A look at how to use ASP.NET Core Output Caching and ServiceStack.Redis to cache the response of ServiceStack APIs in Redis ]]></itunes:summary>
-        <itunes:duration>503</itunes:duration>
-        <itunes:keywords>caching,.net8,redis</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
