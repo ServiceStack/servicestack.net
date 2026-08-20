@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Turn your existing ServiceStack APIs into safe, discoverable AI tools for AI.Chat and every MCP-compatible assistant like Claude, Cursor, and OpenCode." />
+    <meta property="og:url" content="https://servicestack.net/posts/api-tools" />
+    <meta property="og:title" content="Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP" />
+    <meta property="og:image" content="./img/posts/api-tools/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'api-tools', title:'Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP', src:'https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=api-tools&amp;source=post&amp;version=8.10.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/api-tools/bg.webp" alt="Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/llms" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">llms</a>
+                        <a href="posts/tagged/mcp" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">mcp</a>
+                        <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-08-19T00:00:00.0000000">August 19, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>16 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <h2 id="your-apis-are-now-ai-tools">Your APIs are now AI Tools<a class="header-anchor" href="javascript:;" onclick="location.hash='#your-apis-are-now-ai-tools'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In 2023 we set out to build a natural language ordering experience for a CoffeeShop App. The goal sounded simple:</p>
+<blockquote>
+<p>Order two grande hot oat milk lattes with light vanilla syrup for Sam.</p>
+</blockquote>
+<p>Turning that sentence into a valid, priced and persisted order was anything but simple.</p>
+<p>Our <a href="https://github.com/NetCoreApps/CoffeeShop">original solution</a> used Microsoft's TypeChat to constrain an LLM with a custom TypeScript schema. We modelled every product, size, temperature and option in TypeScript, generated the schema and prompt from our .NET data model, invoked a Node.js process from .NET, handled schema validation and corrective retries, translated the result into our application's types, then built custom application logic and UI around the result.</p>
+<p>It worked, and at the time it was a useful demonstration of how schemas could make probabilistic LLM output safe enough for application code. But it also exposed the cost of the approach: we had created a second, AI-specific description of our application that needed to remain synchronized with the real APIs, validation rules, database and authorization model.</p>
+<h3 id="let-the-ai-decide">Let the AI decide<a class="header-anchor" href="javascript:;" onclick="location.hash='#let-the-ai-decide'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The biggest lesson was that every piece of hand-coded logic we added to constrain or steer AI behavior was eventually made redundant. Schema validation, corrective retry loops, prompt scaffolding to force a particular output shape — all of it was discarded as models grew capable enough to make those decisions themselves. The smarter approach turned out to be the open-ended one: expose your real APIs with rich metadata as the single source of truth, let models progressively discover what is available and decide what to call. That kind of architecture can accomplish far more than any number of hard-coded use-cases, and it improves automatically as models advance.</p>
+<h3 id="introducing-api-tools">Introducing API Tools<a class="header-anchor" href="javascript:;" onclick="location.hash='#introducing-api-tools'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Today the same end-to-end CoffeeShop experience can be added to a ServiceStack App in minutes.</p>
+<p>ServiceStack's new <strong>API Tools</strong> let AI Models discover, learn and call your existing ServiceStack APIs. The built-in <a href="/posts/ai-chat-v4">AI Chat</a> UI gives users a complete conversational interface with editable approval forms, whilst the built-in <strong>MCP Server</strong> makes the same APIs available to external AI Assistants like OpenCode, Claude Code, Cursor and VS Code.</p>
+<p>There is no parallel TypeScript schema, no bespoke function-calling gateway and no AI-specific application backend. Your typed ServiceStack Request DTOs, metadata, validation, authorization and Services remain the single source of truth.</p>
+<p><a href="https://github.com/NetCoreApps/CoffeeShopChat"><img src="/img/posts/api-tools/coffeeshop-screenshot.webp" alt="API Tools" /></a></p>
+<div class="text-center"><p><a href="https://github.com/NetCoreApps/CoffeeShopChat">NetCoreApps/CoffeeShopChat</a></p>
+</div>
+<h2 id="from-weeks-of-integration-to-minutes-of-configuration">From weeks of integration to minutes of configuration<a class="header-anchor" href="javascript:;" onclick="location.hash='#from-weeks-of-integration-to-minutes-of-configuration'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The <a href="https://github.com/NetCoreApps/CoffeeShop">old CoffeeShop</a> required us to build and maintain an AI translation pipeline:</p>
+<ol>
+<li>Model the menu and ordering language in a TypeScript schema.</li>
+<li>Generate a prompt containing the schema and application-specific instructions.</li>
+<li>Install and invoke Node.js and TypeChat from the .NET App.</li>
+<li>Validate the model's JSON and retry with corrective prompts.</li>
+<li>Translate the TypeChat result into the application's .NET types.</li>
+<li>Resolve generated values against live products and prices.</li>
+<li>Build custom APIs and UI for reviewing and submitting the order.</li>
+<li>Keep the AI schema synchronized as the application evolved.</li>
+</ol>
+<p>The <a href="https://github.com/NetCoreApps/CoffeeShopChat">new CoffeeShop</a> uses ordinary ServiceStack APIs for the menu, previewing an order, creating an order and retrieving it. Enabling them for AI.Chat only requires registering the feature:</p>
+<pre><code class="language-csharp">services.AddPlugin(new ChatFeature {
+    // Require authentication to access /chat
+    RequireAuth = true,
+    // RequiredRole = &quot;Admin&quot;,
+
+    Tools =
+    {
+        // README: Give AI Models access to Filesystem or Code Execution tools
+        // EnableCodeExecution = true,
+        // EnableFilesystemTools = true,
+    },
+    
+    // Expose APIs with these tags to API &amp; MCP Tools
+    // ApiTools = {
+    //     IncludeTags = [&quot;todos&quot;]
+    // },
+
+    // Add this App's own tools to the built-in extensions
+    // Expose these tools to external AI Agents over MCP at /chat/mcp
+    Mcp = {
+        // Default uses Two-Phase Confirmation Tokens for write/destructive operations
+        // ApprovalMode = McpApprovalMode.DelegateToClient, 
+    },
+    
+    Setup = (ctx =&gt; {
+        // Advanced setup
+    }),
+});
+</code></pre>
+<p>The APIs themselves are the same typed APIs used by every other client. A small amount of optional <code>[Tool]</code> metadata helps AI Models select the right API and understand its place in a workflow:</p>
+<pre><code class="language-csharp">[Tag(&quot;CoffeeShop&quot;)]
+[Description(&quot;Returns the complete coffee shop menu with product IDs, prices, &quot; +
+             &quot;valid sizes, temperatures and customization options&quot;)]
+[Tool(
+    &quot;the user wants to browse the coffee shop menu, learn what can be ordered, &quot; +
+    &quot;check prices, or build an order&quot;,
+    Safety = ToolSafety.ReadOnly,
+    Keywords = [&quot;coffee&quot;, &quot;drink&quot;, &quot;food&quot;, &quot;bakery&quot;, &quot;customizations&quot;])]
+[Route(&quot;/coffee-shop/menu&quot;, &quot;GET&quot;)]
+public class GetCoffeeShopMenu : IGet, IReturn&lt;GetCoffeeShopMenuResponse&gt; { }
+</code></pre>
+<p>For the final write API we can tell the model when to use it, describe its safety, require approval and provide MCP-specific instructions. The <code>[Mcp]</code> attribute lets you add imperative wording for MCP Agents — such as prerequisites and confirmation steps — without polluting the <code>[Description]</code> used by OpenAPI generators and admin UIs:</p>
+<pre><code class="language-csharp">[Tag(&quot;CoffeeShop&quot;)]
+[Description(&quot;Submits and charges a coffee shop order. Product names and &quot; +
+             &quot;prices are always resolved from the database.&quot;)]
+[Mcp(Description =
+    &quot;Submits and charges a coffee shop order. &quot; +
+    &quot;IMPORTANT: Before calling this API you MUST first call &quot; +
+    &quot;PreviewCoffeeShopOrder, present the itemized summary and &quot; +
+    &quot;total price to the customer, and WAIT for their explicit &quot; +
+    &quot;confirmation.&quot;)]
+[Tool(
+    &quot;the user has finished choosing an order and wants to place or submit it&quot;,
+    Safety = ToolSafety.Write,
+    RequiresApproval = true,
+    Keywords = [&quot;buy&quot;, &quot;checkout&quot;, &quot;place order&quot;])]
+[Route(&quot;/coffee-shop/orders&quot;, &quot;POST&quot;)]
+public class CreateCoffeeShopOrder : IPost, IReturn&lt;CreateCoffeeShopOrderResponse&gt;
+{
+    [Description(&quot;Name to put on the order&quot;)]
+    [ValidateNotEmpty]
+    public string CustomerName { get; set; } = &quot;&quot;;
+
+    [Description(&quot;Final order items. The approval form lets the user edit &quot; +
+                 &quot;these before submission&quot;)]
+    [ValidateNotEmpty]
+    public List&lt;OrderItemRequest&gt; Items { get; set; } = [];
+}
+</code></pre>
+<p>That's the integration. The Request DTO already describes the data contract, its validation attributes already define valid input, its response type already describes the result and its Service already contains the trusted business logic. API Tools make all of it usable by AI without creating a competing application model.</p>
+<h2 id="three-tools-unlock-your-entire-api-surface">Three tools unlock your entire API surface<a class="header-anchor" href="javascript:;" onclick="location.hash='#three-tools-unlock-your-entire-api-surface'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Sending every API schema to an LLM on every request would be expensive, slow and confusing. A mature application can contain hundreds of operations, most of which are irrelevant to the user's current request.</p>
+<p>Instead, ServiceStack exposes three stable tools:</p>
+<ul>
+<li><code>api_search</code> finds APIs relevant to the user's intent.</li>
+<li><code>api_describe</code> returns complete schemas and workflow metadata for selected APIs.</li>
+<li><code>api_call</code> invokes an API using its typed Request DTO as the current user.</li>
+</ul>
+<p><screenshot src="/img/posts/api-tools/api-tools.webp" title="API Tools"></screenshot></p>
+<p>This gives Models progressive access to application knowledge. They start with a compact searchable index, load detailed schemas only when needed, then call the chosen APIs with structured arguments.</p>
+<p><api-tools-journey></api-tools-journey></p>
+<p>For our CoffeeShop request the model can:</p>
+<ol>
+<li>Search for APIs related to ordering coffee.</li>
+<li>Describe the menu, preview and create-order APIs.</li>
+<li>Call the menu API to resolve the current product ID, supported sizes and available options.</li>
+<li>Preview the order to apply defaults, validate customizations and calculate the current price.</li>
+<li>Present the final create-order request for user approval.</li>
+<li>Submit the approved request and report the persisted order number.</li>
+</ol>
+<p>This is an important change in how AI features are built. The model is not asked to memorize a snapshot of the menu embedded in a prompt. It is taught how to find and use the application's live capabilities.</p>
+<p><screenshot src="/img/posts/api-tools/api-describe.webp" title="CreateCoffeeShopOrder API description"></screenshot></p>
+<h2 id="your-servicestack-metadata-becomes-ai-context">Your ServiceStack metadata becomes AI context<a class="header-anchor" href="javascript:;" onclick="location.hash='#your-servicestack-metadata-becomes-ai-context'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack Apps already contain rich machine-readable information about their APIs:</p>
+<ul>
+<li>Request and Response DTOs</li>
+<li>Routes and HTTP methods</li>
+<li>Property and API descriptions</li>
+<li>Required fields and declarative validation</li>
+<li>Enums and allowable values</li>
+<li>Authentication, roles, permissions, claims and scopes</li>
+<li>AutoQuery conventions and result types</li>
+<li>UI metadata such as <code>[Input]</code> and <code>[Ref]</code></li>
+</ul>
+<p>API Tools reuse this metadata to generate JSON Schemas the model can understand and schema-driven forms users can edit. Existing investments in well-described, well-validated APIs immediately improve AI reliability.</p>
+<p>The optional <code>[Tool]</code> attribute adds the information most useful to an Agent:</p>
+<ul>
+<li><code>WhenToUse</code> explains the user situation in which it should select the API.</li>
+<li><code>Keywords</code> and <code>Aliases</code> improve discovery using natural user vocabulary.</li>
+<li><code>Examples</code> demonstrate realistic request payloads.</li>
+<li><code>Prerequisites</code> identify APIs that should be called first.</li>
+<li><code>Preview</code> identifies a read-only validation or pricing API.</li>
+<li><code>FollowUps</code> suggest useful next operations.</li>
+<li><code>Safety</code> classifies the operation as read-only, write or destructive.</li>
+<li><code>RequiresApproval</code> guarantees a human decision before execution in AI.Chat.</li>
+<li><code>Fields</code> and <code>Take</code> keep large query responses within useful context limits.</li>
+</ul>
+<p>These are hints layered on your real API contract, not a new contract that must be kept synchronized.</p>
+<h2 id="human-approval-is-part-of-the-workflow">Human approval is part of the workflow<a class="header-anchor" href="javascript:;" onclick="location.hash='#human-approval-is-part-of-the-workflow'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Giving an LLM access to an API should not mean giving it permission to perform every operation unattended.</p>
+<p>AI.Chat infers safe defaults from HTTP semantics: reads can execute immediately, whilst writes and destructive operations require approval. APIs can override their safety classification or explicitly set <code>RequiresApproval = true</code> where every call deserves review.</p>
+<p>When our CoffeeShop assistant is ready to place the order, AI.Chat does not immediately write to the database. It renders the proposed <code>CreateCoffeeShopOrder</code> Request DTO as an editable form. The user can inspect the customer name, quantities, sizes, temperatures and options, make any final changes, then approve or reject it.</p>
+<p>Only an approved request is sent to the Service. Only the successful Service response allows the assistant to report that the order was created.</p>
+<p><screenshot src="/img/posts/api-tools/chat-coffeeshop-approval.webp" title="API Tool Approve Order Preview"></screenshot></p>
+<p>The valuable part is that <strong>no API-specific Chat component had to be written</strong>. The approval form is generated from the API's own schema, so complex nested DTOs, collections, allowable values, descriptions and validation all remain visible and editable — and every API you add later gets the same treatment for free. <a href="/posts/api-schema">API Schemas</a>, next in this series, covers how that rendering works and how to use the same components in your own Apps.</p>
+<p>This gives users the convenience of natural language without surrendering control of consequential actions.</p>
+<p><screenshot src="/img/posts/api-tools/chat-coffeeshop-modified-order.webp" title="API Tool Order Confirmation"></screenshot></p>
+<p>After the request is submitted, the AI model is informed whether the user approved the proposed order as-is or made changes, allowing it to acknowledge modifications and adjust its understanding of the user's preferences.</p>
+<h2 id="the-ai-acts-as-the-authenticated-user">The AI acts as the authenticated user<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-ai-acts-as-the-authenticated-user'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>API Tools are not a privileged backdoor into your application.</p>
+<p>Search, description and execution all operate within the current HTTP request and authenticated identity. APIs the user cannot access are omitted from search, cannot be described and cannot be called. Existing authentication requirements, API-key rules, roles, permissions, claims and scopes remain enforced.</p>
+<p>Calls are deserialized into the real Request DTO and executed through ServiceStack's in-process Service Gateway. Existing DTO validation, Service filters, business rules and database behavior remain authoritative.</p>
+<p>That means the safest way to make your application AI-accessible is also the familiar way: design focused APIs, validate at the boundary, authorize on the server and expose only the capabilities each user needs.</p>
+<h2 id="built-in-ai.chat-for-every-servicestack-app">Built-in AI.Chat for every ServiceStack App<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-in-ai.chat-for-every-servicestack-app'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>With <code>ChatFeature</code> enabled, ServiceStack Apps gain a complete AI Chat interface at <code>/chat</code>. Developers do not need to build a chat shell, tool-call renderer, schema viewer, approval experience or conversation UI before testing an AI workflow.</p>
+<p>AI.Chat can use API Tools alongside its other enabled tools, allowing applications to combine their business APIs with capabilities such as search, files, images, audio or custom commands. Because the tool registry is shared, custom AI.Chat tools and ServiceStack Commands can participate in the same experience.</p>
+<p>This makes AI.Chat useful beyond a demo page. It can become a natural language operations console for internal users, a guided assistant for customers, an administration interface for support teams or a rapid way to test whether existing APIs provide enough context for autonomous workflows.</p>
+<p><screenshot src="/img/posts/api-tools/coffee-chat-order.webp" title="AI Chat CoffeeShop order workflow"></screenshot></p>
+<h2 id="connect-any-mcp-compatible-ai-assistant">Connect any MCP-compatible AI Assistant<a class="header-anchor" href="javascript:;" onclick="location.hash='#connect-any-mcp-compatible-ai-assistant'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>AI experiences should not be confined to a single chat UI. ServiceStack's built-in MCP Server exposes selected AI.Chat tools over the open Model Context Protocol using stateless Streamable HTTP.</p>
+<p>Enable the <code>api_tools</code> group and external Assistants gain the same <code>api_search</code>, <code>api_describe</code> and <code>api_call</code> capabilities:</p>
+<pre><code class="language-csharp">Mcp =
+{
+    ToolGroups = [&quot;api_tools&quot;],
+}
+</code></pre>
+<p>The default endpoint is:</p>
+<text-block>
+https://your-app.example.com/chat/mcp
+</text-block>
+<h3 id="opencode">OpenCode<a class="header-anchor" href="javascript:;" onclick="location.hash='#opencode'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>MCP clients authenticate with a ServiceStack API key in the Bearer token, so tools execute as the API key's user with their roles and scopes:</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;remote&quot;,
+  &quot;url&quot;: &quot;https://your-app.example.com/chat/mcp&quot;,
+  &quot;oauth&quot;: false,
+  &quot;headers&quot;: {
+    &quot;Authorization&quot;: &quot;Bearer {env:MY_APP_API_KEY}&quot;
+  }
+}
+</code></pre>
+<p>This works with ServiceStack's <a href="https://docs.servicestack.net/auth/apikeys">ASP.NET Core API Key Feature</a> which lets you create and manage API keys for your users, each scoped with specific roles, permissions and expiry dates.</p>
+<p>The MCP Server publishes input and output schemas, structured results and safety annotations. Images and audio can be returned inline whilst larger files are represented as resource links. Tool groups and explicit tool names let applications expose only the capabilities intended for external clients.</p>
+<p><screenshot src="/img/posts/api-tools/opencode-mcp.webp" title="OpenCode MCP"></screenshot></p>
+<p>Because MCP is model-agnostic, the same ServiceStack endpoint works regardless of which AI model powers the assistant. Here the CoffeeShop workflow completes successfully under two very different models — <strong>Luna Pro</strong> and <strong>DeepSeek Flash</strong> — each discovering the menu, previewing the order and placing it through the same <code>api_search</code>, <code>api_describe</code> and <code>api_call</code> tools:</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4" 
+:images="{
+'MCP using Luna Pro': '/img/posts/api-tools/coffeeshop-luna-pro.webp',
+'MCP using DeepSeek Flash': '/img/posts/api-tools/coffeeshop-deepseek-flash.webp',
+}"></screenshots-gallery></p>
+<h3 id="oh-my-pi">Oh My Pi<a class="header-anchor" href="javascript:;" onclick="location.hash='#oh-my-pi'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Oh My Pi is another MCP-compatible assistant that can connect to the same ServiceStack endpoint. Registering the server is a single command:</p>
+<p><shell-command class="not-prose">/mcp add coffeeshop --url <a href="https://your-app.example.com/chat/mcp">https://your-app.example.com/chat/mcp</a> --token ak-xxxx</shell-command></p>
+<p>Once registered, Oh My Pi discovers the available tools and can list them alongside any other MCP servers it is connected to:</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4" 
+:images="{
+'Oh My Pi Tools': '/img/posts/api-tools/omp-mcp-list.webp',
+'Oh My Pi MCP List': '/img/posts/api-tools/omp-tools.webp',
+}"></screenshots-gallery></p>
+<p>Here it runs the full CoffeeShop ordering workflow using <strong>GLM 5.2</strong> — a completely different model family from the OpenCode examples above — yet the same typed APIs, validation rules and authorization boundaries apply:</p>
+<p><screenshot src="/img/posts/api-tools/omp-coffeeshop.webp" title="Oh My Pi MCP - with GLM 5.2"></screenshot></p>
+<h2 id="approval-across-mcp-boundaries">Approval across MCP boundaries<a class="header-anchor" href="javascript:;" onclick="location.hash='#approval-across-mcp-boundaries'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The built-in AI.Chat UI can pause execution and render ServiceStack's editable approval form. A generic MCP client cannot render or resume that same server UI workflow, so MCP uses a configurable <code>ApprovalMode</code> policy.</p>
+<h3 id="default-two-phase-confirmation-token">Default: Two-Phase Confirmation Token<a class="header-anchor" href="javascript:;" onclick="location.hash='#default-two-phase-confirmation-token'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>By default, <code>ApprovalMode = McpApprovalMode.ConfirmationToken</code>. When a write or destructive API is called without a token:</p>
+<ol>
+<li>The server returns a <code>requires_confirmation</code> status containing a summary, argument parameters, and a signed, short-lived <code>confirmationToken</code>.</li>
+<li>The AI assistant presents the summary to the user in chat for confirmation.</li>
+<li>Upon approval, the assistant re-invokes <code>api_call</code> with the same arguments and the <code>confirmationToken</code>.</li>
+<li>The server cryptographically validates the token (user identity, target API, payload argument hash, expiry, and single-use replay check) before executing.</li>
+</ol>
+<p>Read-only operations execute immediately without requiring a token.</p>
+<h3 id="fail-closed-reject">Fail-closed: Reject<a class="header-anchor" href="javascript:;" onclick="location.hash='#fail-closed-reject'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Applications that want strictly read-only MCP exposure can refuse all tools requiring approval:</p>
+<pre><code class="language-csharp">Mcp =
+{
+    ToolGroups = [&quot;api_tools&quot;],
+    ApprovalMode = McpApprovalMode.Reject,
+}
+</code></pre>
+<h3 id="delegate-to-the-mcp-client">Delegate to the MCP client<a class="header-anchor" href="javascript:;" onclick="location.hash='#delegate-to-the-mcp-client'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Applications using a trusted MCP client with its own native confirmation dialog can delegate the approval decision:</p>
+<pre><code class="language-csharp">Mcp =
+{
+    ToolGroups = [&quot;api_tools&quot;],
+    ApprovalMode = McpApprovalMode.DelegateToClient,
+}
+</code></pre>
+<p>In this mode ServiceStack publishes the tool's read-only, write or destructive safety annotations and the MCP client is expected to ask the user before allowing the call.</p>
+<p>In all modes, API authorization and DTO validation are never disabled. Only responsibility for the interactive approval decision changes.</p>
+<p>This lets the same CoffeeShop workflow run from OpenCode or another MCP Assistant whilst keeping the trust boundary explicit.</p>
+<h2 id="more-than-coffee">More than Coffee<a class="header-anchor" href="javascript:;" onclick="location.hash='#more-than-coffee'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>CoffeeShop is deliberately easy to understand, but API Tools are designed for real ServiceStack applications. Any workflow that can be expressed through well-designed APIs can become available through natural language.</p>
+<h3 id="customer-service">Customer service<a class="header-anchor" href="javascript:;" onclick="location.hash='#customer-service'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Let support staff ask for a customer's recent orders, inspect delivery status, issue an approved refund or add an account note. The assistant can discover the required APIs and the server continues to enforce staff permissions.</p>
+<h3 id="bookings-and-scheduling">Bookings and scheduling<a class="header-anchor" href="javascript:;" onclick="location.hash='#bookings-and-scheduling'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Search availability, resolve customers and resources, preview a booking, then ask for approval before committing it. Follow-up APIs can retrieve confirmation details or send notifications.</p>
+<h3 id="commerce-and-procurement">Commerce and procurement<a class="header-anchor" href="javascript:;" onclick="location.hash='#commerce-and-procurement'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Find products from live inventory, calculate current prices, validate quantities and submit an approved purchase. Models no longer need catalog snapshots embedded in prompts.</p>
+<h3 id="business-intelligence">Business intelligence<a class="header-anchor" href="javascript:;" onclick="location.hash='#business-intelligence'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Expose focused read-only reporting and AutoQuery APIs so users can ask questions in natural language. Default fields, row limits and truncation protect the model's context from unbounded datasets.</p>
+<h3 id="internal-operations">Internal operations<a class="header-anchor" href="javascript:;" onclick="location.hash='#internal-operations'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Create tickets, update CRM records, run reports, manage content or initiate deployment workflows from AI.Chat or an MCP-enabled development assistant. Destructive actions can be explicitly classified and guarded.</p>
+<h3 id="vertical-ai-assistants">Vertical AI assistants<a class="header-anchor" href="javascript:;" onclick="location.hash='#vertical-ai-assistants'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>ServiceStack developers can package the domain knowledge already present in their APIs into specialized assistants for healthcare, finance, logistics, education, property management and other industries. The application remains responsible for deterministic validation and authorization; the model provides natural language understanding and orchestration.</p>
+<h2 id="better-apis-produce-better-agents">Better APIs produce better Agents<a class="header-anchor" href="javascript:;" onclick="location.hash='#better-apis-produce-better-agents'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>API Tools remove most of the integration work, but they do not remove the value of thoughtful API design. Models are most reliable when APIs are focused, names are clear, descriptions explain intent and write workflows provide a read-only preview.</p>
+<p>The best pattern for consequential workflows is:</p>
+<p><screenshot src="/img/posts/api-tools/apitools-flow.svg" style="max-height2:1000px" image-class="mx-auto max-h-[700px]"
+alt="Search → Describe → Resolve current data → Preview → Approve → Execute → Verify"></screenshot></p>
+<p>This pattern works because each participant does what it is best at:</p>
+<ul>
+<li>The LLM understands the user's language and chooses a workflow.</li>
+<li>ServiceStack supplies authoritative schemas and live application capabilities.</li>
+<li>Read APIs resolve current IDs, allowed values, prices and state.</li>
+<li>Preview APIs normalize and validate without side effects.</li>
+<li>The user approves the exact operation that will be performed.</li>
+<li>Write APIs enforce business rules and persist the result.</li>
+</ul>
+<p>The result is more dependable than asking a model to emit a large domain object from a static prompt and hoping every duplicated rule is still current.</p>
+<h2 id="one-application-one-source-of-truth-every-ai-client">One application, one source of truth, every AI client<a class="header-anchor" href="javascript:;" onclick="location.hash='#one-application-one-source-of-truth-every-ai-client'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Our original CoffeeShop demonstrated that LLMs could translate natural language into structured application data. It also required weeks of work to build the schemas, prompts, providers, translation pipeline, validation loop and custom UX around one domain.</p>
+<p>ServiceStack API Tools turn that architecture inside out. Instead of building a parallel AI application, they let the model progressively discover and use the application you already have.</p>
+<p>The same CoffeeShop request now works through the built-in AI.Chat UI and external MCP Assistants. It uses live menu data, shares the application's DTO validation and business logic, respects the current user's authorization and places the final write behind an explicit approval boundary.</p>
+<p>What took weeks for one purpose-built demo can now be enabled in minutes for any well-designed ServiceStack App.</p>
+<p>Your APIs are no longer just endpoints for code. They are a safe, typed and discoverable capability layer for AI.</p>
+<p><screenshot src="/img/posts/api-tools/api-tools-architecture.webp" title="ServiceStack API Tools architecture"></screenshot></p>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>API Tools ship with AI Chat, so a .NET 8+ ServiceStack App gets both from:</p>
+<p><shell-command>npx add-in chat</shell-command></p>
+<p>API Tools are <strong>on by default</strong> once <code>ChatFeature</code> is registered. Only APIs you opt in are exposed — decorate them with <code>[Tool]</code>, or include their tags:</p>
+<pre><code class="language-csharp">services.AddPlugin(new ChatFeature {
+    RequireAuth = true,
+    ApiTools = {
+        // APIs with [Tool] are always included; add whole tags here
+        IncludeTags = [&quot;CoffeeShop&quot;],
+    },
+});
+</code></pre>
+<p>Then open <code>/chat</code> and ask for something your APIs can do. To let external Assistants use the same tools, name the group over MCP:</p>
+<pre><code class="language-csharp">Mcp =
+{
+    ToolGroups = [&quot;api_tools&quot;],
+}
+</code></pre>
+<p>and point your MCP client at <code>https://your-app.example.com/chat/mcp</code> with a ServiceStack <a href="https://docs.servicestack.net/auth/apikeys">API key</a> as the Bearer token.</p>
+<p>A good first step on an existing App: pick one read-only API, add a <code>[Tool]</code> attribute describing when to use it, and ask AI Chat a question that should reach it. Once discovery works for one API, adding the rest is just metadata.</p>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/api-schema">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/api-schema/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/api-schema" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Richer APIs and Auto UIs with API Schemas">
+                                                    Richer APIs and Auto UIs with API Schemas
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Every ServiceStack API now includes a portable schema that lets generic UIs describe, render and execute it</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Richer APIs and Auto UIs with API Schemas background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-20T00:00:00.0000000">August 20, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>20 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ai-chat-v4">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ai-chat-v4/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ai-chat-v4" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth">
+                                                    AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Multi-provider chat, RAG, PDF Studio, tools, skills, mcp, projects and agents in one App - unleashing AI intelligence on your existing APIs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-18T00:00:00.0000000">August 18, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>18 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/go-rust-ruby-zig-typed-apis">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/go-rust-ruby-zig-typed-apis/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/go-rust-ruby-zig-typed-apis" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Typed ServiceStack APIs for Go, Rust, Ruby and Zig">
+                                                    Typed ServiceStack APIs for Go, Rust, Ruby and Zig
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world&#x27;s most popular programming languages-from websites and mobile apps to cloud services and systems software.</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Typed ServiceStack APIs for Go, Rust, Ruby and Zig background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-13T00:00:00.0000000">August 13, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>10 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/nextjs-rsc-secure-design">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/nextjs-rsc-secure-design/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/nextjs-rsc-secure-design" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Next.js React Server Components - Secure Design">
+                                                    Next.js React Server Components - Secure Design
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Next.js React Server Components - Secure Design background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2025-12-15T00:00:00.0000000">December 15, 2025</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>10 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/api-tools.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
