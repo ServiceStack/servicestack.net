@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Thu, 20 Aug 2026 19:57:04 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 10:10:34 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,23 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Instant CRUD Apps with AutoQuery Schemas</title>
+        <link>https://servicestack.net/podcasts/autoquery-schema</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/autoquery-schema</guid>
+        <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-08-24T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3" length="4714041" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>autoquery</category>
+        <category>json-schema</category>
+        <category>vue</category>
+        <description>Give AutoQuerySchema one /auto/{DataModel}.json document and it renders a complete, authorized CRUD application</description>
+        <itunes:summary><![CDATA[ Give AutoQuerySchema one /auto/{DataModel}.json document and it renders a complete, authorized CRUD application ]]></itunes:summary>
+        <itunes:duration>329</itunes:duration>
+        <itunes:keywords>servicestack,autoquery,json-schema,vue</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>Richer APIs and Auto UIs with API Schemas</title>
         <link>https://servicestack.net/podcasts/api-schema</link>
@@ -856,23 +873,6 @@
         <itunes:summary><![CDATA[ Taking a look at the simple &quot;user-free&quot; Auth story made possible with API Keys and Admin UI that&#x27;s ideal for .NET 8 C# Microservices ]]></itunes:summary>
         <itunes:duration>655</itunes:duration>
         <itunes:keywords>.net8,auth,apikeys</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Using API Keys to secure .NET 8 APIs</title>
-        <link>https://servicestack.net/podcasts/apikeys</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/apikeys</guid>
-        <pubDate>Mon, 01 Jul 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-07-01T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/apikeys.mp3" length="2403309" type="audio/mpeg"/>
-        <category>apikeys</category>
-        <category>.net8</category>
-        <category>auth</category>
-        <category>rdbms</category>
-        <description>Exploring the new C# API Keys Identity Auth feature and how its Admin UI enables simple fine-grained access control in ServiceStack .NET 8 APIs</description>
-        <itunes:summary><![CDATA[ Exploring the new C# API Keys Identity Auth feature and how its Admin UI enables simple fine-grained access control in ServiceStack .NET 8 APIs ]]></itunes:summary>
-        <itunes:duration>600</itunes:duration>
-        <itunes:keywords>apikeys,.net8,auth,rdbms</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
