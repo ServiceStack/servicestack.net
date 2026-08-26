@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Mon, 24 Aug 2026 12:39:03 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 12:43:24 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,23 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs</title>
+        <link>https://servicestack.net/podcasts/servicestack-pdf</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/servicestack-pdf</guid>
+        <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-08-25T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3" length="4218195" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>ai</category>
+        <category>pdf</category>
+        <category>typst</category>
+        <description>Design Typst PDFs with AI Chat, publish validated templates, generate typed C# models and render production documents from your ServiceStack APIs</description>
+        <itunes:summary><![CDATA[ Design Typst PDFs with AI Chat, publish validated templates, generate typed C# models and render production documents from your ServiceStack APIs ]]></itunes:summary>
+        <itunes:duration>292</itunes:duration>
+        <itunes:keywords>servicestack,ai,pdf,typst</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>Instant CRUD Apps with AutoQuery Schemas</title>
         <link>https://servicestack.net/podcasts/autoquery-schema</link>
@@ -857,22 +874,6 @@
         <itunes:summary><![CDATA[ Looking into how to utilize C# Commands to build more robust and observable systems ]]></itunes:summary>
         <itunes:duration>618</itunes:duration>
         <itunes:keywords>commands,admin-ui,api</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Simple Auth Story for .NET 8 Microservices</title>
-        <link>https://servicestack.net/podcasts/simple-auth-microservices</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/simple-auth-microservices</guid>
-        <pubDate>Tue, 02 Jul 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-07-02T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/simple-auth-microservices.mp3" length="2623341" type="audio/mpeg"/>
-        <category>.net8</category>
-        <category>auth</category>
-        <category>apikeys</category>
-        <description>Taking a look at the simple &quot;user-free&quot; Auth story made possible with API Keys and Admin UI that&#x27;s ideal for .NET 8 C# Microservices</description>
-        <itunes:summary><![CDATA[ Taking a look at the simple &quot;user-free&quot; Auth story made possible with API Keys and Admin UI that&#x27;s ideal for .NET 8 C# Microservices ]]></itunes:summary>
-        <itunes:duration>655</itunes:duration>
-        <itunes:keywords>.net8,auth,apikeys</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
