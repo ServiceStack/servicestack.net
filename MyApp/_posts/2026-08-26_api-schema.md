@@ -8,6 +8,8 @@ image: ./img/posts/api-schema/bg.webp
 
 ## Every API now comes with its own UI
 
+<screenshot src="/img/posts/api-schema/api-schema-info.webp"></screenshot>
+
 Open `/schema` in any .NET 8+ ServiceStack App and you'll find a searchable index of every API the signed-in user can call. Open one and you get a working UI for it — form, validation, request preview, `curl` command, execution and response — with no code written and nothing installed.
 
 <screenshot src="/img/posts/api-schema/api-schema-query-bookings.webp" title="A complete QueryBookings UI rendered and executed from its API Schema"></screenshot>
