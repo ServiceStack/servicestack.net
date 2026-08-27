@@ -146,6 +146,7 @@ mountAll()
             <div class="max-w-3xl mx-auto">
                 <div id="post" class="prose lg:prose-xl max-w-none mb-32">
                     <h2 id="every-api-now-comes-with-its-own-ui">Every API now comes with its own UI<a class="header-anchor" href="javascript:;" onclick="location.hash='#every-api-now-comes-with-its-own-ui'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><screenshot src="/img/posts/api-schema/api-schema-info.webp"></screenshot></p>
 <p>Open <code>/schema</code> in any .NET 8+ ServiceStack App and you'll find a searchable index of every API the signed-in user can call. Open one and you get a working UI for it — form, validation, request preview, <code>curl</code> command, execution and response — with no code written and nothing installed.</p>
 <p><screenshot src="/img/posts/api-schema/api-schema-query-bookings.webp" title="A complete QueryBookings UI rendered and executed from its API Schema"></screenshot></p>
 <p>The page isn't special. It fetches one small JSON document and hands it to a generic component:</p>
@@ -595,6 +596,47 @@ onMounted(async () =&gt; {
                             <div>
                                 <div class="flex flex-col overflow-hidden">
                                     <div class="flex-shrink-0">
+                                        <a href="posts/autoquery-schema">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/autoquery-schema/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/autoquery-schema" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Instant CRUD Apps with AutoQuery Schemas">
+                                                    Instant CRUD Apps with AutoQuery Schemas
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Give AutoQuerySchema one /auto/{DataModel}.json document and it renders a complete, authorized CRUD application</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Instant CRUD Apps with AutoQuery Schemas background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-27T00:00:00.0000000">August 27, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>13 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
                                         <a href="posts/api-tools">
                                             <img class="h-48 w-full object-cover" src="./img/posts/api-tools/bg.webp" alt="">
                                         </a>
@@ -706,47 +748,6 @@ onMounted(async () =&gt; {
                                                 </p>
                                                 <div class="flex space-x-1 text-sm text-gray-500">
                                                     <time datetime="2026-08-13T00:00:00.0000000">August 13, 2026</time>
-                                                    <span aria-hidden="true">&middot;</span>
-                                                    <span>10 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div class="flex flex-col overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <a href="posts/nextjs-rsc-secure-design">
-                                            <img class="h-48 w-full object-cover" src="./img/posts/nextjs-rsc-secure-design/bg.webp" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
-                                                Article
-                                            </p>
-                                            <a href="posts/nextjs-rsc-secure-design" class="mt-2 block">
-                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Next.js React Server Components - Secure Design">
-                                                    Next.js React Server Components - Secure Design
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security</p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="">
-                                                    <span class="sr-only">Demis</span>
-                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Next.js React Server Components - Secure Design background">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2025-12-15T00:00:00.0000000">December 15, 2025</time>
                                                     <span aria-hidden="true">&middot;</span>
                                                     <span>10 min read</span>
                                                 </div>
