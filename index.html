@@ -378,6 +378,8 @@ mount('#mobile-nav', MobileNav)
       </p>
     </div>
 
+    <div id="dto-deck" class="mt-12"></div>
+
     <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
       <a href="https://docs.servicestack.net/add-servicestack-reference" class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-7 transition-all hover:-translate-y-1 hover:border-indigo-400 hover:shadow-xl hover:no-underline">
@@ -455,6 +457,19 @@ mount('#mobile-nav', MobileNav)
     </div>
   </div>
 </section>
+
+<script type="module">
+import { mount } from "app.mjs"
+import DtoDeck from "/mjs/components/DtoDeck.mjs"
+
+/** The docs site's one-contract deck, framed for the home page */
+const HomeDtoDeck = {
+  components: { DtoDeck },
+  template: `<DtoDeck eyebrow="Step through it" description="" />`,
+}
+
+mount('#dto-deck', HomeDtoDeck)
+</script>
 
 <!-- ============================================================ TEMPLATES CALLOUT -->
 <section class="bg-white dark:bg-black pb-24 sm:pb-32">
