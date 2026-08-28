@@ -904,7 +904,12 @@ ssVideoTab('@activeGroup')
   </div>
 </section>
 
-@await Html.PartialAsync("Home/Features")
+<div id="feature-explorer" class="my-20 mx-auto max-w-7xl px-6 lg:px-8"></div>
+<script type="module">
+import { mount } from "app.mjs"
+import FeatureExplorer from "/mjs/components/FeatureExplorer.mjs"
+mount('#feature-explorer', FeatureExplorer)
+</script>
 
 @await Html.PartialAsync("Testimonials")
 
