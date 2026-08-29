@@ -1,7 +1,7 @@
 ---
 title: Richer APIs and Auto UIs with API Schemas
 summary: Every ServiceStack API now includes a portable schema that lets generic UIs describe, render and execute it
-tags: [servicestack, json-schema, vue, ai]
+tags: [servicestack, json-schema, vue, react, ai]
 author: Demis
 image: ./img/posts/api-schema/bg.webp
 ---
@@ -9,6 +9,10 @@ image: ./img/posts/api-schema/bg.webp
 ## Every API now comes with its own UI
 
 <screenshot src="/img/posts/api-schema/api-schema-info.webp"></screenshot>
+
+:::youtube ZmEeHErBNe0
+API Schema: Auto Runtime UIs and Executable Contracts
+:::
 
 Open `/schema` in any .NET 8+ ServiceStack App and you'll find a searchable index of every API the signed-in user can call. Open one and you get a working UI for it — form, validation, request preview, `curl` command, execution and response — with no code written and nothing installed.
 
@@ -62,7 +66,7 @@ These routes are registered with the existing Metadata feature and require no se
 
 These endpoints are natural complements. `/api/{RequestDto}` **executes** the API; `/schema/{RequestDto}.json` explains how to use it. The schema carries the API's fields, nested types, validation, authorization requirements, HTTP method and an `$id` that points back to its `/api/{RequestDto}` execution URL.
 
-That relationship is what makes the approach so elegant: fetch one small schema and pass it to the generic [`ApiFormSchema`](#powered-by-reusable-servicestackvue-components) component. The component can render the inputs, preview the HTTP request and `curl` command, invoke the API and display its response. The same component works for any Request DTO, so adding another API does not require adding another hand-built screen.
+That relationship is what makes the approach so elegant: fetch one small schema and pass it to the generic [`ApiFormSchema`](#powered-by-reusable-vue-and-react-components) component. The component can render the inputs, preview the HTTP request and `curl` command, invoke the API and display its response. The same component works for any Request DTO, so adding another API does not require adding another hand-built screen.
 
 ### From machine-readable schema to executable UI
 
@@ -121,21 +125,7 @@ This pairing is deliberately simple. The machine-readable contract and the human
 
 ## More than a type definition
 
-The schema is based on JSON Schema Draft-07, but it describes more than the structural shape of a DTO. It contains enough information to construct and invoke the API without loading ServiceStack's full application metadata document.
-
-A schema includes:
-
-- `$schema` identifying the JSON Schema dialect.
-- `$id` containing the stable predefined API route, such as `/api/CreateCoffeeShopOrder`.
-- `request` identifying the Request DTO.
-- `method` containing the HTTP method to use.
-- `title` and `description` derived from API metadata.
-- `type`, `properties`, nested object and collection schemas.
-- `required` fields.
-- Numeric, string and collection validation constraints.
-- Enum and allowable values.
-- Authentication and authorization requirements.
-- UI metadata for controls, help, placeholders, layouts, lookups, uploads and formatting.
+The schema is based on JSON Schema Draft-07, but it describes more than the structural shape of a DTO. It carries the API's route and HTTP method, its titles and descriptions, required fields, validation constraints, allowable values, authorization requirements and UI hints for controls, help text, lookups, uploads and formatting — enough to construct and invoke the API without loading ServiceStack's full application metadata document.
 
 For example, a generated schema can look like:
 
@@ -172,13 +162,15 @@ For example, a generated schema can look like:
 }
 ```
 
-The schema is compact enough to retrieve on demand but expressive enough to power an independent client.
+Compact enough to retrieve on demand, expressive enough to power an independent client. The [API Schema docs](https://docs.servicestack.net/api-schema) document every key in full.
 
 ## Built to scale beyond thousands of APIs
 
 ### The cost of loading everything up front
 
-ServiceStack's API Explorer at `/ui` loads the full `MetadataApp` document from `/metadata/app.json` — every operation, DTO, data model and related type — before it can show you one API. That is convenient at smaller scales and increasingly expensive at larger ones: the browser downloads, parses and retains metadata for the entire application to render a single form. Customers with particularly large API surfaces could eventually hit JavaScript engine limits during initialization, preventing API Explorer from loading at all.
+ServiceStack's API Explorer at `/ui` loads the full `MetadataApp` document from `/metadata/app.json` — every operation, DTO, data model and related type — before it can show you one API. That is convenient at smaller scales and increasingly expensive at larger ones: the browser downloads, parses and retains metadata for the entire application to render a single form.
+
+For customers with the largest API surfaces this eventually became a hard ceiling. Applications with 1,000+ APIs could hit JavaScript engine limits during initialization, preventing API Explorer from loading at all — the teams who most needed a way to explore their APIs were the ones who couldn't. **Those Apps now get a working, searchable UI for every one of their APIs**, because nothing has to load the whole application to render one form.
 
 ### Load one focused schema at a time
 
@@ -277,7 +269,28 @@ As values are entered, the page shows the exact request that will be sent. Devel
 
 Submitting the form uses the method and `$id` from the schema. `GET` and `DELETE` values are encoded in the query string, write requests use JSON and APIs containing file inputs are sent as multipart form data.
 
-The response panel displays the returned status, size, duration and formatted JSON. ServiceStack validation errors are bound back to their corresponding fields, whilst non-field errors remain visible in the form summary.
+<screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4" :images="{
+  'Generated curl request and response': '/img/posts/api-schema/curl-response.webp',
+  'Nested schema-generated form': '/img/posts/api-schema/nested-form.webp',
+}"></screenshots-gallery>
+
+### Three ways to read every response
+
+Responses aren't dumped as raw text. Each one can be inspected from tabs in the response header:
+
+- **Data** — results rendered in a formatted grid with nested complex types expanded inline.
+- **JSON** — the syntax-highlighted raw JSON response.
+- **Headers** — the HTTP response headers returned by the server.
+
+Any response can also be maximized over the request form to inspect larger result sets, keeping the same three views. It turns a generated form into something you can actually debug with — inspect a real payload, confirm a cache header, then copy the `curl` command that produced it.
+
+<screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-3 gap-4" :images="{
+  'Maximized results grid': '/img/posts/api-schema/curl-response-maximize-data.webp',
+  'Maximized JSON response': '/img/posts/api-schema/curl-response-maximize-json.webp',
+  'Response headers returned by the API': '/img/posts/api-schema/curl-response-headers.webp',
+}"></screenshots-gallery>
+
+ServiceStack validation errors are bound back to their corresponding fields, whilst non-field errors remain visible in the form summary. The page stays an ordinary client of your API — authentication, authorization, request filters and validation all still run on the server.
 
 ### Shareable, executable queries
 
@@ -285,14 +298,9 @@ Query-string values can pre-populate the form, making API examples shareable as 
 
 <text-block text="/schema/QueryBookings?RoomType=Queen&amp;Take=5"></text-block>
 
-For `GET` APIs, opening a populated link can execute the request immediately. After submission the URL is updated with non-empty values, producing a durable, reloadable API query.
+For `GET` APIs, opening a populated link can execute the request immediately. After submission the URL is updated with non-empty values, producing a durable, reloadable API query — a bug report, a support ticket or a runbook step can now be a link that reproduces itself.
 
-<screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4" :images="{
-  'Generated curl request and response': '/img/posts/api-schema/curl-response.webp',
-  'Nested schema-generated form': '/img/posts/api-schema/nested-form.webp',
-}"></screenshots-gallery>
-
-## Powered by reusable `@servicestack/vue` components
+## Powered by reusable Vue and React components
 
 :::{.not-prose .my-8}
 <div class="relative overflow-hidden rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 px-6 py-7 shadow-sm dark:border-emerald-900/70 dark:from-emerald-950/50 dark:via-slate-900 dark:to-teal-950/40 sm:px-8">
@@ -302,23 +310,21 @@ For `GET` APIs, opening a populated link can execute the request immediately. Af
       <img src="/img/svgs/vue.svg" alt="Vue" class="h-12 w-14" />
     </div>
     <div>
-      <div class="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">Schema-powered Vue components</div>
-      <div class="mt-1 font-mono text-2xl font-bold tracking-tight text-slate-900 dark:text-white">@servicestack/vue</div>
-      <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">The same production components that power ServiceStack's built-in API Schema pages are available for any Vue application.</p>
+      <div class="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">Schema-powered components</div>
+      <div class="mt-1 font-mono text-2xl font-bold tracking-tight text-slate-900 dark:text-white">@servicestack/vue + @servicestack/react</div>
+      <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">The same production components that power ServiceStack's built-in API Schema pages are available for any Vue or React application.</p>
     </div>
   </div>
 </div>
 :::
 
-The built-in pages are not a separate UI framework. They are composed from the same reusable components published in `@servicestack/vue`.
+The built-in pages are not a separate UI framework. They are composed from the same reusable components published in `@servicestack/vue` and `@servicestack/react`.
 
 ### Generic components, operation-specific schemas
 
 `ApiFormSchema` is the generic executable API UI. Give it any `/schema/{RequestDto}.json` document and it renders the request form, selects a control for every property, builds the request from the schema's method and `$id`, and invokes `/api/{RequestDto}`.
 
 It renders only the form, leaving the surrounding workbench to the host page. Everything else it derives — the HTTP request preview, its `curl` equivalent, the request itself, the result and any error — is passed to its **default slot**, and completed calls also emit `success` and `error` events. That's how the built-in page composes its Request, Schema and Response panels around the same component you can use.
-
-`JsonSchemaForm` is its lower-level form renderer for arbitrary JSON Schema values, including nested objects, arrays, variants, nullable values and free-form objects. The schema UI also reuses the request-building and input components used by the AutoQuery CRUD experience, ensuring its preview and actual API call follow the same rules.
 
 ### Embed the renderer in your own Vue App
 
@@ -365,36 +371,31 @@ That renders the form and its submit button. To show the request, `curl` command
 
 Nothing here is API-specific either. A page can render the full workbench, only the `curl` command, or just the form — the component computes the same values regardless of which the host chooses to display.
 
-`ApiFormSchema` also accepts a `client` for authenticated calls, `auto-execute` to run `GET` APIs on load, and `sync-url` to keep the current values in the address bar.
+`ApiFormSchema` also accepts a `client` for authenticated calls, `auto-execute` to run `GET` APIs on load, and `sync-url` to keep the current values in the address bar. If you want the entire workbench rather than the form, `ApiExplorerSchema` is the component the built-in `/schema/{RequestDto}` page is built from.
 
-If you want the entire workbench rather than the form, `ApiExplorerSchema` is the component the built-in `/schema/{RequestDto}` page is built from — it composes `ApiFormSchema` with the Request, Schema and Response panels shown in the screenshots above.
+### The same component in React
 
-This enables executable schema-driven forms inside your own Vue applications, portals, embedded administration screens and workflow builders. The server owns the contract; the UI decides how much surrounding experience it wants to provide.
+React Apps aren't a second-class translation of the Vue experience — they consume the identical schema with the identical component API, where the default slot becomes a render prop:
 
-### The same schema-driven UIs in Vue and React
+```tsx
+import { ApiFormSchema, JsonView } from '@servicestack/react'
 
-:::{.not-prose .my-8}
-<div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-r from-emerald-50 via-white to-indigo-50 px-6 py-7 shadow-sm dark:border-slate-700 dark:from-emerald-950/40 dark:via-slate-900 dark:to-indigo-950/40 sm:px-8">
-  <div class="relative flex flex-col gap-5 sm:flex-row sm:items-center">
-    <div class="flex shrink-0 items-center gap-2">
-      <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-200 bg-white p-3 shadow-sm dark:border-emerald-800 dark:bg-slate-950">
-        <img src="/img/svgs/vue.svg" alt="Vue" class="h-10 w-11" />
-      </div>
-      <div class="text-lg font-semibold text-slate-400 dark:text-slate-500">+</div>
-      <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-indigo-200 bg-white p-2 shadow-sm dark:border-indigo-800 dark:bg-slate-950">
-        <img src="/img/svgs/react.svg" alt="React" class="h-12 w-12" />
-      </div>
-    </div>
-    <div>
-      <div class="text-xs font-bold uppercase tracking-[0.18em] text-indigo-700 dark:text-indigo-400">Vue + React</div>
-      <div class="mt-1 text-xl font-bold tracking-tight text-slate-900 dark:text-white">One portable schema, two native component libraries</div>
-      <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">Render complete API and AutoQuery experiences in either framework without maintaining a separate UI contract.</p>
-    </div>
-  </div>
-</div>
-:::
+export default function HelloForm({ schema, client }) {
+  return (
+    <ApiFormSchema schema={schema} client={client} value={{ Name: 'React' }}>
+      {({ result, requestText, curl }) => (
+        <section>
+          <pre>{requestText}</pre>
+          <details><summary>curl</summary><pre>{curl}</pre></details>
+          {result && <JsonView value={result.json ?? result.text} />}
+        </section>
+      )}
+    </ApiFormSchema>
+  )
+}
+```
 
-This approach is not limited to one frontend framework. Both `@servicestack/vue` and `@servicestack/react` provide generic `ApiFormSchema` and `AutoQuerySchema` components that can render working API and AutoQuery UIs from just their schemas:
+The server publishes one portable contract; Vue and React each render it with their native components. Teams can choose their preferred framework without changing the ServiceStack APIs or maintaining a separate UI schema.
 
 :::{.not-prose .my-8}
 <div class="grid gap-5 md:grid-cols-2">
@@ -431,7 +432,13 @@ This approach is not limited to one frontend framework. Both `@servicestack/vue`
 </div>
 :::
 
-The server publishes one portable contract; Vue and React can each render it with their native components. Teams can therefore choose their preferred framework without changing the ServiceStack APIs or maintaining a separate UI schema.
+### Not just APIs — any JSON Schema becomes a form
+
+Underneath `ApiFormSchema` is `JsonSchemaForm`, and it isn't limited to ServiceStack Request DTOs. Hand it any supported JSON Schema and it recursively renders a complete form — nested objects, editable arrays, enums, dates, validation constraints and arbitrary dictionary properties — keeping the whole JSON value synchronized through `v-model`.
+
+That makes it useful well beyond executable API forms. The same renderer can power configuration editors, workflow inputs, structured content tools, agent tool arguments and any UI that needs to safely capture a complex JSON value without building a bespoke form for every shape. There's a [live recursive JSON Schema demo](https://docs.servicestack.net/vue/json-schema#recursive-jsonschemaform) you can edit in the docs.
+
+The schema you edit can also become code: `generateTypes` turns a schema and an example value into C#, Python, TypeScript or JavaScript models.
 
 ## One schema can describe any UI
 
@@ -481,19 +488,23 @@ The same architecture supports many consequential workflows:
 
 Natural language is excellent for expressing intent. Forms remain excellent for reviewing exact structured data. API Schemas let AI experiences use both.
 
+## And every AutoQuery model gets a whole App
+
+An API Schema describes one API. Apply the same idea to a data model and you get something larger.
+
+`/auto/{DataModel}.json` returns an **AutoQuery Schema** — the model plus every authorized Query, Create, Update, Patch, Delete and Save API around it — and `/auto/{DataModel}` renders it as a complete CRUD application with a results grid, paging, sorting, filters, lookups and guarded Delete actions.
+
+<text-block :rows="[
+  ['/schema/{RequestDto}','One API, rendered and executable'],
+  ['/auto/{DataModel}','One data model, rendered as a complete CRUD App']]"></text-block>
+
+Same Metadata feature, same runtime authorization, nothing to install. We covered it in [Instant CRUD Apps with AutoQuery Schemas](/posts/autoquery-schema).
+
 ## Authorization remains server-owned
 
 Schema discovery respects the current request and authenticated session. APIs excluded from metadata or inaccessible to the caller are not presented as available capabilities.
 
-Schemas also carry the API's authentication requirements, including:
-
-- Authentication
-- API keys
-- Required or any-of roles
-- Required or any-of permissions
-- Required claims
-- Required scopes
-- Authorization policies and schemes
+Schemas also carry the API's authentication requirements, including authentication, API keys, required or any-of roles and permissions, required claims and scopes, and authorization policies and schemes.
 
 These details help UIs explain why an operation is unavailable, but they do not replace enforcement. The API remains the final authorization boundary when invoked.
 
@@ -509,41 +520,13 @@ One well-described Request DTO can now improve:
 - API Explorer
 - Generated client DTOs
 - Built-in schema forms
-- Custom Vue forms
+- Custom Vue and React forms
 - Automated testing tools
 - AI tool discovery
 - AI-generated approval UIs
 - MCP clients consuming API Tools
 
 There is no synchronization problem because every experience is generated from the same application contract.
-
-## Configuring the schema routes
-
-The schema routes belong to the Metadata feature, so they are configured with it. Each set can be disabled independently:
-
-```csharp
-services.ConfigurePlugin<MetadataFeature>(feature => {
-    // Don't register /schema and /schema/{RequestDto}
-    feature.DisableApiSchema = true;
-    // Don't register /auto and /auto/{DataModel}
-    feature.DisableAutoQuerySchema = true;
-});
-```
-
-An App can therefore keep its API workbench whilst withholding the AutoQuery data UIs, or the reverse. `IsApiSchemaEnabled` and `IsAutoQuerySchemaEnabled` report which are registered.
-
-Schemas can also be augmented before they are returned. Because there is only one schema, a change applies everywhere it is used — the JSON contract, the built-in UI, your own components and any AI approval form rendered from it:
-
-```csharp
-services.ConfigurePlugin<MetadataFeature>(feature => {
-    feature.OnApiSchema = (requestType, schema) => {
-        if (requestType == typeof(CreateCoffeeShopOrder))
-            schema["ui"]!["submitLabel"] = "Place Order";
-    };
-});
-```
-
-`OnAutoQuerySchema` does the same for AutoQuery Data Model schemas.
 
 ## APIs that explain and demonstrate themselves
 
@@ -570,12 +553,14 @@ To embed the components in your own App, add the client library for your framewo
 
 Both export `ApiFormSchema` and `JsonSchemaForm` with the same behavior, so the snippets above translate directly.
 
-If you'd rather not expose the pages in production, disable them without affecting the JSON contract used by AI Chat and your own components:
+If you'd rather not expose the pages in production, they can be disabled without affecting the JSON contract used by AI Chat and your own components:
 
 ```csharp
 services.ConfigurePlugin<MetadataFeature>(feature => {
     feature.DisableApiSchema = true;
 });
 ```
+
+Schemas can also be customized before they're returned with `OnApiSchema` — see the [API Schema docs](https://docs.servicestack.net/api-schema) for the complete reference.
 
 The fastest way to see the value is to open `/schema` on an App you already have and search for an API you wrote months ago. Whatever descriptions and validation you gave it then are the UI you get now.
