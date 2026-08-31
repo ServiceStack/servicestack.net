@@ -247,10 +247,6 @@ Admin PDF is the handoff point between document authors and application develope
 2. Does this template render with this data?
 3. What typed code should the App use?
 
-:::youtube BhATkVOXknE
-Turn Any PDF into a Dynamic API with AI, Typst & ServiceStack
-:::
-
 ## Generate strongly typed C# contracts
 
 The `.ui.json` schema can generate strongly typed C# models directly from the Admin PDF Code tab:
