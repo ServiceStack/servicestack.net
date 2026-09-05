@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Design Typst PDFs with AI Chat, publish validated templates, generate typed C# models and render production documents from your ServiceStack APIs" />
+    <meta property="og:url" content="https://servicestack.net/posts/servicestack-pdf" />
+    <meta property="og:title" content="ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs" />
+    <meta property="og:image" content="./img/posts/servicestack-pdf/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'servicestack-pdf', title:'ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs', src:'https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=servicestack-pdf&amp;source=post&amp;version=8.10.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/servicestack-pdf/bg.webp" alt="ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/pdf" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">pdf</a>
+                        <a href="posts/tagged/typst" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">typst</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-09-04T00:00:00.0000000">September 4, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>13 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <h2 id="the-complete-pdf-lifecycle-for.net-apps">The complete PDF lifecycle for .NET Apps<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-complete-pdf-lifecycle-for.net-apps'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="g7gDCveT2GY" playlabel="ServiceStack PDF Overview" style="background-image:url('https://img.youtube.com/vi/g7gDCveT2GY/maxresdefault.jpg')"></lite-youtube>
+<p>Here is what we want at the end: an ordinary ServiceStack API that returns a real invoice, with no LLM anywhere near it.</p>
+<pre><code class="language-csharp">public class InvoiceServices(IPdfRenderer pdf) : Service
+{
+    public async Task&lt;object&gt; Any(GetOrderInvoice request)
+    {
+        var order = await Db.LoadSingleByIdAsync&lt;Order&gt;(request.Id);
+        return await pdf.PdfResultAsync(MapToInvoice(order), $&quot;Invoice-{order.InvoiceNo}.pdf&quot;);
+    }
+}
+</code></pre>
+<p>And here is the part that normally takes a week: designing the document, agreeing its data contract, testing the awkward payloads, and getting a typed C# model that matches. In PDF Studio you describe the document you want — or hand a vision model a screenshot of the one you're replacing — and iterate on a live preview until it's right.</p>
+<p><a href="/img/pages/pdf/designer-overview.webp"><img src="/img/pages/pdf/designer-overview.webp" alt="" /></a></p>
+<p>Generating a PDF is easy. Maintaining a production document system is not. Invoices, statements, certificates, reports, shipping labels and contracts need precise layouts, realistic test data, reusable styles, typed application integration, predictable deployment and a safe way to evolve without breaking documents customers depend on.</p>
+<p>ServiceStack's new PDF support addresses the whole lifecycle:</p>
+<pre><code class="language-text">AI Chat PDF Studio → Publish → Admin PDF → Generate C# → Render in your App
+</code></pre>
+<p>PDF Studio at <code>/chat/pdf</code> is an AI-assisted development environment for creating <a href="https://typst.app">Typst</a> templates. Publishing promotes a validated, flattened and versioned artifact into <code>App_Data/pdf</code>. Admin PDF at <code>/admin-ui/pdf</code> lets administrators test the exact production template, inspect its contract and generate strongly typed C# models. <code>IPdfRenderer</code> then renders PDFs from ordinary application code without calling an LLM.</p>
+<p>The result combines the speed of AI-assisted design with the deterministic runtime needed by business applications.</p>
+<p><screenshot src="/img/posts/servicestack-pdf/pdf-studio.webp" title="AI Chat PDF Studio overview"></screenshot></p>
+<h3 id="two-plugins-so-ai-never-reaches-production">Two plugins, so AI never reaches production<a class="header-anchor" href="javascript:;" onclick="location.hash='#two-plugins-so-ai-never-reaches-production'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Plugin</th>
+<th>Runtime dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-assisted authoring and live preview</td>
+<td><code>ChatFeature</code> PDF extension</td>
+<td>Typst and an AI provider</td>
+</tr>
+<tr>
+<td>Published template management and rendering</td>
+<td><code>PdfFeature</code></td>
+<td>Typst</td>
+</tr>
+</tbody>
+</table>
+<p>An organization can design documents in a development environment with AI Chat, then deploy only <code>PdfFeature</code>, Typst and the published artifacts. <strong>Production rendering does not require ChatFeature, an AI provider or an API key.</strong></p>
+<p>That clean boundary is fundamental: AI accelerates authoring, but does not sit in the path of every invoice your application generates.</p>
+<p><pdf-lifecycle></pdf-lifecycle></p>
+<h2 id="why-typst">Why Typst<a class="header-anchor" href="javascript:;" onclick="location.hash='#why-typst'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack uses Typst because it brings modern, code-first authoring to high-quality document layout. Templates are plain text, compile quickly and can express precise typography, tables, page structure, reusable functions and conditional content.</p>
+<p>A document named <code>invoice</code> normally contains:</p>
+<pre><code class="language-text">invoice.typ
+invoice.json
+invoice.ui.json
+invoice.fixture.empty.json
+invoice.fixture.long.json
+lib/v1.typ
+</code></pre>
+<p>Each file has one clear responsibility:</p>
+<ul>
+<li><code>invoice.typ</code> owns layout and rendering.</li>
+<li><code>invoice.json</code> supplies realistic preview data.</li>
+<li><code>invoice.ui.json</code> describes the data contract as JSON Schema.</li>
+<li><code>invoice.fixture.*.json</code> exercises important payload shapes.</li>
+<li><code>lib/v1.typ</code> supplies versioned shared styles and helpers.</li>
+</ul>
+<p>This separation makes templates easier to design, test, review and integrate than documents where layout and business data are inseparable.</p>
+<h2 id="design-in-ai-chat-pdf-studio">Design in AI Chat PDF Studio<a class="header-anchor" href="javascript:;" onclick="location.hash='#design-in-ai-chat-pdf-studio'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>PDF Studio opens with a Typst editor and a real rendered PDF preview. Edit the template or its data and the document recompiles immediately.</p>
+<p>The workspace is per user under <code>App_Data/chat/user/{user}/pdf</code>, so developers and designers can experiment independently. Nothing becomes a shared runtime template until an administrator explicitly publishes it.</p>
+<p>PDF Studio inherits <a href="/posts/ai-chat-v4">AI Chat's</a> Integrated Auth, allowing existing application users to enter with their current ServiceStack identity whilst keeping drafts, assets and experiments isolated in their own workspace. Publishing is a separate Admin-authorized boundary, so access to the designer does not imply permission to change the templates used by production.</p>
+<p>The designer separates layout and content into focused panes:</p>
+<p><a href="/img/pages/pdf/designer-panes.webp"><img src="/img/pages/pdf/designer-panes.webp" alt="" /></a></p>
+<h3 id="form-and-code-views-for-document-data">Form and Code views for document data<a class="header-anchor" href="javascript:;" onclick="location.hash='#form-and-code-views-for-document-data'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The JSON data can be edited directly in Code View or through a form generated from <code>invoice.ui.json</code>. Form View provides labels, date inputs, enum selections and add/remove controls for line items without requiring users to edit JSON.</p>
+<p><a href="/img/pages/pdf/data-form.webp"><img src="/img/pages/pdf/data-form.webp" alt="" /></a></p>
+<p><a href="/img/pages/pdf/data-code.webp"><img src="/img/pages/pdf/data-code.webp" alt="" /></a></p>
+<p>Every edit uses the same data contract that will later generate the application's C# model. The preview is not a disconnected design mock-up; it is an executable example of the production template.</p>
+<h3 id="edit-layouts-with-natural-language">Edit layouts with natural language<a class="header-anchor" href="javascript:;" onclick="location.hash='#edit-layouts-with-natural-language'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The Edit with AI panel gives the model the current template, its data and referenced partials. Describe the change you want:</p>
+<blockquote>
+<p>Add a Paid watermark when the outstanding balance is zero.</p>
+</blockquote>
+<blockquote>
+<p>Move the totals into a bordered box and show tax on a separate row.</p>
+</blockquote>
+<blockquote>
+<p>Reformat this as a 4×6 shipping label with no page margins.</p>
+</blockquote>
+<p>The model returns complete updated files and Studio compiles them immediately. If the first edit fails to compile, the model gets a repair pass with the compiler error.</p>
+<p><a href="/img/pages/pdf/edit-with-ai-before.webp"><img src="/img/pages/pdf/edit-with-ai-before.webp" alt="" /></a></p>
+<p><a href="/img/pages/pdf/edit-with-ai-after.webp"><img src="/img/pages/pdf/edit-with-ai-after.webp" alt="" /></a></p>
+<p>AI edits update editor buffers rather than silently committing files. Unsaved changes remain visible and the previous contents can be restored, making experimentation fast and reversible.</p>
+<h3 id="recreate-an-existing-document-with-vision">Recreate an existing document with vision<a class="header-anchor" href="javascript:;" onclick="location.hash='#recreate-an-existing-document-with-vision'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Starting from a blank page is rarely necessary. Attach screenshots, photos or rasterized pages from an existing PDF and ask a vision-capable model to reproduce the design as a reusable Typst template.</p>
+<p><a href="/img/pages/pdf/ai-attachment-new.webp"><img src="/img/pages/pdf/ai-attachment-new.webp" alt="" /></a></p>
+<p><a href="/img/pages/pdf/ai-attachment-edit.webp"><img src="/img/pages/pdf/ai-attachment-edit.webp" alt="" /></a></p>
+<p>The model separates visual layout from sample content and creates a new template and JSON data model. This is visual reconstruction—not structural PDF conversion—but it is an extraordinarily fast way to turn a legacy document into maintainable source.</p>
+<h3 id="design-visually-without-memorizing-typst">Design visually without memorizing Typst<a class="header-anchor" href="javascript:;" onclick="location.hash='#design-visually-without-memorizing-typst'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>PDF Studio includes formatting controls for common design operations:</p>
+<ul>
+<li>Font discovery and preview</li>
+<li>Font size, weight and line height</li>
+<li>Page sizes from A3–A6, Letter, Legal and presentation formats</li>
+<li>Portrait and landscape orientation</li>
+<li>Margins</li>
+<li>Image and asset selection</li>
+<li>Shared library previews</li>
+</ul>
+<p><a href="/img/pages/pdf/font-picker.webp"><img src="/img/pages/pdf/font-picker.webp" alt="" /></a></p>
+<p><a href="/img/pages/pdf/page-setup.webp"><img src="/img/pages/pdf/page-setup.webp" alt="" /></a></p>
+<p>The controls modify source rather than hiding it. Developers retain a readable Typst template whilst less experienced authors can make common visual changes confidently.</p>
+<h2 id="versioned-design-systems">Versioned design systems<a class="header-anchor" href="javascript:;" onclick="location.hash='#versioned-design-systems'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Shared document design belongs in a library, but changing that library should not unexpectedly reflow every historical template.</p>
+<p>New workspaces use explicit imports such as <code>lib/v1.typ</code>. Shared fonts, colors, formatters, headers and footers live in that version. An incompatible redesign becomes <code>lib/v2.typ</code>, allowing templates to migrate one at a time.</p>
+<p><code>lib/v1.preview.typ</code> renders the design system itself so typography and components can be checked independently:</p>
+<p><a href="/img/pages/pdf/lib-preview.webp"><img src="/img/pages/pdf/lib-preview.webp" alt="" /></a></p>
+<p>PDF Studio tracks direct and transitive dependencies. A referenced library cannot be renamed or deleted until its dependants are moved, and publishing captures the exact imported library with the document's artifact set.</p>
+<p>This protects production documents from accidental global changes whilst still giving teams a coherent visual system.</p>
+<h2 id="publish-is-a-controlled-promotion-boundary">Publish is a controlled promotion boundary<a class="header-anchor" href="javascript:;" onclick="location.hash='#publish-is-a-controlled-promotion-boundary'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Design work remains private until an administrator chooses <strong>Publish</strong>. Publishing copies the template from the user's Studio workspace into the App's shared <code>App_Data/pdf</code> runtime directory.</p>
+<p>It performs substantially more work than a file copy:</p>
+<ul>
+<li>Follows JSON data, Typst includes, images, assets and versioned libraries.</li>
+<li>Flattens folder-based authoring into a self-contained runtime artifact set.</li>
+<li>Rewrites local references for the flattened result.</li>
+<li>Validates example data and named fixtures against <code>.ui.json</code>.</li>
+<li>Exercises C# model generation.</li>
+<li>Checks statically visible data paths.</li>
+<li>Compiles every fixture through the actual flattened Typst template.</li>
+<li>Generates the gallery preview.</li>
+<li>Records publisher and source metadata.</li>
+<li>Prevents silent takeover of a name published by another user.</li>
+<li>Rolls back the publish if validation or compilation fails.</li>
+<li>Saves every successful publish as an immutable revision.</li>
+</ul>
+<p>This changes publishing from “copy whatever currently works on my machine” into a repeatable release step.</p>
+<p><screenshot src="/img/posts/servicestack-pdf/publish-dialog.webp" title="PDF Studio publishing workflow"></screenshot></p>
+<h2 id="contract-fixtures-catch-the-failures-that-matter">Contract fixtures catch the failures that matter<a class="header-anchor" href="javascript:;" onclick="location.hash='#contract-fixtures-catch-the-failures-that-matter'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>One sample invoice cannot represent every production invoice. Add named fixtures beside the template:</p>
+<pre><code class="language-text">invoice.fixture.empty.json
+invoice.fixture.long.json
+invoice.fixture.international.json
+invoice.fixture.maximum-items.json
+</code></pre>
+<p>At publish time, every fixture is checked against the JSON Schema and rendered with the flattened template. A payload can therefore be structurally valid yet still block publishing if long text, an empty collection or international characters trigger a Typst failure.</p>
+<p>The built-in validator covers the schema features generated by PDF Studio, including types, required members, object properties, arrays, enums, numeric and string bounds, patterns, date formats, local references and schema composition.</p>
+<p>This is practical contract testing for documents: validate both the data and its ability to render.</p>
+<h2 id="immutable-history-and-reversible-rollback">Immutable history and reversible rollback<a class="header-anchor" href="javascript:;" onclick="location.hash='#immutable-history-and-reversible-rollback'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Every successful publish creates a revision under:</p>
+<pre><code class="language-text">App_Data/pdf/.versions/{template}/{revision}/
+</code></pre>
+<p>The revision contains the complete published artifact set, preview and publishing metadata. Admin PDF's History view shows who published each version and when.</p>
+<p>Restoring a revision never edits or deletes history. It creates a new revision that records which version was restored, making rollback itself auditable and reversible.</p>
+<p>Unpublishing removes the live template but retains its history. This gives teams a lightweight, database-free release history that can be backed up with the rest of <code>App_Data/pdf</code>.</p>
+<p><screenshot src="/img/posts/servicestack-pdf/template-history.webp" title="PDF template administration and history"></screenshot></p>
+<h2 id="admin-pdf-manages-what-production-can-render">Admin PDF manages what production can render<a class="header-anchor" href="javascript:;" onclick="location.hash='#admin-pdf-manages-what-production-can-render'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Open <code>/admin-ui/pdf</code> to browse the templates currently available to the application.</p>
+<p>The Admin-only gallery shows publish-time thumbnails with search and sorting. Selecting a template opens a two-pane workspace containing editable data and the real PDF rendered through the production renderer.</p>
+<p><a href="/img/pages/pdf/saved-pdfs.webp"><img src="/img/pages/pdf/saved-pdfs.webp" alt="" /></a></p>
+<p>The data pane provides:</p>
+<ul>
+<li><strong>Form</strong> — schema-generated controls for testing without writing JSON.</li>
+<li><strong>Data</strong> — raw editable JSON for pasting real payloads.</li>
+<li><strong>Code</strong> — generated models and usage examples.</li>
+</ul>
+<p>The preview uses pdf.js and supports live rendering, zoom, fit, page count and download.</p>
+<p><a href="/img/pages/pdf/data-form-edited.webp"><img src="/img/pages/pdf/data-form-edited.webp" alt="" /></a></p>
+<p><a href="/img/pages/pdf/download-pdf.webp"><img src="/img/pages/pdf/download-pdf.webp" alt="" /></a></p>
+<p><strong>Edit</strong> opens the published document back in PDF Studio. If another user created it, the published files are first copied into the current administrator's workspace. <strong>Unpublish</strong> removes the live runtime files whilst preserving revision history.</p>
+<p>Admin PDF is the handoff point between document authors and application developers. It answers three important questions with the real deployed artifact:</p>
+<ol>
+<li>What templates can production render?</li>
+<li>Does this template render with this data?</li>
+<li>What typed code should the App use?</li>
+</ol>
+<h2 id="generate-strongly-typed-c-contracts">Generate strongly typed C# contracts<a class="header-anchor" href="javascript:;" onclick="location.hash='#generate-strongly-typed-c-contracts'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The <code>.ui.json</code> schema can generate strongly typed C# models directly from the Admin PDF Code tab:</p>
+<p><a href="/img/pages/pdf/generated-types-csharp.webp"><img src="/img/pages/pdf/generated-types-csharp.webp" alt="" /></a></p>
+<pre><code class="language-csharp">public class LineItem
+{
+    [JsonPropertyName(&quot;description&quot;)]
+    public string Description { get; set; } = null!;
+
+    [JsonPropertyName(&quot;qty&quot;)]
+    public int Qty { get; set; }
+
+    [JsonPropertyName(&quot;rate&quot;)]
+    public decimal Rate { get; set; }
+}
+
+[Pdf(&quot;invoice&quot;)]
+public class Invoice
+{
+    [JsonPropertyName(&quot;items&quot;)]
+    public List&lt;LineItem&gt; Items { get; set; } = new();
+}
+</code></pre>
+<p><code>[Pdf(&quot;invoice&quot;)]</code> binds the root model to its published template. Dates, UUIDs, decimals, enums, required members and documentation are inferred from the schema instead of guessed from sample JSON.</p>
+<p>For all templates, configure <code>PdfCodeGen</code> and register an AppTask:</p>
+<pre><code class="language-csharp">services.AddPlugin(new PdfFeature
+{
+    PdfCodeGen = new()
+    {
+        Namespace = &quot;MyApp.ServiceModel.Pdf&quot;,
+        OutputPath = Path.Combine(contentRootPath, &quot;../MyApp.ServiceModel/Pdf&quot;),
+    }
+});
+
+AppTasks.Register(&quot;pdf&quot;, _ =&gt;
+    appHost.GetPlugin&lt;PdfFeature&gt;().GeneratePdfs());
+</code></pre>
+<p>Then regenerate after publishing template changes:</p>
+<pre><code class="language-bash">dotnet run --AppTasks=pdf
+</code></pre>
+<p>Generated files contain content hashes. If a developer adopts and edits one, later generation skips it instead of overwriting their work. Include, exclude, naming and filtering options support larger applications with many templates.</p>
+<p>The Admin UI preview and AppTask use the same generator, so the code copied from the browser matches the code written into the project.</p>
+<h2 id="render-from-an-ordinary-servicestack-api">Render from an ordinary ServiceStack API<a class="header-anchor" href="javascript:;" onclick="location.hash='#render-from-an-ordinary-servicestack-api'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Inject <code>IPdfRenderer</code>, map application data into the generated model and return the PDF:</p>
+<pre><code class="language-csharp">[Route(&quot;/orders/{Id}/invoice&quot;)]
+public class GetOrderInvoice : IGet, IReturn&lt;byte[]&gt;
+{
+    public int Id { get; set; }
+}
+
+public class InvoiceServices(IPdfRenderer pdf) : Service
+{
+    public async Task&lt;object&gt; Any(GetOrderInvoice request)
+    {
+        var order = await Db.LoadSingleByIdAsync&lt;Order&gt;(request.Id);
+
+        var invoice = new Invoice
+        {
+            InvoiceValue = new InvoiceDetails
+            {
+                Number = order.InvoiceNo,
+                Date = order.OrderDate.ToString(&quot;d MMMM yyyy&quot;),
+                Due = order.DueDate,
+                Currency = &quot;$&quot;,
+            },
+            Items = order.Details.Map(x =&gt; new LineItem
+            {
+                Description = x.ProductName,
+                Qty = x.Quantity,
+                Rate = x.UnitPrice,
+            }),
+            TaxRate = 0.10m,
+        };
+
+        return await pdf.PdfResultAsync(
+            invoice,
+            $&quot;Invoice-{order.InvoiceNo}.pdf&quot;);
+    }
+}
+</code></pre>
+<p><code>PdfResultAsync</code> returns an <code>HttpResult</code> with <code>application/pdf</code> and the correct content-disposition filename. Pass <code>inline: true</code> to display it in the browser instead of downloading it.</p>
+<p>For other workflows the renderer can return bytes, write directly to a stream or rasterize a selected page to PNG.</p>
+<p>Runtime rendering is deterministic:</p>
+<ul>
+<li>The <code>[Pdf]</code> model selects the template.</li>
+<li>The model serializes to its JSON contract.</li>
+<li><code>IPdfRenderer</code> invokes the published Typst template.</li>
+<li>No LLM is called.</li>
+<li>No personal Studio workspace is read.</li>
+<li>Only the live files in <code>App_Data/pdf</code> are used.</li>
+</ul>
+<h2 id="attach-pdfs-from-background-jobs">Attach PDFs from background jobs<a class="header-anchor" href="javascript:;" onclick="location.hash='#attach-pdfs-from-background-jobs'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The same renderer can generate an attachment inside a ServiceStack Command:</p>
+<pre><code class="language-csharp">[Worker(&quot;smtp&quot;)]
+public class SendInvoiceEmailCommand(
+    IPdfRenderer pdf,
+    SmtpConfig config,
+    IDbConnectionFactory dbFactory)
+    : AsyncCommand&lt;SendInvoiceEmail&gt;
+{
+    protected override async Task RunAsync(
+        SendInvoiceEmail request,
+        CancellationToken token)
+    {
+        using var db = await dbFactory.OpenAsync(token: token);
+        var order = await db.LoadSingleByIdAsync&lt;Order&gt;(
+            request.OrderId, token: token);
+
+        var invoice = MapToInvoice(order);
+        var bytes = await pdf.RenderPdfAsync(invoice, token);
+
+        // Attach bytes to your email message and send it...
+    }
+}
+</code></pre>
+<p>Queue an identifier, not rendered PDF bytes. The worker loads current data and renders inside the job, keeping persisted job messages small and retryable.</p>
+<p>This pattern works for scheduled statements, order confirmations, certificates, reports and any other document produced outside an interactive HTTP request.</p>
+<h2 id="production-controls-are-built-in">Production controls are built in<a class="header-anchor" href="javascript:;" onclick="location.hash='#production-controls-are-built-in'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>PDF rendering starts external Typst processes, so <code>PdfFeature</code> includes practical operational limits:</p>
+<ul>
+<li>Render and preview timeouts</li>
+<li>Maximum concurrent renders</li>
+<li>Maximum data payload size</li>
+<li>Restricted Typst root directory</li>
+<li>Flat validated template names</li>
+<li>Admin role requirements for every Admin PDF API</li>
+<li>Per-user, path-checked Studio workspaces</li>
+<li>Publish-time validation enabled by default</li>
+</ul>
+<p>Production environments should pin the Typst version and deploy the same fonts used during validation. Put application fonts in <code>App_Data/pdf/fonts</code> and back up live artifacts, <code>.published.json</code> and <code>.versions</code> together.</p>
+<p>Typst's root restriction limits document file access but is not an operating-system sandbox. Organizations compiling untrusted templates should isolate compilation in an appropriate container or worker.</p>
+<h2 id="clear-scope-extensible-renderer">Clear scope, extensible renderer<a class="header-anchor" href="javascript:;" onclick="location.hash='#clear-scope-extensible-renderer'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The built-in feature is focused on generating PDFs from Typst templates. It supports authoring, AI editing, compilation, publishing, revisions, schema validation, code generation, PDF/PNG rendering and delivery.</p>
+<p>It does not claim to be a general PDF manipulation library. Merging, splitting, encryption, digital signatures, PDF/A, AcroForm filling, OCR and structural import belong in a dedicated PDF library or a custom <code>IPdfRenderer</code> pipeline.</p>
+<p>Likewise, importing a PDF into Studio gives a vision model rasterized reference pages from which to create a new Typst approximation. It does not preserve the original document's text objects, fonts, forms, annotations or metadata.</p>
+<p>These boundaries keep the built-in workflow dependable whilst allowing specialized processing before or after rendering.</p>
+<h2 id="ai-where-it-accelerates-typed-code-where-it-matters">AI where it accelerates, typed code where it matters<a class="header-anchor" href="javascript:;" onclick="location.hash='#ai-where-it-accelerates-typed-code-where-it-matters'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>ServiceStack PDF support uses AI at the point where it provides the most leverage: turning a visual idea or natural-language request into editable document source.</p>
+<p>Everything after that becomes a controlled software artifact:</p>
+<ol>
+<li>Typst source defines the layout.</li>
+<li>JSON Schema defines the data contract.</li>
+<li>Fixtures validate important payloads.</li>
+<li>Publish creates a tested immutable revision.</li>
+<li>Admin PDF verifies the production artifact.</li>
+<li>Generated C# provides a typed integration.</li>
+<li><code>IPdfRenderer</code> produces the document deterministically.</li>
+</ol>
+<p>This is the missing bridge between “AI made me a nice document” and “our application can safely generate this document for every customer.”</p>
+<p>Open <code>/chat/pdf</code>, describe the document you need and publish it when it is ready.</p>
+<p>Your ServiceStack App can take it from there.</p>
+<p><screenshot src="/img/posts/servicestack-pdf/pdf-lifecycle.webp" title="ServiceStack PDF lifecycle"></screenshot></p>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><strong>1. Install the Typst CLI</strong> and make it available on <code>PATH</code>, or configure <code>TYPST_PATH</code>:</p>
+<pre><code class="language-bash"># macOS
+brew install typst
+
+# Cargo
+cargo install --locked typst-cli
+</code></pre>
+<p><strong>2. Add the plugins</strong> to a .NET 8+ ServiceStack App:</p>
+<p><shell-command>npx add-in chat</shell-command></p>
+<p>This configures both <code>ChatFeature</code> and <code>PdfFeature</code>, so you get the PDF Studio designer and production rendering together. To deploy production rendering <em>without</em> AI Chat, register <code>PdfFeature</code> on its own:</p>
+<pre><code class="language-csharp">services.AddPlugin(new PdfFeature());
+</code></pre>
+<p><strong>3. Design a document</strong> at <code>/chat/pdf</code>. Start from the example invoice or describe what you need and let a model draft it.</p>
+<p><strong>4. Publish it</strong>, then open <code>/admin-ui/pdf</code> to test the production template with real data and copy the generated C# model.</p>
+<p><strong>5. Wire up code generation</strong> so the models live in your project:</p>
+<pre><code class="language-csharp">services.AddPlugin(new PdfFeature {
+    PdfCodeGen = new() {
+        Namespace = &quot;MyApp.ServiceModel.Pdf&quot;,
+        OutputPath = Path.Combine(contentRootPath, &quot;../MyApp.ServiceModel/Pdf&quot;),
+    }
+});
+
+AppTasks.Register(&quot;pdf&quot;, _ =&gt; appHost.GetPlugin&lt;PdfFeature&gt;().GeneratePdfs());
+</code></pre>
+<p><shell-command>dotnet run --AppTasks=pdf</shell-command></p>
+<p><strong>6. Inject <code>IPdfRenderer</code></strong> and return the document from any API, Command or background job.</p>
+<p>Before deploying, pin the Typst version and deploy the same fonts used during validation — put application fonts in <code>App_Data/pdf/fonts</code> and back up <code>App_Data/pdf</code> including <code>.published.json</code> and <code>.versions</code>.</p>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/autoquery-schema">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/autoquery-schema/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/autoquery-schema" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Instant CRUD Apps with AutoQuery Schemas">
+                                                    Instant CRUD Apps with AutoQuery Schemas
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Give AutoQuerySchema one /auto/{DataModel}.json document and it renders a complete, authorized CRUD application</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Instant CRUD Apps with AutoQuery Schemas background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-01T00:00:00.0000000">September 1, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>13 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/api-schema">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/api-schema/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/api-schema" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Richer APIs and Auto UIs with API Schemas">
+                                                    Richer APIs and Auto UIs with API Schemas
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Every ServiceStack API now includes a portable schema that lets generic UIs describe, render and execute it</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Richer APIs and Auto UIs with API Schemas background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-31T00:00:00.0000000">August 31, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>20 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/api-tools">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/api-tools/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/api-tools" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP">
+                                                    Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Turn your existing ServiceStack APIs into safe, discoverable AI tools for AI.Chat and every MCP-compatible assistant like Claude Code, Claude Desktop, Codex and OpenCode.</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-25T00:00:00.0000000">August 25, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>18 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ai-chat-v4">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ai-chat-v4/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ai-chat-v4" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth">
+                                                    AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Multi-provider chat, RAG, PDF Studio, tools, skills, mcp, projects and agents in one App - unleashing AI intelligence on your existing APIs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-24T00:00:00.0000000">August 24, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>18 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/servicestack-pdf.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/start"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
