@@ -1,0 +1,665 @@
+@page "/getting-started"
+@attribute [RenderStatic]
+
+@{
+    ViewData["Title"] = "Getting Started";
+    ViewData["Brand"] = "ServiceStack";
+
+    // Single source of truth for the docs origin so every deep link stays consistent
+    var docs = "https://docs.servicestack.net";
+}
+
+<style>
+    /* Ambient hero glows - slow enough to read as atmosphere rather than motion */
+    @@keyframes gs-drift {
+        0%   { transform: translate3d(0,0,0) }
+        50%  { transform: translate3d(24px,-18px,0) }
+        100% { transform: translate3d(0,0,0) }
+    }
+    .gs-drift { animation: gs-drift 20s ease-in-out infinite }
+
+    /* The quickstart spine: a vertical rule with a travelling pulse, so the 4 steps
+       read as one continuous path instead of 4 unrelated cards. */
+    .gs-spine { position: relative; overflow: hidden }
+    .gs-spine::after {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(180deg, transparent, rgb(99 102 241 / .85), transparent);
+        background-size: 100% 300%;
+        animation: gs-pulse 5s linear infinite;
+    }
+    @@keyframes gs-pulse {
+        from { background-position: 0 300% }
+        to   { background-position: 0 -100% }
+    }
+
+    .gs-copied { color: rgb(52 211 153) !important }
+
+    @@media (prefers-reduced-motion: reduce) {
+        .gs-drift { animation: none !important }
+        .gs-spine::after { animation: none; background: rgb(99 102 241 / .4) }
+    }
+</style>
+
+<!-- ══════════════════════════════════════════════════════ HERO -->
+<section class="relative w-full overflow-hidden bg-slate-950 border-b border-white/10">
+
+    <div class="absolute inset-0 opacity-[0.16] pointer-events-none">
+        <svg class="h-full w-full" aria-hidden="true">
+            <defs>
+                <pattern id="gs-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+                    <path d="M48 0H0V48" fill="none" stroke="#6366f1" stroke-width="1"/>
+                </pattern>
+                <radialGradient id="gs-fade" cx="50%" cy="0%" r="90%">
+                    <stop offset="0%" stop-color="white" stop-opacity="1"/>
+                    <stop offset="100%" stop-color="white" stop-opacity="0"/>
+                </radialGradient>
+                <mask id="gs-mask"><rect width="100%" height="100%" fill="url(#gs-fade)"/></mask>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#gs-grid)" mask="url(#gs-mask)"/>
+        </svg>
+    </div>
+
+    <div class="gs-drift absolute -top-32 left-1/4 h-[30rem] w-[30rem] rounded-full bg-indigo-600/25 blur-[130px] pointer-events-none"></div>
+    <div class="gs-drift absolute top-32 right-1/5 h-[26rem] w-[26rem] rounded-full bg-sky-500/20 blur-[120px] pointer-events-none" style="animation-delay:-7s"></div>
+    <div class="gs-drift absolute -bottom-20 left-1/3 h-80 w-80 rounded-full bg-emerald-500/10 blur-[110px] pointer-events-none" style="animation-delay:-13s"></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-16 lg:pb-20">
+        <div class="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
+
+            <div>
+                <div class="inline-flex items-center rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-200 backdrop-blur-xl">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
+                    New to ServiceStack? You're in the right place
+                </div>
+
+                <h1 class="mt-8 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05]">
+                    From zero to a<br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400">
+                        working typed API
+                    </span>
+                </h1>
+
+                <p class="mt-6 text-lg sm:text-xl text-slate-400 leading-relaxed max-w-xl">
+                    One command scaffolds a .NET 10 project with Identity Auth, typed clients, AutoQuery CRUD
+                    and built-in UIs already wired up. This page is the shortest path through it &mdash;
+                    pick a starting point below, or take the four-step tour.
+                </p>
+
+                <div class="mt-8 max-w-md">
+                    <div class="relative rounded-xl border border-white/10 bg-slate-900/80 backdrop-blur-sm px-4 py-3.5 font-mono text-sm text-slate-200 shadow-2xl">
+                        <span class="select-none text-emerald-400 mr-2">$</span><span id="gs-hero-cmd">npx create-net web MyApp</span>
+                        <button type="button" onclick="gsCopy('gs-hero-cmd', this)" aria-label="Copy command"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-2 text-slate-500 hover:text-white hover:bg-white/10 transition">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="mt-2 text-xs text-slate-500">Nothing to install. Requires the <a class="text-slate-400 underline decoration-slate-700 hover:text-white" href="https://dotnet.microsoft.com/download">.NET SDK</a>.</p>
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#quickstart" class="group inline-flex items-center justify-center rounded-lg bg-indigo-500 px-7 py-3.5 text-base font-bold text-white shadow-[0_0_30px_-8px_rgba(99,102,241,0.9)] hover:bg-indigo-400 transition-all hover:no-underline">
+                        Take the 4-step tour
+                        <svg class="ml-2 -mr-1 h-5 w-5 transition-transform group-hover:translate-y-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v9.586l3.293-3.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L9 13.586V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+                    </a>
+                    <a href="/start" class="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 px-7 py-3.5 text-base font-semibold text-slate-200 hover:bg-white/10 hover:text-white transition-all hover:no-underline">
+                        Customize &amp; Download a project
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: the DTO -> API payoff, which is the idea everything else hangs off -->
+            <div class="relative lg:ml-auto w-full">
+                <div class="relative group">
+                    <div class="absolute -inset-2 rounded-2xl bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 opacity-20 blur-2xl group-hover:opacity-40 transition duration-700"></div>
+
+                    <div class="relative rounded-xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden">
+                        <div class="bg-slate-800/90 border-b border-slate-700 px-4 py-2.5 flex items-center gap-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <div class="mx-auto text-xs font-mono text-slate-400">MyApp.ServiceModel/Hello.cs</div>
+                        </div>
+                        <pre class="px-5 py-4 text-[13px] leading-6 font-mono text-slate-300 overflow-x-auto"><code><span class="text-purple-400">public class</span> <span class="text-emerald-300">Hello</span> : <span class="text-emerald-300">IReturn</span>&lt;<span class="text-emerald-300">HelloResponse</span>&gt;
+{
+    <span class="text-purple-400">public required string</span> <span class="text-sky-300">Name</span> { <span class="text-purple-400">get</span>; <span class="text-purple-400">set</span>; }
+}</code></pre>
+
+                        <div class="border-t border-slate-800 bg-slate-950/60 px-5 py-3">
+                            <p class="text-[11px] uppercase tracking-widest text-slate-500 font-semibold">That one DTO gives you</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-xs font-mono">
+                                <span class="rounded-md bg-indigo-500/10 border border-indigo-500/30 px-2 py-1 text-indigo-300">/api/Hello</span>
+                                <span class="rounded-md bg-sky-500/10 border border-sky-500/30 px-2 py-1 text-sky-300">OpenAPI</span>
+                                <span class="rounded-md bg-emerald-500/10 border border-emerald-500/30 px-2 py-1 text-emerald-300">Typed Clients</span>
+                                <span class="rounded-md bg-amber-500/10 border border-amber-500/30 px-2 py-1 text-amber-300">API Explorer</span>
+                                <span class="rounded-md bg-rose-500/10 border border-rose-500/30 px-2 py-1 text-rose-300">Validation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-4 text-sm text-slate-500">
+                    Read the walkthrough:
+                    <a href="@docs/your-first-webservice-explained" class="text-slate-300 underline decoration-slate-700 hover:text-white">Your first WebService explained</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ PICK A PATH -->
+<section class="bg-white dark:bg-black">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Where would you like to start?</h2>
+            <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                Three ways in. They all end up in the same place &mdash; pick whichever matches how you like to learn.
+            </p>
+        </div>
+
+        <div class="mt-14 grid md:grid-cols-3 gap-6">
+
+            <!-- Build -->
+            <div class="group relative flex flex-col rounded-2xl border border-gray-200 dark:border-gray-800 bg-gradient-to-b from-indigo-50/70 to-white dark:from-indigo-950/25 dark:to-black p-8 hover:border-indigo-400 hover:shadow-xl transition-all">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 ring-1 ring-inset ring-indigo-500/25">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h3 class="mt-5 text-xl font-bold text-gray-900 dark:text-gray-50">Just let me build</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Scaffold a production-ready project on your stack of choice and start writing APIs in the next five minutes.
+                </p>
+                <ul class="mt-6 space-y-2 text-sm">
+                    <li><a href="/start" class="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">Customize &amp; download a project &rarr;</a></li>
+                    <li><a href="@docs/templates/" class="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">Browse all project templates &rarr;</a></li>
+                    <li><a href="/text-to-blazor" class="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">Generate an App from a prompt &rarr;</a></li>
+                </ul>
+            </div>
+
+            <!-- Understand -->
+            <div class="group relative flex flex-col rounded-2xl border border-gray-200 dark:border-gray-800 bg-gradient-to-b from-sky-50/70 to-white dark:from-sky-950/25 dark:to-black p-8 hover:border-sky-400 hover:shadow-xl transition-all">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 ring-1 ring-inset ring-sky-500/25">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <h3 class="mt-5 text-xl font-bold text-gray-900 dark:text-gray-50">Show me how it works</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Start from the message-based design that makes a single C# class into an API, typed client and UI.
+                </p>
+                <ul class="mt-6 space-y-2 text-sm">
+                    <li><a href="@docs/create-your-first-webservice" class="text-sky-600 dark:text-sky-400 font-medium hover:underline">Create your first WebService &rarr;</a></li>
+                    <li><a href="@docs/why-servicestack" class="text-sky-600 dark:text-sky-400 font-medium hover:underline">Why ServiceStack &rarr;</a></li>
+                    <li><a href="@docs/architecture-overview" class="text-sky-600 dark:text-sky-400 font-medium hover:underline">Architecture overview &rarr;</a></li>
+                </ul>
+            </div>
+
+            <!-- Existing systems -->
+            <div class="group relative flex flex-col rounded-2xl border border-gray-200 dark:border-gray-800 bg-gradient-to-b from-emerald-50/70 to-white dark:from-emerald-950/25 dark:to-black p-8 hover:border-emerald-400 hover:shadow-xl transition-all">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-inset ring-emerald-500/25">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="8" ry="3"/><path stroke-linecap="round" d="M4 6v12c0 1.657 3.582 3 8 3s8-1.343 8-3V6M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3"/></svg>
+                </div>
+                <h3 class="mt-5 text-xl font-bold text-gray-900 dark:text-gray-50">I already have a database</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Point ServiceStack at an existing RDBMS and get typed CRUD APIs plus an instant admin UI generated for you.
+                </p>
+                <ul class="mt-6 space-y-2 text-sm">
+                    <li><a href="@docs/autoquery/autogen" class="text-emerald-600 dark:text-emerald-400 font-medium hover:underline">AutoQuery CRUD from your DB &rarr;</a></li>
+                    <li><a href="/locode" class="text-emerald-600 dark:text-emerald-400 font-medium hover:underline">Instant Locode admin UI &rarr;</a></li>
+                    <li><a href="@docs/servicify" class="text-emerald-600 dark:text-emerald-400 font-medium hover:underline">Servicify existing systems &rarr;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ QUICKSTART -->
+<section id="quickstart" class="scroll-mt-20 relative border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950/60">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">The 4-step tour</p>
+            <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Your first API, end to end</h2>
+            <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                Follows the docs' <a href="@docs/create-your-first-webservice" class="text-indigo-600 dark:text-indigo-400 hover:underline">Create your first WebService</a> walkthrough.
+                Each step links to the reference if you want to go deeper.
+            </p>
+        </div>
+
+        <ol class="mt-14 space-y-0">
+
+            @{
+                void Step(int n, string title, string blurb, string cmd, string cmdId, string linkText, string href, bool last = false)
+                {
+                    <li class="relative grid grid-cols-[3rem_1fr] sm:grid-cols-[4rem_1fr] gap-x-4 sm:gap-x-6">
+                        <div class="relative flex flex-col items-center">
+                            <div class="relative z-10 flex h-12 w-12 flex-none items-center justify-center rounded-full bg-white dark:bg-gray-900 border-2 border-indigo-500 text-lg font-extrabold text-indigo-600 dark:text-indigo-400 shadow-sm">
+                                @n
+                            </div>
+                            @if (!last)
+                            {
+                                <div class="gs-spine w-px flex-1 bg-indigo-200 dark:bg-indigo-900"></div>
+                            }
+                        </div>
+                        <div class="@(last ? "pb-0" : "pb-12")">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-50 leading-none pt-3">@title</h3>
+                            <p class="mt-3 text-gray-600 dark:text-gray-400 leading-relaxed">@Html.Raw(blurb)</p>
+                            @if (cmd != null)
+                            {
+                                <div class="mt-4 relative rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-900 px-4 py-3 font-mono text-sm text-gray-800 dark:text-slate-200 shadow-sm">
+                                    <span class="select-none text-emerald-500 mr-2">$</span><span id="@cmdId">@cmd</span>
+                                    <button type="button" onclick="gsCopy('@cmdId', this)" aria-label="Copy command"
+                                            class="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-2 text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            }
+                            <a href="@href" class="mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+                                @linkText
+                                <svg class="ml-1 h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.3 14.7a1 1 0 010-1.4L10.6 10L7.3 6.7a1 1 0 011.4-1.4l4 4a1 1 0 010 1.4l-4 4a1 1 0 01-1.4 0z" clip-rule="evenodd"/></svg>
+                            </a>
+                        </div>
+                    </li>
+                }
+
+                Step(1, "Create your project",
+                    "One command scaffolds a complete .NET 10 App. <code class=\"px-1 rounded bg-gray-200 dark:bg-gray-800 text-[13px]\">web</code> is the Empty template &mdash; swap it for <code class=\"px-1 rounded bg-gray-200 dark:bg-gray-800 text-[13px]\">react-spa</code>, <code class=\"px-1 rounded bg-gray-200 dark:bg-gray-800 text-[13px]\">vue-mjs</code>, <code class=\"px-1 rounded bg-gray-200 dark:bg-gray-800 text-[13px]\">blazor</code> or any other template name.",
+                    "npx create-net web MyApp", "gs-cmd-1",
+                    "Browse every template", docs + "/templates/");
+
+                Step(2, "Run a watched build",
+                    "Press <b>Ctrl+F5</b> in your IDE, or run a watched build from the terminal so your App rebuilds and restarts on every save.",
+                    "dotnet watch", "gs-cmd-2",
+                    "Project structure explained", docs + "/physical-project-structure");
+
+                Step(3, "Call your API",
+                    "Your project already exposes a working API from a single Request DTO. Browse and call it from the built-in <b>API Explorer</b> at <code class=\"px-1 rounded bg-gray-200 dark:bg-gray-800 text-[13px]\">/ui</code>, or hit it from the command line.",
+                    "x send https://localhost:5001 Hello {\"name\":\"World\"}", "gs-cmd-3",
+                    "API Explorer docs", docs + "/api-explorer");
+
+                Step(4, "Consume it from your client",
+                    "Generate typed DTOs for your front-end &mdash; C#, TypeScript, Dart, Kotlin, Swift, Python and more &mdash; so your client stays in sync with your API automatically.",
+                    "npx get-dtos typescript https://localhost:5001", "gs-cmd-4",
+                    "Add ServiceStack Reference", docs + "/add-servicestack-reference-overview", last: true);
+            }
+        </ol>
+
+        <div class="mt-14 rounded-2xl border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/60 dark:bg-indigo-950/20 px-6 py-5 sm:flex sm:items-center sm:justify-between">
+            <div>
+                <p class="font-semibold text-gray-900 dark:text-gray-50">Prefer the full narrated version?</p>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">The docs walk through each file the template generates and why it's there.</p>
+            </div>
+            <a href="@docs/your-first-webservice-explained" class="mt-4 sm:mt-0 sm:ml-6 inline-flex flex-none items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 hover:no-underline transition">
+                Your first WebService explained
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ BATTERIES INCLUDED -->
+<section class="bg-white dark:bg-black">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">What you get without writing any UI</h2>
+            <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                Every ServiceStack App ships with these built in. They read your APIs' metadata, so they light up
+                the moment you add a DTO &mdash; no configuration, no extra packages.
+            </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            @{
+                void Card(string href, string img, string alt, string kicker, string title, string blurb, string hoverCls, string textCls)
+                {
+                    <a href="@href" class="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 hover:shadow-xl transition-all hover:no-underline @hoverCls">
+                        <div class="relative aspect-[16/10] overflow-hidden bg-gray-100 dark:bg-gray-900">
+                            <img src="@img" alt="@alt" loading="lazy"
+                                 class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"/>
+                        </div>
+                        <div class="flex flex-1 flex-col p-6">
+                            <p class="text-xs font-bold uppercase tracking-widest @textCls">@kicker</p>
+                            <h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-gray-50">@title</h3>
+                            <p class="mt-2 flex-1 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">@blurb</p>
+                            <span class="mt-4 inline-flex items-center text-sm font-semibold @textCls">
+                                Learn more
+                                <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.3 14.7a1 1 0 010-1.4L10.6 10L7.3 6.7a1 1 0 011.4-1.4l4 4a1 1 0 010 1.4l-4 4a1 1 0 01-1.4 0z" clip-rule="evenodd"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                }
+
+                Card("/auto-ui", "/img/pages/admin-ui/carousel/api-explorer.webp", "API Explorer",
+                    "/ui", "API Explorer", "A generated UI for every API in your App - call them, inspect responses and copy working client code in 10+ languages.",
+                    "hover:border-sky-400", "text-sky-600 dark:text-sky-400");
+
+                Card("/locode", "/img/pages/locode/northwind/screenshot.png", "Locode",
+                    "/locode", "Locode", "An instant, customizable CRUD app over your AutoQuery APIs. Enough to run a back-office without writing a front-end.",
+                    "hover:border-emerald-400", "text-emerald-600 dark:text-emerald-400");
+
+                Card(docs + "/admin-ui", "/img/pages/index/dashboard.webp", "Admin UI",
+                    "/admin-ui", "Admin UI", "Manage users and roles, browse your database and Redis, edit validation rules and inspect request logs - all from your running App.",
+                    "hover:border-indigo-400", "text-indigo-600 dark:text-indigo-400");
+
+                Card(docs + "/admin-ui-analytics", "/img/pages/index/analytics.webp", "Analytics",
+                    "Built in", "API Analytics", "See which APIs are called, by whom, how often and how fast - captured automatically into an embedded SQLite database.",
+                    "hover:border-violet-400", "text-violet-600 dark:text-violet-400");
+
+                Card(docs + "/background-jobs", "/img/pages/index/backgroundjobs.webp", "Background Jobs",
+                    "Durable", "Background Jobs", "Run and schedule durable background jobs backed by SQLite, with a UI to monitor, retry and inspect every execution.",
+                    "hover:border-amber-400", "text-amber-600 dark:text-amber-400");
+
+                Card("/autoquery", "/img/pages/autoquery-schema/create-booking.webp", "AutoQuery",
+                    "Zero boilerplate", "AutoQuery CRUD", "Declare a typed query API with a single class and get filtering, paging, sorting, auditing and full CRUD for free.",
+                    "hover:border-rose-400", "text-rose-600 dark:text-rose-400");
+            }
+        </div>
+
+        <div class="mt-10 text-center">
+            <a href="/features" class="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 px-6 py-3 text-sm font-semibold text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900 hover:no-underline transition">
+                See all ServiceStack features
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ PICK YOUR STACK -->
+<section class="border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950/60">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Bring your own front-end</h2>
+            <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                The same .NET back-end, paired with whichever UI you already know. Each has a maintained template
+                and an end-to-end guide.
+            </p>
+        </div>
+
+        <div class="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+
+            <a href="/react/" class="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/60 p-6 hover:border-cyan-400 hover:shadow-lg transition-all hover:no-underline">
+                <svg class="h-10 w-10 transition-transform group-hover:rotate-45 duration-700" viewBox="-11 -10.13 22 20.27" fill="none"><circle r="2" fill="#087ea4"/><g stroke="#087ea4"><ellipse rx="10" ry="4.5"/><ellipse rx="10" ry="4.5" transform="rotate(60)"/><ellipse rx="10" ry="4.5" transform="rotate(120)"/></g></svg>
+                <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">React</span>
+            </a>
+
+            <a href="/vue/" class="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/60 p-6 hover:border-emerald-400 hover:shadow-lg transition-all hover:no-underline">
+                <svg class="h-10 w-10 transition-transform group-hover:scale-110 duration-500" viewBox="0 0 256 221"><path fill="#41B883" d="M204.8 0H256L128 220.8L0 0h97.92L128 51.2L157.44 0z"/><path fill="#35495E" d="m0 0l128 220.8L256 0h-51.2L128 132.48L50.56 0z"/></svg>
+                <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Vue</span>
+            </a>
+
+            <a href="/blazor" class="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/60 p-6 hover:border-purple-400 hover:shadow-lg transition-all hover:no-underline">
+                <svg class="h-10 w-10 text-purple-600 transition-transform group-hover:scale-110 duration-500" viewBox="0 0 24 24" fill="currentColor"><path d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1z"/></svg>
+                <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Blazor</span>
+            </a>
+
+            <a href="@docs/templates/angular" class="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/60 p-6 hover:border-rose-400 hover:shadow-lg transition-all hover:no-underline">
+                <svg class="h-10 w-10 transition-transform group-hover:scale-110 duration-500" viewBox="0 0 256 256"><path fill="#E23237" d="M128 0L6.4 43.2l18.56 160.64L128 256l102.72-52.16l18.56-160.64z"/><path fill="#B52E31" d="M128 0v28.416v-.128V256l102.72-52.16l18.56-160.64z"/><path fill="#FFF" d="M128 29.056L52.288 199.36h28.224l15.232-38.016h64l15.232 38.016h28.224zm22.144 108.928h-44.288L128 84.736z"/></svg>
+                <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Angular</span>
+            </a>
+
+            <a href="/flutter" class="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/60 p-6 hover:border-sky-400 hover:shadow-lg transition-all hover:no-underline">
+                <svg class="h-10 w-10 transition-transform group-hover:scale-110 duration-500" viewBox="0 0 256 317"><path fill="#47C5FB" d="M157.666 0L0 157.667l48.8 48.8L255.268 0z"/><path fill="#47C5FB" d="M156.567 145.397h-.001l-83.29 83.29l48.998 49.895l48.7-48.7L255.268 145.4z"/><path fill="#00569E" d="m122.274 278.583l37.087 37.087h95.907l-84.236-84.236z"/><path fill="#00B5F8" d="m71.762 229.058l48.8-48.8l50.196 48.646l-48.7 48.7z"/></svg>
+                <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Flutter</span>
+            </a>
+
+            <a href="@docs/templates/mvc" class="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/60 p-6 hover:border-violet-400 hover:shadow-lg transition-all hover:no-underline">
+                <svg class="h-10 w-10 text-violet-600 transition-transform group-hover:scale-110 duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"/><path stroke-linecap="round" d="M4 9h16M9 9v12"/></svg>
+                <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Razor / MVC</span>
+            </a>
+        </div>
+
+        <!-- Languages -->
+        <div class="mt-20">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50">&hellip; and call your APIs from any language</h3>
+                <p class="mt-3 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                    <a href="@docs/add-servicestack-reference-overview" class="text-indigo-600 dark:text-indigo-400 hover:underline">Add ServiceStack Reference</a>
+                    generates native typed DTOs from your live API's metadata &mdash; no code-gen build step, no OpenAPI toolchain.
+                </p>
+            </div>
+
+            <div class="mt-10 flex flex-wrap justify-center gap-3">
+                @{
+                    var langs = new (string Name, string Icon, string Slug)[] {
+                        ("C#",         "csharp",     "csharp"),
+                        ("TypeScript", "typescript", "typescript"),
+                        ("JavaScript", "javascript", "javascript"),
+                        ("Python",     "python",     "python"),
+                        ("Dart",       "dart",       "dart"),
+                        ("Java",       "java",       "java"),
+                        ("Kotlin",     "kotlin",     "kotlin"),
+                        ("Swift",      "swift",      "swift"),
+                        ("PHP",        "php",        "php"),
+                        ("Go",         "go",         "go"),
+                        ("Rust",       "rust",       "rust"),
+                        ("F#",         "fsharp",     "fsharp"),
+                        ("VB.NET",     "vbnet",      "vbnet"),
+                        ("Ruby",       "ruby",       "ruby"),
+                    };
+                    foreach (var lang in langs)
+                    {
+                        <a href="@docs/@(lang.Slug)-add-servicestack-reference"
+                           class="group inline-flex items-center gap-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/60 px-4 py-2.5 hover:border-indigo-400 hover:shadow-md transition-all hover:no-underline">
+                            <img src="/img/langs/@(lang.Icon).svg" alt="" aria-hidden="true" loading="lazy"
+                                 class="h-6 w-6 object-contain transition-transform group-hover:scale-110"/>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">@lang.Name</span>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ GO DEEPER -->
+<section class="bg-white dark:bg-black">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Then go as deep as you need</h2>
+            <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                The parts of the docs most people reach for next, grouped by what you're trying to do.
+            </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+
+            @{
+                void LinkGroup(string title, string iconCls, string hoverCls, string icon, (string Text, string Href)[] links)
+                {
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <div class="flex h-9 w-9 flex-none items-center justify-center rounded-lg ring-1 ring-inset @iconCls">
+                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">@Html.Raw(icon)</svg>
+                            </div>
+                            <h3 class="text-base font-bold uppercase tracking-wide text-gray-900 dark:text-gray-50">@title</h3>
+                        </div>
+                        <ul class="mt-4 space-y-2.5 border-l border-gray-200 dark:border-gray-800 pl-4 ml-4">
+                            @foreach (var link in links)
+                            {
+                                <li>
+                                    <a href="@link.Href" class="text-[15px] text-gray-600 dark:text-gray-400 hover:underline @hoverCls">@link.Text</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                LinkGroup("Designing APIs", "bg-sky-500/10 text-sky-600 dark:text-sky-400 ring-sky-500/25", "hover:text-sky-600 dark:hover:text-sky-400",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"/>",
+                    new[] {
+                        ("Service API Design", docs + "/api-design"),
+                        ("Service Return Types", docs + "/service-return-types"),
+                        ("Design Message-based APIs", docs + "/design-message-based-apis"),
+                        ("Design RESTful Services", docs + "/design-rest-services"),
+                        ("Declarative Validation", docs + "/declarative-validation"),
+                        ("Error Handling", docs + "/error-handling"),
+                    });
+
+                LinkGroup("Data Access", "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/25", "hover:text-emerald-600 dark:hover:text-emerald-400",
+                    "<ellipse cx=\"12\" cy=\"6\" rx=\"8\" ry=\"3\"/><path stroke-linecap=\"round\" d=\"M4 6v12c0 1.657 3.582 3 8 3s8-1.343 8-3V6M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3\"/>",
+                    new[] {
+                        ("OrmLite - Fast, typed POCO ORM", docs + "/ormlite/"),
+                        ("AutoQuery", docs + "/autoquery/"),
+                        ("AutoQuery CRUD", docs + "/autoquery/crud"),
+                        ("Code-First DB Migrations", docs + "/ormlite/db-migrations"),
+                        ("Redis Client", docs + "/redis/"),
+                        ("Caching", docs + "/caching"),
+                    });
+
+                LinkGroup("Auth & Security", "bg-rose-500/10 text-rose-600 dark:text-rose-400 ring-rose-500/25", "hover:text-rose-600 dark:hover:text-rose-400",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z\"/>",
+                    new[] {
+                        ("Authentication overview", docs + "/auth/"),
+                        ("ASP.NET Identity Auth", docs + "/auth/identity-auth"),
+                        ("JWT Identity Auth", docs + "/auth/jwt-identity-auth"),
+                        ("API Keys", docs + "/auth/apikeys"),
+                        ("Restricting Services", docs + "/auth/restricting-services"),
+                        ("Add Auth to an existing project", "/start-auth"),
+                    });
+
+                LinkGroup("AI & LLMs", "bg-violet-500/10 text-violet-600 dark:text-violet-400 ring-violet-500/25", "hover:text-violet-600 dark:hover:text-violet-400",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386z\"/>",
+                    new[] {
+                        ("AI Chat & APIs", "/ai"),
+                        ("AI Chat overview", docs + "/chat/overview"),
+                        ("Install AI Chat", docs + "/chat/install"),
+                        ("MCP Server", docs + "/chat/mcp"),
+                        ("AI Server", docs + "/ai-server/"),
+                        ("Text to Blazor App", "/text-to-blazor"),
+                    });
+
+                LinkGroup("Running in Production", "bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-amber-500/25", "hover:text-amber-600 dark:hover:text-amber-400",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01\"/>",
+                    new[] {
+                        ("Background Jobs", docs + "/background-jobs"),
+                        ("Commands", docs + "/commands"),
+                        ("Logging & Profiling UI", docs + "/admin-ui-profiling"),
+                        ("SQLite Request Logs", docs + "/sqlite-request-logs"),
+                        ("Litestream replication", "/litestream"),
+                        ("Testing", docs + "/testing"),
+                    });
+
+                LinkGroup("Tooling", "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 ring-indigo-500/25", "hover:text-indigo-600 dark:hover:text-indigo-400",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z\"/><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\"/>",
+                    new[] {
+                        ("x dotnet tool", docs + "/dotnet-tool"),
+                        ("x new - project templates", docs + "/dotnet-new"),
+                        ("mix - Mix n' Match features", docs + "/mix-tool"),
+                        ("npx get-dtos", docs + "/npx-get-dtos"),
+                        ("Post Command - HTTP APIs", docs + "/post-command"),
+                        ("Modular Startup", docs + "/modular-startup"),
+                    });
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ LEARN & HELP -->
+<section class="relative overflow-hidden bg-slate-950 border-t border-white/10">
+    <div class="gs-drift absolute -top-24 right-1/4 h-96 w-96 rounded-full bg-indigo-600/20 blur-[120px] pointer-events-none"></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Keep learning &mdash; and get unstuck</h2>
+            <p class="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
+                Working demos to read, releases to follow, and real people to ask when something doesn't behave.
+            </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+            @{
+                void Tile(string href, string title, string blurb, string icon, string hoverCls, string iconCls, string textCls)
+                {
+                    <a href="@href" rel="noopener"
+                       class="group flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:bg-white/[0.07] transition-all hover:no-underline @hoverCls">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-inset @iconCls">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">@Html.Raw(icon)</svg>
+                        </div>
+                        <h3 class="mt-4 text-base font-bold text-white">@title</h3>
+                        <p class="mt-2 flex-1 text-sm text-slate-400 leading-relaxed">@blurb</p>
+                        <span class="mt-4 inline-flex items-center text-sm font-semibold @textCls">
+                            Open
+                            <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.3 14.7a1 1 0 010-1.4L10.6 10L7.3 6.7a1 1 0 011.4-1.4l4 4a1 1 0 010 1.4l-4 4a1 1 0 01-1.4 0z" clip-rule="evenodd"/></svg>
+                        </span>
+                    </a>
+                }
+
+                Tile("https://github.com/NetCoreApps/LiveDemos", "Live Demos",
+                    "Dozens of complete, running Apps with source - the fastest way to see an idea implemented end to end.",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4\"/>",
+                    "hover:border-sky-400/50", "bg-sky-500/15 text-sky-400 ring-sky-500/25", "text-sky-400");
+
+                Tile("/whatsnew", "What's New",
+                    "Every release, feature by feature, with the docs and demos that shipped alongside it.",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\"/>",
+                    "hover:border-emerald-400/50", "bg-emerald-500/15 text-emerald-400 ring-emerald-500/25", "text-emerald-400");
+
+                Tile("/posts/", "Blog & Videos",
+                    "Deep dives, release walkthroughs and screencasts from the team building ServiceStack.",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z\"/>",
+                    "hover:border-violet-400/50", "bg-violet-500/15 text-violet-400 ring-violet-500/25", "text-violet-400");
+
+                Tile("/training", "Training",
+                    "Structured, instructor-led training for teams that want to get productive quickly.",
+                    "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 14l9-5-9-5-9 5 9 5z\"/><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 14l6.16-3.422A12.083 12.083 0 0118 15.5a12.083 12.083 0 01-6 1.5a12.083 12.083 0 01-6-1.5a12.083 12.083 0 01-.16-4.922L12 14z\"/>",
+                    "hover:border-amber-400/50", "bg-amber-500/15 text-amber-400 ring-amber-500/25", "text-amber-400");
+            }
+        </div>
+
+        <!-- Help strip -->
+        <div class="mt-12 rounded-2xl border border-white/10 bg-white/[0.03] p-8 lg:flex lg:items-center lg:justify-between">
+            <div class="max-w-2xl">
+                <h3 class="text-xl font-bold text-white">Stuck on something?</h3>
+                <p class="mt-2 text-slate-400 leading-relaxed">
+                    Customers get prioritised support on the forums; everyone else is welcome on GitHub Discussions
+                    and StackOverflow. Bugs and feature requests belong on the issue tracker.
+                </p>
+            </div>
+            <div class="mt-6 lg:mt-0 lg:ml-8 flex flex-wrap gap-3">
+                <a href="https://forums.servicestack.net" class="inline-flex items-center rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-400 hover:no-underline transition">Customer Forums</a>
+                <a href="https://github.com/ServiceStack/Discuss/discussions" rel="noopener" class="inline-flex items-center rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-200 hover:bg-white/10 hover:text-white hover:no-underline transition">Discussions</a>
+                <a href="https://github.com/ServiceStack/Issues/issues" rel="noopener" class="inline-flex items-center rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-200 hover:bg-white/10 hover:text-white hover:no-underline transition">Report an Issue</a>
+                <a href="/support" class="inline-flex items-center rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-200 hover:bg-white/10 hover:text-white hover:no-underline transition">Support Plans</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ FINAL CTA -->
+<section class="bg-white dark:bg-black">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Ready when you are</h2>
+        <p class="mt-4 text-lg text-gray-500 dark:text-gray-400">
+            Free and open source. Pick a template, run it locally, and see how far you get before you need anything else.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="/start" class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-7 py-3.5 text-base font-bold text-white shadow-lg hover:bg-indigo-500 hover:no-underline transition">
+                Create your project
+            </a>
+            <a href="@docs/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 px-7 py-3.5 text-base font-semibold text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900 hover:no-underline transition">
+                Read the docs
+            </a>
+            <a href="/download" class="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 px-7 py-3.5 text-base font-semibold text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900 hover:no-underline transition">
+                Download &amp; Pricing
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+function gsCopy(id, btn) {
+    const el = document.getElementById(id)
+    if (!el) return
+    navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+        const svg = btn.querySelector('svg')
+        const original = svg.innerHTML
+        btn.classList.add('gs-copied')
+        svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>'
+        setTimeout(() => {
+            btn.classList.remove('gs-copied')
+            svg.innerHTML = original
+        }, 1600)
+    })
+}
+</script>
