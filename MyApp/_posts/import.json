@@ -2,13 +2,13 @@
   "version": 1,
   "metadata": {
     "defaults": {
-      "sourceUrl": "https://servicestack.net/posts/{name:/^[^_]+_(.+)$/}",
-      "docType": "post",
+      "docType": "blog",
       "status": "published",
       "product": "ServiceStack",
       "tags": [
-        "post"
-      ]
+        "blog"
+      ],
+      "sourceUrl": "https://servicestack.net/posts/{name:/^[^_]+_(.+)$/}"
     },
     "rules": []
   }
