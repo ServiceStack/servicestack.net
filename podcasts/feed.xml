@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Thu, 10 Sep 2026 16:07:13 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2026 16:44:24 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,22 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Gemini RAG - AI Answers Customers can Verify from your Content</title>
+        <link>https://servicestack.net/podcasts/gemini-rag</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/gemini-rag</guid>
+        <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-10T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/gemini-rag.mp3" length="17864833" type="audio/mpeg"/>
+        <category>ai</category>
+        <category>gemini</category>
+        <category>rag</category>
+        <description>Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag</description>
+        <itunes:summary><![CDATA[ Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag ]]></itunes:summary>
+        <itunes:duration>1231</itunes:duration>
+        <itunes:keywords>ai,gemini,rag</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>ServiceStack v10.2 Release</title>
         <link>https://servicestack.net/podcasts/v10-2-release</link>
@@ -857,25 +873,6 @@
         <itunes:summary><![CDATA[ Taking a deep dive into C# Background Jobs, a new library for .NET 8 Apps for simplifying task scheduling and management ]]></itunes:summary>
         <itunes:duration>497</itunes:duration>
         <itunes:keywords>jobs,admin-ui,commands,api</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack v8.4 Release</title>
-        <link>https://servicestack.net/podcasts/v8-4-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-4-release</guid>
-        <pubDate>Wed, 11 Sep 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-09-11T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-4-release.mp3" length="9605805" type="audio/mpeg"/>
-        <category>release</category>
-        <category>jobs</category>
-        <category>logging</category>
-        <category>admin-ui</category>
-        <category>commands</category>
-        <category>api</category>
-        <description>The latest features and improvements in ServiceStack v8.4 covering Background Jobs, SQLite Request Logs, Scalable SQLite Apps and more!</description>
-        <itunes:summary><![CDATA[ The latest features and improvements in ServiceStack v8.4 covering Background Jobs, SQLite Request Logs, Scalable SQLite Apps and more! ]]></itunes:summary>
-        <itunes:duration>600</itunes:duration>
-        <itunes:keywords>release,jobs,logging,admin-ui,commands,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
