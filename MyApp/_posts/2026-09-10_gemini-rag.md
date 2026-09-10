@@ -1,5 +1,5 @@
 ---
-title: Gemini RAG - Your Content, Answers Customers Can Verify
+title: Gemini RAG - AI Answers Customers can Verify from your Content
 summary: Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag
 tags: [ai, gemini, rag]
 author: Demis
