@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>Gemini RAG - Your Content, Answers Customers Can Verify - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag" />
+    <meta property="og:url" content="https://servicestack.net/posts/gemini-rag" />
+    <meta property="og:title" content="Gemini RAG - Your Content, Answers Customers Can Verify" />
+    <meta property="og:image" content="./img/posts/gemini-rag/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Gemini RAG - Your Content, Answers Customers Can Verify
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/gemini-rag/bg.webp" alt="Gemini RAG - Your Content, Answers Customers Can Verify Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/ai" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ai</a>
+                        <a href="posts/tagged/gemini" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">gemini</a>
+                        <a href="posts/tagged/rag" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">rag</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-09-10T00:00:00.0000000">September 10, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>14 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <h2 id="put-the-content-you-already-have-to-work">Put the content you already have to work<a class="header-anchor" href="javascript:;" onclick="location.hash='#put-the-content-you-already-have-to-work'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Every organization already has the knowledge its customers are looking for. It's in the documentation
+repo, the product site, the blog, the support PDFs and the pages of a sister site nobody remembers the
+URL of. The problem is rarely that the answer doesn't exist - it's that nobody can find it, and nobody
+can tell whether an AI's confident reply actually came from it.</p>
+<p>Building a trustworthy RAG system to fix that normally means assembling a crawler, a document
+catalogue, a vector database, synchronization jobs, an administration UI, an embeddable chat widget and a
+search box - before a single customer gets an answer.</p>
+<p><strong>Gemini RAG</strong> replaces that project with a built-in <a href="/posts/ai-chat-v4">AI Chat</a> extension. It combines
+Google Gemini's <a href="https://ai.google.dev/gemini-api/docs/file-search">File Search</a> retrieval with
+ServiceStack's content ingestion, metadata management, local data ownership and AI Chat UI - living
+inside the ServiceStack App you already run, using its users, its database and its security boundary.</p>
+<p>Import files, documentation repositories or entire websites into isolated <strong>File Stores</strong>, curate them
+with metadata, then publish two public experiences from the same content:</p>
+<ul>
+<li>a citation-backed <strong>Website Assistant</strong> that answers from your approved documents, and</li>
+<li>an instant <strong>Website Search</strong> answered entirely by your own database, at <strong>no cost per query</strong>.</li>
+</ul>
+<p>Both are embedded in any website with a single script tag.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-28-chat-ask.webp" title="A grounded answer with citations beside every supported claim"></screenshot></p>
+<div class="tip custom-block">
+            <p class="custom-block-title">You've probably used it already</p><p>The <strong>Search</strong> box and <strong>Ask AI</strong> assistant on <a href="https://docs.servicestack.net">docs.servicestack.net</a> are
+both published Gemini RAG deployments, indexed from the same Markdown and Razor pages that power the site.</p>
+</div>
+<p><gemini-pipeline></gemini-pipeline></p>
+<h2 id="everything-needed-to-run-a-trusted-knowledge-system">Everything needed to run a trusted knowledge system<a class="header-anchor" href="javascript:;" onclick="location.hash='#everything-needed-to-run-a-trusted-knowledge-system'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Customer benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Managed File Stores</strong></td>
+<td>Separate knowledge by product, team, customer, access boundary or lifecycle.</td>
+</tr>
+<tr>
+<td><strong>Multiple ingestion paths</strong></td>
+<td>Upload files and ZIPs, synchronize maintained folders, or crawl complete websites.</td>
+</tr>
+<tr>
+<td><strong>Previewable synchronization</strong></td>
+<td>See new, changed, removed and unchanged documents before committing an import or paying for embedding work.</td>
+</tr>
+<tr>
+<td><strong>Cross-site knowledge</strong></td>
+<td>Combine several websites and repositories behind one Assistant and one Search box.</td>
+</tr>
+<tr>
+<td><strong>Metadata-scoped retrieval</strong></td>
+<td>Search only the category, doc type, status, locale, product, version and tags relevant to each experience.</td>
+</tr>
+<tr>
+<td><strong>Grounded answers and citations</strong></td>
+<td>Keep responses anchored to indexed content and let readers open the evidence behind every claim.</td>
+</tr>
+<tr>
+<td><strong>Embeddable Website Assistants</strong></td>
+<td>A branded, responsive AI support experience on any site with one script tag.</td>
+</tr>
+<tr>
+<td><strong>Model-free Website Search</strong></td>
+<td>Instant <kbd>⌘K</kbd> documentation search answered by your own RDBMS, at no cost per query.</td>
+</tr>
+<tr>
+<td><strong>Search &amp; traffic analytics</strong></td>
+<td>See what visitors search for, what returns nothing, and optionally chart first-party traffic without a third-party tracker.</td>
+</tr>
+<tr>
+<td><strong>Conversation review</strong></td>
+<td>Read what customers actually ask, find documentation gaps and improve the source material.</td>
+</tr>
+<tr>
+<td><strong>Operational visibility</strong></td>
+<td>Monitor uploads, audit metadata coverage and reconcile your catalogue with Gemini's indexed state.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="your-knowledge-base-lives-in-your-app">Your knowledge base lives in your App<a class="header-anchor" href="javascript:;" onclick="location.hash='#your-knowledge-base-lives-in-your-app'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Most hosted RAG services ask you to hand over your content, manage another set of user accounts and
+trust an opaque index you can't inspect. Gemini RAG takes the opposite approach.</p>
+<p>AI Chat keeps the <strong>authoritative</strong> document catalogue, cached source files, imports, metadata, local
+Search index, published widgets, analytics, Assistants and conversation history in your App and its
+OrmLite database. Gemini File Stores hold only the indexed copies used for semantic retrieval.</p>
+<p><data-ownership></data-ownership></p>
+<p>That split has practical consequences:</p>
+<ul>
+<li><strong>You can always see what's indexed</strong> - and what isn't - without asking a third party.</li>
+<li><strong>Your existing users manage it</strong> - Gemini RAG inherits AI Chat's <a href="https://docs.servicestack.net/chat/auth">Integrated Auth</a>,
+so File Stores and catalogues are managed with the accounts and roles your App already has, and
+write access can be restricted to a role like <code>Admin</code>.</li>
+<li><strong>Your backups cover it</strong> - back up the database and AI Chat's <code>App_Data</code> together and you have
+everything needed to rebuild the index.</li>
+<li><strong>No Google SDK dependency</strong> - the extension talks directly to Gemini's HTTP APIs.</li>
+</ul>
+<h2 id="bring-files-folders-and-websites-into-one-pipeline">Bring files, folders and websites into one pipeline<a class="header-anchor" href="javascript:;" onclick="location.hash='#bring-files-folders-and-websites-into-one-pipeline'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Whatever shape your knowledge is in today, there's an ingestion path that doesn't require writing an
+indexer:</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-import-methods.webp" title="Upload files, synchronize folders or crawl a website"></screenshot></p>
+<h3 id="upload-files-and-zips">Upload files and ZIPs<a class="header-anchor" href="javascript:;" onclick="location.hash='#upload-files-and-zips'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Drop in PDFs, Markdown, HTML, CSV, JSON, YAML and other supported documents. A ZIP is expanded safely
+and its folder structure becomes browsable categories automatically, while hidden files, dependencies
+and build output are excluded for you. HTML and Razor <code>.cshtml</code> pages are converted to clean Markdown
+first, so rendered content is searchable without leaking server-side directives into results.</p>
+<h3 id="synchronize-maintained-folders">Synchronize maintained folders<a class="header-anchor" href="javascript:;" onclick="location.hash='#synchronize-maintained-folders'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Point a folder import at a documentation repo with include/exclude globs, a category root and metadata
+rules, then <strong>save it as a recurring import</strong>. Re-run it whenever the source moves on and only the
+documents that actually changed are embedded again - the saved source key identifies the same document
+across runs while separate content and metadata hashes decide what changed.</p>
+<p>When an upstream file disappears its indexed copy is removed and a visible tombstone is kept, while a
+deletion safety rail refuses an unexpectedly large removal - protecting you from a mistyped path or an
+incomplete source listing.</p>
+<p>Import configuration can also live alongside the content itself in a versioned <code>import.json</code>, with
+nested manifests inheriting and overriding settings for the folders beneath them:</p>
+<pre><code class="language-json">{
+  &quot;version&quot;: 1,
+  &quot;metadata&quot;: {
+    &quot;defaults&quot;: {
+      &quot;product&quot;: &quot;ServiceStack&quot;,
+      &quot;status&quot;: &quot;published&quot;,
+      &quot;tags&quot;: [&quot;docs&quot;]
+    },
+    &quot;rules&quot;: [
+      { &quot;match&quot;: &quot;auth/**/*.md&quot;, &quot;set&quot;: { &quot;tags&quot;: [&quot;auth&quot;] } }
+    ]
+  },
+  &quot;transforms&quot;: [
+    {
+      &quot;match&quot;: &quot;**/*.md&quot;,
+      &quot;pattern&quot;: &quot;\\nEdit this page.*$&quot;,
+      &quot;replacement&quot;: &quot;&quot;,
+      &quot;flags&quot;: &quot;gim&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="crawl-a-website-you-dont-own-the-source-of">Crawl a website you don't own the source of<a class="header-anchor" href="javascript:;" onclick="location.hash='#crawl-a-website-you-dont-own-the-source-of'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Enter a start URL and crawl the site into a <strong>private Markdown workspace</strong>. Include and exclude paths,
+page and depth limits, query-string handling, <code>robots.txt</code>, <code>noindex</code>, canonical URLs and duplicate
+content are all handled explicitly. Ordered regex transforms then strip navigation and boilerplate, and a
+read-only page browser lets you inspect the cleaned result <strong>before anything is sent to Gemini</strong>.</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4"
+:images="{
+'Define crawl boundaries': '/img/posts/gemini-rag/gemini-04-import-web-crawl-config.webp',
+'Clean pages with previewable transforms': '/img/posts/gemini-rag/gemini-06-import-web-crawl-transforms-applied.webp',
+}"></screenshots-gallery></p>
+<h3 id="see-the-diff-before-you-pay-for-it">See the diff before you pay for it<a class="header-anchor" href="javascript:;" onclick="location.hash='#see-the-diff-before-you-pay-for-it'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Folder and website imports are always previewed first. Every document is classified as <strong>added</strong>,
+<strong>updated</strong>, <strong>metadata-only</strong>, <strong>unchanged</strong>, <strong>missing</strong> or <strong>failed</strong>, so embedding work and
+destructive changes are visible before they're applied. Only <strong>Import N documents</strong> commits the
+change.</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4"
+:images="{
+'Configure a folder import': '/img/posts/gemini-rag/gemini-23-import-folder.webp',
+'Preview what will change': '/img/posts/gemini-rag/gemini-25-import-folder-preview.webp',
+}"></screenshots-gallery></p>
+<p>Uploads use bounded concurrency with retries, and pending work is tracked in the database rather than
+an in-memory queue - so an App restart mid-import resumes where it left off instead of silently losing
+documents.</p>
+<p><gemini-workflow></gemini-workflow></p>
+<h2 id="one-assistant-that-knows-every-site-you-maintain">One Assistant that knows every site you maintain<a class="header-anchor" href="javascript:;" onclick="location.hash='#one-assistant-that-knows-every-site-you-maintain'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>A File Store isn't tied to one website. Point as many saved imports at it as you like - docs repos,
+blog posts, Razor marketing pages, product sites you only have the HTML of - and every one of them lands
+in the same catalogue, behind <strong>one Assistant</strong> and <strong>one Search box</strong>.</p>
+<p>The File Store behind our own documentation combines <strong>five saved imports from four independently
+maintained sites</strong> - <a href="https://docs.servicestack.net/">docs.servicestack.net</a>,
+<a href="https://servicestack.net/">servicestack.net</a>, <a href="https://react-templates.net/">react-templates.net</a> and
+<a href="https://sharpscript.net/">sharpscript.net</a> - into 813 documents:</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-27-explore.webp" title="Five imports, four websites, one File Store"></screenshot></p>
+<ul>
+<li><strong>Your users ask once.</strong> Nobody has to guess which of your sites holds the answer, or repeat the
+same question in three different search boxes.</li>
+<li><strong>Answers cross site boundaries.</strong> &quot;How do I use SharpScript in a Razor page?&quot; can draw on the docs,
+the SharpScript reference and a blog post at once - a connection no single-site search can make.</li>
+<li><strong>Each source stays its own folder.</strong> Every import lands under its own top-level category, so one
+site's content can be browsed, filtered, re-synced or deleted without touching the rest.</li>
+<li><strong>There's one thing to run.</strong> One store to sync, one Assistant to configure, one widget to embed and
+one analytics dashboard - instead of a separate RAG stack per website.</li>
+</ul>
+<h2 id="retrieve-the-right-knowledge-not-merely-more-of-it">Retrieve the right knowledge, not merely more of it<a class="header-anchor" href="javascript:;" onclick="location.hash='#retrieve-the-right-knowledge-not-merely-more-of-it'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>A large corpus only becomes useful when retrieval can exclude the stale, the unapproved and the
+irrelevant. Every document carries structured metadata - <strong>category, doc type, status, locale,
+product, versions and tags</strong> - that becomes a server-enforced filter:</p>
+<pre><code class="language-sql">status=&quot;published&quot; AND product=&quot;servicestack&quot;
+  AND versions:&quot;v10&quot; AND NOT status=&quot;deprecated&quot;
+</code></pre>
+<p>The Explorer turns that metadata into navigable categories, facet filters and <strong>coverage reports</strong>
+that find the documents missing the metadata your filters depend on - before a customer finds the gap
+for you. Metadata can be corrected with <strong>staged bulk edits</strong> that show how many documents will change,
+then pushed to Gemini as one intentional re-indexing pass.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-30-explore-filters.webp" title="Facet filters compose into the same filter Gemini File Search receives"></screenshot></p>
+<h3 id="citations-that-lead-somewhere-useful">Citations that lead somewhere useful<a class="header-anchor" href="javascript:;" onclick="location.hash='#citations-that-lead-somewhere-useful'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>An answer is only verifiable if its citation opens the real page. <strong>Source URL templates</strong> build a
+canonical public link for every document from path variables, a Razor page's <code>@page</code> route, or a regex
+over the filename:</p>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>https://docs.example.com/{pathNoExt}</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>https://servicestack.net{route}</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<div class="not-prose copy cp flex cursor-pointer mb-3" onclick="copy(this)">
+                <div class="flex-grow bg-gray-700">
+                    <div class="pl-4 py-1 pb-1.5 align-middle text-lg text-white"><p><code>https://servicestack.net/posts/{name:/^[^_]+_(.+)$/}</code></p>
+</div>
+                    </div>
+                <div class="flex">
+                    <div class="bg-sky-500 text-white p-1.5 pb-0">
+                        <svg class="copied w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="nocopy w-6 h-6" title="copy" fill='none' stroke='white' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2'></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+<p>The last template turns <code>2026-09-04_servicestack-pdf.md</code> into
+<code>https://servicestack.net/posts/servicestack-pdf</code>, which is exactly how this blog's posts are cited.
+Enable <strong>Require a Source URL</strong> and documents that can't resolve to a public page - like Razor layouts
+and partials - are excluded from the index entirely.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-import-webcrawl-sharpscript-import-metadata.webp" title="Metadata defaults and a regex Source URL template"></screenshot></p>
+<h2 id="ask-grounded-questions-and-inspect-the-evidence">Ask grounded questions and inspect the evidence<a class="header-anchor" href="javascript:;" onclick="location.hash='#ask-grounded-questions-and-inspect-the-evidence'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Start a chat over the whole File Store, a single document, or the <strong>exact filtered view</strong> currently on
+screen. The filter you see in Explorer is the filter passed to Gemini, so what you test is what a
+published experience will retrieve - and a public product assistant and an internal research chat can
+share a corpus without sharing a scope.</p>
+<p>Grounded answers stream as Markdown with citation markers beside supported claims. Expand <strong>Sources</strong>
+to read the retrieved excerpt behind each claim or follow it to its canonical URL. Citations are retained
+as the conversation continues, so an answer stays auditable instead of asking readers to trust fluent
+output.</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4"
+:images="{
+'Chat scoped to the filtered view': '/img/posts/gemini-rag/gemini-31-chat-filters.webp',
+'The evidence behind it': '/img/posts/gemini-rag/gemini-29-chat-ask-sources.webp',
+}"></screenshots-gallery></p>
+<h2 id="publish-a-website-assistant-with-one-script-tag">Publish a Website Assistant with one script tag<a class="header-anchor" href="javascript:;" onclick="location.hash='#publish-a-website-assistant-with-one-script-tag'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Any File Store - or a server-enforced slice of one - becomes a branded, citation-backed support
+experience on any website:</p>
+<pre><code class="language-html">&lt;script
+  src=&quot;https://app.example.com/chat/ext/gemini/public/assistants/widget.js?g=abc123&quot;
+  async&gt;
+&lt;/script&gt;
+</code></pre>
+<p>The self-contained widget streams Markdown answers with citations, suggested questions and a welcome
+message, supports maximized reading and <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>K</kbd> launch, and keeps
+each visitor's session across page loads. It renders inside a <strong>Shadow DOM</strong>, so the host site's CSS
+can't break it and its keyboard handling can't trigger the site's shortcuts. Float it in a corner, or
+mount its launcher inside your own nav bar.</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4"
+:images="{
+'Identity and suggested questions': '/img/posts/gemini-rag/gemini-41-assistant-identity.webp',
+'Server-enforced document scope': '/img/posts/gemini-rag/gemini-43-assistant-document.webp',
+}"></screenshots-gallery></p>
+<h3 id="the-host-page-can-style-it.it-cant-weaken-it">The host page can style it. It can't weaken it.<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-host-page-can-style-it.it-cant-weaken-it'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Retrieval scope, the private system prompt, model selection, allowed origins and rate limits stay on the
+server - they never appear in the embed code. The host page may override safe presentation choices like
+theme, accent color, launcher icon and position, and nothing else.</p>
+<p>Answers can be held to an evidence standard that's enforced on the server, not merely requested in a
+prompt. With <strong>Require retrieved evidence</strong> enabled, a response that comes back with fewer than your
+<strong>minimum citations</strong> is replaced by your fallback message - and streaming is buffered until the
+evidence has been checked, so unsupported text is never shown to a visitor.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-assistant-required-citations.webp" title="Server-enforced grounding controls"></screenshot></p>
+<h3 id="purpose-built-assistants-from-one-knowledge-base">Purpose-built assistants from one knowledge base<a class="header-anchor" href="javascript:;" onclick="location.hash='#purpose-built-assistants-from-one-knowledge-base'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Seven editable <strong>behavior templates</strong> - documentation guide, technical troubleshooter, customer support,
+developer/API assistant, product advisor, onboarding guide and policy &amp; procedures - provide strong
+starting points. Combined with response styles, custom prompts and document scopes, the same knowledge
+base can power several focused experiences without duplicating its content.</p>
+<p>Every Assistant is fully brandable with <strong>Auto</strong>, <strong>Light</strong>, <strong>Dark</strong>, <strong>Nord</strong>, <strong>Matrix</strong> and
+<strong>Soft Pink</strong> themes, each a preset you can override color by color, plus a customizable launcher:</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-2 md:grid-cols-4 gap-4"
+:images="{
+'Light': '/img/posts/gemini-rag/gemini-44-assistant-appearance-light.webp',
+'Dark': '/img/posts/gemini-rag/gemini-45-assistant-appearance-dark.webp',
+'Nord': '/img/posts/gemini-rag/gemini-46-assistant-appearance-nord.webp',
+'Matrix': '/img/posts/gemini-rag/gemini-12-assistant-appearance-matrix.webp',
+}"></screenshots-gallery></p>
+<p>Assistants follow a complete draft, publish, unpublish, archive and restore lifecycle. Regenerating a
+deployment ID invalidates old embeds immediately, and <strong>Run diagnostics</strong> checks publication, store
+access, indexed documents, model selection, allowed origins and the widget URL before customers ever
+see it.</p>
+<h2 id="publish-site-search-that-costs-nothing-per-query">Publish site search that costs nothing per query<a class="header-anchor" href="javascript:;" onclick="location.hash='#publish-site-search-that-costs-nothing-per-query'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The same imported documents also build a <strong>full-text index inside the database your App already uses</strong>,
+so one content pipeline powers two public experiences. <strong>Website Search</strong> is completely independent of
+Gemini: queries never reach a model, never incur usage costs and never leave your App.</p>
+<pre><code class="language-html">&lt;script
+  src=&quot;https://app.example.com/chat/ext/gemini/public/searches/widget.js?g=abc123&quot;
+  async&gt;
+&lt;/script&gt;
+</code></pre>
+<p><search-engine-matrix :columns="2"></search-engine-matrix></p>
+<p>The widget gives visitors the interaction they already expect from a documentation site:
+<kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>K</kbd> and <kbd>/</kbd> shortcuts, keyboard navigation, grouped
+results with match highlighting, infinite scrolling and recently opened links. Results open the
+document's canonical page and anchor, or a rendered in-place preview when it has none.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-61-search-widget.webp" title="The published Website Search widget"></screenshot></p>
+<h3 id="tune-relevance-against-real-results">Tune relevance against real results<a class="header-anchor" href="javascript:;" onclick="location.hash='#tune-relevance-against-real-results'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>One consistent ranking model runs across every database, with tunable weights for titles, headings, body
+text, exact phrases, exact titles, content freshness and preferred document types. Every adjustment
+re-queries immediately against the same term, so relevance is tuned against actual results instead of
+guessed at - and across a multi-site store you decide which sources and document types should win.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-59-search-ranking.webp" title="Ranking weights beside live test results"></screenshot></p>
+<p><two-experiences></two-experiences></p>
+<h2 id="learn-what-your-visitors-are-looking-for">Learn what your visitors are looking for<a class="header-anchor" href="javascript:;" onclick="location.hash='#learn-what-your-visitors-are-looking-for'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="search-analytics">Search analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#search-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Every published Search reports its own demand and quality signals without adding any model usage:
+total searches, click-through rates, popular documents and the latest queries with their originating
+page. Related queries are grouped by normalized wording so near-identical phrasings count as one intent,
+and <strong>no-result searches point directly at the documentation you haven't written yet</strong>.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-search-searches.webp" title="Customer searches grouped by intent, with no-result queries"></screenshot></p>
+<h3 id="optional-first-party-website-analytics">Optional first-party website analytics<a class="header-anchor" href="javascript:;" onclick="location.hash='#optional-first-party-website-analytics'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Because the Search script is already on every page, it can optionally double as a lightweight website
+analytics system - page views, visitors, sessions, bounce rate, load times, referrers, campaigns,
+devices and platforms, charted over 24 hours, 7, 30 or 90 days.</p>
+<p>It's <strong>off by default</strong> and privacy-respecting by design: no cookies, no precise location, IPs
+anonymized to an IPv4 <code>/24</code> or IPv6 <code>/48</code>, Do Not Track honored, known bots and your own IPs excluded,
+retention enforced automatically, and an optional consent callback to gate collection entirely. IP
+geography is only resolved if you explicitly register a resolver. The data stays in your database
+rather than a third party's.</p>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-2 gap-4"
+:images="{
+'Website traffic': '/img/posts/gemini-rag/gemini-search-analytics-results.webp',
+'Privacy controls': '/img/posts/gemini-rag/gemini-62-search-analytics.webp',
+}"></screenshots-gallery></p>
+<h3 id="close-the-loop-with-every-conversation">Close the loop with every conversation<a class="header-anchor" href="javascript:;" onclick="location.hash='#close-the-loop-with-every-conversation'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Website Assistant conversations, messages and citations are retained server-side for your team to
+review, with each conversation showing the page it started on. Discover what visitors actually need,
+find weak or missing coverage and improve the source material - then the next synchronized import
+improves every Assistant and search result grounded in it.</p>
+<p><screenshot src="/img/posts/gemini-rag/gemini-assistant-conversations.webp" title="Reviewing customer conversations and their citations"></screenshot></p>
+<h2 id="maintainable-long-after-the-first-demo">Maintainable long after the first demo<a class="header-anchor" href="javascript:;" onclick="location.hash='#maintainable-long-after-the-first-demo'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The hard part of a knowledge base isn't the first import - it's knowing months later what's indexed,
+what drifted and what quietly failed. Gemini RAG is built for that second year:</p>
+<ul>
+<li><strong>Restart-safe workers</strong> - both the Gemini upload worker and the local Search indexer track desired and
+completed hashes in the database, so interrupted work resumes instead of disappearing.</li>
+<li><strong>Failures stay visible</strong> - a failed document keeps its provider error for inspection and one-click
+retry rather than silently vanishing from the corpus.</li>
+<li><strong>Reconciliation</strong> - <strong>Sync Store</strong> compares your catalogue against Gemini and reports missing
+documents, metadata drift and duplicate indexed copies, with links straight to the affected filter.</li>
+<li><strong>Index health</strong> - total, indexed, pending, stale and failed counts, the active database provider,
+last successful index time and recent errors, at a glance.</li>
+<li><strong>Pre-flight diagnostics</strong> - validate every Search and Assistant deployment before customers hit it.</li>
+<li><strong>Deletion you can reason about</strong> - destructive operations summarize exactly what they cascade through
+and require typed-name confirmation.</li>
+</ul>
+<p><screenshots-gallery class="not-prose mb-8" grid-class="grid grid-cols-1 md:grid-cols-3 gap-4"
+:images="{
+'Index health': '/img/posts/gemini-rag/gemini-search-index-health.webp',
+'Local and remote reconciliation': '/img/posts/gemini-rag/gemini-21-filestore-sync.webp',
+'Deployment diagnostics': '/img/posts/gemini-rag/gemini-search-deployment-diagnostics.webp',
+}"></screenshots-gallery></p>
+<h2 id="no-vector-database-bill">No vector database bill<a class="header-anchor" href="javascript:;" onclick="location.hash='#no-vector-database-bill'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Managed RAG architectures commonly carry a recurring charge just to keep embeddings stored. With Gemini
+File Search, Google currently charges for embeddings when documents are <strong>indexed</strong>, while <strong>file storage
+and query-time embeddings are free</strong>:</p>
+<p><storage-economics></storage-economics></p>
+<p>An organization can therefore maintain durable knowledge bases and pay primarily when content is indexed
+and when users actually ask - while previewed imports, content hashing and deduplication make sure the
+same document is never paid for twice. Website Search adds no model cost at all.</p>
+<div class="info custom-block">
+            <p class="custom-block-title">INFO</p><p>Pricing and limits are Google's and can change - check the current
+<a href="https://ai.google.dev/gemini-api/docs/file-search">Gemini File Search pricing and limits</a> before deploying.</p>
+</div>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Gemini RAG is a built-in AI Chat extension for <strong>.NET 8+</strong> ServiceStack Apps. It enables itself
+automatically once the App has a Gemini API key and an <code>IDbConnectionFactory</code> for its local catalogue.</p>
+<p><strong>1. Add AI Chat</strong> to your App:</p>
+<p><shell-command>npx add-in chat</shell-command></p>
+<p><strong>2. Add a Gemini API key</strong> from <a href="https://aistudio.google.com/">Google AI Studio</a> to the App's
+environment, and make sure at least one Google Gemini chat model is enabled in AI Chat:</p>
+<pre><code class="language-bash">GOOGLE_API_KEY=your_api_key
+# or
+GEMINI_API_KEY=your_api_key
+</code></pre>
+<p><strong>3. Create a File Store</strong> from the <strong>Gemini</strong> icon in the <code>/chat</code> toolbar, then import a few documents.
+The quickest start is a folder import pointed at the docs folder of a repo you already have.</p>
+<p><strong>4. Ask your first grounded question</strong> from <strong>New Chat</strong> and expand <strong>Sources</strong> to inspect the
+evidence.</p>
+<p><strong>5. Publish</strong> a <strong>Search</strong> widget for instant navigation and an <strong>Assistant</strong> for grounded answers -
+two script tags, one set of curated documents.</p>
+<p>See the <a href="https://docs.servicestack.net/rag">Gemini RAG</a> overview, or dive into the docs:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/chat/gemini-rag">Overview &amp; Setup</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-imports">Importing Documents</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-crawling">Crawling Websites</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-metadata">Metadata &amp; Source URLs</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-explore">Explore &amp; Ask</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-assistants">AI Assistants</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-search">Website Search</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-analytics">Search Analytics &amp; Privacy</a></li>
+<li><a href="https://docs.servicestack.net/chat/gemini-operations">Operations &amp; Troubleshooting</a></li>
+</ul>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/servicestack-pdf">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/servicestack-pdf/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/servicestack-pdf" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs">
+                                                    ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Design Typst PDFs with AI Chat, publish validated templates, generate typed C# models and render production documents from your ServiceStack APIs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-04T00:00:00.0000000">September 4, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>13 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/autoquery-schema">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/autoquery-schema/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/autoquery-schema" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Instant CRUD Apps with AutoQuery Schemas">
+                                                    Instant CRUD Apps with AutoQuery Schemas
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Give AutoQuerySchema one /auto/{DataModel}.json document and it renders a complete, authorized CRUD application</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Instant CRUD Apps with AutoQuery Schemas background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-01T00:00:00.0000000">September 1, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>13 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/api-schema">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/api-schema/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/api-schema" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Richer APIs and Auto UIs with API Schemas">
+                                                    Richer APIs and Auto UIs with API Schemas
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Every ServiceStack API now includes a portable schema that lets generic UIs describe, render and execute it</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Richer APIs and Auto UIs with API Schemas background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-31T00:00:00.0000000">August 31, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>20 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/api-tools">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/api-tools/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/api-tools" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP">
+                                                    Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Turn your existing ServiceStack APIs into safe, discoverable AI tools for AI.Chat and every MCP-compatible assistant like Claude Code, Claude Desktop, Codex and OpenCode.</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-08-25T00:00:00.0000000">August 25, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>18 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/gemini-rag.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://servicestack.net/getting-started" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Getting Started</a>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/getting-started"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
