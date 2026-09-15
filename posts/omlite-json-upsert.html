@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>OrmLite gets type-safe JSON access and Upserts - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Query JSON columns with typed C# expressions that run unchanged on SQLite, PostgreSQL, SQL Server and MySQL, and insert-or-update rows in a single native statement with the new Upsert APIs" />
+    <meta property="og:url" content="https://servicestack.net/posts/omlite-json-upsert" />
+    <meta property="og:title" content="OrmLite gets type-safe JSON access and Upserts" />
+    <meta property="og:image" content="./img/posts/omlite-json-upsert/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                OrmLite gets type-safe JSON access and Upserts
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'omlite-json-upsert', title:'OrmLite gets type-safe JSON access and Upserts', src:'https://media.servicestack.com/podcasts/omlite-json-upsert.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=omlite-json-upsert&amp;source=post&amp;version=8.10.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/omlite-json-upsert/bg.webp" alt="OrmLite gets type-safe JSON access and Upserts Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                        <a href="posts/tagged/ormlite" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ormlite</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-09-14T00:00:00.0000000">September 14, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>10 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <h2 id="two-everyday-data-problems-solved-properly">Two everyday data problems, solved properly<a class="header-anchor" href="javascript:;" onclick="location.hash='#two-everyday-data-problems-solved-properly'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Two tasks come up in almost every data-driven application, and both have traditionally forced an awkward
+compromise.</p>
+<p><strong>Querying JSON columns.</strong> Semi-structured data - order payloads, event bodies, settings, integration
+responses - fits naturally in a JSON column. But the moment you need to filter on something inside it, you
+either give up typed queries and hand-write provider-specific JSON SQL, or flatten the document into columns
+it doesn't naturally fit.</p>
+<p><strong>Insert-or-update.</strong> Imports, synchronization jobs, event consumers and retryable workers all want the same
+thing: <em>create this row, or bring the existing one up to date</em>. Doing that safely has meant querying whether
+the row exists first - an extra round trip, with a race window between the check and the write.</p>
+<p><strong>ServiceStack v10.2</strong> makes both first-class in OrmLite, with the same typed APIs across <strong>SQLite</strong>,
+<strong>PostgreSQL</strong>, <strong>SQL Server</strong> and <strong>MySQL</strong>:</p>
+<pre><code class="language-csharp">// Filter on values inside a JSON document with ordinary C#
+var priorityWaOrders = db.Select(db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Customer.Address.State == &quot;WA&quot; &amp;&amp;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Tags.Contains(&quot;priority&quot;)));
+
+// Insert the row if it's new, update it if it isn't - in one statement
+db.Upsert(customer);
+</code></pre>
+<h2 id="portable-type-safe-json-queries">Portable, type-safe JSON queries<a class="header-anchor" href="javascript:;" onclick="location.hash='#portable-type-safe-json-queries'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><code>Sql.Json&lt;T&gt;()</code> marks a column as a JSON document with C# Data Model <code>T</code>, then translates ordinary member
+access, collection membership and array indexes into the configured database's <strong>native JSON functions</strong>:</p>
+<pre><code class="language-csharp">var q = db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Customer.Address.State == &quot;WA&quot; &amp;&amp;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Tags.Contains(&quot;priority&quot;) &amp;&amp;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Lines[0].Quantity &gt; 1);
+
+var orders = db.Select(q);
+</code></pre>
+<p>You keep the flexibility of document-shaped data without giving up what makes OrmLite queries valuable:
+they're compiled, refactor-safe, and committed to C# rather than to one database's dialect. Rename a property
+on <code>OrderDocument</code> and the query refactors with it. Move from SQLite in development to PostgreSQL in
+production and the same query compiles and runs unchanged.</p>
+<p><json-portability></json-portability></p>
+<h3 id="the-example-documents">The example documents<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-example-documents'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>The examples use an <code>OrderEvent</code> table with a JSON column, described by an ordinary C# Data Model:</p>
+<pre><code class="language-csharp">public class OrderEvent
+{
+    public long Id { get; set; }
+
+    public string Data { get; set; }            // JSON stored and queried as text
+    public OrderDocument Document { get; set; } // Complex property serialized as JSON
+}
+
+public class OrderDocument
+{
+    public Customer Customer { get; set; }
+    public List&lt;OrderLine&gt; Lines { get; set; }
+    public List&lt;string&gt; Tags { get; set; }
+    public decimal Total { get; set; }
+}
+
+public class Customer { public Address Address { get; set; } }
+
+public class Address
+{
+    [DataMember(Name = &quot;shipping_state&quot;)]
+    public string State { get; set; }
+}
+
+public class OrderLine
+{
+    public string Sku { get; set; }
+    public int Quantity { get; set; }
+}
+</code></pre>
+<p>With the current fluent configuration, complex properties like <code>Document</code> are stored as JSON by default on
+all four databases - so typed documents can be inserted like any other Data Model:</p>
+<pre><code class="language-csharp">services.AddOrmLite(options =&gt; options.UseSqlite(connectionString));
+// or options.UsePostgres(...) / UseSqlServer(...) / UseMySql(...)
+</code></pre>
+<h3 id="everything-youd-expect-c-to-do">Everything you'd expect C# to do<a class="header-anchor" href="javascript:;" onclick="location.hash='#everything-youd-expect-c-to-do'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Nested member access becomes a nested JSON path, and scalar results are converted to the member's C# type.
+<code>[DataMember(Name=...)]</code> is honored, so <code>State</code> above maps to <code>$.Customer.Address.shipping_state</code>:</p>
+<pre><code class="language-csharp">var q = db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Customer.Address.State == &quot;WA&quot; &amp;&amp;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Total &gt;= 100m);
+</code></pre>
+<p>Arrays and lists work the way they read - zero-based indexes (constants or captured variables), <code>Contains()</code>
+for membership and <code>Count</code> or <code>Length</code> for size:</p>
+<pre><code class="language-csharp">var index = 0;
+
+var q = db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Lines[index].Sku == &quot;A-1&quot; &amp;&amp;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Lines.Count &gt; 0 &amp;&amp;
+        Sql.Json&lt;OrderDocument&gt;(x.Data).Tags.Contains(&quot;priority&quot;));
+</code></pre>
+<p>Once a scalar is extracted, further operations go through OrmLite's normal expression translation - so
+<code>Sql.Json&lt;OrderDocument&gt;(x.Data).Customer.Address.State.Length == 2</code> extracts the string and then applies the
+database's own string-length function.</p>
+<p>When the column is already a JSON-serialized complex property, its document type is inferred:</p>
+<pre><code class="language-csharp">var q = db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt; Sql.Json(x.Document).Customer.Address.State == &quot;WA&quot;);
+</code></pre>
+<h3 id="project-straight-into-typed-results">Project straight into typed results<a class="header-anchor" href="javascript:;" onclick="location.hash='#project-straight-into-typed-results'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Selecting a scalar member extracts its C# value. Selecting an object or collection returns a JSON fragment
+that OrmLite <strong>deserializes back into its C# Data Model</strong> - so a single query can mix relational columns,
+JSON scalars and whole nested objects:</p>
+<pre><code class="language-csharp">var q = db.From&lt;OrderEvent&gt;()
+    .Select(x =&gt; new {
+        x.Id,
+        State   = Sql.Json&lt;OrderDocument&gt;(x.Data).Customer.Address.State,
+        Total   = Sql.Json&lt;OrderDocument&gt;(x.Data).Total,
+        Address = Sql.Json&lt;OrderDocument&gt;(x.Data).Customer.Address,
+    });
+
+// OrderSummary { long Id; string State; decimal Total; Address Address; }
+List&lt;OrderSummary&gt; summaries = db.Select&lt;OrderSummary&gt;(q);
+
+Address address = db.Scalar&lt;Address&gt;(db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt; x.Id == id)
+    .Select(x =&gt; Sql.Json&lt;OrderDocument&gt;(x.Data).Customer.Address));
+</code></pre>
+<h2 id="dynamic-documents-and-runtime-paths">Dynamic documents and runtime paths<a class="header-anchor" href="javascript:;" onclick="location.hash='#dynamic-documents-and-runtime-paths'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Not every document has a C# Data Model, and not every path is known at compile time. An explicit SQL/JSON path
+API covers those cases - and the operations that have no member-access equivalent:</p>
+<p><json-api-choice></json-api-choice></p>
+<pre><code class="language-csharp">var totalPath = &quot;$.Total&quot;;
+
+var q = db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt;
+        Sql.JsonValue&lt;string&gt;(x.Data, &quot;$.Customer.Address.shipping_state&quot;) == &quot;WA&quot; &amp;&amp;
+        Sql.JsonValue&lt;decimal?&gt;(x.Data, totalPath) &gt;= 100m)
+    .OrderByDescending(x =&gt; Sql.JsonValue&lt;decimal?&gt;(x.Data, totalPath));
+</code></pre>
+<p>The complete API includes validation, path existence, type inspection, arrays and containment:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Preferred typed expression</th>
+<th>Explicit path API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read a scalar</td>
+<td><code>Sql.Json&lt;T&gt;(json).Member</code></td>
+<td><code>Sql.JsonValue&lt;TValue&gt;(json, path)</code></td>
+</tr>
+<tr>
+<td>Read an object or array</td>
+<td><code>Sql.Json&lt;T&gt;(json).Member</code></td>
+<td><code>Sql.JsonQuery&lt;TValue&gt;(json[, path])</code></td>
+</tr>
+<tr>
+<td>Array length</td>
+<td><code>Sql.Json&lt;T&gt;(json).Items.Count</code></td>
+<td><code>Sql.JsonArrayLength(json[, path])</code></td>
+</tr>
+<tr>
+<td>Scalar array membership</td>
+<td><code>Sql.Json&lt;T&gt;(json).Items.Contains(value)</code></td>
+<td><code>Sql.JsonArrayContains(json[, path], value)</code></td>
+</tr>
+<tr>
+<td>Array indexing</td>
+<td><code>Sql.Json&lt;T&gt;(json).Items[index]</code></td>
+<td>Include <code>[index]</code> in the path</td>
+</tr>
+<tr>
+<td>Validate JSON</td>
+<td>-</td>
+<td><code>Sql.IsJson(json)</code></td>
+</tr>
+<tr>
+<td>Test whether a path exists</td>
+<td>-</td>
+<td><code>Sql.JsonExists(json, path)</code></td>
+</tr>
+<tr>
+<td>Read a JSON value's type</td>
+<td>-</td>
+<td><code>Sql.JsonType(json[, path])</code></td>
+</tr>
+<tr>
+<td>Document containment</td>
+<td>-</td>
+<td><code>Sql.JsonContains(json, candidate[, path])</code></td>
+</tr>
+</tbody>
+</table>
+<p>A few of these are worth calling out:</p>
+<pre><code class="language-csharp">// Count rows holding valid JSON
+var validRows = db.Count&lt;OrderEvent&gt;(x =&gt; Sql.IsJson(x.Data) == true);
+
+// Rows where a path exists - a present JSON null still counts
+var withTags = db.Select(db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt; Sql.JsonExists(x.Data, &quot;$.Tags&quot;)));
+
+// A normalized JsonValueType, whatever the database calls it
+var type = db.Scalar&lt;JsonValueType?&gt;(db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt; x.Id == id)
+    .Select(x =&gt; Sql.JsonType(x.Data, &quot;$.Customer.Address&quot;)));
+// JsonValueType.Object
+
+// PostgreSQL &amp; MySQL: does the document contain this partial document?
+var candidate = new { Customer = new { Address = new { shipping_state = &quot;WA&quot; } } };
+var matching = db.Select(db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt; Sql.JsonContains(x.Data, candidate)));
+</code></pre>
+<h3 id="null-and-missing-arent-the-same-thing"><code>null</code> and missing aren't the same thing<a class="header-anchor" href="javascript:;" onclick="location.hash='#null-and-missing-arent-the-same-thing'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Most JSON wrappers blur JSON <code>null</code>, a missing property and SQL <code>NULL</code> together. OrmLite keeps them
+distinguishable wherever the databases allow it: <code>Sql.JsonExists()</code> is <code>true</code> for a present JSON <code>null</code> and
+<code>false</code> for a missing path, while <code>Sql.JsonType()</code> returns <code>JsonValueType.Null</code> for JSON <code>null</code> and C# <code>null</code>
+for a missing path. Together they let an application tell &quot;explicitly cleared&quot; apart from &quot;never set&quot;.</p>
+<h2 id="safe-and-predictable-by-construction">Safe and predictable by construction<a class="header-anchor" href="javascript:;" onclick="location.hash='#safe-and-predictable-by-construction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<ul>
+<li><strong>Values are parameters.</strong> Query values and containment candidates are sent as database parameters, never
+concatenated into SQL. JSON paths are emitted as escaped string literals for the selected dialect.</li>
+<li><strong>Unsupported means an exception, not a surprise.</strong> Operations a database can't express faithfully throw
+<code>NotSupportedException</code> while the expression is being built, rather than emitting SQL that quietly means
+something else.</li>
+<li><strong>It's still just a <code>SqlExpression&lt;T&gt;</code>.</strong> JSON expressions compose with every other OrmLite filter,
+projection and ordering, work with the async APIs, and expose their SQL for inspection:</li>
+</ul>
+<pre><code class="language-csharp">var sql = q.ToSelectStatement();
+var parameters = q.Params;
+
+var results = await db.SelectAsync(q);
+</code></pre>
+<p>Inspecting the generated SQL is also the best way to decide when a frequently queried JSON property deserves
+a generated column or JSON index in your database.</p>
+<p><json-support></json-support></p>
+<h2 id="native-upsert-apis">Native Upsert APIs<a class="header-anchor" href="javascript:;" onclick="location.hash='#native-upsert-apis'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>OrmLite's new <code>Upsert</code> APIs express the insert-or-update workflow directly. When the Primary Key is new the
+row is inserted; when it already exists the row is updated:</p>
+<pre><code class="language-csharp">var customer = new Customer {
+    Id = 1,
+    Name = &quot;Initial Name&quot;,
+    Email = &quot;initial@example.org&quot;,
+};
+
+db.Upsert(customer); // Inserts Id=1
+
+customer.Name = &quot;Updated Name&quot;;
+db.Upsert(customer); // Updates Id=1
+</code></pre>
+<p>On SQLite, PostgreSQL, SQL Server and MySQL/MariaDB this compiles to each database's <strong>native
+single-statement conflict handling</strong>. There's no separate existence query as with <code>Save()</code>, and no race
+window between checking for a row and writing it. Whether a message is delivered once or three times, or a
+job succeeds on its first attempt or its fifth, the table converges on the same state.</p>
+<p><upsert-compare></upsert-compare></p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Generated operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite</td>
+<td><code>INSERT ... ON CONFLICT (PrimaryKey) DO UPDATE</code></td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td><code>INSERT ... ON CONFLICT (PrimaryKey) DO UPDATE</code></td>
+</tr>
+<tr>
+<td>SQL Server</td>
+<td><code>MERGE ... WITH (HOLDLOCK)</code> matching the Primary Key</td>
+</tr>
+<tr>
+<td>MySQL / MariaDB</td>
+<td><code>INSERT ... ON DUPLICATE KEY UPDATE</code></td>
+</tr>
+</tbody>
+</table>
+<p>Other providers fall back to <code>Save()</code>-style behavior with the same semantics, using an existence check
+followed by an <code>INSERT</code> or <code>UPDATE</code>.</p>
+<h3 id="update-only-the-fields-you-own">Update only the fields you own<a class="header-anchor" href="javascript:;" onclick="location.hash='#update-only-the-fields-you-own'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Real rows often have fields owned by different parts of an application. A typed <code>updateOnly</code> expression
+restricts which fields change when the row already exists - while a new row still gets every insertable field:</p>
+<pre><code class="language-csharp">public class Customer
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+
+    [IgnoreOnUpdate]
+    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+}
+
+db.Upsert(customer,
+    updateOnly: x =&gt; new { x.Name, x.Email });
+</code></pre>
+<p>That makes it safe to submit a complete Data Model from a sync job without clobbering columns maintained
+elsewhere. Primary Key and RowVersion fields can never be updated, and <code>[IgnoreOnUpdate]</code> properties like
+<code>CreatedDate</code> stay excluded from updates - so the original creation time survives every subsequent upsert.</p>
+<p>When the field set is chosen at runtime, use the string field-name overload:</p>
+<pre><code class="language-csharp">var fields = includeEmail
+    ? new[] { nameof(Customer.Name), nameof(Customer.Email) }
+    : new[] { nameof(Customer.Name) };
+
+db.Upsert(customer, updateOnly: fields);
+</code></pre>
+<h3 id="batches-async-and-auto-increment-keys">Batches, async and auto-increment keys<a class="header-anchor" href="javascript:;" onclick="location.hash='#batches-async-and-auto-increment-keys'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><code>UpsertAll</code> inserts new rows and updates existing ones together <strong>in a transaction</strong>, and accepts the same
+<code>updateOnly</code> options:</p>
+<pre><code class="language-csharp">db.UpsertAll(customers);
+
+db.UpsertAll(customers,
+    updateOnly: x =&gt; new { x.Name, x.Email });
+</code></pre>
+<p>Every single-row, batch, typed-field and runtime-field API has an async equivalent with optional
+<code>CancellationToken</code> support:</p>
+<pre><code class="language-csharp">await db.UpsertAsync(customer, token: cancellationToken);
+
+await db.UpsertAllAsync(customers,
+    updateOnly: x =&gt; new { x.Name, x.Email },
+    token: cancellationToken);
+</code></pre>
+<p>Auto-increment models work too. An <code>[AutoIncrement]</code> Primary Key with its default value inserts a new row and
+populates the generated ID, and subsequent calls use that ID as the conflict key:</p>
+<pre><code class="language-csharp">var customer = new Customer { Name = &quot;New Customer&quot;, Email = &quot;new@example.org&quot; };
+
+db.Upsert(customer);      // Inserts and populates customer.Id
+
+customer.Name = &quot;Updated Customer&quot;;
+db.Upsert(customer);      // Updates the same row
+</code></pre>
+<div class="info custom-block">
+            <p class="custom-block-title">INFO</p><p>MySQL and MariaDB's <code>ON DUPLICATE KEY UPDATE</code> can also be triggered by a secondary <code>UNIQUE</code> constraint. Apps
+that require strict Primary-Key-only matching can set <code>MySqlDialect.Instance.UseNativeUpsert = false</code> to use
+OrmLite's existence-check fallback instead.</p>
+</div>
+<p><write-chooser></write-chooser></p>
+<h2 id="better-together">Better together<a class="header-anchor" href="javascript:;" onclick="location.hash='#better-together'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The two features fit naturally in the kind of code that motivated them. An event consumer can upsert
+document-shaped payloads idempotently, and the rest of the application can query inside them with typed,
+portable expressions:</p>
+<pre><code class="language-csharp">// Idempotent: replaying the same events converges on the same rows
+await db.UpsertAllAsync(events.Map(e =&gt; new OrderEvent {
+    Id = e.Id,
+    Document = e.Order,
+}), token: token);
+
+// Typed queries inside the stored documents, on any supported database
+var toShip = await db.SelectAsync(db.From&lt;OrderEvent&gt;()
+    .Where(x =&gt;
+        Sql.Json(x.Document).Tags.Contains(&quot;paid&quot;) &amp;&amp;
+        Sql.Json(x.Document).Lines.Count &gt; 0));
+</code></pre>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>JSON queries and Upsert are available in <strong>ServiceStack v10.2</strong> - upgrade your <code>ServiceStack.OrmLite.*</code>
+packages and both are ready to use on SQLite, PostgreSQL, SQL Server and MySQL/MariaDB, with nothing new to
+install or configure.</p>
+<p>See the docs for the complete reference:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/ormlite/json">OrmLite JSON Support</a> - supported operations, typed
+projections, dynamic paths, null semantics and database-specific capabilities</li>
+<li><a href="https://docs.servicestack.net/ormlite/upsert">OrmLite Upsert</a> - batch and async APIs, auto-increment keys,
+selective updates and choosing between <code>Upsert</code>, <code>Save</code>, <code>Insert</code> and <code>Update</code></li>
+<li><a href="https://docs.servicestack.net/releases/v10_02">v10.2 Release Notes</a> - everything else in this release</li>
+</ul>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/hardened-servicestack">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/hardened-security/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/hardened-servicestack" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Hardened ServiceStack - A Codebase-Wide Security &amp; Reliability Audit">
+                                                    Hardened ServiceStack - A Codebase-Wide Security &amp; Reliability Audit
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.2 ships the results of an AI-assisted security and reliability audit across 36 packages, with every fix published for review - your Apps get safer defaults just by upgrading</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Hardened ServiceStack - A Codebase-Wide Security &amp; Reliability Audit background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-11T00:00:00.0000000">September 11, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>8 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/gemini-rag">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/gemini-rag/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/gemini-rag" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Gemini RAG - AI Answers Customers can Verify from your Content">
+                                                    Gemini RAG - AI Answers Customers can Verify from your Content
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Gemini RAG - AI Answers Customers can Verify from your Content background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-10T00:00:00.0000000">September 10, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>14 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/servicestack-pdf">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/servicestack-pdf/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/servicestack-pdf" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs">
+                                                    ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Design Typst PDFs with AI Chat, publish validated templates, generate typed C# models and render production documents from your ServiceStack APIs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-04T00:00:00.0000000">September 4, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>13 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/autoquery-schema">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/autoquery-schema/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/autoquery-schema" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Instant CRUD Apps with AutoQuery Schemas">
+                                                    Instant CRUD Apps with AutoQuery Schemas
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Give AutoQuerySchema one /auto/{DataModel}.json document and it renders a complete, authorized CRUD application</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Instant CRUD Apps with AutoQuery Schemas background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-01T00:00:00.0000000">September 1, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>13 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/omlite-json-upsert.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://servicestack.net/getting-started" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Getting Started</a>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/getting-started"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

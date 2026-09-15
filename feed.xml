@@ -10,10 +10,33 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Thu, 10 Sep 2026 16:44:23 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2026 15:54:30 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>OrmLite gets type-safe JSON access and Upserts</title>
+        <link>https://servicestack.net/posts/omlite-json-upsert</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/omlite-json-upsert</guid>
+        <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-14T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>ormlite</category>
+        <description>Query JSON columns with typed C# expressions that run unchanged on SQLite, PostgreSQL, SQL Server and MySQL, and insert-or-update rows in a single native statement with the new Upsert APIs</description>
+    </item>
+    <item>
+        <title>Hardened ServiceStack - A Codebase-Wide Security &amp; Reliability Audit</title>
+        <link>https://servicestack.net/posts/hardened-servicestack</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/hardened-servicestack</guid>
+        <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-11T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>ai</category>
+        <category>security</category>
+        <description>ServiceStack v10.2 ships the results of an AI-assisted security and reliability audit across 36 packages, with every fix published for review - your Apps get safer defaults just by upgrading</description>
+    </item>
     <item>
         <title>Gemini RAG - AI Answers Customers can Verify from your Content</title>
         <link>https://servicestack.net/posts/gemini-rag</link>
@@ -116,31 +139,6 @@
         <category>nextjs</category>
         <category>security</category>
         <description>How the Next.js RSC template architecture protects against React Server Components vulnerabilities through process isolation and defense-in-depth security</description>
-    </item>
-    <item>
-        <title>Replacing Legacy UIs in an AI-First world</title>
-        <link>https://servicestack.net/posts/replacing-legacy-uis</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/replacing-legacy-uis</guid>
-        <pubDate>Sun, 07 Dec 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-12-07T00:00:00Z</atom:updated>
-        <category>llms</category>
-        <category>ai</category>
-        <category>react</category>
-        <description>Rewriting legacy UIs on modern AI-First stacks are now cheaper and faster than traditional development.</description>
-    </item>
-    <item>
-        <title>New .NET 10 &#x2B; Angular 21 ASP.NET Identity Auth Tailwind SPA Template</title>
-        <link>https://servicestack.net/posts/angular-template</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/angular-template</guid>
-        <pubDate>Fri, 05 Dec 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-12-05T00:00:00Z</atom:updated>
-        <category>angular</category>
-        <category>templates</category>
-        <category>identity-auth</category>
-        <category>autoquery</category>
-        <description>Introducing our new Angular 19 IdentityAuth Tailwind Template with DarkMode and support for RxJS and Signals dev models</description>
     </item>
 </channel>
 </rss>
