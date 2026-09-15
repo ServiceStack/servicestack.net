@@ -2,7 +2,6 @@
 title: Gemini RAG - AI Answers Customers can Verify from your Content
 summary: Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag
 tags: [ai, gemini, rag]
-author: Demis
 url: https://media.servicestack.com/podcasts/gemini-rag.mp3
 media: {size:17864833,duration:1231.934694,format:mp3}
 ---
