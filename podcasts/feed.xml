@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Tue, 15 Sep 2026 16:34:01 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 10:50:31 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,21 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Startup Tasks - Generate code from your running App</title>
+        <link>https://servicestack.net/podcasts/startup-tasks</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/startup-tasks</guid>
+        <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-16T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/startup-tasks.mp3" length="1282410" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>dev</category>
+        <category>ai</category>
+        <description>StartupTasks run dev-time tasks once your App has fully started, keeping client DTOs and other generated code in sync with your server on every restart, with no extra build step for developers or AI Assistants to remember</description>
+        <itunes:summary><![CDATA[ StartupTasks run dev-time tasks once your App has fully started, keeping client DTOs and other generated code in sync with your server on every restart, with no extra build step for developers or AI Assistants to remember ]]></itunes:summary>
+        <itunes:keywords>servicestack,dev,ai</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>OrmLite gets type-safe JSON access and Upserts</title>
         <link>https://servicestack.net/podcasts/omlite-json-upsert</link>
@@ -160,24 +175,6 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
-        <title>ServiceStack v10.1 Release</title>
-        <link>https://servicestack.net/podcasts/v10-1-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v10-1-release</guid>
-        <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-08-13T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v10-1-release.mp3" length="17080667" type="audio/mpeg"/>
-        <category>ai</category>
-        <category>llm</category>
-        <category>admin-ui</category>
-        <category>pdf</category>
-        <category>api</category>
-        <description>Turning typed Request DTOs into a single source of truth - with typed APIs for 15 languages, AI Chat v4, API and AutoQuery Schemas and PDF Studio</description>
-        <itunes:summary><![CDATA[ Turning typed Request DTOs into a single source of truth - with typed APIs for 15 languages, AI Chat v4, API and AutoQuery Schemas and PDF Studio ]]></itunes:summary>
-        <itunes:duration>1169</itunes:duration>
-        <itunes:keywords>ai,llm,admin-ui,pdf,api</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
         <title>Typed ServiceStack APIs for Go, Rust, Ruby and Zig</title>
         <link>https://servicestack.net/podcasts/go-rust-ruby-zig-typed-apis</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/go-rust-ruby-zig-typed-apis</guid>
@@ -193,6 +190,24 @@
         <itunes:summary><![CDATA[ Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world&#x27;s most popular programming languages-from websites and mobile apps to cloud services and systems software. ]]></itunes:summary>
         <itunes:duration>305</itunes:duration>
         <itunes:keywords>servicestack,go,rust,ruby,zig</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ServiceStack v10.1 Release</title>
+        <link>https://servicestack.net/podcasts/v10-1-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v10-1-release</guid>
+        <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-08-13T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v10-1-release.mp3" length="17080667" type="audio/mpeg"/>
+        <category>ai</category>
+        <category>llm</category>
+        <category>admin-ui</category>
+        <category>pdf</category>
+        <category>api</category>
+        <description>Turning typed Request DTOs into a single source of truth - with typed APIs for 15 languages, AI Chat v4, API and AutoQuery Schemas and PDF Studio</description>
+        <itunes:summary><![CDATA[ Turning typed Request DTOs into a single source of truth - with typed APIs for 15 languages, AI Chat v4, API and AutoQuery Schemas and PDF Studio ]]></itunes:summary>
+        <itunes:duration>1169</itunes:duration>
+        <itunes:keywords>ai,llm,admin-ui,pdf,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -431,6 +446,21 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
+        <title>OrmLite new Configuration Model and Defaults</title>
+        <link>https://servicestack.net/podcasts/ormlite-new-configuration</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ormlite-new-configuration</guid>
+        <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-10-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ormlite-new-configuration.mp3" length="15673349" type="audio/mpeg"/>
+        <category>db</category>
+        <category>ormlite</category>
+        <description>Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features</description>
+        <itunes:summary><![CDATA[ Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features ]]></itunes:summary>
+        <itunes:duration>1113</itunes:duration>
+        <itunes:keywords>db,ormlite</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>ServiceStack v8.9 Release</title>
         <link>https://servicestack.net/podcasts/v8-9-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v8-9-release</guid>
@@ -447,21 +477,6 @@
         <itunes:summary><![CDATA[ Latest features in ServiceStack v8.9 new OrmLite configuration model and features, RDBMS Logging/Analytics and more! ]]></itunes:summary>
         <itunes:duration>1053</itunes:duration>
         <itunes:keywords>release,ormlite,rdbms,admin-ui,apikeys,analytics</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>OrmLite new Configuration Model and Defaults</title>
-        <link>https://servicestack.net/podcasts/ormlite-new-configuration</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/ormlite-new-configuration</guid>
-        <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-10-15T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/ormlite-new-configuration.mp3" length="15673349" type="audio/mpeg"/>
-        <category>db</category>
-        <category>ormlite</category>
-        <description>Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features</description>
-        <itunes:summary><![CDATA[ Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features ]]></itunes:summary>
-        <itunes:duration>1113</itunes:duration>
-        <itunes:keywords>db,ormlite</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -567,23 +582,6 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
-        <title>In Depth and Interactive API Analytics available to all ServiceStack Apps</title>
-        <link>https://servicestack.net/podcasts/analytics</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/analytics</guid>
-        <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-04-15T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/analytics.mp3" length="4088060" type="audio/mpeg"/>
-        <category>analytics</category>
-        <category>admin-ui</category>
-        <category>apis</category>
-        <category>sqlite</category>
-        <description>Comprehensive and Interactive API Analytics in Admin UI offering deep insights into API usage, performance, users, API Keys &amp; IPs.</description>
-        <itunes:summary><![CDATA[ Comprehensive and Interactive API Analytics in Admin UI offering deep insights into API usage, performance, users, API Keys &amp; IPs. ]]></itunes:summary>
-        <itunes:duration>411</itunes:duration>
-        <itunes:keywords>analytics,admin-ui,apis,sqlite</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
         <title>ServiceStack v8.7 Release</title>
         <link>https://servicestack.net/podcasts/v8-7-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v8-7-release</guid>
@@ -598,6 +596,23 @@
         <itunes:summary><![CDATA[ Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs ]]></itunes:summary>
         <itunes:duration>1493</itunes:duration>
         <itunes:keywords>release,identity-auth,admin-ui,angular</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>In Depth and Interactive API Analytics available to all ServiceStack Apps</title>
+        <link>https://servicestack.net/podcasts/analytics</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/analytics</guid>
+        <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-04-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/analytics.mp3" length="4088060" type="audio/mpeg"/>
+        <category>analytics</category>
+        <category>admin-ui</category>
+        <category>apis</category>
+        <category>sqlite</category>
+        <description>Comprehensive and Interactive API Analytics in Admin UI offering deep insights into API usage, performance, users, API Keys &amp; IPs.</description>
+        <itunes:summary><![CDATA[ Comprehensive and Interactive API Analytics in Admin UI offering deep insights into API usage, performance, users, API Keys &amp; IPs. ]]></itunes:summary>
+        <itunes:duration>411</itunes:duration>
+        <itunes:keywords>analytics,admin-ui,apis,sqlite</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -853,23 +868,6 @@
         <itunes:summary><![CDATA[ Exploring different techniques in ServiceStack for building maximum value, high-performance Scalable SQLite Web Apps ]]></itunes:summary>
         <itunes:duration>575</itunes:duration>
         <itunes:keywords>sqlite,performance,scalability</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>SQLite Request Logging</title>
-        <link>https://servicestack.net/podcasts/sqlite-request-logs</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/sqlite-request-logs</guid>
-        <pubDate>Tue, 17 Sep 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-09-17T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/sqlite-request-logs.mp3" length="809613" type="audio/mpeg"/>
-        <category>sqlite</category>
-        <category>logging</category>
-        <category>admin-ui</category>
-        <category>api</category>
-        <description>Checking out ServiceStack&#x27;s new SQLite-backed C# Request Logs feature and enhanced log querying and filtering in the Admin UI</description>
-        <itunes:summary><![CDATA[ Checking out ServiceStack&#x27;s new SQLite-backed C# Request Logs feature and enhanced log querying and filtering in the Admin UI ]]></itunes:summary>
-        <itunes:duration>202</itunes:duration>
-        <itunes:keywords>sqlite,logging,admin-ui,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
