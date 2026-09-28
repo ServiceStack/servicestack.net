@@ -112,7 +112,9 @@ mountAll()
 
 <div class="min-h-screen">
     <main role="main" class="pt-14">
-        
+        <link rel="stylesheet" href="/css/lite-yt-embed.css">
+<script src="/js/lite-yt-embed.js"></script>
+
 <section class="relative w-full bg-slate-950 border-b border-white/10 overflow-hidden">
     
     <!-- 1. Full Width Background Effects -->
@@ -1006,8 +1008,8 @@ import { mount } from "app.mjs"
 import NextSaasGallery from "/posts/components/NextSaasGallery.mjs"
 import NextLicenseShowcase from "/posts/components/NextLicenseShowcase.mjs"
 
-mount('#next-saas', NextSaasGallery)
-mount('#next-license', NextLicenseShowcase)
+mount('#next-saas', NextSaasGallery, { videoId: 'A0CaPJG4_Fs' })
+mount('#next-license', NextLicenseShowcase, { videoId: 'LtrTxmkP5XE' })
 </script>
 
 
