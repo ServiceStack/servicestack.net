@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>Scalable Background Jobs - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run" />
+    <meta property="og:url" content="https://servicestack.net/posts/scalable-background-jobs" />
+    <meta property="og:title" content="Scalable Background Jobs" />
+    <meta property="og:image" content="./img/posts/scalable-background-jobs/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Scalable Background Jobs
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                        <div data-component="pages/podcasts/AudioPlayer.mjs" 
+                             data-props="{ id:'scalable-background-jobs', title:'Scalable Background Jobs', src:'https://media.servicestack.com/podcasts/scalable-background-jobs.mp3', beaconUrl:'https://servicestack.net/stats/podcast/record?name=scalable-background-jobs&amp;source=post&amp;version=8.10.1', variant:'compact' }"
+                             class="mt-4 md:w-[450px] md:mt-0"></div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/scalable-background-jobs/bg.webp" alt="Scalable Background Jobs Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                        <a href="posts/tagged/jobs" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">jobs</a>
+                        <a href="posts/tagged/rdbms" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">rdbms</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-09-29T00:00:00.0000000">September 29, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>10 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <h2 id="background-jobs-ready-for-your-important-work">Background Jobs, ready for your important work<a class="header-anchor" href="javascript:;" onclick="location.hash='#background-jobs-ready-for-your-important-work'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The work that matters most in most Apps doesn't happen inside the request. Charging a payment, sending an
+email, importing a spreadsheet, generating a report, syncing a tenant or calling a third-party API are all
+things you want to run in the background - and they're also the things you can least afford to lose, run
+twice, or let pile up behind each other.</p>
+<p><a href="https://docs.servicestack.net/background-jobs">Background Jobs</a> started as a simple way to move that work
+off the request thread. <strong>ServiceStack v10.3</strong> makes it a complete, durable job platform for the work your
+business depends on.</p>
+<p>It's the same <code>IBackgroundJobs</code> API you already use, on the same database you already run. There's <strong>no
+broker to deploy</strong>, no new infrastructure to operate and nothing to learn before you benefit. Existing Jobs
+get safer retries, bounded resource usage and graceful shutdown just by upgrading, while the new features
+are there the moment you need them:</p>
+<p><jobs-highlights></jobs-highlights></p>
+<p>Most of the features in this post come with an interactive simulation, so you can see how they behave
+before you write any code.</p>
+<h2 id="scale-out-without-a-broker">Scale out without a broker<a class="header-anchor" href="javascript:;" onclick="location.hash='#scale-out-without-a-broker'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The <a href="https://docs.servicestack.net/background-jobs-rdbms">RDBMS provider</a> now safely runs on <strong>any number
+of App Servers</strong> sharing the same PostgreSQL, SQL Server or MySQL database.</p>
+<p>Every Job is <strong>claimed with a lease</strong> that's renewed while it runs, and every write a server makes to a Job
+is fenced by that lease. A Job is only ever owned by one server at a time, and a slow or partitioned server
+can't overwrite the result of the server that took over from it.</p>
+<p>When a server crashes, is killed or loses its network, its leases simply expire and another server
+<strong>recovers its Jobs automatically</strong>. A Job that keeps taking its server down with it is counted as a failed
+attempt each time, and is failed with a <code>LeaseExpired</code> error once it exceeds its <code>RetryLimit</code>, instead of
+being retried forever.</p>
+<p>On PostgreSQL and MySQL 8+, servers claim Jobs with <code>SKIP LOCKED</code>, so adding more servers adds more
+throughput rather than more contention. Try taking a server down and watch its Jobs fail over:</p>
+<p><cluster-simulator></cluster-simulator></p>
+<h3 id="deploy-without-losing-work">Deploy without losing work<a class="header-anchor" href="javascript:;" onclick="location.hash='#deploy-without-losing-work'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Background Jobs now <strong>shuts down gracefully</strong>. Running Jobs are given <code>ShutdownTimeoutSecs</code> (default 30s)
+to finish and save their progress, and any Job that was claimed but never started is handed straight back
+so another server picks it up immediately, rather than waiting for its lease to expire on every deploy.
+It's registered by the plugin, so existing Apps get it without touching their hosted service.</p>
+<h3 id="know-which-servers-are-doing-what">Know which servers are doing what<a class="header-anchor" href="javascript:;" onclick="location.hash='#know-which-servers-are-doing-what'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Each App Server records a heartbeat, so the Admin UI's <strong>Nodes</strong> view, <code>jobs.GetJobNodes()</code> and the
+<code>AdminGetJobNodes</code> API report which servers are alive, what version they're running, how many Jobs each is
+running and which ones stopped reporting. You can <strong>drain a server</strong> before taking it out of service so it
+finishes its Jobs without taking any more, or <strong>dedicate servers to queues</strong>, e.g. only run GPU work on
+the servers that have one:</p>
+<pre><code class="language-csharp">services.AddPlugin(new DatabaseJobFeature {
+    Queues = [&quot;gpu&quot;], // this server only processes Jobs on the gpu queue
+});
+
+jobs.SetJobNodeDraining(serverId, draining: true);
+</code></pre>
+<p><screenshot src="/img/posts/scalable-background-jobs/05-nodes.webp" title="App Servers processing Jobs, with their heartbeat, running Jobs and Drain control"></screenshot></p>
+<h2 id="give-each-workload-its-own-lane">Give each workload its own lane<a class="header-anchor" href="javascript:;" onclick="location.hash='#give-each-workload-its-own-lane'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Different work has different needs: a password reset can't wait behind a bulk import, and a third-party
+API can't be called faster than its quota allows. Jobs can now be routed to <strong>named queues</strong>, each with its
+own Workers and concurrency, so a backlog on one queue never delays another. Within a queue, Jobs with a
+higher <code>Priority</code> run first:</p>
+<pre><code class="language-csharp">jobs.EnqueueCommand&lt;SendPasswordResetCommand&gt;(request, new() {
+    Queue = &quot;emails&quot;,
+    Priority = 10, // ahead of the newsletter
+});
+</code></pre>
+<pre><code class="language-csharp">services.AddPlugin(new DatabaseJobFeature {  // or BackgroundsJobFeature
+    MaxConcurrentJobs = 8,                   // default for every queue
+    QueueConcurrency = { [&quot;imports&quot;] = 2 },  // bulk imports can't take over the server
+});
+</code></pre>
+<p><queue-lanes></queue-lanes></p>
+<h3 id="pause-re-throttle-and-rate-limit-at-runtime">Pause, re-throttle and rate limit at runtime<a class="header-anchor" href="javascript:;" onclick="location.hash='#pause-re-throttle-and-rate-limit-at-runtime'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Queues are also your controls during an incident. When a downstream system is down, <strong>pause its queue</strong> -
+its Jobs stay safely queued and resume where they left off, instead of burning through their retries. Raise
+a queue's concurrency to clear a backlog, or lower it to protect a struggling dependency, without a
+redeploy.</p>
+<p>Concurrency limits how many Jobs run at once, but a quota like &quot;10 calls per second&quot; limits how often they
+<em>start</em>. <strong>Queue rate limits</strong> handle exactly that, and on the RDBMS provider the limit is counted across
+every server, so adding servers doesn't multiply your API bill:</p>
+<pre><code class="language-csharp">jobs.PauseJobQueue(&quot;payments&quot;);
+jobs.ResumeJobQueue(&quot;payments&quot;);
+jobs.SetJobQueueConcurrency(&quot;imports&quot;, 4);
+jobs.SetJobQueueRateLimit(&quot;stripe-api&quot;, rateLimit: 10, window: TimeSpan.FromSeconds(1));
+</code></pre>
+<p>Every change is stored in the database, so it takes effect on every server and survives restarts - and
+they're all available from the Admin UI's <strong>Queues</strong> tab:</p>
+<p><screenshot src="/img/posts/scalable-background-jobs/04-queues.webp" title="Pause, resume, concurrency and rate limit controls for each queue"></screenshot></p>
+<h2 id="never-do-the-same-work-twice">Never do the same work twice<a class="header-anchor" href="javascript:;" onclick="location.hash='#never-do-the-same-work-twice'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Networks time out, users double-click and messages get replayed. The same request arriving twice is
+normal - charging a customer twice isn't. Background Jobs now gives you three ways to make sure work
+happens once:</p>
+<ul>
+<li><strong>Idempotent enqueue</strong> - give a Job a meaningful <code>RefId</code> and submitting it again returns the Job that's
+already queued instead of creating a duplicate</li>
+<li><strong>Singleton Jobs</strong> - a <code>SingletonKey</code> allows only one Job with that key to be queued or running at a time,
+enforced by a unique index so it holds even when several servers submit at the same moment</li>
+<li><strong>Transactional outbox</strong> - with the RDBMS provider, queue Jobs on your own connection so they're saved in
+the same transaction as your data. If the transaction rolls back, so do its Jobs</li>
+</ul>
+<pre><code class="language-csharp">jobs.EnqueueCommand&lt;ChargeOrderCommand&gt;(order, new() {
+    RefId = $&quot;charge-order-{order.Id}&quot;,
+    DuplicateRefIdBehavior = DuplicateRefIdBehavior.ReturnExisting,
+});
+
+jobs.EnqueueCommand&lt;RefreshProductsCacheCommand&gt;(new() {
+    SingletonKey = &quot;refresh-products-cache&quot;,
+});
+</code></pre>
+<p><dedup-playground></dedup-playground></p>
+<h2 id="failures-that-heal-themselves">Failures that heal themselves<a class="header-anchor" href="javascript:;" onclick="location.hash='#failures-that-heal-themselves'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Most failures are temporary, so the best thing a Job can do is wait and try again - without every failed
+Job hammering a recovering dependency at the same moment:</p>
+<ul>
+<li><strong>Smarter retries</strong> back off with <code>Fixed</code>, <code>Linear</code>, <code>Exponential</code> or the new default
+<code>ExponentialJitter</code>, which spreads retries out after an outage</li>
+<li><strong>Every failure is kept</strong>, with its error, server and duration, so an intermittent failure shows its
+full history rather than only the last error</li>
+<li><strong>Jobs that shouldn't run late won't</strong> - give a Job an <code>ExpiresIn</code> or <code>ExpiresAt</code> and if it can't start
+in time it's cancelled with <code>JobExpired</code>, so there are no reminders for meetings that already happened</li>
+<li><strong>Timeouts are enforced</strong>, and even a Job that ignores its cancellation token releases its Worker so the
+Jobs behind it keep moving</li>
+<li><strong>Cancellation reaches the running Job</strong>, on whichever server is executing it</li>
+</ul>
+<pre><code class="language-csharp">jobs.EnqueueCommand&lt;SyncCrmContactCommand&gt;(contact, new() {
+    RetryLimit = 5,
+    RetryBackoff = RetryBackoff.ExponentialJitter,
+    RetryDelay = TimeSpan.FromSeconds(5),
+    MaxRetryDelay = TimeSpan.FromMinutes(5),
+    ExpiresIn = TimeSpan.FromHours(1),
+    TimeoutSecs = 120,
+});
+</code></pre>
+<p>Plan out a retry policy and see when each attempt would run:</p>
+<p><retry-planner></retry-planner></p>
+<p><screenshot src="/img/posts/scalable-background-jobs/07-job-attempts.webp" title="A Job that succeeded after two failed attempts"></screenshot></p>
+<h2 id="from-single-jobs-to-workflows">From single Jobs to workflows<a class="header-anchor" href="javascript:;" onclick="location.hash='#from-single-jobs-to-workflows'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<h3 id="multi-step-workflows">Multi-step workflows<a class="header-anchor" href="javascript:;" onclick="location.hash='#multi-step-workflows'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Real business processes are rarely a single step. Jobs can now depend on each other, with each step able
+to read the result of the step before it. If a step fails, the steps after it are cancelled, while steps
+queued with <code>JobDependencyPolicy.OnFinished</code> still run however the previous step ended - perfect for
+notifications and clean-up:</p>
+<pre><code class="language-csharp">var charge  = jobs.EnqueueCommand&lt;ChargePaymentCommand&gt;(order);
+var reserve = jobs.EnqueueCommand&lt;ReserveInventoryCommand&gt;(order, new() { DependsOn = charge.Id });
+var ship    = jobs.EnqueueCommand&lt;ShipOrderCommand&gt;(order, new() {
+    DependsOn = reserve.Id,
+    Callback = nameof(OrderShippedCommand),
+});
+// Tell the customer what happened, whether shipping succeeded or not
+jobs.EnqueueCommand&lt;NotifyCustomerCommand&gt;(order, new() {
+    DependsOn = ship.Id,
+    DependsOnPolicy = JobDependencyPolicy.OnFinished,
+});
+</code></pre>
+<p><workflow-simulator></workflow-simulator></p>
+<h3 id="batches-with-live-progress">Batches with live progress<a class="header-anchor" href="javascript:;" onclick="location.hash='#batches-with-live-progress'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Fan out thousands of Jobs as a <strong>Batch</strong> and watch its progress in the Admin UI. When every Job has
+finished the batch's <code>callback</code> runs, and <code>onSuccess</code> runs only if every Job succeeded - so &quot;email the
+report when the import completes&quot; no longer needs a polling loop. A Job with <code>DependsOnBatch</code> fans back in,
+only running once the whole batch is done:</p>
+<pre><code class="language-csharp">jobs.CreateJobBatch(batchId, total: images.Count,
+    callback: nameof(ImportFinishedCommand),   // runs once every Job has finished
+    onSuccess: nameof(PublishGalleryCommand)); // only when every Job succeeded
+
+foreach (var image in images)
+    jobs.EnqueueCommand&lt;ResizeImageCommand&gt;(image, new() { BatchId = batchId });
+
+jobs.EnqueueCommand&lt;CreateZipArchiveCommand&gt;(new() { DependsOnBatch = batchId });
+</code></pre>
+<p><batch-simulator></batch-simulator></p>
+<p>A whole batch can be cancelled or have its failed Jobs requeued in one call:</p>
+<p><screenshot src="/img/posts/scalable-background-jobs/09-job-batch.webp" title="Batch progress, callbacks and requeueing its failed Jobs"></screenshot></p>
+<h3 id="keep-each-customers-jobs-in-order">Keep each customer's Jobs in order<a class="header-anchor" href="javascript:;" onclick="location.hash='#keep-each-customers-jobs-in-order'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>Jobs that share a <code>ConcurrencyKey</code> run one at a time, while Jobs with different keys still run in
+parallel. Each tenant's syncs, each account's ledger updates or each document's edits are applied in order,
+without serialising everyone else behind them:</p>
+<pre><code class="language-csharp">jobs.EnqueueCommand&lt;SyncTenantDataCommand&gt;(sync, new() {
+    ConcurrencyKey = $&quot;tenant:{sync.TenantId}&quot;,
+    TenantId = sync.TenantId, // also filter and report by tenant
+});
+</code></pre>
+<p><tenant-ordering></tenant-ordering></p>
+<h2 id="get-results-back">Get results back<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-results-back'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Background work doesn't have to mean fire-and-forget. <strong>Await a Job's result</strong> in the same request to keep a
+synchronous API while the heavy lifting runs on whichever server has capacity, or give it a <code>ReplyTo</code> and
+have its result <strong>delivered</strong> the moment it completes - POSTed to a webhook URL, or published to an MQ:</p>
+<p><results-delivery></results-delivery></p>
+<p>When a <code>ReplyTo</code> can come from your users, restrict where results can be sent so your servers can't be used
+to reach internal addresses:</p>
+<pre><code class="language-csharp">services.AddPlugin(new DatabaseJobFeature {
+    ValidateReplyTo = JobReplyTo.AllowUrlPrefixes([&quot;https://hooks.example.org/&quot;]),
+});
+</code></pre>
+<h2 id="schedules-you-can-trust">Schedules you can trust<a class="header-anchor" href="javascript:;" onclick="location.hash='#schedules-you-can-trust'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><a href="https://docs.servicestack.net/recurring-tasks">Recurring Tasks</a> are now durable and safe to run on every
+server - each occurrence is only ever queued once, however many servers evaluate the schedule. Schedules
+run in the time zone you choose, can skip an occurrence while the previous one is still running, and can be
+limited to a date range or number of runs:</p>
+<pre><code class="language-csharp">var schedule = Schedule.Cron(&quot;0 9 * * MON-FRI&quot;);
+schedule.TimeZoneId = &quot;America/New_York&quot;;
+schedule.OverlapPolicy = ScheduleOverlapPolicy.Skip;
+schedule.EndDate = new DateTime(2026, 12, 31);
+
+jobs.RecurringCommand&lt;SendDailyDigestCommand&gt;(&quot;Daily Digest&quot;, schedule);
+</code></pre>
+<p><schedule-pillars></schedule-pillars></p>
+<p><screenshot src="/img/posts/scalable-background-jobs/11-scheduled-tasks.webp" title="Scheduled Tasks with their next run, last result and run-now controls"></screenshot></p>
+<h2 id="see-what-your-jobs-are-doing">See what your Jobs are doing<a class="header-anchor" href="javascript:;" onclick="location.hash='#see-what-your-jobs-are-doing'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>A job platform is only as good as your ability to see into it. The <strong>Background Jobs Admin UI</strong> now shows
+per-queue statistics and wait times on its dashboard, so a backlog shows up before Jobs start timing out:</p>
+<p><screenshot src="/img/posts/scalable-background-jobs/01-dashboard.webp" title="Job activity and statistics over a selected period"></screenshot></p>
+<p>It also gains queue controls, the Nodes view, each Job's failed attempts, batch progress, pause and
+run-now controls for Scheduled Tasks, replaying a completed Job, and bulk actions to cancel or requeue Jobs
+by queue, tag or batch. Running Jobs stream their progress and logs live:</p>
+<p><screenshot src="/img/posts/scalable-background-jobs/03-job-running.webp" title="A running Job streaming its progress and logs live"></screenshot></p>
+<p>Outside the Admin UI, Background Jobs plugs into the tools your team already uses:</p>
+<p><observability-pillars></observability-pillars></p>
+<p>A <code>JobsHealthCheck</code> reports a growing backlog, a long wait or servers that stopped reporting to
+<a href="https://docs.servicestack.net/background-jobs-monitoring#health-checks">ASP.NET Core health checks</a>, and
+Jobs publish OpenTelemetry traces and metrics under <code>ServiceStack.Jobs</code>. Each Job continues the trace of the
+request that queued it - even after a retry, or when another server recovers it - so an API call and the
+work it started appear in the same trace:</p>
+<pre><code class="language-csharp">services.AddHealthChecks()
+    .AddCheck&lt;JobsHealthCheck&gt;(&quot;background-jobs&quot;);
+
+services.AddOpenTelemetry()
+    .WithTracing(x =&gt; x.AddSource(JobsDiagnostics.Name))
+    .WithMetrics(x =&gt; x.AddMeter(JobsDiagnostics.Name));
+</code></pre>
+<h2 id="keeping-your-database-lean">Keeping your database lean<a class="header-anchor" href="javascript:;" onclick="location.hash='#keeping-your-database-lean'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Your jobs database is a work queue, not a blob store, so v10.3 bounds what goes into it. Requests larger
+than <code>MaxRequestBodyChars</code> (1M chars) are rejected when queued, oversized Responses aren't stored, Job logs
+are capped at <code>MaxJobLogChars</code>, and you can opt in to <code>JobSummaryRetention</code> and <code>ArchiveRetention</code> to delete
+old history automatically:</p>
+<pre><code class="language-csharp">services.AddPlugin(new DatabaseJobFeature {
+    JobSummaryRetention = TimeSpan.FromDays(90),
+    ArchiveRetention = TimeSpan.FromDays(365),
+});
+</code></pre>
+<h2 id="upgrading">Upgrading<a class="header-anchor" href="javascript:;" onclick="location.hash='#upgrading'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Background Jobs upgrades its database schema automatically on startup. The changes are additive, so your
+history and Scheduled Tasks are preserved, but there are a few things to prepare for:</p>
+<ul>
+<li><strong>Let your queue drain first</strong> - Jobs that are still queued, delayed, retrying or running when the
+upgrade is applied are cleared, and kept in your history as Cancelled with <code>QueueClearedOnUpgrade</code></li>
+<li><strong>Upgrade every server at once</strong> - when running the RDBMS provider on multiple servers, stop them all
+before starting the new version rather than doing a rolling deploy</li>
+<li><strong>Check your concurrency</strong> - Jobs without a named Worker now run at most <code>MaxConcurrentJobs</code> at a time
+per queue (default: the number of CPU cores)</li>
+<li><strong><code>ReplyTo</code> is now delivered</strong> - if you used it to store your own data, move it to <code>Args</code> or <code>Meta</code></li>
+</ul>
+<p>See <a href="https://docs.servicestack.net/releases/v10_03#upgrading-to-v10.3">Upgrading to v10.3</a> in the Release
+Notes for the full checklist, schema changes and behaviour changes to review.</p>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Background Jobs is available in every ServiceStack App on <strong>.NET 8+</strong>. Existing Apps get the reliability
+improvements with the upgrade, while new features are opt-in per Job or per queue. Use
+<a href="https://docs.servicestack.net/background-jobs-rdbms">DatabaseJobFeature</a> on PostgreSQL, SQL Server or
+MySQL to scale out across servers, or <a href="https://docs.servicestack.net/background-jobs-sqlite">SQLite Background Jobs</a>
+for a single server.</p>
+<p>To add RDBMS Background Jobs to an existing App, run:</p>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>npx add-in db-jobs</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+</div>
+<p>Or for SQLite Background Jobs:</p>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>npx add-in jobs</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+</div>
+<p>Then open <strong>Background Jobs</strong> in the <a href="https://docs.servicestack.net/admin-ui">Admin UI</a> to see your queues,
+batches and schedules. To dive deeper, the Background Jobs docs have been reorganized into focused guides:</p>
+<p><jobs-guides></jobs-guides></p>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/startup-tasks">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/startup-tasks/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/startup-tasks" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Startup Tasks - Generate code from your running App">
+                                                    Startup Tasks - Generate code from your running App
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">StartupTasks run dev-time tasks once your App has fully started, keeping client DTOs and other generated code in sync with your server on every restart, with no extra build step for developers or AI Assistants to remember</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Startup Tasks - Generate code from your running App background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-16T00:00:00.0000000">September 16, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>5 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/omlite-json-upsert">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/omlite-json-upsert/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/omlite-json-upsert" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="OrmLite gets type-safe JSON access and Upserts">
+                                                    OrmLite gets type-safe JSON access and Upserts
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Query JSON columns with typed C# expressions that run unchanged on SQLite, PostgreSQL, SQL Server and MySQL, and insert-or-update rows in a single native statement with the new Upsert APIs</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="OrmLite gets type-safe JSON access and Upserts background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-14T00:00:00.0000000">September 14, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>10 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/hardened-servicestack">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/hardened-security/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/hardened-servicestack" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Hardened ServiceStack - A Codebase-Wide Security &amp; Reliability Audit">
+                                                    Hardened ServiceStack - A Codebase-Wide Security &amp; Reliability Audit
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.2 ships the results of an AI-assisted security and reliability audit across 36 packages, with every fix published for review - your Apps get safer defaults just by upgrading</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Hardened ServiceStack - A Codebase-Wide Security &amp; Reliability Audit background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-11T00:00:00.0000000">September 11, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>8 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/gemini-rag">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/gemini-rag/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/gemini-rag" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Gemini RAG - AI Answers Customers can Verify from your Content">
+                                                    Gemini RAG - AI Answers Customers can Verify from your Content
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Gemini RAG - AI Answers Customers can Verify from your Content background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-09-10T00:00:00.0000000">September 10, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>14 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/scalable-background-jobs.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://servicestack.net/getting-started" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Getting Started</a>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/getting-started"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

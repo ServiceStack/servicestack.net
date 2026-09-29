@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Mon, 28 Sep 2026 14:07:09 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 14:25:38 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -28,6 +28,40 @@
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
     <item>
+        <title>ServiceStack v10.3 Release</title>
+        <link>https://servicestack.net/podcasts/v10-3-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v10-3-release</guid>
+        <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-29T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v10-3-release.mp3" length="20419629" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>api</category>
+        <category>jobs</category>
+        <category>react</category>
+        <category>templates</category>
+        <description>ServiceStack v10.3 enhances background job management, introduces React templates, and adds OpenTelemetry support for improved observability.</description>
+        <itunes:summary><![CDATA[ ServiceStack v10.3 enhances background job management, introduces React templates, and adds OpenTelemetry support for improved observability. ]]></itunes:summary>
+        <itunes:duration>1389</itunes:duration>
+        <itunes:keywords>servicestack,api,jobs,react,templates</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Scalable Background Jobs</title>
+        <link>https://servicestack.net/podcasts/scalable-background-jobs</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/scalable-background-jobs</guid>
+        <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-29T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/scalable-background-jobs.mp3" length="21027583" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>jobs</category>
+        <category>rdbms</category>
+        <description>ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run</description>
+        <itunes:summary><![CDATA[ ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run ]]></itunes:summary>
+        <itunes:duration>1421</itunes:duration>
+        <itunes:keywords>servicestack,jobs,rdbms</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>Startup Tasks - Generate code from your running App</title>
         <link>https://servicestack.net/podcasts/startup-tasks</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/startup-tasks</guid>
@@ -39,6 +73,7 @@
         <category>ai</category>
         <description>StartupTasks run dev-time tasks once your App has fully started, keeping client DTOs and other generated code in sync with your server on every restart, with no extra build step for developers or AI Assistants to remember</description>
         <itunes:summary><![CDATA[ StartupTasks run dev-time tasks once your App has fully started, keeping client DTOs and other generated code in sync with your server on every restart, with no extra build step for developers or AI Assistants to remember ]]></itunes:summary>
+        <itunes:duration>88</itunes:duration>
         <itunes:keywords>servicestack,dev,ai</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
@@ -53,6 +88,7 @@
         <category>ormlite</category>
         <description>Query JSON columns with typed C# expressions that run unchanged on SQLite, PostgreSQL, SQL Server and MySQL, and insert-or-update rows in a single native statement with the new Upsert APIs</description>
         <itunes:summary><![CDATA[ Query JSON columns with typed C# expressions that run unchanged on SQLite, PostgreSQL, SQL Server and MySQL, and insert-or-update rows in a single native statement with the new Upsert APIs ]]></itunes:summary>
+        <itunes:duration>109</itunes:duration>
         <itunes:keywords>servicestack,ormlite</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
@@ -836,38 +872,6 @@
         <itunes:summary><![CDATA[ The latest features in ServiceStack v8.5 covering release of AI Server and Kamal Deployments and more! ]]></itunes:summary>
         <itunes:duration>1237</itunes:duration>
         <itunes:keywords>release,ai-server,jobs,api</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Podcasts now in Razor SSG</title>
-        <link>https://servicestack.net/podcasts/razor-ssg-podcasts</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/razor-ssg-podcasts</guid>
-        <pubDate>Wed, 02 Oct 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-10-02T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/razor-ssg-podcasts.mp3" length="842061" type="audio/mpeg"/>
-        <category>razor</category>
-        <category>ssg</category>
-        <category>markdown</category>
-        <description>Razor SSG now includes support for Podcasts</description>
-        <itunes:summary><![CDATA[ Razor SSG now includes support for Podcasts ]]></itunes:summary>
-        <itunes:duration>210</itunes:duration>
-        <itunes:keywords>razor,ssg,markdown</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Scalable SQLite</title>
-        <link>https://servicestack.net/podcasts/scalable-sqlite</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/scalable-sqlite</guid>
-        <pubDate>Thu, 19 Sep 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-09-19T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/scalable-sqlite.mp3" length="2301741" type="audio/mpeg"/>
-        <category>sqlite</category>
-        <category>performance</category>
-        <category>scalability</category>
-        <description>Exploring different techniques in ServiceStack for building maximum value, high-performance Scalable SQLite Web Apps</description>
-        <itunes:summary><![CDATA[ Exploring different techniques in ServiceStack for building maximum value, high-performance Scalable SQLite Web Apps ]]></itunes:summary>
-        <itunes:duration>575</itunes:duration>
-        <itunes:keywords>sqlite,performance,scalability</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
