@@ -1,6 +1,6 @@
 ---
 title: Scalable Background Jobs - a durable job platform on the database you already run
-url: /posts/scalable-background-jobs
+url: https://docs.servicestack.net/background-jobs-rdbms
 image: /img/posts/scalable-background-jobs/bg.webp
 order: 1
 ---

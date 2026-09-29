@@ -1,6 +1,6 @@
 ---
 title: Next SaaS - a production-ready SaaS foundation for .NET 10 & Next.js
-url: /posts/next-saas
+url: https://react-templates.net/#next-saas
 image: /img/posts/next-saas/bg.webp
 order: 2
 ---

@@ -1,6 +1,6 @@
 ---
 title: API Rate Limiting - ASP.NET Core rate limits for ServiceStack APIs
-url: /posts/rate-limiting
+url: https://docs.servicestack.net/rate-limiting
 image: /img/posts/rate-limiting/bg.webp
 order: 4
 ---

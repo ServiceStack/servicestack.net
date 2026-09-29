@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry - follow every request across APIs, MQ and Background Jobs
-url: /posts/opentelemetry
+url: https://docs.servicestack.net/admin-ui-profiling#opentelemetry-tracing
 image: /img/posts/opentelemetry/bg.webp
 order: 5
 ---

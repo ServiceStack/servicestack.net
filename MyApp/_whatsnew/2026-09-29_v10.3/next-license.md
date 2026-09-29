@@ -1,6 +1,6 @@
 ---
 title: Next License - sell offline-verified licenses for your desktop apps
-url: /posts/next-license
+url: https://react-templates.net/#next-license
 image: /img/posts/next-license/bg.webp
 order: 3
 ---
