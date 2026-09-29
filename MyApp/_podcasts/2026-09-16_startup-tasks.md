@@ -3,7 +3,7 @@ title: Startup Tasks - Generate code from your running App
 summary: StartupTasks run dev-time tasks once your App has fully started, keeping client DTOs and other generated code in sync with your server on every restart, with no extra build step for developers or AI Assistants to remember
 tags: [servicestack, dev, ai]
 url: https://media.servicestack.com/podcasts/startup-tasks.mp3
-media: {size:1282410,duration:88.653787",format:mp3}
+media: {size:1282410,duration:88.653787,format:mp3}
 ---
 
 ServiceStack’s new **Startup Tasks** feature automates development workflows by executing essential processes immediately after an application finishes starting. 
