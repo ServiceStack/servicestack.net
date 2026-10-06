@@ -10,10 +10,60 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Tue, 29 Sep 2026 14:46:52 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 16:06:02 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Follow every request with OpenTelemetry</title>
+        <link>https://servicestack.net/posts/opentelemetry</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/opentelemetry</guid>
+        <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-06T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>api</category>
+        <category>performance</category>
+        <description>ServiceStack v10.3 emits standard OpenTelemetry traces and metrics that follow a request from its API call through outbound HTTP calls, MQ messages and Background Jobs, even across servers, in Jaeger, Grafana Tempo, Honeycomb, Datadog or the .NET Aspire Dashboard</description>
+    </item>
+    <item>
+        <title>API Rate Limiting</title>
+        <link>https://servicestack.net/posts/rate-limiting</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/rate-limiting</guid>
+        <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-05T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>api</category>
+        <category>security</category>
+        <description>ServiceStack v10.3 adds opt-in ASP.NET Core rate limiting for ServiceStack APIs - bind a named policy to a Request DTO or share one budget across every API with the same Tag, enforced across every route an API can be called from</description>
+    </item>
+    <item>
+        <title>Software Licensing Next.js Project Template</title>
+        <link>https://servicestack.net/posts/next-license</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/next-license</guid>
+        <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-01T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>react</category>
+        <category>nextjs</category>
+        <category>templates</category>
+        <description>Next License is a new .NET 10, ServiceStack and Next.js 16 template for selling perpetual, offline-verified JWT licenses for your .NET and Electron desktop apps, with Stripe Checkout, GitHub-hosted downloads and an Operations Center, and no activation server to run</description>
+    </item>
+    <item>
+        <title>SaaS Next.js Project Template</title>
+        <link>https://servicestack.net/posts/next-saas</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/next-saas</guid>
+        <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-30T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>react</category>
+        <category>nextjs</category>
+        <category>templates</category>
+        <description>Next SaaS is a new production-ready .NET 10, ServiceStack and Next.js 16 template for multi-tenant B2C and B2B SaaS products, with organizations, Stripe subscriptions, versioned plans, usage quotas and an Operations Center included from day one</description>
+    </item>
     <item>
         <title>Scalable Background Jobs</title>
         <link>https://servicestack.net/posts/scalable-background-jobs</link>
@@ -85,58 +135,6 @@
         <category>pdf</category>
         <category>typst</category>
         <description>Design Typst PDFs with AI Chat, publish validated templates, generate typed C# models and render production documents from your ServiceStack APIs</description>
-    </item>
-    <item>
-        <title>Instant CRUD Apps with AutoQuery Schemas</title>
-        <link>https://servicestack.net/posts/autoquery-schema</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/autoquery-schema</guid>
-        <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-09-01T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>autoquery</category>
-        <category>json-schema</category>
-        <category>vue</category>
-        <description>Give AutoQuerySchema one /auto/{DataModel}.json document and it renders a complete, authorized CRUD application</description>
-    </item>
-    <item>
-        <title>Richer APIs and Auto UIs with API Schemas</title>
-        <link>https://servicestack.net/posts/api-schema</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/api-schema</guid>
-        <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-08-31T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>json-schema</category>
-        <category>vue</category>
-        <category>react</category>
-        <category>ai</category>
-        <description>Every ServiceStack API now includes a portable schema that lets generic UIs describe, render and execute it</description>
-    </item>
-    <item>
-        <title>Instant AI Integration: Expose ServiceStack APIs to LLMs &amp; MCP</title>
-        <link>https://servicestack.net/posts/api-tools</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/api-tools</guid>
-        <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-08-25T00:00:00Z</atom:updated>
-        <category>ai</category>
-        <category>llms</category>
-        <category>mcp</category>
-        <category>servicestack</category>
-        <description>Turn your existing ServiceStack APIs into safe, discoverable AI tools for AI.Chat and every MCP-compatible assistant like Claude Code, Claude Desktop, Codex and OpenCode.</description>
-    </item>
-    <item>
-        <title>AI Chat v4: A full-featured AI Assistant integrated with your APIs and Auth</title>
-        <link>https://servicestack.net/posts/ai-chat-v4</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/ai-chat-v4</guid>
-        <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-08-24T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>ai</category>
-        <category>llm</category>
-        <description>Multi-provider chat, RAG, PDF Studio, tools, skills, mcp, projects and agents in one App - unleashing AI intelligence on your existing APIs</description>
     </item>
 </channel>
 </rss>

@@ -1,3 +1,1026 @@
+# Follow every request with OpenTelemetry
+Source: https://servicestack.net/posts/opentelemetry
+
+A single API call rarely does its work alone. Placing an order might charge a card through a payment
+provider, publish a message that sends a confirmation email, and queue a Job that fulfils the order on
+another server a few seconds later. When a customer says their order never arrived, the evidence is spread
+across three servers, four log files and a payment dashboard, and there's nothing to tie it together.
+
+This is what distributed tracing is for. Each unit of work records a **span**, every span carries the Id of
+the **trace** it belongs to, and the trace follows the work wherever it goes. You open one trace and see
+everything that request caused, in order, with how long each step took and where it failed.
+
+**ServiceStack v10.3** now emits standard **OpenTelemetry traces and metrics** that connect all of it:
+
+- **API operations** get a span inside ASP.NET Core's HTTP span, tagged with the Request DTO, route and outcome
+- **MQ messages** carry the trace to whichever server processes them, for Background MQ, Redis MQ and RabbitMQ
+- **Background Jobs** continue the trace of the request that queued them, even after a retry
+- **Metrics you can alert on** for API durations, activity and failures, without noisy client errors
+- **Traces in the Profiling UI**, so you can follow a trace without leaving the Admin UI
+
+It all works with the tracing backend you already use: Jaeger, Grafana Tempo, Honeycomb, Datadog, the
+.NET Aspire Dashboard, or anything else that speaks OTLP.
+
+![](/img/posts/opentelemetry/opentelemetry.webp)
+
+## See the whole request
+
+Here's that order, first as you'd find it in your logs today, and then as a single trace:
+
+<trace-explorer></trace-explorer>
+
+The message published on `web-1` carries the W3C `traceparent` in its `Meta`, so the consumer on `worker-2`
+continues the same trace. The Job queued by `PlaceOrder` stores the trace in its `BackgroundJob.TraceId`
+column, so when it fails and is retried on `worker-3`, both attempts show up under the request that started
+them. Nothing had to be passed around by hand.
+
+## Add it to your App
+
+Add OpenTelemetry to an existing **.NET 8+** App with:
+
+:::sh
+npx add-in opentelemetry
+:::
+
+This installs the OpenTelemetry packages and adds a `Configure.Profiling.cs` that registers ASP.NET Core and
+HttpClient instrumentation alongside ServiceStack's own sources:
+
+```csharp
+services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddSource(OperationDiagnostics.Name, MessagingDiagnostics.Name, JobsDiagnostics.Name)
+        .AddOtlpExporter())
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddMeter(OperationDiagnostics.Name, MessagingDiagnostics.Name, JobsDiagnostics.Name)
+        .AddOtlpExporter());
+```
+
+The three ServiceStack sources cover API operations, messaging and Background Jobs, while .NET's own
+instrumentation covers incoming HTTP requests and outbound HTTP calls.
+
+ServiceStack emits standard .NET `ActivitySource` traces and `Meter` metrics and **doesn't depend on the
+OpenTelemetry SDK**. Your App chooses the exporter, sampling and collector, and nothing is recorded until a
+listener is registered, so Apps that don't use OpenTelemetry pay nothing for it.
+
+:::info
+The `opentelemetry` add-in includes everything the `profiling` add-in does. Both create a
+`Configure.Profiling.cs`, so use one or the other.
+:::
+
+### Point it at your backend
+
+The exporter uses the standard OpenTelemetry environment variables, so the same build can send its traces
+to a different collector in each environment:
+
+| Variable | Used for |
+| --- | --- |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | Your collector's OTLP endpoint. Defaults to `http://localhost:4317` |
+| `OTEL_EXPORTER_OTLP_PROTOCOL` | `grpc` (default) or `http/protobuf` |
+| `OTEL_EXPORTER_OTLP_HEADERS` | Credentials your hosted backend needs, e.g. an API key header |
+| `OTEL_SERVICE_NAME` | The service name shown in your backend. Defaults to your App's name |
+| `OTEL_TRACE_URL_TEMPLATE` | Optional link from the Profiling UI to your backend |
+
+To try it locally without signing up for anything, run the
+[.NET Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dashboard/standalone)
+in Docker. It receives OTLP on the default port, so there's nothing to configure:
+
+:::sh
+docker run --rm -it -p 18888:18888 -p 4317:18889 mcr.microsoft.com/dotnet/aspire-dashboard:latest
+:::
+
+Open the login link printed in its output, call a few of your APIs, and your traces and metrics appear.
+
+Sampling stays in your hands. For example, to export 10% of new traces while always following the decision
+of an upstream service:
+
+```csharp
+.WithTracing(tracing => tracing
+    .SetSampler(new ParentBasedSampler(new TraceIdRatioBasedSampler(0.1)))
+    //...
+```
+
+<trace-pillars></trace-pillars>
+
+## Metrics you can alert on
+
+Traces tell you what happened to one request. Metrics tell you when something is wrong across all of them.
+ServiceStack records three metrics for every API:
+
+| Metric | Type | Description |
+| --- | --- | --- |
+| `servicestack.operation.duration` | Histogram (s) | How long API operations took |
+| `servicestack.operation.active` | UpDownCounter | API operations currently executing |
+| `servicestack.operation.errors` | Counter | API operations that failed with a server error |
+
+An error alert is only useful if it means your App is broken. A user mistyping their email, a request
+without a valid session or a lookup for an order that doesn't exist are all working as designed. So
+ServiceStack only counts **5xx responses and unhandled exceptions** as errors. Validation and authorization
+failures are recorded as `client_error` and keep an `Ok` span status. Try it:
+
+<outcome-classifier></outcome-classifier>
+
+Metrics are tagged by operation, HTTP method, **route template** and outcome, never by raw URLs, users or
+request bodies. Every tag has a small, fixed set of values, so your metrics stay cheap to store and fast to
+query no matter how many orders you have. Only requests for known APIs are measured, so bots probing
+`/api/{anything}` can't create new metric series either.
+
+The same privacy rule applies to spans: request and response bodies, user ids and exception messages are
+never added, only the exception type.
+
+The messaging meter adds counts of sent and consumed messages and how long processing took, and these join
+the existing [Background Jobs metrics](https://docs.servicestack.net/background-jobs-monitoring#opentelemetry)
+for queue wait times, retries and failures.
+
+## Traces in the Profiling UI
+
+You don't have to leave the Admin UI to follow a trace. With OpenTelemetry registered, the
+[Profiling UI](https://docs.servicestack.net/admin-ui-profiling) records each event with its W3C **Trace Id**
+and **Span Id**, so the API, OrmLite, Redis, HttpClient, MQ and Job events from the same request come up
+together. Click a Trace Id to see them in order, and switch between two views:
+
+- **Details** - the familiar Profiling grid, with each event's full details
+- **Trace view** - one row per step, indented under its parent span, with its source, duration and any errors
+
+Your OrmLite queries and Redis commands now sit right under the API or Job that ran them, and since the
+selected view is kept in the URL, you can send a teammate a link to the exact trace you're looking at.
+
+The Profiling UI only sees what happened on this server. For the rest of the story, set
+`ExternalTraceUrlTemplate` and the Trace view gets an **Open in trace backend** link to the complete trace:
+
+```csharp
+services.AddPlugin(new ProfilingFeature {
+    ExternalTraceUrlTemplate = "https://traces.example.org/trace/{traceId}",
+});
+```
+
+HTTP is also allowed for `localhost`, so you can link to a local backend during development:
+
+| Backend | `ExternalTraceUrlTemplate` |
+| --- | --- |
+| Jaeger | `http://localhost:16686/trace/{traceId}` |
+| Aspire Dashboard | `http://localhost:18888/traces/detail/{traceId}` |
+
+Profiling works the same as before without OpenTelemetry, grouping events by their existing request
+identifiers, so you can adopt tracing whenever you're ready. Profiling durations and times are now also
+measured correctly on Linux and macOS, where they were previously overstated.
+
+## Good to know
+
+- **Want more detail inside an API?** Set `OperationDiagnostics.EnableDetailedSpans = true` to add spans for
+  request filters, the service invocation and AutoQuery execution. They're off by default to keep the number
+  of spans per request low.
+- **Upgrading is safe.** Messages and Jobs without trace context, including those queued before you
+  upgraded, simply start a new trace instead of failing. The existing `IMessage.TraceId` is unchanged.
+- **Custom MQ clients can join in.** Wrap your publish in `MessagingDiagnostics.StartPublish()` and call
+  `MessagingDiagnostics.Inject(message)`, and your queue's messages join the same trace.
+- **Sampling doesn't affect profiling.** Sampling only changes what's exported. The Profiling UI keeps its own
+  bounded history, controlled by `ProfilingFeature.Capacity`, and metrics are recorded whether or not a
+  trace is sampled.
+
+## Get Started
+
+OpenTelemetry support is available in **ServiceStack v10.3** for all .NET 8+ Apps. To add it:
+
+1. Run `npx add-in opentelemetry` in your App
+2. Set `OTEL_EXPORTER_OTLP_ENDPOINT` to your collector, or run the Aspire Dashboard locally
+3. Optionally set `OTEL_TRACE_URL_TEMPLATE` to link the Profiling UI to your trace backend
+
+See [OpenTelemetry Tracing](https://docs.servicestack.net/admin-ui-profiling#opentelemetry-tracing) for the
+full list of spans, attributes and configuration, and the
+[v10.3 Release Notes](https://docs.servicestack.net/releases/v10_03#follow-a-request-with-opentelemetry)
+for everything else in this release, including [Scalable Background Jobs](/posts/scalable-background-jobs)
+and [API Rate Limiting](/posts/rate-limiting).
+
+
+# API Rate Limiting
+Source: https://servicestack.net/posts/rate-limiting
+
+Every public API eventually meets a client that calls it too often. It might be a buggy retry loop, a script
+someone forgot to stop, a customer syncing everything at once or someone trying to guess passwords. Your
+APIs slow down for everyone else, your database takes the load, and the third-party services you pay for
+per call send you the bill.
+
+Rate limiting stops this at the edge of your App. Each client gets a budget of requests, and anything over
+it is turned away with **HTTP 429 Too Many Requests** before it costs you anything.
+
+ASP.NET Core already ships a good rate limiter. It handles permits, queueing, rejections and metrics for
+fixed windows, sliding windows, token buckets and concurrency limits. What was missing was a simple way to
+apply it to ServiceStack APIs. **ServiceStack v10.3** adds that:
+
+- **Attach a policy to a Request DTO** with ServiceStack's `[RateLimiting]` or Microsoft's `[EnableRateLimiting]` attribute
+- **Share one budget across a group of APIs** by binding a policy to a `[Tag]`
+- **Enforced everywhere** an API can be called: explicit routes, `/api` URLs, format URLs and autobatch requests
+- **Rejected before your service runs**, so an over-limit request costs almost nothing
+- **Checked on startup**, so ambiguous or bypassable configurations fail when your App starts, not in production
+
+![](/img/posts/rate-limiting/rate-limiting.webp)
+
+## Limit an entire workflow with one policy
+
+Rate limits usually protect a resource rather than a single endpoint. When "orders" are expensive, you
+want to limit how much order work a client can do, whether they're listing, placing or cancelling orders.
+Giving each endpoint its own allowance means a client gets three times the budget you intended.
+
+With ServiceStack you define the policy once, using ASP.NET Core's `AddRateLimiter`, and bind it to a tag:
+
+```csharp
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddFixedWindowLimiter("orders", limiter =>
+    {
+        limiter.PermitLimit = 60;
+        limiter.Window = TimeSpan.FromMinutes(1);
+        limiter.QueueLimit = 0;
+    });
+});
+
+var app = builder.Build();
+app.UseRouting();
+app.UseRateLimiter();
+app.UseServiceStack(new AppHost(), options =>
+{
+    options.MapEndpoints();
+    options.RateLimitTag("orders", "orders");
+});
+```
+
+Every operation tagged `orders` now draws from the **same `orders` budget**. You can also name the
+policy directly on a Request DTO:
+
+```csharp
+[Tag("orders")]
+public class ListOrders : IGet, IReturn<ListOrdersResponse> { }
+
+[Tag("orders")]
+public class CancelOrder : IPost, IReturn<CancelOrderResponse> { }
+
+[RateLimiting("orders")]
+public class PlaceOrder : IPost, IReturn<PlaceOrderResponse> { }
+```
+
+Try spending the budget below, then switch to a separate policy per API to see how much more a client
+could get away with:
+
+<rate-limit-simulator></rate-limit-simulator>
+
+APIs without a policy, like `GetProfile` above, aren't affected. Rate limiting is **opt-in**, so upgrading
+doesn't change the behavior of any existing API.
+
+## Keep your DTOs free of ASP.NET Core
+
+Request DTOs often live in a shared `ServiceModel` project that's referenced by .NET clients, desktop apps
+and other services. The `[RateLimiting]` attribute is defined in **ServiceStack.Interfaces**, so these
+projects can declare their policy without taking a dependency on ASP.NET Core.
+
+If you'd rather use Microsoft's own attributes, `[EnableRateLimiting]` and `[DisableRateLimiting]` work on
+Request DTOs as well. You can also bind a policy from your App's configuration, without touching the DTO at all:
+
+```csharp
+app.UseServiceStack(new AppHost(), options =>
+{
+    options.MapEndpoints();
+    options.RateLimitOperation<GenerateReport>("reports");
+});
+```
+
+## No ambiguity, no surprises
+
+An operation can end up with more than one binding: a tag, an attribute and some configuration. ServiceStack
+resolves them in a simple order:
+
+1. `options.RateLimitOperation<T>()` in your App's configuration
+2. `[RateLimiting]` or `[EnableRateLimiting]` on the Request DTO
+3. A `[Tag]` bound with `options.RateLimitTag()`
+
+Bindings can agree with each other, but they can never quietly disagree. If two bindings name different
+policies, or an operation is tagged with two tags bound to different policies, or `[DisableRateLimiting]`
+is combined with a policy, ServiceStack **throws on startup** and tells you which operation to fix. You'll
+never find out in production that an API has been running under the wrong limit. Try it:
+
+<policy-resolver></policy-resolver>
+
+`[DisableRateLimiting]` is also how you exempt an operation from a global limiter, e.g. to keep health
+checks and webhooks from being throttled.
+
+## Enforced on every route
+
+A rate limit is only as good as its weakest route. ServiceStack APIs can be called from several URLs, and
+it only takes one unmetered URL for a client to ignore your limits. ServiceStack applies the policy to all
+of them:
+
+| Route | Example | |
+| --- | --- | --- |
+| Explicit routes | `POST /orders` | ✓ Limited |
+| JSON API | `POST /api/PlaceOrder` | ✓ Limited |
+| Format URLs | `POST /api/PlaceOrder.json` | ✓ Limited |
+| Autobatch requests | `POST /api/PlaceOrder[]` | ✓ Limited |
+| Legacy pre-defined routes | `POST /json/reply/PlaceOrder` | Not mapped |
+
+Rate limiting runs in ASP.NET Core's middleware, so this requires ServiceStack APIs to be served by
+[ASP.NET Core Endpoint Routing](https://docs.servicestack.net/endpoint-routing). Keep `MapEndpoints()` at
+its default `force: true` so legacy ServiceStack routes aren't served. If a rate-limited App is configured
+in a way that could leave a route unmetered, it fails on startup instead of running without its limits.
+
+Since the limiter runs before ServiceStack, an over-limit request is rejected with a **429** before its
+Request DTO is deserialized, its filters run or your service is called.
+
+## Choose the limiter that fits
+
+A named policy can use any of ASP.NET Core's built-in limiters, or a custom policy of your own. They all
+bind to ServiceStack APIs in the same way:
+
+<limiter-pillars></limiter-pillars>
+
+## Per-user budgets
+
+A single shared budget protects your servers, but it lets one busy client use up everyone's allowance. For
+SaaS APIs you'll usually want **one budget per user**, which you get by partitioning a policy by the
+authenticated user:
+
+```csharp
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddPolicy("per-user", context =>
+    {
+        var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        return userId != null
+            // Each signed-in user gets their own bucket of 100 requests a minute
+            ? RateLimitPartition.GetTokenBucketLimiter(userId, _ => new TokenBucketRateLimiterOptions {
+                TokenLimit = 100,
+                TokensPerPeriod = 100,
+                ReplenishmentPeriod = TimeSpan.FromMinutes(1),
+                QueueLimit = 0,
+            })
+            // Anonymous callers share a much smaller budget per IP
+            : RateLimitPartition.GetFixedWindowLimiter(
+                context.Connection.RemoteIpAddress?.ToString() ?? "anonymous", _ => new FixedWindowRateLimiterOptions {
+                    PermitLimit = 10,
+                    Window = TimeSpan.FromMinutes(1),
+                    QueueLimit = 0,
+                });
+    });
+});
+
+var app = builder.Build();
+app.UseRouting();
+app.UseAuthentication(); // must run before the limiter to partition by user
+app.UseRateLimiter();
+```
+
+The limiter runs before ServiceStack does, so it partitions on the **ASP.NET Core principal** in
+`HttpContext.User`. Make sure `UseAuthentication()` comes before `UseRateLimiter()`, as shown above, so
+the user is known when the limiter runs. The same approach works for per-tenant or per-API Key budgets,
+using whichever claim identifies them.
+
+## Things to know
+
+- **Limits are per App Server.** ASP.NET Core's built-in limiters keep their counters in memory, so with 3 App
+  Servers behind a load balancer, a 60 requests/minute policy allows up to 180 in total. For a quota shared
+  across servers, use a distributed policy, e.g. backed by Redis, or enforce it at your API gateway.
+- **Friendly rejections.** Use `options.OnRejected` to add a `Retry-After` header or a custom error body.
+  ServiceStack's [generated service clients](https://docs.servicestack.net/add-servicestack-reference)
+  surface a 429 like any other failed API call.
+- **Metrics included.** ASP.NET Core's limiter publishes its own metrics for leased and rejected requests,
+  which you can collect alongside the new
+  [ServiceStack OpenTelemetry metrics](https://docs.servicestack.net/releases/v10_03#follow-a-request-with-opentelemetry).
+- **Not the same as Job rate limits.** API rate limiting controls how fast clients can call your APIs. To
+  control how fast your App calls someone else's API, use the new
+  [Background Jobs queue rate limits](https://docs.servicestack.net/releases/v10_03#rate-limit-third-party-apis),
+  also in this release.
+
+## Get Started
+
+API Rate Limiting is available in **ServiceStack v10.3** for all ASP.NET Core Apps using Endpoint Routing.
+To add it to an existing App:
+
+1. Define your named policies with `builder.Services.AddRateLimiter()`
+2. Add `app.UseRateLimiter()` after `UseRouting()`, and after `UseAuthentication()` for per-user policies
+3. Bind policies to your APIs with `[RateLimiting]`, `[EnableRateLimiting]`, `RateLimitTag()` or `RateLimitOperation<T>()`
+
+See the [v10.3 Release Notes](https://docs.servicestack.net/releases/v10_03#api-rate-limiting) for
+everything else in this release, and the [Rate Limiting docs](https://docs.servicestack.net/rate-limiting)
+for more on configuring ASP.NET Core's rate limiter.
+
+
+# Software Licensing Next.js Project Template
+Source: https://servicestack.net/posts/next-license
+
+Selling a desktop app means building a store around it. You need a pricing page, checkout, a way to issue
+license keys after payment, somewhere customers can get their key again, renewals and upgrades, downloads for
+each platform, and a back office to handle refunds and support. Then your app needs a way to check the key.
+Most licensing systems handle that with an activation server, which your customers now depend on to use the
+software they paid for.
+
+**Next License** is a new [React Template](https://react-templates.net) that includes the store and a simpler
+way to check licenses. Customers buy a license with Stripe Checkout and copy a signed license key from their
+account. Your app verifies the key **offline**, against a public key built into it, and enables its Pro
+features. There's no activation server to run and no network call to make.
+
+It's built with **.NET 10**, **ServiceStack**, **ASP.NET Core Identity**, **React 19** and **Next.js 16**, and
+includes license verifiers for both **.NET** and **Electron** apps. Try the build coverage demo below, then
+take a tour of the storefront and Operations Center:
+
+<next-license-template></next-license-template>
+
+Create a new Next License project with:
+
+:::sh
+npx create-net next-license ProjectName
+:::
+
+## What's included
+
+The template sells licenses for **Acme Studio**, an example desktop app that unlocks Pro features with a
+license key. It includes an example .NET console and Avalonia desktop app that verifies keys, so you can see
+the whole flow working before you connect your own app:
+
+<license-highlights></license-highlights>
+
+## From purchase to unlock
+
+A license goes through 4 steps from purchase to unlocking Pro in your app:
+
+1. **Purchase** - the customer chooses an offer on `/pricing`, enters the name, organization and number of
+   seats to register, accepts your license agreement and pays in Stripe Checkout
+2. **Fulfill** - a Stripe webhook confirms the payment, and the server signs a license key and records the
+   payment in a single transaction
+3. **Deliver** - the customer opens **My licenses** and copies the key, or downloads it as a license file
+4. **Unlock** - your app verifies the key with its embedded public key and enables Pro
+
+![My licenses in the customer account](https://react-templates.net/img/next-license/customer-licenses.png)
+
+Delivery emails only link to the customer's account, they never attach the key. If an email goes missing
+or the customer loses their key, they can copy it again from their account at any time.
+
+## A license is a signed JWT
+
+A license key is a standard **ES256-signed JWT**. Its claims contain everything your app needs to display who
+it's registered to and decide which builds it covers:
+
+```json
+{
+  "iss": "acme-studio",
+  "aud": "acme-studio",
+  "sub": "13a25819-3ed9-441f-8bcd-6a94ee56dc00",
+  "name": "Alex Morgan",
+  "organization": "Northstar Studio",
+  "seats": 3,
+  "edition": "Pro",
+  "iat": 1780000000,
+  "lifetime": false,
+  "updatesThrough": "2027-03-21"
+}
+```
+
+The server signs licenses with a private P-256 key that never leaves it. Your apps only contain the matching
+public key, which can verify a license but can't create one. Anyone can read the claims, which is how your app
+shows the registered name, organization and seats, but any change to them invalidates the signature.
+
+A single command creates your key pair. It won't overwrite an existing directory, so you can't accidentally
+replace a key that has already signed licenses:
+
+:::sh
+dotnet run --project MyApp.Licensing.Tool -- jwt ./license-keys
+:::
+
+Because it's a standard JWT, you aren't limited to the verifiers included in the template. Any maintained
+JWT library that supports ES256 can verify it, in any language.
+
+## Licenses that never expire
+
+Notice what the claims above don't include: an `exp` expiry date. A Next License license never expires.
+Instead, it covers every build of your app **released** on or before its `updatesThrough` date, and keeps
+working with those builds forever. **Lifetime** licenses cover every future build as well.
+
+Your app embeds its own release date when it's built, and compares that to the license:
+
+```
+valid = signature valid AND issuer/product match AND paid edition
+        AND (lifetime OR buildDate <= updatesThrough)
+```
+
+| License                          | App build date | Pro              |
+|----------------------------------|----------------|------------------|
+| Dated through 2026-09-21         | 2026-09-21     | Enabled          |
+| Dated through 2026-09-21         | 2026-09-22     | Renewal required |
+| Lifetime                         | Any            | Enabled          |
+| Missing, tampered or wrong product | Any          | Disabled         |
+
+Nothing is compared against today's date. A covered build still works years later, changing the system clock
+changes nothing, and customers are never locked out of software they paid for. To get Pro in a newer build,
+customers renew. Renewals extend from the later of the current cutoff and the payment date, so renewing early
+never loses time, and the license keeps the same ID.
+
+## Unlock Pro in your app
+
+In a .NET app, reference `MyApp.Licensing` and call `LicenseJwt.Verify`. It uses the runtime's built-in
+cryptography and never contacts a server:
+
+```csharp
+using MyApp.Licensing;
+
+// Public key, issuer, product and build date come from your app, never from user input.
+var result = LicenseJwt.Verify(
+    pastedKey,
+    embeddedPublicKeyPem,
+    issuer: "acme-studio",
+    product: "acme-studio",
+    buildDate: "2026-09-21");
+
+bool enablePro = result.Valid;
+if (result.License is { } license)
+{
+    Console.WriteLine($"Registered to {license.Name}");
+    Console.WriteLine($"Organization: {license.Organization}");
+    Console.WriteLine($"Licensed seats: {license.Seats}");
+}
+```
+
+In an Electron app, copy `license.mjs` into your app and call `verifyLicense` from the main process. It only
+uses Node's built-in `crypto`, with no npm dependencies, no .NET runtime and no helper process:
+
+```js
+import { verifyLicense } from './license.mjs';
+
+const result = verifyLicense(savedOrPastedKey, {
+  publicKey: bundledPublicKeyPem,
+  issuer: 'acme-studio',
+  product: 'acme-studio',
+  buildDate: '2026-09-21',
+});
+
+const enablePro = result.valid;
+```
+
+Both return the same statuses, so your app knows exactly what to show:
+
+| Status              | Suggested app behavior                                              |
+|---------------------|---------------------------------------------------------------------|
+| `valid`             | Enable Pro and show the registered name, organization and seats     |
+| `missing`           | Free mode with an **Enter license** action                          |
+| `invalid`           | Explain that the key can't be verified and stay in Free mode        |
+| `buildNotCovered`   | Offer a renewal, or a download of a version the license covers      |
+| `editionNotCovered` | Keep Pro disabled                                                   |
+
+An uncovered license still includes its verified registered details, so your app can show a friendly
+*"Registered to Alex Morgan, renew to use this version"* message instead of treating the customer like a
+stranger.
+
+The public key and release date are embedded at build time, and the sample app fails `dotnet publish` if no
+public key is supplied, so a demo key can't ship by accident:
+
+```bash
+dotnet publish MyApp.SampleApp -c Release -r win-x64 --self-contained true \
+  -p:LicensePublicKeyFile=/absolute/path/license-public.pem \
+  -p:AppBuildDate=2026-09-21
+```
+
+Apps that want renewals to arrive without the customer pasting a new key can use the optional
+`ActivationClient`. It fetches the latest version of a license at most once a day, only if the user opts in,
+and only saves the result if it verifies. The server stores nothing about the request, and a failed refresh
+never affects Pro.
+
+## Payments you can trust
+
+Customers pay with one-time **Stripe Checkout** purchases. Before redirecting to Stripe, the server records
+the order, its price and the checkout policy, so nothing the customer changes in the browser can alter what
+they're charged for:
+
+![Pricing page with Free, 12 month and Lifetime offers](https://react-templates.net/img/next-license/pricing.png)
+
+Stripe webhooks are verified and saved to a durable inbox before they're processed by a
+[Background Job](https://docs.servicestack.net/background-jobs). The webhook body alone is never trusted: the
+job retrieves the current Checkout Session and payment from Stripe and checks the order, price, quantity,
+currency, discount and tax before it signs a license. If a webhook is delayed or lost, background
+reconciliation checks Stripe again. Replayed events can't issue a second license, and a late failure event
+can't undo a successful payment.
+
+Stripe also handles the rest of the checkout:
+
+- **Promotion codes** - create coupons and codes in the Stripe Dashboard and enable them with
+  `Stripe__AllowPromotionCodes=true`
+- **Automatic tax** - enable Stripe Tax with `Stripe__AutomaticTax=true`
+- **Refunds and disputes** - are recorded from Stripe events, keep partial and multiple refunds, and flag
+  the order for review in the Operations Center
+- **Invoices** - customers open their Stripe invoices from their order history
+
+## Downloads from your GitHub releases
+
+Your software is built and published by your own app's repository, not the licensing server. Point the site
+at the GitHub repository that holds your releases:
+
+```dotenv
+Licensing__GitHubRepository=owner/repository
+```
+
+Your published releases then appear as platform download buttons on `/download`, with the visitor's platform
+first, and as Markdown release notes on `/changelog`. Installer file extensions decide which platform each
+download is for, like `.exe` and `.msi` for Windows, `.dmg` for macOS and `.AppImage` or `.deb` for Linux:
+
+![Downloads page built from GitHub releases](https://react-templates.net/img/next-license/downloads.png)
+
+The last successful response from GitHub is saved to disk, so the download page keeps working through GitHub
+outages and rate limits, and across restarts.
+
+## An Operations Center for your store
+
+Admins manage the store from the `/admin` Operations Center. Its overview shows active licenses, orders that
+need review, pending Stripe events and a launch checklist of what's left to configure before you can sell:
+
+![Operations Center overview](https://react-templates.net/img/next-license/operations-center.png)
+
+- **Products & pricing** - save prices, create the matching Stripe prices and approve offerings for sale
+- **Licenses** - search licenses, extend their coverage, grant Lifetime updates or reissue them, with each
+  change requiring a reason that's recorded in the audit log
+- **Issue a license** - search registered customers and issue complimentary or replacement licenses
+- **Orders** - search orders, open their Stripe payments and review refunds and disputes
+- **License terms** - publish new versions of your license agreement with a live Markdown preview
+- **Integrations** - check the status of your Stripe, webhook, signing key and GitHub configuration
+- **Releases** - view your published GitHub releases with their notes and installers
+
+![Managing licenses in the Operations Center](https://react-templates.net/img/next-license/licenses.png)
+
+Customers also have what they need to look after their own licenses. From their account they can renew a
+dated license or upgrade it to Lifetime, transfer it to another verified account, and choose which lifecycle
+emails they receive, like update reminders before their cutoff and announcements of new releases.
+
+## Honest about what it doesn't do
+
+Offline verification is a deliberate trade-off. Your customers never depend on your server to use their
+software, and you never have to run an availability-critical activation service. In return, a license a
+customer already holds can't be switched off. Refunding, revoking or transferring a license stops your store
+from providing its key from then on, but copies already downloaded keep working with the builds they cover.
+
+Next License is an eligibility check, not DRM. It doesn't count running machines, enforce seats, bill on a
+recurring schedule or remotely disable licenses, and a user who controls your app's code can patch its checks.
+For most desktop software sold to honest customers, that's the right trade-off: a clear, verifiable license
+that just works, without the support burden of activations.
+
+## Your choice of database, one App to deploy
+
+Like the other React Templates, Next License runs as **one ASP.NET Core App**. Next.js provides the React UI
+as a static export served by ASP.NET Core, so there's no Node.js server to run in production. In development,
+`dotnet watch` proxies the Next.js dev server so you get HMR on the same origin as your APIs.
+
+It uses **SQLite** by default, or **PostgreSQL**, **MySQL/MariaDB** or **SQL Server** by setting
+`Database__Provider`. The included GitHub Actions deploy to any Linux server with
+[Kamal](https://kamal-deploy.org), with a destination for each database.
+
+## Get Started
+
+Create a new Next License project with:
+
+:::sh
+npx create-net next-license ProjectName
+:::
+
+Then run it locally:
+
+```bash
+cd ProjectName
+cp .env.example .env
+cd MyApp.Client && npm ci
+cd ../MyApp && dotnet watch
+```
+
+Sign in as `admin@email.com` with `p@55wOrd` to explore the Operations Center. To see offline verification
+working without configuring anything, run the example app from the repository root. It generates disposable
+keys and prints covered, uncovered and Lifetime results, or opens a desktop window with `--desktop` where you
+can paste the example keys and watch Pro turn on:
+
+```bash
+dotnet run --project MyApp.SampleApp
+dotnet run --project MyApp.SampleApp -- --desktop
+```
+
+The [Next License docs](https://react-templates.net/docs/next-license) walk you through each step, from
+creating your signing key and issuing your first license, to enabling Pro in your .NET or Electron app,
+connecting a Stripe sandbox and shipping to production. They also include reference guides for every concept,
+feature, operations runbook and security control in the template.
+
+
+# SaaS Next.js Project Template
+Source: https://servicestack.net/posts/next-saas
+
+Every SaaS product needs the same foundation before it can charge its first customer. You need sign up and
+sign in, organizations with team roles, pricing plans, Stripe subscriptions and webhooks, usage limits,
+API keys, audit logs, data export and deletion, and a back office to support your customers. None of it is
+your product, but all of it has to work before you can launch.
+
+**Next SaaS** is a new [React Template](https://react-templates.net) that includes that foundation, so you
+can start on the part that's unique to you. It's built with **.NET 10**, **ServiceStack**, **ASP.NET Core
+Identity**, **React 19** and **Next.js 16**, and it includes three complete Apps from day one:
+
+- **Public Site** - a product landing page, pricing rendered from published plan versions, ASP.NET Core
+  Identity sign up and hosted Stripe Checkout with trials, coupons and promotion codes
+- **Customer App** - organization dashboards, organization-scoped file storage, real-time usage meters and
+  quotas, plan and billing management through the Stripe Customer Portal, team roles, API keys, audit logs
+  and data export, ownership transfer and delayed deletion
+- **Operations Center** - platform-wide commercial health, a Customer 360 view, an immutable plan editor,
+  Stripe-synced coupons, platform usage analytics and recovery of failed webhooks, jobs and integrations
+
+Take a tour through each of them:
+
+<next-saas-template></next-saas-template>
+
+Create a new Next SaaS project with:
+
+:::sh
+npx create-net next-saas ProjectName
+:::
+
+## What's included
+
+The template ships with **Acme**, a small example product for secure document storage and usage analytics.
+Acme is kept small on purpose. It shows how subscriptions, quotas, storage, analytics, teams and operations
+fit together, but it doesn't push its own domain onto you. You replace Acme with your product and keep the
+parts every SaaS needs:
+
+<saas-highlights></saas-highlights>
+
+## One App to run and deploy
+
+Next SaaS runs as **one ASP.NET Core App**. ASP.NET Core and ServiceStack handle authentication, APIs,
+persistence, billing, background work and hosting. Next.js provides the React UI as a static export, so
+there's **no Node.js server to run in production**:
+
+![One-Runtime Production Architecture](https://react-templates.net/img/next-saas/production-architecture.png)
+
+In development, `dotnet watch` starts the Next.js dev server and proxies it, so you get HMR on the same
+origin as your Identity cookies and APIs. In production, `next build` generates static files that are
+published to the App's `wwwroot`. Your App has one public origin in both environments, so there's no CORS
+to configure and no second server to deploy.
+
+Every API is a typed ServiceStack Service. C# Request DTOs in `MyApp.ServiceModel` are the source of truth,
+and the React client calls them through the TypeScript DTOs generated from them. You can follow any feature
+from its DTO, to its Service, to the page that calls it:
+
+![End-to-End Typed ServiceStack Client](https://react-templates.net/img/next-saas/typed-client.png)
+
+It also supports your preferred database. A single `DB_PROVIDER` setting selects **SQLite**, **PostgreSQL**,
+**MySQL** or **SQL Server** for both local development and production, so you develop against the same
+database you deploy to. SQLite is the zero-dependency default. For the other databases, `./scripts/dev-db.sh up`
+runs the same database image locally that your deployment uses.
+
+## Organizations and teams
+
+Customers sign up with a **Personal** account for themselves or a **Business** organization for their team.
+One user can belong to many organizations and switch between them. Each organization has its own data,
+billing, quotas, files and API keys.
+
+Business organizations have 4 roles:
+
+| Role    | Permissions                                                                   |
+|---------|-------------------------------------------------------------------------------|
+| Owner   | Everything, including ownership transfer and deleting the organization        |
+| Admin   | Members, settings, exports and day-to-day administration                      |
+| Billing | Billing and subscription management                                           |
+| Member  | Uses the product features their plan includes                                 |
+
+![Team Roles and Member Management](https://react-templates.net/img/next-saas/team-roles.png)
+
+Invitations use one-time tokens that expire, and can only be accepted by a signed-in user with a matching
+verified email. The Owner role can't be removed by mistake: an organization always has an Owner, and an Owner
+can only leave by transferring ownership to another member first.
+
+### Tenant isolation, enforced on the server
+
+The browser is never trusted to decide which organization's data it can see. Every customer request goes
+through `IWorkspaceContextResolver`, which reloads the caller's active membership on the server. Every query
+for customer data is then filtered by that organization:
+
+```csharp
+var widget = Db.Single<Widget>(x =>
+    x.Id == request.Id &&
+    x.WorkspaceId == context.Workspace.Id)
+    ?? throw new HttpError(404, "WidgetNotFound", "The widget was not found.");
+```
+
+The same rule applies to files, exports, analytics and background jobs. Every table is also classified as
+`global`, `tenant-owned` or `platform-operational` in `features.json`, and an architecture test fails the
+build if you add a table without classifying it.
+
+API keys are bound to the organization they were created in, not to whatever organization the browser has
+selected. They're shown once, listed afterwards by fingerprint, and can't be used to manage other keys.
+
+## Stripe billing off the hot path
+
+Stripe handles payments, and your database handles access. Customers subscribe through **Stripe Checkout**
+and manage their payment methods, invoices and cancellations in the **Stripe Customer Portal**. You don't
+have to build any of that UI:
+
+![Stripe Hosted Checkout](https://react-templates.net/img/next-saas/stripe-checkout.png)
+
+Signed Stripe webhooks keep a local `BillingSubscription` up to date. Every request checks access against
+this local copy, so **Stripe is never called to decide whether a request is allowed**. Stripe latency and
+outages don't slow down or break your App.
+
+Each webhook event is recorded once in an inbox table and processed by a
+[Background Job](https://docs.servicestack.net/background-jobs), so duplicate deliveries are harmless. Failed
+events keep their attempts and errors, and operators can retry them from the Operations Center. An hourly job
+also reconciles subscriptions with Stripe to repair any webhooks that were missed:
+
+![Stripe Webhook Ingestion Pipeline](https://react-templates.net/img/next-saas/webhook-flow.png)
+
+When a payment fails, a configurable grace period gives the customer time to fix it. Afterwards the
+organization falls back to **Free**, **ReadOnly** or **Suspended** access, depending on how you configure it.
+A billing change never deletes customer data.
+
+Admins can also create Stripe **coupons and promotion codes** from the Operations Center. The codes can be
+percentage or fixed-amount, one-time, repeating or forever, with optional redemption limits and expiry dates.
+
+## Plans that never change under your customers
+
+A plan is a set of prices, features, quota allowances and an optional trial. Admins manage plans in the
+**Plan Editor** by editing a draft and publishing it. Publishing creates a new **immutable version**, and
+every existing subscription stays pinned to the version the customer signed up to. Changing your prices
+never changes an existing customer's contract.
+
+![Plan Editor and Version Management](https://react-templates.net/img/next-saas/plan-editor.png)
+
+The Plan Editor can also create the matching Products and Prices in Stripe for you. It uses idempotency keys,
+so running it again won't create duplicates.
+
+Features are declared under `Saas.Features` in `appsettings.json`, and plans can only grant features that
+are declared there. Protecting an API is a single attribute on its Request DTO:
+
+```csharp
+[ValidateIsAuthenticated]
+[RequiresFeature("reports.export")]
+[Route("/reports/export", "POST")]
+public class ExportReport : IPost, IReturn<ExportReportResponse> { }
+```
+
+The React UI uses the same entitlements to hide controls and suggest upgrades, but the server always has the
+final say. For negotiated contracts or temporary access, admins can add a per-customer override, with a
+reason and an optional expiry. Overrides are audited and take priority over the plan.
+
+## Usage metering and quotas
+
+Features decide *whether* an organization can do something, and quotas decide *how much*. Meters are declared
+in `appsettings.json` and come in two kinds:
+
+- **Counters** count activity like API requests or reports generated, and reset each billing period
+- **Gauges** track what an organization currently has, like stored documents, bytes or seats
+
+Each plan sets an allowance for each meter, with a **Hard limit**, **Soft limit** or **Metered overage**
+policy. Usage is checked in your database within a transaction, so two requests can't both use the last
+remaining unit. Every usage event needs an idempotency key, so a retried request never counts twice:
+
+```csharp
+var usage = manager.RecordUsage(Db, context.Workspace, subscription, context.UserId,
+    new RecordUsage {
+        MeterKey = "reports.generated",
+        Units = 1,
+        IdempotencyKey = request.IdempotencyKey,
+        MetadataJson = new { reportId }.ToJson(),
+    });
+```
+
+When you don't know the final cost of some work in advance, you **reserve** capacity before starting it,
+**settle** it to the actual amount when it completes, and **release** it if it fails. Acme's file uploads
+use this pattern, reserving a document and the expected bytes before streaming the upload. If the upload
+fails, the reservation is released and any partial file is removed:
+
+![Capacity Reservation and Settlement Flow](https://react-templates.net/img/next-saas/reservation-flow.png)
+
+Analytics are built from the same usage events used to enforce quotas, so your dashboards and your limits
+always agree. Customers see allowances, daily usage, per-member breakdowns, projections and CSV exports on
+their **Usage** page. Operators can see plan mix, growth and quota pressure across all customers:
+
+![Customer Usage Dashboard and Analytics](https://react-templates.net/img/next-saas/customer-usage.png)
+
+## An Operations Center for running the business
+
+The `/admin` Operations Center is where your team runs the business. It has 3 platform roles of its own,
+separate from the roles inside customer organizations: **Admin**, **BillingAdmin** and **Support**:
+
+![Operations Center Overview](https://react-templates.net/img/next-saas/operations-center.png)
+
+- **Customer 360** - search by organization, member email, Stripe ID or API key fingerprint to see a
+  customer's subscription, entitlements, usage, members, audit history and support notes
+- **Plans & Coupons** - edit and publish plan versions, and create Stripe coupons and promotion codes
+- **Usage** - platform-wide analytics, plan mix, growth and quota pressure
+- **Operations** - failed Stripe events, notifications and lifecycle work, with retries that use the original
+  idempotency key, and a check of whether each integration is configured
+- **Security** - retention runs, active support sessions and the platform audit log
+
+![Customer 360 Platform Inspection](https://react-templates.net/img/next-saas/customer-360.png)
+
+Risky operations like usage adjustments or status changes require a reason. The high-risk ones also show a
+preview of their impact and ask the operator to type the organization's name to confirm.
+
+**Support access** is off by default. When enabled, an Admin grants a named Support operator time-limited,
+read-only access to a single organization. The operator has to start the session explicitly, sensitive data
+is hidden from them, and every step is audited:
+
+![Support Access Four-Stage Lifecycle](https://react-templates.net/img/next-saas/support-access-lifecycle.png)
+
+## Lifecycle, audit and notifications
+
+The template also includes the features customers and compliance reviews will ask you for:
+
+- **Audit logs** - security, billing, lifecycle and admin actions are recorded with the actor, organization
+  and request ID, with passwords, keys and other secrets removed. Customers and operators can both search
+  and export them
+- **Data export** - Owners and Admins can download a ZIP of all their organization's data and files. The
+  export is generated by a background job and expires after a configurable number of days
+- **Delayed deletion** - deleting an organization makes it read-only for a recovery window, during which the
+  Owner can cancel. Legal holds block deletion, and user accounts are kept for their other organizations
+- **Retention** - global defaults for analytics, audit, notification and file retention, which operators can
+  override per organization
+- **Notifications** - in-app and email notifications with per-user preferences. Duplicates are prevented,
+  and failed deliveries are retried and shown in the Operations Center
+
+## Durable work with Background Jobs
+
+Anything that's slow, calls an external service, runs later or needs to be retried runs in
+[ServiceStack Background Jobs](https://docs.servicestack.net/background-jobs). This includes Stripe webhook
+processing, file deletion, export creation, email delivery, subscription reconciliation, retention, usage
+rollups and delayed organization deletion.
+
+Important work is saved to the database before a job is queued, and jobs only receive record IDs. Each job
+reloads the current state before acting, so a job queued before a legal hold or membership change still
+respects it. Recurring jobs release abandoned reservations, rebuild usage rollups, capture daily business
+metrics and apply retention in bounded batches.
+
+## Built for AI-assisted development
+
+The template's clear conventions also make it a good fit for coding agents. `AGENTS.md` and the docs give an
+agent the context it needs. C# DTOs define the API contracts, `features.json` records which module owns each
+table, and `./scripts/verify.sh` checks the result. A typical request to an agent can describe a complete
+feature:
+
+```text
+Add organization-bound widget creation for Owner and Admin members.
+Gate it with widgets.basic and enforce a billing-period widgets.created quota.
+Use reserve/settle because the provider call can fail, enqueue the provider work with
+ServiceStack Background Jobs, generate the TypeScript DTOs, add an AppShell page,
+and test cross-tenant access, idempotent replay, exact/over limit, retry, and static build.
+Run ./scripts/verify.sh and report the results.
+```
+
+## Verify and ship
+
+A single command runs everything you need to check before a release:
+
+:::sh
+./scripts/verify.sh
+:::
+
+It builds and tests the .NET and TypeScript projects, generates the production static export, and then
+starts the App in Production against a **completely empty database** to check that it can create its schema
+and seed data from scratch.
+
+Before deploying, `./scripts/preflight.sh` checks your production configuration without printing any secrets.
+In Production, the App also refuses to start with unsafe settings. It lists every missing requirement at once,
+like HTTPS, `AllowedHosts`, a database server, SMTP or Stripe keys.
+
+![Release Verification and Preflight Gates](https://react-templates.net/img/next-saas/release-gates.png)
+
+The included GitHub Actions deploy to any Linux server with [Kamal](https://kamal-deploy.org). The workflow
+builds and tests each commit, publishes a container image tagged with the commit SHA, runs database
+migrations and checks the `/ready` endpoint before the release is complete. You can start with a
+single-server SQLite deployment, then move to PostgreSQL by changing your configuration:
+
+![Migration and Deployment Pipeline Flow](https://react-templates.net/img/next-saas/deploy-flow.png)
+
+## Get Started
+
+Create a new Next SaaS project with:
+
+:::sh
+npx create-net next-saas ProjectName
+:::
+
+Then run it locally:
+
+```bash
+cd ProjectName/MyApp.Client && npm install
+cd ../MyApp && npm install
+dotnet watch
+```
+
+On first run it creates the database, seeds the **Free**, **Personal**, **Pro**, **Business** and
+**Enterprise** plans and creates development users. Sign in as `admin@email.com` to explore the Operations
+Center, or as `manager@email.com` to use the customer App. To fill it with realistic sample organizations,
+subscriptions and usage history, run:
+
+:::sh
+./scripts/seed-example-data.sh
+:::
+
+The [Next SaaS docs](https://react-templates.net/docs/next-saas) walk you through each step, from choosing
+your database and customizing the product, to adding your first metered feature, connecting a Stripe sandbox
+and shipping to production. They also include reference guides for every concept, feature, operations
+runbook and security control in the template.
+
+
 # Scalable Background Jobs
 Source: https://servicestack.net/posts/scalable-background-jobs
 

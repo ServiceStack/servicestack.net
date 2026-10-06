@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Tue, 29 Sep 2026 14:46:53 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 16:06:04 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,90 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Follow every request with OpenTelemetry</title>
+        <link>https://servicestack.net/podcasts/opentelemetry</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/opentelemetry</guid>
+        <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-06T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/opentelemetry.mp3" length="1322352" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>api</category>
+        <category>performance</category>
+        <description>ServiceStack v10.3 emits standard OpenTelemetry traces and metrics that follow a request from its API call through outbound HTTP calls, MQ messages and Background Jobs, even across servers, in Jaeger, Grafana Tempo, Honeycomb, Datadog or the .NET Aspire Dashboard</description>
+        <itunes:summary><![CDATA[ ServiceStack v10.3 emits standard OpenTelemetry traces and metrics that follow a request from its API call through outbound HTTP calls, MQ messages and Background Jobs, even across servers, in Jaeger, Grafana Tempo, Honeycomb, Datadog or the .NET Aspire Dashboard ]]></itunes:summary>
+        <itunes:duration>89</itunes:duration>
+        <itunes:keywords>servicestack,api,performance</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ServiceStack v10.4 Release</title>
+        <link>https://servicestack.net/podcasts/v10-4-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v10-4-release</guid>
+        <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-06T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v10-4-release.mp3" length="10659379" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>api</category>
+        <category>jobs</category>
+        <category>react</category>
+        <category>templates</category>
+        <description>Announcing the release of ServiceStack v10.4 with performance enhancements, advanced query capabilities, and robust security features for OrmLite.</description>
+        <itunes:summary><![CDATA[ Announcing the release of ServiceStack v10.4 with performance enhancements, advanced query capabilities, and robust security features for OrmLite. ]]></itunes:summary>
+        <itunes:duration>766</itunes:duration>
+        <itunes:keywords>servicestack,api,jobs,react,templates</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>API Rate Limiting</title>
+        <link>https://servicestack.net/podcasts/rate-limiting</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/rate-limiting</guid>
+        <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-05T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/rate-limiting.mp3" length="1264504" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>api</category>
+        <category>security</category>
+        <description>ServiceStack v10.3 adds opt-in ASP.NET Core rate limiting for ServiceStack APIs - bind a named policy to a Request DTO or share one budget across every API with the same Tag, enforced across every route an API can be called from</description>
+        <itunes:summary><![CDATA[ ServiceStack v10.3 adds opt-in ASP.NET Core rate limiting for ServiceStack APIs - bind a named policy to a Request DTO or share one budget across every API with the same Tag, enforced across every route an API can be called from ]]></itunes:summary>
+        <itunes:duration>82</itunes:duration>
+        <itunes:keywords>servicestack,api,security</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Software Licensing Next.js Project Template</title>
+        <link>https://servicestack.net/podcasts/next-license</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/next-license</guid>
+        <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-01T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/next-license.mp3" length="22043527" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>react</category>
+        <category>nextjs</category>
+        <category>templates</category>
+        <description>Next License is a new .NET 10, ServiceStack and Next.js 16 template for selling perpetual, offline-verified JWT licenses for your .NET and Electron desktop apps, with Stripe Checkout, GitHub-hosted downloads and an Operations Center, and no activation server to run</description>
+        <itunes:summary><![CDATA[ Next License is a new .NET 10, ServiceStack and Next.js 16 template for selling perpetual, offline-verified JWT licenses for your .NET and Electron desktop apps, with Stripe Checkout, GitHub-hosted downloads and an Operations Center, and no activation server to run ]]></itunes:summary>
+        <itunes:duration>1523</itunes:duration>
+        <itunes:keywords>servicestack,react,nextjs,templates</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>SaaS Next.js Project Template</title>
+        <link>https://servicestack.net/podcasts/next-saas</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/next-saas</guid>
+        <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-30T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/next-saas.mp3" length="22243230" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>react</category>
+        <category>nextjs</category>
+        <category>templates</category>
+        <description>Next SaaS is a new production-ready .NET 10, ServiceStack and Next.js 16 template for multi-tenant B2C and B2B SaaS products, with organizations, Stripe subscriptions, versioned plans, usage quotas and an Operations Center included from day one</description>
+        <itunes:summary><![CDATA[ Next SaaS is a new production-ready .NET 10, ServiceStack and Next.js 16 template for multi-tenant B2C and B2B SaaS products, with organizations, Stripe subscriptions, versioned plans, usage quotas and an Operations Center included from day one ]]></itunes:summary>
+        <itunes:duration>1514</itunes:duration>
+        <itunes:keywords>servicestack,react,nextjs,templates</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>ServiceStack v10.3 Release</title>
         <link>https://servicestack.net/podcasts/v10-3-release</link>
@@ -788,90 +872,6 @@
         <itunes:summary><![CDATA[ All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server. ]]></itunes:summary>
         <itunes:duration>1306</itunes:duration>
         <itunes:keywords>github-actions,docker,devops</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>DTOs in all languages downloadable without .NET</title>
-        <link>https://servicestack.net/podcasts/npx-get-dtos</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/npx-get-dtos</guid>
-        <pubDate>Wed, 04 Dec 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-12-04T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/npx-get-dtos.mp3" length="1262540" type="audio/mpeg"/>
-        <category>api</category>
-        <category>service-reference</category>
-        <category>js</category>
-        <description>ServiceStack Typed DTOs for all languages can now be downloaded and uploaded without .NET installed</description>
-        <itunes:summary><![CDATA[ ServiceStack Typed DTOs for all languages can now be downloaded and uploaded without .NET installed ]]></itunes:summary>
-        <itunes:duration>315</itunes:duration>
-        <itunes:keywords>api,service-reference,js</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack.Swift client library rewritten for Swift 6</title>
-        <link>https://servicestack.net/podcasts/swift6-upgrade</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/swift6-upgrade</guid>
-        <pubDate>Tue, 03 Dec 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-12-03T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/swift6-upgrade.mp3" length="1430252" type="audio/mpeg"/>
-        <category>api</category>
-        <category>service-reference</category>
-        <category>swift</category>
-        <description>ServiceStack.Swift has been rewritten to take advantage of Swift 6 features, now dependency-free.</description>
-        <itunes:summary><![CDATA[ ServiceStack.Swift has been rewritten to take advantage of Swift 6 features, now dependency-free. ]]></itunes:summary>
-        <itunes:duration>357</itunes:duration>
-        <itunes:keywords>api,service-reference,swift</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Typed Open AI Chat &amp; Ollama APIs in 11 Languages</title>
-        <link>https://servicestack.net/podcasts/typed-openai-chat-ollama-apis</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/typed-openai-chat-ollama-apis</guid>
-        <pubDate>Mon, 02 Dec 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-12-02T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/typed-openai-chat-ollama-apis.mp3" length="2711372" type="audio/mpeg"/>
-        <category>ai-server</category>
-        <category>ai</category>
-        <category>gpt</category>
-        <category>service-reference</category>
-        <category>c#</category>
-        <category>js</category>
-        <description>Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs</description>
-        <itunes:summary><![CDATA[ Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs ]]></itunes:summary>
-        <itunes:duration>677</itunes:duration>
-        <itunes:keywords>ai-server,ai,gpt,service-reference,c#,js</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Simple API Keys Credentials Provider for .NET 8 C# Microservices</title>
-        <link>https://servicestack.net/podcasts/apikey-credentials-auth</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/apikey-credentials-auth</guid>
-        <pubDate>Thu, 28 Nov 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-11-28T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/apikey-credentials-auth.mp3" length="3618860" type="audio/mpeg"/>
-        <category>.net8</category>
-        <category>auth</category>
-        <category>apikeys</category>
-        <description>Improved Simple Auth using API Keys and Admin UI that&#x27;s ideal for .NET 8 C# Microservices</description>
-        <itunes:summary><![CDATA[ Improved Simple Auth using API Keys and Admin UI that&#x27;s ideal for .NET 8 C# Microservices ]]></itunes:summary>
-        <itunes:duration>904</itunes:duration>
-        <itunes:keywords>.net8,auth,apikeys</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack v8.5 Release</title>
-        <link>https://servicestack.net/podcasts/v8-5-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-5-release</guid>
-        <pubDate>Tue, 26 Nov 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-11-26T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-5-release.mp3" length="4952108" type="audio/mpeg"/>
-        <category>release</category>
-        <category>ai-server</category>
-        <category>jobs</category>
-        <category>api</category>
-        <description>The latest features in ServiceStack v8.5 covering release of AI Server and Kamal Deployments and more!</description>
-        <itunes:summary><![CDATA[ The latest features in ServiceStack v8.5 covering release of AI Server and Kamal Deployments and more! ]]></itunes:summary>
-        <itunes:duration>1237</itunes:duration>
-        <itunes:keywords>release,ai-server,jobs,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
