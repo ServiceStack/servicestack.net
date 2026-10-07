@@ -147,6 +147,7 @@ mountAll()
                     <p>Multi-tenant Apps live and die by one rule: every query needs to include the tenant. It only takes one forgotten
 <code>Where()</code>, or one <code>SingleById()</code>, for a customer to see another customer's data, and nothing fails when it happens.
 The query runs, the page renders and the tests pass, as they only ever had one tenant's data to look at.</p>
+<lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="86ff8gs4h3w" playlabel="Multi-Tenant .NET Apps: Enforce Tenant Isolation on the Connection, Not Every Query" style="background-image:url('https://img.youtube.com/vi/86ff8gs4h3w/maxresdefault.jpg')"></lite-youtube>
 <p>Code reviews and conventions reduce that risk, but every new query, AutoQuery API and background job adds to it.
 The <a href="/posts/next-saas">Next SaaS</a> template we released last week had exactly this pattern throughout, a hand-written
 tenant condition in every query for customer data:</p>

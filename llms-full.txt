@@ -5,6 +5,10 @@ Multi-tenant Apps live and die by one rule: every query needs to include the ten
 `Where()`, or one `SingleById()`, for a customer to see another customer's data, and nothing fails when it happens.
 The query runs, the page renders and the tests pass, as they only ever had one tenant's data to look at.
 
+:::youtube 86ff8gs4h3w
+Multi-Tenant .NET Apps: Enforce Tenant Isolation on the Connection, Not Every Query
+:::
+
 Code reviews and conventions reduce that risk, but every new query, AutoQuery API and background job adds to it.
 The [Next SaaS](/posts/next-saas) template we released last week had exactly this pattern throughout, a hand-written
 tenant condition in every query for customer data:
