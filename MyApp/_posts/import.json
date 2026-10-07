@@ -11,5 +11,23 @@
       "sourceUrl": "https://servicestack.net/posts/{name:/^[^_]+_(.+)$/}"
     },
     "rules": []
+  },
+  "source": {
+    "name": "Import _posts",
+    "type": "folder",
+    "category": {
+      "root": null,
+      "maxDepth": null,
+      "prefix": "blog"
+    },
+    "onDelete": "tombstone",
+    "extractorVer": "1",
+    "config": {
+      "path": ".",
+      "include": [],
+      "exclude": [],
+      "ignore": [],
+      "requireSourceUrl": true
+    }
   }
 }
