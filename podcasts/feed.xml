@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Wed, 07 Oct 2026 02:44:52 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 04:25:12 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,22 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Multitenancy that cannot be forgotten</title>
+        <link>https://servicestack.net/podcasts/ormlite-multitenancy</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ormlite-multitenancy</guid>
+        <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-07T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ormlite-multitenancy.mp3" length="18552230" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>ormlite</category>
+        <category>autoquery</category>
+        <description>ServiceStack v10.4 moves tenant isolation from every query to the database connection, with OrmLite connection filters and write rules that confine selects, updates, deletes, inserts and AutoQuery APIs to the request&#x27;s tenant, fail closed until it&#x27;s known, and record trusted audit columns on every write</description>
+        <itunes:summary><![CDATA[ ServiceStack v10.4 moves tenant isolation from every query to the database connection, with OrmLite connection filters and write rules that confine selects, updates, deletes, inserts and AutoQuery APIs to the request&#x27;s tenant, fail closed until it&#x27;s known, and record trusted audit columns on every write ]]></itunes:summary>
+        <itunes:duration>1312</itunes:duration>
+        <itunes:keywords>servicestack,ormlite,autoquery</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>ServiceStack v10.4 Release</title>
         <link>https://servicestack.net/podcasts/v10-4-release</link>
@@ -856,22 +872,6 @@
         <itunes:summary><![CDATA[ Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs ]]></itunes:summary>
         <itunes:duration>1546</itunes:duration>
         <itunes:keywords>ai-server,ai,gpt,service-reference,c#,js</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>.NET 8 Templates migrated to use Kamal for deployments</title>
-        <link>https://servicestack.net/podcasts/kamal-deployments</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/kamal-deployments</guid>
-        <pubDate>Thu, 05 Dec 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-12-05T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/kamal-deployments.mp3" length="5227532" type="audio/mpeg"/>
-        <category>github-actions</category>
-        <category>docker</category>
-        <category>devops</category>
-        <description>All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server.</description>
-        <itunes:summary><![CDATA[ All Identity Auth templates now use Kamal for deployments, simplifying the process of deploying .NET Apps to any Linux server. ]]></itunes:summary>
-        <itunes:duration>1306</itunes:duration>
-        <itunes:keywords>github-actions,docker,devops</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>

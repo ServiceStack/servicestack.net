@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Wed, 07 Oct 2026 02:44:51 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 04:25:11 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Multitenancy that can&#x27;t be forgotten</title>
+        <link>https://servicestack.net/posts/ormlite-multitenancy</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/ormlite-multitenancy</guid>
+        <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-07T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>ormlite</category>
+        <category>autoquery</category>
+        <description>ServiceStack v10.4 moves tenant isolation from every query to the database connection, with OrmLite connection filters and write rules that confine selects, updates, deletes, inserts and AutoQuery APIs to the request&#x27;s tenant, fail closed until it&#x27;s known, and record trusted audit columns on every write</description>
+    </item>
     <item>
         <title>Follow every request with OpenTelemetry</title>
         <link>https://servicestack.net/posts/opentelemetry</link>
@@ -122,19 +134,6 @@
         <category>gemini</category>
         <category>rag</category>
         <description>Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag</description>
-    </item>
-    <item>
-        <title>ServiceStack PDF Studio &#x2014; From AI Design to Production PDFs</title>
-        <link>https://servicestack.net/posts/servicestack-pdf</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/servicestack-pdf</guid>
-        <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-09-04T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>ai</category>
-        <category>pdf</category>
-        <category>typst</category>
-        <description>Design Typst PDFs with AI Chat, publish validated templates, generate typed C# models and render production documents from your ServiceStack APIs</description>
     </item>
 </channel>
 </rss>
