@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Wed, 07 Oct 2026 01:31:46 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 02:44:52 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -28,6 +28,24 @@
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
     <item>
+        <title>ServiceStack v10.4 Release</title>
+        <link>https://servicestack.net/podcasts/v10-4-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v10-4-release</guid>
+        <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-07T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v10-4-release.mp3" length="10659379" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>api</category>
+        <category>jobs</category>
+        <category>react</category>
+        <category>templates</category>
+        <description>Announcing the release of ServiceStack v10.4 with performance enhancements, advanced query capabilities, and robust security features for OrmLite.</description>
+        <itunes:summary><![CDATA[ Announcing the release of ServiceStack v10.4 with performance enhancements, advanced query capabilities, and robust security features for OrmLite. ]]></itunes:summary>
+        <itunes:duration>766</itunes:duration>
+        <itunes:keywords>servicestack,api,jobs,react,templates</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>Follow every request with OpenTelemetry</title>
         <link>https://servicestack.net/podcasts/opentelemetry</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/opentelemetry</guid>
@@ -41,24 +59,6 @@
         <itunes:summary><![CDATA[ ServiceStack v10.3 emits standard OpenTelemetry traces and metrics that follow a request from its API call through outbound HTTP calls, MQ messages and Background Jobs, even across servers, in Jaeger, Grafana Tempo, Honeycomb, Datadog or the .NET Aspire Dashboard ]]></itunes:summary>
         <itunes:duration>89</itunes:duration>
         <itunes:keywords>servicestack,api,performance</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack v10.4 Release</title>
-        <link>https://servicestack.net/podcasts/v10-4-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v10-4-release</guid>
-        <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-10-06T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v10-4-release.mp3" length="10659379" type="audio/mpeg"/>
-        <category>servicestack</category>
-        <category>api</category>
-        <category>jobs</category>
-        <category>react</category>
-        <category>templates</category>
-        <description>Announcing the release of ServiceStack v10.4 with performance enhancements, advanced query capabilities, and robust security features for OrmLite.</description>
-        <itunes:summary><![CDATA[ Announcing the release of ServiceStack v10.4 with performance enhancements, advanced query capabilities, and robust security features for OrmLite. ]]></itunes:summary>
-        <itunes:duration>766</itunes:duration>
-        <itunes:keywords>servicestack,api,jobs,react,templates</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
