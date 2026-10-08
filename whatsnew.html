@@ -238,46 +238,6 @@ mountAll()
                     </div>
                 </div>
             </div>        
-            <div class="flex flex-wrap my-24">
-                <div class="w-full sm:w-1/2 animated px-4">
-                    <a href="/posts/ormlite-advanced-queries"><img src="/img/posts/ormlite-advanced-queries/bg.webp" alt="" loading="lazy"></a>
-                </div>
-                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
-                    <h3 class="m-0 mb-4">
-                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/ormlite-advanced-queries">Advanced Queries - recursive, window functions, Union and keyset paging</a>
-                    </h3>
-                    <div class="prose max-w-none">
-                        <p>OrmLite v10.4 adds typed APIs for the queries that used to need hand-written SQL. <strong><code>WithRecursive()</code></strong> walks hierarchies like categories and org charts, <strong><code>With()</code></strong> names sub queries as common table expressions, and typed <strong>window functions</strong> calculate rankings, running totals and previous rows, with <code>TopPerGroup()</code> returning each group's first rows. Typed queries can also be combined with <strong><code>Union()</code></strong>, <strong><code>UnionAll()</code></strong>, <strong><code>Intersect()</code></strong> and <strong><code>Except()</code></strong>.</p>
-<p><strong><code>SeekAfter()</code></strong> adds fast and stable keyset pagination that stays quick at any depth, <strong><code>SelectLazyAsync()</code></strong> streams large results with <code>await foreach</code>, and <code>UpdateOnlyReturning()</code>, <code>DeleteReturning()</code>, <code>ForUpdate(skipLocked: true)</code> and <code>UpdateFrom()</code> handle row-returning, locking and joined writes in a single statement. All are parameterized, compose with filters and joins, and run on the databases that support them.</p>
-
-                    </div>
-                    <div class="text-center sm:text-left my-10">
-                        <a href="/posts/ormlite-advanced-queries" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
-                            Learn more
-                        </a>
-                    </div>
-                </div>
-            </div>        
-            <div class="flex flex-wrap my-24">
-                <div class="w-full sm:w-1/2 animated px-4">
-                    <a href="https://docs.servicestack.net/ormlite/sql-fmt"><img src="/img/posts/ormlite-safe-sql/bg.webp" alt="" loading="lazy"></a>
-                </div>
-                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
-                    <h3 class="m-0 mb-4">
-                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/ormlite/sql-fmt">Safe SQL - Sql.Fmt, OrderBySafe and stronger SQL injection protection</a>
-                    </h3>
-                    <div class="prose max-w-none">
-                        <p>OrmLite v10.4 makes the safe way to write raw SQL as easy as the unsafe one. <strong><code>Sql.Fmt()</code></strong> keeps C# interpolated strings but sends every interpolated value as a db param, expands collections into <code>IN</code> lists, and embeds table and column references as names quoted by your RDBMS dialect. It works with every raw SQL API, sync or async, and mixes with typed queries in <code>Where</code>, <code>And</code>, <code>Or</code> and <code>Having</code>.</p>
-<p><strong><code>OrderBySafe()</code></strong> lets users choose the sort order, e.g. <code>?orderBy=-Price</code>, by resolving field names to quoted columns from a list of allowed fields, so nothing from the request is ever embedded in SQL. Fragment validation also now rejects comments and statement separators anywhere, identifiers are always escaped on every database, and inlined date formats, schema queries and <code>Contains()</code> values are escaped or sent as params.</p>
-
-                    </div>
-                    <div class="text-center sm:text-left my-10">
-                        <a href="https://docs.servicestack.net/ormlite/sql-fmt" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
-                            Learn more
-                        </a>
-                    </div>
-                </div>
-            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v10.3</h2>
         <div class="text-center text-lg font-normal text-gray-500">September 29, 2026</div>
             <div class="mt-2 flex justify-center">
