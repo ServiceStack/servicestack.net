@@ -3,6 +3,7 @@ title: Safe SQL - Sql.Fmt, OrderBySafe and stronger SQL injection protection
 url: https://docs.servicestack.net/ormlite/sql-fmt
 image: /img/posts/ormlite-safe-sql/bg.webp
 order: 6
+draft: true
 ---
 
 OrmLite v10.4 makes the safe way to write raw SQL as easy as the unsafe one. **`Sql.Fmt()`** keeps C# interpolated strings but sends every interpolated value as a db param, expands collections into `IN` lists, and embeds table and column references as names quoted by your RDBMS dialect. It works with every raw SQL API, sync or async, and mixes with typed queries in `Where`, `And`, `Or` and `Having`.
