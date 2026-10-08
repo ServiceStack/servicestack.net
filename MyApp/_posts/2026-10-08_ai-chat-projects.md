@@ -9,8 +9,8 @@ image: ./img/posts/ai-chat-projects/bg.webp
 Your customer, revenue and usage data already lives inside your .NET App, yet answering a simple business question still means opening several screens, exporting CSVs and assembling the story somewhere else. The common shortcut is pasting that data into an external ChatGPT window, which knows nothing about your App, can't fetch anything
 new and now has a copy of data that was never meant to leave it.
 
-:::youtube YOUTUBE_ID
-Prompt It, Publish It: AI-Built Pages From Your .NET APIs
+:::youtube -BfooJPT3-I
+Prompt It, Publish It: Create AI Works directly from your .NET APIs
 :::
 
 [AI Chat](https://docs.servicestack.net/chat/) takes the opposite approach. It's a ChatGPT-like assistant that runs **inside** your App at `/chat`, with your App's users, identity and permissions. With [API Tools](/posts/api-tools) it can call the APIs you've opted in, as the signed-in user, and with **Projects** it has a workspace to turn the results into something more useful than a paragraph of chat.
