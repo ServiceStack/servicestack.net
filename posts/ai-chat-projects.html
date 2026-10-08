@@ -144,7 +144,7 @@ mountAll()
                     <p>Your customer, revenue and usage data already lives inside your .NET App, yet answering a simple business question still means opening several screens, exporting CSVs and assembling the story somewhere else. The common shortcut is pasting that data into an external ChatGPT window, which knows nothing about your App, can't fetch anything
 new and now has a copy of data that was never meant to leave it.</p>
 <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="YOUTUBE_ID" playlabel="Prompt It, Publish It: AI-Built Pages From Your .NET APIs" style="background-image:url('https://img.youtube.com/vi/YOUTUBE_ID/maxresdefault.jpg')"></lite-youtube>
-<p><a href="/posts/ai-chat-v4">AI Chat</a> takes the opposite approach. It's a ChatGPT-like assistant that runs <strong>inside</strong> your App at <code>/chat</code>, with your App's users, identity and permissions. With <a href="/posts/api-tools">API Tools</a> it can call the APIs you've opted in, as the signed-in user, and with <strong>Projects</strong> it has a workspace to turn the results into something more useful than a paragraph of chat.</p>
+<p><a href="https://docs.servicestack.net/chat/">AI Chat</a> takes the opposite approach. It's a ChatGPT-like assistant that runs <strong>inside</strong> your App at <code>/chat</code>, with your App's users, identity and permissions. With <a href="/posts/api-tools">API Tools</a> it can call the APIs you've opted in, as the signed-in user, and with <strong>Projects</strong> it has a workspace to turn the results into something more useful than a paragraph of chat.</p>
 <table>
 <thead>
 <tr>
@@ -179,7 +179,7 @@ new and now has a copy of data that was never meant to leave it.</p>
 </tr>
 </tbody>
 </table>
-<p>To show what that looks like in practice, the video follows two prompts in the <a href="/posts/next-saas">Next SaaS</a> template, using its seeded example data.</p>
+<p>To show what that looks like in practice, the video follows two prompts in the <a href="/react/#next-saas">Next SaaS</a> template, using its seeded example data.</p>
 <h2 id="your-apis-are-the-assistants-tools">Your APIs are the assistant's tools<a class="header-anchor" href="javascript:;" onclick="location.hash='#your-apis-are-the-assistants-tools'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
 <p>There's no new AI-specific layer to build. The APIs the assistant uses are the same Request DTOs your App's UI already calls, annotated with a <code>[Tool]</code> attribute that tells it <strong>when</strong> to use them:</p>
 <pre><code class="language-csharp">[Tool(&quot;the user asks which customers are at risk, healthy, churning, inactive, likely to upgrade or need attention, or how a customer is doing&quot;,
