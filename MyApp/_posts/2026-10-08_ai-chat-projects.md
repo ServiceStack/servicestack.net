@@ -13,7 +13,7 @@ new and now has a copy of data that was never meant to leave it.
 Prompt It, Publish It: AI-Built Pages From Your .NET APIs
 :::
 
-[AI Chat](/posts/ai-chat-v4) takes the opposite approach. It's a ChatGPT-like assistant that runs **inside** your App at `/chat`, with your App's users, identity and permissions. With [API Tools](/posts/api-tools) it can call the APIs you've opted in, as the signed-in user, and with **Projects** it has a workspace to turn the results into something more useful than a paragraph of chat.
+[AI Chat](https://docs.servicestack.net/chat/) takes the opposite approach. It's a ChatGPT-like assistant that runs **inside** your App at `/chat`, with your App's users, identity and permissions. With [API Tools](/posts/api-tools) it can call the APIs you've opted in, as the signed-in user, and with **Projects** it has a workspace to turn the results into something more useful than a paragraph of chat.
 
 | | What you get |
 |-|-|
@@ -24,7 +24,7 @@ Prompt It, Publish It: AI-Built Pages From Your .NET APIs
 | **Artifacts, not answers** | Generated pages are saved to a project workspace where they can be previewed and refined |
 | **Explicit publishing** | Nothing leaves the workspace until a user chooses to publish it |
 
-To show what that looks like in practice, the video follows two prompts in the [Next SaaS](/posts/next-saas) template, using its seeded example data.
+To show what that looks like in practice, the video follows two prompts in the [Next SaaS](/react/#next-saas) template, using its seeded example data.
 
 ## Your APIs are the assistant's tools
 
