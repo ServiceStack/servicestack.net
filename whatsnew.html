@@ -144,6 +144,140 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v10.4</h2>
+        <div class="text-center text-lg font-normal text-gray-500">October 7, 2026</div>
+            <div class="mt-2 flex justify-center">
+                <a href="podcasts/v10-4-release" class="group flex items-center gap-2 rounded-full bg-white/25 p-1.5 text-xs text-slate-900 ring-1 ring-inset ring-black/[0.08] hover:bg-white/50 hover:ring-black/[0.13]">
+                    <img src="/img/svgs/podcast.svg" alt="" class="h-8 w-8 rounded-full">
+                    <div class="pr-2">
+                        <p class="font-semibold">
+                            Listen to podcast episode
+                        </p>
+                        <p class="text-gray-600">ServiceStack v10.4 Release</p>
+                    </div>
+                </a>
+            </div>
+        <div class="mb-8"></div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/ormlite/multitenancy/overview"><img src="/img/posts/ormlite-multitenancy/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/ormlite/multitenancy/overview">Multitenancy - tenant isolation enforced by the database connection</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack v10.4 moves multitenancy from every query to the database connection. OrmLite's new <strong>connection filters</strong> and <strong>write rules</strong> are defined once in a <code>FilterSet</code>, then enforced on every select, update, delete and insert, including lookups by id, joins and <strong>AutoQuery</strong> conditions sent by clients. Existing Services and AutoQuery APIs don't change, as a single <code>DbConnectionRequestFilters</code> entry in your AppHost confines the connection of every request.</p>
+<p>A request that hasn't resolved its tenant <strong>fails closed</strong> instead of returning every tenant's rows, writing a row for another tenant throws, and <strong>audit columns</strong> recording who changed a row and when can't be set by mistake.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/ormlite/multitenancy/overview" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/ai-chat-projects"><img src="/img/posts/ai-chat-projects/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/ai-chat-projects">AI Chat Projects - turn your APIs into AI-built pages your team can publish</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p><strong>AI Chat</strong> puts a ChatGPT-like assistant inside your .NET App. It runs as the signed-in user, so it can only see what they can. With <strong>API Tools</strong> it discovers and calls the APIs you've opted in, through the same validation, authorization and capability checks as the rest of your App. There's no parallel AI backend to build, as your existing Request DTOs are the AI contract. Reads run immediately, while writes pause for an editable approval form so a person decides every change.</p>
+<p><strong>Projects</strong> give the assistant a private workspace for turning API results into more than a paragraph of chat. In the <strong>Next SaaS</strong> template, one prompt builds an interactive 3D <strong>Customer Galaxy</strong> that ranks the revenue at risk, and another writes a ten-slide <strong>Monthly Business Review</strong> with a retention worklist and prioritized recommendations. Both can be previewed in chat, then published as a static site with an explicit <strong>Share → Folder</strong> step, which you run again to publish later changes.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/ai-chat-projects" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/ormlite/vectors"><img src="/img/posts/ormlite-vector-search/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/ormlite/vectors">Vector Search - find similar rows with OrmLite [Vector] columns</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>OrmLite v10.4 adds first-class <strong>vector columns</strong> for storing the embeddings of an AI model. Add <code>[Vector]</code> to a <code>float[]</code> property and order by <code>Sql.CosineDistance()</code>, <code>Sql.L2Distance()</code> or <code>Sql.NegativeInnerProduct()</code> to find the rows most similar to a piece of text, in the same typed query as your filters, joins and <a href="/posts/ormlite-multitenancy">connection filters</a>. It uses the vector support of <strong>PostgreSQL</strong> (pgvector), <strong>SQL Server 2025</strong>, <strong>MariaDB</strong>, <strong>MySQL</strong> and <strong>SQLite</strong> (sqlite-vec), and works with Microsoft.Extensions.AI's <code>ReadOnlyMemory&lt;float&gt;</code> embeddings.</p>
+<p>Adding <code>[Index]</code> creates HNSW or IVFFlat vector indexes with tunable options, <code>SetVectorSearch()</code> configures how they're searched, and half-precision vectors halve the size of vectors and their index. New <code>[FullTextIndex]</code> support adds <code>Sql.Matches()</code> and <code>Sql.MatchRank()</code> over each database's native full-text search, which combine with vector search for hybrid search.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/ormlite/vectors" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/ormlite/json"><img src="/img/posts/ormlite-json/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/ormlite/json">JSON Queries - query complex type properties like any other property</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>OrmLite v10.4 lets typed queries read straight into <strong>complex type properties</strong>, which are stored as JSON, without wrapping them in <code>Sql.Json()</code>. Filter, sort, select, update and delete by <code>x.Address.City</code>, <code>x.Tags.Contains(&quot;vip&quot;)</code>, <code>x.Lines.Count &gt; 1</code> or <code>x.Lines[0].Quantity</code>, and use <code>Any()</code>, <code>All()</code> and <code>Count()</code> to match conditions on the <strong>same item</strong> of a list. It uses the native JSON functions of <strong>SQLite</strong>, <strong>PostgreSQL</strong>, <strong>SQL Server</strong> and <strong>MySQL/MariaDB</strong>, and PostgreSQL's <code>text[]</code> and <code>int[]</code> arrays are queried the same way.</p>
+<p>The post is also a tour of everything else OrmLite does with JSON: <code>Sql.Json&lt;T&gt;()</code> for JSON in <code>string</code> columns, explicit path queries with <code>JsonValue()</code> and <code>JsonQuery()</code>, path existence and JSON type checks that tell a missing property from a <code>null</code>, validation, document containment, and how to index a JSON property so queries stay fast.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/ormlite/json" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="/posts/ormlite-advanced-queries"><img src="/img/posts/ormlite-advanced-queries/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="/posts/ormlite-advanced-queries">Advanced Queries - recursive, window functions, Union and keyset paging</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>OrmLite v10.4 adds typed APIs for the queries that used to need hand-written SQL. <strong><code>WithRecursive()</code></strong> walks hierarchies like categories and org charts, <strong><code>With()</code></strong> names sub queries as common table expressions, and typed <strong>window functions</strong> calculate rankings, running totals and previous rows, with <code>TopPerGroup()</code> returning each group's first rows. Typed queries can also be combined with <strong><code>Union()</code></strong>, <strong><code>UnionAll()</code></strong>, <strong><code>Intersect()</code></strong> and <strong><code>Except()</code></strong>.</p>
+<p><strong><code>SeekAfter()</code></strong> adds fast and stable keyset pagination that stays quick at any depth, <strong><code>SelectLazyAsync()</code></strong> streams large results with <code>await foreach</code>, and <code>UpdateOnlyReturning()</code>, <code>DeleteReturning()</code>, <code>ForUpdate(skipLocked: true)</code> and <code>UpdateFrom()</code> handle row-returning, locking and joined writes in a single statement. All are parameterized, compose with filters and joins, and run on the databases that support them.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="/posts/ormlite-advanced-queries" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/ormlite/sql-fmt"><img src="/img/posts/ormlite-safe-sql/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/ormlite/sql-fmt">Safe SQL - Sql.Fmt, OrderBySafe and stronger SQL injection protection</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>OrmLite v10.4 makes the safe way to write raw SQL as easy as the unsafe one. <strong><code>Sql.Fmt()</code></strong> keeps C# interpolated strings but sends every interpolated value as a db param, expands collections into <code>IN</code> lists, and embeds table and column references as names quoted by your RDBMS dialect. It works with every raw SQL API, sync or async, and mixes with typed queries in <code>Where</code>, <code>And</code>, <code>Or</code> and <code>Having</code>.</p>
+<p><strong><code>OrderBySafe()</code></strong> lets users choose the sort order, e.g. <code>?orderBy=-Price</code>, by resolving field names to quoted columns from a list of allowed fields, so nothing from the request is ever embedded in SQL. Fragment validation also now rejects comments and statement separators anywhere, identifiers are always escaped on every database, and inlined date formats, schema queries and <code>Contains()</code> values are escaped or sent as params.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/ormlite/sql-fmt" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v10.3</h2>
         <div class="text-center text-lg font-normal text-gray-500">September 29, 2026</div>
             <div class="mt-2 flex justify-center">
