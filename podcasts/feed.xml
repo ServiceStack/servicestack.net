@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Thu, 08 Oct 2026 10:58:06 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2026 19:13:22 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,22 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>Prompt it, Publish it - AI-built works from your .NET APIs</title>
+        <link>https://servicestack.net/podcasts/ai-chat-projects</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ai-chat-projects</guid>
+        <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-08T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ai-chat-projects.mp3" length="17877091" type="audio/mpeg"/>
+        <category>ai</category>
+        <category>llms</category>
+        <category>servicestack</category>
+        <description>AI Chat puts a ChatGPT-like assistant inside your .NET App, where it calls the APIs the signed-in user is allowed to call and turns the results into interactive views and reports your team can explore, review and publish</description>
+        <itunes:summary><![CDATA[ AI Chat puts a ChatGPT-like assistant inside your .NET App, where it calls the APIs the signed-in user is allowed to call and turns the results into interactive views and reports your team can explore, review and publish ]]></itunes:summary>
+        <itunes:duration>1260</itunes:duration>
+        <itunes:keywords>ai,llms,servicestack</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>Multitenancy that cannot be forgotten</title>
         <link>https://servicestack.net/podcasts/ormlite-multitenancy</link>
@@ -853,25 +869,6 @@
         <itunes:summary><![CDATA[ The latest features in ServiceStack v8.6 including Text to Blazor and AI code generation! ]]></itunes:summary>
         <itunes:duration>1167</itunes:duration>
         <itunes:keywords>release,okai,ai,api</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Introducing AI Server</title>
-        <link>https://servicestack.net/podcasts/ai-server</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/ai-server</guid>
-        <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-        <atom:updated>2024-12-06T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/ai-server.mp3" length="6185420" type="audio/mpeg"/>
-        <category>ai-server</category>
-        <category>ai</category>
-        <category>gpt</category>
-        <category>service-reference</category>
-        <category>c#</category>
-        <category>js</category>
-        <description>Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs</description>
-        <itunes:summary><![CDATA[ Introducing AI Server - an OSS Self Hosted Gateway for running LLM, Ollama, Media and Comfy UI APIs ]]></itunes:summary>
-        <itunes:duration>1546</itunes:duration>
-        <itunes:keywords>ai-server,ai,gpt,service-reference,c#,js</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>
