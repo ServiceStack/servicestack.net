@@ -2,7 +2,7 @@
   "version": 1,
   "metadata": {
     "defaults": {
-      "docType": "blog",
+      "docType": "marketing",
       "status": "published",
       "product": "ServiceStack",
       "tags": [
@@ -13,13 +13,16 @@
     "rules": []
   },
   "source": {
-    "name": "Import _posts",
+    "name": "Import blog _posts",
     "type": "folder",
     "category": {
       "root": null,
       "maxDepth": null,
       "prefix": "blog"
     },
+    "extract": null,
+    "chunking": null,
+    "volatile": null,
     "onDelete": "tombstone",
     "extractorVer": "1",
     "config": {
