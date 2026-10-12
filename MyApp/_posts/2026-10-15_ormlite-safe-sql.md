@@ -6,6 +6,10 @@ author: Demis
 image: ./img/posts/ormlite-safe-sql/bg.webp
 ---
 
+:::youtube GGXmyUx5qqY
+Dynamic SQL Without SQL Injection in .NET: Safe Interpolation & Sorting
+:::
+
 Typed queries have always been the safe way to use OrmLite. Every value in `db.Select<Book>(x => x.Author == author)` is
 sent as a db parameter, so there's nothing to inject into. SQL injection creeps in where typed queries stop being
 convenient, and it almost always arrives the same two ways:
