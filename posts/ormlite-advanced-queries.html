@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>Advanced SQL queries in typed OrmLite - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="ServiceStack v10.4 adds typed recursive queries, named sub queries, window functions with TopPerGroup, Union/Intersect/Except, SeekAfter keyset paging and async streaming, so the queries that used to need hand-written SQL stay typed, parameterized and portable" />
+    <meta property="og:url" content="https://servicestack.net/posts/ormlite-advanced-queries" />
+    <meta property="og:title" content="Advanced SQL queries in typed OrmLite" />
+    <meta property="og:image" content="./img/posts/ormlite-advanced-queries/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Advanced SQL queries in typed OrmLite
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/ormlite-advanced-queries/bg.webp" alt="Advanced SQL queries in typed OrmLite Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                        <a href="posts/tagged/ormlite" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ormlite</a>
+                        <a href="posts/tagged/sql" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">sql</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-10-11T00:00:00.0000000">October 11, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>12 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <p>Typed queries cover the first 90% of an App's SQL very well. Then comes the query that's easy to describe and awkward
+to write: <em>every subject under Fiction, at any depth</em>, <em>each customer's 3 latest orders</em>, <em>everyone who has written
+or reviewed a book</em>, <em>the next page of 50 after the last row I saw</em>. Those are the queries that sent code back to
+hand-written SQL strings, with their string concatenation, their per-database differences and their lack of
+refactoring.</p>
+<p><strong>ServiceStack v10.4</strong> adds typed support for the ones that come up most, in the same fluent <code>SqlExpression</code> style as
+the rest of OrmLite. They're parameterized, they compose with your filters, joins and
+<a href="/posts/ormlite-multitenancy">connection filters</a>, and they run on the databases that support them:</p>
+<ul>
+<li><strong><code>WithRecursive()</code></strong> for hierarchies like categories, org charts and threaded comments</li>
+<li><strong><code>With()</code></strong> to name sub queries as common table expressions</li>
+<li><strong>Window functions</strong> for rankings, running totals, previous rows, and <code>TopPerGroup()</code></li>
+<li><strong><code>Union()</code>, <code>Intersect()</code> and <code>Except()</code></strong> to combine queries</li>
+<li><strong><code>SeekAfter()</code></strong> for fast, stable keyset paging</li>
+<li><strong><code>SelectLazyAsync()</code></strong> to stream large result sets with <code>await foreach</code></li>
+</ul>
+<h2 id="query-hierarchical-data-with-withrecursive">Query hierarchical data with WithRecursive<a class="header-anchor" href="javascript:;" onclick="location.hash='#query-hierarchical-data-with-withrecursive'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Hierarchies are everywhere, and walking one used to mean a recursive common table expression written by hand.
+<code>WithRecursive()</code> starts with the rows of a seed query and repeatedly adds the rows matching a relationship:</p>
+<generated-sql>
+<pre><code class="language-csharp">// Fiction and every subject under it, at any depth
+var q = db.From&lt;Subject&gt;()
+    .WithRecursive(
+        seed: db.From&lt;Subject&gt;().Where(x =&gt; x.Name == &quot;Fiction&quot;),
+        recurse: (parent, child) =&gt; child.ParentId == parent.Id);
+
+var subjects = db.Select(q);
+</code></pre>
+<pre><code class="language-sql">WITH RECURSIVE &quot;cte&quot; (&quot;Id&quot;, &quot;ParentId&quot;, &quot;Name&quot;, &quot;Active&quot;) AS (
+  SELECT &quot;Id&quot;, &quot;ParentId&quot;, &quot;Name&quot;, &quot;Active&quot;
+  FROM &quot;Subject&quot;
+  WHERE (&quot;Name&quot; = @0)
+  UNION ALL
+  SELECT &quot;c&quot;.&quot;Id&quot;, &quot;c&quot;.&quot;ParentId&quot;, &quot;c&quot;.&quot;Name&quot;, &quot;c&quot;.&quot;Active&quot;
+  FROM &quot;Subject&quot; &quot;c&quot; INNER JOIN &quot;cte&quot; ON (&quot;c&quot;.&quot;ParentId&quot; = &quot;cte&quot;.&quot;Id&quot;)
+)
+SELECT &quot;Id&quot;, &quot;ParentId&quot;, &quot;Name&quot;, &quot;Active&quot;
+FROM &quot;cte&quot; &quot;Subject&quot;
+-- @0 = 'Fiction'
+</code></pre>
+</generated-sql>
+<p>Swapping the relationship walks up the hierarchy instead, e.g. the path from a subject to the root:</p>
+<pre><code class="language-csharp">var ancestors = db.From&lt;Subject&gt;()
+    .WithRecursive(
+        seed: db.From&lt;Subject&gt;().Where(x =&gt; x.Id == subjectId),
+        recurse: (child, parent) =&gt; parent.Id == child.ParentId);
+</code></pre>
+<p>The rest of the query applies to all the rows found, so typed filters, ordering, projections, <code>Count()</code>, paging, async
+APIs and keyset pagination work as usual:</p>
+<generated-sql>
+<pre><code class="language-csharp">var q = db.From&lt;Subject&gt;()
+    .WithRecursive(
+        seed: db.From&lt;Subject&gt;().Where(x =&gt; x.Id == 1),
+        recurse: (parent, child) =&gt; child.ParentId == parent.Id)
+    .Where(x =&gt; x.Active)
+    .OrderBy(x =&gt; x.Name)
+    .Select(x =&gt; x.Name);
+
+var names = await db.ColumnAsync&lt;string&gt;(q);
+</code></pre>
+<pre><code class="language-sql">WITH RECURSIVE &quot;cte&quot; (&quot;Id&quot;, &quot;ParentId&quot;, &quot;Name&quot;, &quot;Active&quot;) AS (
+  SELECT &quot;Id&quot;, &quot;ParentId&quot;, &quot;Name&quot;, &quot;Active&quot;
+  FROM &quot;Subject&quot;
+  WHERE (&quot;Id&quot; = @0)
+  UNION ALL
+  SELECT &quot;c&quot;.&quot;Id&quot;, &quot;c&quot;.&quot;ParentId&quot;, &quot;c&quot;.&quot;Name&quot;, &quot;c&quot;.&quot;Active&quot;
+  FROM &quot;Subject&quot; &quot;c&quot; INNER JOIN &quot;cte&quot; ON (&quot;c&quot;.&quot;ParentId&quot; = &quot;cte&quot;.&quot;Id&quot;)
+)
+SELECT &quot;Name&quot;
+FROM &quot;cte&quot; &quot;Subject&quot;
+WHERE &quot;Active&quot;=1
+ORDER BY &quot;Name&quot;
+-- @0 = 1
+</code></pre>
+</generated-sql>
+<p>Real data has edge cases, and the options cover them. <code>maxDepth</code> limits how many levels are selected,
+<code>Sql.RecursiveDepth()</code> is the level of each row, and <code>detectCycles</code> stops at rows that were already visited, for data
+that can have loops:</p>
+<pre><code class="language-csharp">// Books, its children and grandchildren, a level at a time
+var q = db.From&lt;Subject&gt;()
+    .WithRecursive(
+        seed: db.From&lt;Subject&gt;().Where(x =&gt; x.Name == &quot;Books&quot;),
+        recurse: (parent, child) =&gt; child.ParentId == parent.Id,
+        maxDepth: 2,
+        detectCycles: true)
+    .OrderBy(x =&gt; Sql.RecursiveDepth())
+    .Select(x =&gt; new { x.Id, x.Name, Depth = Sql.RecursiveDepth() });
+</code></pre>
+<p>Raw SQL statements that start with a CTE, e.g. <code>WITH roots AS (...) SELECT ...</code>, are now also executed as-is on all
+databases.</p>
+<h2 id="name-sub-queries-with-with">Name sub queries with With<a class="header-anchor" href="javascript:;" onclick="location.hash='#name-sub-queries-with-with'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><code>With()</code> names a sub query as a common table expression, which the rest of the query reads like a table. A sub query
+that's needed in several places is written once, and a complex query can be built in steps that are each simple to
+read. The columns of the sub query are described by a class, in the order it selects them:</p>
+<generated-sql>
+<pre><code class="language-csharp">public class AuthorTotal
+{
+    public string Author { get; set; }
+    public int Books { get; set; }
+    public decimal Total { get; set; }
+}
+
+var totals = db.From&lt;Book&gt;()
+    .GroupBy(x =&gt; x.Author)
+    .Select(x =&gt; new { x.Author, Books = Sql.Count(&quot;*&quot;), Total = Sql.Sum(x.Price) });
+
+// Each book since 1970, with how many books its author has
+var q = db.From&lt;Book&gt;()
+    .With&lt;AuthorTotal&gt;(totals)
+    .Join&lt;AuthorTotal&gt;((b, t) =&gt; b.Author == t.Author)
+    .Where(b =&gt; b.Year &gt;= 1970)
+    .Select&lt;Book, AuthorTotal&gt;((b, t) =&gt; new { b.Title, b.Author, t.Books });
+</code></pre>
+<pre><code class="language-sql">WITH &quot;AuthorTotal&quot; (&quot;Author&quot;, &quot;Books&quot;, &quot;Total&quot;) AS (
+  SELECT &quot;Author&quot;, Count(*) AS Books, Sum(&quot;Price&quot;) AS Total
+  FROM &quot;Book&quot;
+  GROUP BY &quot;Author&quot;
+)
+SELECT &quot;Book&quot;.&quot;Title&quot;, &quot;Book&quot;.&quot;Author&quot;, &quot;AuthorTotal&quot;.&quot;Books&quot; AS &quot;Books&quot;
+FROM &quot;Book&quot; INNER JOIN &quot;AuthorTotal&quot; ON (&quot;Book&quot;.&quot;Author&quot; = &quot;AuthorTotal&quot;.&quot;Author&quot;)
+WHERE (&quot;Book&quot;.&quot;Year&quot; &gt;= @0)
+-- @0 = 1970
+</code></pre>
+</generated-sql>
+<p>As the sub query is named after a class, it's used with the same typed APIs as a table, including <code>db.From&lt;AuthorTotal&gt;()</code>
+to select from it. A query can have several sub queries where each can read the ones before it, and they can be
+combined with <code>WithRecursive()</code>.</p>
+<h2 id="rankings-running-totals-and-top-rows-per-group">Rankings, running totals and top rows per group<a class="header-anchor" href="javascript:;" onclick="location.hash='#rankings-running-totals-and-top-rows-per-group'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Window functions calculate a value for each row from the rows related to it, like its rank within a group, a
+running total or the previous row's value. They're the right tool for a whole family of reporting questions, and they
+now have typed APIs instead of raw SQL:</p>
+<generated-sql>
+<pre><code class="language-csharp">var q = db.From&lt;Order&gt;()
+    .Select(x =&gt; new {
+        x.Id,
+        x.Customer,
+        x.Total,
+        Rank = Sql.Rank(w =&gt; w.PartitionBy(x.Customer).OrderByDescending(x.Total)),
+        RunningTotal = Sql.Sum(x.Total, w =&gt; w.PartitionBy(x.Customer).OrderBy(x.CreatedDate)),
+        PreviousTotal = Sql.Lag(x.Total, w =&gt; w.PartitionBy(x.Customer).OrderBy(x.CreatedDate)),
+        WeeklyAverage = Sql.Avg(x.Total, w =&gt; w.OrderBy(x.CreatedDate).RowsBetween(6, 0)),
+    });
+</code></pre>
+<pre><code class="language-sql">SELECT &quot;Id&quot;, &quot;Customer&quot;, &quot;Total&quot;,
+  RANK() OVER (PARTITION BY &quot;Customer&quot; ORDER BY &quot;Total&quot; DESC) AS &quot;Rank&quot;,
+  SUM(&quot;Total&quot;) OVER (PARTITION BY &quot;Customer&quot; ORDER BY &quot;CreatedDate&quot;) AS &quot;RunningTotal&quot;,
+  LAG(&quot;Total&quot;) OVER (PARTITION BY &quot;Customer&quot; ORDER BY &quot;CreatedDate&quot;) AS &quot;PreviousTotal&quot;,
+  AVG(&quot;Total&quot;) OVER (ORDER BY &quot;CreatedDate&quot; ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS &quot;WeeklyAverage&quot;
+FROM &quot;Order&quot;
+</code></pre>
+</generated-sql>
+<p><code>RowNumber</code>, <code>Rank</code>, <code>DenseRank</code>, <code>Ntile</code>, <code>Lag</code>, <code>Lead</code>, <code>FirstValue</code>, <code>LastValue</code> and the <code>Sum</code>, <code>Count</code>, <code>Min</code>,
+<code>Max</code> and <code>Avg</code> aggregates are supported.</p>
+<h3 id="top-rows-of-each-group">Top rows of each group<a class="header-anchor" href="javascript:;" onclick="location.hash='#top-rows-of-each-group'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><em>Each customer's 3 latest orders</em> is one of the most common queries that needs window functions, and one of the
+easiest to get subtly wrong. <code>TopPerGroup()</code> returns the first rows of each group in the order of the query:</p>
+<generated-sql>
+<pre><code class="language-csharp">// Each customer's 3 latest orders
+var latest = db.Select(db.From&lt;Order&gt;()
+    .OrderByDescending(x =&gt; x.CreatedDate)
+    .TopPerGroup(x =&gt; x.Customer, take: 3));
+</code></pre>
+<pre><code class="language-sql">SELECT &quot;Id&quot;, &quot;Customer&quot;, &quot;Total&quot;, &quot;CreatedDate&quot;
+FROM (
+  SELECT &quot;Order&quot;.*, ROW_NUMBER() OVER (PARTITION BY &quot;Customer&quot; ORDER BY &quot;CreatedDate&quot; DESC) AS &quot;_rn&quot;
+  FROM &quot;Order&quot;
+) &quot;Order&quot;
+WHERE &quot;Order&quot;.&quot;_rn&quot; &lt;= 3
+ORDER BY &quot;CreatedDate&quot; DESC
+</code></pre>
+</generated-sql>
+<p>Window functions are supported on PostgreSQL, SQL Server, SQLite 3.25+, MySQL 8+, MariaDB and Oracle.</p>
+<h2 id="combine-queries-with-union-intersect-and-except">Combine queries with Union, Intersect and Except<a class="header-anchor" href="javascript:;" onclick="location.hash='#combine-queries-with-union-intersect-and-except'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Typed queries can now be combined with <code>Union()</code>, <code>UnionAll()</code>, <code>Intersect()</code> and <code>Except()</code>, without dropping down
+to raw SQL. Each query selects the same number of compatible columns, and its params are merged automatically:</p>
+<generated-sql>
+<pre><code class="language-csharp">// Everyone who has written or reviewed a book
+var q = db.From&lt;Book&gt;().Select(x =&gt; x.Author)
+    .Union(db.From&lt;BookReview&gt;().Select(x =&gt; x.Reviewer));
+var people = db.Column&lt;string&gt;(q);
+
+// Fantasy books or anything under $9
+var q2 = db.From&lt;Book&gt;().Where(x =&gt; x.Genre == Genre.Fantasy).Select(x =&gt; x.Title)
+    .Union(db.From&lt;Book&gt;().Where(x =&gt; x.Price &lt; 9m).Select(x =&gt; x.Title));
+</code></pre>
+<pre><code class="language-sql">-- Everyone who has written or reviewed a book
+SELECT &quot;Author&quot; FROM &quot;Book&quot;
+UNION
+SELECT &quot;Reviewer&quot; FROM &quot;BookReview&quot;
+
+-- Fantasy books or anything under $9
+SELECT &quot;Title&quot; FROM &quot;Book&quot; WHERE (&quot;Genre&quot; = @0)
+UNION
+SELECT &quot;Title&quot; FROM &quot;Book&quot; WHERE (&quot;Price&quot; &lt; @1)
+-- @0 = 'Fantasy', @1 = 9
+</code></pre>
+</generated-sql>
+<p><code>Intersect()</code> returns rows in both queries, and <code>Except()</code> returns rows in the first query that aren't in the other,
+which is a tidy way to ask what's missing:</p>
+<generated-sql>
+<pre><code class="language-csharp">var available = db.From&lt;Book&gt;().Where(x =&gt; x.Available).Select(x =&gt; x.Id);
+var reviewed  = db.From&lt;BookReview&gt;().Select(x =&gt; x.BookId);
+
+var availableAndReviewed = db.Column&lt;int&gt;(available.Clone().Intersect(reviewed));
+var awaitingReviews      = db.Column&lt;int&gt;(available.Clone().Except(reviewed));
+</code></pre>
+<pre><code class="language-sql">-- availableAndReviewed
+SELECT &quot;Id&quot; FROM &quot;Book&quot; WHERE &quot;Available&quot;=1
+INTERSECT
+SELECT &quot;BookId&quot; FROM &quot;BookReview&quot;
+
+-- awaitingReviews
+SELECT &quot;Id&quot; FROM &quot;Book&quot; WHERE &quot;Available&quot;=1
+EXCEPT
+SELECT &quot;BookId&quot; FROM &quot;BookReview&quot;
+</code></pre>
+</generated-sql>
+<p><code>OrderBy()</code>, <code>Skip()</code> and <code>Take()</code> on the first query apply to the combined results, and <code>Count()</code> counts them, so a
+combined query can be paged like any other. Queries being combined keep their own <code>OrderBy()</code> and <code>Take()</code>:</p>
+<generated-sql>
+<pre><code class="language-csharp">// Page through everyone, sorted by name
+var q = db.From&lt;Book&gt;().Select(x =&gt; x.Author)
+    .Union(db.From&lt;BookReview&gt;().Select(x =&gt; x.Reviewer))
+    .OrderBy(x =&gt; x.Author)
+    .Skip(20).Take(10);
+
+// Fantasy books plus the 2 cheapest books
+var q2 = db.From&lt;Book&gt;().Where(x =&gt; x.Genre == Genre.Fantasy).Select(x =&gt; x.Title)
+    .UnionAll(db.From&lt;Book&gt;().OrderBy(x =&gt; x.Price).Take(2).Select(x =&gt; x.Title));
+</code></pre>
+<pre><code class="language-sql">-- Page through everyone, sorted by name
+SELECT * FROM (
+  SELECT &quot;Author&quot; FROM &quot;Book&quot;
+  UNION
+  SELECT &quot;Reviewer&quot; FROM &quot;BookReview&quot;
+) q
+ORDER BY &quot;Author&quot;
+LIMIT 10 OFFSET 20
+
+-- Fantasy books plus the 2 cheapest books
+SELECT &quot;Title&quot; FROM &quot;Book&quot; WHERE (&quot;Genre&quot; = @0)
+UNION ALL
+SELECT * FROM (SELECT &quot;Title&quot; FROM &quot;Book&quot; ORDER BY &quot;Price&quot; LIMIT 2) q1
+-- @0 = 'Fantasy'
+</code></pre>
+</generated-sql>
+<p>Combined queries work with <code>Select()</code> into POCOs and the async APIs. Oracle uses <code>MINUS</code> for <code>Except()</code>, and Firebird,
+which doesn't support <code>INTERSECT</code> or <code>EXCEPT</code>, throws a <code>NotSupportedException</code>.</p>
+<h2 id="fast-stable-paging-with-seekafter">Fast, stable paging with SeekAfter<a class="header-anchor" href="javascript:;" onclick="location.hash='#fast-stable-paging-with-seekafter'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><code>Skip(n).Take(m)</code> gets slower the deeper you page, as the database still reads every skipped row, and rows can be
+skipped or repeated when data changes between requests. <code>SeekAfter()</code> pages through results by continuing after the
+last row of the previous page (keyset pagination), so every page is fast and stable:</p>
+<generated-sql>
+<pre><code class="language-csharp">var q = db.From&lt;Order&gt;()
+    .OrderByDescending(x =&gt; x.CreatedDate).ThenBy(x =&gt; x.Id)  // end with a unique column
+    .Take(50);
+if (lastRow != null)
+    q.SeekAfter(lastRow);  // continue after the last row of the previous page
+
+var page = db.Select(q);
+</code></pre>
+<pre><code class="language-sql">SELECT &quot;Id&quot;, &quot;Customer&quot;, &quot;Total&quot;, &quot;CreatedDate&quot;
+FROM &quot;Order&quot;
+WHERE ((&quot;CreatedDate&quot; &lt;= @0) AND ((&quot;CreatedDate&quot; &lt; @0) OR (&quot;CreatedDate&quot; = @0 AND &quot;Id&quot; &gt; @1)))
+ORDER BY &quot;CreatedDate&quot; DESC, &quot;Id&quot;
+LIMIT 50
+-- @0 = '2026-09-30 00:00:00', @1 = 42
+</code></pre>
+</generated-sql>
+<p>It generates <code>(a &gt; @0) OR (a = @0 AND b &gt; @1)</code> conditions from the query's <code>ORDER BY</code>, which work on every database,
+including with mixed sort directions, after an <code>a &gt;= @0</code> bound that lets the database seek to the page in an index.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Skip / Take</th>
+<th>SeekAfter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deep pages</td>
+<td>Slower the deeper you page</td>
+<td>Same speed at any depth</td>
+</tr>
+<tr>
+<td>Rows added or removed between requests</td>
+<td>Rows can be skipped or repeated</td>
+<td>Continues where it left off</td>
+</tr>
+<tr>
+<td>Jump to page N</td>
+<td>Yes</td>
+<td>No, pages are sequential</td>
+</tr>
+</tbody>
+</table>
+<p>That makes it a fit for feeds, infinite scrolling, exports and sync APIs. In an API, pass the <code>ORDER BY</code> values
+directly from a cursor, and it combines with filters and with user-selected sort orders from
+<a href="/posts/ormlite-safe-sql">OrderBySafe()</a>:</p>
+<pre><code class="language-csharp">var page = db.Select(db.From&lt;Book&gt;()
+    .Where(x =&gt; x.Available)
+    .OrderBy(x =&gt; x.Price).ThenByDescending(x =&gt; x.Year).ThenBy(x =&gt; x.Id)
+    .SeekAfter(cursor.Price, cursor.Year, cursor.Id)
+    .Take(50));
+</code></pre>
+<p>Call it after <code>OrderBy()</code>, end the order with a unique column such as the primary key, and sort by non-nullable
+columns.</p>
+<h2 id="stream-large-result-sets">Stream large result sets<a class="header-anchor" href="javascript:;" onclick="location.hash='#stream-large-result-sets'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Large exports and background processing shouldn't have to load an entire table into memory or block a thread.
+<code>SelectLazyAsync()</code> and <code>ColumnLazyAsync()</code> stream results one row at a time with <code>await foreach</code>:</p>
+<pre><code class="language-csharp">await foreach (var order in db.SelectLazyAsync(
+    db.From&lt;Order&gt;().Where(x =&gt; x.Status == Status.Shipped), token))
+{
+    await writer.WriteAsync(order);
+}
+
+await foreach (var email in db.ColumnLazyAsync&lt;string&gt;(db.From&lt;Customer&gt;().Select(x =&gt; x.Email)))
+    ...
+</code></pre>
+<p>Queries can be typed, parameterized or use <a href="/posts/ormlite-safe-sql"><code>Sql.Fmt()</code></a>. Breaking out of the loop or
+cancelling the token closes the reader straight away, so the connection can be reused immediately.</p>
+<h2 id="row-returning-locking-and-joined-writes">Row-returning, locking and joined writes<a class="header-anchor" href="javascript:;" onclick="location.hash='#row-returning-locking-and-joined-writes'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Three more additions solve the same kind of problem: a write that needs to be one statement to be correct.</p>
+<p><code>UpdateOnlyReturning()</code> and <code>DeleteReturning()</code> return the rows affected by an UPDATE or DELETE in the same
+statement, instead of a separate query that could see different rows. Deleting and returning in one statement also
+makes a simple work queue, as each row is only ever returned to one caller:</p>
+<pre><code class="language-csharp">List&lt;Order&gt; shipped = db.UpdateOnlyReturning(() =&gt; new Order { Status = &quot;Shipped&quot; },
+    where: x =&gt; x.Status == &quot;Packed&quot;);
+
+List&lt;EmailJob&gt; jobs = db.DeleteReturning&lt;EmailJob&gt;(x =&gt; x.Queue == &quot;emails&quot;);
+</code></pre>
+<p><code>ForUpdate()</code> locks the rows a query selects until the end of the transaction, to prevent lost updates on balances,
+counters and stock levels, and <code>ForUpdate(skipLocked: true)</code> lets multiple workers take different items from the same
+queue table. It uses <code>FOR UPDATE [SKIP LOCKED]</code> on PostgreSQL, MySQL 8+, MariaDB 10.6+ and Oracle,
+<code>WITH (UPDLOCK, ROWLOCK[, READPAST])</code> on SQL Server, and is ignored on SQLite so the same code runs in development:</p>
+<pre><code class="language-csharp">using var trans = db.OpenTransaction();
+
+var account = db.Single(db.From&lt;Account&gt;().Where(x =&gt; x.Id == id).ForUpdate());
+account.Balance -= amount;   // other transactions wait until this one ends
+db.Update(account);
+
+trans.Commit();
+</code></pre>
+<p><code>UpdateFrom()</code> updates rows with values from joined tables in a single statement, without reading them into .NET or
+writing RDBMS-specific SQL:</p>
+<pre><code class="language-csharp">// Apply each UK warehouse's markup to the price of its parts
+var q = db.From&lt;Part&gt;()
+    .Join&lt;Warehouse&gt;((p, w) =&gt; p.WarehouseId == w.Id)
+    .Where&lt;Warehouse&gt;(w =&gt; w.Country == &quot;UK&quot;);
+
+int updated = db.UpdateFrom&lt;Part, Warehouse&gt;((p, w) =&gt; new Part { Price = p.Price * w.Markup }, q);
+</code></pre>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>These queries are available in <strong>ServiceStack v10.4</strong>. Upgrade your <code>ServiceStack.OrmLite.*</code> packages and replace the
+raw SQL you were maintaining for hierarchies, rankings and paging.</p>
+<p>See the docs for the complete reference, which has more examples and the database support of each API:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/ormlite/recursive-queries">Recursive Queries</a> - ancestors, multiple roots, depth,
+cycles and paging</li>
+<li><a href="https://docs.servicestack.net/ormlite/common-table-expressions">Named Sub Queries</a> - building queries in steps and
+combining with recursion</li>
+<li><a href="https://docs.servicestack.net/ormlite/window-functions">Window Functions</a> - rankings, running totals, moving
+averages, <code>TopPerGroup()</code> and joins</li>
+<li><a href="https://docs.servicestack.net/ormlite/set-operations">Union, Intersect &amp; Except</a> - paging and ordering combined
+queries</li>
+<li><a href="https://docs.servicestack.net/ormlite/keyset-pagination">Keyset Pagination</a> - cursors in APIs and user-supplied
+sort orders</li>
+<li><a href="https://docs.servicestack.net/ormlite/streaming">Streaming Results</a> - <code>SelectLazyAsync()</code> and <code>ColumnLazyAsync()</code></li>
+<li><a href="https://docs.servicestack.net/ormlite/returning">Returning Rows</a>, <a href="https://docs.servicestack.net/ormlite/locking">Locking Rows</a>
+and <a href="https://docs.servicestack.net/ormlite/update-from">Update from Joined Tables</a></li>
+<li><a href="https://docs.servicestack.net/releases/v10_04">v10.4 Release Notes</a> - everything else in this release</li>
+</ul>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ai-chat-projects">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ai-chat-projects/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ai-chat-projects" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Prompt it, Publish it - AI-built works from your .NET APIs">
+                                                    Prompt it, Publish it - AI-built works from your .NET APIs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">AI Chat puts a ChatGPT-like assistant inside your .NET App, where it calls the APIs the signed-in user is allowed to call and turns the results into interactive views and reports your team can explore, review and publish</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Prompt it, Publish it - AI-built works from your .NET APIs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-08T00:00:00.0000000">October 8, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-multitenancy">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-multitenancy/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-multitenancy" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Multitenancy that can&#x27;t be forgotten">
+                                                    Multitenancy that can&#x27;t be forgotten
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.4 moves tenant isolation from every query to the database connection, with OrmLite connection filters and write rules that confine selects, updates, deletes, inserts and AutoQuery APIs to the request&#x27;s tenant, fail closed until it&#x27;s known, and record trusted audit columns on every write</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Multitenancy that can&#x27;t be forgotten background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-07T00:00:00.0000000">October 7, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>14 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/opentelemetry">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/opentelemetry/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/opentelemetry" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Follow every request with OpenTelemetry">
+                                                    Follow every request with OpenTelemetry
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.3 emits standard OpenTelemetry traces and metrics that follow a request from its API call through outbound HTTP calls, MQ messages and Background Jobs, even across servers, in Jaeger, Grafana Tempo, Honeycomb, Datadog or the .NET Aspire Dashboard</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Follow every request with OpenTelemetry background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-06T00:00:00.0000000">October 6, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/rate-limiting">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/rate-limiting/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/rate-limiting" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="API Rate Limiting">
+                                                    API Rate Limiting
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.3 adds opt-in ASP.NET Core rate limiting for ServiceStack APIs - bind a named policy to a Request DTO or share one budget across every API with the same Tag, enforced across every route an API can be called from</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="API Rate Limiting background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-05T00:00:00.0000000">October 5, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+<link rel="stylesheet" href="/css/asciinema-player.css">
+<script src="/lib/js/asciinema-player.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'base',
+        'themeVariables': {
+            'primaryColor': '#fff',
+            'lineColor': '#333',
+            'primaryBorderColor': 'rgb(67 56 202)', // text-indigo-700	
+            'secondaryColor': '#fff',
+            'primaryTextColor': '#333',
+            'tertiaryColor': '#333'
+        }        
+    });
+</script>
+<style>
+pre.mermaid {
+    background-color: #fff !important;
+}
+.dark pre.mermaid {
+    background-color: #000 !important; /*bg-gray-800*/
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p, .dark pre.mermad .labelBkg {
+    background-color: #000 !important;
+}
+.dark pre.mermaid .edgeLabel, .dark pre.mermaid .edgeLabel p {
+    color: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .flowchart-link { 
+    stroke: rgb(209 213 219) !important;
+}
+.dark pre.mermaid .node rect {
+    stroke: #fff !important;
+}
+.dark pre.mermaid .marker.flowchart-v2 {
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+</style>
+
+<script type="module">
+import { mount } from "app.mjs"
+
+        import App from "./posts/ormlite-advanced-queries.mjs" 
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://servicestack.net/getting-started" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Getting Started</a>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/getting-started"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
