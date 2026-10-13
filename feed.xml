@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Tue, 13 Oct 2026 14:24:36 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 13 Oct 2026 14:46:37 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Keep your database in sync with your C# models</title>
+        <link>https://servicestack.net/posts/ormlite-schema-diff</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/ormlite-schema-diff</guid>
+        <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-13T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>ormlite</category>
+        <category>db</category>
+        <description>ServiceStack v10.4 adds Schema Diff to OrmLite, which finds every difference between your C# models and their tables, from columns and types to defaults, indexes, foreign keys and constraints, then writes the migration for you to review, on SQLite, PostgreSQL, SQL Server, MySQL and MariaDB</description>
+    </item>
     <item>
         <title>Advanced SQL queries in typed OrmLite</title>
         <link>https://servicestack.net/posts/ormlite-advanced-queries</link>
@@ -123,17 +135,6 @@
         <category>dev</category>
         <category>ai</category>
         <description>StartupTasks run dev-time tasks once your App has fully started, keeping client DTOs and other generated code in sync with your server on every restart, with no extra build step for developers or AI Assistants to remember</description>
-    </item>
-    <item>
-        <title>OrmLite gets type-safe JSON access and Upserts</title>
-        <link>https://servicestack.net/posts/omlite-json-upsert</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/omlite-json-upsert</guid>
-        <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-09-14T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>ormlite</category>
-        <description>Query JSON columns with typed C# expressions that run unchanged on SQLite, PostgreSQL, SQL Server and MySQL, and insert-or-update rows in a single native statement with the new Upsert APIs</description>
     </item>
 </channel>
 </rss>

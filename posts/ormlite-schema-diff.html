@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>Keep your database in sync with your C# models - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="ServiceStack v10.4 adds Schema Diff to OrmLite, which finds every difference between your C# models and their tables, from columns and types to defaults, indexes, foreign keys and constraints, then writes the migration for you to review, on SQLite, PostgreSQL, SQL Server, MySQL and MariaDB" />
+    <meta property="og:url" content="https://servicestack.net/posts/ormlite-schema-diff" />
+    <meta property="og:title" content="Keep your database in sync with your C# models" />
+    <meta property="og:image" content="./img/posts/ormlite-schema-diff/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Keep your database in sync with your C# models
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/ormlite-schema-diff/bg.webp" alt="Keep your database in sync with your C# models Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                        <a href="posts/tagged/ormlite" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ormlite</a>
+                        <a href="posts/tagged/db" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">db</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-10-13T00:00:00.0000000">October 13, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>10 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="chmFo1TE-Wc" playlabel="Keep Your Database in Sync With Your C# Models: Schema Diff for .NET" style="background-image:url('https://img.youtube.com/vi/chmFo1TE-Wc/maxresdefault.jpg')"></lite-youtube>
+<p>In a code-first App your C# classes are your schema. You add two properties to an <code>Invoice</code>, build and deploy:</p>
+<pre><code class="language-csharp">public class Invoice
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    [StringLength(200)]
+    public string Reference { get; set; }
+    [Index]
+    public int CustomerId { get; set; }
+    public decimal Total { get; set; }
+    public DateTime? PaidDate { get; set; } // new
+    public string Currency { get; set; }    // new
+}
+
+db.CreateTableIfNotExists&lt;Invoice&gt;(); // the table exists, so it's unchanged
+var unpaid = db.Select&lt;Invoice&gt;(x =&gt; x.PaidDate == null);
+</code></pre>
+<p>But the table was created months ago, and <code>CreateTableIfNotExists</code> only creates tables that don't exist. Nothing
+tells you the table didn't change with its model, until the first query that uses the new columns fails:</p>
+<pre><code>SqlException: Invalid column name 'PaidDate'.
+Invalid column name 'PaidDate'.
+Invalid column name 'Currency'.
+</code></pre>
+<p>When that happens in production, it's the first you hear of it.</p>
+<p><strong>ServiceStack v10.4</strong> adds <strong>Schema Diff</strong> to OrmLite: one call that compares your models with their tables, tells
+you everything that's different, and writes the migration that fixes it for you to review.</p>
+<h2 id="one-call-every-difference">One call, every difference<a class="header-anchor" href="javascript:;" onclick="location.hash='#one-call-every-difference'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<pre><code class="language-csharp">var diff = db.GetSchemaDiff(typeof(Invoice), typeof(Customer));
+
+if (diff.HasChanges)
+    log.LogWarning(&quot;The database doesn't match its models:\n{Diff}&quot;, diff);
+</code></pre>
+<pre><code>Invoice
+  ~ Reference  VARCHAR(50) NOT NULL -&gt; VARCHAR(200) NULL
+  + PaidDate  DATETIME NULL
+  + Currency  VARCHAR(8000) NULL (renamed from LegacyCode?)
+  - LegacyCode  VARCHAR(8000) NULL (not in Invoice) (renamed to Currency?)
+  + index idx_invoice_customerid
+Customer
+  + table isn't in the database
+</code></pre>
+<p><code>+</code> is in your model and not the database, <code>-</code> is in the database and not your model, and <code>~</code> is in both, but
+different. The two new columns, a <code>Reference</code> column that's now larger and allows nulls, a column the model no longer
+has, a missing index and a missing table, all in one readable report.</p>
+<p>It doesn't guess what types your C# maps to. It creates the model's columns in a temporary table and compares them as
+your database reports them, so a table created from its model never has false differences, whichever
+<a href="https://docs.servicestack.net/ormlite/type-converters">type converters</a> or naming strategy you use. Common equivalent
+types in tables that weren't created by OrmLite, e.g. by Entity Framework, like <code>TEXT</code> vs <code>VARCHAR(n)</code> or <code>INTEGER</code>
+vs <code>BIGINT</code>, aren't reported either.</p>
+<h2 id="more-than-columns">More than columns<a class="header-anchor" href="javascript:;" onclick="location.hash='#more-than-columns'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Your models already describe far more of your schema than their columns, and this release lets them describe even
+more, with attributes for filtered and covering indexes, enum checks and generated columns, instead of SQL you write
+by hand:</p>
+<pre><code class="language-csharp">[CompositeIndex(nameof(TenantId), nameof(Status), Include = [nameof(Name), nameof(Size)])]
+public class Upload
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public int TenantId { get; set; }
+
+    [Index(Unique = true, Where = &quot;{DeletedDate} IS NULL&quot;)] // unique among rows that aren't deleted
+    public string Name { get; set; }
+
+    [CheckEnum]                                              // only allow UploadStatus values
+    public UploadStatus Status { get; set; }
+
+    public long Size { get; set; }
+
+    [Compute(&quot;{Size} / 1024&quot;), Persisted]                    // calculated by the database
+    public long SizeKb { get; set; }
+
+    public DateTime? DeletedDate { get; set; }
+}
+</code></pre>
+<p>Because it's all in your model, Schema Diff compares all of it. Change a <code>PurchaseOrder</code>'s default, make its foreign
+key cascade deletes, restrict its <code>Status</code> to its enum's values and add a filtered index:</p>
+<pre><code class="language-csharp">public class PurchaseOrder
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+
+    [ForeignKey(typeof(Supplier), OnDelete = &quot;CASCADE&quot;)] // was no action
+    public int SupplierId { get; set; }
+
+    [CheckEnum]                                          // was any string
+    public OrderStatus Status { get; set; }
+
+    [Default(5)]                                         // was Default(1)
+    public int Quantity { get; set; }
+
+    public DateTime CreatedDate { get; set; }
+
+    [Index(Where = &quot;{ShippedDate} IS NULL&quot;)]             // the unshipped orders
+    public DateTime? ShippedDate { get; set; }
+}
+</code></pre>
+<p>And each one is found:</p>
+<pre><code>PurchaseOrder
+  ~ Quantity  default DEFAULT ((1)) -&gt; DEFAULT ((5))
+  ~ foreign key FK_PurchaseOrder_Supplier_SupplierId  (SupplierId) REFERENCES Supplier (Id)
+      -&gt; (SupplierId) REFERENCES Supplier (Id) ON DELETE CASCADE
+  + constraint CHK__PurchaseOrder_Status  CHECK (&quot;Status&quot; IN ('Pending','Shipped','Delivered'))
+  + index idx_purchaseorder_shippeddate
+</code></pre>
+<p>Schema Diff compares:</p>
+<ul>
+<li><strong>Tables and columns</strong>: missing tables, missing and extra columns, and columns of another type, size or nullability</li>
+<li><strong>Defaults</strong>: a <code>[Default]</code> that changed, or a default the property doesn't have</li>
+<li><strong>Indexes</strong>: by their columns, order, uniqueness, <code>Include</code> columns and <code>Where</code> condition</li>
+<li><strong>Foreign keys</strong>: the table they reference and their <code>OnDelete</code> and <code>OnUpdate</code> actions</li>
+<li><strong>Constraints</strong>: <code>[Unique]</code>, <code>[UniqueConstraint]</code>, <code>[CheckConstraint]</code> and <code>[CheckEnum]</code></li>
+<li><strong>Primary keys</strong> with other columns, and <strong>full-text indexes</strong> of <a href="https://docs.servicestack.net/ormlite/full-text-search"><code>[FullTextIndex]</code></a> models</li>
+</ul>
+<p>Databases rewrite conditions, e.g. PostgreSQL writes an <code>IN</code> list as <code>= ANY (ARRAY[...])</code>, so index conditions, check
+constraints and defaults are compared the way your database writes them, not as false differences.</p>
+<h2 id="built-not-to-lose-your-data">Built not to lose your data<a class="header-anchor" href="javascript:;" onclick="location.hash='#built-not-to-lose-your-data'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>A diff that's quick to drop the wrong thing is worse than no diff at all, so Schema Diff errs on the side of keeping
+your data.</p>
+<p><strong>Likely renames are suggested, never assumed.</strong> A column that's no longer in the model and a new column of the same
+type are probably the same column renamed, so the diff says so: <code>Currency (renamed from LegacyCode?)</code>. It's only a
+guess, so it's never renamed for you. You decide.</p>
+<p><strong>Destructive changes are marked.</strong> Every change that can lose data or fail with the rows already in a table, like
+dropping a column, shrinking one, making an index unique or adding a check constraint, has <code>IsDestructive</code> set, and
+isn't made unless you allow it.</p>
+<p><strong>Hand-added indexes are kept.</strong> Someone added an index to the database to speed up a slow query? It's never dropped,
+even when destructive changes are allowed. Instead the diff tells you the exact attribute to add, so your model has it
+too:</p>
+<pre><code class="language-csharp">// CREATE INDEX ix_purchaseorder_status_created ON &quot;PurchaseOrder&quot; (&quot;Status&quot;, &quot;CreatedDate&quot;)
+
+var diff = db.GetSchemaDiff&lt;PurchaseOrder&gt;();
+db.ApplySchemaDiff(diff, allowDestructive: true); // Makes 0 changes: the index is kept
+</code></pre>
+<pre><code>PurchaseOrder
+  ! index ix_purchaseorder_status_created  (Status, CreatedDate)
+      (not in PurchaseOrder, kept: add [CompositeIndex(&quot;Status&quot;, &quot;CreatedDate&quot;,
+       Name = &quot;ix_purchaseorder_status_created&quot;)] to PurchaseOrder)
+</code></pre>
+<h2 id="the-migration-written-for-you-to-review">The migration, written for you to review<a class="header-anchor" href="javascript:;" onclick="location.hash='#the-migration-written-for-you-to-review'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Knowing what's different is half the job. <code>ToMigration()</code> writes the other half, as an OrmLite
+<a href="https://docs.servicestack.net/ormlite/db-migrations">DB Migration</a>:</p>
+<pre><code class="language-csharp">File.WriteAllText(&quot;Migrations/Migration1005.cs&quot;,
+    diff.ToMigration(&quot;Migration1005&quot;, &quot;MyApp.Migrations&quot;));
+</code></pre>
+<pre><code class="language-csharp">#warning Generated by Schema Diff: review this migration before running it, then delete this line
+
+public class Migration1005 : MigrationBase
+{
+    public class Invoice
+    {
+        [AutoIncrement]
+        public int Id { get; set; }
+        [StringLength(200)]
+        public string Reference { get; set; }
+        public DateTime? PaidDate { get; set; }
+        public string Currency { get; set; }
+    }
+
+    public override void Up()
+    {
+        // Reference is VARCHAR(50) NOT NULL
+        Db.AlterColumn&lt;Invoice&gt;(x =&gt; x.Reference);
+        Db.AddColumn&lt;Invoice&gt;(x =&gt; x.PaidDate);
+        // Currency is likely LegacyCode renamed. If it is, rename it instead of adding it:
+        // Db.RenameColumn&lt;Invoice&gt;(x =&gt; x.Currency, &quot;LegacyCode&quot;);
+        Db.AddColumn&lt;Invoice&gt;(x =&gt; x.Currency);
+        // LegacyCode (VARCHAR(8000) NULL) isn't in Invoice. If it was renamed, rename it instead:
+        // Db.RenameColumn&lt;Invoice&gt;(&quot;LegacyCode&quot;, &quot;Currency&quot;);
+        // Db.DropColumn&lt;Invoice&gt;(&quot;LegacyCode&quot;);
+        Db.ExecuteSql(&quot;CREATE INDEX idx_invoice_customerid ON \&quot;Invoice\&quot; (\&quot;CustomerId\&quot;);&quot;);
+    }
+
+    public override void Down() { /* ... */ }
+}
+</code></pre>
+<p>The migration has its own copy of the model, with only the properties that change, so it keeps working after your
+model changes again. Look at the likely rename: the migration adds <code>Currency</code>, and leaves dropping <code>LegacyCode</code> as
+commented-out code with the rename to use instead, so no data is dropped unless you decide it should be.</p>
+<div class="warning custom-block">
+            <p class="custom-block-title">WARNING</p><p>A generated migration is a guide, not a finished migration. Schema Diff is new, so every migration it writes starts
+with a <code>#warning</code> that's reported each time your App is built, until you've reviewed it and deleted it.</p>
+</div>
+<h2 id="from-your-browser-or-the-command-line">From your browser, or the command line<a class="header-anchor" href="javascript:;" onclick="location.hash='#from-your-browser-or-the-command-line'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>If you use ServiceStack, the <a href="https://docs.servicestack.net/admin-ui-database#schema-diff">Database Admin UI</a> has a
+<strong>Schema Diff</strong> for each database. It compares the data models of your AutoQuery APIs and the tables your migrations
+create, shows each difference with the SQL that fixes it and marks the destructive ones. Comparing doesn't change
+your tables:</p>
+<p><screenshot src="/img/posts/ormlite-schema-diff/database-schema-diff.webp" title="Schema Diff in the Database Admin UI"></screenshot></p>
+<p>With the migration class next to them, ready to copy into your App:</p>
+<p><screenshot src="/img/posts/ormlite-schema-diff/database-migration-class.webp" title="Migration class generated from Schema Diff"></screenshot></p>
+<p>Or have the <code>migrate.new</code> <a href="https://docs.servicestack.net/app-tasks">App Task</a> write it straight into your App's
+<code>Migrations</code> folder, named after your last migration:</p>
+<div class="sh mb-4"><div class="not-prose group relative overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer" onclick="shellCopy(this)">
+                <!-- Background pattern -->
+                <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 opacity-50" style="background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+                <div class="relative flex items-center justify-between px-4 py-3">
+                    <!-- Left side - Terminal icon and command -->
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg>
+                        <div class="flex items-center gap-2 min-w-0 flex-1">
+                            <code class="text-sm font-mono text-slate-900 dark:text-slate-100 truncate"><p>dotnet run --AppTasks=migrate.new</p>
+</code>
+                            </div>
+                        </div>
+
+                        <!-- Right side - Copy button -->
+                        <div class="flex items-center gap-2 ml-4">
+                            <button class="shell-copy-btn flex items-center justify-center p-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500" aria-label="Copy command">
+                                <svg class="copied w-4 h-4" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <svg class="nocopy w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+</div>
+<p>It doesn't write anything when your database already matches its models, and never replaces a migration that's
+already there.</p>
+<h2 id="find-out-when-your-app-starts-not-in-production">Find out when your App starts, not in production<a class="header-anchor" href="javascript:;" onclick="location.hash='#find-out-when-your-app-starts-not-in-production'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Better than finding out when a query fails is finding out before it can. Turn on <code>LogSchemaDiff</code> in development and
+the differences of each database are logged in the background every time your App starts:</p>
+<pre><code class="language-csharp">services.AddPlugin(new AdminDatabaseFeature {
+    LogSchemaDiff = context.HostingEnvironment.IsDevelopment(),
+});
+</code></pre>
+<pre><code>Schema Diff: the tables of the main database aren't the same as their models
+Invoice
+  ~ Reference  VARCHAR(50) NOT NULL -&gt; VARCHAR(200) NULL
+  + PaidDate  DATETIME NULL
+  + Currency  VARCHAR(8000) NULL (renamed from LegacyCode?)
+  - LegacyCode  VARCHAR(8000) NULL (not in Invoice) (renamed to Currency?)
+  + index idx_invoice_customerid
+Ignored: AspNetUsers
+</code></pre>
+<p>Or make it a test, so a model that changed without its migration fails the build before it's ever deployed:</p>
+<pre><code class="language-csharp">[Test]
+public void Database_matches_its_models()
+{
+    using var db = dbFactory.OpenDbConnection();
+    var diff = db.GetSchemaDiff(typeof(Invoice), typeof(Customer));
+    Assert.That(diff.HasChanges, Is.False, diff.ToString());
+}
+</code></pre>
+<p>Tables OrmLite doesn't manage, like ASP.NET Core Identity's <code>AspNet*</code> tables and EF Core's <code>__EFMigrationsHistory</code>,
+are ignored by default, and you can ignore others by name, wildcard or model:</p>
+<pre><code class="language-csharp">OrmLiteConfig.SchemaDiff.IgnoreTables.Add(&quot;Legacy*&quot;);
+OrmLiteConfig.SchemaDiff.IgnoreTypes.Add(typeof(AuditArchive));
+</code></pre>
+<h2 id="keep-dev-databases-in-sync">Keep dev databases in sync<a class="header-anchor" href="javascript:;" onclick="location.hash='#keep-dev-databases-in-sync'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>While you're developing, <code>ApplySchemaDiff()</code> makes the changes for you. By default only safe ones, like creating
+tables, adding columns and indexes, making columns larger or allowing nulls, are applied:</p>
+<pre><code class="language-csharp">var diff = db.GetSchemaDiff(typeof(Invoice), typeof(Customer));
+
+var applied = db.ApplySchemaDiff(diff);                // safe changes only
+db.ApplySchemaDiff(diff, allowDestructive: true);      // also drop and alter columns that can lose data
+</code></pre>
+<p>It's for development and test databases. The databases you deploy to should get reviewed migrations that are run
+once and recorded.</p>
+<h2 id="sqlite-rebuilt">SQLite, rebuilt<a class="header-anchor" href="javascript:;" onclick="location.hash='#sqlite-rebuilt'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>SQLite can't alter a column, its default, foreign keys or constraints. The only way to change them is to create the
+table again and copy its rows. So on SQLite those changes are made by rebuilding the table, and the diff says so:</p>
+<pre><code>PurchaseOrder
+  ~ Quantity  default DEFAULT 1 -&gt; DEFAULT 5 (by rebuilding the table)
+  ~ foreign key FK_PurchaseOrder_Supplier_SupplierId  (SupplierId) REFERENCES Supplier (Id)
+      -&gt; (SupplierId) REFERENCES Supplier (Id) ON DELETE CASCADE (by rebuilding the table)
+  + constraint CHK__PurchaseOrder_Status  CHECK (&quot;Status&quot; IN ('Pending','Shipped','Delivered'))
+      (by rebuilding the table)
+  + index idx_purchaseorder_shippeddate
+  ~ rebuild table to change the default of Quantity, foreign key FK_PurchaseOrder_Supplier_SupplierId,
+    constraint CHK__PurchaseOrder_Status
+</code></pre>
+<p>The new <code>RebuildTable&lt;T&gt;()</code> API does it from your model, and is also available to your own migrations:</p>
+<pre><code class="language-csharp">db.RebuildTable&lt;PurchaseOrder&gt;();
+</code></pre>
+<p>It runs in a transaction, keeping the table's rows, its indexes (including ones added by hand), its triggers and its
+next <code>AUTOINCREMENT</code> id. If a row breaks the new table, e.g. it fails a new check constraint, the table is left as it
+was.</p>
+<h2 id="know-the-limits">Know the limits<a class="header-anchor" href="javascript:;" onclick="location.hash='#know-the-limits'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Schema Diff is built to tell you the truth about your database, so here's the truth about Schema Diff:</p>
+<ul>
+<li><strong>Generated migrations are a guide to review</strong>, not finished migrations you can trust without reading</li>
+<li><strong><code>ApplySchemaDiff()</code> is for development and test databases</strong>, and applies changes one at a time, not in a
+transaction</li>
+<li><strong>A primary key with other columns is only reported</strong>, as changing it needs its foreign keys and data migrated too</li>
+<li><strong>Not compared</strong>: the order of columns, the expressions of generated columns and comments</li>
+<li><strong>Temporary tables</strong>: your connection's user needs to be able to create them, e.g. MySQL's <code>CREATE TEMPORARY TABLES</code>
+privilege, otherwise column types aren't compared and <code>diff.Warnings</code> says why</li>
+</ul>
+<p>Within those limits, your models stay the source of truth, and you find out the moment your database drifts from them.</p>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Schema Diff is available in <strong>ServiceStack v10.4</strong> on <strong>SQLite, PostgreSQL, SQL Server, MySQL</strong> and <strong>MariaDB</strong>.
+Upgrade your <code>ServiceStack.OrmLite.*</code> packages, then either open the Schema Diff in the Database Admin UI, turn on
+<code>LogSchemaDiff</code>, or call <code>db.GetSchemaDiff()</code> with your models to see how far your database has drifted.</p>
+<p>See the docs for the complete reference:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/ormlite/schema-diff">Schema Diff</a> - everything that's compared, the changes, ignoring
+tables, generated migrations and rebuilding SQLite tables</li>
+<li><a href="https://docs.servicestack.net/ormlite/ddl-attributes">Schema Attributes</a> - filtered and covering indexes, enum
+checks, generated columns and comments declared on your models</li>
+<li><a href="https://docs.servicestack.net/ormlite/db-migrations">DB Migrations</a> - writing, running and reverting OrmLite migrations</li>
+<li><a href="https://docs.servicestack.net/admin-ui-database">Database Admin UI</a> - browse, query and compare your databases</li>
+<li><a href="https://docs.servicestack.net/releases/v10_04">v10.4 Release Notes</a> - everything else in this release</li>
+</ul>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-advanced-queries">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-advanced-queries/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-advanced-queries" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Advanced SQL queries in typed OrmLite">
+                                                    Advanced SQL queries in typed OrmLite
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.4 adds typed recursive queries, named sub queries, window functions with TopPerGroup, Union/Intersect/Except, SeekAfter keyset paging and async streaming, so the queries that used to need hand-written SQL stay typed, parameterized and portable</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Advanced SQL queries in typed OrmLite background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-11T00:00:00.0000000">October 11, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>12 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ai-chat-projects">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ai-chat-projects/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ai-chat-projects" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Prompt it, Publish it - AI-built works from your .NET APIs">
+                                                    Prompt it, Publish it - AI-built works from your .NET APIs
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">AI Chat puts a ChatGPT-like assistant inside your .NET App, where it calls the APIs the signed-in user is allowed to call and turns the results into interactive views and reports your team can explore, review and publish</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Prompt it, Publish it - AI-built works from your .NET APIs background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-08T00:00:00.0000000">October 8, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-multitenancy">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-multitenancy/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-multitenancy" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Multitenancy that can&#x27;t be forgotten">
+                                                    Multitenancy that can&#x27;t be forgotten
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.4 moves tenant isolation from every query to the database connection, with OrmLite connection filters and write rules that confine selects, updates, deletes, inserts and AutoQuery APIs to the request&#x27;s tenant, fail closed until it&#x27;s known, and record trusted audit columns on every write</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Multitenancy that can&#x27;t be forgotten background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-07T00:00:00.0000000">October 7, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>14 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/opentelemetry">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/opentelemetry/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/opentelemetry" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Follow every request with OpenTelemetry">
+                                                    Follow every request with OpenTelemetry
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.3 emits standard OpenTelemetry traces and metrics that follow a request from its API call through outbound HTTP calls, MQ messages and Background Jobs, even across servers, in Jaeger, Grafana Tempo, Honeycomb, Datadog or the .NET Aspire Dashboard</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Follow every request with OpenTelemetry background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-06T00:00:00.0000000">October 6, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>7 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+
+<script type="module">
+import { mount } from "app.mjs"
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://servicestack.net/getting-started" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Getting Started</a>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/getting-started"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
