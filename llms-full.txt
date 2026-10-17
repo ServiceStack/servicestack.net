@@ -1,3 +1,634 @@
+# Safe SQL by default in OrmLite
+Source: https://servicestack.net/posts/ormlite-safe-sql
+
+:::youtube GGXmyUx5qqY
+Dynamic SQL Without SQL Injection in .NET: Safe Interpolation & Sorting
+:::
+
+Typed queries have always been the safe way to use OrmLite. Every value in `db.Select<Book>(x => x.Author == author)` is
+sent as a db parameter, so there's nothing to inject into. SQL injection creeps in where typed queries stop being
+convenient, and it almost always arrives the same two ways:
+
+- **Concatenating a value into raw SQL**, usually with C# string interpolation, because `$"Author = '{author}'"` is
+  so much nicer to write than a parameter object.
+- **Letting users choose the sort order**, e.g. `?orderBy=-Price`, which is a column name rather than a value, so
+  it can't be a parameter and ends up pasted into `ORDER BY`.
+
+**ServiceStack v10.4** gives both a safe API that's as easy to write as the unsafe one, and hardens the defences
+around everything else:
+
+- **`Sql.Fmt()`** keeps writing natural C# interpolated strings, but every interpolated value is sent as a db param
+- **`OrderBySafe()`** resolves user-supplied field names to properly quoted columns, so only real fields can be used
+- **Stronger injection protection** for SQL fragments, identifiers, inlined values and schema queries
+
+## Safe interpolated SQL with Sql.Fmt
+
+The unsafe version and the safe version differ by a single method call:
+
+```csharp
+// Unsafe: the value is embedded in the SQL
+db.Select<Book>($"Author = '{request.Author}'");
+
+// Safe: the value is sent as a db param
+db.Select<Book>(Sql.Fmt($"Author = {request.Author}"));
+```
+
+`Sql.Fmt()` is a C# interpolated string handler. Rather than building a string, it records the SQL with a placeholder
+for each interpolated value, and OrmLite generates the SQL and params for your RDBMS:
+
+<generated-sql>
+
+```csharp
+var author = request.Author; // user input is never embedded in SQL
+var books = db.Select<Book>(Sql.Fmt($"Author = {author} AND Price < {request.MaxPrice}"));
+```
+
+```sql
+SELECT "Id", "Title", "Author", "Genre", "Price", "Year", "Available"
+FROM "Book"
+WHERE Author = @p0 AND Price < @p1
+-- @p0 = 'J.R.R. Tolkien', @p1 = 20
+```
+
+</generated-sql>
+
+A value that would otherwise be an injection attack is just a value that doesn't match anything:
+
+```csharp
+var malicious = "x' OR '1'='1";
+db.Select<Book>(Sql.Fmt($"Author = {malicious}")); // returns no rows
+```
+
+Values are converted the same way as in typed queries, so enums, dates, decimals and bools just work, and
+collections are expanded into `IN` lists:
+
+<generated-sql>
+
+```csharp
+var genres = new[] { Genre.Fantasy, Genre.Science };
+var books = db.Select<Book>(Sql.Fmt($"Genre IN ({genres}) AND Year >= {since}"));
+```
+
+```sql
+SELECT "Id", "Title", "Author", "Genre", "Price", "Year", "Available"
+FROM "Book"
+WHERE Genre IN (@v0,@v1) AND Year >= @p1
+-- @v0 = 'Fantasy', @v1 = 'Science', @p1 = 1960
+```
+
+</generated-sql>
+
+Empty collections match nothing, rather than generating invalid SQL.
+
+### Works with every raw SQL API
+
+`Sql.Fmt()` is accepted anywhere OrmLite takes a SQL string, sync or async: `SqlList`, `SqlColumn` and `SqlScalar`,
+the shorthand `Select`, `Single`, `Exists`, `Column` and `Scalar` APIs, `ExecuteSql`, `Delete`, the collection APIs
+`ColumnDistinct`, `Lookup`, `Dictionary` and `KeyValuePairs`, `RowCount` and the lazy streaming APIs:
+
+```csharp
+var genres = new[] { Genre.Fiction, Genre.Science };
+
+Dictionary<string, List<string>> titlesByAuthor = db.Lookup<string, string>(
+    Sql.Fmt($"SELECT Author, Title FROM Book WHERE Genre IN ({genres})"));
+
+db.Delete<Book>(Sql.Fmt($"Author = {author} AND Year < {1950}"));
+```
+
+It's an explicit opt-in, so existing `string` APIs keep their current behaviour, and passing an interpolated string
+directly to one still concatenates the value.
+
+### Table and column references
+
+Values are the only thing that can be a parameter. Table and column names can't, and are the other thing people
+end up concatenating. `Sql.Fmt()` embeds them as names quoted by the RDBMS dialect, including their schema and
+naming convention. Naming the references after their table and column keeps the SQL readable, and makes it clear
+which parts of the SQL are names and which are params:
+
+<generated-sql>
+
+```csharp
+var Book = db.TableRef<Book>();
+var (Title, Author, Price) = db.ColumnRefs<Book>(x => new { x.Title, x.Author, x.Price });
+
+var titles = db.SqlColumn<string>(Sql.Fmt($"SELECT {Title} FROM {Book} WHERE {Author}={author}"));
+db.ExecuteSql(Sql.Fmt($"UPDATE {Book} SET {Price} = {Price} * {0.9m} WHERE {Author} = {author}"));
+```
+
+```sql
+SELECT "Title" FROM "Book" WHERE "Author"=@p0
+-- @p0 = 'J.R.R. Tolkien'
+
+UPDATE "Book" SET "Price" = "Price" * @p0 WHERE "Author" = @p1
+-- @p0 = 0.9, @p1 = 'J.R.R. Tolkien'
+```
+
+</generated-sql>
+
+The quoted names also make the SQL portable, as they use the table's `[Alias]` and the RDBMS naming convention, e.g.
+PostgreSQL's convention stores the `BookReview` table as `book_review` and its `BookId` column as `book_id`.
+
+A table can also be referenced by its type, and joins can qualify columns with their table using `prefixTable: true`:
+
+<generated-sql>
+
+```csharp
+var (Book, BookReview) = db.TableRefs<Book, BookReview>();
+var (Id, Title) = db.ColumnRefs<Book>(x => new { x.Id, x.Title }, prefixTable:true);
+var (BookId, Rating) = db.ColumnRefs<BookReview>(x => new { x.BookId, x.Rating }, prefixTable:true);
+
+var reviewed = db.SqlColumn<string>(Sql.Fmt(
+  $"SELECT DISTINCT {Title} FROM {Book} JOIN {BookReview} ON {Id}={BookId} WHERE {Rating}>={4}"));
+```
+
+```sql
+SELECT DISTINCT "Book"."Title"
+FROM "Book" JOIN "BookReview" ON "Book"."Id"="BookReview"."BookId"
+WHERE "BookReview"."Rating">=@p0
+-- @p0 = 4
+```
+
+</generated-sql>
+
+Anything else that really is trusted SQL, like a sort direction you chose in code, can be embedded verbatim with
+`Sql.Raw()`. It's a signal that the value is SQL rather than data, so it's never used with user input.
+
+### Mix it with typed queries
+
+`Sql.Fmt()` also works inside typed `SqlExpression` queries through `Where`, `And`, `Or` and `Having`, which is
+useful for conditions that are hard to express in C#, like aggregates in a `HAVING` clause:
+
+<generated-sql>
+
+```csharp
+var Year = db.ColumnRef<Book>(x => x.Year);
+
+var q = db.From<Book>()
+    .Where(x => x.Available)
+    .And(Sql.Fmt($"{Year} >= {minYear}"));
+
+// Genres with at least 2 books, one published since 1980
+var byGenre = db.From<Book>()
+    .GroupBy(x => x.Genre)
+    .Having(Sql.Fmt($"COUNT(*) >= {2} AND MAX({Year}) >= {1980}"))
+    .Select(x => x.Genre);
+```
+
+```sql
+-- q
+SELECT "Id", "Title", "Author", "Genre", "Price", "Year", "Available"
+FROM "Book"
+WHERE "Available"=1 AND "Year" >= @0
+-- @0 = 1970
+
+-- byGenre
+SELECT "Genre"
+FROM "Book"
+GROUP BY "Genre"
+HAVING COUNT(*) >= @0 AND MAX("Year") >= @1
+-- @0 = 2, @1 = 1980
+```
+
+</generated-sql>
+
+Format specifiers like `{date:yyyy-MM-dd}` are rejected with a `FormatException`, since params are sent as typed
+values rather than text. Pass the typed value, or format it before interpolating it.
+
+## Let users choose the sort order with OrderBySafe
+
+A sort order is a column name, so it can't be a parameter, and it's the most common way user input ends up in SQL.
+Passing `?orderBy=-Price` straight to `OrderBy(string)` is only ever as safe as the validation behind it. 
+`OrderBySafe()` never embeds its input at all. It resolves field names to properly quoted columns, so only real
+fields can ever be used:
+
+```csharp
+// ?orderBy=-Price,Title&skip=20&take=10
+var q = db.From<Book>()
+    .OrderBySafe(request.OrderBy, [nameof(Book.Title), nameof(Book.Price), nameof(Book.Year)])
+    .Skip(request.Skip).Take(request.Take);
+```
+
+`orderBy` is a comma-delimited list of field names:
+
+| orderBy                 | SQL                               |
+|-------------------------|-----------------------------------|
+| `Price`                 | `ORDER BY "Price"`                |
+| `-Price`                | `ORDER BY "Price" DESC`           |
+| `Price DESC`            | `ORDER BY "Price" DESC`           |
+| `price asc, title`      | `ORDER BY "Price", "Title"`       |
+| `-Year,Title`           | `ORDER BY "Year" DESC, "Title"`   |
+
+Fields can be prefixed with `-` or suffixed with `DESC` to sort descending, names are case-insensitive and are
+resolved to the RDBMS column name, e.g. `in_stock` for `InStock` on PostgreSQL.
+
+### Only the fields you allow
+
+The list of fields users can sort by does more than prevent injection. Sorting by a field reveals information
+about its values, even if the field itself is never returned, so an unrestricted sort lets a client probe the
+contents of fields it can't see, like a `PasswordHash` or `ApiKey`, by watching how the results are ordered:
+
+```csharp
+static readonly string[] SortableFields = [nameof(Book.Title), nameof(Book.Price), nameof(Book.Year)];
+
+db.From<Book>().OrderBySafe("-Year", SortableFields);    // OK
+db.From<Book>().OrderBySafe("Author", SortableFields);   // throws ArgumentException
+```
+
+Limiting sorting to fields with an index also keeps sorting large tables fast. `OrderBySafe(orderBy)` without a list
+allows any field on the queried tables, including joined tables, so only use it on tables without sensitive fields.
+
+### Everything else is rejected
+
+Input is only ever treated as field names and sort directions. Anything else throws an `ArgumentException`, which
+ServiceStack returns to API clients as a `400 Bad Request`:
+
+```csharp
+q.OrderBySafe("Unknown");                        // not a field
+q.OrderBySafe("Id--");                           // not a field
+q.OrderBySafe("Id;DROP TABLE Book");             // not a field
+q.OrderBySafe("(SELECT 1)");                     // not a field
+q.OrderBySafe("Id SIDEWAYS");                    // invalid direction
+```
+
+An empty `orderBy` leaves the query's existing order unchanged, so it's easy to keep a default sort:
+
+```csharp
+var q = db.From<Book>()
+    .Join<BookReview>((b, r) => b.Id == r.BookId)
+    .OrderBy(x => x.Title)                      // default order
+    .OrderBySafe(request.OrderBy);              // e.g. "-Rating, Reviewer"
+```
+
+It also works with the new [keyset pagination](https://docs.servicestack.net/ormlite/keyset-pagination), so a
+user-selected sort order stays fast on large tables:
+
+<generated-sql>
+
+```csharp
+// ?orderBy=-Price,Id
+var q = db.From<Book>().OrderBySafe(request.OrderBy, [nameof(Book.Price), nameof(Book.Id)])
+    .SeekAfter(lastRow).Take(50);
+```
+
+```sql
+SELECT "Id", "Title", "Author", "Genre", "Price", "Year", "Available"
+FROM "Book"
+WHERE (("Price" <= @0) AND (("Price" < @0) OR ("Price" = @0 AND "Id" > @1)))
+ORDER BY "Price" DESC, "Id"
+LIMIT 50
+-- @0 = 12.99, @1 = 42
+```
+
+</generated-sql>
+
+[AutoQuery](https://docs.servicestack.net/autoquery/rdbms) APIs already support validated `?orderBy=` sorting out of
+the box, so `OrderBySafe()` is for the APIs you write yourself.
+
+## Stronger SQL injection protection
+
+Some APIs accept SQL fragments by design, like `Where(string)`, `OrderBy(string)` and `Select(string)`. OrmLite
+validates those fragments and throws an `ArgumentException` if one looks like SQL injection. Validation is a safety
+net rather than a substitute for params, but it's the last line of defence for apps that pass fragments around, so
+this release closes the ways it could be bypassed:
+
+- **Tighter fragment validation**: comments (`--`, `/* */`) and statement separators (`;`) are now rejected anywhere
+  in a fragment, closing several ways to bypass the validation. Values quoted with MySQL-style backslash escapes can
+  no longer disguise SQL either, as quoted strings are checked as both ANSI SQL and MySQL would parse them.
+- **Safer identifiers on every database**: table, column and schema names containing quote characters are now always
+  escaped, including on Oracle and Firebird, which previously left most names unquoted.
+- **Escaped date formats and currency symbols**: formats in `x.Created.ToString(format)` and the SQL date format and
+  currency helpers are now always escaped. Previously a runtime value could inject SQL on SQLite and MySQL.
+- **Safer schema queries**: the catalog queries that check whether tables and schemas exist, and that reset
+  sequences, now escape the names they use on PostgreSQL, Oracle and Firebird, as do Firebird's schema lookups
+  like `GetTable()` and `GetColumns()`. Savepoint names are now validated.
+- **Escaped spatial values on SQL Server**: `SqlGeography`, `SqlGeometry` and `SqlHierarchyId` values inlined in SQL
+  now have embedded quotes escaped.
+- **`Contains()` values are always db params**: the value of `x.Tags.Contains(value)` on a list or array property
+  was previously written into the SQL as it was, so a value from a user could change the query. It's now a param of
+  a JSON query, and throws where the property can't be queried.
+
+Some fragments that were accepted before are now rejected, e.g. `x--y` or a `;` in the middle of a fragment. If you
+hit one, pass values as parameters or use `Sql.Fmt()`. For trusted SQL you wrote yourself, the `Unsafe*` APIs skip
+validation:
+
+```csharp
+q.UnsafeWhere("Id IN (SELECT BookId FROM BookReview WHERE Rating >= {0})", 4); // {0} is sent as a param
+q.UnsafeOrderBy("CASE WHEN Available THEN 0 ELSE 1 END, Title");
+```
+
+## Choose the safe API for each job
+
+| You need to...                                  | Use                                                     |
+|-------------------------------------------------|---------------------------------------------------------|
+| Filter by user input                            | Typed `Where()`, or params with raw SQL                 |
+| Write raw SQL with interpolated values          | `Sql.Fmt()`                                             |
+| Let users choose the sort order                 | `OrderBySafe()`                                         |
+| Reference a table name in raw SQL               | `db.TableRef<T>()` or `typeof(T)` in `Sql.Fmt()`        |
+| Reference a column name in raw SQL              | `db.ColumnRef<T>()`, `db.ColumnRefs<T>()` in `Sql.Fmt()` |
+| Embed trusted SQL that fails validation         | `Unsafe*` APIs, e.g. `q.UnsafeWhere()`                  |
+
+## Get Started
+
+`Sql.Fmt()`, `OrderBySafe()` and the stronger injection protection are available in **ServiceStack v10.4**, on every
+database OrmLite supports. Upgrade your `ServiceStack.OrmLite.*` packages and replace the interpolated strings you
+pass to raw SQL APIs with `Sql.Fmt()`.
+
+See the docs for the complete reference:
+
+- [Interpolated SQL](https://docs.servicestack.net/ormlite/sql-fmt) - every supported API, table and column
+  references, and inspecting the generated SQL
+- [Dynamic Sorting](https://docs.servicestack.net/ormlite/order-by-safe) - syntax, allowed fields, defaults and paging
+- [SQL Injection Protection](https://docs.servicestack.net/ormlite/sql-injection) - fragment validation, identifier
+  quoting, `Unsafe*` APIs and how to customize validation
+- [v10.4 Release Notes](https://docs.servicestack.net/releases/v10_04) - everything else in this release
+
+
+# Query JSON like any other property in OrmLite
+Source: https://servicestack.net/posts/ormlite-json
+
+JSON columns are the pragmatic answer to data that doesn't fit neatly into columns: a customer's addresses and tags, an order's lines, an event's payload, settings that differ by tenant. Every database can now store them and query inside them. The catch is that every database does it  differently. SQLite has `json_extract()`, PostgreSQL has `jsonb_path_query_first()`, SQL Server has `JSON_VALUE()` and MySQL has `JSON_EXTRACT()`, each with its own path syntax and its own rules for nulls, so a JSON query becomes the one place your App stops being portable and typed.
+
+OrmLite has been closing that gap one release at a time. v10.2 added `Sql.Json<T>()` for querying JSON in `string` columns, which we covered in [Type-safe JSON access and Upserts](/posts/omlite-json-upsert). **ServiceStack v10.4** takes the last step. When a property is a class or a `List`, OrmLite already stores it as JSON, so there's no longer anything to wrap. You query it like any other property:
+
+```csharp
+public class Customer
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public Address Address { get; set; }       // stored as JSON
+    public List<string> Tags { get; set; }     // stored as JSON
+    public List<OrderLine> Lines { get; set; } // stored as JSON
+}
+
+var q = db.From<Customer>()
+    .Where(x => x.Address.Country.Code == "UK" && x.Tags.Contains("vip") && x.Lines.Count > 1)
+    .OrderBy(x => x.Address.City)
+    .Select(x => new { x.Name, City = x.Address.City });
+```
+
+That's an ordinary typed query. It compiles, refactors with your model, and runs unchanged on **SQLite**, **PostgreSQL**, **SQL Server** and **MySQL/MariaDB**, each using its own native JSON functions.
+
+## What you can write
+
+| Expression | Queries |
+|-|-|
+| `x.Address.City == "London"` | A property, at any depth: `x.Address.Country.Code` |
+| `x.Tags.Contains("vip")` | Whether a list or array has a value |
+| `x.Lines.Count > 1` | How many items a list has, or `Length` of an array |
+| `x.Lines[0].Quantity >= 2` | An item of a list by its position |
+| `x.Lines.Any(l => l.Sku == "A-1" && l.Quantity > 1)` | Whether a list has an item matching a condition |
+| `x.Lines.All(l => l.Shipped)` | Whether every item matches a condition |
+| `x.Lines.Count(l => l.Quantity > 10) >= 2` | How many items match a condition |
+
+They work wherever a typed expression does, so you can filter, sort, select, count, update and delete by what's inside a JSON property, including on joined tables:
+
+```csharp
+db.Count<Customer>(x => x.Address.City == "London");
+db.UpdateOnly(() => new Customer { Name = "Londoner" }, where: x => x.Address.City == "London");
+db.Delete<Customer>(x => x.Lines.Count == 0);
+
+var q = db.From<Customer>()
+    .Join<Order>((c, o) => c.Id == o.CustomerId)
+    .Where<Customer, Order>((c, o) => o.Source.Channel == "web" && c.Tags.Contains("vip"));
+```
+
+Values are always sent as db params, so they're safe to take from user input, and the queries work in compiled queries and [connection filters](/posts/ormlite-multitenancy) too.
+
+### Conditions on the items of a list
+
+`x.Lines[0]` can only look at one item, and `x.Lines[0].Sku == sku && x.Lines[1].Quantity > 1` could be matching two different lines. `Any()`, `All()` and `Count()` check each item against a condition, so the *same* item has to match all of it. Conditions can use every property of the item, the text functions of its properties, lists of values, and even the row's own columns:
+
+```csharp
+// The same item has the Sku and the Quantity, unlike x.Lines[0]
+db.Select<Customer>(x => x.Lines.Any(l => l.Sku == sku && l.Quantity > 1));
+
+db.Select<Customer>(x => x.Lines.Any(l => !l.Shipped && l.Quantity >= x.MinQuantity)); // the row's columns
+db.Select<Customer>(x => x.Tags.Any(t => t.StartsWith("vip")));                      // lists of values
+db.Select<Customer>(x => x.Lines.Count(l => l.Quantity > 10) >= 2);
+```
+
+They're a subquery over the list's items, `EXISTS (SELECT 1 FROM ... WHERE ...)`, using `json_each()` in SQLite, `jsonb_path_query()` in PostgreSQL, `OPENJSON()` in SQL Server and `JSON_TABLE()` in MySQL 8.0.4+ and MariaDB 10.6+.
+
+Rows without the list, or with an empty one, have no items, so `All()` matches them and `Any()` doesn't.
+
+### PostgreSQL arrays too
+
+PostgreSQL stores `string[]`, `int[]` and `long[]` in its own array types like `text[]` rather than JSON. They're queried the same way as lists, with PostgreSQL's array functions:
+
+```csharp
+db.Select<Article>(x => x.Tags.Contains("vip"));              // :0 = ANY("tags")
+db.Select<Article>(x => x.Tags.Length > 2);                   // cardinality("tags") > :0
+db.Select<Article>(x => x.Tags.Any(t => t.StartsWith("v")));  // EXISTS (SELECT 1 FROM unnest("tags") ...)
+db.Select<Article>(x => x.Scores.Count(s => s >= 90) >= 2);
+```
+
+### Complex types need to be stored as JSON
+
+To query a property, OrmLite needs to have saved it as JSON, as an RDBMS's JSON functions can't read any other format.
+
+That's the default for dialects configured with `AddOrmLite()`, and can be enabled on others:
+
+```csharp
+// The default of dialects configured with AddOrmLite()
+services.AddOrmLite(options => options.UsePostgres(connectionString));
+
+// Or set on a dialect provider
+PostgreSqlDialect.Provider.UseJson = true;
+```
+
+Querying a complex property on a dialect that doesn't store JSON throws a `NotSupportedException` that says how to enable it, rather than silently returning nothing. If you're switching an existing App to `UseJson`, note that it changes how complex types are saved, so rows saved as JSV need to be converted to JSON before they can be queried.
+
+## JSON in string columns
+
+Sometimes the JSON isn't a property of your model. It's an event body, an integration response or an
+audit snapshot that your App stores as text. A `string` has no properties to query, so `Sql.Json<T>()` says what the document in it looks like, with a C# Data Model:
+
+```csharp
+public class OrderEvent
+{
+    public long Id { get; set; }
+    public string Data { get; set; }            // JSON of an OrderDocument
+    public OrderDocument Document { get; set; } // A complex property, also stored as JSON
+}
+
+var q = db.From<OrderEvent>()
+    .Where(x =>
+        Sql.Json<OrderDocument>(x.Data).Customer.Address.State == "WA" &&
+        Sql.Json<OrderDocument>(x.Data).Tags.Contains("priority") &&
+        Sql.Json<OrderDocument>(x.Data).Lines[0].Quantity > 1);
+```
+
+Nested member access becomes a nested JSON path, array indexes become zero-based JSON array indexes (constants or captured values), `[DataMember(Name = "shipping_state")]` is honored, and operations on an extracted scalar like `.State.Length == 2` continue through OrmLite's normal expression translation.
+
+Selecting a scalar member extracts its C# value, and selecting an object or collection returns a JSON fragment that OrmLite deserializes into your Data Model:
+
+```csharp
+var q = db.From<OrderEvent>()
+    .Select(x => new {
+        x.Id,
+        State = Sql.Json<OrderDocument>(x.Data).Customer.Address.State,
+        Total = Sql.Json<OrderDocument>(x.Data).Total,
+        Address = Sql.Json<OrderDocument>(x.Data).Customer.Address,
+    });
+
+var summaries = db.Select<OrderSummary>(q);
+
+// Or a single typed fragment
+var address = db.Scalar<Address>(db.From<OrderEvent>()
+    .Where(x => x.Id == id)
+    .Select(x => Sql.Json<OrderDocument>(x.Data).Customer.Address));
+```
+
+| JSON is in | Use |
+|-|-|
+| A complex type property, on a dialect with `UseJson` | The property: `x.Address.City` |
+| A `string` column | `Sql.Json<T>(x.Data)` with the type of its document |
+| A complex type property, on a dialect without `UseJson` | `Sql.Json(x.Address)` |
+| A property with the type of a table the query joins | `Sql.Json(x.Customer)` |
+
+The last row is a subtle one. In a query that joins `Customer`, OrmLite has always resolved `x.Customer.Name` to the `Name` column of the joined table. If the property is *also* stored as JSON, e.g. a copy of the customer as they were when an invoice was created, use `Sql.Json(x.Customer).Name` to query the copy instead of the table.
+
+## Explicit paths for everything else
+
+Some JSON questions don't have a C# Data Model. The document may have no fixed shape, the path may only be known at runtime, or you may want to ask something about the JSON itself rather than its values. For those there's an explicit SQL/JSON path API. Paths begin with `$` and use the portable subset every database supports: members, quoted members and zero-based array indexes, e.g. `$.Customer.Address.shipping_state` or `$.Lines[0].Quantity`.
+
+```csharp
+var statePath = "$.Customer.Address.shipping_state"; // chosen at runtime
+
+var q = db.From<OrderEvent>()
+    .Where(x =>
+        Sql.JsonValue<string>(x.Data, statePath) == "WA" &&
+        Sql.JsonExists(x.Data, "$.Tags[0]"))
+    .OrderByDescending(x => Sql.JsonValue<decimal?>(x.Data, "$.Total"));
+```
+
+Query values are db params, and paths are emitted as escaped SQL string literals for the dialect. The full set is:
+
+| Task | Typed expression | Explicit path API |
+| --- | --- | --- |
+| Read scalar | `Sql.Json<T>(json).Member` | `Sql.JsonValue<TValue>(json, path)` |
+| Read object or array | `Sql.Json<T>(json).Member` | `Sql.JsonQuery<TValue>(json[, path])` |
+| Array length | `Sql.Json<T>(json).Items.Count` | `Sql.JsonArrayLength(json[, path])` |
+| Scalar array membership | `Sql.Json<T>(json).Items.Contains(value)` | `Sql.JsonArrayContains(json[, path], value)` |
+| Array indexing | `Sql.Json<T>(json).Items[index]` | Include `[index]` in the path |
+| Validate JSON | - | `Sql.IsJson(json)` |
+| Path exists | - | `Sql.JsonExists(json, path)` |
+| Read JSON type | - | `Sql.JsonType(json[, path])` |
+| Document containment | - | `Sql.JsonContains(json, candidate[, path])` |
+
+### Missing, null and absent
+
+JSON has a distinction most SQL doesn't: a property can be missing, present with a `null` value, or present with a value. The portable API keeps all three distinguishable where the databases allow it, with `JsonExists()` telling you whether the path exists at all and `JsonType()` returning a normalized `JsonValueType` (`Null`, `String`, `Number`, `Boolean`, `Array` or `Object`) independent of each database's native type names:
+
+| Expression | JSON `null` | Missing path | Object or array |
+| --- | --- | --- | --- |
+| `JsonExists()` | `true` | `false` | `true` |
+| `JsonType()` | `JsonValueType.Null` | `null` | `Object` or `Array` |
+| `JsonValue<T>()` | SQL `NULL` | SQL `NULL` | SQL `NULL` |
+| `JsonQuery<T>()` | SQL `NULL` | SQL `NULL` | JSON fragment |
+| `JsonArrayLength()` | SQL `NULL` | SQL `NULL` | Count for arrays; `NULL` for objects |
+
+Use them together to tell a property that was never set from one that was explicitly cleared:
+
+```csharp
+// true when the first element exists, even when it is JSON null
+Sql.JsonExists(x.Data, "$.NullableTags[0]")
+
+var type = db.Scalar<JsonValueType?>(db.From<OrderEvent>()
+    .Where(x => x.Id == id)
+    .Select(x => Sql.JsonType(x.Data, "$.Customer.Address"))); // JsonValueType.Object
+```
+
+### Validate and contain
+
+`Sql.IsJson()` tests whether a string holds a valid JSON value, which is useful for finding bad rows before they break a query:
+
+```csharp
+var validJsonRows = db.Count<OrderEvent>(x => Sql.IsJson(x.Data) == true);
+```
+
+Extraction functions can report an RDBMS error given malformed JSON, and a database is free to evaluate predicates in any order, so don't rely on `IsJson(...) && ...` to protect another JSON operation. Validate JSON when it's written, or use a database constraint.
+
+On PostgreSQL and MySQL, `Sql.JsonContains()` tests whether a document contains a partial document, with the candidate sent as a db param:
+
+```csharp
+var candidate = new {
+    Customer = new { Address = new { shipping_state = "WA" } }
+};
+
+var q = db.From<OrderEvent>()
+    .Where(x => Sql.JsonContains(x.Data, candidate));
+
+var requiredTags = new[] { "priority" };
+var tagged = db.From<OrderEvent>().Where(x => Sql.JsonContains(x.Data, requiredTags, "$.Tags"));
+```
+
+SQLite and SQL Server throw `NotSupportedException`, as they have no equivalent operation with the same semantics.
+
+## One query, four databases
+
+Each API is translated to the native functions of the configured database:
+
+| Operation | SQLite | PostgreSQL | SQL Server | MySQL |
+| --- | --- | --- | --- | --- |
+| Validate | `json_valid` | `IS JSON` | `ISJSON` | `JSON_VALID` |
+| Scalar value | `json_extract` | `jsonb_path_query_first` | `JSON_VALUE` | `JSON_EXTRACT` |
+| Object/array | `json_extract` | `jsonb_path_query_first` | `JSON_QUERY` | `JSON_EXTRACT` |
+| Exists | `json_type` | `jsonb_path_exists` | `JSON_PATH_EXISTS` | `JSON_CONTAINS_PATH` |
+| Type | `json_type` | `jsonb_typeof` | `OPENJSON` | `JSON_TYPE` |
+| Array length | `json_array_length` | `jsonb_array_length` | `OPENJSON` | `JSON_LENGTH` |
+| Array membership | `json_each` | `jsonb` containment | `OPENJSON` | `JSON_CONTAINS` |
+| Document containment | - | `@>` | - | `JSON_CONTAINS` |
+
+SQL Server 2016-2019 can use `JsonValue()`, `JsonQuery()`, `JsonType()`, `JsonArrayLength()` and `JsonArrayContains()`.
+Use `SqlServer2022Dialect.Provider` when you need the complete API, including `JsonExists()`.
+
+You can always see what was generated. JSON expressions are normal `SqlExpression<T>` queries, so `ToSelectStatement()` and `Params` show the SQL and its parameters, and they work with the async APIs too.
+
+## Keeping JSON queries fast
+
+A query of a JSON property reads the JSON of every row, which is fine until the table gets large. When a property is queried often, e.g. to find customers by `x.Address.City`, store it in a column of its own and index it with `[Index]`.
+That works the same way on every database:
+
+```csharp
+public class Customer
+{
+    [Index]
+    public string City { get; set; }
+    public Address Address { get; set; }
+}
+```
+
+SQLite and PostgreSQL can also index the expression a query reads the property with. Copy the expression from the SQL of the query, as it has to match exactly, and create the index in a migration:
+
+```csharp
+var q = db.From<Customer>().Where(x => x.Address.City == "London");
+var sql = q.ToSelectStatement();
+// ... WHERE (CASE WHEN json_type("Address", '$.City') NOT IN ('object','array','null')
+//           THEN json_extract("Address", '$.City') END = @0)
+
+Db.ExecuteSql("""
+    CREATE INDEX ix_customer_city ON "Customer" ((CASE WHEN json_type("Address", '$.City')
+        NOT IN ('object','array','null') THEN json_extract("Address", '$.City') END))
+    """);
+```
+
+Check the index is used with `EXPLAIN QUERY PLAN` on SQLite or `EXPLAIN` on PostgreSQL, and check it again after upgrading OrmLite, as it's only used while the query's SQL stays the same. SQL Server and MySQL can only index an expression through a computed or generated column, so a column of its own is the better choice for them. The new
+`db.Explain()` and the Slowest Queries view in the Admin UI help find the queries worth indexing.
+
+## Get Started
+
+Querying complex type properties is available in **ServiceStack v10.4**, and works on every dialect configured with `AddOrmLite()`. Upgrade your `ServiceStack.OrmLite.*` packages and remove the `Sql.Json()` wrappers around your complex properties, if you have any.
+
+See the docs for the complete reference:
+
+- [OrmLite JSON Support](https://docs.servicestack.net/ormlite/json) - complex type queries, `Sql.Json<T>()`,
+  explicit paths, validation, containment and indexing
+- [Type-safe JSON access and Upserts](/posts/omlite-json-upsert) - the v10.2 introduction to `Sql.Json<T>()`
+- [v10.4 Release Notes](https://docs.servicestack.net/releases/v10_04) - everything else in this release
+
+
 # Keep your database in sync with your C# models
 Source: https://servicestack.net/posts/ormlite-schema-diff
 

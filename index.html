@@ -333,6 +333,26 @@ mount('#mobile-nav', MobileNav)
     </div>
 
     <div class="mt-10 grid gap-8 md:grid-cols-3">
+        <a href="posts/ormlite-safe-sql" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-black">
+          <div class="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-900">
+            <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="./img/posts/ormlite-safe-sql/bg.webp" alt="">
+          </div>
+          <div class="flex flex-1 flex-col p-5">
+            <p class="text-lg font-semibold leading-6 text-gray-900 dark:text-gray-100">Safe SQL by default in OrmLite</p>
+            <p class="mt-2 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">ServiceStack v10.4 adds Sql.Fmt() for interpolated SQL where every value is a db param, OrderBySafe() for user-selected sort orders, and stronger SQL injection protection across fragment validation, identifier quoting and inlined values</p>
+              <time class="mt-auto pt-4 text-xs text-gray-500" datetime="2026-10-15">October 15, 2026</time>
+          </div>
+        </a>
+        <a href="posts/ormlite-json" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-black">
+          <div class="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-900">
+            <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="./img/posts/ormlite-json/bg.webp" alt="">
+          </div>
+          <div class="flex flex-1 flex-col p-5">
+            <p class="text-lg font-semibold leading-6 text-gray-900 dark:text-gray-100">Query JSON like any other property in OrmLite</p>
+            <p class="mt-2 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">ServiceStack v10.4 lets typed OrmLite queries read straight into complex type properties with x.Address.City or x.Lines.Any(...), using the native JSON functions of SQLite, PostgreSQL, SQL Server and MySQL, plus a complete tour of everything else OrmLite can do with JSON</p>
+              <time class="mt-auto pt-4 text-xs text-gray-500" datetime="2026-10-14">October 14, 2026</time>
+          </div>
+        </a>
         <a href="posts/ormlite-schema-diff" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-black">
           <div class="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-900">
             <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="./img/posts/ormlite-schema-diff/bg.webp" alt="">
@@ -341,26 +361,6 @@ mount('#mobile-nav', MobileNav)
             <p class="text-lg font-semibold leading-6 text-gray-900 dark:text-gray-100">Keep your database in sync with your C# models</p>
             <p class="mt-2 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">ServiceStack v10.4 adds Schema Diff to OrmLite, which finds every difference between your C# models and their tables, from columns and types to defaults, indexes, foreign keys and constraints, then writes the migration for you to review, on SQLite, PostgreSQL, SQL Server, MySQL and MariaDB</p>
               <time class="mt-auto pt-4 text-xs text-gray-500" datetime="2026-10-13">October 13, 2026</time>
-          </div>
-        </a>
-        <a href="posts/ormlite-advanced-queries" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-black">
-          <div class="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-900">
-            <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="./img/posts/ormlite-advanced-queries/bg.webp" alt="">
-          </div>
-          <div class="flex flex-1 flex-col p-5">
-            <p class="text-lg font-semibold leading-6 text-gray-900 dark:text-gray-100">Advanced SQL queries in typed OrmLite</p>
-            <p class="mt-2 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">ServiceStack v10.4 adds typed recursive queries, named sub queries, window functions with TopPerGroup, Union/Intersect/Except, SeekAfter keyset paging and async streaming, so the queries that used to need hand-written SQL stay typed, parameterized and portable</p>
-              <time class="mt-auto pt-4 text-xs text-gray-500" datetime="2026-10-11">October 11, 2026</time>
-          </div>
-        </a>
-        <a href="posts/ai-chat-projects" class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:no-underline dark:border-gray-800 dark:bg-black">
-          <div class="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-900">
-            <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="./img/posts/ai-chat-projects/bg.webp" alt="">
-          </div>
-          <div class="flex flex-1 flex-col p-5">
-            <p class="text-lg font-semibold leading-6 text-gray-900 dark:text-gray-100">Prompt it, Publish it - AI-built works from your .NET APIs</p>
-            <p class="mt-2 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">AI Chat puts a ChatGPT-like assistant inside your .NET App, where it calls the APIs the signed-in user is allowed to call and turns the results into interactive views and reports your team can explore, review and publish</p>
-              <time class="mt-auto pt-4 text-xs text-gray-500" datetime="2026-10-08">October 8, 2026</time>
           </div>
         </a>
     </div>
@@ -3424,6 +3424,7 @@ mount('#contact', ContactUs)
                     <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
                     <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
                     <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/security" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Security</a>
                     <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
                     <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
                 </div>
