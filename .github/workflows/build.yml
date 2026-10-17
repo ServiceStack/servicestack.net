@@ -15,6 +15,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
 
+      - name: Validate security reporting sources
+        run: python3 scripts/check_security.py
+
+      - name: Test S3 routing-rule synchronization
+        run: python3 -m unittest discover -s scripts -p 'test_sync_s3_redirects.py'
+
       - name: setup .net
         uses: actions/setup-dotnet@v6
         with:
@@ -73,6 +79,9 @@ jobs:
           fi
 
 
+      - name: Validate generated security reporting pages
+        run: python3 scripts/check_security.py --dist MyApp/dist
+
       # Deploy UI to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -93,7 +102,16 @@ jobs:
         working-directory: ./MyApp
         run: |
           aws s3 sync ./dist/ s3://servicestack.net/
+          # Set explicit metadata even when an unchanged file was skipped by sync.
+          aws s3 cp ./dist/.well-known/security.txt s3://servicestack.net/.well-known/security.txt \
+            --content-type 'text/plain; charset=utf-8' --cache-control 'public, max-age=3600'
           
+      - name: Apply S3 website routing rules
+        run: python3 scripts/sync_s3_redirects.py --bucket servicestack.net --rules MyApp/wwwroot/s3-redirects.json
+
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id E3770UUEKTY40O --paths "/*"
+
+      - name: Validate deployed security reporting endpoints
+        run: python3 scripts/check_security.py --live https://servicestack.net --attempts 12 --delay 15

@@ -1,6 +1,17 @@
 [
   {
     "Condition": {
+      "KeyPrefixEquals": "security.txt"
+    },
+    "Redirect": {
+      "HostName": "servicestack.net",
+      "Protocol": "https",
+      "ReplaceKeyWith": ".well-known/security.txt",
+      "HttpRedirectCode": "301"
+    }
+  },
+  {
+    "Condition": {
       "KeyPrefixEquals": "buy"
     },
     "Redirect": {

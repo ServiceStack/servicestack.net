@@ -44,3 +44,22 @@ Tasks to prerender and preview production ssg website build:
 
     $ npm run serve
 
+
+## S3 website redirects
+
+Production deployment automatically applies `MyApp/wwwroot/s3-redirects.json` to the
+`servicestack.net` bucket's website routing rules before invalidating CloudFront.
+This file is the authoritative list: it replaces the existing routing rules while
+preserving the bucket's current index and error-document settings. Identical rules
+are left unchanged. The deployment fails rather than changing a bucket that has no
+index document or redirects all requests to another host.
+
+The deployment's AWS identity needs `s3:GetBucketWebsite` and `s3:PutBucketWebsite`
+on `arn:aws:s3:::servicestack.net`, in addition to its existing upload permissions.
+Redirects require CloudFront to use the S3 static-website endpoint as its origin.
+
+To apply routing-rule changes manually with configured AWS credentials:
+
+```sh
+python3 scripts/sync_s3_redirects.py --bucket servicestack.net --rules MyApp/wwwroot/s3-redirects.json
+```

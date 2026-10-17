@@ -1,0 +1,34 @@
+name: Security reporting checks
+
+on:
+  pull_request:
+    paths:
+      - 'MyApp/_pages/security.md'
+      - 'MyApp/wwwroot/.well-known/security.txt'
+      - 'MyApp/Pages/Shared/Footer.cshtml'
+      - 'MyApp/Configure.Ssg.cs'
+      - 'scripts/check_security.py'
+      - 'scripts/sync_s3_redirects.py'
+      - 'scripts/test_sync_s3_redirects.py'
+      - 'MyApp/wwwroot/s3-redirects.json'
+      - '.github/workflows/security-reporting.yml'
+      - '.github/workflows/build.yml'
+  schedule:
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Test S3 routing-rule synchronization
+        run: python3 -m unittest discover -s scripts -p 'test_sync_s3_redirects.py'
+      - name: Validate security reporting sources
+        run: python3 scripts/check_security.py
+      - name: Validate deployed security reporting endpoints
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/check_security.py --live https://servicestack.net --attempts 3 --delay 10
