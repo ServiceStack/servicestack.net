@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Sat, 17 Oct 2026 04:18:56 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 15:08:14 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Advanced SQL queries in typed OrmLite</title>
+        <link>https://servicestack.net/posts/ormlite-advanced-queries</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/ormlite-advanced-queries</guid>
+        <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-20T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>ormlite</category>
+        <category>sql</category>
+        <description>ServiceStack v10.4 adds typed recursive queries, named sub queries, window functions with TopPerGroup, Union/Intersect/Except, SeekAfter keyset paging and async streaming, so the queries that used to need hand-written SQL stay typed, parameterized and portable</description>
+    </item>
     <item>
         <title>Safe SQL by default in OrmLite</title>
         <link>https://servicestack.net/posts/ormlite-safe-sql</link>
@@ -27,18 +39,6 @@
         <description>ServiceStack v10.4 adds Sql.Fmt() for interpolated SQL where every value is a db param, OrderBySafe() for user-selected sort orders, and stronger SQL injection protection across fragment validation, identifier quoting and inlined values</description>
     </item>
     <item>
-        <title>Query JSON like any other property in OrmLite</title>
-        <link>https://servicestack.net/posts/ormlite-json</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/ormlite-json</guid>
-        <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-10-14T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>ormlite</category>
-        <category>json</category>
-        <description>ServiceStack v10.4 lets typed OrmLite queries read straight into complex type properties with x.Address.City or x.Lines.Any(...), using the native JSON functions of SQLite, PostgreSQL, SQL Server and MySQL, plus a complete tour of everything else OrmLite can do with JSON</description>
-    </item>
-    <item>
         <title>Keep your database in sync with your C# models</title>
         <link>https://servicestack.net/posts/ormlite-schema-diff</link>
         <author>demis@servicestack.com (Demis)</author>
@@ -49,18 +49,6 @@
         <category>ormlite</category>
         <category>db</category>
         <description>ServiceStack v10.4 adds Schema Diff to OrmLite, which finds every difference between your C# models and their tables, from columns and types to defaults, indexes, foreign keys and constraints, then writes the migration for you to review, on SQLite, PostgreSQL, SQL Server, MySQL and MariaDB</description>
-    </item>
-    <item>
-        <title>Advanced SQL queries in typed OrmLite</title>
-        <link>https://servicestack.net/posts/ormlite-advanced-queries</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/ormlite-advanced-queries</guid>
-        <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-10-11T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>ormlite</category>
-        <category>sql</category>
-        <description>ServiceStack v10.4 adds typed recursive queries, named sub queries, window functions with TopPerGroup, Union/Intersect/Except, SeekAfter keyset paging and async streaming, so the queries that used to need hand-written SQL stay typed, parameterized and portable</description>
     </item>
     <item>
         <title>Prompt it, Publish it - AI-built works from your .NET APIs</title>
@@ -135,6 +123,18 @@
         <category>nextjs</category>
         <category>templates</category>
         <description>Next SaaS is a new production-ready .NET 10, ServiceStack and Next.js 16 template for multi-tenant B2C and B2B SaaS products, with organizations, Stripe subscriptions, versioned plans, usage quotas and an Operations Center included from day one</description>
+    </item>
+    <item>
+        <title>Scalable Background Jobs</title>
+        <link>https://servicestack.net/posts/scalable-background-jobs</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/scalable-background-jobs</guid>
+        <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-29T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>jobs</category>
+        <category>rdbms</category>
+        <description>ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run</description>
     </item>
 </channel>
 </rss>
