@@ -6,6 +6,10 @@ author: Demis
 image: ./img/posts/ormlite-advanced-queries/bg.webp
 ---
 
+:::youtube 1e5TXrOapqg 
+Advanced SQL with a Typed C# ORM: Window Functions, CTEs & Temporal Tables
+:::
+
 Typed queries cover the first 90% of an App's SQL very well. Then comes the query that's easy to describe and awkward
 to write: *every subject under Fiction, at any depth*, *each customer's 3 latest orders*, *everyone who has written
 or reviewed a book*, *the next page of 50 after the last row I saw*. Those are the queries that sent code back to
