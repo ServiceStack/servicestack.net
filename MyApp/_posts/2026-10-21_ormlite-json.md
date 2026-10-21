@@ -6,6 +6,10 @@ author: Demis
 image: ./img/posts/ormlite-json/bg.webp
 ---
 
+:::youtube e_zQubovAj8
+Query JSON data with a Typed C# ORM: No Extra Tables, No Raw SQL
+:::
+
 JSON columns are the pragmatic answer to data that doesn't fit neatly into columns: a customer's addresses and tags, an order's lines, an event's payload, settings that differ by tenant. Every database can now store them and query inside them. The catch is that every database does it  differently. SQLite has `json_extract()`, PostgreSQL has `jsonb_path_query_first()`, SQL Server has `JSON_VALUE()` and MySQL has `JSON_EXTRACT()`, each with its own path syntax and its own rules for nulls, so a JSON query becomes the one place your App stops being portable and typed.
 
 OrmLite has been closing that gap one release at a time. v10.2 added `Sql.Json<T>()` for querying JSON in `string` columns, which we covered in [Type-safe JSON access and Upserts](/posts/omlite-json-upsert). **ServiceStack v10.4** takes the last step. When a property is a class or a `List`, OrmLite already stores it as JSON, so there's no longer anything to wrap. You query it like any other property:
