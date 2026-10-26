@@ -6,6 +6,10 @@ author: Demis
 image: ./img/posts/ormlite-vector-search/bg.webp
 ---
 
+:::youtube IqqUeNUN3do
+Full-Text and Vector Search in Your .NET App using your existing RDBMS
+:::
+
 Retrieval-augmented generation, semantic search and "more like this" all come down to one operation: given a piece of text, find the stored rows whose **meaning** is closest to it. AI models do this by turning text into an **embedding**, a vector of numbers where similar text lands close together, then comparing vectors by distance.
 
 The usual way to add it to an App is a separate vector store, which comes with a second system to host, a second set of credentials, and a synchronization job that keeps it matching your database. It also can't answer the questions
