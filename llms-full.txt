@@ -1,3 +1,226 @@
+# Vector search in OrmLite
+Source: https://servicestack.net/posts/ormlite-vector-search
+
+:::youtube IqqUeNUN3do
+Full-Text and Vector Search in Your .NET App using your existing RDBMS
+:::
+
+Retrieval-augmented generation, semantic search and "more like this" all come down to one operation: given a piece of text, find the stored rows whose **meaning** is closest to it. AI models do this by turning text into an **embedding**, a vector of numbers where similar text lands close together, then comparing vectors by distance.
+
+The usual way to add it to an App is a separate vector store, which comes with a second system to host, a second set of credentials, and a synchronization job that keeps it matching your database. It also can't answer the questions
+your App actually asks:
+
+> Of the documents this customer can see, which best answer this question?
+
+needs the vector search, the permissions and the customer's rows in one place, and with a separate store that's an over-fetch followed by filtering in your App code.
+
+Most databases can now store and compare vectors themselves. **ServiceStack v10.4** makes that a first-class OrmLite feature: add `[Vector]` to a `float[]` property and order by its distance to what you're searching for:
+
+```csharp
+public class Passage
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public int BookId { get; set; }
+    public string Text { get; set; }
+
+    [Vector(1536)]
+    public float[] Embedding { get; set; }
+}
+
+float[] questionVector = await embeddings.CreateAsync(question); // from your AI model
+
+// The 5 passages most similar to the question
+var nearest = db.Select(db.From<Passage>()
+    .OrderBy(x => Sql.CosineDistance(x.Embedding, questionVector))
+    .Take(5));
+```
+
+The dimensions of a `[Vector]` are the size of the embeddings of the model that creates them, e.g. `1536` for OpenAI's
+`text-embedding-3-small`. Vectors are saved and read back with every API like any other property:
+
+```csharp
+db.Insert(new Passage { BookId = book.Id, Text = text, Embedding = vector });
+
+db.UpdateOnly(() => new Passage { Embedding = newVector }, where: x => x.Id == id);
+
+float[] saved = db.SingleById<Passage>(id).Embedding;
+```
+
+## One query for vectors, filters and joins
+
+Because the distance is part of a typed query, it combines with the rest of your SQL in one statement. Here are the best matches from books that are in stock, with a score, leaving out weak matches:
+
+```csharp
+public class PassageMatch
+{
+    public int Id { get; set; }
+    public string Text { get; set; }
+    public double Distance { get; set; }
+}
+
+var matches = db.Select<PassageMatch>(db.From<Passage>()
+    .Join<Book>((p, b) => p.BookId == b.Id)
+    .Where<Book>(b => b.Available)
+    .And(x => Sql.CosineDistance(x.Embedding, questionVector) < 0.35)
+    .OrderBy(x => Sql.CosineDistance(x.Embedding, questionVector))
+    .Take(10)
+    .Select(x => new { x.Id, x.Text, Distance = Sql.CosineDistance(x.Embedding, questionVector) }));
+```
+
+The joins, filters, score and cut-off all run in the database, and only the 10 rows you want come back.
+
+Smaller is more similar, and there's a distance for each way of comparing vectors:
+
+| API | Distance | Supported by |
+|-|-|-|
+| `Sql.CosineDistance()` | The angle between 2 vectors, ignoring their length. The usual choice for text embeddings | All |
+| `Sql.L2Distance()` | The straight-line (Euclidean) distance | All |
+| `Sql.NegativeInnerProduct()` | The inner (dot) product negated, for normalized vectors | PostgreSQL, SQL Server, MySQL |
+
+The same methods also calculate the distance of 2 vectors in memory, e.g. `Sql.CosineDistance(vectorA, vectorB)`.
+
+### Confined to the tenant
+
+On a connection with the new [connection filters](/posts/ormlite-multitenancy), a vector search is confined to the connection's tenant like every other query, so one customer's search never returns another's passages. There's no tenant condition to remember to add to the most security-sensitive query in a RAG App, whose results are about to be
+handed to an AI model as trusted context.
+
+## Works with the embeddings you already have
+
+Microsoft.Extensions.AI's `Embedding<float>.Vector` is a `ReadOnlyMemory<float>`, so a vector can be one too, and embeddings are saved and compared without copying them to an array:
+
+```csharp
+[Vector(1536)]
+public ReadOnlyMemory<float> Embedding { get; set; }
+
+var embedding = await generator.GenerateAsync(question);
+var nearest = db.Select(db.From<Passage>()
+    .OrderBy(x => Sql.CosineDistance(x.Embedding, embedding.Vector))
+    .Take(5));
+```
+
+## Every database's vector support, one API
+
+OrmLite uses the vector support of each RDBMS where it's enabled, so the same model and queries run on all of
+them:
+
+| RDBMS | Requires | Cosine distance |
+|-|-|-|
+| PostgreSQL | The [pgvector](https://github.com/pgvector/pgvector) extension | `"embedding" <=> :0::vector` |
+| SQL Server | SQL Server 2025 or Azure SQL | `VECTOR_DISTANCE('cosine', "Embedding", CAST(@0 AS VECTOR(1536)))` |
+| MariaDB | MariaDB 11.7+ | ``VEC_DISTANCE_COSINE(`Embedding`, @0)`` |
+| MySQL | MySQL 9 HeatWave or Enterprise | ``DISTANCE(`Embedding`, @0, 'COSINE')`` |
+| SQLite | The [sqlite-vec](https://github.com/asg017/sqlite-vec) extension | `vec_distance_cosine("Embedding", @0)` |
+
+That includes SQLite, so you can develop and test against a local file and deploy to PostgreSQL. Enabling it is one line per database. PostgreSQL needs `CREATE EXTENSION IF NOT EXISTS vector;`, and SQLite loads the
+[sqlite-vec](https://www.nuget.org/packages/sqlite-vec) extension when a connection opens:
+
+```csharp
+SqliteDialect.Provider.OnOpenConnection = db =>
+    ((SqliteConnection)db.ToDbConnection()).LoadExtension("vec0");
+```
+
+Other databases throw a `NotSupportedException`.
+
+## Indexes for large tables
+
+Without an index every row is compared, which is fine for thousands of rows. For more, add `[Index]` to create a vector index on the databases that have one, which finds approximate matches much faster:
+
+```csharp
+public class Passage
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    public string Text { get; set; }
+
+    [Vector(1536, Distance = VectorDistance.Cosine), Index, Required]
+    public float[] Embedding { get; set; }
+}
+```
+
+| RDBMS | Index created |
+|-|-|
+| PostgreSQL | `CREATE INDEX ... USING hnsw ("embedding" vector_cosine_ops)` |
+| MariaDB | `CREATE VECTOR INDEX ... DISTANCE=cosine`, which needs a `[Required]` column |
+| SQL Server, MySQL, SQLite | None |
+
+The index can be tuned with the options of `[Vector]`, where the RDBMS has them: HNSW's `M` and `EfConstruction`, and PostgreSQL's IVFFlat indexes with `IndexType = VectorIndexType.IvfFlat` and `Lists`. Options an RDBMS doesn't
+have throw a `NotSupportedException` before the table is created, instead of being ignored.
+
+How a connection searches an index is set with `SetVectorSearch()`:
+
+```csharp
+db.SetVectorSearch(new() { EfSearch = 100, IterativeScan = true });
+```
+
+`IterativeScan` is worth knowing about on PostgreSQL. An index finds approximate matches, and some databases apply a filter to the candidates the index returns, so a filter that only matches a few rows, like a small tenant in a multi-tenant App, can return fewer rows than you asked for. With `IterativeScan` the search continues until enough
+rows match the query's filters.
+
+### Half the size
+
+Embeddings are large, so `Precision = VectorPrecision.Half` stores each value in 16 bits instead of 32, halving the size of a table's vectors and their index for a small loss of precision. The property is still a `float[]`:
+
+```csharp
+[Vector(1536, Precision = VectorPrecision.Half), Index, Required]
+public float[] Embedding { get; set; }
+```
+
+It uses PostgreSQL's `halfvec` type and SQL Server 2025's `VECTOR(n, float16)`.
+
+## Hybrid search with full-text indexes
+
+Embeddings are good at meaning and weak at exact terms like product names, error codes and identifiers, which is where keyword search is strongest. v10.4 also adds `[FullTextIndex]`, which creates a full-text index of a table's
+text columns using each database's native full-text search: SQLite's FTS5, PostgreSQL's `tsvector`, MySQL's `FULLTEXT` and SQL Server's Full-Text Search:
+
+```csharp
+[FullTextIndex(nameof(Title), nameof(Content))]
+public class Article
+{
+    [AutoIncrement]
+    public long Id { get; set; }
+    public string Title { get; set; }
+    [StringLength(StringLengthAttribute.MaxText)]
+    public string Content { get; set; }
+    public string Category { get; set; }
+}
+
+var q = db.From<Article>()
+    .Where(x => Sql.Matches(x, request.Search) && x.Category == request.Category)
+    .OrderByDescending(x => Sql.MatchRank(x, request.Search))
+    .Take(20);
+```
+
+`Sql.Matches()` finds the rows with every word of a search and `Sql.MatchRank()` orders them by relevance. Words match as users type, so `data` matches `database`, and `"quoted phrases"` match words that follow each other. The search is
+only ever sent as a db param and only its words and phrases are searched for, so it can't use the operators of a database's full-text syntax.
+
+As both are conditions of one typed query, they combine into hybrid search. These are the passages that mention a question's keywords, ordered by how similar they are to it:
+
+```csharp
+var q = db.From<Passage>()
+    .Where(x => Sql.Matches(x, question))
+    .OrderBy(x => Sql.CosineDistance(x.Embedding, questionVector))
+    .Take(10);
+```
+
+Rows are indexed as they're inserted, updated and deleted with every API, and `CreateFullTextIndex<T>()` adds the index to a table that already has rows, e.g. in a migration.
+
+## Fits the rest of a RAG pipeline
+
+Search over a vector is the retrieval step. Embeddings come from an `IEmbeddingGenerator`, passages are rows in a table you already back up, secure and migrate, and the answer comes from an AI model, which the [AI Chat](/posts/ai-chat-v4) and [Gemini RAG](/posts/gemini-rag) features cover. With v10.4 a RAG App can keep its passages, embeddings, permissions and tenants in one database, queried with one typed query.
+
+## Get Started
+
+Vector columns and full-text indexes are available in **ServiceStack v10.4**. Upgrade your  `ServiceStack.OrmLite.*` packages, enable vectors in your database, and add `[Vector]` to a property.
+
+See the docs for the complete reference:
+
+- [Vector Search](https://docs.servicestack.net/ormlite/vectors) - supported databases, enabling each one, distances,
+  indexes and search settings
+- [Full-Text Search](https://docs.servicestack.net/ormlite/full-text-search) - searching, ranking, keeping indexes up
+  to date and adding them to existing tables
+- [v10.4 Release Notes](https://docs.servicestack.net/releases/v10_04) - everything else in this release
+
+
 # Query JSON like any other property in OrmLite
 Source: https://servicestack.net/posts/ormlite-json
 
@@ -36116,6 +36339,80 @@ underpinning the Vue Components that most Web Apps should also find useful:
 <vue-component-library class="mt-4"></vue-component-library>
 
 
+# Develop using JetBrains Rider
+Source: https://servicestack.net/posts/rider
+
+<a href="https://www.jetbrains.com/rider/">
+<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/rider.svg" 
+     class="sm:float-left mr-8 w-24 h-24" style="margin-top:0"></a>
+
+[JetBrains Rider](https://www.jetbrains.com/rider/) is our recommended IDE for any C# + JavaScript development as it 
+offers a great development UX for both, including excellent support 
+for TypeScript and popular JavaScript Framework SPA assets like [Vue SFC's](https://v3.vuejs.org/guide/single-file-component.html).
+
+#### Setup Rider IDE
+
+As Rider already understands and provides excellent HTML/JS/TypeScript support you'll be immediately productive out-of-the-box,
+we can further improve the development experience for Vue.js Apps by adding an empty **vue** dependency to **package.json**:
+
+```json
+{
+  "devDependencies": {
+    "vue": ""
+  }
+}
+```
+
+As this is just a heuristic Rider looks for to enable its Vue support, installing the dependency itself isn't used or required.
+
+Other than that the only plugin we recommend adding is:
+
+<a href="https://plugins.jetbrains.com/plugin/15321-tailwind-css" class="text-2xl flex items-center" style="text-decoration:none">
+     <svg class="sm:float-left w-12 h-12" style="margin:0 .5rem 0 0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#44a8b3" d="M9 13.7q1.4-5.6 7-5.6c5.6 0 6.3 4.2 9.1 4.9q2.8.7 4.9-2.1q-1.4 5.6-7 5.6c-5.6 0-6.3-4.2-9.1-4.9q-2.8-.7-4.9 2.1Zm-7 8.4q1.4-5.6 7-5.6c5.6 0 6.3 4.2 9.1 4.9q2.8.7 4.9-2.1q-1.4 5.6-7 5.6c-5.6 0-6.3-4.2-9.1-4.9q-2.8-.7-4.9 2.1Z"/></svg>
+     <span class="">Tailwind CSS Plugin</span>
+</a>
+
+Which provides provides intelli-sense support for [Tailwind CSS](https://tailwindcss.com).
+
+### Start both dotnet and Tailwind
+
+The only additional development workflow requirement to use tailwind is to start it running in the background 
+which can be done from a new Terminal:
+
+```bash
+$ npm run ui:dev
+```
+
+We find `dotnet watch` offers the most productive iterative development workflow for .NET which refreshes on save 
+which works great with Tailwind which rewrites your `app.css` on save.
+
+How you want to run them is largely a matter of preference, our personal preference is to run the **dev** and **ui:dev**
+npm scripts in your **package.json**:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/dotnet-tailwind.png)
+
+
+### Rider's Task Runner
+
+Where they will appear in Rider's useful task runner widget where you'll be able to easily, stop and rerun all project tasks:
+
+![](https://github.com/ServiceStack/docs/raw/master/docs/images/spa/rider-run-widget.png)
+
+### Running from the terminal
+
+These GUI tasks are just managing running CLI commands behind-the-scenes, which if you prefer you can use JetBrains
+excellent multi-terminal support to run `$ dotnet watch` and `$ npm run ui:dev` from separate or split Terminal windows.
+
+### Deploying to Production
+
+This template also includes the necessary GitHub Actions to deploy this Apps production static assets to GitHub Pages CDN, 
+for more info, checkout [GitHub Actions Deployments](deploy).
+
+### Get Started
+
+If you're new to Vue 3 a good place to start is [Vue 3 Composition API](https://vuejs.org/api/composition-api-setup.html).
+
+
 # Prerendering Razor Pages
 Source: https://servicestack.net/posts/prerendering
 
@@ -36347,80 +36644,6 @@ Which allows prerendered pages to be accessed with and without its file extensio
  - [vue-mjs.web-templates.io/blog/prerendering.html](https://vue-mjs.web-templates.io/blog/prerendering.html)
 
 ###
-
-
-# Develop using JetBrains Rider
-Source: https://servicestack.net/posts/rider
-
-<a href="https://www.jetbrains.com/rider/">
-<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/rider.svg" 
-     class="sm:float-left mr-8 w-24 h-24" style="margin-top:0"></a>
-
-[JetBrains Rider](https://www.jetbrains.com/rider/) is our recommended IDE for any C# + JavaScript development as it 
-offers a great development UX for both, including excellent support 
-for TypeScript and popular JavaScript Framework SPA assets like [Vue SFC's](https://v3.vuejs.org/guide/single-file-component.html).
-
-#### Setup Rider IDE
-
-As Rider already understands and provides excellent HTML/JS/TypeScript support you'll be immediately productive out-of-the-box,
-we can further improve the development experience for Vue.js Apps by adding an empty **vue** dependency to **package.json**:
-
-```json
-{
-  "devDependencies": {
-    "vue": ""
-  }
-}
-```
-
-As this is just a heuristic Rider looks for to enable its Vue support, installing the dependency itself isn't used or required.
-
-Other than that the only plugin we recommend adding is:
-
-<a href="https://plugins.jetbrains.com/plugin/15321-tailwind-css" class="text-2xl flex items-center" style="text-decoration:none">
-     <svg class="sm:float-left w-12 h-12" style="margin:0 .5rem 0 0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#44a8b3" d="M9 13.7q1.4-5.6 7-5.6c5.6 0 6.3 4.2 9.1 4.9q2.8.7 4.9-2.1q-1.4 5.6-7 5.6c-5.6 0-6.3-4.2-9.1-4.9q-2.8-.7-4.9 2.1Zm-7 8.4q1.4-5.6 7-5.6c5.6 0 6.3 4.2 9.1 4.9q2.8.7 4.9-2.1q-1.4 5.6-7 5.6c-5.6 0-6.3-4.2-9.1-4.9q-2.8-.7-4.9 2.1Z"/></svg>
-     <span class="">Tailwind CSS Plugin</span>
-</a>
-
-Which provides provides intelli-sense support for [Tailwind CSS](https://tailwindcss.com).
-
-### Start both dotnet and Tailwind
-
-The only additional development workflow requirement to use tailwind is to start it running in the background 
-which can be done from a new Terminal:
-
-```bash
-$ npm run ui:dev
-```
-
-We find `dotnet watch` offers the most productive iterative development workflow for .NET which refreshes on save 
-which works great with Tailwind which rewrites your `app.css` on save.
-
-How you want to run them is largely a matter of preference, our personal preference is to run the **dev** and **ui:dev**
-npm scripts in your **package.json**:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/dotnet-tailwind.png)
-
-
-### Rider's Task Runner
-
-Where they will appear in Rider's useful task runner widget where you'll be able to easily, stop and rerun all project tasks:
-
-![](https://github.com/ServiceStack/docs/raw/master/docs/images/spa/rider-run-widget.png)
-
-### Running from the terminal
-
-These GUI tasks are just managing running CLI commands behind-the-scenes, which if you prefer you can use JetBrains
-excellent multi-terminal support to run `$ dotnet watch` and `$ npm run ui:dev` from separate or split Terminal windows.
-
-### Deploying to Production
-
-This template also includes the necessary GitHub Actions to deploy this Apps production static assets to GitHub Pages CDN, 
-for more info, checkout [GitHub Actions Deployments](deploy).
-
-### Get Started
-
-If you're new to Vue 3 a good place to start is [Vue 3 Composition API](https://vuejs.org/api/composition-api-setup.html).
 
 
 # Develop using Visual Studio
