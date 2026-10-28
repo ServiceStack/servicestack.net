@@ -10,10 +10,21 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Mon, 26 Oct 2026 14:45:25 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 28 Oct 2026 14:31:11 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Resilient Retries and Read Replicas in OrmLite</title>
+        <link>https://servicestack.net/posts/retries-read-replicas</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/retries-read-replicas</guid>
+        <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-10-28T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>ormlite</category>
+        <description>ServiceStack v10.4 lets OrmLite safely retry deadlocks, throttling and failovers from one line of configuration, and spread reads over a read replica whose read-only connections catch the classic replica bug in development instead of in production</description>
+    </item>
     <item>
         <title>Vector search in OrmLite</title>
         <link>https://servicestack.net/posts/ormlite-vector-search</link>
@@ -121,19 +132,6 @@
         <category>api</category>
         <category>security</category>
         <description>ServiceStack v10.3 adds opt-in ASP.NET Core rate limiting for ServiceStack APIs - bind a named policy to a Request DTO or share one budget across every API with the same Tag, enforced across every route an API can be called from</description>
-    </item>
-    <item>
-        <title>Software Licensing Next.js Project Template</title>
-        <link>https://servicestack.net/posts/next-license</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/next-license</guid>
-        <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-10-01T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>react</category>
-        <category>nextjs</category>
-        <category>templates</category>
-        <description>Next License is a new .NET 10, ServiceStack and Next.js 16 template for selling perpetual, offline-verified JWT licenses for your .NET and Electron desktop apps, with Stripe Checkout, GitHub-hosted downloads and an Operations Center, and no activation server to run</description>
     </item>
 </channel>
 </rss>

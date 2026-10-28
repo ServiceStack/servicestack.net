@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZZ1VK3VGL"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-TZZ1VK3VGL');</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://servicestack.net/feed.xml" />
+    <title>Resilient Retries and Read Replicas in OrmLite - ServiceStack</title>
+    <base href="/" />
+    <script>
+    if (location.search === "?dark") localStorage.setItem('color-scheme','dark') 
+    if (location.search === "?light") localStorage.removeItem('color-scheme') 
+    const cls = document.querySelector('html').classList
+    if (localStorage.getItem('color-scheme') === 'dark')
+        cls.add('dark')
+    else
+        cls.remove('dark')
+    </script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs",
+        "highlight.mjs": "./lib/mjs/highlight.mjs",
+        "core": "./js/core.mjs"
+    }
+}
+</script>
+    
+    <meta name="twitter:site" content="@ServiceStack" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="ServiceStack v10.4 lets OrmLite safely retry deadlocks, throttling and failovers from one line of configuration, and spread reads over a read replica whose read-only connections catch the classic replica bug in development instead of in production" />
+    <meta property="og:url" content="https://servicestack.net/posts/retries-read-replicas" />
+    <meta property="og:title" content="Resilient Retries and Read Replicas in OrmLite" />
+    <meta property="og:image" content="./img/posts/retries-read-replicas/bg.webp" />
+
+
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+<header class="top-0 fixed z-50 h-14 bg-white dark:bg-black opacity-90 w-full shadow pr-3">
+    <div class="w-full flex flex-wrap items-center">
+        <div class="absolute z-10 top-2 left-2 sm:static flex-shrink flex-grow-0">
+            <div class="cursor-pointer">
+                <a class="navbar-brand flex items-center" href="./">
+                    <svg class="w-8 h-8 sm:ml-2 sm:w-12 sm:h-12 text-gray-900 dark:text-gray-50" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M10 6c1.544 1.76 2.276 4.15 2.217 6.61c3.968 1.67 9.924 6.12 11.181 12.39H28C26.051 14.31 14.918 6.77 10 6zm-2 7c4.67 4.913.81 11.582-4 12h18.97C21.5 18.289 11.95 13.533 8 13z"/></svg>
+                    <span class="hidden sm:block text-2xl font-bold text-gray-900 dark:text-gray-50">ServiceStack</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
+            <nav class="relative flex flex-grow leading-6 font-semibold text-slate-700 dark:text-slate-200">
+                <ul class="flex flex-wrap items-center justify-end w-full m-0 pb-2 sm:pb-0">
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/blog" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/posts/" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Archive
+                                </a>
+                            </li>
+                            <li class="relative flex flex-wrap just-fu-start m-0">
+                                <a href="https://servicestack.net/podcasts" class="p-4 flex items-center justify-start mw-full hover:text-sky-500 dark:hover:text-sky-400">
+                                    Podcasts
+                                </a>
+                            </li>
+                    <li class="relative flex flex-wrap just-fu-start m-0">
+                        <div data-component="DarkModeToggle" class="ml-2 w-10"></div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+
+<div class="min-h-screen">
+    <main role="main" class="pt-14">
+        
+
+
+
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/lite-yt-embed.css">
+
+<div class="container px-5 mb-32 mx-auto">
+        <article class="mt-20">
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+                Resilient Retries and Read Replicas in OrmLite
+            </h1>
+            <div class="flex flex-wrap justify-between">
+                <div class="md:mb-12 flex items-center">
+                        <a href="posts/author/demis"><img class="w-12 h-12 rounded-full mr-4 text-cyan-600" src="/img/authors/demis.svg"></a>
+                    <div class="flex flex-col">
+                            <a class="text-xl font-semibold hover:underline" href="posts/author/demis">Demis</a>
+                    </div>
+                </div>
+                <div class="mb-4 max-w-sm" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+            </div>
+            
+            <div class="mb-8 md:mb-16 sm:mx-0">
+                <div class="sm:mx-0">
+                    <img src="./img/posts/retries-read-replicas/bg.webp" alt="Resilient Retries and Read Replicas in OrmLite Background" class="shadow-small">
+                </div>
+            </div>
+            <div class="flex max-w-3xl mx-auto justify-between">
+                <div>
+                    <div class="mb-4 flex flex-wrap">
+                        <a href="posts/tagged/servicestack" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">servicestack</a>
+                        <a href="posts/tagged/ormlite" class="mr-2 text-xs leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">ormlite</a>
+                    </div>
+                        <div class="max-w-3xl mx-auto">
+                            <div class="mb-6 text-lg text-gray-500">
+                                <time datetime="2026-10-28T00:00:00.0000000">October 28, 2026</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>9 min read</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-grow-0">
+                    <div data-post="PostVotes"></div>
+                    <a href="javascript:;" onclick="document.location.hash='comments'" class="cursor-pointer" title="Jump to comments">
+                        <svg class="ml-4 text-gray-700 mt-1 w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 11.2c0 .1 0 .1 0 0c0 .1 0 .1 0 0zM8.3 1C3.9 1 0 3.6 0 6.6c0 2 1.1 3.7 3 4.7s0 .1 0 .1c-.1 1.3-.9 1.7-.9 1.7L.3 14h2c2.5 0 4.3-1.1 5.1-1.9h.8c4.3 0 7.8-2.5 7.8-5.6S12.6 1 8.3 1zm-.1 10.1H7l-.2.2c-.5.5-1.6 1.4-3.3 1.7c.3-.5.5-1.1.5-2v-.3l-.3-.1C1.9 9.7 1 8.3 1 6.6C1 4.2 4.5 2 8.3 2C12 2 15 4 15 6.6c0 2.4-3.1 4.5-6.8 4.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div id="post" class="prose lg:prose-xl max-w-none mb-32">
+                    <lite-youtube class="w-full mx-4 my-4" width="560" height="315" videoid="O7RAp_XvHMc" playlabel="Survive Deadlocks without writing Retry Loops: Safe Database Retries and Read Replicas in .NET" style="background-image:url('https://img.youtube.com/vi/O7RAp_XvHMc/maxresdefault.jpg')"></lite-youtube>
+<p>Your tests pass, then at peak traffic two customers send each other money at the same moment. Each transaction locks
+one account, then waits for the other's. Neither can continue, so the database picks one as the <strong>deadlock victim</strong>
+and rolls it back:</p>
+<pre><code class="language-csharp">// Alice sends Bob 10 while Bob sends Alice 30, at the same time
+using var trans = db.OpenTransaction();
+db.UpdateAdd(() =&gt; new BankAccount { Balance = -amount }, x =&gt; x.Id == fromId);
+db.UpdateAdd(() =&gt; new BankAccount { Balance = amount }, x =&gt; x.Id == toId);
+trans.Commit();
+</code></pre>
+<pre><code class="language-txt">SqlException: Transaction (Process ID 75) was deadlocked on lock resources with another process
+and has been chosen as the deadlock victim. Rerun the transaction.
+
+Balances: Alice 130, Bob 70    (Alice's transfer of 10 was lost)
+</code></pre>
+<p>Nothing is wrong with the code, and the database even says what to do: rerun the transaction. Deadlocks,
+serialization failures, throttling by a cloud database, failovers and dropped connections all work this way. They'd
+work a moment later, but right now they fail the request.</p>
+<p>The usual fix is a retry loop around every unit of work, or a resilience library wrapped around every call, which is
+easy to get wrong in the one place that matters: retrying something that already happened.</p>
+<h2 id="one-retrypolicy-one-runintransaction">One RetryPolicy, one RunInTransaction<a class="header-anchor" href="javascript:;" onclick="location.hash='#one-retrypolicy-one-runintransaction'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p><strong>ServiceStack v10.4</strong> handles these temporary errors in OrmLite itself. Set a <code>RetryPolicy</code> once:</p>
+<pre><code class="language-csharp">OrmLiteConfig.RetryPolicy = OrmLiteRetry.Exponential(maxRetries: 3)
+    .OnRetry((ex, retry, delay) =&gt; log.LogWarning(&quot;Retry {Retry}: {Error}&quot;, retry, ex.Message));
+</code></pre>
+<p>Then wrap the transfer in <code>RunInTransaction</code>. When it's chosen as the deadlock victim, the whole transaction is rolled
+back and run again in a new one:</p>
+<pre><code class="language-csharp">await db.RunInTransactionAsync(async () =&gt; {
+    await db.UpdateAddAsync(() =&gt; new BankAccount { Balance = -amount }, x =&gt; x.Id == fromId);
+    await db.UpdateAddAsync(() =&gt; new BankAccount { Balance = amount }, x =&gt; x.Id == toId);
+});
+</code></pre>
+<pre><code class="language-txt">Retry 1: Transaction (Process ID 75) was deadlocked on lock resources with another process
+and has been chosen as the deadlock victim. Rerun the transaction.
+
+Balances: Alice 120, Bob 80    (both transfers applied)
+</code></pre>
+<p>One retry, and both transfers go through. There's nothing else to change in your code: every statement OrmLite runs
+uses the policy, and the error is thrown as before when a statement can't safely be retried, or after the last retry.</p>
+<p>Each dialect recognizes its own driver's temporary errors on <strong>PostgreSQL</strong>, <strong>SQL Server</strong>, <strong>MySQL</strong> and
+<strong>MariaDB</strong>, from PostgreSQL's <code>40001</code> serialization failures and <code>40P01</code> deadlocks to SQL Server's <code>1205</code> deadlocks
+and Azure SQL throttling and failover errors. SQLite doesn't need retries, so an App that starts on SQLite starts
+retrying the moment it moves to one of them, without changing its configuration.</p>
+<h3 id="waits-that-back-off">Waits that back off<a class="header-anchor" href="javascript:;" onclick="location.hash='#waits-that-back-off'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p><code>OrmLiteRetry.Exponential()</code> waits twice as long after each retry, <code>50ms</code>, <code>100ms</code> then <code>200ms</code> by default, up to a
+<code>maxDelay</code>:</p>
+<pre><code class="language-csharp">OrmLiteConfig.RetryPolicy = OrmLiteRetry.Exponential(
+    maxRetries: 3,                               // runs each statement up to 4 times
+    delay: TimeSpan.FromMilliseconds(50),        // waits 50ms, 100ms, then 200ms (the defaults)
+    maxDelay: TimeSpan.FromSeconds(2));
+</code></pre>
+<p>Each wait is a random 50-100% of the delay, so requests that failed together don't all retry together.</p>
+<p>Each database can also have a policy of its own, e.g. to retry the main database more often and never retry a
+reporting database:</p>
+<pre><code class="language-csharp">services.AddOrmLite(options =&gt; options.UsePostgres(connectionString, dialect =&gt; {
+    dialect.RetryPolicy = OrmLiteRetry.Exponential(maxRetries: 5);
+}))
+.AddSqlServer(&quot;reporting&quot;, reportingConnectionString, dialect =&gt; {
+    dialect.RetryPolicy = OrmLiteRetry.None;
+});
+</code></pre>
+<h2 id="only-retried-when-its-safe">Only retried when it's safe<a class="header-anchor" href="javascript:;" onclick="location.hash='#only-retried-when-its-safe'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Retrying blindly can do damage. If the connection drops after an <code>INSERT</code> was sent, it may already have been saved,
+and running it again would save it twice. So OrmLite tells apart 2 kinds of temporary errors:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Examples</th>
+<th>What's run again</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NotApplied</code>: the database confirmed the statement wasn't applied</td>
+<td>Deadlocks, serialization failures, throttling, connections that couldn't be made</td>
+<td>Any statement</td>
+</tr>
+<tr>
+<td><code>MaybeApplied</code>: the connection was lost, so it's unknown if it was applied</td>
+<td>Network resets, failovers, a server that restarted</td>
+<td>Only reads</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-csharp">// The database confirmed it wasn't applied: deadlocks, serialization failures, throttling
+db.Insert(order);                        // retried
+
+// The connection was lost, so the statement may have been applied
+db.Select&lt;Order&gt;(x =&gt; x.Total &gt; 100);    // retried: reads can't apply twice
+db.Insert(order);                        // not retried: it might be saved twice
+
+// Statements in a transaction aren't retried on their own: the database rolled it all back
+db.RunInTransaction(() =&gt; { ... });      // the whole transaction runs again
+db.InsertAll(orders);                    // runs in its own transaction, retried as a whole
+</code></pre>
+<p>A single statement inside a transaction is never retried on its own. After a deadlock the database has rolled back the
+whole transaction, so running only the last statement again would silently lose the ones before it. That's what
+<code>RunInTransaction</code> is for, and the APIs that write many rows, like <code>InsertAll</code>, <code>UpdateAll</code>, <code>SaveAll</code> and
+<code>DeleteByIds</code>, already run in a transaction of their own that's retried as a whole.</p>
+<p>A transaction that fails while it's being committed is also only run again when the database confirmed it wasn't
+committed.</p>
+<h2 id="your-code-may-run-more-than-once">Your code may run more than once<a class="header-anchor" href="javascript:;" onclick="location.hash='#your-code-may-run-more-than-once'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>One rule follows from that: the code in <code>RunInTransaction</code> may run more than once. Its database changes are rolled back
+before it runs again, but an email, a card payment or a call to another API isn't. So do those after the transaction
+commits, when it can no longer run again:</p>
+<pre><code class="language-csharp">var orderId = await db.RunInTransactionAsync(async () =&gt; {
+    var id = await db.InsertAsync(order, selectIdentity: true);
+    await db.UpdateAddAsync(() =&gt; new Product { Stock = -order.Quantity }, x =&gt; x.Id == order.ProductId);
+    return id;
+});
+
+// After the transaction is committed, so it's only sent once
+await emailer.SendOrderConfirmationAsync(orderId);
+</code></pre>
+<h2 id="scale-your-reads-with-a-replica">Scale your reads with a replica<a class="header-anchor" href="javascript:;" onclick="location.hash='#scale-your-reads-with-a-replica'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Most Apps read far more than they write, and a read replica, like a PostgreSQL standby, takes those reads off your
+primary. Register it with <code>AddReadReplica()</code>:</p>
+<pre><code class="language-csharp">services.AddOrmLite(options =&gt; options.UsePostgres(connectionString))
+    .AddReadReplica(replicaConnectionString);
+</code></pre>
+<p>Then open connections for queries that can read from it with <code>OpenReadOnlyDbConnection()</code>:</p>
+<pre><code class="language-csharp">using var db = dbFactory.OpenReadOnlyDbConnection();
+var orders = db.Select&lt;Order&gt;(x =&gt; x.CreatedDate &gt;= since);
+</code></pre>
+<pre><code class="language-txt">Without a replica:   OpenReadOnlyDbConnection()  →  primary
+With a replica:      OpenReadOnlyDbConnection()  →  replica   (IsReadOnly, IsReadReplica)
+                     OpenDbConnection()          →  primary
+</code></pre>
+<p>With a replica it opens the replica. Without one, like in development, it opens the primary, so the same code works in
+both. Named connections can have replicas of their own, and a replica uses its primary's dialect, so its naming
+strategy, converters, connection filters and retry policy are the same:</p>
+<pre><code class="language-csharp">services.AddOrmLite(options =&gt; options.UsePostgres(connectionString))
+    .AddReadReplica(replicaConnectionString)
+    .AddPostgres(&quot;reporting&quot;, reportingConnectionString)
+    .AddReadReplica(&quot;reporting&quot;, reportingReplicaConnectionString);
+
+using var reports = dbFactory.OpenReadOnlyDbConnection(&quot;reporting&quot;);
+</code></pre>
+<p>To keep reads working while a replica is down, <code>fallbackToPrimary</code> opens the primary when the replica can't be opened,
+and logs a warning:</p>
+<pre><code class="language-csharp">.AddReadReplica(replicaConnectionString, fallbackToPrimary: true)
+</code></pre>
+<p>To spread reads over several replicas, use a connection string that does it, e.g. Npgsql's multiple hosts with
+<code>Target Session Attributes=prefer-standby;Load Balance Hosts=true</code>.</p>
+<h2 id="read-only-means-read-only">Read-only means read-only<a class="header-anchor" href="javascript:;" onclick="location.hash='#read-only-means-read-only'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>The classic replica bug is a write that sneaks onto a read connection. It works in development, where there's no
+replica, then fails in production, where there is.</p>
+<p>So read-only connections can't write, even when they're opened on the primary:</p>
+<pre><code class="language-csharp">using var db = dbFactory.OpenReadOnlyDbConnection(); // the primary, without a replica
+db.SingleById&lt;BankAccount&gt;(1);                        // reads work
+db.Insert(new BankAccount { Id = 2, Balance = 50 });  // a write fails
+</code></pre>
+<pre><code class="language-txt">PostgreSQL:  PostgresException: 25006: cannot execute INSERT in a read-only transaction
+MySQL:       MySqlException: Cannot execute statement in a READ ONLY transaction
+SQL Server:  InvalidOperationException: This connection is read-only, it's opened for queries that can
+             read from a read replica. Write with a connection to the primary, e.g. Db instead of ReadDb,
+             or OpenDbConnection().
+</code></pre>
+<p>PostgreSQL, MySQL and SQLite make the connection's session read-only, which is made read-write again before it's
+returned to the pool, and on SQL Server OrmLite rejects the write itself. The bug fails on your machine, not after you
+deploy. Connections also say what they are with <code>IsReadOnly</code> and <code>IsReadReplica</code>, and whether they've written with
+<code>HasWrites</code>.</p>
+<h2 id="in-servicestack-readdb-and-readyourwritesfor">In ServiceStack: ReadDb and ReadYourWritesFor<a class="header-anchor" href="javascript:;" onclick="location.hash='#in-servicestack-readdb-and-readyourwritesfor'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>In ServiceStack Services, <code>ReadDb</code> is the read replica of the connection <code>Db</code> uses, configured by the AppHost's
+<code>DbConnectionRequestFilters</code> like <code>Db</code>, e.g. with the request's tenant. Without a replica it's the same database
+as <code>Db</code>:</p>
+<pre><code class="language-csharp">public class ReportServices : Service
+{
+    public object Get(SalesReport request) =&gt;
+        ReadDb.Select&lt;Order&gt;(x =&gt; x.CreatedDate &gt;= request.Since);
+}
+</code></pre>
+<p>Replicas can lag behind their primary. Save a form, get redirected, and the replica may not have your change yet, so it
+looks like it didn't save. ServiceStack handles both halves of that:</p>
+<ul>
+<li>Once a request writes, its <code>ReadDb</code> reads from the primary, so it sees what it wrote</li>
+<li>A user's next requests read from the primary for <strong>5 seconds</strong> after one of their requests writes, so the page they're
+sent to after saving shows what they saved while the replica catches up</li>
+</ul>
+<p>Users are identified by their authenticated user id, or their session when they're not signed in. Change how long with
+<code>ReadYourWritesFor</code>, or turn it off with <code>TimeSpan.Zero</code>:</p>
+<pre><code class="language-csharp">public override void Configure()
+{
+    ReadYourWritesFor = TimeSpan.FromSeconds(10);
+}
+</code></pre>
+<p>Recent writes are remembered in the App's memory cache, so with several servers use sticky sessions, or override the
+AppHost's <code>RecordDbWrites()</code> and <code>HasRecentDbWrites()</code> to keep them in a distributed cache.</p>
+<h3 id="autoquery">AutoQuery<a class="header-anchor" href="javascript:;" onclick="location.hash='#autoquery'" aria-label="Permalink">&ZeroWidthSpace;</a></h3>
+<p>AutoQuery APIs can run their queries on the replica too, while AutoQuery CRUD APIs keep writing to the primary.
+<code>[ReadReplica]</code> opts an AutoQuery API or table in, or out with <code>[ReadReplica(false)]</code>, e.g. for an API that reads what
+was just written:</p>
+<pre><code class="language-csharp">services.AddPlugin(new AutoQueryFeature { UseReadReplica = true });
+
+[ReadReplica(false)]
+public class QueryRecentOrders : QueryDb&lt;Order&gt; {}
+</code></pre>
+<p>The Admin UI's profiling shows which queries ran on a replica.</p>
+<h2 id="what-retries-and-replicas-dont-do">What retries and replicas don't do<a class="header-anchor" href="javascript:;" onclick="location.hash='#what-retries-and-replicas-dont-do'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Retries are for temporary errors, not slow queries:</p>
+<ul>
+<li>Retries only happen when a <code>RetryPolicy</code> is set</li>
+<li>SQLite isn't retried, as its drivers already wait for locks to be released</li>
+<li>Statements that time out aren't retried by default, as a query that was too slow is likely to be too slow again.
+<code>Handle()</code> can opt them in, e.g. <code>.Handle(ex =&gt; ex is SqlException { Number: -2 })</code></li>
+<li>Errors after a query's first row has been read aren't retried</li>
+<li>Queries run with OrmLite's Dapper APIs aren't retried, and on SQL Server their writes aren't rejected on read-only
+connections</li>
+<li>SqlClient has its own optional retry logic, use either it or a <code>RetryPolicy</code>, as using both multiplies their retries</li>
+</ul>
+<h2 id="get-started">Get Started<a class="header-anchor" href="javascript:;" onclick="location.hash='#get-started'" aria-label="Permalink">&ZeroWidthSpace;</a></h2>
+<p>Retries and read replicas are available in <strong>ServiceStack v10.4</strong>. Upgrade your <code>ServiceStack.OrmLite.*</code> packages and
+add one line of configuration:</p>
+<pre><code class="language-csharp">OrmLiteConfig.RetryPolicy = OrmLiteRetry.Exponential(maxRetries: 3);
+</code></pre>
+<p>See the docs for the complete reference:</p>
+<ul>
+<li><a href="https://docs.servicestack.net/ormlite/retries">Retrying Temporary Errors</a> - what's retried, configuring policies,
+retrying other errors and each database's temporary errors</li>
+<li><a href="https://docs.servicestack.net/ormlite/getting-started#read-replicas">Read Replicas</a> - registering replicas,
+read-only connections, <code>ReadDb</code>, <code>ReadYourWritesFor</code> and AutoQuery</li>
+<li><a href="https://docs.servicestack.net/releases/v10_04">v10.4 Release Notes</a> - everything else in this release</li>
+</ul>
+
+                </div>
+            </div>
+        </article>
+</div>
+
+<div id="comments" data-post="PostComments" class="my-48"></div>
+
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex justify-between">
+                    <div>
+                            <a href="posts/author/demis"><img class="w-20 h-20 rounded-full text-cyan-600" src="/img/authors/demis.svg"></a>
+
+                        <div class="mt-2 font-medium text-2xl">
+                            Written by Demis
+                        </div>
+                        <div class="text-gray-600">
+                            dev @ servicestack.net
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t">
+                    <div class="py-8 text-lg text-gray-700 font-medium">
+                        More from Demis
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-vector-search">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-vector-search/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-vector-search" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Vector search in OrmLite">
+                                                    Vector search in OrmLite
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.4 adds first-class [Vector] columns to OrmLite, so the embeddings of an AI model are stored with your data and the rows most similar to a question are found in the same typed query as your filters, joins and tenant rules, on PostgreSQL, SQL Server, MariaDB, MySQL and SQLite</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Vector search in OrmLite background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-26T00:00:00.0000000">October 26, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>8 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-json">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-json/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-json" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Query JSON like any other property in OrmLite">
+                                                    Query JSON like any other property in OrmLite
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.4 lets typed OrmLite queries read straight into complex type properties with x.Address.City or x.Lines.Any(...), using the native JSON functions of SQLite, PostgreSQL, SQL Server and MySQL, plus a complete tour of everything else OrmLite can do with JSON</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Query JSON like any other property in OrmLite background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-21T00:00:00.0000000">October 21, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>12 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-advanced-queries">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-advanced-queries/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-advanced-queries" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Advanced SQL queries in typed OrmLite">
+                                                    Advanced SQL queries in typed OrmLite
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.4 adds typed recursive queries, named sub queries, window functions with TopPerGroup, Union/Intersect/Except, SeekAfter keyset paging and async streaming, so the queries that used to need hand-written SQL stay typed, parameterized and portable</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Advanced SQL queries in typed OrmLite background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-20T00:00:00.0000000">October 20, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>12 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <div class="flex-shrink-0">
+                                        <a href="posts/ormlite-safe-sql">
+                                            <img class="h-48 w-full object-cover" src="./img/posts/ormlite-safe-sql/bg.webp" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-1 flex-col justify-between bg-white dark:bg-black p-6">
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-indigo-600 dark:text-indigo-300">
+                                                Article
+                                            </p>
+                                            <a href="posts/ormlite-safe-sql" class="mt-2 block">
+                                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-50 whitespace-nowrap overflow-hidden text-ellipsis" title="Safe SQL by default in OrmLite">
+                                                    Safe SQL by default in OrmLite
+                                                </p>
+                                                <p class="mt-3 text-base text-gray-500">ServiceStack v10.4 adds Sql.Fmt() for interpolated SQL where every value is a db param, OrderBySafe() for user-selected sort orders, and stronger SQL injection protection across fragment validation, identifier quoting and inlined values</p>
+                                            </a>
+                                        </div>
+                                        <div class="mt-6 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <a href="">
+                                                    <span class="sr-only">Demis</span>
+                                                    <img class="h-10 w-10 rounded-full" src="/img/authors/demis.svg" alt="Safe SQL by default in OrmLite background">
+                                                </a>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                        <a href="posts/author/demis" class="hover:underline">Demis</a>
+                                                </p>
+                                                <div class="flex space-x-1 text-sm text-gray-500">
+                                                    <time datetime="2026-10-15T00:00:00.0000000">October 15, 2026</time>
+                                                    <span aria-hidden="true">&middot;</span>
+                                                    <span>10 min read</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+<link rel="stylesheet" href="css/highlight.css">
+<script src="js/highlight.js"></script>
+<script>hljs.highlightAll()</script>
+<script src="js/lite-yt-embed.js"></script>
+<script src="mjs/docs.mjs" type="module"></script>
+
+
+<script type="module">
+import { mount } from "app.mjs"
+
+    const App = {
+        setup() {
+            function nav(url) {
+                window.open(url)
+            }
+            return { nav }
+        }
+    }
+    mount('#post', App)
+</script>
+
+    </main>
+</div>
+
+<footer class="bg-slate-200 dark:bg-black border-t border-slate-300 dark:border-gray-600 py-8 sm:py-12">
+    <div class="max-w-screen-2xl mx-auto px-5">
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Features</h5>
+                <div>
+                    <a href="https://docs.servicestack.net/add-servicestack-reference" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack Reference</a>
+                    <a href="https://servicestack.net/creatorkit/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">CreatorKit</a>
+                    <a href="https://servicestack.net/litestream" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Litestream</a>
+                    <a href="https://servicestack.net/ormlite" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">OrmLite</a>
+                    <a href="https://servicestack.net/redis" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Redis</a>
+                    <a href="https://servicestack.net/locode" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Locode</a>
+                    <a href="https://www.jamstacks.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Jamstack</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Resources</h5>
+                <div>
+                    <a href="https://docs.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Framework Docs</a>
+                    <a href="https://forums.servicestack.net" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Customer Forums</a>
+                    <a href="https://docs.servicestack.net/redis/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Redis</a>
+                    <a href="https://docs.servicestack.net/ormlite/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.OrmLite</a>
+                    <a href="https://docs.servicestack.net/text" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Text</a>
+                    <a href="https://docs.servicestack.net/aws" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">ServiceStack.Aws</a>
+                    <a href="https://github.com/NetCoreApps/LiveDemos" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Live Demos</a>
+                    <a href="https://servicestack.net/posts/" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Blog Archive</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">Learn</h5>
+                <div>
+                    <a href="https://servicestack.net/getting-started" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Getting Started</a>
+                    <a href="https://docs.servicestack.net/why-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Why ServiceStack</a>
+                    <a href="https://docs.servicestack.net/architecture-overview" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Architecture</a>
+                    <a href="https://docs.servicestack.net/explore-servicestack" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Explore ServiceStack</a>
+                    <a href="https://docs.servicestack.net/api-first-development" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">API First Development</a>
+                    <a href="https://docs.servicestack.net/service-complexity-and-dto-roles" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">The Simple POCO Life</a>
+                    <a href="https://servicestack.net/training" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Training Services</a>
+                </div>
+            </div>
+            <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+                <h5 class="block uppercase text-slate-500 font-semibold mb-4">About</h5>
+                <div>
+                    <a href="https://servicestack.net/support" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Support</a>
+                    <a href="https://servicestack.net/whatsnew" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">What's New</a>
+                    <a href="https://servicestack.net/#contact" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Contact Us</a>
+                    <a href="https://servicestack.net/security" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Security</a>
+                    <a href="https://servicestack.net/privacy" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Privacy</a>
+                    <a href="https://servicestack.net/terms" class="text-slate-600 hover:text-slate-800 dark:hover:text-slate-100 font-semibold block pb-2 text-sm">Terms</a>
+                </div>
+            </div>
+            <div class="px-4 mt-4 flex justify-end">
+                <div class="max-w-sm">
+                    <div class="mx-auto">
+                        <h5 class="block uppercase text-slate-500 font-semibold mb-4">Stay connected</h5>
+
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <a href="https://twitter.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-blue-400 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC0kXKGVU4NHcwNdDdRiAJSA" class="inline-block bg-white dark:bg-gray-800 p-2 text-red-600 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5l-6-3.5v7z"/></svg>
+                            </a>
+                            <a href="https://github.com/ServiceStack" class="inline-block bg-white dark:bg-gray-800 p-2 text-slate-800 shadow-lg font-normal items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                                <svg class="h-6 w-6 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8" data-mail="JoinMailingList" data-props="{ submitLabel:'Join our newsletter' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t dark:border-gray-700">
+            <div class="sm:w-full px-4 md:w-1/6">
+                <b>About ServiceStack</b>
+            </div>
+            <div class="px-4 sm:w-1/2 mt-4 md:mt-0 text-sm text-gray-600">
+                ServiceStack started development in 2008 with the mission of creating a best-practices services framework
+                with an emphasis on simplicity and speed, reducing the effort in creating and maintaining resilient
+                message-based SOA Services and rich web apps like <a href="https://ubixar.com">ubixar</a>.
+
+                <p class="pt-2">Copyright (c) ServiceStack Inc. 2026</p>
+            </div>
+            <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
+                <a href="https://servicestack.net/getting-started"
+                   class="bg-slate-800 text-white active:bg-slate-600 text-sm font-semibold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    Get started
+                </a>
+            </div>
+        </div>        
+        
+    </div>
+</footer>
+
+<script type="module">
+import { mail } from 'https://creatorkit.servicestack.net/mjs/components/mail.mjs'
+import { post } from 'https://creatorkit.servicestack.net/mjs/components/post.mjs'
+
+mail('[data-mail]', { mailingLists:['MonthlyNewsletter'] })
+post('[data-post]', {
+    commentLink: { 
+        href: '/community-rules',
+        label: 'read the community rules'
+    } 
+})
+</script>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
