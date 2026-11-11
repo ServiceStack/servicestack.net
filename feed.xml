@@ -10,10 +10,24 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Tue, 03 Nov 2026 10:48:58 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 11 Nov 2026 15:02:33 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>React, Next.js and Vue Templates Upgraded to Vite&#x2B;</title>
+        <link>https://servicestack.net/posts/vite-plus-templates</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/vite-plus-templates</guid>
+        <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-11-11T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>react</category>
+        <category>nextjs</category>
+        <category>vue</category>
+        <category>templates</category>
+        <description>ServiceStack v10.5 moves every React, Next.js and Vue template to Vite&#x2B;, replacing a stack of separate tools and config files with one vp CLI and one vite.config.ts that formats, lints, type checks, tests and builds your front-end, with the same rules in your editor, in CI and for your AI Agent</description>
+    </item>
     <item>
         <title>Why Is My .NET App Slow? Find and Fix Slow SQL From Your Browser</title>
         <link>https://servicestack.net/posts/ormlite-observability</link>
@@ -119,18 +133,6 @@
         <category>ormlite</category>
         <category>autoquery</category>
         <description>ServiceStack v10.4 moves tenant isolation from every query to the database connection, with OrmLite connection filters and write rules that confine selects, updates, deletes, inserts and AutoQuery APIs to the request&#x27;s tenant, fail closed until it&#x27;s known, and record trusted audit columns on every write</description>
-    </item>
-    <item>
-        <title>Follow every request with OpenTelemetry</title>
-        <link>https://servicestack.net/posts/opentelemetry</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/opentelemetry</guid>
-        <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-10-06T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>api</category>
-        <category>performance</category>
-        <description>ServiceStack v10.3 emits standard OpenTelemetry traces and metrics that follow a request from its API call through outbound HTTP calls, MQ messages and Background Jobs, even across servers, in Jaeger, Grafana Tempo, Honeycomb, Datadog or the .NET Aspire Dashboard</description>
     </item>
 </channel>
 </rss>

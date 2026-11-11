@@ -10,7 +10,7 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright>ServiceStack</copyright>
-    <lastBuildDate>Tue, 03 Nov 2026 10:48:59 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 11 Nov 2026 15:02:34 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/podcasts/feed.xml" rel="self" type="application/rss+xml" />
@@ -27,6 +27,23 @@
         <itunes:category text="Tech News" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+        <title>ServiceStack v10.5 Release</title>
+        <link>https://servicestack.net/podcasts/v10-5-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v10-5-release</guid>
+        <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-11-11T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v10-5-release.mp3" length="10659379" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>redis</category>
+        <category>react</category>
+        <category>templates</category>
+        <description>Announcing the release of ServiceStack v10.5 with Redis enhancements, modern front-end tooling, and new Astro and Tanstack Start templates</description>
+        <itunes:summary><![CDATA[ Announcing the release of ServiceStack v10.5 with Redis enhancements, modern front-end tooling, and new Astro and Tanstack Start templates ]]></itunes:summary>
+        <itunes:duration>766</itunes:duration>
+        <itunes:keywords>servicestack,redis,react,templates</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
     <item>
         <title>Prompt it, Publish it - AI-built works from your .NET APIs</title>
         <link>https://servicestack.net/podcasts/ai-chat-projects</link>
@@ -144,6 +161,22 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
+        <title>Scalable Background Jobs</title>
+        <link>https://servicestack.net/podcasts/scalable-background-jobs</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/scalable-background-jobs</guid>
+        <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-29T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/scalable-background-jobs.mp3" length="21027583" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>jobs</category>
+        <category>rdbms</category>
+        <description>ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run</description>
+        <itunes:summary><![CDATA[ ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run ]]></itunes:summary>
+        <itunes:duration>1421</itunes:duration>
+        <itunes:keywords>servicestack,jobs,rdbms</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>ServiceStack v10.3 Release</title>
         <link>https://servicestack.net/podcasts/v10-3-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v10-3-release</guid>
@@ -159,22 +192,6 @@
         <itunes:summary><![CDATA[ ServiceStack v10.3 enhances background job management, introduces React templates, and adds OpenTelemetry support for improved observability. ]]></itunes:summary>
         <itunes:duration>1389</itunes:duration>
         <itunes:keywords>servicestack,api,jobs,react,templates</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Scalable Background Jobs</title>
-        <link>https://servicestack.net/podcasts/scalable-background-jobs</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/scalable-background-jobs</guid>
-        <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-09-29T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/scalable-background-jobs.mp3" length="21027583" type="audio/mpeg"/>
-        <category>servicestack</category>
-        <category>jobs</category>
-        <category>rdbms</category>
-        <description>ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run</description>
-        <itunes:summary><![CDATA[ ServiceStack v10.3 turns Background Jobs into a durable job platform - scale out across App Servers, queues with runtime controls, exactly-once guarantees, workflows, batches and production-grade schedules, all on the database you already run ]]></itunes:summary>
-        <itunes:duration>1421</itunes:duration>
-        <itunes:keywords>servicestack,jobs,rdbms</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -209,22 +226,6 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
-        <title>Gemini RAG - AI Answers Customers can Verify from your Content</title>
-        <link>https://servicestack.net/podcasts/gemini-rag</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/gemini-rag</guid>
-        <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-09-10T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/gemini-rag.mp3" length="17864833" type="audio/mpeg"/>
-        <category>ai</category>
-        <category>gemini</category>
-        <category>rag</category>
-        <description>Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag</description>
-        <itunes:summary><![CDATA[ Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag ]]></itunes:summary>
-        <itunes:duration>1231</itunes:duration>
-        <itunes:keywords>ai,gemini,rag</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
         <title>ServiceStack v10.2 Release</title>
         <link>https://servicestack.net/podcasts/v10-2-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v10-2-release</guid>
@@ -240,6 +241,22 @@
         <itunes:summary><![CDATA[ Gemini RAG AI Assistants &amp; Website Search, portable typed JSON queries and native Upsert in OrmLite, Startup Tasks that keep client DTOs in sync, AI Chat with ServiceStack Auth and a codebase-wide security audit ]]></itunes:summary>
         <itunes:duration>1498</itunes:duration>
         <itunes:keywords>ai,llm,rag,pdf,api</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Gemini RAG - AI Answers Customers can Verify from your Content</title>
+        <link>https://servicestack.net/podcasts/gemini-rag</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/gemini-rag</guid>
+        <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-09-10T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/gemini-rag.mp3" length="17864833" type="audio/mpeg"/>
+        <category>ai</category>
+        <category>gemini</category>
+        <category>rag</category>
+        <description>Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag</description>
+        <itunes:summary><![CDATA[ Turn the files, docs and websites you already maintain into managed knowledge bases, then publish a citation-backed AI Assistant and instant, model-free Website Search to any site with one script tag ]]></itunes:summary>
+        <itunes:duration>1231</itunes:duration>
+        <itunes:keywords>ai,gemini,rag</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -327,24 +344,6 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
-        <title>Typed ServiceStack APIs for Go, Rust, Ruby and Zig</title>
-        <link>https://servicestack.net/podcasts/go-rust-ruby-zig-typed-apis</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/go-rust-ruby-zig-typed-apis</guid>
-        <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-08-13T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3" length="4414669" type="audio/mpeg"/>
-        <category>servicestack</category>
-        <category>go</category>
-        <category>rust</category>
-        <category>ruby</category>
-        <category>zig</category>
-        <description>Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world&#x27;s most popular programming languages-from websites and mobile apps to cloud services and systems software.</description>
-        <itunes:summary><![CDATA[ Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world&#x27;s most popular programming languages-from websites and mobile apps to cloud services and systems software. ]]></itunes:summary>
-        <itunes:duration>305</itunes:duration>
-        <itunes:keywords>servicestack,go,rust,ruby,zig</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
         <title>ServiceStack v10.1 Release</title>
         <link>https://servicestack.net/podcasts/v10-1-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v10-1-release</guid>
@@ -360,6 +359,24 @@
         <itunes:summary><![CDATA[ Turning typed Request DTOs into a single source of truth - with typed APIs for 15 languages, AI Chat v4, API and AutoQuery Schemas and PDF Studio ]]></itunes:summary>
         <itunes:duration>1169</itunes:duration>
         <itunes:keywords>ai,llm,admin-ui,pdf,api</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>Typed ServiceStack APIs for Go, Rust, Ruby and Zig</title>
+        <link>https://servicestack.net/podcasts/go-rust-ruby-zig-typed-apis</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/go-rust-ruby-zig-typed-apis</guid>
+        <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-08-13T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/go-rust-ruby-zig-typed-apis.mp3" length="4414669" type="audio/mpeg"/>
+        <category>servicestack</category>
+        <category>go</category>
+        <category>rust</category>
+        <category>ruby</category>
+        <category>zig</category>
+        <description>Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world&#x27;s most popular programming languages-from websites and mobile apps to cloud services and systems software.</description>
+        <itunes:summary><![CDATA[ Add ServiceStack Reference now brings end-to-end typed APIs to 15 of the world&#x27;s most popular programming languages-from websites and mobile apps to cloud services and systems software. ]]></itunes:summary>
+        <itunes:duration>305</itunes:duration>
+        <itunes:keywords>servicestack,go,rust,ruby,zig</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -497,6 +514,22 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
+        <title>Ask ServiceStack Docs - Introducing AI Search</title>
+        <link>https://servicestack.net/podcasts/typesense-ai-search</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/typesense-ai-search</guid>
+        <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-11-12T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ai-chat.mp3" length="13193573" type="audio/mpeg"/>
+        <category>llms</category>
+        <category>ai</category>
+        <category>docs</category>
+        <description>Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs</description>
+        <itunes:summary><![CDATA[ Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs ]]></itunes:summary>
+        <itunes:duration>950</itunes:duration>
+        <itunes:keywords>llms,ai,docs</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>ServiceStack v8.10 Release</title>
         <link>https://servicestack.net/podcasts/v8-10-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v8-10-release</guid>
@@ -513,22 +546,6 @@
         <itunes:summary><![CDATA[ Latest features in ServiceStack v8.10 including 1st class React &amp; Tailwind CSS support, AI Chat, AI Search and more! ]]></itunes:summary>
         <itunes:duration>1045</itunes:duration>
         <itunes:keywords>release,react,tailwind,typescript,admin-ui,ai</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>Ask ServiceStack Docs - Introducing AI Search</title>
-        <link>https://servicestack.net/podcasts/typesense-ai-search</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/typesense-ai-search</guid>
-        <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-11-12T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/ai-chat.mp3" length="13193573" type="audio/mpeg"/>
-        <category>llms</category>
-        <category>ai</category>
-        <category>docs</category>
-        <description>Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs</description>
-        <itunes:summary><![CDATA[ Learn about the new AI Search feature - Typesense Conversational RAG for ServiceStack Docs ]]></itunes:summary>
-        <itunes:duration>950</itunes:duration>
-        <itunes:keywords>llms,ai,docs</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -598,6 +615,21 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
+        <title>OrmLite new Configuration Model and Defaults</title>
+        <link>https://servicestack.net/podcasts/ormlite-new-configuration</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/ormlite-new-configuration</guid>
+        <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-10-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/ormlite-new-configuration.mp3" length="15673349" type="audio/mpeg"/>
+        <category>db</category>
+        <category>ormlite</category>
+        <description>Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features</description>
+        <itunes:summary><![CDATA[ Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features ]]></itunes:summary>
+        <itunes:duration>1113</itunes:duration>
+        <itunes:keywords>db,ormlite</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
         <title>ServiceStack v8.9 Release</title>
         <link>https://servicestack.net/podcasts/v8-9-release</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/v8-9-release</guid>
@@ -614,21 +646,6 @@
         <itunes:summary><![CDATA[ Latest features in ServiceStack v8.9 new OrmLite configuration model and features, RDBMS Logging/Analytics and more! ]]></itunes:summary>
         <itunes:duration>1053</itunes:duration>
         <itunes:keywords>release,ormlite,rdbms,admin-ui,apikeys,analytics</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>OrmLite new Configuration Model and Defaults</title>
-        <link>https://servicestack.net/podcasts/ormlite-new-configuration</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/ormlite-new-configuration</guid>
-        <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-10-15T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/ormlite-new-configuration.mp3" length="15673349" type="audio/mpeg"/>
-        <category>db</category>
-        <category>ormlite</category>
-        <description>Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features</description>
-        <itunes:summary><![CDATA[ Learn about OrmLite&#x27;s new fluent Configuration Model, new defaults &amp; features ]]></itunes:summary>
-        <itunes:duration>1113</itunes:duration>
-        <itunes:keywords>db,ormlite</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -734,23 +751,6 @@
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
-        <title>ServiceStack v8.7 Release</title>
-        <link>https://servicestack.net/podcasts/v8-7-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-7-release</guid>
-        <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-04-15T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-7-release.mp3" length="15698876" type="audio/mpeg"/>
-        <category>release</category>
-        <category>identity-auth</category>
-        <category>admin-ui</category>
-        <category>angular</category>
-        <description>Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs</description>
-        <itunes:summary><![CDATA[ Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs ]]></itunes:summary>
-        <itunes:duration>1493</itunes:duration>
-        <itunes:keywords>release,identity-auth,admin-ui,angular</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
         <title>In Depth and Interactive API Analytics available to all ServiceStack Apps</title>
         <link>https://servicestack.net/podcasts/analytics</link>
         <guid isPermaLink="false">https://servicestack.net/podcasts/analytics</guid>
@@ -765,6 +765,23 @@
         <itunes:summary><![CDATA[ Comprehensive and Interactive API Analytics in Admin UI offering deep insights into API usage, performance, users, API Keys &amp; IPs. ]]></itunes:summary>
         <itunes:duration>411</itunes:duration>
         <itunes:keywords>analytics,admin-ui,apis,sqlite</itunes:keywords>        
+        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
+    </item>
+    <item>
+        <title>ServiceStack v8.7 Release</title>
+        <link>https://servicestack.net/podcasts/v8-7-release</link>
+        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-7-release</guid>
+        <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
+        <atom:updated>2025-04-15T00:00:00Z</atom:updated>
+        <enclosure url="https://media.servicestack.com/podcasts/v8-7-release.mp3" length="15698876" type="audio/mpeg"/>
+        <category>release</category>
+        <category>identity-auth</category>
+        <category>admin-ui</category>
+        <category>angular</category>
+        <description>Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs</description>
+        <itunes:summary><![CDATA[ Latest features in ServiceStack v8.7 including Analytics, Identity Auth Roles and Claims Admin UIs ]]></itunes:summary>
+        <itunes:duration>1493</itunes:duration>
+        <itunes:keywords>release,identity-auth,admin-ui,angular</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
     <item>
@@ -852,23 +869,6 @@
         <itunes:summary><![CDATA[ Discover how to quickly generate Blazor Admin CRUD Apps from a text description using the new okai tool ]]></itunes:summary>
         <itunes:duration>884</itunes:duration>
         <itunes:keywords>okai,ai,autoquery,blazor,vue</itunes:keywords>        
-        <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
-    </item>
-    <item>
-        <title>ServiceStack v8.6 Release</title>
-        <link>https://servicestack.net/podcasts/v8-6-release</link>
-        <guid isPermaLink="false">https://servicestack.net/podcasts/v8-6-release</guid>
-        <pubDate>Mon, 10 Feb 2025 00:00:00 GMT</pubDate>
-        <atom:updated>2025-02-10T00:00:00Z</atom:updated>
-        <enclosure url="https://media.servicestack.com/podcasts/v8-6-release.mp3" length="4671212" type="audio/mpeg"/>
-        <category>release</category>
-        <category>okai</category>
-        <category>ai</category>
-        <category>api</category>
-        <description>The latest features in ServiceStack v8.6 including Text to Blazor and AI code generation!</description>
-        <itunes:summary><![CDATA[ The latest features in ServiceStack v8.6 including Text to Blazor and AI code generation! ]]></itunes:summary>
-        <itunes:duration>1167</itunes:duration>
-        <itunes:keywords>release,okai,ai,api</itunes:keywords>        
         <itunes:image href="https://media.servicestack.com/artwork/cover-2048.jpg"/>
     </item>
 </channel>

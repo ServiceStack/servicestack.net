@@ -144,6 +144,120 @@ mountAll()
 <div class="relative px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
 
     <div class="relative mx-auto max-w-7xl">
+        <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v10.5</h2>
+        <div class="text-center text-lg font-normal text-gray-500">November 11, 2026</div>
+            <div class="mt-2 flex justify-center">
+                <a href="podcasts/v10-5-release" class="group flex items-center gap-2 rounded-full bg-white/25 p-1.5 text-xs text-slate-900 ring-1 ring-inset ring-black/[0.08] hover:bg-white/50 hover:ring-black/[0.13]">
+                    <img src="/img/svgs/podcast.svg" alt="" class="h-8 w-8 rounded-full">
+                    <div class="pr-2">
+                        <p class="font-semibold">
+                            Listen to podcast episode
+                        </p>
+                        <p class="text-gray-600">ServiceStack v10.5 Release</p>
+                    </div>
+                </a>
+            </div>
+        <div class="mb-8"></div>
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v10_05#react-next.js-vue-templates-upgraded-to-vite"><img src="/img/posts/vite-plus-templates/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v10_05#react-next.js-vue-templates-upgraded-to-vite">Vite&#x2B; - React, Next.js and Vue Templates upgraded to one unified toolchain</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>Every React, Next.js and Vue template now uses <strong>Vite+</strong>, the unified toolchain from VoidZero, the team behind Vite, Vitest, Rolldown and Oxc. One <code>vp</code> CLI and one <code>vite.config.ts</code> replace separate configs for ESLint, <code>tsc</code> and Vitest, and <code>npm run check</code> formats with <strong>Oxfmt</strong>, lints with type-aware <strong>Oxlint</strong> and type checks with <strong>TypeScript 7</strong> in a single pass, whilst Vite 8's <strong>Rolldown</strong> bundler builds the Vite templates.</p>
+<p>Every template shares the same npm scripts and includes a <strong>VS Code Workspace</strong> that formats and fixes on save, a GitHub Actions job that checks, tests and builds every push, and updated <code>AGENTS.md</code> guidance, so your editor, CI and AI Agent all follow the same rules.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v10_05#react-next.js-vue-templates-upgraded-to-vite" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v10_05#new-tanstack-start-template"><img src="/img/posts/tanstack-start-template/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v10_05#new-tanstack-start-template">TanStack Start - type-safe routes, prerendered pages and no Node.js server</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new <strong>tanstack-static</strong> template builds React Apps with <strong>TanStack Start</strong> and <strong>TanStack Router</strong>, where every <code>&lt;Link&gt;</code> path and route param is type checked, so renaming a route is a compile error instead of a broken link in production. It's just React, with no Server Components or <code>&quot;use client&quot;</code> boundaries to learn.</p>
+<p>Every page linked from your App is <strong>prerendered</strong> to static HTML for fast first loads and SEO, then runs as a SPA, whilst dynamic routes like <code>/posts/$id</code> that weren't linked fall back to a generated SPA shell. Pages are served by your .NET App with no Node.js server in production, and call your ServiceStack APIs with the typed <code>JsonServiceClient</code>.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v10_05#new-tanstack-start-template" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/releases/v10_05#new-astro-template"><img src="/img/posts/astro-template/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/releases/v10_05#new-astro-template">Astro - content sites that ship no JavaScript by default</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>The new <strong>astro-static</strong> template is for content-first Apps like blogs, docs, marketing and product sites that still need auth and .NET APIs. Pages are rendered to plain HTML and CSS with <strong>no JavaScript by default</strong>, and interactive React components are hydrated as <strong>islands</strong> only where you need them, sharing the signed-in user with <code>withApp()</code>.</p>
+<p>It includes a <strong>Markdown and MDX blog</strong> whose frontmatter is validated against a typed schema at build time, with RSS and a sitemap, plus ASP.NET Core Identity Auth, dark mode and AutoQuery CRUD. Every page is prerendered and served by your .NET App, with no Node.js server to run in production.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/releases/v10_05#new-astro-template" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/redis/distributed-cache"><img src="/img/posts/redis-caching/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/redis/distributed-cache">Redis Caching - IDistributedCache, HybridCache and atomic TTLs</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>On .NET 10, <strong>ServiceStack.Redis</strong> can back Microsoft's <strong>IDistributedCache</strong> with one <code>AddServiceStackRedisCache()</code> call, reusing your existing client manager, and acts as the shared <strong>L2 cache behind HybridCache</strong>. Absolute and sliding expirations run as atomic Lua scripts, so a refresh can never push an entry past its deadline, and <code>ICacheClient</code> expirations now set the value and its TTL in a <strong>single atomic <code>SET PXAT</code></strong>.</p>
+<p>New <strong><code>GETEX</code></strong>, <strong><code>GETDEL</code></strong> and <strong><code>UNLINK</code></strong> APIs read and expire, read and delete, or free large keys in the background, <code>UnlinkByPattern</code> clears key patterns with <code>SCAN</code> instead of blocking Redis with <code>KEYS</code>, and <strong>hash field expiration</strong> lets each field in a hash expire on its own schedule on Redis 7.4+.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/redis/distributed-cache" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
+            <div class="flex flex-wrap my-24">
+                <div class="w-full sm:w-1/2 animated px-4">
+                    <a href="https://docs.servicestack.net/redis/streams"><img src="/img/posts/redis-streams-work-queue/bg.webp" alt="" loading="lazy"></a>
+                </div>
+                <div class="w-full sm:w-1/2 text-left wow fadeInLeft animated px-4">
+                    <h3 class="m-0 mb-4">
+                        <a class="text-2xl font-normal text-blue-500 hover:text-blue-600" href="https://docs.servicestack.net/redis/streams">Redis Streams - work queues that survive worker crashes</a>
+                    </h3>
+                    <div class="prose max-w-none">
+                        <p>ServiceStack.Redis v10.5 adds <strong>Redis Streams</strong> with typed JSON entries, <strong>consumer groups</strong> that share work between workers, explicit <code>XAck</code> acknowledgments and <strong><code>XAutoClaim</code></strong> to reclaim a crashed worker's pending messages, plus pipelined bulk appends of thousands of entries.</p>
+<p>Pools can now be capped with an opt-in <strong><code>MaxLiveConnections</code></strong>, where callers wait in line or fail fast instead of opening more connections than your Redis plan allows, and pool waits can be <strong>cancelled</strong> with a <code>CancellationToken</code>. Async connections are now <strong>fully async</strong> from DNS to TLS and AUTH under one <code>ConnectTimeout</code>, and connection strings accept IPv6 addresses and <code>rediss://</code> URIs.</p>
+
+                    </div>
+                    <div class="text-center sm:text-left my-10">
+                        <a href="https://docs.servicestack.net/redis/streams" class="text-white text-sm font-semibold py-2.5 px-3.5 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>        
         <h2 class="text-center mb-4 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">v10.4</h2>
         <div class="text-center text-lg font-normal text-gray-500">October 7, 2026</div>
             <div class="mt-2 flex justify-center">
