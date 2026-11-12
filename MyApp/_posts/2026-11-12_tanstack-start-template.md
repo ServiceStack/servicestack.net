@@ -6,11 +6,9 @@ author: Demis
 image: ./img/posts/tanstack-start-template/bg.webp
 ---
 
-<!-- TODO: add the video
-:::youtube VIDEO_ID
-TanStack Start + .NET: Type-safe Routes, No Node.js Server
+:::youtube ic4hiu5Efac
+TanStack Start + .NET: Type-Safe React Routes, No Node.js Server
 :::
--->
 
 Rename a page in most React Apps and nothing complains. Every link that pointed at the old path still compiles, the
 build still passes, and you find out about the broken link when a user clicks it in production.
