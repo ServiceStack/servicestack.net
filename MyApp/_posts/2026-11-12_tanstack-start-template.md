@@ -1,6 +1,6 @@
 ---
 title: TanStack Start + .NET with Type-safe Routes and No Node.js Server
-summary: ServiceStack v10.5 adds a tanstack-static template where every link and route param is type checked, every page is prerendered for fast first loads then runs as a SPA, and dynamic routes don't need to be known at build time, all served by your .NET App with no Node.js server to run in production
+summary: ServiceStack v10.5 adds a tanstack-static template where every link and route param is type checked, every page is prerendered for fast first loads then runs as a SPA, and dynamic routes don't need to be known at build time, all served by your .NET App with no Node.js server to run in production 
 tags: [servicestack, react, templates]
 author: Demis
 image: ./img/posts/tanstack-start-template/bg.webp
