@@ -6,11 +6,9 @@ author: Demis
 image: ./img/posts/astro-template/bg.webp
 ---
 
-<!-- TODO: add the video
-:::youtube VIDEO_ID
-Astro + .NET: Content Sites That Ship No JavaScript
+:::youtube 1pQ6fe62_s0
+Astro + .NET: Static HTML Pages, React Islands, No Node.js Server
 :::
--->
 
 Most of a blog, a docs site or a product page is just content: a header, an article and a footer. Yet many React
 sites ship a whole JavaScript framework to the browser to render it, then wait for it to load before the page becomes
