@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Wed, 11 Nov 2026 15:02:33 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 06:55:24 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>TanStack Start &#x2B; .NET with Type-safe Routes and No Node.js Server</title>
+        <link>https://servicestack.net/posts/tanstack-start-template</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/tanstack-start-template</guid>
+        <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-11-12T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>react</category>
+        <category>templates</category>
+        <description>ServiceStack v10.5 adds a tanstack-static template where every link and route param is type checked, every page is prerendered for fast first loads then runs as a SPA, and dynamic routes don&#x27;t need to be known at build time, all served by your .NET App with no Node.js server to run in production</description>
+    </item>
     <item>
         <title>React, Next.js and Vue Templates Upgraded to Vite&#x2B;</title>
         <link>https://servicestack.net/posts/vite-plus-templates</link>
@@ -121,18 +133,6 @@
         <category>llms</category>
         <category>servicestack</category>
         <description>AI Chat puts a ChatGPT-like assistant inside your .NET App, where it calls the APIs the signed-in user is allowed to call and turns the results into interactive views and reports your team can explore, review and publish</description>
-    </item>
-    <item>
-        <title>Multitenancy that can&#x27;t be forgotten</title>
-        <link>https://servicestack.net/posts/ormlite-multitenancy</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/ormlite-multitenancy</guid>
-        <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-10-07T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>ormlite</category>
-        <category>autoquery</category>
-        <description>ServiceStack v10.4 moves tenant isolation from every query to the database connection, with OrmLite connection filters and write rules that confine selects, updates, deletes, inserts and AutoQuery APIs to the request&#x27;s tenant, fail closed until it&#x27;s known, and record trusted audit columns on every write</description>
     </item>
 </channel>
 </rss>
