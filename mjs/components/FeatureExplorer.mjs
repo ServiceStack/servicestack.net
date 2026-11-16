@@ -46,7 +46,7 @@ export default {
               text: 'An instant, customizable CRUD App over your data models.' },
             { category: 'Data', name: 'AutoGen', href: '/autoquery/autogen', keywords: 'database first scaffold',
               text: 'Generate typed AutoQuery APIs for an existing database at runtime.' },
-            { category: 'Data', name: 'okai', href: '/autoquery/okai-models', keywords: 'ai models text to blazor',
+            { category: 'Data', name: 'okai', href: '/autoquery/okai-models', keywords: 'ai models',
               text: 'Generate data models, APIs and Admin UIs from a natural language prompt.' },
             { category: 'Data', name: 'Scalable SQLite', href: '/ormlite/scalable-sqlite', keywords: 'litestream replication',
               text: 'Litestream-replicated SQLite for fast, inexpensive production hosting.' },
