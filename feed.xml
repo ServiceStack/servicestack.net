@@ -10,10 +10,22 @@
     </image>
     <generator>razor-ssg</generator>
     <copyright></copyright>
-    <lastBuildDate>Mon, 16 Nov 2026 04:15:50 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 11:22:01 GMT</lastBuildDate>
     <managingEditor>team@servicestack.net (Team ServiceStack)</managingEditor>
     <webMaster>team@servicestack.net (Team ServiceStack)</webMaster>
     <atom:link href="https://servicestack.net/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+        <title>Build a Redis Streams Work Queue in C# That Survives Worker Crashes</title>
+        <link>https://servicestack.net/posts/redis-streams-work-queue</link>
+        <author>demis@servicestack.com (Demis)</author>
+        <guid isPermaLink="false">https://servicestack.net/posts/redis-streams-work-queue</guid>
+        <pubDate>Tue, 17 Nov 2026 00:00:00 GMT</pubDate>
+        <atom:updated>2026-11-17T00:00:00Z</atom:updated>
+        <category>servicestack</category>
+        <category>redis</category>
+        <category>jobs</category>
+        <description>ServiceStack.Redis v10.5 adds Redis Streams with typed entries, consumer groups, explicit acknowledgments and recovery of a crashed worker&#x27;s messages, then keeps your workers within your Redis plan with an opt-in cap on pool connections, bounded and cancellable waits and fully async connection setup</description>
+    </item>
     <item>
         <title>Redis Caching in .NET with IDistributedCache, HybridCache and Atomic TTLs</title>
         <link>https://servicestack.net/posts/redis-caching</link>
@@ -121,18 +133,6 @@
         <category>ormlite</category>
         <category>sql</category>
         <description>ServiceStack v10.4 adds typed recursive queries, named sub queries, window functions with TopPerGroup, Union/Intersect/Except, SeekAfter keyset paging and async streaming, so the queries that used to need hand-written SQL stay typed, parameterized and portable</description>
-    </item>
-    <item>
-        <title>Safe SQL by default in OrmLite</title>
-        <link>https://servicestack.net/posts/ormlite-safe-sql</link>
-        <author>demis@servicestack.com (Demis)</author>
-        <guid isPermaLink="false">https://servicestack.net/posts/ormlite-safe-sql</guid>
-        <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-        <atom:updated>2026-10-15T00:00:00Z</atom:updated>
-        <category>servicestack</category>
-        <category>ormlite</category>
-        <category>security</category>
-        <description>ServiceStack v10.4 adds Sql.Fmt() for interpolated SQL where every value is a db param, OrderBySafe() for user-selected sort orders, and stronger SQL injection protection across fragment validation, identifier quoting and inlined values</description>
     </item>
 </channel>
 </rss>
